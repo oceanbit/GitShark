@@ -5,9 +5,12 @@
 import {AppRegistry} from 'react-native';
 import App from './src/App';
 import {name as appName} from './app.json';
-import {plugins} from 'isomorphic-git';
+/**
+ * https://github.com/isomorphic-git/isomorphic-git/issues/597#issuecomment-443271254
+ */
+import * as git from 'isomorphic-git/dist/bundle.umd.min.js';
 import {mappedRNFSToIsomorphicGitFS} from './rnfs-to-iso-git-fs';
 
-plugins.set('fs', mappedRNFSToIsomorphicGitFS);
+git.plugins.set('fs', mappedRNFSToIsomorphicGitFS);
 
 AppRegistry.registerComponent(appName, () => App);

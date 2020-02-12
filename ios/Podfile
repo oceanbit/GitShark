@@ -34,7 +34,6 @@ target 'GitGui' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'RNFS', :path => '../node_modules/react-native-fs'
 
   target 'GitGuiTests' do
     inherit! :search_paths
