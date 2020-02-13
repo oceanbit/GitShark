@@ -5364,6 +5364,10 @@ react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
+"react-native-file-selector@https://github.com/crutchcorn/react-native-file-selector.git":
+  version "1.0.0"
+  resolved "https://github.com/crutchcorn/react-native-file-selector.git#15f760e456b9d426bf9d34e910d53a1c324307b8"
+
 react-native-fs@^2.16.4:
   version "2.16.4"
   resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.16.4.tgz#34c477399af9ed33fd64e869b33a587c3ad029e9"

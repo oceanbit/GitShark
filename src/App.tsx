@@ -14,8 +14,8 @@ import {
   Text,
   StatusBar,
   Button,
-  FlatList,
 } from 'react-native';
+import RNFileSelector from 'react-native-file-selector';
 
 import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
 
@@ -51,6 +51,19 @@ const App = () => {
     await findRepos();
   };
 
+  const selectDirectory = () => {
+    RNFileSelector.Show({
+      title: 'Select File',
+      chooseFolderMode: true,
+      onDone: (path: string) => {
+        console.log('file selected: ' + path);
+      },
+      onCancel: () => {
+        console.log('cancelled');
+      },
+    });
+  };
+
   React.useEffect(() => {
     // TODO: Add error handling
     createConnection({
@@ -78,16 +91,16 @@ const App = () => {
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Repos {stateString}:</Text>
+              <Button title="Select Folder" onPress={() => selectDirectory()} />
               <Button
                 title="Create A New Repo"
                 onPress={() => createAndFindAll()}
               />
-              <FlatList
-                data={repos}
-                renderItem={({item}) => (
-                  <Text style={styles.item}>{item.name}</Text>
-                )}
-              />
+              {repos.map(repo => (
+                <Text key={repo.id} style={styles.item}>
+                  {repo.name}
+                </Text>
+              ))}
             </View>
           </View>
         </ScrollView>
