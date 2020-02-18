@@ -8,6 +8,9 @@ import {
   readdir as fsReadDir,
   mkdir as fsMkdir,
   stat as fsStat,
+  lstat as fsLstat,
+  symlink as fsSymlink,
+  readlink as fsReadlink,
 } from 'react-native-fs';
 
 export const mappedRNFSToIsomorphicGitFS = {
@@ -20,11 +23,8 @@ export const mappedRNFSToIsomorphicGitFS = {
     mkdir: path => fsMkdir(path),
     rmdir: fsUnlink,
     stat: fsStat,
-    // missing lstat. Only present to silence type errors
-    lstat: null,
-    // missing readlink. Only present to silence type errors
-    readlink: null,
-    // missing symlink. Only present to silence type errors
-    symlink: null,
+    lstat: fsLstat,
+    readlink: fsReadlink,
+    symlink: fsSymlink,
   },
 };

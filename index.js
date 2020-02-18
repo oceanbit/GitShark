@@ -5,6 +5,7 @@
 import {AppRegistry} from 'react-native';
 import App from './src/App';
 import {name as appName} from './app.json';
+import './readAsArrayBuffer';
 /**
  * https://github.com/isomorphic-git/isomorphic-git/issues/597#issuecomment-443271254
  */

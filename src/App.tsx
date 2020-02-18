@@ -13,15 +13,34 @@ import {
   View,
   Text,
   StatusBar,
-  Button,
 } from 'react-native';
-import RNFileSelector from 'react-native-file-selector';
 
 import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
+import {CloneRepo} from './clone-repo/clone-repo';
+import {PermissionsAndroid} from 'react-native';
 
 const App = () => {
   const [stateString, setStateString] = React.useState('Loading...');
   const [repos, setRepos] = React.useState<Repo[]>([]);
+
+  React.useEffect(() => {
+    const askedPermission = PermissionsAndroid.requestMultiple([
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+    ]);
+    askedPermission.then(granted => {
+      if (
+        granted[PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE] ===
+          PermissionsAndroid.RESULTS.GRANTED &&
+        granted[PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE] ===
+          PermissionsAndroid.RESULTS.GRANTED
+      ) {
+        console.log('You can use external storage');
+      } else {
+        console.log('External storage permission denied');
+      }
+    });
+  }, []);
 
   const findRepos = async () => {
     try {
@@ -32,36 +51,6 @@ const App = () => {
     } catch (e) {
       setStateString('There was an error creating the new repo!');
     }
-  };
-
-  const createNewRepo = async () => {
-    try {
-      const newRepo = new Repo();
-      newRepo.name = 'Hello, World!';
-      await newRepo.save();
-      return true; // Indicates this works
-    } catch (e) {
-      setStateString('There was an error creating the new repo!');
-    }
-  };
-
-  const createAndFindAll = async () => {
-    const isDone = await createNewRepo();
-    if (!isDone) return;
-    await findRepos();
-  };
-
-  const selectDirectory = () => {
-    RNFileSelector.Show({
-      title: 'Select File',
-      chooseFolderMode: true,
-      onDone: (path: string) => {
-        console.log('file selected: ' + path);
-      },
-      onCancel: () => {
-        console.log('cancelled');
-      },
-    });
   };
 
   React.useEffect(() => {
@@ -91,10 +80,12 @@ const App = () => {
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Repos {stateString}:</Text>
-              <Button title="Select Folder" onPress={() => selectDirectory()} />
-              <Button
-                title="Create A New Repo"
-                onPress={() => createAndFindAll()}
+              <CloneRepo
+                onClone={() => findRepos()}
+                onError={e => {
+                  console.error(e);
+                  setStateString('Error cloning repo');
+                }}
               />
               {repos.map(repo => (
                 <Text key={repo.id} style={styles.item}>

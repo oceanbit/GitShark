@@ -13,4 +13,7 @@ export class Repo extends BaseEntity {
 
   @Column('int', {nullable: true})
   stars: number;
+
+  @Column('text', {nullable: false})
+  path: string;
 }
