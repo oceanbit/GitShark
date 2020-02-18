@@ -15,9 +15,9 @@ import {
 
 export const mappedRNFSToIsomorphicGitFS = {
   promises: {
-    readFile: (path, options = {}) => fsReadFile(path, options.encoding),
+    readFile: (path, options = {}) => fsReadFile(path, options.encoding || 'utf8'),
     writeFile: (path, data, options = {}) =>
-      fsWriteFile(path, data, options.encoding),
+      fsWriteFile(path, data, options.encoding || 'utf8'),
     unlink: fsUnlink,
     readdir: fsReadDir,
     mkdir: path => fsMkdir(path),
