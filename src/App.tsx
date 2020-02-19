@@ -2,7 +2,7 @@
  * @format
  */
 import 'reflect-metadata';
-import {createConnection, getRepository} from 'typeorm';
+import {createConnection, getConnectionManager, getRepository} from 'typeorm';
 import {Repo} from './entities';
 
 import React from 'react';
@@ -65,10 +65,19 @@ const App = () => {
       entities: [Repo],
     })
       .then(() => {
-        setStateString('Successfully Loaded');
-        return findRepos();
+        setStateString('Successfully Loaded Database');
+        findRepos();
       })
-      .catch(() => setStateString('There was an error loading the DB!'));
+      .catch(err => {
+        if (err.name === 'AlreadyHasActiveConnectionError') {
+          const existentConn = getConnectionManager().get('default');
+          setStateString('Successfully Loaded Database');
+          findRepos();
+          return existentConn;
+        }
+        setStateString('There was an error loading the DB!');
+        console.error(err);
+      });
   }, []);
 
   return (
@@ -85,7 +94,7 @@ const App = () => {
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>FS Demos:</Text>
-              <FSDemos/>
+              <FSDemos />
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Repos:</Text>
