@@ -5368,9 +5368,8 @@ react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   version "1.0.0"
   resolved "https://github.com/crutchcorn/react-native-file-selector.git#15f760e456b9d426bf9d34e910d53a1c324307b8"
 
-"react-native-fs@https://github.com/crutchcorn/react-native-fs.git#all-commands":
+react-native-fs@../react-native-fs:
   version "2.16.4"
-  resolved "https://github.com/crutchcorn/react-native-fs.git#bb02267678a133c3c5f42db9a6b07f85f1065df1"
   dependencies:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
@@ -6314,6 +6313,11 @@ test-exclude@^5.2.3:
     minimatch "^3.0.4"
     read-pkg-up "^4.0.0"
     require-main-filename "^2.0.0"
+
+text-encoding@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/text-encoding/-/text-encoding-0.7.0.tgz#f895e836e45990624086601798ea98e8f36ee643"
+  integrity sha512-oJQ3f1hrOnbRLOcwKz0Liq2IcrvDeZRHXhd9RgLrsT+DjWY/nty1Hi7v3dtkaEYbPYe0mUoOfzRrMwfXXwgPUA==
 
 text-table@^0.2.0:
   version "0.2.0"

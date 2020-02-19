@@ -2,7 +2,7 @@ import React from 'react';
 import * as git from 'isomorphic-git/dist/bundle.umd.min.js';
 import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
 import RNFileSelector from 'react-native-file-selector';
-import {DocumentDirectoryPath, readFile} from 'react-native-fs';
+import {DocumentDirectoryPath} from 'react-native-fs';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Repo} from '../entities';
 

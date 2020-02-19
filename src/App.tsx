@@ -18,6 +18,7 @@ import {
 import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
 import {CloneRepo} from './clone-repo/clone-repo';
 import {PermissionsAndroid} from 'react-native';
+import {FSDemos} from './fs-demos/fs-demos';
 
 const App = () => {
   const [stateString, setStateString] = React.useState('Loading...');
@@ -49,7 +50,7 @@ const App = () => {
       setRepos(repos);
       return true; // Indicates this works
     } catch (e) {
-      setStateString('There was an error creating the new repo!');
+      setStateString('There was an error finding the repos!');
     }
   };
 
@@ -65,8 +66,9 @@ const App = () => {
     })
       .then(() => {
         setStateString('Successfully Loaded');
+        return findRepos();
       })
-      .catch(() => setStateString('There was an error!'));
+      .catch(() => setStateString('There was an error loading the DB!'));
   }, []);
 
   return (
@@ -79,7 +81,14 @@ const App = () => {
           <Header />
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Repos {stateString}:</Text>
+              <Text style={styles.sectionTitle}>State: {stateString}</Text>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>FS Demos:</Text>
+              <FSDemos/>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Repos:</Text>
               <CloneRepo
                 onClone={() => findRepos()}
                 onError={e => {
@@ -109,6 +118,10 @@ const styles = StyleSheet.create({
   },
   sectionContainer: {
     marginTop: 32,
+    borderColor: Colors.black,
+    borderTopWidth: 3,
+    borderBottomWidth: 3,
+    paddingVertical: 12,
     paddingHorizontal: 24,
   },
   sectionTitle: {
