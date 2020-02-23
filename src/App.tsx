@@ -93,11 +93,7 @@ const App = () => {
               <Text style={styles.sectionTitle}>State: {stateString}</Text>
             </View>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>FS Demos:</Text>
-              <FSDemos />
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Repos:</Text>
+              <Text style={styles.sectionTitle}>Clone Demo:</Text>
               <CloneRepo
                 onClone={() => findRepos()}
                 onError={e => {
@@ -105,13 +101,20 @@ const App = () => {
                   setStateString('Error cloning repo');
                 }}
               />
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>FS Demos:</Text>
+              <FSDemos />
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Repos:</Text>
               {repos.map(repo => (
-                <Text key={repo.id} style={styles.item}>
-                  {repo.name}
-                </Text>
+                  <Text key={repo.id} style={styles.item}>
+                    {repo.name}
+                  </Text>
               ))}
             </View>
-          </View>
+            </View>
         </ScrollView>
       </SafeAreaView>
     </>

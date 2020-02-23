@@ -6,12 +6,14 @@ import {
   readFile,
   writeFile,
   stat,
+  unlink,
 } from 'react-native-fs';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 export const FSDemos = () => {
   const [path, setPath] = React.useState(DocumentDirectoryPath + '/test');
   const [fileName, setFileName] = React.useState('');
+  const [state, setState] = React.useState('Initial state');
 
   const selectDirectory = () => {
     RNFileSelector.Show({
@@ -27,27 +29,57 @@ export const FSDemos = () => {
     });
   };
 
-  const onWrite = () => {
-    writeFile(`${path}/${fileName}`, 'Hello, world');
+  const onWrite = async () => {
+    try {
+      await writeFile(`${path}/${fileName}`, 'Hello, world');
+    } catch (err) {
+      setState('Error during write');
+      console.error(err);
+    }
+  };
+
+  const onDelete = async () => {
+    try {
+      await unlink(`${path}/${fileName}`);
+    } catch (err) {
+      setState('Error during delete');
+      console.error(err);
+    }
   };
 
   const onRead = async () => {
-    const val = await readFile(`${path}/${fileName}`);
-    console.log(val);
+    try {
+      const val = await readFile(`${path}/${fileName}`);
+      console.log(val);
+    } catch (err) {
+      setState('Error during read');
+      console.error(err);
+    }
   };
 
   const onStat = async () => {
-    const val = await stat(`${path}/${fileName}`);
-    console.log(val);
+    try {
+      const val = await stat(`${path}/${fileName}`);
+      console.log(val);
+    } catch (err) {
+      setState('Error during stat');
+      console.error(err);
+    }
   };
 
   const onLstat = async () => {
-    const val = await stat(`${path}/${fileName}`);
-    console.log(val);
+    try {
+      const val = await stat(`${path}/${fileName}`);
+      console.log(val);
+    } catch (err) {
+      setState('Error during lstat');
+      console.error(err);
+    }
   };
 
   return (
     <View style={styles.container}>
+      <Text>{state}</Text>
       <Button title="Select Folder" onPress={() => selectDirectory()} />
       <Text>{path}</Text>
       <TextInput
@@ -61,6 +93,9 @@ export const FSDemos = () => {
       </View>
       <View style={styles.button}>
         <Button title={'Read File'} onPress={() => onRead()} />
+      </View>
+      <View style={styles.button}>
+        <Button title={'Delete File'} onPress={() => onDelete()} />
       </View>
       <View style={styles.button}>
         <Button title={'Stat File'} onPress={() => onStat()} />
