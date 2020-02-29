@@ -5368,8 +5368,9 @@ react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   version "1.0.0"
   resolved "https://github.com/crutchcorn/react-native-file-selector.git#15f760e456b9d426bf9d34e910d53a1c324307b8"
 
-react-native-fs@../react-native-fs:
+"react-native-fs@https://github.com/crutchcorn/react-native-fs.git#all-commands":
   version "2.16.4"
+  resolved "https://github.com/crutchcorn/react-native-fs.git#0a471175c064d0d807c14f1510c591ce7ccd6c7a"
   dependencies:
     base-64 "^0.1.0"
     utf8 "^3.0.0"

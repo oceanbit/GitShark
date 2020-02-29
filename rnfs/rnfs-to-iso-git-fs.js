@@ -25,6 +25,11 @@ const convertToErrToEONENT = error => {
     err.code = 'ENOENT';
     return err;
   }
+  if (/ENOTDIR/.exec(error.message)) {
+    const err = new Error(error);
+    err.code = 'ENOTDIR';
+    return err;
+  }
   return error;
 };
 
