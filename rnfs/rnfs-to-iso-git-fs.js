@@ -13,22 +13,27 @@ import {
   readlink as fsReadlink,
 } from 'react-native-fs';
 import {bytesToBase64} from './encode-uint8array-to-b64';
+import {EEXIST, ENOENT, ENOTDIR, ENOTEMPTY} from './errors';
+import {b64toBlob} from './base-64-to-blob';
 
-const logFS = false;
+const logFS = true;
 
 /**
  * @param {Error} error
  */
 const convertToErrToEONENT = error => {
+  if (logFS) console.warn(error);
   if (/ENOENT/.exec(error.message)) {
-    const err = new Error(error);
-    err.code = 'ENOENT';
-    return err;
+    return new ENOENT(error);
   }
   if (/ENOTDIR/.exec(error.message)) {
-    const err = new Error(error);
-    err.code = 'ENOTDIR';
-    return err;
+    return new ENOTDIR(error);
+  }
+  if (/ENOTEMPTY/.exec(error.message)) {
+    return new ENOTEMPTY(error);
+  }
+  if (/EEXIST/.exec(error.message)) {
+    return new EEXIST(error);
   }
   return error;
 };
@@ -38,7 +43,17 @@ export const mappedRNFSToIsomorphicGitFS = {
     readFile: async (path, options = {}) => {
       try {
         logFS && console.log('readFile', path);
-        return await fsReadFile(path, options.encoding || 'utf8');
+        try {
+          const fileRead = await fsReadFile(path, options.encoding || 'utf8');
+          return fileRead;
+        } catch (e) {
+          if (/Invalid UTF-8 detected/.exec(e.message)) {
+            const fileReadB64 = await fsReadFile(path, 'base64');
+            debugger;
+            return b64toBlob(fileReadB64);
+          }
+          throw e;
+        }
       } catch (e) {
         const newErr = convertToErrToEONENT(e);
         throw newErr;
