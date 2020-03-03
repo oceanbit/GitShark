@@ -16,9 +16,9 @@ import {
 } from 'react-native';
 
 import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
-import {CloneRepo} from './clone-repo/clone-repo';
+import {CloneRepo} from './components/clone-repo/clone-repo';
 import {PermissionsAndroid} from 'react-native';
-import {FSDemos} from './fs-demos/fs-demos';
+import {FSDemos} from './components/fs-demos/fs-demos';
 
 const App = () => {
   const [stateString, setStateString] = React.useState('Loading...');
@@ -109,12 +109,12 @@ const App = () => {
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Repos:</Text>
               {repos.map(repo => (
-                  <Text key={repo.id} style={styles.item}>
-                    {repo.name}
-                  </Text>
+                <Text key={repo.id} style={styles.item}>
+                  {repo.name}
+                </Text>
               ))}
             </View>
-            </View>
+          </View>
         </ScrollView>
       </SafeAreaView>
     </>
