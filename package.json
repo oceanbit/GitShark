@@ -17,6 +17,7 @@
     "react-native": "0.61.5",
     "react-native-file-selector": "https://github.com/crutchcorn/react-native-file-selector.git",
     "react-native-fs": "https://github.com/crutchcorn/react-native-fs.git#all-commands",
+    "react-native-paper": "^3.6.0",
     "react-native-sqlite-storage": "^4.1.0",
     "react-native-vector-icons": "^6.6.0",
     "react-router-native": "^5.1.2",

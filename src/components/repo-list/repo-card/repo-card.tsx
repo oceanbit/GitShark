@@ -3,6 +3,7 @@ import React from 'react';
 import {RepoMock} from '../mock-data';
 import {RepoCardCommitMetadata} from './repo-card-commit-metadata';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {theme} from '../../../constants/theme';
 
 interface RepoCardProps {
   repo: RepoMock;
@@ -16,7 +17,7 @@ export const RepoCard = ({repo}: RepoCardProps) => {
       </View>
       <View style={styles.displayRow}>
         <View style={styles.branchView}>
-          <Icon name="check-circle" size={16} color="#002BFF" />
+          <Icon name="check-circle" size={16} color={theme.colors.accent} />
           <Text style={styles.branchName}>{repo.branchName}</Text>
         </View>
         <RepoCardCommitMetadata
@@ -31,8 +32,8 @@ export const RepoCard = ({repo}: RepoCardProps) => {
 const styles = StyleSheet.create({
   cardContainer: {
     borderStyle: 'solid',
-    borderColor: 'rgba(0, 51, 153, 0.2);',
-    borderRadius: 6,
+    borderColor: theme.colors.outlineColor,
+    borderRadius: theme.roundness,
     borderWidth: 1,
     padding: 16,
     marginBottom: 16,
@@ -53,14 +54,14 @@ const styles = StyleSheet.create({
   },
   lastUpdated: {
     fontSize: 12,
-    color: '#142952',
+    color: theme.colors.fadedGrey,
   },
   branchView: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   branchName: {
-    color: '#002BFF',
+    color: theme.colors.accent,
     fontSize: 16,
     marginLeft: 4,
   },
