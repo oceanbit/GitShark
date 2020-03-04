@@ -1,29 +1,18 @@
 /**
  * @format
  */
+import * as React from 'react';
 import 'reflect-metadata';
-import {createConnection, getConnectionManager, getRepository} from 'typeorm';
+import {createConnection, getConnectionManager} from 'typeorm';
 import {Repo} from './entities';
+import {NativeRouter, Route} from 'react-router-native';
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
-import {CloneRepo} from './components/clone-repo/clone-repo';
+import {SafeAreaView, StatusBar, Alert, ActivityIndicator} from 'react-native';
 import {PermissionsAndroid} from 'react-native';
-import {FSDemos} from './components/fs-demos/fs-demos';
-import {RepoList} from './components/repo-list/repo-list';
+import {RepositoryList} from './views/repository-list/repository-list';
 
 const App = () => {
-  const [stateString, setStateString] = React.useState('Loading...');
-  const [repos, setRepos] = React.useState<Repo[]>([]);
+  const [isDBLoaded, setIsDBLoaded] = React.useState(false);
 
   React.useEffect(() => {
     const askedPermission = PermissionsAndroid.requestMultiple([
@@ -44,17 +33,6 @@ const App = () => {
     });
   }, []);
 
-  const findRepos = async () => {
-    try {
-      const repoRepository = getRepository(Repo);
-      const repos = await repoRepository.find({});
-      setRepos(repos);
-      return true; // Indicates this works
-    } catch (e) {
-      setStateString('There was an error finding the repos!');
-    }
-  };
-
   React.useEffect(() => {
     // TODO: Add error handling
     createConnection({
@@ -66,90 +44,34 @@ const App = () => {
       entities: [Repo],
     })
       .then(() => {
-        setStateString('Successfully Loaded Database');
-        findRepos();
+        setIsDBLoaded(true);
       })
       .catch(err => {
         if (err.name === 'AlreadyHasActiveConnectionError') {
           const existentConn = getConnectionManager().get('default');
-          setStateString('Successfully Loaded Database');
-          findRepos();
+          setIsDBLoaded(true);
           return existentConn;
         }
-        setStateString('There was an error loading the DB!');
+        Alert.alert(
+          "There was an error loading the app's cache. Please restart the app and try again",
+        );
         console.error(err);
       });
   }, []);
 
   return (
-    <>
+    <NativeRouter>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          <View style={styles.body}>
-            <RepoList />
-          </View>
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>State: {stateString}</Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Clone Demo:</Text>
-              <CloneRepo
-                onClone={() => findRepos()}
-                onError={e => {
-                  console.error(e);
-                  setStateString('Error cloning repo');
-                }}
-              />
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>FS Demos:</Text>
-              <FSDemos />
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Repos:</Text>
-              {repos.map(repo => (
-                <Text key={repo.id} style={styles.item}>
-                  {repo.name}
-                </Text>
-              ))}
-            </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+      {isDBLoaded ? (
+        <>
+          <Route exact path="/" component={RepositoryList} />
+        </>
+      ) : (
+        <ActivityIndicator size="large" color="#0000ff" />
+      )}
+      <SafeAreaView />
+    </NativeRouter>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    borderColor: Colors.black,
-    borderTopWidth: 3,
-    borderBottomWidth: 3,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-  },
-});
 
 export default App;

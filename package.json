@@ -19,6 +19,7 @@
     "react-native-fs": "https://github.com/crutchcorn/react-native-fs.git#all-commands",
     "react-native-sqlite-storage": "^4.1.0",
     "react-native-vector-icons": "^6.6.0",
+    "react-router-native": "^5.1.2",
     "text-encoding": "^0.7.0",
     "typeorm": "0.2.21"
   },
@@ -31,6 +32,7 @@
     "@types/node": "^13.7.1",
     "@types/react-native": "^0.60.25",
     "@types/react-native-vector-icons": "^6.4.5",
+    "@types/react-router-native": "^5.1.0",
     "@types/react-test-renderer": "16.9.1",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
