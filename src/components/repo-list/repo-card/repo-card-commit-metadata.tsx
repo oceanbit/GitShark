@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface RepoCardCommitMetadataProps {
   commitsToPull: number;
@@ -12,15 +13,17 @@ export const RepoCardCommitMetadata = ({
   if (!commitsToPull && !commitsToPush) return null;
   return (
     <View style={styles.arrowContainer}>
-      {!!commitsToPull && (
+      {!!commitsToPush && (
         <View style={styles.commitNumberView}>
-          <Text style={styles.commitNumberText}>{commitsToPull}</Text>
+          <Icon name="arrow-up" size={10} color="#002BFF" />
+          <Text style={styles.commitNumberText}>{commitsToPush}</Text>
         </View>
       )}
       {!!commitsToPush && commitsToPull && <View style={styles.middleLine} />}
-      {!!commitsToPush && (
+      {!!commitsToPull && (
         <View style={styles.commitNumberView}>
-          <Text style={styles.commitNumberText}>{commitsToPush}</Text>
+          <Icon name="arrow-down" size={10} color="#002BFF" />
+          <Text style={styles.commitNumberText}>{commitsToPull}</Text>
         </View>
       )}
     </View>
@@ -41,9 +44,12 @@ const styles = StyleSheet.create({
   },
   commitNumberView: {
     padding: 6,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   commitNumberText: {
     fontSize: 10,
+    marginLeft: 2,
     color: '#002BFF',
   },
 });
