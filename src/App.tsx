@@ -19,6 +19,7 @@ import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
 import {CloneRepo} from './components/clone-repo/clone-repo';
 import {PermissionsAndroid} from 'react-native';
 import {FSDemos} from './components/fs-demos/fs-demos';
+import {RepoList} from './components/repo-list/repo-list';
 
 const App = () => {
   const [stateString, setStateString] = React.useState('Loading...');
@@ -88,6 +89,9 @@ const App = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <Header />
+          <View style={styles.body}>
+            <RepoList />
+          </View>
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>State: {stateString}</Text>
