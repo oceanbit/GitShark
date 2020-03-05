@@ -7,6 +7,7 @@ import {RepoCard} from '../../components/repo-list/repo-card/repo-card';
 import {FAB, TouchableRipple} from 'react-native-paper';
 import {theme} from '../../constants/theme';
 import {ExtendedActionFab} from '../../components/extended-action-fab/extended-action-fab';
+import {CreateRepositoryDialog} from "../../components/create-repository-dialog/create-repository-dialog";
 
 interface ExtendedFabBase {
   toggleAnimation: () => void;
@@ -119,6 +120,7 @@ export const RepositoryList = () => {
       <View style={styles.fabview}>
         <ExtendedActionFab fab={newRepoFabCB} fabActions={actionFabCB} />
       </View>
+      <CreateRepositoryDialog/>
     </>
   );
 };
