@@ -135,7 +135,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.gitgui"
+        applicationId "com.gitshark"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

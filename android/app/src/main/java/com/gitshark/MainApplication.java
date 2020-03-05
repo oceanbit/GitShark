@@ -1,4 +1,4 @@
-package com.gitgui;
+package com.gitshark;
 
 import android.app.Application;
 import android.content.Context;
