@@ -7,7 +7,7 @@ import {RepoCard} from '../../components/repo-list/repo-card/repo-card';
 import {FAB, TouchableRipple} from 'react-native-paper';
 import {theme} from '../../constants/theme';
 import {ExtendedActionFab} from '../../components/extended-action-fab/extended-action-fab';
-import {CreateRepositoryDialog} from "../../components/create-repository-dialog/create-repository-dialog";
+import {CreateRepositoryDialog} from '../../components/create-repository-dialog/create-repository-dialog';
 
 interface ExtendedFabBase {
   toggleAnimation: () => void;
@@ -34,22 +34,34 @@ const fabStyles = StyleSheet.create({
   },
 });
 
-export const FabActions = ({toggleAnimation}: ExtendedFabBase) => {
+interface FabActionsProps extends ExtendedFabBase {
+  onSelect: (selection: 'clone' | 'create' | 'existing') => void;
+}
+export const FabActions = ({toggleAnimation, onSelect}: FabActionsProps) => {
   return (
     <View style={fabActionsStyles.fabActions}>
       <TouchableRipple
         style={fabActionsStyles.fabActionBtn}
-        onPress={() => toggleAnimation()}>
+        onPress={() => {
+          toggleAnimation();
+          onSelect('clone');
+        }}>
         <Text style={fabActionsStyles.fabActionText}>Clone</Text>
       </TouchableRipple>
       <TouchableRipple
         style={fabActionsStyles.fabActionBtn}
-        onPress={() => toggleAnimation()}>
+        onPress={() => {
+          toggleAnimation();
+          onSelect('create');
+        }}>
         <Text style={fabActionsStyles.fabActionText}>Create</Text>
       </TouchableRipple>
       <TouchableRipple
         style={fabActionsStyles.fabActionBtn}
-        onPress={() => toggleAnimation()}>
+        onPress={() => {
+          toggleAnimation();
+          onSelect('existing');
+        }}>
         <Text style={fabActionsStyles.fabActionText}>Add existing</Text>
       </TouchableRipple>
     </View>
@@ -76,6 +88,7 @@ const fabActionsStyles = StyleSheet.create({
 
 export const RepositoryList = () => {
   const [repos, setRepos] = React.useState<Repo[]>([]);
+  const [selectedAction, setSelectedAction] = React.useState('');
 
   const findRepos = React.useCallback(async () => {
     try {
@@ -102,7 +115,7 @@ export const RepositoryList = () => {
 
   const actionFabCB = React.useCallback(
     (toggleAnimation: ExtendedFabBase['toggleAnimation']) => (
-      <FabActions toggleAnimation={toggleAnimation} />
+      <FabActions toggleAnimation={toggleAnimation} onSelect={val => setSelectedAction(val)}/>
     ),
     [],
   );
@@ -112,6 +125,9 @@ export const RepositoryList = () => {
       <View style={styles.container}>
         <Text style={styles.headingText}>Repositories</Text>
         <ScrollView>
+          {repos.map(repo => {
+            return <RepoCard key={repo.id} repo={repo} />;
+          })}
           {reposMocks.map(repo => {
             return <RepoCard key={repo.id} repo={repo} />;
           })}
@@ -120,7 +136,13 @@ export const RepositoryList = () => {
       <View style={styles.fabview}>
         <ExtendedActionFab fab={newRepoFabCB} fabActions={actionFabCB} />
       </View>
-      <CreateRepositoryDialog/>
+      <CreateRepositoryDialog
+        visible={selectedAction === 'create'}
+        onDismiss={didUpdate => {
+          if (didUpdate) findRepos();
+          setSelectedAction('');
+        }}
+      />
     </>
   );
 };

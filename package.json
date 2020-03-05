@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "buffer": "^5.4.3",
+    "dayjs": "^1.8.21",
     "isomorphic-git": "^1.1.4",
     "react": "16.9.0",
     "react-native": "0.61.5",

@@ -1,8 +1,6 @@
 import * as React from 'react';
-import {StyleSheet, Text, View, TextInput} from 'react-native';
-import {Dialog, TouchableRipple, Button, Portal} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
+import {StyleSheet, Text, View} from 'react-native';
+import {Dialog, Portal} from 'react-native-paper';
 import {textStyles} from '../../constants/text-styles';
 
 interface AppDialogProps {
@@ -10,13 +8,31 @@ interface AppDialogProps {
   text: string;
   main?: React.ReactNode;
   actions?: React.ReactNode;
+  /**
+   * Determines whether clicking outside the dialog dismiss it.
+   */
+  dismissable?: boolean;
+  /**
+   * Callback that is called when the user dismisses the dialog.
+   */
+  onDismiss?: () => void;
+  visible: boolean;
 }
-export const AppDialog = ({title, text, actions, main}: AppDialogProps) => {
+export const AppDialog = ({
+                            visible,
+  dismissable,
+  onDismiss,
+  title,
+  text,
+  actions,
+  main,
+}: AppDialogProps) => {
   return (
     <Portal>
       <Dialog
-        visible={true}
-        onDismiss={() => {}}
+        visible={visible}
+        dismissable={dismissable}
+        onDismiss={onDismiss}
         style={styles.dialogContainer}>
         <Text style={styles.dialogTitle}>{title}</Text>
         <Text style={styles.mainText}>{text}</Text>

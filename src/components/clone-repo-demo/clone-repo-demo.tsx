@@ -37,7 +37,7 @@ interface CloneRepoProps {
   onClone?: () => void;
   onError?: (e: Error) => void;
 }
-export const CloneRepo = ({onClone: onCloneProp, onError}: CloneRepoProps) => {
+export const CloneRepoDemo = ({onClone: onCloneProp, onError}: CloneRepoProps) => {
   const [path, setPath] = React.useState(DocumentDirectoryPath + '/test');
   const [uri, setURI] = React.useState('');
 

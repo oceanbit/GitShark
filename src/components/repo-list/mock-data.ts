@@ -1,28 +1,31 @@
-export const reposMocks = [
+import {Repo, RepoMock} from '../../entities';
+
+export const reposMocks = ([
   {
-    id: 'test1',
+    id: 1,
     name: 'Repository',
-    branchName: 'the_big_branch',
-    lastUpdated: '2h',
+    currentBranchName: 'the_big_branch',
+    lastUpdated: new Date(),
     commitsToPull: 4,
     commitsToPush: 2,
+    path: '/',
   },
   {
-    id: 'test2',
+    id: 2,
     name: 'Repository',
-    branchName: 'the_medium_branch',
-    lastUpdated: '6h',
+    currentBranchName: 'the_medium_branch',
+    lastUpdated: new Date(),
     commitsToPull: 0,
     commitsToPush: 0,
+    path: '/',
   },
   {
-    id: 'test3',
+    id: 3,
     name: 'Repository',
-    branchName: 'the_small_branch',
-    lastUpdated: '1d',
+    currentBranchName: 'the_small_branch',
+    lastUpdated: new Date(),
     commitsToPull: 3,
     commitsToPush: 0,
+    path: '/',
   },
-];
-
-export type RepoMock = (typeof reposMocks)[0];
+] as RepoMock[]) as Repo[];

@@ -1,17 +1,21 @@
 import {StyleSheet, Text, View} from 'react-native';
 import * as React from 'react';
-import {RepoMock} from '../mock-data';
 import {RepoCardCommitMetadata} from './repo-card-commit-metadata';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../../constants/theme';
 import {useHistory} from 'react-router-native';
 import {TouchableRipple} from 'react-native-paper';
+import {Repo} from '../../../entities';
+import dayjs from 'dayjs';
+import {textStyles} from '../../../constants/text-styles';
 
 interface RepoCardProps {
-  repo: RepoMock;
+  repo: Repo;
 }
 export const RepoCard = ({repo}: RepoCardProps) => {
   const history = useHistory();
+
+  const updatedFromNow = dayjs(repo.lastUpdated).fromNow(true);
 
   return (
     <TouchableRipple
@@ -20,13 +24,15 @@ export const RepoCard = ({repo}: RepoCardProps) => {
       rippleColor={theme.colors.outlineColor}>
       <View>
         <View style={styles.topDisplayRow}>
-          <Text style={styles.cardName}>{repo.name}</Text>
-          <Text style={styles.lastUpdated}>Updated {repo.lastUpdated} ago</Text>
+          <Text numberOfLines={1} style={styles.cardName}>
+            {repo.name}
+          </Text>
+          <Text style={styles.lastUpdated}>Updated {updatedFromNow} ago</Text>
         </View>
         <View style={styles.displayRow}>
           <View style={styles.branchView}>
             <Icon name="check-circle" size={16} color={theme.colors.accent} />
-            <Text style={styles.branchName}>{repo.branchName}</Text>
+            <Text style={styles.branchName}>{repo.currentBranchName}</Text>
           </View>
           <RepoCardCommitMetadata
             commitsToPull={repo.commitsToPull}
@@ -59,12 +65,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cardName: {
-    fontSize: 28,
+    flexGrow: 1,
+    flexShrink: 1,
+    marginRight: 8,
+    ...textStyles.headline_03,
   },
   lastUpdated: {
-    fontSize: 12,
     color: theme.colors.on_surface_light,
-    opacity: 0.6
+    opacity: 0.6,
+    ...textStyles.caption_02,
   },
   branchView: {
     flexDirection: 'row',
@@ -72,7 +81,7 @@ const styles = StyleSheet.create({
   },
   branchName: {
     color: theme.colors.accent,
-    fontSize: 16,
     marginLeft: 4,
+    ...textStyles.caption_01,
   },
 });

@@ -31,3 +31,13 @@ export class Repo extends BaseEntity {
   @Column('datetime', {nullable: false, default: Date.now()})
   lastUpdated: Date;
 }
+
+export interface RepoMock {
+  id: number;
+  name: string;
+  currentBranchName: string;
+  commitsToPull: number;
+  commitsToPush: number;
+  path: string;
+  lastUpdated: Date;
+}
