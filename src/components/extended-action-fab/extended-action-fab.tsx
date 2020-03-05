@@ -4,8 +4,10 @@ import {
   View,
   TouchableWithoutFeedback,
 } from 'react-native';
+import {Portal} from 'react-native-paper';
 import * as React from 'react';
-
+import {theme} from '../../constants/theme';
+import {Surface} from 'react-native-paper';
 type ActionFabReactNode = (toggleAnimation: () => void) => React.ReactNode;
 
 interface ExtendedActionFabProps {
@@ -23,17 +25,17 @@ export const ExtendedActionFab = ({
     height: 0,
     width: 0,
   });
-  const animationValue = React.useRef(new Animated.Value(190));
+  const fabPanelHeight = React.useRef(new Animated.Value(190));
   const actionSizeOpacity = React.useRef(new Animated.Value(0));
   const fabOpacity = React.useRef(new Animated.Value(1));
 
   React.useEffect(() => {
     const height =
-      fabSize.height > fabActionSize.height
+      fabSize.height < fabActionSize.height
         ? fabSize.height
         : fabActionSize.height;
 
-    animationValue.current = new Animated.Value(height);
+    fabPanelHeight.current = new Animated.Value(height);
   }, [fabSize.height, fabActionSize.height]);
 
   const width =
@@ -42,7 +44,7 @@ export const ExtendedActionFab = ({
   const toggleAnimation = React.useCallback(() => {
     if (extended) {
       Animated.parallel([
-        Animated.timing(animationValue.current, {
+        Animated.timing(fabPanelHeight.current, {
           toValue: fabActionSize.height,
           duration: 150,
         }),
@@ -52,20 +54,20 @@ export const ExtendedActionFab = ({
         }),
         Animated.timing(fabOpacity.current, {
           toValue: 0,
-          duration: 300,
+          duration: 150,
         }),
       ]).start(() => {
         setExtended(false);
       });
     } else {
       Animated.parallel([
-        Animated.timing(animationValue.current, {
+        Animated.timing(fabPanelHeight.current, {
           toValue: fabSize.height,
           duration: 150,
         }),
         Animated.timing(actionSizeOpacity.current, {
           toValue: 0,
-          duration: 300,
+          duration: 150,
         }),
         Animated.timing(fabOpacity.current, {
           toValue: 1,
@@ -79,7 +81,7 @@ export const ExtendedActionFab = ({
 
   const animatedHeight = {
     width: width,
-    height: animationValue.current,
+    height: fabPanelHeight.current,
   };
 
   const animatedFab = {
@@ -88,7 +90,7 @@ export const ExtendedActionFab = ({
 
   const animatedFabActions = {
     opacity: actionSizeOpacity.current,
-    width
+    width,
   };
 
   const fabDisplay = React.useMemo(() => fab(toggleAnimation), [
@@ -101,46 +103,69 @@ export const ExtendedActionFab = ({
   ]);
 
   return (
-    <View style={styles.MainContainer}>
-      <TouchableWithoutFeedback>
-        <Animated.View style={[styles.parentHeightBox, animatedHeight]}>
-          <Animated.View style={[styles.fabContents, animatedFab]}>
-            <View
-              onLayout={event => {
-                const {height, width} = event.nativeEvent.layout;
-                setFabSize({height, width});
-              }}>
-              {fabDisplay}
-            </View>
+    <Portal>
+      <View style={styles.MainContainer}>
+        <Surface style={styles.fabSurface}>
+          <Animated.View style={animatedHeight}>
+            <Animated.View style={[styles.fabContents, animatedFab]}>
+              <View
+                onLayout={event => {
+                  const {height, width} = event.nativeEvent.layout;
+                  setFabSize({height, width});
+                }}>
+                {fabDisplay}
+              </View>
+            </Animated.View>
+            <Animated.View style={[styles.fabContents, animatedFabActions]}>
+              <View
+                onLayout={event => {
+                  const {height, width} = event.nativeEvent.layout;
+                  setFabActionSize({height, width});
+                }}>
+                {fabActionDisplay}
+              </View>
+            </Animated.View>
           </Animated.View>
-          <Animated.View style={[styles.fabContents, animatedFabActions]}>
-            <View
-              onLayout={event => {
-                const {height, width} = event.nativeEvent.layout;
-                setFabActionSize({height, width});
-              }}>
-              {fabActionDisplay}
-            </View>
-          </Animated.View>
-        </Animated.View>
-      </TouchableWithoutFeedback>
-    </View>
+        </Surface>
+      </View>
+      {!extended && (
+        <TouchableWithoutFeedback
+          style={styles.scrim}
+          onPress={() => toggleAnimation()}>
+          <View style={styles.scrim} />
+        </TouchableWithoutFeedback>
+      )}
+    </Portal>
   );
 };
 
 const styles = StyleSheet.create({
   MainContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 12,
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
   },
-  parentHeightBox: {
-    position: 'relative',
+  fabSurface: {
+    position: 'absolute',
+    bottom: 16,
+    zIndex: 10,
+    borderRadius: theme.roundness * 2,
+    backgroundColor: theme.colors.accent,
+    elevation: 6,
   },
   fabContents: {
     position: 'absolute',
+    bottom: 0,
+    left: 0,
+  },
+  scrim: {
+    position: 'absolute',
     top: 0,
     left: 0,
+    height: '100%',
+    width: '100%',
   },
 });

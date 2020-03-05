@@ -14,22 +14,22 @@ interface ExtendedFabBase {
 
 export const NewRepoFab = ({toggleAnimation}: ExtendedFabBase) => {
   return (
-    <FAB
-      icon={''}
-      label={'New repository'}
-      style={fabStyles.fab}
-      onPress={() => toggleAnimation()}
-    />
+    <TouchableRipple style={fabStyles.fab} onPress={() => toggleAnimation()}>
+      <Text style={fabActionsStyles.fabActionText}>New repository</Text>
+    </TouchableRipple>
   );
 };
 
 const fabStyles = StyleSheet.create({
   fab: {
-    margin: 0,
-    padding: 0,
-    top: 0,
-    left: 0,
-    borderRadius: theme.roundness * 2,
+    paddingVertical: 12,
+    paddingHorizontal: 28,
+  },
+  fabActionText: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: 'white',
+    textAlign: 'center',
   },
 });
 
@@ -60,7 +60,6 @@ const fabActionsStyles = StyleSheet.create({
     borderRadius: 14,
     paddingTop: 12,
     paddingBottom: 12,
-    backgroundColor: theme.colors.accent,
     top: 0,
   },
   fabActionBtn: {
