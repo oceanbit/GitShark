@@ -1,16 +1,25 @@
 import React from 'react';
-import {StyleSheet, View, ScrollView, Text} from 'react-native';
-import {reposMocks} from '../../components/repo-list/mock-data';
-import {RepoCard} from '../../components/repo-list/repo-card/repo-card';
-import {FAB} from 'react-native-paper';
+import {StyleSheet, View, ScrollView} from 'react-native';
+import {FileChangeListItem} from '../../components/file-change-list-item/file-change-list-item';
+
+const fileListChanges = [
+  {
+    fileName: 'application/utils/ui/Adapter.kt',
+    changeStatus: 'added' as 'added',
+  },
+  {
+    fileName: 'application/utils/ui/SETrans.kt',
+    changeStatus: 'removed' as 'removed',
+  },
+];
 
 export const RepositoryChanges = () => {
   return (
     <>
       <View style={styles.container}>
         <ScrollView>
-          {reposMocks.map(repo => {
-            return <RepoCard key={repo.id} repo={repo} />;
+          {fileListChanges.map(props => {
+            return <FileChangeListItem key={props.fileName} {...props} />;
           })}
         </ScrollView>
       </View>

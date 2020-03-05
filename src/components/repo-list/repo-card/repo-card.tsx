@@ -1,10 +1,10 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {RepoMock} from '../mock-data';
 import {RepoCardCommitMetadata} from './repo-card-commit-metadata';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../../constants/theme';
-import {Link, useHistory} from 'react-router-native';
+import {useHistory} from 'react-router-native';
 import {TouchableRipple} from 'react-native-paper';
 
 interface RepoCardProps {
