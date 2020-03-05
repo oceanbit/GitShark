@@ -1,24 +1,62 @@
 import * as React from 'react';
 import {StyleSheet, Text, View, TextInput} from 'react-native';
-import {Dialog, TouchableRipple, Button, Portal} from 'react-native-paper';
+import {TouchableRipple, Button} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
 import {textStyles} from '../../constants/text-styles';
 import {AppDialog} from '../dialog/dialog';
+import RNFileSelector from 'react-native-file-selector';
 
 export const CreateRepositoryDialog = () => {
+  const [path, setPath] = React.useState('');
+
+  const selectDirectory = () => {
+    RNFileSelector.Show({
+      title: 'Select File',
+      chooseFolderMode: true,
+      onDone: (selectedPath: string) => {
+        console.log('file selected: ' + selectedPath);
+        setPath(selectedPath);
+      },
+      onCancel: () => {
+        console.log('cancelled');
+      },
+    });
+  };
+
   return (
     <AppDialog
       title={'Create repository'}
       text={'The repository will be created from a local folder.'}
       main={
         <>
-          <TouchableRipple onPress={() => {}}>
-            <View style={styles.selectFolderBtn}>
-              <Icon size={24} name="folder" color={theme.colors.accent} />
-              <Text style={styles.selectFolderText}>Select folder...</Text>
-            </View>
-          </TouchableRipple>
+          {!path && (
+            <TouchableRipple onPress={() => selectDirectory()}>
+              <View style={styles.selectFolderBtn}>
+                <Icon size={24} name="folder" color={theme.colors.accent} />
+                <Text style={styles.selectFolderText}>Select folder...</Text>
+              </View>
+            </TouchableRipple>
+          )}
+          {!!path && (
+            <TouchableRipple onPress={() => selectDirectory()}>
+              <View style={styles.selectFolderBtn}>
+                <Text
+                  numberOfLines={1}
+                  style={[
+                    styles.selectFolderText,
+                    styles.selectFolderBtnWithPath,
+                  ]}>
+                  {path}
+                </Text>
+                <Icon
+                  size={24}
+                  name="folder-outline"
+                  color={theme.colors.accent}
+                />
+              </View>
+            </TouchableRipple>
+          )}
           <TextInput placeholder={'Repository name'} style={styles.textInput} />
         </>
       }
@@ -71,6 +109,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     paddingVertical: 8,
+    paddingHorizontal: 16,
+  },
+  selectFolderBtnWithPath: {
+    flexGrow: 1,
+    color: theme.colors.disabled,
+    marginRight: 12,
   },
   selectFolderText: {
     color: theme.colors.accent,
