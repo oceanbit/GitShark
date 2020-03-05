@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
   },
   lastUpdated: {
     fontSize: 12,
-    color: theme.colors.fadedGrey,
+    color: theme.colors.on_surface_light,
+    opacity: 0.6
   },
   branchView: {
     flexDirection: 'row',

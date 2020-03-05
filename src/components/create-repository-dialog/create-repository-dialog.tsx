@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, TextInput} from 'react-native';
 import {Dialog, TouchableRipple, Button, Portal} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
+import {textStyles} from '../../constants/text-styles';
 
 export const CreateRepositoryDialog = () => {
   return (
@@ -50,17 +51,15 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   dialogTitle: {
-    lineHeight: 28,
-    fontSize: 20,
     fontWeight: '500',
-    marginBottom: 8,
+    marginBottom: 4,
+    ...textStyles.headline_03,
   },
   mainText: {
-    fontSize: 14,
-    lineHeight: 20,
     color: '#142952',
     opacity: 0.6,
     marginBottom: 20,
+    ...textStyles.body_02,
   },
   selectFolderBtn: {
     flexDirection: 'row',
