@@ -1,54 +1,54 @@
 export const textStyles = {
   display: {
-    fontWidth: 'bold',
+    fontWeight: 'bold',
     fontSize: 48,
     lineHeight: 64,
   },
 
   headline_01: {
-    fontWidth: 'bold',
+    fontWeight: 'bold',
     fontSize: 34,
     lineHeight: 48,
   },
 
   headline_02: {
-    fontWidth: 'bold',
+    fontWeight: 'bold',
     fontSize: 28,
     lineHeight: 36,
   },
 
   headline_03: {
-    fontWidth: 'medium',
+    fontWeight: '600',
     fontSize: 20,
     lineHeight: 28,
   },
 
   callout: {
-    fontWidth: 'medium',
+    fontWeight: '600',
     fontSize: 16,
     lineHeight: 24,
   },
 
   body_01: {
-    fontWidth: 'regular',
+    fontWeight: '400',
     fontSize: 16,
     lineHeight: 24,
   },
 
   body_02: {
-    fontWidth: 'regular',
+    fontWeight: '400',
     fontSize: 14,
     lineHeight: 20,
   },
 
   caption_01: {
-    fontWidth: 'medium',
+    fontWeight: '700',
     fontSize: 12,
     lineHeight: 16,
   },
 
   caption_02: {
-    fontWidth: 'regular',
+    fontWeight: '400',
     fontSize: 12,
     lineHeight: 16,
   },

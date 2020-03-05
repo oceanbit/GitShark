@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StyleSheet, View, Alert, ScrollView, Text} from 'react-native';
 import {Repo} from '../../entities';
 import {getRepository} from 'typeorm';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {BottomNavigation, TouchableRipple} from 'react-native-paper';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
 import {StyleSheet, View, Text} from 'react-native';

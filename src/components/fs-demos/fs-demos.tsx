@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
 import RNFileSelector from 'react-native-file-selector';
 import {

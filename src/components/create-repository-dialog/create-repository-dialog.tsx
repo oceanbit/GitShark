@@ -1,29 +1,29 @@
-import React from 'react';
+import * as React from 'react';
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 import {Dialog, TouchableRipple, Button, Portal} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
 import {textStyles} from '../../constants/text-styles';
+import {AppDialog} from '../dialog/dialog';
 
 export const CreateRepositoryDialog = () => {
   return (
-    <Portal>
-      <Dialog
-        visible={true}
-        onDismiss={() => {}}
-        style={styles.dialogContainer}>
-        <Text style={styles.dialogTitle}>Create repository</Text>
-        <Text style={styles.mainText}>
-          The repository will be created from a local folder.
-        </Text>
-        <TouchableRipple onPress={() => {}}>
-          <View style={styles.selectFolderBtn}>
-            <Icon size={24} name="folder" color={theme.colors.accent} />
-            <Text style={styles.selectFolderText}>Select folder...</Text>
-          </View>
-        </TouchableRipple>
-        <TextInput placeholder={'Repository name'} style={styles.textInput} />
-        <View style={styles.dialogActions}>
+    <AppDialog
+      title={'Create repository'}
+      text={'The repository will be created from a local folder.'}
+      main={
+        <>
+          <TouchableRipple onPress={() => {}}>
+            <View style={styles.selectFolderBtn}>
+              <Icon size={24} name="folder" color={theme.colors.accent} />
+              <Text style={styles.selectFolderText}>Select folder...</Text>
+            </View>
+          </TouchableRipple>
+          <TextInput placeholder={'Repository name'} style={styles.textInput} />
+        </>
+      }
+      actions={
+        <>
           <Button
             onPress={() => {}}
             mode="outlined"
@@ -37,9 +37,9 @@ export const CreateRepositoryDialog = () => {
             color={theme.colors.accent}>
             Create
           </Button>
-        </View>
-      </Dialog>
-    </Portal>
+        </>
+      }
+    />
   );
 };
 

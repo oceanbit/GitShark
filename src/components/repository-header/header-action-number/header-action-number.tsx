@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {TouchableRipple} from 'react-native-paper';
 import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
