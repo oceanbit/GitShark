@@ -4,7 +4,75 @@ import {Repo} from '../../entities';
 import {getRepository} from 'typeorm';
 import {reposMocks} from '../../components/repo-list/mock-data';
 import {RepoCard} from '../../components/repo-list/repo-card/repo-card';
-import {FAB} from 'react-native-paper';
+import {FAB, TouchableRipple} from 'react-native-paper';
+import {theme} from '../../constants/theme';
+import {ExtendedActionFab} from '../../components/extended-action-fab/extended-action-fab';
+
+interface ExtendedFabBase {
+  toggleAnimation: () => void;
+}
+
+export const NewRepoFab = ({toggleAnimation}: ExtendedFabBase) => {
+  return (
+    <FAB
+      icon={''}
+      label={'New repository'}
+      style={fabStyles.fab}
+      onPress={() => toggleAnimation()}
+    />
+  );
+};
+
+const fabStyles = StyleSheet.create({
+  fab: {
+    margin: 0,
+    padding: 0,
+    top: 0,
+    left: 0,
+    borderRadius: theme.roundness * 2,
+  },
+});
+
+export const FabActions = ({toggleAnimation}: ExtendedFabBase) => {
+  return (
+    <View style={fabActionsStyles.fabActions}>
+      <TouchableRipple
+        style={fabActionsStyles.fabActionBtn}
+        onPress={() => toggleAnimation()}>
+        <Text style={fabActionsStyles.fabActionText}>Clone</Text>
+      </TouchableRipple>
+      <TouchableRipple
+        style={fabActionsStyles.fabActionBtn}
+        onPress={() => toggleAnimation()}>
+        <Text style={fabActionsStyles.fabActionText}>Create</Text>
+      </TouchableRipple>
+      <TouchableRipple
+        style={fabActionsStyles.fabActionBtn}
+        onPress={() => toggleAnimation()}>
+        <Text style={fabActionsStyles.fabActionText}>Add existing</Text>
+      </TouchableRipple>
+    </View>
+  );
+};
+
+const fabActionsStyles = StyleSheet.create({
+  fabActions: {
+    borderRadius: 14,
+    paddingTop: 12,
+    paddingBottom: 12,
+    backgroundColor: theme.colors.accent,
+    top: 0,
+  },
+  fabActionBtn: {
+    padding: 12,
+    width: '100%',
+  },
+  fabActionText: {
+    fontSize: 16,
+    color: 'white',
+    textAlign: 'center',
+  },
+});
 
 export const RepositoryList = () => {
   const [repos, setRepos] = React.useState<Repo[]>([]);
@@ -25,6 +93,20 @@ export const RepositoryList = () => {
     findRepos();
   }, [findRepos]);
 
+  const newRepoFabCB = React.useCallback(
+    (toggleAnimation: ExtendedFabBase['toggleAnimation']) => (
+      <NewRepoFab toggleAnimation={toggleAnimation} />
+    ),
+    [],
+  );
+
+  const actionFabCB = React.useCallback(
+    (toggleAnimation: ExtendedFabBase['toggleAnimation']) => (
+      <FabActions toggleAnimation={toggleAnimation} />
+    ),
+    [],
+  );
+
   return (
     <>
       <View style={styles.container}>
@@ -36,12 +118,7 @@ export const RepositoryList = () => {
         </ScrollView>
       </View>
       <View style={styles.fabview}>
-        <FAB
-          icon={''}
-          label={'New repository'}
-          style={styles.fab}
-          onPress={() => console.log('Pressed')}
-        />
+        <ExtendedActionFab fab={newRepoFabCB} fabActions={actionFabCB} />
       </View>
     </>
   );
@@ -62,10 +139,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     bottom: 16,
-  },
-  fab: {
-    margin: 0,
-    padding: 0,
-    left: 0,
   },
 });
