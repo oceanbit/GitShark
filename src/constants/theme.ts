@@ -7,6 +7,6 @@ export const theme = {
     ...DefaultTheme.colors,
     accent: '#002BFF',
     outlineColor: 'rgba(0, 51, 153, 0.2)',
-    fadedGrey: '#142952'
+    fadedGrey: 'rgba(20, 41, 82, 0.6)',
   },
 };

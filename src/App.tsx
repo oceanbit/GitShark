@@ -5,13 +5,14 @@ import * as React from 'react';
 import 'reflect-metadata';
 import {createConnection, getConnectionManager} from 'typeorm';
 import {Repo} from './entities';
-import {NativeRouter, Route} from 'react-router-native';
+import {BackButton, NativeRouter, Route} from 'react-router-native';
 import {Provider as PaperProvider} from 'react-native-paper';
 
 import {SafeAreaView, StatusBar, Alert, ActivityIndicator} from 'react-native';
 import {PermissionsAndroid} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {theme} from './constants/theme';
+import {Repository} from './views/repository/repository';
 
 const App = () => {
   const [isDBLoaded, setIsDBLoaded] = React.useState(false);
@@ -63,17 +64,20 @@ const App = () => {
 
   return (
     <NativeRouter>
-      <PaperProvider theme={theme}>
-        <StatusBar barStyle="dark-content" />
-        {isDBLoaded ? (
-          <>
-            <Route exact path="/" component={RepositoryList} />
-          </>
-        ) : (
-          <ActivityIndicator size="large" color="#0000ff" />
-        )}
-        <SafeAreaView />
-      </PaperProvider>
+      <BackButton>
+        <PaperProvider theme={theme}>
+          <StatusBar barStyle="dark-content" />
+          {isDBLoaded ? (
+            <>
+              <Route exact path="/" component={RepositoryList} />
+              <Route path="/:repoId" component={Repository} />
+            </>
+          ) : (
+            <ActivityIndicator size="large" color="#0000ff" />
+          )}
+          <SafeAreaView />
+        </PaperProvider>
+      </BackButton>
     </NativeRouter>
   );
 };

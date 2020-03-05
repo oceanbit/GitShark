@@ -1,31 +1,40 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {RepoMock} from '../mock-data';
 import {RepoCardCommitMetadata} from './repo-card-commit-metadata';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../../constants/theme';
+import {Link, useHistory} from 'react-router-native';
+import {TouchableRipple} from 'react-native-paper';
 
 interface RepoCardProps {
   repo: RepoMock;
 }
 export const RepoCard = ({repo}: RepoCardProps) => {
+  const history = useHistory();
+
   return (
-    <View style={styles.cardContainer}>
-      <View style={styles.topDisplayRow}>
-        <Text style={styles.cardName}>{repo.name}</Text>
-        <Text style={styles.lastUpdated}>Updated {repo.lastUpdated} ago</Text>
-      </View>
-      <View style={styles.displayRow}>
-        <View style={styles.branchView}>
-          <Icon name="check-circle" size={16} color={theme.colors.accent} />
-          <Text style={styles.branchName}>{repo.branchName}</Text>
+    <TouchableRipple
+      style={styles.cardContainer}
+      onPress={() => history.push(`/asdf`)}
+      rippleColor={theme.colors.outlineColor}>
+      <View>
+        <View style={styles.topDisplayRow}>
+          <Text style={styles.cardName}>{repo.name}</Text>
+          <Text style={styles.lastUpdated}>Updated {repo.lastUpdated} ago</Text>
         </View>
-        <RepoCardCommitMetadata
-          commitsToPull={repo.commitsToPull}
-          commitsToPush={repo.commitsToPush}
-        />
+        <View style={styles.displayRow}>
+          <View style={styles.branchView}>
+            <Icon name="check-circle" size={16} color={theme.colors.accent} />
+            <Text style={styles.branchName}>{repo.branchName}</Text>
+          </View>
+          <RepoCardCommitMetadata
+            commitsToPull={repo.commitsToPull}
+            commitsToPush={repo.commitsToPush}
+          />
+        </View>
       </View>
-    </View>
+    </TouchableRipple>
   );
 };
 
