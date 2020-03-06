@@ -13,7 +13,12 @@ export const RepositoryChanges = () => {
     if (!repo) {
       return;
     }
-    getRepoStatus(repo.path).then(newFiles => setChanges(newFiles));
+    getRepoStatus(repo.path).then(newFiles => {
+      const onlyChangedFiles = newFiles.filter(
+        file => file.fileStatus !== 'unmodified',
+      );
+      setChanges(onlyChangedFiles);
+    });
   }, [repo]);
 
   return (

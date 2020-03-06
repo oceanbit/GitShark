@@ -40,10 +40,10 @@ export const theme = {
     change_mixed_light: '#E39600',
 
     // Red
-    change_removal_light: '#002BFF',
+    change_removal_light: '#E50039',
 
     // Green
-    change_addition_light: '#002BFF',
+    change_addition_light: '#00B286',
 
     // Navy 1000
     on_primary_dark: '#00081A',

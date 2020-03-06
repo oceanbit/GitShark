@@ -23,19 +23,28 @@ export const FileChangeListItem = ({
           <Icon
             name="plus-circle"
             size={24}
-            color={'green'}
+            color={theme.colors.change_addition_light}
             style={styles.changeIcon}
           />
         );
       case 'deleted':
-      default:
         return (
           <Icon
             name="minus-circle"
             size={24}
-            color={'red'}
+            color={theme.colors.change_removal_light}
             style={styles.changeIcon}
           />
+        );
+      case 'modified':
+      default:
+        return (
+            <Icon
+                name="dots-horizontal-circle"
+                size={24}
+                color={theme.colors.change_mixed_light}
+                style={styles.changeIcon}
+            />
         );
     }
   }, [fileStatus]);

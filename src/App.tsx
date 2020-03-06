@@ -70,7 +70,7 @@ const App = () => {
           {isDBLoaded ? (
             <>
               <Route exact path="/" component={RepositoryList} />
-              <Route path="/:repoId" component={Repository} />
+            <Route path="/:repoId" component={Repository} />
             </>
           ) : (
             <ActivityIndicator size="large" color="#0000ff" />
