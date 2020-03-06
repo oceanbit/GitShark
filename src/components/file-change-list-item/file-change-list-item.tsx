@@ -39,12 +39,12 @@ export const FileChangeListItem = ({
       case 'modified':
       default:
         return (
-            <Icon
-                name="dots-horizontal-circle"
-                size={24}
-                color={theme.colors.change_mixed_light}
-                style={styles.changeIcon}
-            />
+          <Icon
+            name="dots-horizontal-circle"
+            size={24}
+            color={theme.colors.change_mixed_light}
+            style={styles.changeIcon}
+          />
         );
     }
   }, [fileStatus]);
@@ -76,11 +76,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   changeIcon: {
-    padding: 8,
+    marginRight: 12,
   },
   fileName: {
     flexGrow: 1,
-    padding: 8,
+    marginRight: 12,
+
     ...textStyles.body_01,
   },
 });

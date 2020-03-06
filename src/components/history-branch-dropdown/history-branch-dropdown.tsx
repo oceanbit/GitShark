@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.outlineColor,
   },
   dropdownButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 24,
+    padding: 16,
   },
 });
