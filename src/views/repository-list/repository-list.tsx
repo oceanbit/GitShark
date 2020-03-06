@@ -1,5 +1,12 @@
 import * as React from 'react';
-import {StyleSheet, View, Alert, ScrollView, Text} from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Alert,
+    ScrollView,
+    Text,
+    TouchableHighlight, TouchableOpacity,
+} from 'react-native';
 import {Repo} from '../../entities';
 import {getRepository} from 'typeorm';
 import {reposMocks} from '../../components/repo-list/mock-data';
@@ -8,6 +15,7 @@ import {FAB, TouchableRipple} from 'react-native-paper';
 import {theme} from '../../constants/theme';
 import {ExtendedActionFab} from '../../components/extended-action-fab/extended-action-fab';
 import {CreateRepositoryDialog} from '../../components/create-repository-dialog/create-repository-dialog';
+import {AddExistingRepositoryDialog} from '../../components/add-existing-repository-dialog/add-existing-repository-dialog';
 
 interface ExtendedFabBase {
   toggleAnimation: () => void;
@@ -15,7 +23,11 @@ interface ExtendedFabBase {
 
 export const NewRepoFab = ({toggleAnimation}: ExtendedFabBase) => {
   return (
-    <TouchableRipple style={fabStyles.fab} onPress={() => toggleAnimation()}>
+    <TouchableRipple
+      style={fabStyles.fab}
+      onPress={() => {
+        toggleAnimation();
+      }}>
       <Text style={fabActionsStyles.fabActionText}>New repository</Text>
     </TouchableRipple>
   );
@@ -34,8 +46,9 @@ const fabStyles = StyleSheet.create({
   },
 });
 
+type DialogSelection = 'clone' | 'create' | 'existing';
 interface FabActionsProps extends ExtendedFabBase {
-  onSelect: (selection: 'clone' | 'create' | 'existing') => void;
+  onSelect: (selection: DialogSelection) => void;
 }
 export const FabActions = ({toggleAnimation, onSelect}: FabActionsProps) => {
   return (
@@ -88,7 +101,9 @@ const fabActionsStyles = StyleSheet.create({
 
 export const RepositoryList = () => {
   const [repos, setRepos] = React.useState<Repo[]>([]);
-  const [selectedAction, setSelectedAction] = React.useState('');
+  const [selectedAction, setSelectedAction] = React.useState<
+    DialogSelection | ''
+  >('');
 
   const findRepos = React.useCallback(async () => {
     try {
@@ -115,10 +130,18 @@ export const RepositoryList = () => {
 
   const actionFabCB = React.useCallback(
     (toggleAnimation: ExtendedFabBase['toggleAnimation']) => (
-      <FabActions toggleAnimation={toggleAnimation} onSelect={val => setSelectedAction(val)}/>
+      <FabActions
+        toggleAnimation={toggleAnimation}
+        onSelect={val => setSelectedAction(val)}
+      />
     ),
     [],
   );
+
+  const onDismiss = (didUpdate: boolean) => {
+    if (didUpdate) findRepos();
+    setSelectedAction('');
+  };
 
   return (
     <>
@@ -138,10 +161,11 @@ export const RepositoryList = () => {
       </View>
       <CreateRepositoryDialog
         visible={selectedAction === 'create'}
-        onDismiss={didUpdate => {
-          if (didUpdate) findRepos();
-          setSelectedAction('');
-        }}
+        onDismiss={onDismiss}
+      />
+      <AddExistingRepositoryDialog
+        visible={selectedAction === 'existing'}
+        onDismiss={onDismiss}
       />
     </>
   );

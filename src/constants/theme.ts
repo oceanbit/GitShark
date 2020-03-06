@@ -26,6 +26,9 @@ export const theme = {
     // Brown
     error_light: '#994D00',
 
+    // Brown
+    error_light_background: 'rgba(153,77,0, 0.1)',
+
     // White
     on_change_light: '#FFF',
 

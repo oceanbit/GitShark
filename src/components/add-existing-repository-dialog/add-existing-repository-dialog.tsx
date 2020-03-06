@@ -15,7 +15,7 @@ interface CreateRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
 }
-export const CreateRepositoryDialog = ({
+export const AddExistingRepositoryDialog = ({
   onDismiss,
   visible,
 }: CreateRepositoryDialogProps) => {
@@ -45,7 +45,7 @@ export const CreateRepositoryDialog = ({
         fs,
         dir: path,
       });
-      console.log('Folder is a git directory, adding');
+      console.log('Folder is a git directory');
       return branchName;
     } catch (e) {
       console.log('Folder is not a git directory.', e);
@@ -54,33 +54,23 @@ export const CreateRepositoryDialog = ({
   };
 
   const checkAndCreateGitDirectory = async () => {
-    const isGitRepo = await getGitBranchName();
-    if (isGitRepo) {
-      setErrorStr('The folder selected is already a git repository.');
+    const gitBranchName = await getGitBranchName();
+    if (gitBranchName) {
+      await createNewRepo(gitBranchName);
+      onDismiss(true);
       return;
     }
-    try {
-      await git.init({
-        fs,
-        dir: path,
-      });
-      await createNewRepo('master');
-      onDismiss(true);
-    } catch (e) {
-      console.error('There was an error initializing the git repo', e);
-      Alert.alert(
-        'There was an error initlizing a git repo at this path. Please restart the app and try again',
-      );
-      onDismiss(false);
-    }
+    setErrorStr('The folder selected is not a git repository.');
   };
 
   return (
     <AppDialog
       visible={visible}
       onDismiss={() => onDismiss(false)}
-      title={'Create repository'}
-      text={'The repository will be created from a local folder.'}
+      title={'Add existing repository'}
+      text={
+        "Select a local folder that contains a repository. We'll keep track of it from there."
+      }
       main={
         <>
           <FolderSelectButton
