@@ -4,19 +4,20 @@ import {theme} from '../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {textStyles} from '../../constants/text-styles';
+import {ChangesArrayItem} from '../../services/git';
 
 interface FileChangeListItemProps {
   fileName: string;
   onPress?: () => void;
-  changeStatus: 'removed' | 'added';
+  fileStatus: ChangesArrayItem['fileStatus'];
 }
 export const FileChangeListItem = ({
   fileName,
   onPress = () => {},
-  changeStatus,
+  fileStatus,
 }: FileChangeListItemProps) => {
   const statusIcon = React.useMemo(() => {
-    switch (changeStatus) {
+    switch (fileStatus) {
       case 'added':
         return (
           <Icon
@@ -26,7 +27,7 @@ export const FileChangeListItem = ({
             style={styles.changeIcon}
           />
         );
-      case 'removed':
+      case 'deleted':
       default:
         return (
           <Icon
@@ -37,7 +38,7 @@ export const FileChangeListItem = ({
           />
         );
     }
-  }, [changeStatus]);
+  }, [fileStatus]);
   return (
     <TouchableRipple
       style={styles.listItemContainer}

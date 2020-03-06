@@ -1,33 +1,26 @@
 import * as React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {FileChangeListItem} from '../../components/file-change-list-item/file-change-list-item';
-import {fs} from '../../constants/fs';
-import git from 'isomorphic-git/index.umd.min.js';
 
-const getRepoStatus = async (path: string) => {
-  let status = await git.statusMatrix({
-    fs,
-    dir: path,
-  });
-};
-
-const fileListChanges = [
-  {
-    fileName: 'application/utils/ui/Adapter.kt',
-    changeStatus: 'added' as 'added',
-  },
-  {
-    fileName: 'application/utils/ui/SETrans.kt',
-    changeStatus: 'removed' as 'removed',
-  },
-];
+import {RepoContext} from '../../constants/repo-context';
+import {ChangesArrayItem, getRepoStatus} from '../../services/git';
 
 export const RepositoryChanges = () => {
+  const {repo} = React.useContext(RepoContext);
+  const [changes, setChanges] = React.useState<ChangesArrayItem[]>([]);
+
+  React.useEffect(() => {
+    if (!repo) {
+      return;
+    }
+    getRepoStatus(repo.path).then(newFiles => setChanges(newFiles));
+  }, [repo]);
+
   return (
     <>
       <View style={styles.container}>
         <ScrollView>
-          {fileListChanges.map(props => {
+          {changes.map(props => {
             return <FileChangeListItem key={props.fileName} {...props} />;
           })}
         </ScrollView>
