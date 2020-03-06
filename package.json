@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.7",
-    "@react-navigation/compat": "^5.1.1",
     "@react-navigation/material-bottom-tabs": "^5.1.1",
     "@react-navigation/native": "^5.0.9",
     "@react-navigation/stack": "^5.1.1",

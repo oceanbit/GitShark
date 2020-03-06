@@ -4,11 +4,10 @@ import {
   View,
   TouchableWithoutFeedback,
 } from 'react-native';
-import {Portal} from 'react-native-paper';
 import * as React from 'react';
 import {theme} from '../../constants/theme';
 import {Surface} from 'react-native-paper';
-import NavigationAwarePortal from "../navigation-aware-portal/navigation-aware-portal";
+import {NavigationAwarePortal} from '../navigation-aware-portal/navigation-aware-portal';
 type ActionFabReactNode = (toggleAnimation: () => void) => React.ReactNode;
 
 interface ExtendedActionFabProps {

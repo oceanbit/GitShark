@@ -1,68 +1,59 @@
 import * as React from 'react';
 import {Animated, StyleSheet} from 'react-native';
-import {withNavigation} from '@react-navigation/compat';
 import {Portal} from 'react-native-paper';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
 
-class NavigationAwarePortal extends React.Component {
-  state = {
-    opacity: new Animated.Value(0),
-    open: false,
-  };
+export const NavigationAwarePortal: React.FC = ({children}) => {
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
 
-  componentDidMount() {
-    (this as any)._willFocusListener = (this
-      .props as any).navigation.addListener('willFocus', this._show);
-    (this as any)._willBlurListener = (this
-      .props as any).navigation.addListener('willBlur', this._hide);
+  const [open, setOpen] = React.useState(false);
+  const opacity = React.useRef(new Animated.Value(0));
 
-    if ((this.props as any).navigation.isFocused()) {
-      this._show();
-    }
-  }
+  const _show = React.useCallback(() => {
+    setOpen(true);
 
-  componentWillUnmount() {
-    (this as any)._willFocusListener.remove();
-    (this as any)._willBlurListener.remove();
-  }
-
-  _show = () => {
-    console.log('Focused');
-
-    this.setState({open: true});
-
-    Animated.timing(this.state.opacity, {
+    Animated.timing(opacity.current, {
       toValue: 1,
       duration: 200,
       useNativeDriver: true,
     }).start();
-  };
+  }, []);
 
-  _hide = () => {
-    console.log('Blurred');
+  const _hide = React.useCallback(() => {
+    setOpen(false);
 
-    this.setState({open: false});
-
-    Animated.timing(this.state.opacity, {
+    Animated.timing(opacity.current, {
       toValue: 0,
       duration: 150,
       useNativeDriver: true,
     }).start();
-  };
+  }, []);
 
-  render() {
-    return (
-      <Portal>
-        <Animated.View
-          pointerEvents={this.state.open ? 'box-none' : 'none'}
-          style={[styles.container, {opacity: this.state.opacity}]}>
-          {this.props.children}
-        </Animated.View>
-      </Portal>
-    );
-  }
-}
+  React.useEffect(() => {
+    navigation.addListener('focus', _show);
+    navigation.addListener('blur', _hide);
 
-export default withNavigation(NavigationAwarePortal as any);
+    if (isFocused) {
+      _show();
+    }
+
+    return () => {
+      navigation.removeListener('focus', _show);
+      navigation.removeListener('blur', _hide);
+    };
+  }, [_hide, _show]);
+
+  return (
+    <Portal>
+      <Animated.View
+        pointerEvents={open ? 'box-none' : 'none'}
+        style={[styles.container, {opacity: opacity.current}]}>
+        {children}
+      </Animated.View>
+    </Portal>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
