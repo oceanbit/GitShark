@@ -19,7 +19,7 @@ export const ExtendedActionFab = ({
   fab,
   fabActions,
 }: ExtendedActionFabProps) => {
-  const [extended, setExtended] = React.useState(true);
+  const [extended, setExtended] = React.useState(false);
   const [fabSize, setFabSize] = React.useState({height: 0, width: 0});
   const [fabActionSize, setFabActionSize] = React.useState({
     height: 0,
@@ -45,23 +45,6 @@ export const ExtendedActionFab = ({
     if (extended) {
       Animated.parallel([
         Animated.timing(fabPanelHeight.current, {
-          toValue: fabActionSize.height,
-          duration: 150,
-        }),
-        Animated.timing(actionSizeOpacity.current, {
-          toValue: 1,
-          duration: 150,
-        }),
-        Animated.timing(fabOpacity.current, {
-          toValue: 0,
-          duration: 150,
-        }),
-      ]).start(() => {
-        setExtended(false);
-      });
-    } else {
-      Animated.parallel([
-        Animated.timing(fabPanelHeight.current, {
           toValue: fabSize.height,
           duration: 150,
         }),
@@ -71,6 +54,23 @@ export const ExtendedActionFab = ({
         }),
         Animated.timing(fabOpacity.current, {
           toValue: 1,
+          duration: 150,
+        }),
+      ]).start(() => {
+        setExtended(false);
+      });
+    } else {
+      Animated.parallel([
+        Animated.timing(fabPanelHeight.current, {
+          toValue: fabActionSize.height,
+          duration: 150,
+        }),
+        Animated.timing(actionSizeOpacity.current, {
+          toValue: 1,
+          duration: 150,
+        }),
+        Animated.timing(fabOpacity.current, {
+          toValue: 0,
           duration: 150,
         }),
       ]).start(() => {
@@ -91,6 +91,8 @@ export const ExtendedActionFab = ({
   const animatedFabActions = {
     opacity: actionSizeOpacity.current,
     width,
+    // If this is not present, the actions will overlay the FAB and cause presses to not be passed
+    marginBottom: extended ? 0 : 1000,
   };
 
   const fabDisplay = React.useMemo(() => fab(toggleAnimation), [
@@ -128,7 +130,7 @@ export const ExtendedActionFab = ({
           </Animated.View>
         </Surface>
       </View>
-      {!extended && (
+      {extended && (
         <TouchableWithoutFeedback
           style={styles.scrim}
           onPress={() => toggleAnimation()}>
