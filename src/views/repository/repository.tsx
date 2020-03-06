@@ -1,14 +1,14 @@
 import * as React from 'react';
-import {BottomNavigation, TouchableRipple} from 'react-native-paper';
+import {BottomNavigation} from 'react-native-paper';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
-import {StyleSheet, View, Text, Alert} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {StyleSheet, Alert} from 'react-native';
 import {theme} from '../../constants/theme';
 import {RepositoryHeader} from '../../components/repository-header/repository-header';
 import {RepoContext} from '../../constants/repo-context';
 import {useParams} from 'react-router-native';
 import {getRepository} from 'typeorm';
 import {Repo} from '../../entities';
+import {RepositoryHistory} from "../repository-history/repository-history";
 
 const routes = [
   {
@@ -60,7 +60,7 @@ export const Repository = () => {
   const _renderScene = React.useMemo(
     () =>
       BottomNavigation.SceneMap({
-        history: RepositoryChanges,
+        history: RepositoryHistory,
         changes: RepositoryChanges,
       }),
     [],
