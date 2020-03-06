@@ -1,6 +1,15 @@
 import * as React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {FileChangeListItem} from '../../components/file-change-list-item/file-change-list-item';
+import {fs} from '../../constants/fs';
+import git from 'isomorphic-git/index.umd.min.js';
+
+const getRepoStatus = async (path: string) => {
+  let status = await git.statusMatrix({
+    fs,
+    dir: path,
+  });
+};
 
 const fileListChanges = [
   {

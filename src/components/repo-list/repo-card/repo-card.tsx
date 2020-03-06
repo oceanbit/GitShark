@@ -20,7 +20,7 @@ export const RepoCard = ({repo}: RepoCardProps) => {
   return (
     <TouchableRipple
       style={styles.cardContainer}
-      onPress={() => history.push(`/asdf`)}
+      onPress={() => history.push(`/${repo.id}`)}
       rippleColor={theme.colors.outlineColor}>
       <View>
         <View style={styles.topDisplayRow}>
