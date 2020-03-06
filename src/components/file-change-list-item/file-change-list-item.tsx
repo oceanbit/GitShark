@@ -3,6 +3,7 @@ import * as React from 'react';
 import {theme} from '../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {textStyles} from '../../constants/text-styles';
 
 interface FileChangeListItemProps {
   fileName: string;
@@ -70,6 +71,6 @@ const styles = StyleSheet.create({
   fileName: {
     flexGrow: 1,
     padding: 8,
-    fontSize: 16,
+    ...textStyles.body_01,
   },
 });

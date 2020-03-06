@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   arrowContainer: {
     borderStyle: 'solid',
     borderColor: theme.colors.outlineColor,
-    borderRadius: theme.roundness,
+    borderRadius: theme.lessRoundness,
     borderWidth: 1,
     flexDirection: 'row',
   },

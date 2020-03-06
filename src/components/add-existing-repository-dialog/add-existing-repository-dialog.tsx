@@ -80,7 +80,9 @@ export const AddExistingRepositoryDialog = ({
               setErrorStr('');
             }}
           />
-          {!!errorStr && <ErrorMessageBox style={styles.errorBox} message={errorStr} />}
+          {!!errorStr && (
+            <ErrorMessageBox style={styles.errorBox} message={errorStr} />
+          )}
           <TextInput
             value={repoName}
             onChangeText={setRepoName}
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
     ...textStyles.body_02,
   },
   errorBox: {
-    marginTop: 8
+    marginTop: 8,
   },
   textInput: {
     marginTop: 8,

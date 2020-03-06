@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {
-    StyleSheet,
-    View,
-    Alert,
-    ScrollView,
-    Text,
-    TouchableHighlight, TouchableOpacity,
+  StyleSheet,
+  View,
+  Alert,
+  ScrollView,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 import {Repo} from '../../entities';
 import {getRepository} from 'typeorm';
@@ -16,6 +17,7 @@ import {theme} from '../../constants/theme';
 import {ExtendedActionFab} from '../../components/extended-action-fab/extended-action-fab';
 import {CreateRepositoryDialog} from '../../components/create-repository-dialog/create-repository-dialog';
 import {AddExistingRepositoryDialog} from '../../components/add-existing-repository-dialog/add-existing-repository-dialog';
+import {textStyles} from '../../constants/text-styles';
 
 interface ExtendedFabBase {
   toggleAnimation: () => void;
@@ -42,6 +44,7 @@ const fabStyles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     color: 'white',
+    fontFamily: 'Rubik',
     textAlign: 'center',
   },
 });
@@ -94,6 +97,7 @@ const fabActionsStyles = StyleSheet.create({
   },
   fabActionText: {
     fontSize: 16,
+    fontFamily: 'Rubik',
     color: 'white',
     textAlign: 'center',
   },
@@ -178,7 +182,7 @@ const styles = StyleSheet.create({
   },
   headingText: {
     marginBottom: 16,
-    fontSize: 48,
+    ...textStyles.headline_01,
   },
   fabview: {
     position: 'absolute',
