@@ -8,6 +8,7 @@ import {Portal} from 'react-native-paper';
 import * as React from 'react';
 import {theme} from '../../constants/theme';
 import {Surface} from 'react-native-paper';
+import NavigationAwarePortal from "../navigation-aware-portal/navigation-aware-portal";
 type ActionFabReactNode = (toggleAnimation: () => void) => React.ReactNode;
 
 interface ExtendedActionFabProps {
@@ -105,7 +106,7 @@ export const ExtendedActionFab = ({
   ]);
 
   return (
-    <Portal>
+    <NavigationAwarePortal>
       <View style={styles.MainContainer}>
         <Surface style={styles.fabSurface}>
           <Animated.View style={animatedHeight}>
@@ -137,7 +138,7 @@ export const ExtendedActionFab = ({
           <View style={styles.scrim} />
         </TouchableWithoutFeedback>
       )}
-    </Portal>
+    </NavigationAwarePortal>
   );
 };
 

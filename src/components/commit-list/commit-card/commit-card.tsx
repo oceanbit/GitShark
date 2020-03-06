@@ -1,7 +1,6 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import * as React from 'react';
 import {theme} from '../../../constants/theme';
-import {useHistory} from 'react-router-native';
 import {TouchableRipple} from 'react-native-paper';
 import {textStyles} from '../../../constants/text-styles';
 import {CommitCardPushPull} from './commit-card-push-pull';
@@ -13,7 +12,6 @@ interface CommitCardProps {
   commit: Commit;
 }
 export const CommitCard = ({commit}: CommitCardProps) => {
-  const history = useHistory();
 
   const {dateStr, timeStr} = React.useMemo(() => {
     const dayjsTimestampe = dayjs(commit.timestamp);
@@ -28,7 +26,7 @@ export const CommitCard = ({commit}: CommitCardProps) => {
   return (
     <TouchableRipple
       style={styles.commitContainer}
-      onPress={() => history.push(`/${commit.id}`)}
+      onPress={() => {}      }
       rippleColor={theme.colors.outlineColor}>
       <View>
         <View style={styles.commitHeading}>

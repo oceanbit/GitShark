@@ -4,10 +4,10 @@ import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
 import {HeaderActionNumber} from './header-action-number/header-action-number';
-import {useHistory} from 'react-router-native';
+import {useNavigation} from '@react-navigation/native';
 
 export const RepositoryHeader = () => {
-  const history = useHistory();
+  const history = useNavigation();
 
   return (
     <View style={styles.repoHeader}>
@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     color: theme.colors.on_surface_light,
-    opacity: 0.6
+    opacity: 0.6,
   },
 });

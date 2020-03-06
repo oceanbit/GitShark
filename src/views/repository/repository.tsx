@@ -1,32 +1,22 @@
 import * as React from 'react';
-import {BottomNavigation} from 'react-native-paper';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
 import {StyleSheet, Alert} from 'react-native';
 import {theme} from '../../constants/theme';
 import {RepositoryHeader} from '../../components/repository-header/repository-header';
 import {RepoContext} from '../../constants/repo-context';
-import {useParams} from 'react-router-native';
+import {useRoute} from '@react-navigation/native';
 import {getRepository} from 'typeorm';
 import {Repo} from '../../entities';
-import {RepositoryHistory} from "../repository-history/repository-history";
+import {RepositoryHistory} from '../repository-history/repository-history';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const routes = [
-  {
-    key: 'changes',
-    icon: 'file-multiple',
-    title: 'Changes',
-  },
-  {
-    key: 'history',
-    icon: 'history',
-    title: 'History',
-  },
-];
+const Tab = createMaterialBottomTabNavigator();
 
 export const Repository = () => {
-  let {repoId} = useParams();
+  const {params} = useRoute();
+  const {repoId} = params! as Record<string, string>;
   const [repo, setRepo] = React.useState<Repo | null>(null);
-  const [index, setIndex] = React.useState(0);
 
   React.useEffect(() => {
     const repoRepository = getRepository(Repo);
@@ -50,22 +40,6 @@ export const Repository = () => {
       });
   }, [repoId, setRepo]);
 
-  const _handleIndexChange = React.useCallback(
-    (index: number) => setIndex(index),
-    [],
-  );
-
-  const state = React.useMemo(() => ({index, routes}), [index]);
-
-  const _renderScene = React.useMemo(
-    () =>
-      BottomNavigation.SceneMap({
-        history: RepositoryHistory,
-        changes: RepositoryChanges,
-      }),
-    [],
-  );
-
   const contextValue = React.useMemo(
     () => ({
       repo,
@@ -77,16 +51,33 @@ export const Repository = () => {
   return (
     <RepoContext.Provider value={contextValue}>
       <RepositoryHeader />
-      <BottomNavigation
+      <Tab.Navigator
         labeled={true}
         shifting={false}
-        navigationState={state}
-        onIndexChange={_handleIndexChange}
-        renderScene={_renderScene}
         barStyle={styles.bottomNav}
         inactiveColor={theme.colors.disabled}
-        activeColor={theme.colors.accent}
-      />
+        activeColor={theme.colors.accent}>
+        <Tab.Screen
+          name="Changes"
+          component={RepositoryChanges}
+          options={{
+            tabBarLabel: 'Changes',
+            tabBarIcon: ({color}) => (
+              <Icon name="file-multiple" color={color} size={24} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="History"
+          component={RepositoryHistory}
+          options={{
+            tabBarLabel: 'History',
+            tabBarIcon: ({color}) => (
+              <Icon name="history" color={color} size={24} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
     </RepoContext.Provider>
   );
 };

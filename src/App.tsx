@@ -5,7 +5,6 @@ import * as React from 'react';
 import 'reflect-metadata';
 import {createConnection, getConnectionManager} from 'typeorm';
 import {Repo} from './entities';
-import {BackButton, NativeRouter, Route} from 'react-router-native';
 import {Provider as PaperProvider} from 'react-native-paper';
 
 import {SafeAreaView, StatusBar, Alert, ActivityIndicator} from 'react-native';
@@ -13,6 +12,8 @@ import {PermissionsAndroid} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {theme} from './constants/theme';
 import {Repository} from './views/repository/repository';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const App = () => {
   const [isDBLoaded, setIsDBLoaded] = React.useState(false);
@@ -62,23 +63,23 @@ const App = () => {
       });
   }, []);
 
+  const Stack = createStackNavigator();
+
   return (
-    <NativeRouter>
-      <BackButton>
-        <PaperProvider theme={theme}>
-          <StatusBar barStyle="dark-content" />
-          {isDBLoaded ? (
-            <>
-              <Route exact path="/" component={RepositoryList} />
-            <Route path="/:repoId" component={Repository} />
-            </>
-          ) : (
-            <ActivityIndicator size="large" color="#0000ff" />
-          )}
-          <SafeAreaView />
-        </PaperProvider>
-      </BackButton>
-    </NativeRouter>
+    <NavigationContainer>
+      <PaperProvider theme={theme}>
+        <StatusBar barStyle="dark-content" />
+        {isDBLoaded ? (
+          <Stack.Navigator headerMode={'none'}>
+            <Stack.Screen name="RepoList" component={RepositoryList} />
+            <Stack.Screen name="RepoDetails" component={Repository} />
+          </Stack.Navigator>
+        ) : (
+          <ActivityIndicator size="large" color="#0000ff" />
+        )}
+        <SafeAreaView />
+      </PaperProvider>
+    </NavigationContainer>
   );
 };
 

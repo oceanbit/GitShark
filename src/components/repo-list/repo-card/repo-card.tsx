@@ -3,24 +3,28 @@ import * as React from 'react';
 import {RepoCardCommitMetadata} from './repo-card-commit-metadata';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../../constants/theme';
-import {useHistory} from 'react-router-native';
 import {TouchableRipple} from 'react-native-paper';
 import {Repo} from '../../../entities';
 import dayjs from 'dayjs';
 import {textStyles} from '../../../constants/text-styles';
+import {useNavigation} from '@react-navigation/native';
 
 interface RepoCardProps {
   repo: Repo;
 }
 export const RepoCard = ({repo}: RepoCardProps) => {
-  const history = useHistory();
+  const history = useNavigation();
 
   const updatedFromNow = dayjs(repo.lastUpdated).fromNow(true);
 
   return (
     <TouchableRipple
       style={styles.cardContainer}
-      onPress={() => history.push(`/${repo.id}`)}
+      onPress={() => {
+        history.navigate(`RepoDetails`, {
+          repoId: repo.id,
+        });
+      }}
       rippleColor={theme.colors.outlineColor}>
       <View>
         <View style={styles.topDisplayRow}>
