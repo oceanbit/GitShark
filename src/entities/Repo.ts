@@ -1,7 +1,17 @@
 /**
  * @format
  */
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BaseEntity,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
+import {Remote} from './Remote';
+import {Branch} from './Branch';
+
 @Entity()
 export class Repo extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -30,6 +40,14 @@ export class Repo extends BaseEntity {
   // The dateTime of the last updated value for the repo
   @Column('datetime', {nullable: false, default: Date.now()})
   lastUpdated: Date;
+
+  @ManyToMany(type => Remote)
+  @JoinTable()
+  remotes: Remote[];
+
+  @ManyToMany(type => Branch)
+  @JoinTable()
+  branches: Branch[];
 }
 
 export interface RepoMock {
