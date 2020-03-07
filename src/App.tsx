@@ -4,7 +4,7 @@
 import * as React from 'react';
 import 'reflect-metadata';
 import {createConnection, getConnectionManager} from 'typeorm';
-import {Repo} from './entities';
+import {Branch, Commit, Remote, Repo} from './entities';
 import {Provider as PaperProvider} from 'react-native-paper';
 
 import {SafeAreaView, StatusBar, Alert, ActivityIndicator} from 'react-native';
@@ -45,7 +45,7 @@ const App = () => {
       location: 'default',
       logging: ['error', 'query', 'schema'],
       synchronize: true,
-      entities: [Repo],
+      entities: [Branch, Commit, Remote, Repo],
     })
       .then(() => {
         setIsDBLoaded(true);
