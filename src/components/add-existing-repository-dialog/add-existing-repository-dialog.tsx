@@ -7,7 +7,7 @@ import {AppDialog} from '../dialog/dialog';
 import {fs} from '../../constants/fs';
 import git from 'isomorphic-git/index.umd.min.js';
 import {Repo} from '../../entities';
-import {getNameFromPath} from '../../utils';
+import {getRepoNameFromPath} from '../../utils';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {FolderSelectButton} from '../folder-select-button/folder-select-button';
 
@@ -25,7 +25,7 @@ export const AddExistingRepositoryDialog = ({
 
   const createNewRepo = async (branchName: string) => {
     const newRepo = new Repo();
-    newRepo.name = repoName || getNameFromPath(path);
+    newRepo.name = repoName || getRepoNameFromPath(path);
     newRepo.path = path;
     newRepo.lastUpdated = new Date(Date.now());
     newRepo.currentBranchName = branchName;

@@ -41,11 +41,11 @@ export class Repo extends BaseEntity {
   @Column('datetime', {nullable: false, default: Date.now()})
   lastUpdated: Date;
 
-  @ManyToMany(type => Remote)
+  @ManyToMany(type => Remote, {cascade: ['insert']})
   @JoinTable()
   remotes: Remote[];
 
-  @ManyToMany(type => Branch)
+  @ManyToMany(type => Branch, {cascade: ['insert']})
   @JoinTable()
   branches: Branch[];
 }
