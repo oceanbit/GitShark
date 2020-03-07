@@ -15,6 +15,7 @@
     "@react-navigation/material-bottom-tabs": "^5.1.1",
     "@react-navigation/native": "^5.0.9",
     "@react-navigation/stack": "^5.1.1",
+    "batteries-not-included": "^0.0.3",
     "buffer": "^5.4.3",
     "dayjs": "^1.8.21",
     "isomorphic-git": "^1.1.4",

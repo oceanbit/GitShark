@@ -28,7 +28,7 @@ export class Branch extends BaseEntity {
   @Column()
   name: string;
 
-  @ManyToMany(type => Commit)
+  @ManyToMany(type => Commit, {cascade: ['insert']})
   @JoinTable()
   commits: Commit[];
 
@@ -39,7 +39,7 @@ export class Branch extends BaseEntity {
   isLocal: boolean;
 
   // If `isLocal` is true, this should have a value. Otherwise, this should have no value
-  @OneToOne(type => Branch, {nullable: true})
+  @OneToOne(type => Branch, {nullable: true, cascade: ['insert']})
   @JoinColumn()
   trackedBranch?: Branch;
 
