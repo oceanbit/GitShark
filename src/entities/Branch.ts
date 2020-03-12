@@ -1,6 +1,6 @@
 import {
   BaseEntity,
-  Column,
+  Column, Entity,
   JoinColumn,
   JoinTable,
   ManyToMany,
@@ -15,6 +15,7 @@ import {Commit} from './Commit';
  * and store them in our database. As such, be cognizant when doing a base `query` to filter
  * based on the `isLocal` flag
  */
+@Entity()
 export class Branch extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -25,7 +26,7 @@ export class Branch extends BaseEntity {
    * Keep in mind that this is the table for ALL branches and different repos will have the same
    * branch associated.
    */
-  @Column()
+  @Column({type: 'text'})
   name: string;
 
   @ManyToMany(type => Commit, {cascade: ['insert']})
@@ -35,7 +36,7 @@ export class Branch extends BaseEntity {
   /**
    * This should always be `true` unless it's a remote branch cached for metadata purposes
    */
-  @Column()
+  @Column({type: 'boolean'})
   isLocal: boolean;
 
   // If `isLocal` is true, this should have a value. Otherwise, this should have no value

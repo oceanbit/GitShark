@@ -1,12 +1,13 @@
-import {BaseEntity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
+@Entity()
 export class Remote extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({type: 'text'})
   name: string;
 
-  @Column()
+  @Column({type: 'text'})
   url: string;
 }
