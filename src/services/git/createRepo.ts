@@ -4,9 +4,10 @@ import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '../../constants/fs';
 import {gitCommitToDBMapper} from './gitCommitToDBMapper';
 
-const createNewRepo = async (path: string, name?: string) => {
+export const createNewRepo = async (path: string, name?: string) => {
   const newRepo = new Repo();
   const currentBranchName = await git.currentBranch({fs, dir: path});
+
   if (!currentBranchName) throw 'This path is not a git repository';
   newRepo.currentBranchName = currentBranchName;
 
@@ -34,8 +35,7 @@ const createNewRepo = async (path: string, name?: string) => {
     // If `undefined`, it's not tracking anything
     const localBranchRemoteName = await git.getConfig({
       fs,
-      gitdir: './.git',
-      dir: './',
+      dir: path,
       path: `branch.${currentBranchName}.remote`,
     });
 
@@ -81,4 +81,5 @@ const createNewRepo = async (path: string, name?: string) => {
   newRepo.path = path;
   newRepo.lastUpdated = new Date(Date.now());
   await newRepo.save();
+  return newRepo;
 };

@@ -6,10 +6,9 @@ import {textStyles} from '../../constants/text-styles';
 import {AppDialog} from '../dialog/dialog';
 import {fs} from '../../constants/fs';
 import git from 'isomorphic-git/index.umd.min.js';
-import {Repo} from '../../entities';
-import {getRepoNameFromPath} from '../../utils';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {FolderSelectButton} from '../folder-select-button/folder-select-button';
+import {createNewRepo} from '../../services/git/createRepo';
 
 interface CreateRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -23,14 +22,9 @@ export const AddExistingRepositoryDialog = ({
   const [repoName, setRepoName] = React.useState('');
   const [errorStr, setErrorStr] = React.useState('');
 
-  const createNewRepo = async (branchName: string) => {
-    const newRepo = new Repo();
-    newRepo.name = repoName || getRepoNameFromPath(path);
-    newRepo.path = path;
-    newRepo.lastUpdated = new Date(Date.now());
-    newRepo.currentBranchName = branchName;
+  const createNewRepoLocal = async () => {
     try {
-      await newRepo.save();
+      await createNewRepo(path, repoName);
     } catch (e) {
       console.error("There was an error creating a repo in the app's cache", e);
       Alert.alert(
@@ -56,7 +50,7 @@ export const AddExistingRepositoryDialog = ({
   const checkAndCreateGitDirectory = async () => {
     const gitBranchName = await getGitBranchName();
     if (gitBranchName) {
-      await createNewRepo(gitBranchName);
+      await createNewRepoLocal();
       onDismiss(true);
       return;
     }
