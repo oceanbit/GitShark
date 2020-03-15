@@ -18,6 +18,9 @@ export const theme = {
     // Navy 900
     on_surface_light: '#142952',
 
+    // Navy 900
+    on_surface_secondary_light: 'rgba(20,41,82,0.6)',
+
     // Navy 50
     background_light: '#EBF0FA',
 
