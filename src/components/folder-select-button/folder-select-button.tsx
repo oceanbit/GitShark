@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
@@ -8,10 +8,12 @@ import RNFileSelector from 'react-native-file-selector';
 interface FolderSelectButtonProps {
   onFolderSelect: (path: string) => void;
   path: string;
+  style?: StyleProp<ViewStyle>;
 }
 export const FolderSelectButton = ({
   onFolderSelect,
   path,
+                                     style
 }: FolderSelectButtonProps) => {
   const selectDirectory = () => {
     RNFileSelector.Show({
@@ -30,7 +32,7 @@ export const FolderSelectButton = ({
   return (
     <>
       {!path && (
-        <TouchableRipple onPress={() => selectDirectory()}>
+        <TouchableRipple onPress={() => selectDirectory()} style={style}>
           <View style={styles.selectFolderBtn}>
             <Icon size={24} name="folder" color={theme.colors.accent} />
             <Text style={styles.selectFolderText}>Select folder...</Text>
@@ -38,9 +40,10 @@ export const FolderSelectButton = ({
         </TouchableRipple>
       )}
       {!!path && (
-        <TouchableRipple onPress={() => selectDirectory()}>
+        <TouchableRipple onPress={() => selectDirectory()} style={style}>
           <View style={styles.selectFolderBtn}>
             <Text
+              ellipsizeMode="head"
               numberOfLines={1}
               style={[styles.selectFolderText, styles.selectFolderBtnWithPath]}>
               {path}

@@ -17,6 +17,7 @@ import {theme} from '../../constants/theme';
 import {ExtendedActionFab} from '../../components/extended-action-fab/extended-action-fab';
 import {CreateRepositoryDialog} from '../../components/create-repository-dialog/create-repository-dialog';
 import {AddExistingRepositoryDialog} from '../../components/add-existing-repository-dialog/add-existing-repository-dialog';
+import {CloneRepositoryDialog} from '../../components/clone-repository-dialog/clone-repository-dialog';
 import {textStyles} from '../../constants/text-styles';
 
 interface ExtendedFabBase {
@@ -169,6 +170,10 @@ export const RepositoryList = () => {
       />
       <AddExistingRepositoryDialog
         visible={selectedAction === 'existing'}
+        onDismiss={onDismiss}
+      />
+      <CloneRepositoryDialog
+        visible={selectedAction === 'clone'}
         onDismiss={onDismiss}
       />
     </>
