@@ -19,7 +19,7 @@ interface AppDialogProps {
   visible: boolean;
 }
 export const AppDialog = ({
-                            visible,
+  visible,
   dismissable,
   onDismiss,
   title,

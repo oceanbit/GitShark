@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, TextInput, Alert} from 'react-native';
+import {StyleSheet, TextInput} from 'react-native';
 import {Button} from 'react-native-paper';
 import {theme} from '../../constants/theme';
 import {textStyles} from '../../constants/text-styles';
@@ -9,7 +9,7 @@ import git from 'isomorphic-git/index.umd.min.js';
 import {SharkTextInput} from '../shark-text-input/shark-text-input';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {FolderSelectButton} from '../folder-select-button/folder-select-button';
-import {createNewRepo} from '../../services/git/createRepo';
+import {CloneRepositoryProgressDialog} from '../clone-repository-progress-dialog/clone-repository-progress-dialog';
 
 interface CloneRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -23,17 +23,7 @@ export const CloneRepositoryDialog = ({
   const [repoUrl, setRepoUrl] = React.useState('');
   const [repoName, setRepoName] = React.useState('');
   const [errorStr, setErrorStr] = React.useState('');
-
-  const createNewRepoLocal = async () => {
-    try {
-      await createNewRepo(path, repoName);
-    } catch (e) {
-      console.error("There was an error creating a repo in the app's cache", e);
-      Alert.alert(
-        "There was an error creating a repo in the app's cache. Please restart the app and try again",
-      );
-    }
-  };
+  const [isCloning, setIsCloning] = React.useState(false);
 
   const getGitBranchName = async () => {
     try {
@@ -49,68 +39,76 @@ export const CloneRepositoryDialog = ({
     }
   };
 
-  const checkAndCreateGitDirectory = async () => {
+  const checkAndClone = async () => {
     const gitBranchName = await getGitBranchName();
     if (gitBranchName) {
-      await createNewRepoLocal();
-      onDismiss(true);
+      setErrorStr('The folder selected is already a git repository.');
       return;
     }
-    setErrorStr('The folder selected is not a git repository.');
+    setIsCloning(true);
   };
 
   return (
-    <AppDialog
-      visible={visible}
-      onDismiss={() => onDismiss(false)}
-      title={'Clone'}
-      text={'Clone remote repository into a local folder.'}
-      main={
-        <>
-          <SharkTextInput
-            placeholder={'Repository URL'}
-            value={repoUrl}
-            onChangeText={val => setRepoUrl(val)}
-            prefixIcon={'link'}
-            postfixIcon={'clipboard-text'}
-          />
-          <FolderSelectButton
-            path={path}
-            onFolderSelect={folderPath => {
-              setPath(folderPath);
-              setErrorStr('');
-            }}
-            style={styles.folderSelect}
-          />
-          {!!errorStr && (
-            <ErrorMessageBox style={styles.errorBox} message={errorStr} />
-          )}
-          <TextInput
-            value={repoName}
-            onChangeText={setRepoName}
-            placeholder={'Repository name'}
-            style={styles.textInput}
-          />
-        </>
-      }
-      actions={
-        <>
-          <Button
-            onPress={() => onDismiss(false)}
-            mode="outlined"
-            color={theme.colors.accent}
-            style={styles.cancelBtn}>
-            Cancel
-          </Button>
-          <Button
-            onPress={() => checkAndCreateGitDirectory()}
-            mode="contained"
-            color={theme.colors.accent}>
-            Create
-          </Button>
-        </>
-      }
-    />
+    <>
+      <AppDialog
+        visible={visible && !isCloning}
+        onDismiss={() => onDismiss(false)}
+        title={'Clone'}
+        text={'Clone remote repository into a local folder.'}
+        main={
+          <>
+            <SharkTextInput
+              placeholder={'Repository URL'}
+              value={repoUrl}
+              onChangeText={val => setRepoUrl(val)}
+              prefixIcon={'link'}
+              postfixIcon={'clipboard-text'}
+            />
+            <FolderSelectButton
+              path={path}
+              onFolderSelect={folderPath => {
+                setPath(folderPath);
+                setErrorStr('');
+              }}
+              style={styles.folderSelect}
+            />
+            {!!errorStr && (
+              <ErrorMessageBox style={styles.errorBox} message={errorStr} />
+            )}
+            <TextInput
+              value={repoName}
+              onChangeText={setRepoName}
+              placeholder={'Repository name'}
+              style={styles.textInput}
+            />
+          </>
+        }
+        actions={
+          <>
+            <Button
+              onPress={() => onDismiss(false)}
+              mode="outlined"
+              color={theme.colors.accent}
+              style={styles.cancelBtn}>
+              Cancel
+            </Button>
+            <Button
+              onPress={() => checkAndClone()}
+              mode="contained"
+              color={theme.colors.accent}>
+              Create
+            </Button>
+          </>
+        }
+      />
+      <CloneRepositoryProgressDialog
+        onDismiss={onDismiss}
+        visible={visible && isCloning}
+        uri={repoUrl}
+        path={path}
+        name={repoName}
+      />
+    </>
   );
 };
 
