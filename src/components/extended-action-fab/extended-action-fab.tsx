@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 16,
     zIndex: 10,
-    borderRadius: theme.roundness * 2,
+    borderRadius: theme.roundness,
     backgroundColor: theme.colors.accent,
     elevation: 6,
   },
