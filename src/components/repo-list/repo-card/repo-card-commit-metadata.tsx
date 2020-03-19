@@ -6,14 +6,16 @@ import {theme} from '../../../constants/theme';
 interface RepoCardCommitMetadataProps {
   commitsToPull: number;
   commitsToPush: number;
+  style?: StyleProp<ViewStyle>;
 }
 export const RepoCardCommitMetadata = ({
   commitsToPull,
   commitsToPush,
+  style = {}
 }: RepoCardCommitMetadataProps) => {
   if (!commitsToPull && !commitsToPush) return null;
   return (
-    <View style={styles.arrowContainer}>
+    <View style={[styles.arrowContainer, style]}>
       {!!commitsToPush && (
         <View style={styles.commitNumberView}>
           <Icon name="arrow-up" size={10} color="#002BFF" />
