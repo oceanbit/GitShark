@@ -3,7 +3,7 @@ import * as React from 'react';
 import {RepoCardCommitMetadata} from './repo-card-commit-metadata';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../../constants/theme';
-import {TouchableRipple} from 'react-native-paper';
+import {TouchableRipple, Menu} from 'react-native-paper';
 import {Repo} from '../../../entities';
 import dayjs from 'dayjs';
 import {textStyles} from '../../../constants/text-styles';
@@ -13,6 +13,7 @@ interface RepoCardProps {
   repo: Repo;
 }
 export const RepoCard = ({repo}: RepoCardProps) => {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const history = useNavigation();
 
   const updatedFromNow = dayjs(repo.lastUpdated).fromNow(true);
@@ -28,10 +29,29 @@ export const RepoCard = ({repo}: RepoCardProps) => {
       rippleColor={theme.colors.outlineColor}>
       <View>
         <View style={styles.topDisplayRow}>
-          <Text numberOfLines={1} style={styles.cardName}>
-            {repo.name}
-          </Text>
-          <Text style={styles.lastUpdated}>Updated {updatedFromNow} ago</Text>
+          <View style={styles.repoNameAndDate}>
+            <Text numberOfLines={1} style={styles.cardName}>
+              {repo.name}
+            </Text>
+            <Text style={styles.lastUpdated}>Updated {updatedFromNow} ago</Text>
+          </View>
+          <Menu
+            visible={isMenuOpen}
+            onDismiss={() => setIsMenuOpen(false)}
+            anchor={
+              <TouchableRipple
+                style={styles.moreButtonContainer}
+                onPress={() => setIsMenuOpen(true)}>
+                <Icon
+                  name="dots-horizontal"
+                  size={24}
+                  color={theme.colors.accent}
+                />
+              </TouchableRipple>
+            }>
+            <Menu.Item onPress={() => {}} title="Rename" />
+            <Menu.Item onPress={() => {}} title="Delete" />
+          </Menu>
         </View>
         <View style={styles.displayRow}>
           <View style={styles.branchView}>
@@ -41,6 +61,7 @@ export const RepoCard = ({repo}: RepoCardProps) => {
           <RepoCardCommitMetadata
             commitsToPull={repo.commitsToPull}
             commitsToPush={repo.commitsToPush}
+            style={styles.statusComponent}
           />
         </View>
       </View>
@@ -54,7 +75,9 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.outlineColor,
     borderRadius: theme.roundness,
     borderWidth: 1,
-    padding: 16,
+    paddingTop: 8,
+    paddingBottom: 16,
+    paddingLeft: 16,
     marginBottom: 16,
   },
   topDisplayRow: {
@@ -62,6 +85,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 8,
+  },
+  repoNameAndDate: {
+    paddingTop: 8,
+    flexDirection: 'column',
+  },
+  moreButtonContainer: {
+    height: 56,
+    width: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   displayRow: {
     flexDirection: 'row',
@@ -75,8 +108,7 @@ const styles = StyleSheet.create({
     ...textStyles.headline_03,
   },
   lastUpdated: {
-    color: theme.colors.on_surface_light,
-    opacity: 0.6,
+    color: theme.colors.on_surface_secondary_light,
     ...textStyles.caption_02,
   },
   branchView: {
@@ -88,4 +120,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     ...textStyles.caption_01,
   },
+  statusComponent: {
+    marginRight: 16,
+  }
 });
