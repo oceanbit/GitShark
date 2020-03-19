@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
   lastFetched: {
     fontSize: 12,
     lineHeight: 16,
-    color: theme.colors.on_surface_light,
-    opacity: 0.6,
+    color: theme.colors.on_surface_secondary_light,
   },
 });
