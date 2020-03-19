@@ -1,19 +1,10 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  View,
-  Alert,
-  ScrollView,
-  Text,
-  TouchableHighlight,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, View, Alert, ScrollView, Text} from 'react-native';
 import {Repo} from '../../entities';
 import {getRepository} from 'typeorm';
 import {reposMocks} from '../../components/repo-list/mock-data';
 import {RepoCard} from '../../components/repo-list/repo-card/repo-card';
-import {FAB, TouchableRipple} from 'react-native-paper';
-import {theme} from '../../constants/theme';
+import {TouchableRipple} from 'react-native-paper';
 import {ExtendedActionFab} from '../../components/extended-action-fab/extended-action-fab';
 import {CreateRepositoryDialog} from '../../components/create-repository-dialog/create-repository-dialog';
 import {AddExistingRepositoryDialog} from '../../components/add-existing-repository-dialog/add-existing-repository-dialog';
@@ -154,10 +145,22 @@ export const RepositoryList = () => {
         <Text style={styles.headingText}>Repositories</Text>
         <ScrollView>
           {repos.map(repo => {
-            return <RepoCard key={repo.id} repo={repo} />;
+            return (
+              <RepoCard
+                key={repo.id}
+                repo={repo}
+                onUpdate={() => findRepos()}
+              />
+            );
           })}
           {reposMocks.map(repo => {
-            return <RepoCard key={repo.id} repo={repo} />;
+            return (
+              <RepoCard
+                key={repo.id}
+                repo={repo}
+                onUpdate={() => findRepos()}
+              />
+            );
           })}
         </ScrollView>
       </View>
