@@ -2,12 +2,9 @@ import * as React from 'react';
 import {StyleSheet, TextInput, Alert} from 'react-native';
 import {Button} from 'react-native-paper';
 import {theme} from '../../constants/theme';
-import {textStyles} from '../../constants/text-styles';
 import {AppDialog} from '../dialog/dialog';
 import {fs} from '../../constants/fs';
 import git from 'isomorphic-git/index.umd.min.js';
-import {Repo} from '../../entities';
-import {getRepoNameFromPath} from '../../utils';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {FolderSelectButton} from '../folder-select-button/folder-select-button';
 import {createNewRepo} from '../../services/git/createRepo';
@@ -119,23 +116,6 @@ export const CreateRepositoryDialog = ({
 };
 
 const styles = StyleSheet.create({
-  dialogContainer: {
-    margin: 0,
-    paddingHorizontal: 24,
-    paddingTop: 20,
-    paddingBottom: 16,
-  },
-  dialogTitle: {
-    fontWeight: '500',
-    marginBottom: 4,
-    ...textStyles.headline_03,
-  },
-  mainText: {
-    color: '#142952',
-    opacity: 0.6,
-    marginBottom: 20,
-    ...textStyles.body_02,
-  },
   errorBox: {
     marginTop: 8,
   },

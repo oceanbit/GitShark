@@ -79,8 +79,7 @@ const styles = StyleSheet.create({
     ...textStyles.caption_01,
   },
   timeStr: {
-    opacity: 0.6,
-    color: theme.colors.on_surface_light,
+    color: theme.colors.on_surface_secondary_light,
     ...textStyles.caption_02,
   },
   commitHeaderTxt: {
@@ -92,8 +91,7 @@ const styles = StyleSheet.create({
     color: theme.colors.accent,
   },
   commitBody: {
-    opacity: 0.6,
-    color: theme.colors.on_surface_light,
+    color: theme.colors.on_surface_secondary_light,
     ...textStyles.body_02,
   },
 });

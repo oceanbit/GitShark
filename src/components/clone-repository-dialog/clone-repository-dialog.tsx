@@ -113,23 +113,6 @@ export const CloneRepositoryDialog = ({
 };
 
 const styles = StyleSheet.create({
-  dialogContainer: {
-    margin: 0,
-    paddingHorizontal: 24,
-    paddingTop: 20,
-    paddingBottom: 16,
-  },
-  dialogTitle: {
-    fontWeight: '500',
-    marginBottom: 4,
-    ...textStyles.headline_03,
-  },
-  mainText: {
-    color: '#142952',
-    opacity: 0.6,
-    marginBottom: 20,
-    ...textStyles.body_02,
-  },
   errorBox: {
     marginTop: 8,
   },
