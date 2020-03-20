@@ -1,15 +1,19 @@
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {commitsMocks} from './mock-data';
 import {CommitCard} from './commit-card/commit-card';
 import {theme} from '../../constants/theme';
+import {GitLogCommit} from 'src/services/git/gitLog';
 
-export const CommitList = () => {
+interface CommitListProps {
+  commits: GitLogCommit[];
+}
+
+export const CommitList = ({commits}: CommitListProps) => {
   return (
     <View>
-      {commitsMocks.map(commit => {
+      {commits.map(commit => {
         return (
-          <View style={styles.commitCardItem} key={commit.id}>
+          <View style={styles.commitCardItem} key={commit.oid}>
             <CommitCard commit={commit} />
           </View>
         );
