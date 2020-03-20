@@ -5,46 +5,50 @@ import {TouchableRipple} from 'react-native-paper';
 import {textStyles} from '../../../constants/text-styles';
 import {CommitCardPushPull} from './commit-card-push-pull';
 import dayjs from 'dayjs';
-import {Commit} from '../mock-data';
+import {GitLogCommit} from '../../../services/git/gitLog';
+import {getCommitHeaderBody} from '../../../services/git/getCommitHeaderBody';
 const defaultProfPic = require('../../../../assets/images/default-profile-pic.png');
 
 interface CommitCardProps {
-  commit: Commit;
+  commit: GitLogCommit;
 }
 export const CommitCard = ({commit}: CommitCardProps) => {
+  const {title, message} = getCommitHeaderBody({commit});
 
+  const needsPulling = !!(Math.floor(Math.random() * 10) < 5);
+  const needsPushing = !!(Math.floor(Math.random() * 10) < 7);
   const {dateStr, timeStr} = React.useMemo(() => {
-    const dayjsTimestampe = dayjs(commit.timestamp);
+    const dayjsTimestampe = dayjs(commit.author.timestamp);
     return {
       dateStr: dayjsTimestampe.format('D MMM YYYY'),
       timeStr: dayjsTimestampe.format('h:mm A'),
     };
-  }, [commit.timestamp]);
+  }, [commit.author.timestamp]);
 
-  const blueStyle = commit.needsPushing ? styles.accentText : {};
+  const blueStyle = needsPushing ? styles.accentText : {};
 
   return (
     <TouchableRipple
       style={styles.commitContainer}
-      onPress={() => {}      }
+      onPress={() => {}}
       rippleColor={theme.colors.outlineColor}>
       <View>
         <View style={styles.commitHeading}>
           <Image source={defaultProfPic} style={styles.defaultPic} />
           <Text style={[styles.developerName, blueStyle]}>
-            {commit.authorName}
+            {commit.author.name}
           </Text>
           <CommitCardPushPull
-            needsPulling={commit.needsPulling}
-            needsPushing={commit.needsPushing}
+            needsPulling={needsPulling}
+            needsPushing={needsPushing}
           />
           <View style={{flexGrow: 1}} />
           <Text style={styles.timeStr}>
             {dateStr} • {timeStr}
           </Text>
         </View>
-        <Text style={[styles.commitHeaderTxt, blueStyle]}>{commit.title}</Text>
-        {commit.body && <Text style={styles.commitBody}>{commit.body}</Text>}
+        <Text style={[styles.commitHeaderTxt, blueStyle]}>{title}</Text>
+        {!!message && <Text style={styles.commitBody}>{message}</Text>}
       </View>
     </TouchableRipple>
   );
