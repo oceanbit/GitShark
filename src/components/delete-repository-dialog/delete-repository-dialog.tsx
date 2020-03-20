@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {View,StyleSheet, TextInput} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
 import {theme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {Repo} from 'src/entities';
+import {deleteRepo} from '../../services/git/deleteRepo';
 
 interface DeleteRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -17,6 +18,17 @@ export const DeleteRepositoryDialog = ({
   repo,
 }: DeleteRepositoryDialogProps) => {
   const [errorStr, setErrorStr] = React.useState('');
+
+  const deleteRepoLocal = () => {
+    deleteRepo(repo)
+      .then(() => {
+        setErrorStr('');
+        onDismiss(true);
+      })
+      .catch(e => {
+        setErrorStr(e.message || e);
+      });
+  };
 
   return (
     <AppDialog
@@ -34,7 +46,7 @@ export const DeleteRepositoryDialog = ({
       actions={
         <View style={styles.buttonContainer}>
           <Button
-            onPress={() => {}}
+            onPress={() => deleteRepoLocal()}
             mode="contained"
             color={theme.colors.change_removal_light}
             style={styles.fullWidthBtn}>

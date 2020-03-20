@@ -2,6 +2,12 @@ import {BaseEntity, Column, Entity, PrimaryColumn} from 'typeorm';
 
 @Entity()
 export class Commit extends BaseEntity {
+  /**
+   * Something to note:
+   * If this is the primary column, deleting a repo will have untentended concequences if two of the same repos have the same
+   * commits. As such, (and because we're likely moving away from using the DB for local commits) this should be changed
+   * to an auto-generated primary key
+   */
   @PrimaryColumn({type: 'text'})
   oid: string; // SHA-1 object id of this commit
 
