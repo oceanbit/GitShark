@@ -8,6 +8,7 @@ import {Repo} from '../../../entities';
 import dayjs from 'dayjs';
 import {useNavigation} from '@react-navigation/native';
 import {RenameRepositoryDialog} from '../../rename-repository-dialog/rename-repository-dialog';
+import {DeleteRepositoryDialog} from '../../delete-repository-dialog/delete-repository-dialog';
 import {styles} from './repo-card.styles';
 
 type DialogActionsType = '' | 'rename' | 'delete';
@@ -88,6 +89,16 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
       <RenameRepositoryDialog
         repo={repo}
         visible={openDialog === 'rename'}
+        onDismiss={didUpdate => {
+          setOpenDialog('');
+          if (didUpdate) {
+            onUpdate();
+          }
+        }}
+      />
+      <DeleteRepositoryDialog
+        repo={repo}
+        visible={openDialog === 'delete'}
         onDismiss={didUpdate => {
           setOpenDialog('');
           if (didUpdate) {
