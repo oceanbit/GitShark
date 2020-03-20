@@ -1,70 +1,53 @@
 import * as React from 'react';
-import {StyleSheet, TextInput} from 'react-native';
+import {View,StyleSheet, TextInput} from 'react-native';
 import {Button} from 'react-native-paper';
 import {theme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {Repo} from 'src/entities';
 
-interface RenameRepositoryDialogProps {
+interface DeleteRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
   repo: Repo;
 }
-export const RenameRepositoryDialog = ({
+export const DeleteRepositoryDialog = ({
   onDismiss,
   visible,
   repo,
-}: RenameRepositoryDialogProps) => {
-  const [repoName, setRepoName] = React.useState('');
+}: DeleteRepositoryDialogProps) => {
   const [errorStr, setErrorStr] = React.useState('');
-
-  const renameRepo = async () => {
-    if (!repoName) {
-      setErrorStr('You must input a value for the repository name');
-    }
-    repo.name = repoName;
-    await repo.save();
-    onDismiss(true);
-    setRepoName('');
-    setErrorStr('');
-  };
 
   return (
     <AppDialog
       visible={visible}
       onDismiss={() => onDismiss(false)}
-      title={'Rename repository'}
-      text={'Enter the new name for the repository.'}
+      title={'Delete repository?'}
+      text={'Files will remain in your device.'}
       main={
         <>
-          <TextInput
-            value={repoName}
-            onChangeText={setRepoName}
-            placeholder={'Repository name'}
-            style={styles.textInput}
-          />
           {!!errorStr && (
             <ErrorMessageBox style={styles.errorBox} message={errorStr} />
           )}
         </>
       }
       actions={
-        <>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={() => {}}
+            mode="contained"
+            color={theme.colors.change_removal_light}
+            style={styles.fullWidthBtn}>
+            Delete
+          </Button>
           <Button
             onPress={() => onDismiss(false)}
             mode="outlined"
             color={theme.colors.accent}
-            style={styles.cancelBtn}>
+            style={[styles.cancelBtn, styles.fullWidthBtn]}>
             Cancel
           </Button>
-          <Button
-            onPress={() => renameRepo()}
-            mode="contained"
-            color={theme.colors.accent}>
-            Rename
-          </Button>
-        </>
+        </View>
       }
     />
   );
@@ -87,11 +70,13 @@ const styles = StyleSheet.create({
   cancelBtn: {
     borderColor: theme.colors.outlineColor,
     borderWidth: 2,
-    marginRight: 16,
+    marginTop: 8,
   },
-  dialogActions: {
-    marginTop: 16,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+  buttonContainer: {
+    flexDirection: 'column',
+    width: '100%',
+  },
+  fullWidthBtn: {
+    width: '100%',
   },
 });
