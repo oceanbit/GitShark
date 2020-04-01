@@ -2,7 +2,6 @@ import * as React from 'react';
 import {StyleSheet, TextInput, Alert} from 'react-native';
 import {Button} from 'react-native-paper';
 import {theme} from '../../constants/theme';
-import {textStyles} from '../../constants/text-styles';
 import {AppDialog} from '../dialog/dialog';
 import {fs} from '../../constants/fs';
 import git from 'isomorphic-git/index.umd.min.js';

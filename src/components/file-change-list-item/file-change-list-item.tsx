@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import {theme} from '../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
@@ -10,11 +10,13 @@ interface FileChangeListItemProps {
   fileName: string;
   onPress?: () => void;
   fileStatus: ChangesArrayItem['fileStatus'];
+  style?: StyleProp<ViewStyle>;
 }
 export const FileChangeListItem = ({
   fileName,
   onPress = () => {},
   fileStatus,
+  style = {},
 }: FileChangeListItemProps) => {
   const statusIcon = React.useMemo(() => {
     switch (fileStatus) {
@@ -50,7 +52,7 @@ export const FileChangeListItem = ({
   }, [fileStatus]);
   return (
     <TouchableRipple
-      style={styles.listItemContainer}
+      style={[style, styles.listItemContainer]}
       onPress={onPress}
       rippleColor={theme.colors.outlineColor}>
       <View style={styles.listItemView}>
@@ -68,7 +70,10 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.outlineColor,
     borderRadius: theme.roundness,
     borderWidth: 1,
-    padding: 12,
+    paddingLeft: 12,
+    paddingVertical: 12,
+    paddingRight: 8,
+    justifyContent: 'center',
     marginBottom: 8,
   },
   listItemView: {
@@ -81,7 +86,6 @@ const styles = StyleSheet.create({
   fileName: {
     flexGrow: 1,
     marginRight: 12,
-
     ...textStyles.body_01,
   },
 });

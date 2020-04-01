@@ -1,13 +1,22 @@
 import * as React from 'react';
-import {TouchableRipple} from 'react-native-paper';
+import {TouchableRipple, Menu, Divider} from 'react-native-paper';
 import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
 import {HeaderActionNumber} from './header-action-number/header-action-number';
 import {useNavigation} from '@react-navigation/native';
+import git from 'isomorphic-git/index.umd.min.js';
+import {fs} from '../../constants/fs';
+import http from 'isomorphic-git/http/web/index.js';
+import {Repo} from 'src/entities';
 
-export const RepositoryHeader = () => {
+interface RepositoryHeaderProps {
+  repo: Repo;
+}
+
+export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
   const history = useNavigation();
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
     <View style={styles.repoHeader}>
@@ -22,9 +31,41 @@ export const RepositoryHeader = () => {
       </View>
       <HeaderActionNumber iconName="arrow-up-circle" val={4} />
       <HeaderActionNumber iconName="arrow-down-circle" val={0} />
-      <TouchableRipple style={styles.buttonRipple} onPress={() => {}}>
-        <Icon name="dots-horizontal" size={24} color={theme.colors.accent} />
-      </TouchableRipple>
+      <Menu
+        visible={isMenuOpen}
+        onDismiss={() => setIsMenuOpen(false)}
+        anchor={
+          <TouchableRipple
+            style={styles.buttonRipple}
+            onPress={() => setIsMenuOpen(true)}>
+            <Icon
+              name="dots-horizontal"
+              size={24}
+              color={theme.colors.accent}
+            />
+          </TouchableRipple>
+        }>
+        <Menu.Item
+          onPress={() => {
+            setIsMenuOpen(false);
+            console.log(repo);
+            git.fetch({
+              fs,
+              http,
+              dir: repo.path,
+              url:
+                'https://github.com/unicorn-utterances/batteries-not-included.git',
+              ref: repo.currentBranchName,
+              depth: 1000,
+              singleBranch: true,
+            });
+          }}
+          title="Fetch"
+        />
+        <Divider />
+        <Menu.Item onPress={() => {}} title="Open Folder" />
+        <Menu.Item onPress={() => {}} title="Rename" />
+      </Menu>
     </View>
   );
 };

@@ -50,7 +50,7 @@ export const Repository = () => {
 
   return (
     <RepoContext.Provider value={contextValue}>
-      <RepositoryHeader />
+      <RepositoryHeader repo={repo!}/>
       <Tab.Navigator
         labeled={true}
         shifting={false}
