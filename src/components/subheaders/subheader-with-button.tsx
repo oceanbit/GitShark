@@ -1,21 +1,22 @@
 import * as React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, StyleProp, ViewStyle} from 'react-native';
 import {textStyles} from '../../constants/text-styles';
-import {theme} from '../../constants/theme';
 import {SharkButton} from '../shark-button/shark-button';
 
 interface SharkTextInputProps {
   calloutText: string;
   buttonText: string;
   onButtonClick: () => void;
+  style?: StyleProp<ViewStyle>;
 }
 export const SubheaderWithButton = ({
   calloutText,
   buttonText,
   onButtonClick,
+  style = {},
 }: SharkTextInputProps) => {
   return (
-    <View style={styles.subheaderContainer}>
+    <View style={[styles.subheaderContainer, style]}>
       <Text style={styles.subheaderText}>{calloutText}</Text>
       <SharkButton
         onPress={onButtonClick}
