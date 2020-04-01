@@ -7,11 +7,13 @@ import {
   NativeScrollEvent,
 } from 'react-native';
 import {FileChangeListItemWithCheckbox} from '../../components/file-change-list-item/file-change-list-item-with-checkbox';
+import git from 'isomorphic-git/index.umd.min.js';
 
 import {RepoContext} from '../../constants/repo-context';
 import {ChangesArrayItem, getRepoStatus} from '../../services/git';
 import {SubheaderWithButton} from '../../components/subheaders/subheader-with-button';
 import {theme} from '../../constants/theme';
+import {fs} from "../../constants/fs";
 
 export const RepositoryChanges = () => {
   const {repo} = React.useContext(RepoContext);
@@ -52,22 +54,24 @@ export const RepositoryChanges = () => {
     getUpdate();
   }, [getUpdate]);
 
-  const addToStaged = (change: ChangesArrayItem) => {
+  const addToStaged = async (change: ChangesArrayItem) => {
     const newUnstaged = unstagedChanges.filter(
       unChange => unChange.fileName !== change.fileName,
     );
     const newStaged = [...stagedChanges, change];
     setUnstagedChanges(newUnstaged);
     setStagedChanges(newStaged);
+    await git.add({fs, dir: repo!.path, filepath: change.fileName});
   };
 
-  const removeFromStaged = (change: ChangesArrayItem) => {
+  const removeFromStaged = async (change: ChangesArrayItem) => {
     const newStaged = stagedChanges.filter(
       unChange => unChange.fileName !== change.fileName,
     );
     const newUnstaged = [...unstagedChanges, change];
     setUnstagedChanges(newUnstaged);
     setStagedChanges(newStaged);
+    await git.remove({fs, dir: repo!.path, filepath: change.fileName});
   };
 
   const onUnstagedScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {

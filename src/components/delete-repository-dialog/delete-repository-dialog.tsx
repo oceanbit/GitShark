@@ -19,11 +19,16 @@ export const DeleteRepositoryDialog = ({
 }: DeleteRepositoryDialogProps) => {
   const [errorStr, setErrorStr] = React.useState('');
 
+  const parentOnDismiss = (bool: boolean) => {
+    setErrorStr('');
+    onDismiss(bool);
+  };
+
   const deleteRepoLocal = () => {
     deleteRepo(repo)
       .then(() => {
         setErrorStr('');
-        onDismiss(true);
+        parentOnDismiss(true);
       })
       .catch(e => {
         setErrorStr(e.message || e);
@@ -33,7 +38,7 @@ export const DeleteRepositoryDialog = ({
   return (
     <AppDialog
       visible={visible}
-      onDismiss={() => onDismiss(false)}
+      onDismiss={() => parentOnDismiss(false)}
       title={'Delete repository?'}
       text={'Files will remain in your device.'}
       main={
@@ -53,7 +58,7 @@ export const DeleteRepositoryDialog = ({
             Delete
           </Button>
           <Button
-            onPress={() => onDismiss(false)}
+            onPress={() => parentOnDismiss(false)}
             mode="outlined"
             color={theme.colors.accent}
             style={[styles.cancelBtn, styles.fullWidthBtn]}>

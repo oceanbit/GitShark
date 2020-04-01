@@ -21,6 +21,13 @@ export const CreateRepositoryDialog = ({
   const [repoName, setRepoName] = React.useState('');
   const [errorStr, setErrorStr] = React.useState('');
 
+  const parentOnDismiss = (bool: boolean) => {
+    setPath('');
+    setRepoName('');
+    setErrorStr('');
+    onDismiss(bool);
+  };
+
   const createNewRepoLocal = async () => {
     try {
       await createNewRepo(path, repoName);
@@ -58,20 +65,20 @@ export const CreateRepositoryDialog = ({
         dir: path,
       });
       await createNewRepoLocal();
-      onDismiss(true);
+      parentOnDismiss(true);
     } catch (e) {
       console.error('There was an error initializing the git repo', e);
       Alert.alert(
         'There was an error initlizing a git repo at this path. Please restart the app and try again',
       );
-      onDismiss(false);
+      parentOnDismiss(false);
     }
   };
 
   return (
     <AppDialog
       visible={visible}
-      onDismiss={() => onDismiss(false)}
+      onDismiss={() => parentOnDismiss(false)}
       title={'Create repository'}
       text={'The repository will be created from a local folder.'}
       main={
@@ -97,7 +104,7 @@ export const CreateRepositoryDialog = ({
       actions={
         <>
           <Button
-            onPress={() => onDismiss(false)}
+            onPress={() => parentOnDismiss(false)}
             mode="outlined"
             color={theme.colors.accent}
             style={styles.cancelBtn}>

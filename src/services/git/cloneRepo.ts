@@ -2,6 +2,7 @@ import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
 import {fs} from '../../constants/fs';
 import http from 'isomorphic-git/http/web/index.js';
 import {createNewRepo} from './createRepo';
+import {getRepoNameFromUri} from "../../utils";
 
 interface CloneRepoProps {
   path: string;
@@ -15,14 +16,17 @@ export const cloneRepo = async ({
   uri,
   onProgress,
 }: CloneRepoProps) => {
+  const newFolderName = getRepoNameFromUri(uri);
+  const repoName = name || newFolderName;
+  const repoDir = `${path}/${repoName}`;
   await git.clone({
     fs,
-    dir: path,
+    dir: repoDir,
     url: uri,
     http,
     singleBranch: true,
     depth: 1,
     onProgress,
   });
-  return await createNewRepo(path, name);
+  return await createNewRepo(repoDir, repoName);
 };

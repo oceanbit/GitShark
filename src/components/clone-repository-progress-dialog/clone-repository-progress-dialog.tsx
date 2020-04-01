@@ -10,6 +10,7 @@ import {theme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {cloneRepo} from '../../services/git/cloneRepo';
+import {getRepoNameFromUri} from "../../utils";
 
 // Note that since we're running isomorphic-git in the main thread, we're competing with React trying to update the UI.
 // In order to achieve smooth progress bars, we need to insert a little pause.
@@ -57,7 +58,6 @@ export const CloneRepositoryProgressDialog = ({
       uri,
       async onProgress({phase, loaded, total}) {
         if (phases[phase]) {
-          console.log(phase, loaded, total);
           setPhase(phase);
           setLoaded(loaded);
           setTotal(total || 0);
@@ -71,7 +71,7 @@ export const CloneRepositoryProgressDialog = ({
       .catch((e: Error | string) => {
         setErrorStr((e as Error).message || (e as string));
       });
-  }, [path, uri, name]);
+  }, [path, name, uri, onDismiss]);
 
   React.useEffect(() => {
     if (!visible) return;
@@ -83,9 +83,9 @@ export const CloneRepositoryProgressDialog = ({
       {/* The progress dialog */}
       <AppDialog
         visible={visible && !errorStr}
-        onDismiss={() => onDismiss(false)}
         title={'Cloning repository'}
         text={phase}
+        dismissable={false}
         main={
           <>
             {Platform.OS === 'android' ? (
