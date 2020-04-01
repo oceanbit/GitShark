@@ -8,6 +8,8 @@ export const theme = {
     ...DefaultTheme.colors,
     accent: '#002BFF',
     background: 'white',
+    border: 'rgba(0, 51, 153, 0.2)',
+    card: 'white',
     outlineColor: 'rgba(0, 51, 153, 0.2)',
     // White
     on_primary_light: '#002BFF',
