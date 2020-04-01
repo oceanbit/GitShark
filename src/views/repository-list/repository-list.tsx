@@ -134,10 +134,13 @@ export const RepositoryList = () => {
     [],
   );
 
-  const onDismiss = (didUpdate: boolean) => {
-    if (didUpdate) findRepos();
-    setSelectedAction('');
-  };
+  const onDismiss = React.useCallback(
+    (didUpdate: boolean) => {
+      if (didUpdate) findRepos();
+      setSelectedAction('');
+    },
+    [findRepos],
+  );
 
   return (
     <>
@@ -145,15 +148,6 @@ export const RepositoryList = () => {
         <Text style={styles.headingText}>Repositories</Text>
         <ScrollView>
           {repos.map(repo => {
-            return (
-              <RepoCard
-                key={repo.id}
-                repo={repo}
-                onUpdate={() => findRepos()}
-              />
-            );
-          })}
-          {reposMocks.map(repo => {
             return (
               <RepoCard
                 key={repo.id}

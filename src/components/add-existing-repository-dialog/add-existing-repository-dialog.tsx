@@ -21,6 +21,13 @@ export const AddExistingRepositoryDialog = ({
   const [repoName, setRepoName] = React.useState('');
   const [errorStr, setErrorStr] = React.useState('');
 
+  const parentOnDismiss = (bool: boolean) => {
+    setPath('');
+    setRepoName('');
+    setErrorStr('');
+    onDismiss(bool);
+  };
+
   const createNewRepoLocal = async () => {
     try {
       await createNewRepo(path, repoName);
@@ -50,7 +57,7 @@ export const AddExistingRepositoryDialog = ({
     const gitBranchName = await getGitBranchName();
     if (gitBranchName) {
       await createNewRepoLocal();
-      onDismiss(true);
+      parentOnDismiss(true);
       return;
     }
     setErrorStr('The folder selected is not a git repository.');
@@ -59,7 +66,7 @@ export const AddExistingRepositoryDialog = ({
   return (
     <AppDialog
       visible={visible}
-      onDismiss={() => onDismiss(false)}
+      onDismiss={() => parentOnDismiss(false)}
       title={'Add existing repository'}
       text={
         "Select a local folder that contains a repository. We'll keep track of it from there."
@@ -87,7 +94,7 @@ export const AddExistingRepositoryDialog = ({
       actions={
         <>
           <Button
-            onPress={() => onDismiss(false)}
+            onPress={() => parentOnDismiss(false)}
             mode="outlined"
             color={theme.colors.accent}
             style={styles.cancelBtn}>

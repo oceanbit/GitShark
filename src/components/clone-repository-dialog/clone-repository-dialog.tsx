@@ -25,6 +25,15 @@ export const CloneRepositoryDialog = ({
   const [errorStr, setErrorStr] = React.useState('');
   const [isCloning, setIsCloning] = React.useState(false);
 
+  const parentOnDismiss = (bool: boolean) => {
+    setPath('');
+    setRepoUrl('');
+    setRepoName('');
+    setErrorStr('');
+    setIsCloning(false);
+    onDismiss(bool);
+  };
+
   const getGitBranchName = async () => {
     try {
       const branchName = await git.currentBranch({
@@ -52,7 +61,7 @@ export const CloneRepositoryDialog = ({
     <>
       <AppDialog
         visible={visible && !isCloning}
-        onDismiss={() => onDismiss(false)}
+        onDismiss={() => parentOnDismiss(false)}
         title={'Clone'}
         text={'Clone remote repository into a local folder.'}
         main={
@@ -86,7 +95,7 @@ export const CloneRepositoryDialog = ({
         actions={
           <>
             <Button
-              onPress={() => onDismiss(false)}
+              onPress={() => parentOnDismiss(false)}
               mode="outlined"
               color={theme.colors.accent}
               style={styles.cancelBtn}>
@@ -102,7 +111,7 @@ export const CloneRepositoryDialog = ({
         }
       />
       <CloneRepositoryProgressDialog
-        onDismiss={onDismiss}
+        onDismiss={parentOnDismiss}
         visible={visible && isCloning}
         uri={repoUrl}
         path={path}
