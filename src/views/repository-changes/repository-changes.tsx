@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
-import {FileChangeListItem} from '../../components/file-change-list-item/file-change-list-item';
+import {FileChangeListItemWithCheckbox} from '../../components/file-change-list-item/file-change-list-item-with-checkbox';
 
 import {RepoContext} from '../../constants/repo-context';
 import {ChangesArrayItem, getRepoStatus} from '../../services/git';
@@ -9,7 +9,7 @@ export const RepositoryChanges = () => {
   const {repo} = React.useContext(RepoContext);
   const [changes, setChanges] = React.useState<ChangesArrayItem[]>([]);
 
-  React.useEffect(() => {
+  const getUpdate = React.useCallback(() => {
     if (!repo) {
       return;
     }
@@ -21,12 +21,16 @@ export const RepositoryChanges = () => {
     });
   }, [repo]);
 
+  React.useEffect(() => {
+    getUpdate();
+  }, [getUpdate]);
+
   return (
     <>
       <View style={styles.container}>
         <ScrollView>
           {changes.map(props => {
-            return <FileChangeListItem key={props.fileName} {...props} />;
+            return <FileChangeListItemWithCheckbox isChecked={false} key={props.fileName} {...props} />;
           })}
         </ScrollView>
       </View>
