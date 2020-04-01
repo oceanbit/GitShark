@@ -4,6 +4,7 @@ import {FileChangeListItemWithCheckbox} from '../../components/file-change-list-
 
 import {RepoContext} from '../../constants/repo-context';
 import {ChangesArrayItem, getRepoStatus} from '../../services/git';
+import {SubheaderWithButton} from '../../components/subheaders/subheader-with-button';
 
 export const RepositoryChanges = () => {
   const {repo} = React.useContext(RepoContext);
@@ -28,9 +29,20 @@ export const RepositoryChanges = () => {
   return (
     <>
       <View style={styles.container}>
-        <ScrollView>
+        <SubheaderWithButton
+          buttonText={'Stage All'}
+          calloutText={'Unstaged'}
+          onButtonClick={() => {}}
+        />
+        <ScrollView style={styles.changesList}>
           {changes.map(props => {
-            return <FileChangeListItemWithCheckbox isChecked={false} key={props.fileName} {...props} />;
+            return (
+              <FileChangeListItemWithCheckbox
+                isChecked={false}
+                key={props.fileName}
+                {...props}
+              />
+            );
           })}
         </ScrollView>
       </View>
@@ -40,7 +52,6 @@ export const RepositoryChanges = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
     height: '100%',
   },
   headingText: {
@@ -53,6 +64,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     bottom: 16,
+  },
+  changesList: {
+    paddingHorizontal: 16,
   },
   fab: {
     margin: 0,

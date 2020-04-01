@@ -66,7 +66,7 @@ const App = () => {
   const Stack = createStackNavigator();
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
       <PaperProvider theme={theme}>
         <StatusBar barStyle="dark-content" />
         {isDBLoaded ? (

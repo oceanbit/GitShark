@@ -29,7 +29,7 @@ export const textStyles = {
 
   callout: {
     fontFamily: 'Rubik',
-    fontWeight: '500' as '500',
+    fontWeight: '700' as '700',
     fontSize: 16,
     lineHeight: 24,
   },
