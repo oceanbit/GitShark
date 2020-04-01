@@ -84,7 +84,5 @@ export const getRepoStatus = async (path: string) => {
     }
   });
 
-  console.log('changesArray', changesArray);
-
   return changesArray;
 };
