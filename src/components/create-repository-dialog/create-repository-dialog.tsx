@@ -8,6 +8,7 @@ import git from 'isomorphic-git/index.umd.min.js';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {FolderSelectButton} from '../folder-select-button/folder-select-button';
 import {createNewRepo} from '../../services/git/createRepo';
+import {SharkButton} from '../shark-button/shark-button';
 
 interface CreateRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -103,19 +104,17 @@ export const CreateRepositoryDialog = ({
       }
       actions={
         <>
-          <Button
+          <SharkButton
             onPress={() => parentOnDismiss(false)}
-            mode="outlined"
-            color={theme.colors.accent}
-            style={styles.cancelBtn}>
-            Cancel
-          </Button>
-          <Button
+            type="outline"
+            style={styles.cancelBtn}
+            text="Cancel"
+          />
+          <SharkButton
             onPress={() => checkAndCreateGitDirectory()}
-            mode="contained"
-            color={theme.colors.accent}>
-            Create
-          </Button>
+            type="primary"
+            text="Create"
+          />
         </>
       }
     />
@@ -137,8 +136,6 @@ const styles = StyleSheet.create({
     borderRadius: theme.roundness,
   },
   cancelBtn: {
-    borderColor: theme.colors.outlineColor,
-    borderWidth: 2,
     marginRight: 16,
   },
   dialogActions: {

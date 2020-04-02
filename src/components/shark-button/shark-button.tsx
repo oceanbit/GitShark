@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.roundness,
     alignContent: 'center',
     minHeight: 24,
+    justifyContent: 'center',
   },
   noIconButton: {
     paddingHorizontal: 16,

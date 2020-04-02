@@ -5,6 +5,7 @@ import {theme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {cloneRepo} from '../../services/git/cloneRepo';
+import {SharkButton} from '../shark-button/shark-button';
 
 // Note that since we're running isomorphic-git in the main thread, we're competing with React trying to update the UI.
 // In order to achieve smooth progress bars, we need to insert a little pause.
@@ -99,12 +100,11 @@ export const CloneRepositoryProgressDialog = ({
         text={'There was an error cloning your repository.'}
         main={<ErrorMessageBox message={errorStr} />}
         actions={
-          <Button
+          <SharkButton
             onPress={() => cloneRepoCB()}
-            mode="contained"
-            color={theme.colors.accent}>
-            Retry
-          </Button>
+            type="primary"
+            text="Retry"
+          />
         }
       />
     </>
