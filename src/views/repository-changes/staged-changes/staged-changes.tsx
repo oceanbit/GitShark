@@ -35,9 +35,15 @@ export const StagedChanges = ({
 
   const stagedBtnText = selectedStagedChanges.length ? 'Unstage' : 'Commit All';
 
-  const stagedBtnAction = selectedStagedChanges.length
-    ? () => removeFromStaged(selectedStagedChanges)
-    : () => {};
+  const stagedBtnAction = React.useMemo(() => {
+    if (selectedStagedChanges.length) {
+      return async () => {
+        await removeFromStaged(selectedStagedChanges);
+        setSelectedStagedChanges([]);
+      };
+    }
+    return () => {};
+  }, [removeFromStaged, selectedStagedChanges]);
 
   const toggleSelected = (change: ChangesArrayItem) => {
     const filteredUnstaged = selectedStagedChanges.filter(
@@ -64,7 +70,6 @@ export const StagedChanges = ({
           const isChecked = !!selectedStagedChanges.find(
             change => change.fileName === props.fileName,
           );
-          console.log(props.fileName, isChecked);
           return (
             <FileChangeListItemWithCheckbox
               isChecked={isChecked}

@@ -53,9 +53,11 @@ export const RepositoryChanges = () => {
     const newStaged = [...stagedChanges, ...changes];
     setUnstagedChanges(newUnstaged);
     setStagedChanges(newStaged);
-    for (const change of changes) {
-      await git.add({fs, dir: repo!.path, filepath: change.fileName});
-    }
+    console.log(changes);
+    // const changePromises = changes.map(change =>
+    //   git.add({fs, dir: repo!.path, filepath: change.fileName}),
+    // );
+    // await Promise.all(changePromises);
   };
 
   const removeFromStaged = async (changes: ChangesArrayItem[]) => {
@@ -66,9 +68,11 @@ export const RepositoryChanges = () => {
     const newUnstaged = [...unstagedChanges, ...changes];
     setUnstagedChanges(newUnstaged);
     setStagedChanges(newStaged);
-    for (const change of changes) {
-      await git.remove({fs, dir: repo!.path, filepath: change.fileName});
-    }
+    console.log(changes);
+    // const changePromises = changes.map(change =>
+    //   git.remove({fs, dir: repo!.path, filepath: change.fileName}),
+    // );
+    // await Promise.all(changePromises);
   };
 
   return (
