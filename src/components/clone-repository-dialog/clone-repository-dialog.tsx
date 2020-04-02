@@ -10,6 +10,7 @@ import {SharkTextInput} from '../shark-text-input/shark-text-input';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {FolderSelectButton} from '../folder-select-button/folder-select-button';
 import {CloneRepositoryProgressDialog} from '../clone-repository-progress-dialog/clone-repository-progress-dialog';
+import {SharkButton} from '../shark-button/shark-button';
 
 interface CloneRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -94,19 +95,17 @@ export const CloneRepositoryDialog = ({
         }
         actions={
           <>
-            <Button
+            <SharkButton
               onPress={() => parentOnDismiss(false)}
-              mode="outlined"
-              color={theme.colors.accent}
-              style={styles.cancelBtn}>
-              Cancel
-            </Button>
-            <Button
+              type="outline"
+              style={styles.cancelBtn}
+              text={'Cancel'}
+            />
+            <SharkButton
               onPress={() => checkAndClone()}
-              mode="contained"
-              color={theme.colors.accent}>
-              Create
-            </Button>
+              type="primary"
+              text={'Create'}
+            />
           </>
         }
       />
