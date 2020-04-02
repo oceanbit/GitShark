@@ -1,19 +1,13 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
-} from 'react-native';
-import {FileChangeListItemWithCheckbox} from '../../components/file-change-list-item/file-change-list-item-with-checkbox';
+import {StyleSheet, View} from 'react-native';
 import git from 'isomorphic-git/index.umd.min.js';
 
 import {RepoContext} from '../../constants/repo-context';
 import {ChangesArrayItem, getRepoStatus} from '../../services/git';
-import {SubheaderWithButton} from '../../components/subheaders/subheader-with-button';
 import {theme} from '../../constants/theme';
-import {fs} from "../../constants/fs";
+import {fs} from '../../constants/fs';
+import {UnstagedChanges} from './unstaged-changes';
+import {StagedChanges} from './staged-changes';
 
 export const RepositoryChanges = () => {
   const {repo} = React.useContext(RepoContext);
@@ -23,9 +17,6 @@ export const RepositoryChanges = () => {
   const [unstagedChanges, setUnstagedChanges] = React.useState<
     ChangesArrayItem[]
   >([]);
-  const [showUnstagedDivider, setShowUnstagedDivider] = React.useState(false);
-  const [showStagedDivider, setShowStagedDivider] = React.useState(false);
-
   const getUpdate = React.useCallback(() => {
     if (!repo) {
       return;
@@ -43,7 +34,7 @@ export const RepositoryChanges = () => {
           }
           return prev;
         },
-        [[], []],
+        [[], []] as ChangesArrayItem[][],
       );
       setStagedChanges(unstaged);
       setUnstagedChanges(staged);
@@ -54,84 +45,46 @@ export const RepositoryChanges = () => {
     getUpdate();
   }, [getUpdate]);
 
-  const addToStaged = async (change: ChangesArrayItem) => {
+  const addToStaged = async (changes: ChangesArrayItem[]) => {
     const newUnstaged = unstagedChanges.filter(
-      unChange => unChange.fileName !== change.fileName,
+      unChange =>
+        !changes.find(change => unChange.fileName === change.fileName),
     );
-    const newStaged = [...stagedChanges, change];
+    const newStaged = [...stagedChanges, ...changes];
     setUnstagedChanges(newUnstaged);
     setStagedChanges(newStaged);
-    await git.add({fs, dir: repo!.path, filepath: change.fileName});
+    for (const change of changes) {
+      await git.add({fs, dir: repo!.path, filepath: change.fileName});
+    }
   };
 
-  const removeFromStaged = async (change: ChangesArrayItem) => {
+  const removeFromStaged = async (changes: ChangesArrayItem[]) => {
     const newStaged = stagedChanges.filter(
-      unChange => unChange.fileName !== change.fileName,
+      unChange =>
+        !changes.find(change => unChange.fileName === change.fileName),
     );
-    const newUnstaged = [...unstagedChanges, change];
+    const newUnstaged = [...unstagedChanges, ...changes];
     setUnstagedChanges(newUnstaged);
     setStagedChanges(newStaged);
-    await git.remove({fs, dir: repo!.path, filepath: change.fileName});
-  };
-
-  const onUnstagedScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (!event.nativeEvent.contentOffset.y) {
-      setShowUnstagedDivider(false);
-      return;
+    for (const change of changes) {
+      await git.remove({fs, dir: repo!.path, filepath: change.fileName});
     }
-    setShowUnstagedDivider(true);
-  };
-
-  const onStagedScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (!event.nativeEvent.contentOffset.y) {
-      setShowStagedDivider(false);
-      return;
-    }
-    setShowStagedDivider(true);
   };
 
   return (
     <>
       <View style={styles.container}>
         <View style={[styles.halfSection, styles.firstSection]}>
-          <SubheaderWithButton
-            buttonText={'Stage All'}
-            calloutText={'Unstaged'}
-            onButtonClick={() => {}}
-            style={showUnstagedDivider ? styles.underlineHeader : {}}
+          <UnstagedChanges
+            addToStaged={addToStaged}
+            unstagedChanges={unstagedChanges}
           />
-          <ScrollView style={styles.changesList} onScroll={onUnstagedScroll}>
-            {unstagedChanges.map(props => {
-              return (
-                <FileChangeListItemWithCheckbox
-                  isChecked={false}
-                  key={props.fileName}
-                  onToggle={() => addToStaged(props)}
-                  {...props}
-                />
-              );
-            })}
-          </ScrollView>
         </View>
         <View style={styles.halfSection}>
-          <SubheaderWithButton
-            buttonText={'Commit All'}
-            calloutText={'Staged'}
-            onButtonClick={() => {}}
-            style={showStagedDivider ? styles.underlineHeader : {}}
+          <StagedChanges
+            removeFromStaged={removeFromStaged}
+            stagedChanges={stagedChanges}
           />
-          <ScrollView style={styles.changesList} onScroll={onStagedScroll}>
-            {stagedChanges.map(props => {
-              return (
-                <FileChangeListItemWithCheckbox
-                  isChecked={true}
-                  key={props.fileName}
-                  onToggle={() => removeFromStaged(props)}
-                  {...props}
-                />
-              );
-            })}
-          </ScrollView>
         </View>
       </View>
     </>
@@ -153,17 +106,10 @@ const styles = StyleSheet.create({
     width: '100%',
     bottom: 16,
   },
-  changesList: {
-    paddingHorizontal: 16,
-  },
   halfSection: {
     height: '50%',
   },
   firstSection: {
-    borderBottomColor: theme.colors.outlineColor,
-    borderBottomWidth: 1,
-  },
-  underlineHeader: {
     borderBottomColor: theme.colors.outlineColor,
     borderBottomWidth: 1,
   },
