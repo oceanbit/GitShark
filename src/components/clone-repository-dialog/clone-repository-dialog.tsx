@@ -1,8 +1,6 @@
 import * as React from 'react';
-import {StyleSheet, TextInput} from 'react-native';
-import {Button} from 'react-native-paper';
+import {StyleSheet} from 'react-native';
 import {theme} from '../../constants/theme';
-import {textStyles} from '../../constants/text-styles';
 import {AppDialog} from '../dialog/dialog';
 import {fs} from '../../constants/fs';
 import git from 'isomorphic-git/index.umd.min.js';
@@ -85,7 +83,7 @@ export const CloneRepositoryDialog = ({
             {!!errorStr && (
               <ErrorMessageBox style={styles.errorBox} message={errorStr} />
             )}
-            <TextInput
+            <SharkTextInput
               value={repoName}
               onChangeText={setRepoName}
               placeholder={'Repository name'}
