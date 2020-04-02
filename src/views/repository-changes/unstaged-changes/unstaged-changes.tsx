@@ -36,9 +36,15 @@ export const UnstagedChanges = ({
     ? 'Stage'
     : 'Stage All';
 
-  const unstagedBtnAction = selectedUnstagedChanges.length
-    ? () => addToStaged(selectedUnstagedChanges)
-    : () => addToStaged(unstagedChanges);
+  const unstagedBtnAction = React.useMemo(() => {
+    if (selectedUnstagedChanges.length) {
+      return async () => {
+        await addToStaged(selectedUnstagedChanges);
+        setSelectedUnstagedChanges([]);
+      };
+    }
+    return () => addToStaged(unstagedChanges);
+  }, [addToStaged, selectedUnstagedChanges, unstagedChanges]);
 
   const toggleSelected = (change: ChangesArrayItem) => {
     const filteredUnstaged = selectedUnstagedChanges.filter(
