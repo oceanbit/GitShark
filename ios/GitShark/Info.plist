@@ -81,6 +81,16 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>rubik_black.ttf</string>
+		<string>rubik_blackItalic.ttf</string>
+		<string>rubik_bold.ttf</string>
+		<string>rubik_boldItalic.ttf</string>
+		<string>rubik_Italic.ttf</string>
+		<string>rubik_light.ttf</string>
+		<string>rubik_lightItalic.ttf</string>
+		<string>rubik_medium_italic.ttf</string>
+		<string>rubik_medium.ttf</string>
+		<string>rubik_regular.ttf</string>
 	</array>
 </dict>
 </plist>
