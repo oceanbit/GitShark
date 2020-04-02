@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {StyleSheet, TextInput} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
 import {theme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {Repo} from 'src/entities';
+import {SharkTextInput} from '../shark-text-input/shark-text-input';
 
 interface RenameRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -38,7 +39,7 @@ export const RenameRepositoryDialog = ({
       text={'Enter the new name for the repository.'}
       main={
         <>
-          <TextInput
+          <SharkTextInput
             value={repoName}
             onChangeText={setRepoName}
             placeholder={'Repository name'}

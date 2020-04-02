@@ -4,6 +4,7 @@ import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
 import RNFileSelector from 'react-native-file-selector';
+import {textStyles} from '../../constants/text-styles';
 
 interface FolderSelectButtonProps {
   onFolderSelect: (path: string) => void;
@@ -13,7 +14,7 @@ interface FolderSelectButtonProps {
 export const FolderSelectButton = ({
   onFolderSelect,
   path,
-                                     style
+  style,
 }: FolderSelectButtonProps) => {
   const selectDirectory = () => {
     RNFileSelector.Show({
@@ -76,8 +77,7 @@ const styles = StyleSheet.create({
   },
   selectFolderText: {
     color: theme.colors.accent,
-    fontSize: 16,
-    lineHeight: 24,
     marginLeft: 8,
+    ...textStyles.callout,
   },
 });

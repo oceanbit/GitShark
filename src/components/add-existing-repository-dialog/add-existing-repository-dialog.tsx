@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, TextInput, Alert} from 'react-native';
-import {Button} from 'react-native-paper';
+import {StyleSheet, Alert} from 'react-native';
 import {theme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {fs} from '../../constants/fs';
@@ -9,6 +8,7 @@ import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {FolderSelectButton} from '../folder-select-button/folder-select-button';
 import {createNewRepo} from '../../services/git/createRepo';
 import {SharkButton} from '../shark-button/shark-button';
+import {SharkTextInput} from '../shark-text-input/shark-text-input';
 
 interface CreateRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -84,7 +84,7 @@ export const AddExistingRepositoryDialog = ({
           {!!errorStr && (
             <ErrorMessageBox style={styles.errorBox} message={errorStr} />
           )}
-          <TextInput
+          <SharkTextInput
             value={repoName}
             onChangeText={setRepoName}
             placeholder={'Repository name'}
