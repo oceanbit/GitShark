@@ -25,7 +25,6 @@ export const cloneRepo = async ({
     url: uri,
     http,
     singleBranch: true,
-    depth: 1,
     onProgress,
   });
   return await createNewRepo(repoDir, repoName);

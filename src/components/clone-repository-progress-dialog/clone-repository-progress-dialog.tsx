@@ -1,16 +1,10 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  Platform,
-  ProgressBarAndroid,
-  ProgressViewIOS,
-} from 'react-native';
-import {Button} from 'react-native-paper';
+import {StyleSheet, View} from 'react-native';
+import {Button, ProgressBar} from 'react-native-paper';
 import {theme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {cloneRepo} from '../../services/git/cloneRepo';
-import {getRepoNameFromUri} from "../../utils";
 
 // Note that since we're running isomorphic-git in the main thread, we're competing with React trying to update the UI.
 // In order to achieve smooth progress bars, we need to insert a little pause.
@@ -87,21 +81,14 @@ export const CloneRepositoryProgressDialog = ({
         text={phase}
         dismissable={false}
         main={
-          <>
-            {Platform.OS === 'android' ? (
-              <ProgressBarAndroid
-                styleAttr="Horizontal"
-                style={styles.progressBar}
-                progress={total > 0 ? loaded / total : 0}
-                indeterminate={!total}
-              />
-            ) : (
-              <ProgressViewIOS
-                progress={total > 0 ? loaded / total : 0}
-                style={styles.progressBar}
-              />
-            )}
-          </>
+          <View style={styles.progressContainer}>
+            <ProgressBar
+              style={styles.progressBar}
+              progress={total > 0 ? loaded / total : 0}
+              indeterminate={!total}
+              color={theme.colors.accent}
+            />
+          </View>
         }
       />
       {/* The error dialog */}
@@ -131,7 +118,8 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 16,
   },
-  progressBar: {
-    flex: 1,
+  progressContainer: {
+    width: '100%',
   },
+  progressBar: {},
 });

@@ -1,4 +1,25 @@
-import {DefaultTheme} from 'react-native-paper';
+import {configureFonts, DefaultTheme} from 'react-native-paper';
+
+const fontConfig = {
+  default: {
+    regular: {
+      fontFamily: 'rubik_regular',
+      fontWeight: 'normal' as 'normal',
+    },
+    medium: {
+      fontFamily: 'rubik_medium',
+      fontWeight: 'normal' as 'normal',
+    },
+    light: {
+      fontFamily: 'rubik_light',
+      fontWeight: 'normal' as 'normal',
+    },
+    thin: {
+      fontFamily: 'rubik_light',
+      fontWeight: 'normal' as 'normal',
+    },
+  },
+};
 
 export const theme = {
   ...DefaultTheme,
@@ -89,4 +110,5 @@ export const theme = {
     // Electric Blue 200 0.3 alpha
     divider_dark: 'rgba(153, 187, 255, 0.3)',
   },
+  fonts: configureFonts(fontConfig),
 };
