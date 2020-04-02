@@ -21,24 +21,26 @@ export const RepositoryChanges = () => {
     if (!repo) {
       return;
     }
-    getRepoStatus(repo.path).then(newFiles => {
-      const onlyChangedFiles = newFiles.filter(
-        file => file.fileStatus !== 'unmodified',
-      );
-      const [unstaged, staged] = onlyChangedFiles.reduce(
-        (prev, change) => {
-          if (change.staged) {
-            prev[1].push(change);
-          } else {
-            prev[0].push(change);
-          }
-          return prev;
-        },
-        [[], []] as ChangesArrayItem[][],
-      );
-      setStagedChanges(unstaged);
-      setUnstagedChanges(staged);
-    });
+    getRepoStatus(repo.path)
+      .then(newFiles => {
+        const onlyChangedFiles = newFiles.filter(
+          file => file.fileStatus !== 'unmodified',
+        );
+        const [unstaged, staged] = onlyChangedFiles.reduce(
+          (prev, change) => {
+            if (!change.staged) {
+              prev[0].push(change);
+            } else {
+              prev[1].push(change);
+            }
+            return prev;
+          },
+          [[], []] as ChangesArrayItem[][],
+        );
+        setStagedChanges(staged);
+        setUnstagedChanges(unstaged);
+      })
+      .catch(e => console.error(e));
   }, [repo]);
 
   React.useEffect(() => {
@@ -53,11 +55,14 @@ export const RepositoryChanges = () => {
     const newStaged = [...stagedChanges, ...changes];
     setUnstagedChanges(newUnstaged);
     setStagedChanges(newStaged);
-    console.log(changes);
-    // const changePromises = changes.map(change =>
-    //   git.add({fs, dir: repo!.path, filepath: change.fileName}),
-    // );
-    // await Promise.all(changePromises);
+    const changePromises = changes.map(change =>
+      git.add({fs, dir: repo!.path, filepath: change.fileName}),
+    );
+    try {
+      await Promise.all(changePromises);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const removeFromStaged = async (changes: ChangesArrayItem[]) => {
@@ -68,11 +73,14 @@ export const RepositoryChanges = () => {
     const newUnstaged = [...unstagedChanges, ...changes];
     setUnstagedChanges(newUnstaged);
     setStagedChanges(newStaged);
-    console.log(changes);
-    // const changePromises = changes.map(change =>
-    //   git.remove({fs, dir: repo!.path, filepath: change.fileName}),
-    // );
-    // await Promise.all(changePromises);
+    const changePromises = changes.map(change =>
+      git.remove({fs, dir: repo!.path, filepath: change.fileName}),
+    );
+    try {
+      await Promise.all(changePromises);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (

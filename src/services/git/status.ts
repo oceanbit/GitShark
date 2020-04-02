@@ -14,10 +14,14 @@ export const getRepoStatus = async (path: string) => {
     dir: `${path}`
   });
 
+  console.log(statusArrArr);
+
   const changesArray: ChangesArrayItem[] = statusArrArr.map(statusArr => {
     const [fileName, headStatus, workdirStatus, stageStatus] = statusArr;
     switch (`${headStatus} ${workdirStatus} ${stageStatus}`) {
+      // Added/new
       case '0 2 0': // new, untracked
+      case '0 2 1': // new, unstaged
         return {
           fileName,
           staged: false,
@@ -38,6 +42,8 @@ export const getRepoStatus = async (path: string) => {
           unstagedChanges: true,
           fileStatus: 'added',
         };
+      // Modified in some way
+      case '1 2 0':
       case '1 2 1': // modified, unstaged
         return {
           fileName,
@@ -59,6 +65,7 @@ export const getRepoStatus = async (path: string) => {
           unstagedChanges: true,
           fileStatus: 'modified',
         };
+      // Removed in some way
       case '1 0 1': // deleted, unstaged
         return {
           fileName,
@@ -73,7 +80,8 @@ export const getRepoStatus = async (path: string) => {
           unstagedChanges: false,
           fileStatus: 'deleted',
         };
-      case '1 1 1': // unmodified
+      // unmodified
+      case '1 1 1':
       default:
         return {
           fileName,
