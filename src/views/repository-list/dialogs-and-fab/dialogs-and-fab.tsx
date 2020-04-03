@@ -3,7 +3,10 @@ import {CreateRepositoryDialog} from '../../../components/create-repository-dial
 import {AddExistingRepositoryDialog} from '../../../components/add-existing-repository-dialog/add-existing-repository-dialog';
 import {CloneRepositoryDialog} from '../../../components/clone-repository-dialog/clone-repository-dialog';
 import {DialogSelection} from './types';
-import {RepoListExtendedFab, RepoListExtendedFabProps} from './extended-fab';
+import {
+  RepoListExtendedFab,
+  RepoListExtendedFabProps,
+} from './repo-list-extended-fab';
 
 interface DialogsProps
   extends Omit<RepoListExtendedFabProps, 'setSelectedAction'> {
