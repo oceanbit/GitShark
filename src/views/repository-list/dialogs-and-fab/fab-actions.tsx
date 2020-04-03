@@ -2,6 +2,7 @@ import * as React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import {DialogSelection, ExtendedFabBase} from './types';
+import {textStyles} from '../../../constants/text-styles';
 
 interface FabActionsProps extends ExtendedFabBase {
   onSelect: (selection: DialogSelection) => void;
@@ -49,8 +50,7 @@ const fabActionsStyles = StyleSheet.create({
     width: '100%',
   },
   fabActionText: {
-    fontSize: 16,
-    fontFamily: 'Rubik',
+    ...textStyles.callout,
     color: 'white',
     textAlign: 'center',
   },

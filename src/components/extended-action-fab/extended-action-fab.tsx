@@ -15,12 +15,14 @@ interface ExtendedActionFabProps {
   fab: ActionFabReactNode;
   fabActions: ActionFabReactNode;
   fabBottom?: MutableRefObject<Animated.Value>;
+  scale?: MutableRefObject<Animated.Value>;
 }
 
 export const ExtendedActionFab = ({
   fab,
   fabActions,
   fabBottom: fabBottomProps,
+  scale: scaleProps,
 }: ExtendedActionFabProps) => {
   const [extended, setExtended] = React.useState(false);
   const [fabSize, setFabSize] = React.useState({height: 0, width: 0});
@@ -33,6 +35,8 @@ export const ExtendedActionFab = ({
   const fabOpacity = React.useRef(new Animated.Value(1));
   const fabBottomLocal = React.useRef(new Animated.Value(16));
   const fabBottom = fabBottomProps || fabBottomLocal;
+  const scaleLocal = React.useRef(new Animated.Value(1));
+  const scale = scaleProps || scaleLocal;
 
   React.useEffect(() => {
     const height =
@@ -110,8 +114,10 @@ export const ExtendedActionFab = ({
   ]);
 
   const fabBottomStyle = {
-    bottom: fabBottom.current
-  }
+    bottom: fabBottom.current,
+    scaleX: scale.current,
+    scaleY: scale.current,
+  };
 
   return (
     <NavigationAwarePortal>

@@ -9,7 +9,6 @@ import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
 import {RepoListLoading} from '../../components/repo-list-loading/repo-list-loading';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
-import {reposMocks} from '../../components/repo-list/mock-data';
 import {DialogsAndFab} from './dialogs-and-fab';
 
 export const RepositoryList = () => {
@@ -42,9 +41,7 @@ export const RepositoryList = () => {
           <Text style={styles.headingText}>Repositories</Text>
           <TouchableRipple
             style={styles.cog}
-            onPress={() => {
-              repos?.length ? setRepos([]) : setRepos(reposMocks);
-            }}>
+            onPress={() => {}}>
             <Icon
               name="settings-outline"
               size={24}

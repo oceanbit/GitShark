@@ -21,6 +21,7 @@ export const RepoListExtendedFab = ({
   isLoading,
 }: RepoListExtendedFabProps) => {
   const fabBottom = React.useRef(new Animated.Value(16));
+  const scale = React.useRef(new Animated.Value(0));
   const windowHeight = Dimensions.get('window').height;
 
   const newRepoFabCB = React.useCallback(
@@ -41,14 +42,28 @@ export const RepoListExtendedFab = ({
   );
 
   React.useEffect(() => {
+    if (isLoading) {
+      Animated.timing(scale.current, {
+        toValue: 0,
+        duration: 300,
+      }).start();
+    } else {
+      Animated.timing(scale.current, {
+        toValue: 1,
+        duration: 300,
+      }).start();
+    }
+  }, [isLoading, scale])
+
+  React.useEffect(() => {
     if (!isDBLoaded) return;
     // There are no repos, show the FAB in the middle of the screen
     if (repos?.length) {
-      // There are repos, show it 16 from the bottom
       Animated.timing(fabBottom.current, {
         toValue: 16,
         duration: 300,
       }).start();
+    // There are repos, show it 16 from the bottom
     } else {
       Animated.timing(fabBottom.current, {
         toValue: windowHeight / 2 - 80,
@@ -71,6 +86,7 @@ export const RepoListExtendedFab = ({
           fab={newRepoFabCB}
           fabActions={actionFabCB}
           fabBottom={fabBottom}
+          scale={scale}
         />
       </View>
     </>
