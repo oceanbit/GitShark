@@ -8,16 +8,19 @@ import * as React from 'react';
 import {theme} from '../../constants/theme';
 import {Surface} from 'react-native-paper';
 import {NavigationAwarePortal} from '../navigation-aware-portal/navigation-aware-portal';
+import {MutableRefObject} from 'react';
 type ActionFabReactNode = (toggleAnimation: () => void) => React.ReactNode;
 
 interface ExtendedActionFabProps {
   fab: ActionFabReactNode;
   fabActions: ActionFabReactNode;
+  fabBottom?: MutableRefObject<Animated.Value>;
 }
 
 export const ExtendedActionFab = ({
   fab,
   fabActions,
+  fabBottom: fabBottomProps,
 }: ExtendedActionFabProps) => {
   const [extended, setExtended] = React.useState(false);
   const [fabSize, setFabSize] = React.useState({height: 0, width: 0});
@@ -28,6 +31,8 @@ export const ExtendedActionFab = ({
   const fabPanelHeight = React.useRef(new Animated.Value(190));
   const actionSizeOpacity = React.useRef(new Animated.Value(0));
   const fabOpacity = React.useRef(new Animated.Value(1));
+  const fabBottomLocal = React.useRef(new Animated.Value(16));
+  const fabBottom = fabBottomProps || fabBottomLocal;
 
   React.useEffect(() => {
     const height =
@@ -104,9 +109,13 @@ export const ExtendedActionFab = ({
     toggleAnimation,
   ]);
 
+  const fabBottomStyle = {
+    bottom: fabBottom.current
+  }
+
   return (
     <NavigationAwarePortal>
-      <View style={styles.MainContainer}>
+      <Animated.View style={[styles.MainContainer, fabBottomStyle]}>
         <Surface style={styles.fabSurface}>
           <Animated.View style={animatedHeight}>
             <Animated.View style={[styles.fabContents, animatedFab]}>
@@ -129,7 +138,7 @@ export const ExtendedActionFab = ({
             </Animated.View>
           </Animated.View>
         </Surface>
-      </View>
+      </Animated.View>
       {extended && (
         <TouchableWithoutFeedback
           style={styles.scrim}
@@ -148,11 +157,10 @@ const styles = StyleSheet.create({
     padding: 12,
     width: '100%',
     position: 'absolute',
-    bottom: 0,
   },
   fabSurface: {
     position: 'absolute',
-    bottom: 16,
+    bottom: 0,
     zIndex: 10,
     borderRadius: theme.roundness,
     backgroundColor: theme.colors.accent,

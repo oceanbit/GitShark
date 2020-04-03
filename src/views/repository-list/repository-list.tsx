@@ -1,8 +1,15 @@
 import * as React from 'react';
-import {StyleSheet, View, Alert, ScrollView, Text} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Alert,
+  ScrollView,
+  Text,
+  Animated,
+  Dimensions,
+} from 'react-native';
 import {Repo} from '../../entities';
 import {getRepository} from 'typeorm';
-import {reposMocks} from '../../components/repo-list/mock-data';
 import {RepoCard} from '../../components/repo-list/repo-card/repo-card';
 import {TouchableRipple} from 'react-native-paper';
 import {ExtendedActionFab} from '../../components/extended-action-fab/extended-action-fab';
@@ -12,6 +19,9 @@ import {CloneRepositoryDialog} from '../../components/clone-repository-dialog/cl
 import {textStyles} from '../../constants/text-styles';
 import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
 import {RepoListLoading} from '../../components/repo-list-loading/repo-list-loading';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {theme} from '../../constants/theme';
+import {reposMocks} from '../../components/repo-list/mock-data';
 
 interface ExtendedFabBase {
   toggleAnimation: () => void;
@@ -148,12 +158,47 @@ export const RepositoryList = () => {
     [findRepos],
   );
 
+  const fabBottom = React.useRef(new Animated.Value(16));
+  const windowHeight = Dimensions.get('window').height;
+
+  React.useEffect(() => {
+    if (!isDBLoaded) return;
+    // There are no repos, show the FAB in the middle of the screen
+    if (repos?.length) {
+      // There are repos, show it 16 from the bottom
+      Animated.timing(fabBottom.current, {
+        toValue: 16,
+        duration: 300,
+      }).start();
+    } else {
+      Animated.timing(fabBottom.current, {
+        toValue: (windowHeight / 2) - 80,
+        duration: 300,
+      }).start();
+    }
+  }, [fabBottom, repos, isDBLoaded, windowHeight]);
+
+  const noReposBotttom = windowHeight / 2;
+
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.headingText}>Repositories</Text>
+        <View style={styles.headingContainer}>
+          <Text style={styles.headingText}>Repositories</Text>
+          <TouchableRipple
+            style={styles.cog}
+            onPress={() => {
+              repos?.length ? setRepos([]) : setRepos(reposMocks);
+            }}>
+            <Icon
+              name="settings-outline"
+              size={24}
+              color={theme.colors.accent}
+            />
+          </TouchableRipple>
+        </View>
         {isLoading && <RepoListLoading />}
-        {!isLoading && (
+        {!isLoading && !!repos?.length && (
           <ScrollView>
             {repos!.map(repo => {
               return (
@@ -166,9 +211,18 @@ export const RepositoryList = () => {
             })}
           </ScrollView>
         )}
+        {!isLoading && !repos?.length && (
+          <Text style={[styles.noRepos, {bottom: noReposBotttom}]}>
+            No repositories
+          </Text>
+        )}
       </View>
       <View style={styles.fabview}>
-        <ExtendedActionFab fab={newRepoFabCB} fabActions={actionFabCB} />
+        <ExtendedActionFab
+          fab={newRepoFabCB}
+          fabActions={actionFabCB}
+          fabBottom={fabBottom}
+        />
       </View>
       <CreateRepositoryDialog
         visible={selectedAction === 'create'}
@@ -193,15 +247,34 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
   },
-  headingText: {
+  headingContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
     marginBottom: 16,
+  },
+  cog: {
+    padding: 8,
+  },
+  headingText: {
+    flexGrow: 1,
     ...textStyles.headline_01,
+  },
+  noRepos: {
+    ...textStyles.headline_01,
+    color: theme.colors.on_surface_light,
+    opacity: 0.4,
+    position: 'absolute',
+    textAlign: 'center',
+    width: '100%',
+    // Edgecase for parent padding
+    left: 16,
   },
   fabview: {
     position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'center',
     width: '100%',
-    bottom: 16,
   },
 });
