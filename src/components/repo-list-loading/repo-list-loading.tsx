@@ -16,7 +16,7 @@ export const RepoListLoading = () => {
 
   return (
     <MaskedView
-      style={{height: '100%'}}
+      style={{flexGrow: 1, height: 1}}
       maskElement={
         <LinearGradient
           colors={['transparent', gradientColor, 'transparent']}
@@ -24,37 +24,7 @@ export const RepoListLoading = () => {
         />
       }>
       <View style={styles.cardsContainer}>
-        <View style={styles.cardLoading}>
-          <RepoListCardLoading />
-        </View>
-
-        <View style={styles.cardLoading}>
-          <RepoListCardLoading />
-        </View>
-
-        <View style={styles.cardLoading}>
-          <RepoListCardLoading />
-        </View>
-
-        <View style={styles.cardLoading}>
-          <RepoListCardLoading />
-        </View>
-
-        <View style={styles.cardLoading}>
-          <RepoListCardLoading />
-        </View>
-
-        <View style={styles.cardLoading}>
-          <RepoListCardLoading />
-        </View>
-
-        <View style={styles.cardLoading}>
-          <RepoListCardLoading />
-        </View>
-
-        <View style={styles.cardLoading}>
-          <RepoListCardLoading />
-        </View>
+        <RepoListCardLoading />
       </View>
     </MaskedView>
   );
@@ -62,10 +32,7 @@ export const RepoListLoading = () => {
 
 const styles = StyleSheet.create({
   cardsContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'nowrap',
-    padding: 16,
+      // backgroundColor: 'red'
   },
   cardLoading: {
     marginBottom: 16,

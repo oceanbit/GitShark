@@ -10,6 +10,8 @@ import {CreateRepositoryDialog} from '../../components/create-repository-dialog/
 import {AddExistingRepositoryDialog} from '../../components/add-existing-repository-dialog/add-existing-repository-dialog';
 import {CloneRepositoryDialog} from '../../components/clone-repository-dialog/clone-repository-dialog';
 import {textStyles} from '../../constants/text-styles';
+import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
+import {RepoListLoading} from '../../components/repo-list-loading/repo-list-loading';
 
 interface ExtendedFabBase {
   toggleAnimation: () => void;
@@ -96,10 +98,13 @@ const fabActionsStyles = StyleSheet.create({
 });
 
 export const RepositoryList = () => {
-  const [repos, setRepos] = React.useState<Repo[]>([]);
+  const isDBLoaded = React.useContext(DatabaseLoadedContext);
+  const [repos, setRepos] = React.useState<Repo[] | null>(null);
   const [selectedAction, setSelectedAction] = React.useState<
     DialogSelection | ''
   >('');
+
+  const isLoading = !isDBLoaded || !repos;
 
   const findRepos = React.useCallback(async () => {
     try {
@@ -114,8 +119,9 @@ export const RepositoryList = () => {
   }, []);
 
   React.useEffect(() => {
+    if (!isDBLoaded) return;
     findRepos();
-  }, [findRepos]);
+  }, [findRepos, isDBLoaded]);
 
   const newRepoFabCB = React.useCallback(
     (toggleAnimation: ExtendedFabBase['toggleAnimation']) => (
@@ -146,17 +152,20 @@ export const RepositoryList = () => {
     <>
       <View style={styles.container}>
         <Text style={styles.headingText}>Repositories</Text>
-        <ScrollView>
-          {repos.map(repo => {
-            return (
-              <RepoCard
-                key={repo.id}
-                repo={repo}
-                onUpdate={() => findRepos()}
-              />
-            );
-          })}
-        </ScrollView>
+        {isLoading && <RepoListLoading />}
+        {!isLoading && (
+          <ScrollView>
+            {repos!.map(repo => {
+              return (
+                <RepoCard
+                  key={repo.id}
+                  repo={repo}
+                  onUpdate={() => findRepos()}
+                />
+              );
+            })}
+          </ScrollView>
+        )}
       </View>
       <View style={styles.fabview}>
         <ExtendedActionFab fab={newRepoFabCB} fabActions={actionFabCB} />
@@ -181,6 +190,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
   },
   headingText: {
     marginBottom: 16,
