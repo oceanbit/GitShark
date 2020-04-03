@@ -14,7 +14,8 @@ import {theme} from './constants/theme';
 import {Repository} from './views/repository/repository';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {RepoListLoading} from "./components/repo-list-loading/repo-list-loading";
+import {RepoListLoading} from './components/repo-list-loading/repo-list-loading';
+import {DatabaseLoadedContext} from './constants/database-loaded-context';
 
 const App = () => {
   const [isDBLoaded, setIsDBLoaded] = React.useState(false);
@@ -70,15 +71,12 @@ const App = () => {
     <NavigationContainer theme={theme}>
       <PaperProvider theme={theme}>
         <StatusBar barStyle="dark-content" />
-        {isDBLoaded ? (
-            <RepoListLoading/>
-          // <Stack.Navigator headerMode={'none'}>
-          //   <Stack.Screen name="RepoList" component={RepositoryList} />
-          //   <Stack.Screen name="RepoDetails" component={Repository} />
-          // </Stack.Navigator>
-        ) : (
-          <ActivityIndicator size="large" color="#0000ff" />
-        )}
+        <DatabaseLoadedContext.Provider value={isDBLoaded}>
+          <Stack.Navigator headerMode={'none'}>
+            <Stack.Screen name="RepoList" component={RepositoryList} />
+            <Stack.Screen name="RepoDetails" component={Repository} />
+          </Stack.Navigator>
+        </DatabaseLoadedContext.Provider>
         <SafeAreaView />
       </PaperProvider>
     </NavigationContainer>

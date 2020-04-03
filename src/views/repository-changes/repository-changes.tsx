@@ -8,8 +8,10 @@ import {theme} from '../../constants/theme';
 import {fs} from '../../constants/fs';
 import {UnstagedChanges} from './unstaged-changes';
 import {StagedChanges} from './staged-changes';
+import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
 
 export const RepositoryChanges = () => {
+  const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const {repo} = React.useContext(RepoContext);
   const [stagedChanges, setStagedChanges] = React.useState<ChangesArrayItem[]>(
     [],
@@ -44,8 +46,9 @@ export const RepositoryChanges = () => {
   }, [repo]);
 
   React.useEffect(() => {
+    if (!isDBLoaded) return;
     getUpdate();
-  }, [getUpdate]);
+  }, [isDBLoaded, getUpdate]);
 
   const addToStaged = async (changes: ChangesArrayItem[]) => {
     const newUnstaged = unstagedChanges.filter(
