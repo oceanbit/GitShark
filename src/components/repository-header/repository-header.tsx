@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {TouchableRipple, Menu, Divider} from 'react-native-paper';
+import {Menu, Divider} from 'react-native-paper';
 import {StyleSheet, View, Text} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
 import {HeaderActionNumber} from './header-action-number/header-action-number';
 import {useNavigation} from '@react-navigation/native';
@@ -9,6 +8,7 @@ import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '../../constants/fs';
 import http from 'isomorphic-git/http/web/index.js';
 import {Repo} from 'src/entities';
+import {SharkIconButton} from '../shark-icon-button/shark-icon-button';
 
 interface RepositoryHeaderProps {
   repo: Repo;
@@ -20,11 +20,7 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
 
   return (
     <View style={styles.repoHeader}>
-      <TouchableRipple
-        style={styles.buttonRipple}
-        onPress={() => history.goBack()}>
-        <Icon name="arrow-left" size={24} color={theme.colors.accent} />
-      </TouchableRipple>
+      <SharkIconButton iconName="arrow-left" onPress={() => history.goBack()} />
       <View style={styles.repoTitleContainer}>
         <Text style={styles.repoTitle}>Repository</Text>
         <Text style={styles.lastFetched}>Last fetched: 5min ago</Text>
@@ -35,15 +31,10 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
         visible={isMenuOpen}
         onDismiss={() => setIsMenuOpen(false)}
         anchor={
-          <TouchableRipple
-            style={styles.buttonRipple}
-            onPress={() => setIsMenuOpen(true)}>
-            <Icon
-              name="dots-horizontal"
-              size={24}
-              color={theme.colors.accent}
-            />
-          </TouchableRipple>
+          <SharkIconButton
+            iconName="dots-horizontal"
+            onPress={() => setIsMenuOpen(true)}
+          />
         }>
         <Menu.Item
           onPress={() => {
@@ -77,10 +68,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.outlineColor,
-  },
-  buttonRipple: {
-    padding: 8,
-    borderRadius: 50,
   },
   repoTitleContainer: {
     flexDirection: 'column',

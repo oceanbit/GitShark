@@ -9,6 +9,7 @@ import {SubheaderWithButton} from '../../../components/subheaders/subheader-with
 import {FileChangeListItemWithCheckbox} from '../../../components/file-change-list-item/file-change-list-item-with-checkbox';
 import {ChangesArrayItem} from '../../../services/git';
 import {theme} from '../../../constants/theme';
+import {useNavigation} from '@react-navigation/native';
 
 interface StagedChangesProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
@@ -19,6 +20,8 @@ export const StagedChanges = ({
   removeFromStaged,
   stagedChanges,
 }: StagedChangesProps) => {
+  const history = useNavigation();
+
   const [selectedStagedChanges, setSelectedStagedChanges] = React.useState<
     ChangesArrayItem[]
   >([]);
@@ -42,8 +45,10 @@ export const StagedChanges = ({
         setSelectedStagedChanges([]);
       };
     }
-    return () => {};
-  }, [removeFromStaged, selectedStagedChanges]);
+    return () => {
+      history.navigate('Commit');
+    };
+  }, [removeFromStaged, selectedStagedChanges, history]);
 
   const toggleSelected = (change: ChangesArrayItem) => {
     const filteredUnstaged = selectedStagedChanges.filter(

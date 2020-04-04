@@ -7,13 +7,15 @@ import {theme} from '../../../constants/theme';
 export const HeaderActionNumber = ({
   iconName,
   val,
+  onPress,
 }: {
   iconName: string;
   val?: number;
+  onPress?: () => void;
 }) => {
   return (
     <TouchableRipple
-      onPress={() => {}}
+      onPress={onPress || (() => {})}
       style={!!val ? styles.outlineContainer : styles.container}>
       <View style={styles.repoHeader}>
         <Icon name={iconName} size={24} color={theme.colors.accent} />

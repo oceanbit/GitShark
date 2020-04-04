@@ -7,14 +7,13 @@ import {createConnection, getConnectionManager} from 'typeorm';
 import {Branch, Commit, Remote, Repo} from './entities';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-import {SafeAreaView, StatusBar, Alert, ActivityIndicator} from 'react-native';
+import {SafeAreaView, StatusBar, Alert} from 'react-native';
 import {PermissionsAndroid} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {theme} from './constants/theme';
 import {Repository} from './views/repository/repository';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {RepoListLoading} from './components/repo-list-loading/repo-list-loading';
 import {DatabaseLoadedContext} from './constants/database-loaded-context';
 
 const App = () => {
