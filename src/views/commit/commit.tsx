@@ -11,12 +11,14 @@ import {
 import {RepoContext} from '../../constants/repo-context';
 import {theme} from '../../constants/theme';
 import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {SharkIconButton} from '../../components/shark-icon-button/shark-icon-button';
 import {textStyles} from '../../constants/text-styles';
 import {FileChangeListItem} from '../../components/file-change-list-item/file-change-list-item';
 import {SharkTextInput} from '../../components/shark-text-input/shark-text-input';
 import {SharkButton} from '../../components/shark-button/shark-button';
+import {ChangesArrayItem} from '../../services/git';
+import {commit} from '../../services/git/commit';
 
 const mockFileChanges = [
   {
@@ -36,8 +38,13 @@ const mockFileChanges = [
 export const Commit = () => {
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const {repo} = React.useContext(RepoContext);
+  const route = useRoute<any>();
+  const files = JSON.parse(route!.params!.files) as ChangesArrayItem[];
   const history = useNavigation();
   const [showDivider, setShowDivider] = React.useState(false);
+
+  const [commitTitle, setCommitTitle] = React.useState('');
+  const [commitBody, setCommitBody] = React.useState('');
 
   const onStagedScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (!event.nativeEvent.contentOffset.y) {
@@ -48,6 +55,13 @@ export const Commit = () => {
   };
 
   const headerLine = showDivider ? styles.underlineHeader : {};
+
+  const onSubmit = async () => {
+    await commit({repo: repo!, description: commitBody, title: commitTitle});
+    history.navigate('Repository', {
+      shouldRequery: true,
+    });
+  };
 
   return (
     <KeyboardAvoidingView
@@ -60,9 +74,9 @@ export const Commit = () => {
         <Text style={styles.commitHeader}>Commit changes</Text>
       </View>
       <ScrollView style={styles.fileChanges} onScroll={onStagedScroll}>
-        {mockFileChanges.map(file => (
+        {files.map(file => (
           <FileChangeListItem
-              key={file.fileName}
+            key={file.fileName}
             fileName={file.fileName}
             fileStatus={file.fileStatus}
           />
@@ -71,19 +85,19 @@ export const Commit = () => {
       <View style={styles.commitData}>
         <SharkTextInput
           placeholder={'Commit title'}
-          value={''}
-          onChangeText={() => {}}
+          value={commitTitle}
+          onChangeText={setCommitTitle}
         />
         <SharkTextInput
-          placeholder={'Commit title'}
-          value={''}
-          onChangeText={() => {}}
+          placeholder={'Commit description'}
+          value={commitBody}
+          onChangeText={setCommitBody}
           numberOfLines={4}
           style={styles.textarea}
         />
         <View>
           <SharkButton
-            onPress={() => {}}
+            onPress={onSubmit}
             text={'Commit change'}
             type={'primary'}
           />
