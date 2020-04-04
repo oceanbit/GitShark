@@ -115,8 +115,9 @@ export const ExtendedActionFab = ({
 
   const fabBottomStyle = {
     bottom: fabBottom.current,
-    scaleX: scale.current,
-    scaleY: scale.current,
+    // TODO: FIXME // https://github.com/facebook/react-native/issues/19637
+    // scaleX: scale.current,
+    // scaleY: scale.current,
   };
 
   return (
