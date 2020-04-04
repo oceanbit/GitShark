@@ -2,7 +2,6 @@
   package="com.gitshark">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
       android:largeHeap="true"
       android:name=".MainApplication"
