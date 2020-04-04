@@ -46,7 +46,9 @@ export const StagedChanges = ({
       };
     }
     return () => {
-      history.navigate('Commit');
+      history.navigate('Commit', {
+        files: JSON.stringify(stagedChanges),
+      });
     };
   }, [removeFromStaged, selectedStagedChanges, history]);
 

@@ -9,8 +9,10 @@ import {fs} from '../../constants/fs';
 import {UnstagedChanges} from './unstaged-changes';
 import {StagedChanges} from './staged-changes';
 import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
+import {useRoute} from '@react-navigation/native';
 
 export const RepositoryChanges = () => {
+  const route = useRoute<any>();
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const {repo} = React.useContext(RepoContext);
   const [stagedChanges, setStagedChanges] = React.useState<ChangesArrayItem[]>(
@@ -49,6 +51,14 @@ export const RepositoryChanges = () => {
     if (!isDBLoaded) return;
     getUpdate();
   }, [isDBLoaded, getUpdate]);
+
+  React.useEffect(() => {
+    // The page may be fully loaded already but a commit was just queried
+    // I also anticipate `shouldRequery` to be a boolean OR a string, hense the type casting
+    if (isDBLoaded && `${route?.params?.shouldRequery}` === 'true') {
+      getUpdate();
+    }
+  }, [isDBLoaded, route]);
 
   const addToStaged = async (changes: ChangesArrayItem[]) => {
     const newUnstaged = unstagedChanges.filter(
