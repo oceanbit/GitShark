@@ -42,6 +42,14 @@ export const SharkTextInput = ({
     paddingBottom: paddingVert,
   };
 
+  const multiline = (numberOfLines || 1) > 1;
+
+  const textAreaStyles = !multiline
+    ? {}
+    : {
+        textAlignVertical: 'top',
+      };
+
   return (
     <View style={[styles.textInputContainer, padding, style]}>
       {!!prefixIcon && (
@@ -56,8 +64,9 @@ export const SharkTextInput = ({
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
-        style={styles.textInput}
+        style={[styles.textInput, textAreaStyles]}
         numberOfLines={numberOfLines}
+        multiline={multiline}
       />
       {!!postfixIcon && (
         <Icon
