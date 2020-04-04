@@ -7,7 +7,7 @@ import {createConnection, getConnectionManager} from 'typeorm';
 import {Branch, Commit, Remote, Repo} from './entities';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-import {SafeAreaView, StatusBar, Alert} from 'react-native';
+import {SafeAreaView, StatusBar, Alert, YellowBox} from 'react-native';
 import {PermissionsAndroid} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {theme} from './constants/theme';
@@ -15,6 +15,10 @@ import {Repository} from './views/repository/repository';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {DatabaseLoadedContext} from './constants/database-loaded-context';
+
+YellowBox.ignoreWarnings([
+  'Calling `getNode()` on the ref of an Animated component is no longer necessary. You can now directly use the ref instead.',
+]);
 
 const App = () => {
   const [isDBLoaded, setIsDBLoaded] = React.useState(false);

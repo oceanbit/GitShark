@@ -56,14 +56,17 @@ export const ExtendedActionFab = ({
         Animated.timing(fabPanelHeight.current, {
           toValue: fabSize.height,
           duration: 150,
+          useNativeDriver: false,
         }),
         Animated.timing(actionSizeOpacity.current, {
           toValue: 0,
           duration: 150,
+          useNativeDriver: false,
         }),
         Animated.timing(fabOpacity.current, {
           toValue: 1,
           duration: 150,
+          useNativeDriver: false,
         }),
       ]).start(() => {
         setExtended(false);
@@ -73,14 +76,17 @@ export const ExtendedActionFab = ({
         Animated.timing(fabPanelHeight.current, {
           toValue: fabActionSize.height,
           duration: 150,
+          useNativeDriver: false,
         }),
         Animated.timing(actionSizeOpacity.current, {
           toValue: 1,
           duration: 150,
+          useNativeDriver: false,
         }),
         Animated.timing(fabOpacity.current, {
           toValue: 0,
           duration: 150,
+          useNativeDriver: false,
         }),
       ]).start(() => {
         setExtended(true);
