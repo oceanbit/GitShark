@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   btnText: {
+    textAlign: 'center',
     ...textStyles.callout,
   },
 });
