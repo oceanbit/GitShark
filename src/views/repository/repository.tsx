@@ -10,6 +10,8 @@ import {Repo} from '../../entities';
 import {RepositoryHistory} from '../repository-history/repository-history';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Commit} from '../commit/commit';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -48,9 +50,8 @@ export const Repository = () => {
     [repo, setRepo],
   );
 
-  return (
-    <RepoContext.Provider value={contextValue}>
-      <RepositoryHeader repo={repo!} />
+  const Tabs = React.useCallback(() => {
+    return (
       <Tab.Navigator
         labeled={true}
         shifting={false}
@@ -78,6 +79,18 @@ export const Repository = () => {
           }}
         />
       </Tab.Navigator>
+    );
+  }, []);
+
+  const Stack = createStackNavigator();
+
+  return (
+    <RepoContext.Provider value={contextValue}>
+      <RepositoryHeader repo={repo!} />
+      <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
+        <Stack.Screen name="Repository" component={Tabs} />
+        <Stack.Screen name="Commit" component={Commit} />
+      </Stack.Navigator>
     </RepoContext.Provider>
   );
 };

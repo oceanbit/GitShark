@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
 import {textStyles} from '../../constants/text-styles';
+import {SharkIconButton} from '../shark-icon-button/shark-icon-button';
 
 interface HistoryBranchDropdownProps {
   branchName: string;
@@ -24,16 +25,11 @@ export const HistoryBranchDropdown = ({
         <Text numberOfLines={1} style={styles.branchName}>
           {branchName}
         </Text>
-        <TouchableRipple
+        <SharkIconButton
           style={styles.starButton}
           onPress={onFavorite}
-          rippleColor={theme.colors.outlineColor}>
-          <Icon
-            name={favorite ? 'star' : 'star-outline'}
-            size={24}
-            color={theme.colors.accent}
-          />
-        </TouchableRipple>
+          iconName={favorite ? 'star' : 'star-outline'}
+        />
         <View style={styles.buttonDivider} />
         <Icon
           name="chevron-down"
@@ -61,8 +57,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   starButton: {
-    borderRadius: 50,
-    padding: 8,
     marginRight: 7,
   },
   buttonDivider: {

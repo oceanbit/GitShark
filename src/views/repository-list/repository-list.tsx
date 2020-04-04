@@ -10,6 +10,7 @@ import {RepoListLoading} from '../../components/repo-list-loading/repo-list-load
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
 import {DialogsAndFab} from './dialogs-and-fab';
+import {SharkIconButton} from "../../components/shark-icon-button/shark-icon-button";
 
 export const RepositoryList = () => {
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
@@ -39,15 +40,7 @@ export const RepositoryList = () => {
       <View style={styles.container}>
         <View style={styles.headingContainer}>
           <Text style={styles.headingText}>Repositories</Text>
-          <TouchableRipple
-            style={styles.cog}
-            onPress={() => {}}>
-            <Icon
-              name="settings-outline"
-              size={24}
-              color={theme.colors.accent}
-            />
-          </TouchableRipple>
+          <SharkIconButton onPress={() => {}} iconName={"settings-outline"}/>
         </View>
         {isLoading && <RepoListLoading />}
         {!isLoading && !!repos?.length && (
@@ -87,9 +80,6 @@ const styles = StyleSheet.create({
     flexWrap: 'nowrap',
     alignItems: 'center',
     marginBottom: 16,
-  },
-  cog: {
-    padding: 8,
   },
   headingText: {
     flexGrow: 1,
