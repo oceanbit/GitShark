@@ -46,11 +46,13 @@ export const RepoListExtendedFab = ({
       Animated.timing(scale.current, {
         toValue: 0,
         duration: 300,
+        useNativeDriver: false,
       }).start();
     } else {
       Animated.timing(scale.current, {
         toValue: 1,
         duration: 300,
+        useNativeDriver: false,
       }).start();
     }
   }, [isLoading, scale])
@@ -62,12 +64,14 @@ export const RepoListExtendedFab = ({
       Animated.timing(fabBottom.current, {
         toValue: 16,
         duration: 300,
+        useNativeDriver: false,
       }).start();
     // There are repos, show it 16 from the bottom
     } else {
       Animated.timing(fabBottom.current, {
         toValue: windowHeight / 2 - 80,
         duration: 300,
+        useNativeDriver: false,
       }).start();
     }
   }, [fabBottom, repos, isDBLoaded, windowHeight]);
