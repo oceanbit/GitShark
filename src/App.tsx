@@ -69,7 +69,10 @@ const App = () => {
   return (
     <NavigationContainer theme={theme}>
       <PaperProvider theme={theme}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor={theme.colors.background}
+        />
         <DatabaseLoadedContext.Provider value={isDBLoaded}>
           <Stack.Navigator headerMode={'none'}>
             <Stack.Screen name="RepoList" component={RepositoryList} />
