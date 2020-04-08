@@ -16,6 +16,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {DatabaseLoadedContext} from './constants/database-loaded-context';
 
+// https://github.com/react-navigation/react-navigation/issues/7933#issuecomment-608283552
+// Remove once dep updates resolve this
 YellowBox.ignoreWarnings([
   'Calling `getNode()` on the ref of an Animated component is no longer necessary. You can now directly use the ref instead.',
 ]);
