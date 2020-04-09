@@ -17,20 +17,29 @@ const values = ['Auto', 'Light', 'Dark'];
 
 export const SharkButtonToggleGroup = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const fabPanelHeight = React.useRef(new Animated.Value(190));
-
-  //  React.useEffect(() => {
-  //     Animated.timing(
-  //       fadeAnim,
-  //       {
-  //         toValue: 1,
-  //         duration: 10000,
-  //       }
-  //     ).start();
-  //   }, [])
+  const selectedPanelLeft = React.useRef(new Animated.Value(0));
 
   const widthSize = Math.floor(100 / values.length);
-  const left = widthSize * selectedIndex;
+
+  const interpolatedValuesInput = values.map((_, i) => {
+    return widthSize * i;
+  });
+
+  const interpolatedValuesOutput = values.map((_, i) => {
+    return `${widthSize * i}%`;
+  });
+
+  console.log(interpolatedValuesOutput)
+
+  React.useEffect(() => {
+    const left = widthSize * selectedIndex;
+
+    Animated.timing(selectedPanelLeft.current, {
+      toValue: left,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  }, [widthSize, selectedPanelLeft, selectedIndex]);
 
   return (
     <View style={styles.container}>
@@ -38,12 +47,15 @@ export const SharkButtonToggleGroup = () => {
         key={selectedIndex}
         style={styles.maskViewContainer}
         maskElement={
-          <View
+          <Animated.View
             style={[
               styles.blueMaskContainer,
               {
                 width: `${widthSize}%`,
-                left: `${left}%`,
+                left: selectedPanelLeft.current.interpolate({
+                  inputRange: interpolatedValuesInput,
+                  outputRange: interpolatedValuesOutput,
+                }),
               },
             ]}
           />
