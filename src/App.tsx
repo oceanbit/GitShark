@@ -12,6 +12,7 @@ import {PermissionsAndroid} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {theme} from './constants/theme';
 import {Repository} from './views/repository/repository';
+import {Settings} from './views/settings/settings';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {DatabaseLoadedContext} from './constants/database-loaded-context';
@@ -30,7 +31,7 @@ const App = () => {
       PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
       PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
     ]);
-    askedPermission.then(granted => {
+    askedPermission.then((granted) => {
       if (
         granted[PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE] ===
           PermissionsAndroid.RESULTS.GRANTED &&
@@ -57,7 +58,7 @@ const App = () => {
       .then(() => {
         setIsDBLoaded(true);
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.name === 'AlreadyHasActiveConnectionError') {
           const existentConn = getConnectionManager().get('default');
           setIsDBLoaded(true);
@@ -82,6 +83,7 @@ const App = () => {
         <DatabaseLoadedContext.Provider value={isDBLoaded}>
           <Stack.Navigator headerMode={'none'}>
             <Stack.Screen name="RepoList" component={RepositoryList} />
+            <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="RepoDetails" component={Repository} />
           </Stack.Navigator>
         </DatabaseLoadedContext.Provider>

@@ -10,9 +10,11 @@ import {RepoListLoading} from '../../components/repo-list-loading/repo-list-load
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants/theme';
 import {DialogsAndFab} from './dialogs-and-fab';
-import {SharkIconButton} from "../../components/shark-icon-button/shark-icon-button";
+import {SharkIconButton} from '../../components/shark-icon-button/shark-icon-button';
+import {useNavigation} from '@react-navigation/native';
 
 export const RepositoryList = () => {
+  const history = useNavigation();
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const [repos, setRepos] = React.useState<Repo[] | null>(null);
 
@@ -40,12 +42,17 @@ export const RepositoryList = () => {
       <View style={styles.container}>
         <View style={styles.headingContainer}>
           <Text style={styles.headingText}>Repositories</Text>
-          <SharkIconButton onPress={() => {}} iconName={"settings-outline"}/>
+          <SharkIconButton
+            onPress={() => {
+              history.navigate('Settings');
+            }}
+            iconName={'settings-outline'}
+          />
         </View>
         {isLoading && <RepoListLoading />}
         {!isLoading && !!repos?.length && (
           <ScrollView>
-            {repos!.map(repo => {
+            {repos!.map((repo) => {
               return (
                 <RepoCard
                   key={repo.id}

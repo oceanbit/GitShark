@@ -33,7 +33,7 @@ export const theme = {
     card: 'white',
     outlineColor: 'rgba(0, 51, 153, 0.2)',
     // White
-    on_primary_light: '#002BFF',
+    on_primary_light: '#FFFFFF',
 
     // Electric Blue 500
     primary_light: '#002BFF',

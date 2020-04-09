@@ -36,7 +36,6 @@ const mockFileChanges = [
 ];
 
 export const Commit = () => {
-  const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const {repo} = React.useContext(RepoContext);
   const route = useRoute<any>();
   const files = JSON.parse(route!.params!.files) as ChangesArrayItem[];
@@ -57,7 +56,9 @@ export const Commit = () => {
   const headerLine = showDivider ? styles.underlineHeader : {};
 
   const onSubmit = async () => {
-    await commit({repo: repo!, description: commitBody, title: commitTitle});
+    if (commitTitle) {
+      await commit({repo: repo!, description: commitBody, title: commitTitle});
+    }
     history.navigate('Repository', {
       shouldRequery: true,
     });

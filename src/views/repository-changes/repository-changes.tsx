@@ -55,10 +55,11 @@ export const RepositoryChanges = () => {
   React.useEffect(() => {
     // The page may be fully loaded already but a commit was just queried
     // I also anticipate `shouldRequery` to be a boolean OR a string, hense the type casting
+    console.log(route?.params?.shouldRequery);
     if (isDBLoaded && `${route?.params?.shouldRequery}` === 'true') {
       getUpdate();
     }
-  }, [isDBLoaded, route]);
+  }, [isDBLoaded, route?.params]);
 
   const addToStaged = async (changes: ChangesArrayItem[]) => {
     const newUnstaged = unstagedChanges.filter(
