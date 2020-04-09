@@ -25,12 +25,13 @@ export const Account = () => {
         text="Sign in with GitHub"
         type="primary"
         icon={'github-circle'}
-        onPress={()=> {}}
+        onPress={() => {}}
       />
       <SharkSubheader
         style={styles.commitAuthoringHeader}
         calloutText="Commit authoring"
       />
+      <View style={styles.commitAuthorContainer}></View>
     </View>
   );
 };
@@ -45,5 +46,8 @@ const styles = StyleSheet.create({
   commitAuthoringHeader: {
     borderTopWidth: 1,
     borderTopColor: theme.colors.border,
+  },
+  commitAuthorContainer: {
+    paddingHorizontal: 16,
   },
 });

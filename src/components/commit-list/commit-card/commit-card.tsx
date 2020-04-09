@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import * as React from 'react';
 import {theme} from '../../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
@@ -7,7 +7,7 @@ import {CommitCardPushPull} from './commit-card-push-pull';
 import dayjs from 'dayjs';
 import {GitLogCommit} from '../../../services/git/gitLog';
 import {getCommitHeaderBody} from '../../../services/git/getCommitHeaderBody';
-const defaultProfPic = require('../../../../assets/images/default-profile-pic.png');
+import {SharkProfilePic} from '../../shark-profile-pic/shark-profile-pic';
 
 interface CommitCardProps {
   commit: GitLogCommit;
@@ -34,7 +34,7 @@ export const CommitCard = ({commit}: CommitCardProps) => {
       rippleColor={theme.colors.outlineColor}>
       <View>
         <View style={styles.commitHeading}>
-          <Image source={defaultProfPic} style={styles.defaultPic} />
+          <SharkProfilePic size={22} />
           <Text style={[styles.developerName, blueStyle]}>
             {commit.author.name}
           </Text>
@@ -64,13 +64,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
-  },
-  defaultPic: {
-    borderRadius: 50,
-    height: 22,
-    width: 22,
-    borderWidth: 1,
-    borderColor: theme.colors.outlineColor,
   },
   developerName: {
     paddingVertical: 4,

@@ -8,16 +8,19 @@ interface SharkIconButtonProps {
   iconName: string;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
+  disabled?: boolean;
 }
 export const SharkIconButton = ({
   iconName,
   onPress,
   style = {},
+  disabled = false,
 }: SharkIconButtonProps) => {
   return (
     <TouchableRipple
       style={[styles.iconPadding, style]}
       onPress={onPress}
+      disabled={disabled}
       rippleColor={theme.colors.outlineColor}>
       <Icon name={iconName} size={24} color={theme.colors.accent} />
     </TouchableRipple>

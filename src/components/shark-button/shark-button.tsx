@@ -11,6 +11,7 @@ interface SharkTextInputProps {
   text: string;
   icon?: string;
   type?: 'outline' | 'primary';
+  disabled?: boolean;
 }
 export const SharkButton = ({
   onPress,
@@ -18,6 +19,7 @@ export const SharkButton = ({
   icon,
   style = {},
   type = 'outline',
+  disabled = false,
 }: SharkTextInputProps) => {
   const buttonPaddingStyle = icon ? styles.iconButton : styles.noIconButton;
   const buttonTypeStyle =
@@ -25,10 +27,18 @@ export const SharkButton = ({
   const buttonTextStyle =
     type === 'outline' ? styles.outlineButtonText : styles.primaryButtonText;
   const iconColor = type === 'outline' ? theme.colors.accent : 'white';
+  const stateStyle = disabled ? styles.disabled : {};
   return (
     <TouchableRipple
       onPress={onPress}
-      style={[styles.button, buttonPaddingStyle, buttonTypeStyle, style]}>
+      disabled={disabled}
+      style={[
+        styles.button,
+        buttonPaddingStyle,
+        buttonTypeStyle,
+        stateStyle, 
+        style,
+      ]}>
       <>
         {!!icon && (
           <View style={styles.iconView}>
@@ -78,5 +88,8 @@ const styles = StyleSheet.create({
   btnText: {
     textAlign: 'center',
     ...textStyles.callout,
+  },
+  disabled: {
+    opacity: 0.4,
   },
 });

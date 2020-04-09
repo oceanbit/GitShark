@@ -8,27 +8,36 @@ import {textStyles} from '../../constants/text-styles';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-const defaultProfPic = require('../../../assets/images/default-profile-pic.png');
+import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-pic';
 
 export const Settings = () => {
   const history = useNavigation();
 
   return (
     <View style={styles.container}>
-      <AppBar leftIcon="arrow-left" onLeftSelect={() => history.goBack()} headline="Settings" />
+      <AppBar
+        leftIcon="arrow-left"
+        onLeftSelect={() => history.goBack()}
+        headline="Settings"
+      />
       <SharkSubheader calloutText="Account" />
       <TouchableRipple
         style={styles.accountSection}
         onPress={() => history.navigate('Account')}>
         <>
-          <Image source={defaultProfPic} style={styles.userPic} />
+          <SharkProfilePic style={styles.userPic} />
           <View style={styles.accountText}>
             <Text style={styles.accountCallout}>Add account details</Text>
             <Text style={styles.accountBody}>
               Name, email, GitHub integration
             </Text>
           </View>
-          <Icon style={styles.arrowIcon} name="arrow-right" size={24} color={theme.colors.accent} />
+          <Icon
+            style={styles.arrowIcon}
+            name="arrow-right"
+            size={24}
+            color={theme.colors.accent}
+          />
         </>
       </TouchableRipple>
       <SharkSubheader calloutText="Theme" />
@@ -61,11 +70,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   userPic: {
-    height: 40,
-    width: 40,
-    borderRadius: 50,
-    borderColor: theme.colors.border,
-    borderWidth: 1,
     marginRight: 16,
   },
   themeToggle: {
