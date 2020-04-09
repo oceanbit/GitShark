@@ -5,24 +5,32 @@ import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group
 import {AppBar} from '../../components/app-bar/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader/shark-subheader';
 import {textStyles} from '../../constants/text-styles';
-import { SharkIconButton } from '../../components/shark-icon-button/shark-icon-button';
+import {useNavigation} from '@react-navigation/native';
+import {TouchableRipple} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const defaultProfPic = require('../../../assets/images/default-profile-pic.png');
 
 export const Settings = () => {
+  const history = useNavigation();
+
   return (
     <View style={styles.container}>
-      <AppBar leftIcon="arrow-left" headline="Settings" />
+      <AppBar leftIcon="arrow-left" onLeftSelect={() => history.goBack()} headline="Settings" />
       <SharkSubheader calloutText="Account" />
-      <View style={styles.accountSection}>
-        <Image source={defaultProfPic} style={styles.userPic} />
-        <View style={styles.accountText}>
-          <Text style={styles.accountCallout}>Add account details</Text>
-          <Text style={styles.accountBody}>
-            Name, email, GitHub integration
-          </Text>
-        </View>
-        <SharkIconButton iconName="arrow-right"/>
-      </View>
+      <TouchableRipple
+        style={styles.accountSection}
+        onPress={() => history.navigate('Account')}>
+        <>
+          <Image source={defaultProfPic} style={styles.userPic} />
+          <View style={styles.accountText}>
+            <Text style={styles.accountCallout}>Add account details</Text>
+            <Text style={styles.accountBody}>
+              Name, email, GitHub integration
+            </Text>
+          </View>
+          <Icon style={styles.arrowIcon} name="arrow-right" size={24} color={theme.colors.accent} />
+        </>
+      </TouchableRipple>
       <SharkSubheader calloutText="Theme" />
       <SharkButtonToggleGroup
         values={['Auto', 'Light', 'Dark']}
@@ -82,5 +90,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     ...textStyles.caption_02,
     color: theme.colors.on_surface_secondary_light,
+  },
+  arrowIcon: {
+    padding: 8,
   },
 });

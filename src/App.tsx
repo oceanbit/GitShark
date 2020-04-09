@@ -12,6 +12,7 @@ import {PermissionsAndroid} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {theme} from './constants/theme';
 import {Repository} from './views/repository/repository';
+import {Account} from './views/account/account';
 import {Settings} from './views/settings/settings';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -84,6 +85,7 @@ const App = () => {
           <Stack.Navigator headerMode={'none'}>
             <Stack.Screen name="RepoList" component={RepositoryList} />
             <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="Account" component={Account} />
             <Stack.Screen name="RepoDetails" component={Repository} />
           </Stack.Navigator>
         </DatabaseLoadedContext.Provider>

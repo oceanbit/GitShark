@@ -29,14 +29,14 @@ export const SharkButton = ({
     <TouchableRipple
       onPress={onPress}
       style={[styles.button, buttonPaddingStyle, buttonTypeStyle, style]}>
-      <View>
+      <>
         {!!icon && (
           <View style={styles.iconView}>
             <Icon size={24} name={icon} color={iconColor} />
           </View>
         )}
         <Text style={[styles.btnText, buttonTextStyle]}>{text}</Text>
-      </View>
+      </>
     </TouchableRipple>
   );
 };
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     minHeight: 24,
     justifyContent: 'center',
+    flexDirection: 'row',
   },
   noIconButton: {
     paddingHorizontal: 16,
