@@ -3,6 +3,7 @@ import {TouchableRipple} from 'react-native-paper';
 import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../../constants/theme';
+import { textStyles } from '../../../constants/text-styles';
 
 export const HeaderActionNumber = ({
   iconName,
@@ -45,8 +46,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   valText: {
-    fontSize: 16,
+    ...textStyles.callout,
     marginLeft: 8,
+    marginRight: 2,
     color: theme.colors.accent,
   },
 });

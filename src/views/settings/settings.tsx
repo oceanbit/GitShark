@@ -7,7 +7,10 @@ export const Settings = () => {
   return (
     <View style={styles.container}>
       <Text>Hello</Text>
-      <SharkButtonToggleGroup />
+      <SharkButtonToggleGroup
+        values={['Auto', 'Light', 'Dark']}
+        onSelect={() => {}}
+      />
     </View>
   );
 };

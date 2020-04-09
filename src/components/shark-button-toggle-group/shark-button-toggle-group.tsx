@@ -1,21 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import {
-  Animated,
-  StyleSheet,
-  View,
-  StyleProp,
-  ViewStyle,
-  Text,
-} from 'react-native';
+import {Animated, StyleSheet, View, Text} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import MaskedView from '@react-native-community/masked-view';
 import {theme} from '../../constants/theme';
 import {textStyles} from '../../constants/text-styles';
 
-const values = ['Auto', 'Light', 'Dark'];
-
-export const SharkButtonToggleGroup = () => {
+interface SharkButtonToggleGroupProps {
+  values: string[];
+  onSelect: (val: string) => void;
+}
+export const SharkButtonToggleGroup = ({
+  values,
+  onSelect
+}: SharkButtonToggleGroupProps) => {
   const [prevSelectedIndex, setPrevSelectedIndex] = React.useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const selectedPanelLeft = React.useRef(new Animated.Value(0));
@@ -30,8 +28,6 @@ export const SharkButtonToggleGroup = () => {
     return `${widthSize * i}%`;
   });
 
-  console.log(interpolatedValuesOutput);
-
   React.useEffect(() => {
     const left = widthSize * selectedIndex;
 
@@ -44,8 +40,10 @@ export const SharkButtonToggleGroup = () => {
     });
   }, [widthSize, selectedPanelLeft, selectedIndex]);
 
-  const maxIndex = selectedIndex > prevSelectedIndex ? selectedIndex : prevSelectedIndex;
-  const minIndex = selectedIndex > prevSelectedIndex ? prevSelectedIndex : selectedIndex;
+  const maxIndex =
+    selectedIndex > prevSelectedIndex ? selectedIndex : prevSelectedIndex;
+  const minIndex =
+    selectedIndex > prevSelectedIndex ? prevSelectedIndex : selectedIndex;
 
   return (
     <View style={styles.container}>
@@ -72,6 +70,7 @@ export const SharkButtonToggleGroup = () => {
               key={i}
               onPress={() => {
                 setSelectedIndex(i);
+                onSelect(values[i]);
               }}
               style={styles.baseTouchableRipple}>
               <Text style={[styles.baseButtonText, styles.whiteText]}>
@@ -93,6 +92,7 @@ export const SharkButtonToggleGroup = () => {
             ]}
             onPress={() => {
               setSelectedIndex(i);
+              onSelect(values[i]);
             }}>
             <Text style={[styles.baseButtonText, styles.secondaryText]}>
               {value}
