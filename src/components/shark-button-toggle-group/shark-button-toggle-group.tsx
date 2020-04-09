@@ -1,6 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import {Animated, StyleSheet, View, Text} from 'react-native';
+import {
+  Animated,
+  StyleSheet,
+  View,
+  Text,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import MaskedView from '@react-native-community/masked-view';
 import {theme} from '../../constants/theme';
@@ -9,16 +16,18 @@ import {textStyles} from '../../constants/text-styles';
 interface SharkButtonToggleGroupProps {
   values: string[];
   onSelect: (val: string) => void;
+  style?: StyleProp<ViewStyle>;
 }
 export const SharkButtonToggleGroup = ({
   values,
-  onSelect
+  onSelect,
+  style,
 }: SharkButtonToggleGroupProps) => {
   const [prevSelectedIndex, setPrevSelectedIndex] = React.useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const selectedPanelLeft = React.useRef(new Animated.Value(0));
 
-  const widthSize = Math.floor(100 / values.length);
+  const widthSize = 100 / values.length;
 
   const interpolatedValuesInput = values.map((_, i) => {
     return widthSize * i;
@@ -33,7 +42,7 @@ export const SharkButtonToggleGroup = ({
 
     Animated.timing(selectedPanelLeft.current, {
       toValue: left,
-      duration: 1000,
+      duration: 300,
       useNativeDriver: false,
     }).start(() => {
       setPrevSelectedIndex(selectedIndex);
@@ -46,7 +55,7 @@ export const SharkButtonToggleGroup = ({
     selectedIndex > prevSelectedIndex ? prevSelectedIndex : selectedIndex;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <MaskedView
         key={selectedIndex}
         style={styles.maskViewContainer}
@@ -106,8 +115,13 @@ export const SharkButtonToggleGroup = ({
 
 const styles = StyleSheet.create({
   container: {
-    height: 300,
+    height: 48,
     position: 'relative',
+    borderRadius: theme.roundness,
+    borderColor: theme.colors.border,
+    borderWidth: 1,
+    overflow: "hidden",
+    padding: 4,
   },
   maskViewContainer: {
     width: '100%',
@@ -117,7 +131,7 @@ const styles = StyleSheet.create({
   blueMaskContainer: {
     position: 'absolute',
     backgroundColor: 'black',
-    borderRadius: 8,
+    borderRadius: theme.lessRoundness,
     height: '100%',
     left: 0,
     top: 0,
@@ -139,8 +153,8 @@ const styles = StyleSheet.create({
   },
   whiteButtonContainer: {
     position: 'absolute',
-    top: 0,
-    left: 0,
+    top: 4,
+    left: 4,
     width: '100%',
     height: '100%',
   },

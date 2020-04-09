@@ -5,7 +5,7 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
-import {SubheaderWithButton} from '../../../components/subheaders/subheader-with-button';
+import {SharkSubheader} from '../../../components/shark-subheader/shark-subheader';
 import {FileChangeListItemWithCheckbox} from '../../../components/file-change-list-item/file-change-list-item-with-checkbox';
 import {ChangesArrayItem} from '../../../services/git';
 import {theme} from '../../../constants/theme';
@@ -48,7 +48,7 @@ export const UnstagedChanges = ({
 
   const toggleSelected = (change: ChangesArrayItem) => {
     const filteredUnstaged = selectedUnstagedChanges.filter(
-      unChange => unChange.fileName !== change.fileName,
+      (unChange) => unChange.fileName !== change.fileName,
     );
     // The array does not contain the item
     if (filteredUnstaged.length !== selectedUnstagedChanges.length) {
@@ -60,16 +60,16 @@ export const UnstagedChanges = ({
 
   return (
     <>
-      <SubheaderWithButton
+      <SharkSubheader
         buttonText={unstagedBtnText}
         calloutText={'Unstaged'}
         onButtonClick={unstagedBtnAction}
         style={showUnstagedDivider ? styles.underlineHeader : {}}
       />
       <ScrollView style={styles.changesList} onScroll={onUnstagedScroll}>
-        {unstagedChanges.map(props => {
+        {unstagedChanges.map((props) => {
           const isChecked = !!selectedUnstagedChanges.find(
-            change => change.fileName === props.fileName,
+            (change) => change.fileName === props.fileName,
           );
           return (
             <FileChangeListItemWithCheckbox

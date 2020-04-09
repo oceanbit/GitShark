@@ -3,26 +3,28 @@ import {StyleSheet, View, Text, StyleProp, ViewStyle} from 'react-native';
 import {textStyles} from '../../constants/text-styles';
 import {SharkButton} from '../shark-button/shark-button';
 
-interface SharkTextInputProps {
+interface SharkSubheaderProps {
   calloutText: string;
-  buttonText: string;
-  onButtonClick: () => void;
+  buttonText?: string;
+  onButtonClick?: () => void;
   style?: StyleProp<ViewStyle>;
 }
-export const SubheaderWithButton = ({
+export const SharkSubheader = ({
   calloutText,
   buttonText,
-  onButtonClick,
+  onButtonClick = () => {},
   style = {},
-}: SharkTextInputProps) => {
+}: SharkSubheaderProps) => {
   return (
     <View style={[styles.subheaderContainer, style]}>
       <Text style={styles.subheaderText}>{calloutText}</Text>
-      <SharkButton
-        onPress={onButtonClick}
-        text={buttonText}
-        style={styles.calloutButton}
-      />
+      {!!buttonText && (
+        <SharkButton
+          onPress={onButtonClick}
+          text={buttonText}
+          style={styles.calloutButton}
+        />
+      )}
     </View>
   );
 };

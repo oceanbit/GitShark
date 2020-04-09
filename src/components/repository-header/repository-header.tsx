@@ -21,7 +21,6 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
 
   return (
     <AppBar
-      style={styles.repoHeader}
       leftIcon="arrow-left"
       onLeftSelect={() => history.goBack()}
       headline="Repository"
@@ -65,10 +64,3 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
     />
   );
 };
-
-const styles = StyleSheet.create({
-  repoHeader: {
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.outlineColor,
-  },
-});

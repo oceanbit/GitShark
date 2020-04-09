@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {SharkIconButton} from '../shark-icon-button/shark-icon-button';
 import {textStyles} from '../../constants/text-styles';
-import { theme } from '../../constants/theme';
+import {theme} from '../../constants/theme';
 
 interface AppBarProps {
   headline: string;
@@ -11,6 +11,7 @@ interface AppBarProps {
   style?: StyleProp<ViewStyle>;
   leftIcon?: string;
   onLeftSelect?: () => void;
+  hasBottomBorder?: boolean;
 }
 
 export const AppBar = ({
@@ -19,10 +20,12 @@ export const AppBar = ({
   headline,
   caption,
   rightChild = null,
-  style = {}
+  style = {},
+  hasBottomBorder = true,
 }: AppBarProps) => {
+  const botttomBarStyle = hasBottomBorder ? styles.bottomBar : {};
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, botttomBarStyle, style]}>
       {!!leftIcon && (
         <SharkIconButton iconName={leftIcon} onPress={onLeftSelect} />
       )}
@@ -42,6 +45,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  bottomBar: {
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.outlineColor,
   },
   textContainer: {
     display: 'flex',
