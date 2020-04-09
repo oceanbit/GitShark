@@ -16,6 +16,7 @@ import {textStyles} from '../../constants/text-styles';
 const values = ['Auto', 'Light', 'Dark'];
 
 export const SharkButtonToggleGroup = () => {
+  const [prevSelectedIndex, setPrevSelectedIndex] = React.useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const selectedPanelLeft = React.useRef(new Animated.Value(0));
 
@@ -29,17 +30,22 @@ export const SharkButtonToggleGroup = () => {
     return `${widthSize * i}%`;
   });
 
-  console.log(interpolatedValuesOutput)
+  console.log(interpolatedValuesOutput);
 
   React.useEffect(() => {
     const left = widthSize * selectedIndex;
 
     Animated.timing(selectedPanelLeft.current, {
       toValue: left,
-      duration: 200,
+      duration: 1000,
       useNativeDriver: false,
-    }).start();
+    }).start(() => {
+      setPrevSelectedIndex(selectedIndex);
+    });
   }, [widthSize, selectedPanelLeft, selectedIndex]);
+
+  const maxIndex = selectedIndex > prevSelectedIndex ? selectedIndex : prevSelectedIndex;
+  const minIndex = selectedIndex > prevSelectedIndex ? prevSelectedIndex : selectedIndex;
 
   return (
     <View style={styles.container}>
@@ -65,12 +71,9 @@ export const SharkButtonToggleGroup = () => {
             <TouchableRipple
               key={i}
               onPress={() => {
-                console.log('PRESSED ' + i + ' BLUE');
                 setSelectedIndex(i);
               }}
-              style={{
-                zIndex: 1,
-              }}>
+              style={styles.baseTouchableRipple}>
               <Text style={[styles.baseButtonText, styles.whiteText]}>
                 {value}
               </Text>
@@ -82,9 +85,14 @@ export const SharkButtonToggleGroup = () => {
         {values.map((value, i) => (
           <TouchableRipple
             key={i}
-            style={styles.baseTouchableRipple}
+            style={[
+              styles.baseTouchableRipple,
+              {
+                zIndex: minIndex <= i && maxIndex >= i ? -1 : 0,
+              },
+            ]}
             onPress={() => {
-              console.log('PRESSED ' + i + ' WHITE');
+              setSelectedIndex(i);
             }}>
             <Text style={[styles.baseButtonText, styles.secondaryText]}>
               {value}
@@ -137,7 +145,11 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   baseTouchableRipple: {
-    zIndex: -1,
+    height: '100%',
+    flex: 1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   baseButtonText: {
     ...textStyles.callout,
