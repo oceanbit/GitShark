@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Image, StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import {theme} from '../../constants/theme';
 import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group/shark-button-toggle-group';
 import {AppBar} from '../../components/app-bar/app-bar';
@@ -9,12 +9,15 @@ import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-pic';
+import {SlideUpDownSettingsAnimation} from '../../components/slide-up-down-settings-animation/slide-up-down-settings-animation';
+import {SharkButton} from '../../components/shark-button/shark-button';
 
 export const Settings = () => {
   const history = useNavigation();
+  const [direction, setDirection] = React.useState(false);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <AppBar
         leftIcon="arrow-left"
         onLeftSelect={() => history.goBack()}
@@ -51,7 +54,9 @@ export const Settings = () => {
         theme.
       </Text>
       <SharkSubheader calloutText="Staging layout" />
-    </View>
+      <SharkButton onPress={() => setDirection(!direction)} text={'Press me'} />
+      <SlideUpDownSettingsAnimation direction={direction ? 'down' : 'up'} />
+    </ScrollView>
   );
 };
 
