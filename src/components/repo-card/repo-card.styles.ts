@@ -1,5 +1,5 @@
-import {textStyles} from '../../../constants/text-styles';
-import {theme} from '../../../constants/theme';
+import {textStyles} from '../../constants/text-styles';
+import {theme} from '../../constants/theme';
 import {DynamicStyleSheet} from 'react-native-dark-mode';
 
 export const dynamicStyles = new DynamicStyleSheet({
@@ -56,8 +56,5 @@ export const dynamicStyles = new DynamicStyleSheet({
   },
   statusComponent: {
     marginRight: 16,
-  },
-  menu: {
-    backgroundColor: theme.colors.floating_surface,
   },
 });

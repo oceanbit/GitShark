@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
 import {StyleSheet, Alert} from 'react-native';
-import {legacyTheme} from '../../constants/theme';
+import {legacyTheme, theme} from '../../constants/theme';
 import {RepositoryHeader} from '../../components/repository-header/repository-header';
 import {RepoContext} from '../../constants/repo-context';
 import {useRoute} from '@react-navigation/native';
@@ -12,10 +12,21 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Commit} from '../commit/commit';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
 
 const Tab = createMaterialBottomTabNavigator();
 
 export const Repository = () => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+  const accent = useDynamicValue(theme.colors.primary);
+  const on_surface_secondary = useDynamicValue(
+    theme.colors.on_surface_secondary,
+  );
+
   const {params} = useRoute();
   const {repoId} = params! as Record<string, string>;
   const [repo, setRepo] = React.useState<Repo | null>(null);
@@ -56,8 +67,8 @@ export const Repository = () => {
         labeled={true}
         shifting={false}
         barStyle={styles.bottomNav}
-        inactiveColor={legacyTheme.colors.disabled}
-        activeColor={legacyTheme.colors.accent}>
+        inactiveColor={on_surface_secondary}
+        activeColor={accent}>
         <Tab.Screen
           name="Changes"
           component={RepositoryChanges}
@@ -95,10 +106,10 @@ export const Repository = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   bottomNav: {
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.surface,
     borderTopWidth: 1,
-    borderTopColor: legacyTheme.colors.outlineColor,
+    borderTopColor: theme.colors.divider,
   },
 });

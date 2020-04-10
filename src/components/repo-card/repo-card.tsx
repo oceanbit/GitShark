@@ -2,15 +2,16 @@ import {Text, View} from 'react-native';
 import * as React from 'react';
 import {RepoCardCommitMetadata} from './repo-card-commit-metadata';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../../constants/theme';
+import {theme} from '../../constants/theme';
 import {TouchableRipple, Menu} from 'react-native-paper';
-import {Repo} from '../../../entities';
+import {Repo} from '../../entities';
 import dayjs from 'dayjs';
 import {useNavigation} from '@react-navigation/native';
-import {RenameRepositoryDialog} from '../../rename-repository-dialog/rename-repository-dialog';
-import {DeleteRepositoryDialog} from '../../delete-repository-dialog/delete-repository-dialog';
+import {RenameRepositoryDialog} from '../rename-repository-dialog/rename-repository-dialog';
+import {DeleteRepositoryDialog} from '../delete-repository-dialog/delete-repository-dialog';
 import {dynamicStyles} from './repo-card.styles';
 import {useDynamicStyleSheet, useDynamicValue} from 'react-native-dark-mode';
+import {SharkMenu} from "../shark-menu/shark-menu";
 
 type DialogActionsType = '' | 'rename' | 'delete';
 interface RepoCardProps {
@@ -49,10 +50,9 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
                 Updated {updatedFromNow} ago
               </Text>
             </View>
-            <Menu
+            <SharkMenu
               visible={isMenuOpen}
               onDismiss={() => setIsMenuOpen(false)}
-              contentStyle={styles.menu}
               anchor={
                 <TouchableRipple
                   style={styles.moreButtonContainer}
@@ -74,7 +74,7 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
                 }}
                 title="Delete"
               />
-            </Menu>
+            </SharkMenu>
           </View>
           <View style={styles.displayRow}>
             <View style={styles.branchView}>

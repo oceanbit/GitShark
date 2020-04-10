@@ -2,8 +2,13 @@ import * as React from 'react';
 import {TouchableRipple} from 'react-native-paper';
 import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {legacyTheme} from '../../../constants/theme';
-import { textStyles } from '../../../constants/text-styles';
+import {legacyTheme, theme} from '../../../constants/theme';
+import {textStyles} from '../../../constants/text-styles';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
 
 export const HeaderActionNumber = ({
   iconName,
@@ -14,19 +19,23 @@ export const HeaderActionNumber = ({
   val?: number;
   onPress?: () => void;
 }) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
+  const accent = useDynamicValue(theme.colors.primary);
+
   return (
     <TouchableRipple
       onPress={onPress || (() => {})}
       style={!!val ? styles.outlineContainer : styles.container}>
       <View style={styles.repoHeader}>
-        <Icon name={iconName} size={24} color={legacyTheme.colors.accent} />
+        <Icon name={iconName} size={24} color={accent} />
         {!!val && <Text style={styles.valText}>{val}</Text>}
       </View>
     </TouchableRipple>
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   repoHeader: {
     padding: 8,
     flexDirection: 'row',
@@ -37,8 +46,8 @@ const styles = StyleSheet.create({
   },
   outlineContainer: {
     borderWidth: 2,
-    borderColor: legacyTheme.colors.outlineColor,
-    borderRadius: legacyTheme.roundness,
+    borderColor: theme.colors.divider,
+    borderRadius: theme.roundness,
     marginRight: 8,
   },
   backBtn: {
@@ -49,6 +58,6 @@ const styles = StyleSheet.create({
     ...textStyles.callout,
     marginLeft: 8,
     marginRight: 2,
-    color: legacyTheme.colors.accent,
+    color: theme.colors.primary,
   },
 });

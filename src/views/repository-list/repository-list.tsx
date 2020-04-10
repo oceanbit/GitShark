@@ -2,7 +2,7 @@ import * as React from 'react';
 import {View, Alert, ScrollView, Text} from 'react-native';
 import {Repo} from '../../entities';
 import {getRepository} from 'typeorm';
-import {RepoCard} from '../../components/repo-list/repo-card/repo-card';
+import {RepoCard} from '../../components/repo-card/repo-card';
 import {textStyles} from '../../constants/text-styles';
 import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
 import {RepoListLoading} from '../../components/repo-list-loading/repo-list-loading';

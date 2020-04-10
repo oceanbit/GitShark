@@ -1,7 +1,5 @@
 import * as React from 'react';
 import {Menu, Divider} from 'react-native-paper';
-import {View, StyleSheet} from 'react-native';
-import {legacyTheme} from '../../constants/theme';
 import {HeaderActionNumber} from './header-action-number/header-action-number';
 import {useNavigation} from '@react-navigation/native';
 import git from 'isomorphic-git/index.umd.min.js';
@@ -10,6 +8,7 @@ import http from 'isomorphic-git/http/web/index.js';
 import {Repo} from 'src/entities';
 import {SharkIconButton} from '../shark-icon-button/shark-icon-button';
 import {AppBar} from '../app-bar/app-bar';
+import {SharkMenu} from '../shark-menu/shark-menu';
 
 interface RepositoryHeaderProps {
   repo: Repo;
@@ -29,7 +28,7 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
         <>
           <HeaderActionNumber iconName="arrow-up-circle" val={4} />
           <HeaderActionNumber iconName="arrow-down-circle" val={0} />
-          <Menu
+          <SharkMenu
             visible={isMenuOpen}
             onDismiss={() => setIsMenuOpen(false)}
             anchor={
@@ -58,7 +57,7 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
             <Divider />
             <Menu.Item onPress={() => {}} title="Open Folder" />
             <Menu.Item onPress={() => {}} title="Rename" />
-          </Menu>
+          </SharkMenu>
         </>
       }
     />

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {SharkIconButton} from '../shark-icon-button/shark-icon-button';
 import {textStyles} from '../../constants/text-styles';
-import {legacyTheme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface AppBarProps {
   headline: string;
@@ -23,6 +24,8 @@ export const AppBar = ({
   style = {},
   hasBottomBorder = true,
 }: AppBarProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const botttomBarStyle = hasBottomBorder ? styles.bottomBar : {};
   return (
     <View style={[styles.container, botttomBarStyle, style]}>
@@ -38,7 +41,7 @@ export const AppBar = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   container: {
     paddingHorizontal: 8,
     paddingVertical: 16,
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
   },
   bottomBar: {
     borderBottomWidth: 1,
-    borderBottomColor: legacyTheme.colors.outlineColor,
+    borderBottomColor: theme.colors.divider,
   },
   textContainer: {
     display: 'flex',
@@ -58,9 +61,10 @@ const styles = StyleSheet.create({
   },
   headline: {
     ...textStyles.headline_03,
+    color: theme.colors.on_surface,
   },
   caption: {
     ...textStyles.caption_02,
-    color: legacyTheme.colors.on_surface_secondary_light,
+    color: theme.colors.on_surface_secondary,
   },
 });

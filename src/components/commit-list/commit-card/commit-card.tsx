@@ -1,6 +1,6 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import * as React from 'react';
-import {legacyTheme} from '../../../constants/theme';
+import {theme} from '../../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
 import {textStyles} from '../../../constants/text-styles';
 import {CommitCardPushPull} from './commit-card-push-pull';
@@ -8,11 +8,20 @@ import dayjs from 'dayjs';
 import {GitLogCommit} from '../../../services/git/gitLog';
 import {getCommitHeaderBody} from '../../../services/git/getCommitHeaderBody';
 import {SharkProfilePic} from '../../shark-profile-pic/shark-profile-pic';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
 
 interface CommitCardProps {
   commit: GitLogCommit;
 }
 export const CommitCard = ({commit}: CommitCardProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
+  const rippleColor = useDynamicValue(theme.colors.ripple_surface);
+
   const {title, message} = getCommitHeaderBody({commit});
 
   const needsPulling = !!(Math.floor(Math.random() * 10) < 5);
@@ -31,7 +40,7 @@ export const CommitCard = ({commit}: CommitCardProps) => {
     <TouchableRipple
       style={styles.commitContainer}
       onPress={() => {}}
-      rippleColor={legacyTheme.colors.outlineColor}>
+      rippleColor={rippleColor}>
       <View>
         <View style={styles.commitHeading}>
           <SharkProfilePic size={22} />
@@ -54,7 +63,7 @@ export const CommitCard = ({commit}: CommitCardProps) => {
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   commitContainer: {
     paddingHorizontal: 16,
     paddingTop: 20,
@@ -69,26 +78,26 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 8,
     borderWidth: 1,
-    borderColor: legacyTheme.colors.outlineColor,
-    borderRadius: legacyTheme.lessRoundness,
+    borderColor: theme.colors.divider,
+    borderRadius: theme.lessRoundness,
     marginHorizontal: 8,
-    color: legacyTheme.colors.on_surface_light,
+    color: theme.colors.on_surface,
     ...textStyles.caption_01,
   },
   timeStr: {
-    color: legacyTheme.colors.on_surface_secondary_light,
+    color: theme.colors.on_surface_secondary,
     ...textStyles.caption_02,
   },
   commitHeaderTxt: {
-    color: legacyTheme.colors.on_surface_light,
+    color: theme.colors.on_surface,
     ...textStyles.callout,
     fontWeight: 'bold',
   },
   accentText: {
-    color: legacyTheme.colors.accent,
+    color: theme.colors.primary,
   },
   commitBody: {
-    color: legacyTheme.colors.on_surface_secondary_light,
+    color: theme.colors.on_surface_secondary,
     ...textStyles.body_02,
   },
 });

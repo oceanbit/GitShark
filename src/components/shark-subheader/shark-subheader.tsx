@@ -2,6 +2,8 @@ import * as React from 'react';
 import {StyleSheet, View, Text, StyleProp, ViewStyle} from 'react-native';
 import {textStyles} from '../../constants/text-styles';
 import {SharkButton} from '../shark-button/shark-button';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {theme} from '../../constants/theme';
 
 interface SharkSubheaderProps {
   calloutText: string;
@@ -15,6 +17,8 @@ export const SharkSubheader = ({
   onButtonClick = () => {},
   style = {},
 }: SharkSubheaderProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   return (
     <View style={[styles.subheaderContainer, style]}>
       <Text style={styles.subheaderText}>{calloutText}</Text>
@@ -29,19 +33,20 @@ export const SharkSubheader = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   subheaderContainer: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignContent: 'center',
     overflow: 'hidden',
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.surface,
     padding: 16,
     alignItems: 'center',
   },
   subheaderText: {
     ...textStyles.callout,
     flexGrow: 1,
+    color: theme.colors.on_surface,
   },
   calloutButton: {
     marginLeft: 16,
