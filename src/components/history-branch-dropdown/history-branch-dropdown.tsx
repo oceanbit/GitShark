@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import * as React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
 import {textStyles} from '../../constants/text-styles';
 import {SharkIconButton} from '../shark-icon-button/shark-icon-button';
@@ -20,7 +20,7 @@ export const HistoryBranchDropdown = ({
     <TouchableRipple
       style={styles.dropdownContinaer}
       onPress={() => {}}
-      rippleColor={theme.colors.outlineColor}>
+      rippleColor={legacyTheme.colors.outlineColor}>
       <View style={styles.dropdownView}>
         <Text numberOfLines={1} style={styles.branchName}>
           {branchName}
@@ -34,7 +34,7 @@ export const HistoryBranchDropdown = ({
         <Icon
           name="chevron-down"
           size={24}
-          color={theme.colors.accent}
+          color={legacyTheme.colors.accent}
           style={styles.dropdownButton}
         />
       </View>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   buttonDivider: {
     height: 36,
     width: 1,
-    backgroundColor: theme.colors.outlineColor,
+    backgroundColor: legacyTheme.colors.outlineColor,
   },
   dropdownButton: {
     padding: 16,

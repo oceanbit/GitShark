@@ -5,7 +5,7 @@ import {DialogSelection, ExtendedFabBase} from './types';
 import {NewRepoFab} from './new-repo-fab';
 import {FabActions} from './fab-actions';
 import {textStyles} from '../../../constants/text-styles';
-import {theme} from '../../../constants/theme';
+import {legacyTheme} from '../../../constants/theme';
 import {ExtendedActionFab} from '../../../components/extended-action-fab/extended-action-fab';
 
 export interface RepoListExtendedFabProps {
@@ -100,7 +100,7 @@ export const RepoListExtendedFab = ({
 const styles = StyleSheet.create({
   noRepos: {
     ...textStyles.headline_01,
-    color: theme.colors.on_surface_light,
+    color: legacyTheme.colors.on_surface_light,
     opacity: 0.4,
     position: 'absolute',
     textAlign: 'center',

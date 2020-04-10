@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import MaskedView from '@react-native-community/masked-view';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {textStyles} from '../../constants/text-styles';
 
 interface SharkButtonToggleGroupProps {
@@ -117,8 +117,8 @@ const styles = StyleSheet.create({
   container: {
     height: 48,
     position: 'relative',
-    borderRadius: theme.roundness,
-    borderColor: theme.colors.border,
+    borderRadius: legacyTheme.roundness,
+    borderColor: legacyTheme.colors.border,
     borderWidth: 1,
     overflow: "hidden",
     padding: 4,
@@ -131,18 +131,18 @@ const styles = StyleSheet.create({
   blueMaskContainer: {
     position: 'absolute',
     backgroundColor: 'black',
-    borderRadius: theme.lessRoundness,
+    borderRadius: legacyTheme.lessRoundness,
     height: '100%',
     left: 0,
     top: 0,
   },
   blueMask: {
-    backgroundColor: theme.colors.accent,
+    backgroundColor: legacyTheme.colors.accent,
   },
   secondaryBG: {
     width: '100%',
     height: '100%',
-    backgroundColor: theme.colors.on_surface_secondary_light,
+    backgroundColor: legacyTheme.colors.on_surface_secondary_light,
   },
   baseButtonContainer: {
     flex: 1,
@@ -173,6 +173,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   secondaryText: {
-    color: theme.colors.on_surface_secondary_light,
+    color: legacyTheme.colors.on_surface_secondary_light,
   },
 });

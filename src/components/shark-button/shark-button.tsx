@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, View, StyleProp, ViewStyle, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {textStyles} from '../../constants/text-styles';
 import {TouchableRipple} from 'react-native-paper';
 
@@ -26,7 +26,7 @@ export const SharkButton = ({
     type === 'outline' ? styles.outlineButton : styles.primaryButton;
   const buttonTextStyle =
     type === 'outline' ? styles.outlineButtonText : styles.primaryButtonText;
-  const iconColor = type === 'outline' ? theme.colors.accent : 'white';
+  const iconColor = type === 'outline' ? legacyTheme.colors.accent : 'white';
   const stateStyle = disabled ? styles.disabled : {};
   return (
     <TouchableRipple
@@ -36,7 +36,7 @@ export const SharkButton = ({
         styles.button,
         buttonPaddingStyle,
         buttonTypeStyle,
-        stateStyle, 
+        stateStyle,
         style,
       ]}>
       <>
@@ -53,7 +53,7 @@ export const SharkButton = ({
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: theme.roundness,
+    borderRadius: legacyTheme.roundness,
     alignContent: 'center',
     minHeight: 24,
     justifyContent: 'center',
@@ -69,15 +69,15 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   outlineButton: {
-    borderColor: theme.colors.outlineColor,
+    borderColor: legacyTheme.colors.outlineColor,
     borderWidth: 2,
     backgroundColor: 'white',
   },
   primaryButton: {
-    backgroundColor: theme.colors.accent,
+    backgroundColor: legacyTheme.colors.accent,
   },
   outlineButtonText: {
-    color: theme.colors.accent,
+    color: legacyTheme.colors.accent,
   },
   primaryButtonText: {
     color: 'white',

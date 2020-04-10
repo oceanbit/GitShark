@@ -22,6 +22,7 @@
     "react": "^16.9.0",
     "react-content-loader": "^5.0.2",
     "react-native": "0.61.5",
+    "react-native-dark-mode": "^0.2.2",
     "react-native-file-selector": "https://github.com/crutchcorn/react-native-file-selector.git",
     "react-native-fs": "https://github.com/crutchcorn/react-native-fs.git#all-commands",
     "react-native-gesture-handler": "^1.6.1",

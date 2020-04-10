@@ -1,7 +1,7 @@
 import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../../constants/theme';
+import {legacyTheme} from '../../../constants/theme';
 
 interface RepoCardCommitMetadataProps {
   commitsToPull: number;
@@ -36,14 +36,14 @@ export const RepoCardCommitMetadata = ({
 const styles = StyleSheet.create({
   arrowContainer: {
     borderStyle: 'solid',
-    borderColor: theme.colors.outlineColor,
-    borderRadius: theme.lessRoundness,
+    borderColor: legacyTheme.colors.outlineColor,
+    borderRadius: legacyTheme.lessRoundness,
     borderWidth: 1,
     flexDirection: 'row',
   },
   middleLine: {
     width: 1,
-    backgroundColor: theme.colors.outlineColor,
+    backgroundColor: legacyTheme.colors.outlineColor,
   },
   commitNumberView: {
     padding: 6,
@@ -53,6 +53,6 @@ const styles = StyleSheet.create({
   commitNumberText: {
     fontSize: 10,
     marginLeft: 2,
-    color: theme.colors.accent,
+    color: legacyTheme.colors.accent,
   },
 });

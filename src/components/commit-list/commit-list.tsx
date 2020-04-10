@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {CommitCard} from './commit-card/commit-card';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {GitLogCommit} from 'src/services/git/gitLog';
 
 interface CommitListProps {
@@ -25,6 +25,6 @@ export const CommitList = ({commits}: CommitListProps) => {
 const styles = StyleSheet.create({
   commitCardItem: {
     borderTopWidth: 1,
-    borderTopColor: theme.colors.outlineColor,
+    borderTopColor: legacyTheme.colors.outlineColor,
   },
 });

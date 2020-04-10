@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Menu, Divider} from 'react-native-paper';
 import {View, StyleSheet} from 'react-native';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {HeaderActionNumber} from './header-action-number/header-action-number';
 import {useNavigation} from '@react-navigation/native';
 import git from 'isomorphic-git/index.umd.min.js';

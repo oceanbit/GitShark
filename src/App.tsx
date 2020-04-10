@@ -10,13 +10,13 @@ import {Provider as PaperProvider} from 'react-native-paper';
 import {SafeAreaView, StatusBar, Alert, YellowBox} from 'react-native';
 import {PermissionsAndroid} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
-import {theme} from './constants/theme';
 import {Repository} from './views/repository/repository';
 import {Account} from './views/account/account';
 import {Settings} from './views/settings/settings';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {DatabaseLoadedContext} from './constants/database-loaded-context';
+import {lightNavTheme, lightPaperTheme, legacyTheme} from './constants/theme';
 
 // https://github.com/react-navigation/react-navigation/issues/7933#issuecomment-608283552
 // Remove once dep updates resolve this
@@ -32,7 +32,7 @@ const App = () => {
       PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
       PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
     ]);
-    askedPermission.then((granted) => {
+    askedPermission.then(granted => {
       if (
         granted[PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE] ===
           PermissionsAndroid.RESULTS.GRANTED &&
@@ -59,7 +59,7 @@ const App = () => {
       .then(() => {
         setIsDBLoaded(true);
       })
-      .catch((err) => {
+      .catch(err => {
         if (err.name === 'AlreadyHasActiveConnectionError') {
           const existentConn = getConnectionManager().get('default');
           setIsDBLoaded(true);
@@ -75,11 +75,11 @@ const App = () => {
   const Stack = createStackNavigator();
 
   return (
-    <NavigationContainer theme={theme}>
-      <PaperProvider theme={theme}>
+    <NavigationContainer theme={lightNavTheme}>
+      <PaperProvider theme={lightPaperTheme}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={theme.colors.background}
+          backgroundColor={legacyTheme.colors.background}
         />
         <DatabaseLoadedContext.Provider value={isDBLoaded}>
           <Stack.Navigator headerMode={'none'}>

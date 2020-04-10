@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
 import {textStyles} from '../../constants/text-styles';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 
 interface AppDialogProps {
   title: string;
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     ...textStyles.headline_03,
   },
   mainText: {
-    color: theme.colors.on_surface_secondary_light,
+    color: legacyTheme.colors.on_surface_secondary_light,
     marginBottom: 20,
     ...textStyles.body_02,
   },

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {SharkIconButton} from '../shark-icon-button/shark-icon-button';
 import {textStyles} from '../../constants/text-styles';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 
 interface AppBarProps {
   headline: string;
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   bottomBar: {
     borderBottomWidth: 1,
-    borderBottomColor: theme.colors.outlineColor,
+    borderBottomColor: legacyTheme.colors.outlineColor,
   },
   textContainer: {
     display: 'flex',
@@ -61,6 +61,6 @@ const styles = StyleSheet.create({
   },
   caption: {
     ...textStyles.caption_02,
-    color: theme.colors.on_surface_secondary_light,
+    color: legacyTheme.colors.on_surface_secondary_light,
   },
 });

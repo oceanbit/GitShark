@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import {RepoContext} from '../../constants/repo-context';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {SharkIconButton} from '../../components/shark-icon-button/shark-icon-button';
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   underlineHeader: {
-    borderBottomColor: theme.colors.outlineColor,
+    borderBottomColor: legacyTheme.colors.outlineColor,
     borderBottomWidth: 1,
   },
   commitHeader: {
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   commitData: {
-    borderTopColor: theme.colors.outlineColor,
+    borderTopColor: legacyTheme.colors.outlineColor,
     borderTopWidth: 1,
     padding: 16,
   },

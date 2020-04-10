@@ -1,7 +1,7 @@
 import {StyleSheet, View} from 'react-native';
 import * as React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../../constants/theme';
+import {legacyTheme} from '../../../constants/theme';
 
 interface CommitCardPushPullProps {
   needsPushing?: boolean;
@@ -16,13 +16,13 @@ export const CommitCardPushPull = ({
     <View style={styles.arrowContainer}>
       {!!needsPushing && (
         <View style={styles.commitNumberView}>
-          <Icon name="arrow-up" size={10} color={theme.colors.accent} />
+          <Icon name="arrow-up" size={10} color={legacyTheme.colors.accent} />
         </View>
       )}
       {!!needsPushing && needsPulling && <View style={styles.middleLine} />}
       {!!needsPulling && (
         <View style={styles.commitNumberView}>
-          <Icon name="arrow-down" size={10} color={theme.colors.accent}  />
+          <Icon name="arrow-down" size={10} color={legacyTheme.colors.accent}  />
         </View>
       )}
     </View>
@@ -32,14 +32,14 @@ export const CommitCardPushPull = ({
 const styles = StyleSheet.create({
   arrowContainer: {
     borderStyle: 'solid',
-    borderColor: theme.colors.outlineColor,
-    borderRadius: theme.lessRoundness,
+    borderColor: legacyTheme.colors.outlineColor,
+    borderRadius: legacyTheme.lessRoundness,
     borderWidth: 1,
     flexDirection: 'row',
   },
   middleLine: {
     width: 1,
-    backgroundColor: theme.colors.outlineColor,
+    backgroundColor: legacyTheme.colors.outlineColor,
   },
   commitNumberView: {
     padding: 6,

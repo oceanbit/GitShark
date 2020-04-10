@@ -1,6 +1,6 @@
 import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {textStyles} from '../../constants/text-styles';
@@ -25,7 +25,7 @@ export const FileChangeListItem = ({
           <Icon
             name="plus-circle"
             size={24}
-            color={theme.colors.change_addition_light}
+            color={legacyTheme.colors.change_addition_light}
             style={styles.changeIcon}
           />
         );
@@ -34,7 +34,7 @@ export const FileChangeListItem = ({
           <Icon
             name="minus-circle"
             size={24}
-            color={theme.colors.change_removal_light}
+            color={legacyTheme.colors.change_removal_light}
             style={styles.changeIcon}
           />
         );
@@ -44,7 +44,7 @@ export const FileChangeListItem = ({
           <Icon
             name="dots-horizontal-circle"
             size={24}
-            color={theme.colors.change_mixed_light}
+            color={legacyTheme.colors.change_mixed_light}
             style={styles.changeIcon}
           />
         );
@@ -54,11 +54,11 @@ export const FileChangeListItem = ({
     <TouchableRipple
       style={[style, styles.listItemContainer]}
       onPress={onPress}
-      rippleColor={theme.colors.outlineColor}>
+      rippleColor={legacyTheme.colors.outlineColor}>
       <View style={styles.listItemView}>
         {statusIcon}
         <Text style={styles.fileName}>{fileName}</Text>
-        <Icon name="chevron-right" size={24} color={theme.colors.accent} />
+        <Icon name="chevron-right" size={24} color={legacyTheme.colors.accent} />
       </View>
     </TouchableRipple>
   );
@@ -67,8 +67,8 @@ export const FileChangeListItem = ({
 const styles = StyleSheet.create({
   listItemContainer: {
     borderStyle: 'solid',
-    borderColor: theme.colors.outlineColor,
-    borderRadius: theme.roundness,
+    borderColor: legacyTheme.colors.outlineColor,
+    borderRadius: legacyTheme.roundness,
     borderWidth: 1,
     paddingLeft: 12,
     paddingVertical: 12,

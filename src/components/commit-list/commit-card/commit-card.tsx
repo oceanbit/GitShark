@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import * as React from 'react';
-import {theme} from '../../../constants/theme';
+import {legacyTheme} from '../../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
 import {textStyles} from '../../../constants/text-styles';
 import {CommitCardPushPull} from './commit-card-push-pull';
@@ -31,7 +31,7 @@ export const CommitCard = ({commit}: CommitCardProps) => {
     <TouchableRipple
       style={styles.commitContainer}
       onPress={() => {}}
-      rippleColor={theme.colors.outlineColor}>
+      rippleColor={legacyTheme.colors.outlineColor}>
       <View>
         <View style={styles.commitHeading}>
           <SharkProfilePic size={22} />
@@ -69,26 +69,26 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 8,
     borderWidth: 1,
-    borderColor: theme.colors.outlineColor,
-    borderRadius: theme.lessRoundness,
+    borderColor: legacyTheme.colors.outlineColor,
+    borderRadius: legacyTheme.lessRoundness,
     marginHorizontal: 8,
-    color: theme.colors.on_surface_light,
+    color: legacyTheme.colors.on_surface_light,
     ...textStyles.caption_01,
   },
   timeStr: {
-    color: theme.colors.on_surface_secondary_light,
+    color: legacyTheme.colors.on_surface_secondary_light,
     ...textStyles.caption_02,
   },
   commitHeaderTxt: {
-    color: theme.colors.on_surface_light,
+    color: legacyTheme.colors.on_surface_light,
     ...textStyles.callout,
     fontWeight: 'bold',
   },
   accentText: {
-    color: theme.colors.accent,
+    color: legacyTheme.colors.accent,
   },
   commitBody: {
-    color: theme.colors.on_surface_secondary_light,
+    color: legacyTheme.colors.on_surface_secondary_light,
     ...textStyles.body_02,
   },
 });

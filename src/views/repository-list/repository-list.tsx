@@ -8,7 +8,7 @@ import {textStyles} from '../../constants/text-styles';
 import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
 import {RepoListLoading} from '../../components/repo-list-loading/repo-list-loading';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {DialogsAndFab} from './dialogs-and-fab';
 import {SharkIconButton} from '../../components/shark-icon-button/shark-icon-button';
 import {useNavigation} from '@react-navigation/native';
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   noRepos: {
     ...textStyles.headline_01,
-    color: theme.colors.on_surface_light,
+    color: legacyTheme.colors.on_surface_light,
     opacity: 0.4,
     position: 'absolute',
     textAlign: 'center',

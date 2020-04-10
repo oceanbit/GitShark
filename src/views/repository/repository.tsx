@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
 import {StyleSheet, Alert} from 'react-native';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {RepositoryHeader} from '../../components/repository-header/repository-header';
 import {RepoContext} from '../../constants/repo-context';
 import {useRoute} from '@react-navigation/native';
@@ -56,8 +56,8 @@ export const Repository = () => {
         labeled={true}
         shifting={false}
         barStyle={styles.bottomNav}
-        inactiveColor={theme.colors.disabled}
-        activeColor={theme.colors.accent}>
+        inactiveColor={legacyTheme.colors.disabled}
+        activeColor={legacyTheme.colors.accent}>
         <Tab.Screen
           name="Changes"
           component={RepositoryChanges}
@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
   bottomNav: {
     backgroundColor: 'white',
     borderTopWidth: 1,
-    borderTopColor: theme.colors.outlineColor,
+    borderTopColor: legacyTheme.colors.outlineColor,
   },
 });

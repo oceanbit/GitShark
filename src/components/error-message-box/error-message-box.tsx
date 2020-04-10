@@ -1,7 +1,7 @@
 import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {textStyles} from '../../constants/text-styles';
 
 interface ErrorMessageBoxProps {
@@ -14,7 +14,7 @@ export const ErrorMessageBox = ({
 }: ErrorMessageBoxProps) => {
   return (
     <View style={[styles.errorBoxContainer, style]}>
-      <Icon name="alert-circle" size={18} color={theme.colors.error_light} />
+      <Icon name="alert-circle" size={18} color={legacyTheme.colors.error_light} />
       <Text style={styles.errorText}>{message}</Text>
     </View>
   );
@@ -22,16 +22,16 @@ export const ErrorMessageBox = ({
 
 const styles = StyleSheet.create({
   errorBoxContainer: {
-    backgroundColor: theme.colors.error_light_background,
+    backgroundColor: legacyTheme.colors.error_light_background,
     flexDirection: 'row',
     paddingLeft: 7,
     paddingRight: 12,
     paddingVertical: 7,
-    borderRadius: theme.roundness,
+    borderRadius: legacyTheme.roundness,
   },
   errorText: {
     marginLeft: 7,
-    color: theme.colors.error_light,
+    color: legacyTheme.colors.error_light,
     ...textStyles.caption_01,
   },
 });

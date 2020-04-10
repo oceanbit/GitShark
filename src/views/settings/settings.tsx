@@ -7,7 +7,7 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
 } from 'react-native';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group/shark-button-toggle-group';
 import {AppBar} from '../../components/app-bar/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader/shark-subheader';
@@ -56,7 +56,7 @@ export const Settings = () => {
             style={styles.arrowIcon}
             name="arrow-right"
             size={24}
-            color={theme.colors.accent}
+            color={legacyTheme.colors.accent}
           />
         </>
       </TouchableRipple>
@@ -92,15 +92,15 @@ export const Settings = () => {
             <View style={styles.checkboxContainer}>
               <RoundCheckbox
                 checked={styleOfStaging === 'split'}
-                backgroundColor={theme.colors.accent}
-                borderColor={theme.colors.on_surface_secondary_light}
+                backgroundColor={legacyTheme.colors.accent}
+                borderColor={legacyTheme.colors.on_surface_secondary_light}
                 size={18}
               />
               <Text
                 style={[
                   styles.checkboxText,
                   styleOfStaging === 'split'
-                    ? {color: theme.colors.accent}
+                    ? {color: legacyTheme.colors.accent}
                     : {},
                 ]}>
                 Split
@@ -119,15 +119,15 @@ export const Settings = () => {
             <View style={styles.checkboxContainer}>
               <RoundCheckbox
                 checked={styleOfStaging === 'sheet'}
-                backgroundColor={theme.colors.accent}
-                borderColor={theme.colors.on_surface_secondary_light}
+                backgroundColor={legacyTheme.colors.accent}
+                borderColor={legacyTheme.colors.on_surface_secondary_light}
                 size={18}
               />
               <Text
                 style={[
                   styles.checkboxText,
                   styleOfStaging === 'sheet'
-                    ? {color: theme.colors.accent}
+                    ? {color: legacyTheme.colors.accent}
                     : {},
                 ]}>
                 Sheet
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     borderTopWidth: 1,
-    borderTopColor: theme.colors.outlineColor,
+    borderTopColor: legacyTheme.colors.outlineColor,
   },
   accountSection: {
     paddingVertical: 12,
@@ -172,13 +172,13 @@ const styles = StyleSheet.create({
   },
   accountBody: {
     ...textStyles.body_02,
-    color: theme.colors.on_surface_secondary_light,
+    color: legacyTheme.colors.on_surface_secondary_light,
   },
   themeText: {
     marginVertical: 16,
     marginHorizontal: 16,
     ...textStyles.caption_02,
-    color: theme.colors.on_surface_secondary_light,
+    color: legacyTheme.colors.on_surface_secondary_light,
   },
   arrowIcon: {
     padding: 8,

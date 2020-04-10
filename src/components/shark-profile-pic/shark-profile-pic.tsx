@@ -6,7 +6,7 @@ import {
   Image,
   ImagePropsBase,
 } from 'react-native';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 const defaultProfPic = require('../../../assets/images/default-profile-pic.png');
 
 interface SharkProfilePicProps {
@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
   profPic: {
     borderRadius: 50,
     borderWidth: 1,
-    borderColor: theme.colors.outlineColor,
+    borderColor: legacyTheme.colors.outlineColor,
   },
 });

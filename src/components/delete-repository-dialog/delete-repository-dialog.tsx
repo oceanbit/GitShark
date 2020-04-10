@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {Repo} from 'src/entities';
@@ -53,14 +53,14 @@ export const DeleteRepositoryDialog = ({
           <Button
             onPress={() => deleteRepoLocal()}
             mode="contained"
-            color={theme.colors.change_removal_light}
+            color={legacyTheme.colors.change_removal_light}
             style={styles.fullWidthBtn}>
             Delete
           </Button>
           <Button
             onPress={() => parentOnDismiss(false)}
             mode="outlined"
-            color={theme.colors.accent}
+            color={legacyTheme.colors.accent}
             style={[styles.cancelBtn, styles.fullWidthBtn]}>
             Cancel
           </Button>
@@ -81,11 +81,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     borderWidth: 1,
-    borderColor: theme.colors.outlineColor,
-    borderRadius: theme.roundness,
+    borderColor: legacyTheme.colors.outlineColor,
+    borderRadius: legacyTheme.roundness,
   },
   cancelBtn: {
-    borderColor: theme.colors.outlineColor,
+    borderColor: legacyTheme.colors.outlineColor,
     borderWidth: 2,
     marginTop: 8,
   },

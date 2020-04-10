@@ -1,12 +1,12 @@
 import {StyleSheet} from 'react-native';
 import {textStyles} from '../../../constants/text-styles';
-import {theme} from '../../../constants/theme';
+import {legacyTheme} from '../../../constants/theme';
 
 export const styles = StyleSheet.create({
   cardContainer: {
     borderStyle: 'solid',
-    borderColor: theme.colors.outlineColor,
-    borderRadius: theme.roundness,
+    borderColor: legacyTheme.colors.outlineColor,
+    borderRadius: legacyTheme.roundness,
     borderWidth: 1,
     paddingTop: 8,
     paddingBottom: 16,
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
     ...textStyles.headline_03,
   },
   lastUpdated: {
-    color: theme.colors.on_surface_secondary_light,
+    color: legacyTheme.colors.on_surface_secondary_light,
     ...textStyles.caption_02,
   },
   branchView: {
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   branchName: {
-    color: theme.colors.accent,
+    color: legacyTheme.colors.accent,
     marginLeft: 4,
     ...textStyles.caption_01,
   },

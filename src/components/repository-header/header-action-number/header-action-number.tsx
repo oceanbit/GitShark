@@ -2,7 +2,7 @@ import * as React from 'react';
 import {TouchableRipple} from 'react-native-paper';
 import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../../constants/theme';
+import {legacyTheme} from '../../../constants/theme';
 import { textStyles } from '../../../constants/text-styles';
 
 export const HeaderActionNumber = ({
@@ -19,7 +19,7 @@ export const HeaderActionNumber = ({
       onPress={onPress || (() => {})}
       style={!!val ? styles.outlineContainer : styles.container}>
       <View style={styles.repoHeader}>
-        <Icon name={iconName} size={24} color={theme.colors.accent} />
+        <Icon name={iconName} size={24} color={legacyTheme.colors.accent} />
         {!!val && <Text style={styles.valText}>{val}</Text>}
       </View>
     </TouchableRipple>
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
   },
   outlineContainer: {
     borderWidth: 2,
-    borderColor: theme.colors.outlineColor,
-    borderRadius: theme.roundness,
+    borderColor: legacyTheme.colors.outlineColor,
+    borderRadius: legacyTheme.roundness,
     marginRight: 8,
   },
   backBtn: {
@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
     ...textStyles.callout,
     marginLeft: 8,
     marginRight: 2,
-    color: theme.colors.accent,
+    color: legacyTheme.colors.accent,
   },
 });

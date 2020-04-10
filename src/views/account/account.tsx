@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {AppBar} from '../../components/app-bar/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader/shark-subheader';
 import {textStyles} from '../../constants/text-styles';
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
   commitAuthoringHeader: {
     borderTopWidth: 1,
-    borderTopColor: theme.colors.border,
+    borderTopColor: legacyTheme.colors.border,
   },
   commitAuthorContainer: {
     paddingHorizontal: 16,

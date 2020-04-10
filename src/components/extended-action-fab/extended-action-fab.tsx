@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import * as React from 'react';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {Surface} from 'react-native-paper';
 import {NavigationAwarePortal} from '../navigation-aware-portal/navigation-aware-portal';
 import {MutableRefObject} from 'react';
@@ -175,8 +175,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     zIndex: 10,
-    borderRadius: theme.roundness,
-    backgroundColor: theme.colors.accent,
+    borderRadius: legacyTheme.roundness,
+    backgroundColor: legacyTheme.colors.accent,
     elevation: 6,
   },
   fabContents: {

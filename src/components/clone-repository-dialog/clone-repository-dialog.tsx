@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleSheet} from 'react-native';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {fs} from '../../constants/fs';
 import git from 'isomorphic-git/index.umd.min.js';
@@ -132,11 +132,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     borderWidth: 1,
-    borderColor: theme.colors.outlineColor,
-    borderRadius: theme.roundness,
+    borderColor: legacyTheme.colors.outlineColor,
+    borderRadius: legacyTheme.roundness,
   },
   cancelBtn: {
-    borderColor: theme.colors.outlineColor,
+    borderColor: legacyTheme.colors.outlineColor,
     borderWidth: 2,
     marginRight: 16,
   },

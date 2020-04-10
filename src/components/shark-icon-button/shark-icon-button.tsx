@@ -1,5 +1,5 @@
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
 import * as React from 'react';
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
@@ -21,8 +21,8 @@ export const SharkIconButton = ({
       style={[styles.iconPadding, style]}
       onPress={onPress}
       disabled={disabled}
-      rippleColor={theme.colors.outlineColor}>
-      <Icon name={iconName} size={24} color={theme.colors.accent} />
+      rippleColor={legacyTheme.colors.outlineColor}>
+      <Icon name={iconName} size={24} color={legacyTheme.colors.accent} />
     </TouchableRipple>
   );
 };

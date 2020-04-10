@@ -4,7 +4,7 @@ import git from 'isomorphic-git/index.umd.min.js';
 
 import {RepoContext} from '../../constants/repo-context';
 import {ChangesArrayItem, getRepoStatus} from '../../services/git';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {fs} from '../../constants/fs';
 import {UnstagedChanges} from './unstaged-changes';
 import {StagedChanges} from './staged-changes';
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     height: '50%',
   },
   firstSection: {
-    borderBottomColor: theme.colors.outlineColor,
+    borderBottomColor: legacyTheme.colors.outlineColor,
     borderBottomWidth: 1,
   },
   fab: {

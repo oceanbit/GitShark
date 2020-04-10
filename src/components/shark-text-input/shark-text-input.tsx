@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {textStyles} from '../../constants/text-styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 
 interface SharkTextInputProps {
   placeholder: string;
@@ -56,7 +56,7 @@ export const SharkTextInput = ({
         <Icon
           size={24}
           name={prefixIcon}
-          color={theme.colors.on_surface_secondary_light}
+          color={legacyTheme.colors.on_surface_secondary_light}
           style={styles.icon}
         />
       )}
@@ -72,7 +72,7 @@ export const SharkTextInput = ({
         <Icon
           size={24}
           name={postfixIcon}
-          color={theme.colors.accent}
+          color={legacyTheme.colors.accent}
           style={styles.icon}
         />
       )}
@@ -84,9 +84,9 @@ const styles = StyleSheet.create({
   textInputContainer: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    borderColor: theme.colors.outlineColor,
+    borderColor: legacyTheme.colors.outlineColor,
     borderWidth: 1,
-    borderRadius: theme.roundness,
+    borderRadius: legacyTheme.roundness,
     alignContent: 'center',
     overflow: 'hidden',
   },

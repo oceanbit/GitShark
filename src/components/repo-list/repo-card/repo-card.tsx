@@ -2,7 +2,7 @@ import {Text, View} from 'react-native';
 import * as React from 'react';
 import {RepoCardCommitMetadata} from './repo-card-commit-metadata';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../../constants/theme';
+import {legacyTheme} from '../../../constants/theme';
 import {TouchableRipple, Menu} from 'react-native-paper';
 import {Repo} from '../../../entities';
 import dayjs from 'dayjs';
@@ -32,7 +32,7 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
             repoId: repo.id,
           });
         }}
-        rippleColor={theme.colors.outlineColor}>
+        rippleColor={legacyTheme.colors.outlineColor}>
         <View>
           <View style={styles.topDisplayRow}>
             <View style={styles.repoNameAndDate}>
@@ -53,7 +53,7 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
                   <Icon
                     name="dots-horizontal"
                     size={24}
-                    color={theme.colors.accent}
+                    color={legacyTheme.colors.accent}
                   />
                 </TouchableRipple>
               }>
@@ -75,7 +75,7 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
           </View>
           <View style={styles.displayRow}>
             <View style={styles.branchView}>
-              <Icon name="check-circle" size={16} color={theme.colors.accent} />
+              <Icon name="check-circle" size={16} color={legacyTheme.colors.accent} />
               <Text style={styles.branchName}>{repo.currentBranchName}</Text>
             </View>
             <RepoCardCommitMetadata

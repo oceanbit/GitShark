@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, ProgressBar} from 'react-native-paper';
-import {theme} from '../../constants/theme';
+import {legacyTheme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {cloneRepo} from '../../services/git/cloneRepo';
@@ -87,7 +87,7 @@ export const CloneRepositoryProgressDialog = ({
               style={styles.progressBar}
               progress={total > 0 ? loaded / total : 0}
               indeterminate={!total}
-              color={theme.colors.accent}
+              color={legacyTheme.colors.accent}
             />
           </View>
         }
