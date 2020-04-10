@@ -1,19 +1,20 @@
 import * as React from 'react';
-import {StyleSheet, View, Alert, ScrollView, Text} from 'react-native';
+import {View, Alert, ScrollView, Text} from 'react-native';
 import {Repo} from '../../entities';
 import {getRepository} from 'typeorm';
 import {RepoCard} from '../../components/repo-list/repo-card/repo-card';
-import {TouchableRipple} from 'react-native-paper';
 import {textStyles} from '../../constants/text-styles';
 import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
 import {RepoListLoading} from '../../components/repo-list-loading/repo-list-loading';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {legacyTheme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {DialogsAndFab} from './dialogs-and-fab';
 import {SharkIconButton} from '../../components/shark-icon-button/shark-icon-button';
 import {useNavigation} from '@react-navigation/native';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 export const RepositoryList = () => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const history = useNavigation();
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const [repos, setRepos] = React.useState<Repo[] | null>(null);
@@ -52,7 +53,7 @@ export const RepositoryList = () => {
         {isLoading && <RepoListLoading />}
         {!isLoading && !!repos?.length && (
           <ScrollView>
-            {repos!.map((repo) => {
+            {repos!.map(repo => {
               return (
                 <RepoCard
                   key={repo.id}
@@ -74,7 +75,7 @@ export const RepositoryList = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   container: {
     padding: 16,
     height: '100%',
@@ -91,10 +92,11 @@ const styles = StyleSheet.create({
   headingText: {
     flexGrow: 1,
     ...textStyles.headline_01,
+    color: theme.colors.on_surface,
   },
   noRepos: {
     ...textStyles.headline_01,
-    color: legacyTheme.colors.on_surface_light,
+    color: theme.colors.on_surface,
     opacity: 0.4,
     position: 'absolute',
     textAlign: 'center',

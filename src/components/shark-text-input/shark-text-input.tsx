@@ -10,7 +10,12 @@ import {
 } from 'react-native';
 import {textStyles} from '../../constants/text-styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {legacyTheme} from '../../constants/theme';
+import {legacyTheme, theme} from '../../constants/theme';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
 
 interface SharkTextInputProps {
   placeholder: string;
@@ -31,6 +36,10 @@ export const SharkTextInput = ({
   onChangeText,
   style = {},
 }: SharkTextInputProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+  const surfaceSecondary = useDynamicValue(theme.colors.on_surface_secondary);
+  const accent = useDynamicValue(theme.colors.primary);
+
   const paddingLeft = !!prefixIcon ? 0 : 12;
   const paddingRight = !!postfixIcon ? 0 : 12;
   const paddingVert = !!prefixIcon || !!postfixIcon ? 8 : 16;
@@ -46,9 +55,9 @@ export const SharkTextInput = ({
 
   const textAreaStyles = !multiline
     ? {}
-    : {
+    : ({
         textAlignVertical: 'top',
-      };
+      } as any);
 
   return (
     <View style={[styles.textInputContainer, padding, style]}>
@@ -56,7 +65,7 @@ export const SharkTextInput = ({
         <Icon
           size={24}
           name={prefixIcon}
-          color={legacyTheme.colors.on_surface_secondary_light}
+          color={surfaceSecondary}
           style={styles.icon}
         />
       )}
@@ -69,24 +78,19 @@ export const SharkTextInput = ({
         multiline={multiline}
       />
       {!!postfixIcon && (
-        <Icon
-          size={24}
-          name={postfixIcon}
-          color={legacyTheme.colors.accent}
-          style={styles.icon}
-        />
+        <Icon size={24} name={postfixIcon} color={accent} style={styles.icon} />
       )}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   textInputContainer: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    borderColor: legacyTheme.colors.outlineColor,
+    borderColor: theme.colors.divider,
     borderWidth: 1,
-    borderRadius: legacyTheme.roundness,
+    borderRadius: theme.roundness,
     alignContent: 'center',
     overflow: 'hidden',
   },

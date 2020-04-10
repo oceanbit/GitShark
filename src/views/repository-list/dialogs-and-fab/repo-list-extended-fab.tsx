@@ -1,25 +1,27 @@
 import * as React from 'react';
-import {Animated, Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Animated, Dimensions, Text, View} from 'react-native';
 import {Repo} from '../../../entities';
 import {DialogSelection, ExtendedFabBase} from './types';
 import {NewRepoFab} from './new-repo-fab';
 import {FabActions} from './fab-actions';
 import {textStyles} from '../../../constants/text-styles';
-import {legacyTheme} from '../../../constants/theme';
+import {theme} from '../../../constants/theme';
 import {ExtendedActionFab} from '../../../components/extended-action-fab/extended-action-fab';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 export interface RepoListExtendedFabProps {
   repos: Repo[] | null;
   isDBLoaded: boolean;
   isLoading: boolean;
   setSelectedAction: (val: DialogSelection | '') => void;
-  }
+}
 export const RepoListExtendedFab = ({
   isDBLoaded,
   repos,
   setSelectedAction,
   isLoading,
 }: RepoListExtendedFabProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
   const fabBottom = React.useRef(new Animated.Value(16));
   const scale = React.useRef(new Animated.Value(0));
   const windowHeight = Dimensions.get('window').height;
@@ -55,7 +57,7 @@ export const RepoListExtendedFab = ({
         useNativeDriver: false,
       }).start();
     }
-  }, [isLoading, scale])
+  }, [isLoading, scale]);
 
   React.useEffect(() => {
     if (!isDBLoaded) return;
@@ -66,7 +68,7 @@ export const RepoListExtendedFab = ({
         duration: 300,
         useNativeDriver: false,
       }).start();
-    // There are repos, show it 16 from the bottom
+      // There are repos, show it 16 from the bottom
     } else {
       Animated.timing(fabBottom.current, {
         toValue: windowHeight / 2 - 80,
@@ -97,10 +99,10 @@ export const RepoListExtendedFab = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   noRepos: {
     ...textStyles.headline_01,
-    color: legacyTheme.colors.on_surface_light,
+    color: theme.colors.on_surface,
     opacity: 0.4,
     position: 'absolute',
     textAlign: 'center',

@@ -16,7 +16,14 @@ import {Settings} from './views/settings/settings';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {DatabaseLoadedContext} from './constants/database-loaded-context';
-import {lightNavTheme, lightPaperTheme, legacyTheme} from './constants/theme';
+import {
+  lightNavTheme,
+  lightPaperTheme,
+  legacyTheme,
+  darkNavTheme,
+  darkPaperTheme,
+} from './constants/theme';
+import {DarkModeProvider, useDarkMode} from 'react-native-dark-mode';
 
 // https://github.com/react-navigation/react-navigation/issues/7933#issuecomment-608283552
 // Remove once dep updates resolve this
@@ -24,7 +31,9 @@ YellowBox.ignoreWarnings([
   'Calling `getNode()` on the ref of an Animated component is no longer necessary. You can now directly use the ref instead.',
 ]);
 
-const App = () => {
+const AppBase = () => {
+  const isDarkMode = useDarkMode();
+
   const [isDBLoaded, setIsDBLoaded] = React.useState(false);
 
   React.useEffect(() => {
@@ -74,12 +83,14 @@ const App = () => {
 
   const Stack = createStackNavigator();
 
+  const paperTheme = isDarkMode ? darkPaperTheme : lightPaperTheme;
+
   return (
-    <NavigationContainer theme={lightNavTheme}>
-      <PaperProvider theme={lightPaperTheme}>
+    <NavigationContainer theme={isDarkMode ? darkNavTheme : lightNavTheme}>
+      <PaperProvider theme={paperTheme}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={legacyTheme.colors.background}
+          backgroundColor={paperTheme.colors.background}
         />
         <DatabaseLoadedContext.Provider value={isDBLoaded}>
           <Stack.Navigator headerMode={'none'}>
@@ -92,6 +103,14 @@ const App = () => {
         <SafeAreaView />
       </PaperProvider>
     </NavigationContainer>
+  );
+};
+
+const App = () => {
+  return (
+    <DarkModeProvider>
+      <AppBase />
+    </DarkModeProvider>
   );
 };
 

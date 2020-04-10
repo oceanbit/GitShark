@@ -1,14 +1,14 @@
 import {
   Animated,
-  StyleSheet,
   View,
   TouchableWithoutFeedback,
 } from 'react-native';
 import * as React from 'react';
-import {legacyTheme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {Surface} from 'react-native-paper';
 import {NavigationAwarePortal} from '../navigation-aware-portal/navigation-aware-portal';
 import {MutableRefObject} from 'react';
+import {DynamicStyleSheet, useDynamicStyleSheet} from "react-native-dark-mode";
 type ActionFabReactNode = (toggleAnimation: () => void) => React.ReactNode;
 
 interface ExtendedActionFabProps {
@@ -24,6 +24,7 @@ export const ExtendedActionFab = ({
   fabBottom: fabBottomProps,
   scale: scaleProps,
 }: ExtendedActionFabProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
   const [extended, setExtended] = React.useState(false);
   const [fabSize, setFabSize] = React.useState({height: 0, width: 0});
   const [fabActionSize, setFabActionSize] = React.useState({
@@ -128,7 +129,7 @@ export const ExtendedActionFab = ({
 
   return (
     <NavigationAwarePortal>
-      <Animated.View style={[styles.MainContainer, fabBottomStyle]}>
+      <Animated.View style={[styles.mainContainer, fabBottomStyle]}>
         <Surface style={styles.fabSurface}>
           <Animated.View style={animatedHeight}>
             <Animated.View style={[styles.fabContents, animatedFab]}>
@@ -163,8 +164,8 @@ export const ExtendedActionFab = ({
   );
 };
 
-const styles = StyleSheet.create({
-  MainContainer: {
+const dynamicStyles = new DynamicStyleSheet({
+  mainContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 12,
@@ -175,8 +176,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     zIndex: 10,
-    borderRadius: legacyTheme.roundness,
-    backgroundColor: legacyTheme.colors.accent,
+    borderRadius: theme.roundness,
+    backgroundColor: theme.colors.primary,
     elevation: 6,
   },
   fabContents: {

@@ -1,29 +1,32 @@
 import {TouchableRipple} from 'react-native-paper';
-import {StyleSheet, Text} from 'react-native';
+import {Text} from 'react-native';
 import * as React from 'react';
 import {ExtendedFabBase} from './types';
 import {textStyles} from '../../../constants/text-styles';
+import {theme} from '../../../constants/theme';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 export const NewRepoFab = ({toggleAnimation}: ExtendedFabBase) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
   return (
     <TouchableRipple
-      style={fabStyles.fab}
+      style={styles.fab}
       onPress={() => {
         toggleAnimation();
       }}>
-      <Text style={fabStyles.fabActionText}>New repository</Text>
+      <Text style={styles.fabActionText}>New repository</Text>
     </TouchableRipple>
   );
 };
 
-const fabStyles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   fab: {
     paddingVertical: 12,
     paddingHorizontal: 28,
   },
   fabActionText: {
     ...textStyles.callout,
-    color: 'white',
+    color: theme.colors.on_primary,
     textAlign: 'center',
   },
 });

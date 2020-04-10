@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {StyleSheet} from 'react-native';
-import {legacyTheme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {fs} from '../../constants/fs';
 import git from 'isomorphic-git/index.umd.min.js';
@@ -9,6 +8,7 @@ import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {FolderSelectButton} from '../folder-select-button/folder-select-button';
 import {CloneRepositoryProgressDialog} from '../clone-repository-progress-dialog/clone-repository-progress-dialog';
 import {SharkButton} from '../shark-button/shark-button';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface CloneRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -18,6 +18,8 @@ export const CloneRepositoryDialog = ({
   onDismiss,
   visible,
 }: CloneRepositoryDialogProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const [path, setPath] = React.useState('');
   const [repoUrl, setRepoUrl] = React.useState('');
   const [repoName, setRepoName] = React.useState('');
@@ -118,7 +120,7 @@ export const CloneRepositoryDialog = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   errorBox: {
     marginTop: 8,
   },
@@ -132,11 +134,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     borderWidth: 1,
-    borderColor: legacyTheme.colors.outlineColor,
-    borderRadius: legacyTheme.roundness,
+    borderColor: theme.colors.divider,
+    borderRadius: theme.roundness,
   },
   cancelBtn: {
-    borderColor: legacyTheme.colors.outlineColor,
+    borderColor: theme.colors.divider,
     borderWidth: 2,
     marginRight: 16,
   },
