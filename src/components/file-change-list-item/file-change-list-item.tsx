@@ -1,10 +1,15 @@
 import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
-import {legacyTheme} from '../../constants/theme';
+import {legacyTheme, theme} from '../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {textStyles} from '../../constants/text-styles';
 import {ChangesArrayItem} from '../../services/git';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
 
 interface FileChangeListItemProps {
   fileName: string;
@@ -18,6 +23,13 @@ export const FileChangeListItem = ({
   fileStatus,
   style = {},
 }: FileChangeListItemProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+  const change_addition = useDynamicValue(theme.colors.change_addition);
+  const change_removal = useDynamicValue(theme.colors.change_removal);
+  const change_mixed = useDynamicValue(theme.colors.change_mixed);
+  const divider = useDynamicValue(theme.colors.divider);
+  const accent = useDynamicValue(theme.colors.primary);
+
   const statusIcon = React.useMemo(() => {
     switch (fileStatus) {
       case 'added':
@@ -25,7 +37,7 @@ export const FileChangeListItem = ({
           <Icon
             name="plus-circle"
             size={24}
-            color={legacyTheme.colors.change_addition_light}
+            color={change_addition}
             style={styles.changeIcon}
           />
         );
@@ -34,7 +46,7 @@ export const FileChangeListItem = ({
           <Icon
             name="minus-circle"
             size={24}
-            color={legacyTheme.colors.change_removal_light}
+            color={change_removal}
             style={styles.changeIcon}
           />
         );
@@ -44,31 +56,31 @@ export const FileChangeListItem = ({
           <Icon
             name="dots-horizontal-circle"
             size={24}
-            color={legacyTheme.colors.change_mixed_light}
+            color={change_mixed}
             style={styles.changeIcon}
           />
         );
     }
-  }, [fileStatus]);
+  }, [fileStatus, change_addition, change_removal, change_mixed]);
   return (
     <TouchableRipple
       style={[style, styles.listItemContainer]}
       onPress={onPress}
-      rippleColor={legacyTheme.colors.outlineColor}>
+      rippleColor={divider}>
       <View style={styles.listItemView}>
         {statusIcon}
         <Text style={styles.fileName}>{fileName}</Text>
-        <Icon name="chevron-right" size={24} color={legacyTheme.colors.accent} />
+        <Icon name="chevron-right" size={24} color={accent} />
       </View>
     </TouchableRipple>
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   listItemContainer: {
     borderStyle: 'solid',
-    borderColor: legacyTheme.colors.outlineColor,
-    borderRadius: legacyTheme.roundness,
+    borderColor: theme.colors.divider,
+    borderRadius: theme.roundness,
     borderWidth: 1,
     paddingLeft: 12,
     paddingVertical: 12,
@@ -87,5 +99,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     marginRight: 12,
     ...textStyles.body_01,
+    color: theme.colors.on_surface,
   },
 });

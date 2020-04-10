@@ -1,17 +1,20 @@
 import * as React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import git from 'isomorphic-git/index.umd.min.js';
 
 import {RepoContext} from '../../constants/repo-context';
 import {ChangesArrayItem, getRepoStatus} from '../../services/git';
-import {legacyTheme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {fs} from '../../constants/fs';
 import {UnstagedChanges} from './unstaged-changes';
 import {StagedChanges} from './staged-changes';
 import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
 import {useRoute} from '@react-navigation/native';
+import {DynamicStyleSheet, useDynamicStyleSheet} from "react-native-dark-mode";
 
 export const RepositoryChanges = () => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const route = useRoute<any>();
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const {repo} = React.useContext(RepoContext);
@@ -117,7 +120,7 @@ export const RepositoryChanges = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   container: {
     height: '100%',
   },
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
     height: '50%',
   },
   firstSection: {
-    borderBottomColor: legacyTheme.colors.outlineColor,
+    borderBottomColor: theme.colors.divider,
     borderBottomWidth: 1,
   },
   fab: {

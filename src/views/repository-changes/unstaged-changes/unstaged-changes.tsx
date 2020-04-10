@@ -3,12 +3,12 @@ import {
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
-  StyleSheet,
 } from 'react-native';
 import {SharkSubheader} from '../../../components/shark-subheader/shark-subheader';
 import {FileChangeListItemWithCheckbox} from '../../../components/file-change-list-item/file-change-list-item-with-checkbox';
 import {ChangesArrayItem} from '../../../services/git';
-import {legacyTheme} from '../../../constants/theme';
+import {theme} from '../../../constants/theme';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface UnstagedChangesProps {
   addToStaged: (changes: ChangesArrayItem[]) => Promise<void>;
@@ -19,6 +19,8 @@ export const UnstagedChanges = ({
   addToStaged,
   unstagedChanges,
 }: UnstagedChangesProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const [selectedUnstagedChanges, setSelectedUnstagedChanges] = React.useState<
     ChangesArrayItem[]
   >([]);
@@ -48,7 +50,7 @@ export const UnstagedChanges = ({
 
   const toggleSelected = (change: ChangesArrayItem) => {
     const filteredUnstaged = selectedUnstagedChanges.filter(
-      (unChange) => unChange.fileName !== change.fileName,
+      unChange => unChange.fileName !== change.fileName,
     );
     // The array does not contain the item
     if (filteredUnstaged.length !== selectedUnstagedChanges.length) {
@@ -67,9 +69,9 @@ export const UnstagedChanges = ({
         style={showUnstagedDivider ? styles.underlineHeader : {}}
       />
       <ScrollView style={styles.changesList} onScroll={onUnstagedScroll}>
-        {unstagedChanges.map((props) => {
+        {unstagedChanges.map(props => {
           const isChecked = !!selectedUnstagedChanges.find(
-            (change) => change.fileName === props.fileName,
+            change => change.fileName === props.fileName,
           );
           return (
             <FileChangeListItemWithCheckbox
@@ -85,12 +87,12 @@ export const UnstagedChanges = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   changesList: {
     paddingHorizontal: 16,
   },
   underlineHeader: {
-    borderBottomColor: legacyTheme.colors.outlineColor,
+    borderBottomColor: theme.colors.divider,
     borderBottomWidth: 1,
   },
 });

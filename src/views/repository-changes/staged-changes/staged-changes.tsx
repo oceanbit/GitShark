@@ -3,13 +3,13 @@ import {
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
-  StyleSheet,
 } from 'react-native';
 import {SharkSubheader} from '../../../components/shark-subheader/shark-subheader';
 import {FileChangeListItemWithCheckbox} from '../../../components/file-change-list-item/file-change-list-item-with-checkbox';
 import {ChangesArrayItem} from '../../../services/git';
-import {legacyTheme} from '../../../constants/theme';
+import {theme} from '../../../constants/theme';
 import {useNavigation} from '@react-navigation/native';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface StagedChangesProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
@@ -20,6 +20,8 @@ export const StagedChanges = ({
   removeFromStaged,
   stagedChanges,
 }: StagedChangesProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const history = useNavigation();
 
   const [selectedStagedChanges, setSelectedStagedChanges] = React.useState<
@@ -54,7 +56,7 @@ export const StagedChanges = ({
 
   const toggleSelected = (change: ChangesArrayItem) => {
     const filteredUnstaged = selectedStagedChanges.filter(
-      (isChange) => isChange.fileName !== change.fileName,
+      isChange => isChange.fileName !== change.fileName,
     );
     // The array does not contain the item
     if (filteredUnstaged.length !== selectedStagedChanges.length) {
@@ -73,9 +75,9 @@ export const StagedChanges = ({
         style={showStagedDivider ? styles.underlineHeader : {}}
       />
       <ScrollView style={styles.changesList} onScroll={onStagedScroll}>
-        {stagedChanges.map((props) => {
+        {stagedChanges.map(props => {
           const isChecked = !!selectedStagedChanges.find(
-            (change) => change.fileName === props.fileName,
+            change => change.fileName === props.fileName,
           );
           return (
             <FileChangeListItemWithCheckbox
@@ -91,12 +93,12 @@ export const StagedChanges = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   changesList: {
     paddingHorizontal: 16,
   },
   underlineHeader: {
-    borderBottomColor: legacyTheme.colors.outlineColor,
+    borderBottomColor: theme.colors.divider,
     borderBottomWidth: 1,
   },
 });
