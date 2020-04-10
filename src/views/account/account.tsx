@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {legacyTheme} from '../../constants/theme';
 import {AppBar} from '../../components/app-bar/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader/shark-subheader';
 import {textStyles} from '../../constants/text-styles';
@@ -9,8 +8,12 @@ import {TouchableRipple, Checkbox} from 'react-native-paper';
 import {SharkButton} from '../../components/shark-button/shark-button';
 import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-pic';
 import {SharkTextInput} from '../../components/shark-text-input/shark-text-input';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {theme} from '../../constants/theme';
 
 export const Account = () => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const history = useNavigation();
 
   return (
@@ -72,7 +75,7 @@ export const Account = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   container: {},
   signinGithubButton: {
     marginBottom: 24,
@@ -81,7 +84,7 @@ const styles = StyleSheet.create({
   },
   commitAuthoringHeader: {
     borderTopWidth: 1,
-    borderTopColor: legacyTheme.colors.border,
+    borderTopColor: theme.colors.divider,
   },
   commitAuthorContainer: {
     paddingHorizontal: 16,
@@ -97,9 +100,11 @@ const styles = StyleSheet.create({
   },
   authorName: {
     ...textStyles.caption_01,
+    color: theme.colors.on_surface,
   },
   authorEmail: {
     ...textStyles.caption_02,
+    color: theme.colors.on_surface,
   },
   useGHCredsContainer: {
     opacity: 0.4,
@@ -117,6 +122,7 @@ const styles = StyleSheet.create({
   },
   useGHText: {
     ...textStyles.body_01,
+    color: theme.colors.on_surface,
   },
   textInput: {
     marginTop: 16,

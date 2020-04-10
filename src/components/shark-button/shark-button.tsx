@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {StyleSheet, View, StyleProp, ViewStyle, Text} from 'react-native';
+import {View, StyleProp, ViewStyle, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {legacyTheme, theme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {textStyles} from '../../constants/text-styles';
 import {TouchableRipple} from 'react-native-paper';
 import {
@@ -31,7 +31,7 @@ export const SharkButton = ({
 }: SharkTextInputProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
-  const on_surface = useDynamicValue(theme.colors.on_surface);
+  const on_primary = useDynamicValue(theme.colors.on_primary);
 
   const buttonPaddingStyle = icon ? styles.iconButton : styles.noIconButton;
   const buttonTypeStyle =
@@ -42,7 +42,7 @@ export const SharkButton = ({
         };
   const buttonTextStyle =
     type === 'outline' ? styles.outlineButtonText : styles.primaryButtonText;
-  const iconColor = type === 'outline' ? accent : on_surface;
+  const iconColor = type === 'outline' ? accent : on_primary;
   const stateStyle = disabled ? styles.disabled : {};
   return (
     <TouchableRipple

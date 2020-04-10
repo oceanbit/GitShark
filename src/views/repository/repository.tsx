@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
-import {StyleSheet, Alert} from 'react-native';
-import {legacyTheme, theme} from '../../constants/theme';
+import {Alert} from 'react-native';
+import {theme} from '../../constants/theme';
 import {RepositoryHeader} from '../../components/repository-header/repository-header';
 import {RepoContext} from '../../constants/repo-context';
 import {useRoute} from '@react-navigation/native';

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
 import {textStyles} from '../../constants/text-styles';
-import {legacyTheme, theme} from '../../constants/theme';
-import {DynamicStyleSheet, useDynamicStyleSheet} from "react-native-dark-mode";
+import {theme} from '../../constants/theme';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface AppDialogProps {
   title: string;
@@ -53,7 +53,7 @@ const dynamicStyles = new DynamicStyleSheet({
     paddingHorizontal: 24,
     paddingTop: 20,
     paddingBottom: 16,
-    backgroundColor: theme.colors.floating_surface
+    backgroundColor: theme.colors.floating_surface,
   },
   dialogTitle: {
     marginBottom: 4,

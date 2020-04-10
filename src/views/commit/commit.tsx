@@ -4,13 +4,11 @@ import {
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
-  StyleSheet,
   Text,
   View,
 } from 'react-native';
 import {RepoContext} from '../../constants/repo-context';
-import {legacyTheme} from '../../constants/theme';
-import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
+import {theme} from '../../constants/theme';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {SharkIconButton} from '../../components/shark-icon-button/shark-icon-button';
 import {textStyles} from '../../constants/text-styles';
@@ -19,23 +17,10 @@ import {SharkTextInput} from '../../components/shark-text-input/shark-text-input
 import {SharkButton} from '../../components/shark-button/shark-button';
 import {ChangesArrayItem} from '../../services/git';
 import {commit} from '../../services/git/commit';
-
-const mockFileChanges = [
-  {
-    fileName: 'application/utils/ui/Adapter.kt',
-    fileStatus: 'added' as 'added',
-  },
-  {
-    fileName: 'application/utils/ui/Adapter2.kt',
-    fileStatus: 'added' as 'added',
-  },
-  {
-    fileName: 'application/utils/ui/Adapter3.kt',
-    fileStatus: 'added' as 'added',
-  },
-];
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 export const Commit = () => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
   const {repo} = React.useContext(RepoContext);
   const route = useRoute<any>();
   const files = JSON.parse(route!.params!.files) as ChangesArrayItem[];
@@ -108,7 +93,7 @@ export const Commit = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   commitHeaderContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -118,18 +103,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   underlineHeader: {
-    borderBottomColor: legacyTheme.colors.outlineColor,
+    borderBottomColor: theme.colors.divider,
     borderBottomWidth: 1,
   },
   commitHeader: {
     marginLeft: 8,
     ...textStyles.headline_03,
+    color: theme.colors.on_surface,
   },
   fileChanges: {
     padding: 8,
   },
   commitData: {
-    borderTopColor: legacyTheme.colors.outlineColor,
+    borderTopColor: theme.colors.divider,
     borderTopWidth: 1,
     padding: 16,
   },

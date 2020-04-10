@@ -1,6 +1,6 @@
-import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
-import {legacyTheme, theme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {textStyles} from '../../constants/text-styles';

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {legacyTheme, theme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import RNFileSelector from 'react-native-file-selector';
 import {textStyles} from '../../constants/text-styles';
 import {

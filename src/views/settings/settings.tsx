@@ -1,13 +1,12 @@
 import * as React from 'react';
 import {
-  StyleSheet,
   View,
   Text,
   ScrollView,
   Dimensions,
   TouchableWithoutFeedback,
 } from 'react-native';
-import {legacyTheme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group/shark-button-toggle-group';
 import {AppBar} from '../../components/app-bar/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader/shark-subheader';
@@ -20,10 +19,21 @@ import {SlideUpDownSettingsAnimation} from '../../components/slide-up-down-setti
 import SplitVideo from '../../../assets/videos/split.mp4';
 import Video from 'react-native-video';
 import RoundCheckbox from './RoundCheckbox';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
 
 type StagingTypes = 'split' | 'sheet';
 
 export const Settings = () => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+  const accent = useDynamicValue(theme.colors.primary);
+  const on_surface_secondary = useDynamicValue(
+    theme.colors.on_surface_secondary,
+  );
+
   const history = useNavigation();
   const [direction, setDirection] = React.useState(false);
   const [styleOfStaging, setStyleOfStaging] = React.useState<StagingTypes>(
@@ -56,7 +66,7 @@ export const Settings = () => {
             style={styles.arrowIcon}
             name="arrow-right"
             size={24}
-            color={legacyTheme.colors.accent}
+            color={accent}
           />
         </>
       </TouchableRipple>
@@ -92,16 +102,14 @@ export const Settings = () => {
             <View style={styles.checkboxContainer}>
               <RoundCheckbox
                 checked={styleOfStaging === 'split'}
-                backgroundColor={legacyTheme.colors.accent}
-                borderColor={legacyTheme.colors.on_surface_secondary_light}
+                backgroundColor={accent}
+                borderColor={on_surface_secondary}
                 size={18}
               />
               <Text
                 style={[
                   styles.checkboxText,
-                  styleOfStaging === 'split'
-                    ? {color: legacyTheme.colors.accent}
-                    : {},
+                  styleOfStaging === 'split' ? {color: accent} : {},
                 ]}>
                 Split
               </Text>
@@ -119,16 +127,14 @@ export const Settings = () => {
             <View style={styles.checkboxContainer}>
               <RoundCheckbox
                 checked={styleOfStaging === 'sheet'}
-                backgroundColor={legacyTheme.colors.accent}
-                borderColor={legacyTheme.colors.on_surface_secondary_light}
+                backgroundColor={accent}
+                borderColor={on_surface_secondary}
                 size={18}
               />
               <Text
                 style={[
                   styles.checkboxText,
-                  styleOfStaging === 'sheet'
-                    ? {color: legacyTheme.colors.accent}
-                    : {},
+                  styleOfStaging === 'sheet' ? {color: accent} : {},
                 ]}>
                 Sheet
               </Text>
@@ -140,11 +146,10 @@ export const Settings = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   container: {
-    backgroundColor: 'white',
     borderTopWidth: 1,
-    borderTopColor: legacyTheme.colors.outlineColor,
+    borderTopColor: theme.colors.divider,
   },
   accountSection: {
     paddingVertical: 12,
@@ -163,22 +168,24 @@ const styles = StyleSheet.create({
   },
   accountCallout: {
     ...textStyles.callout,
+    color: theme.colors.on_surface,
   },
   accountText: {
     display: 'flex',
     flexDirection: 'column',
     marginRight: 16,
     flexGrow: 1,
+    color: theme.colors.on_surface,
   },
   accountBody: {
     ...textStyles.body_02,
-    color: legacyTheme.colors.on_surface_secondary_light,
+    color: theme.colors.on_surface_secondary,
   },
   themeText: {
     marginVertical: 16,
     marginHorizontal: 16,
     ...textStyles.caption_02,
-    color: legacyTheme.colors.on_surface_secondary_light,
+    color: theme.colors.on_surface_secondary,
   },
   arrowIcon: {
     padding: 8,
@@ -197,5 +204,6 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     flexShrink: 0,
     ...textStyles.body_01,
+    color: theme.colors.on_surface_secondary,
   },
 });

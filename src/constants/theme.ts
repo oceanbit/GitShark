@@ -180,15 +180,3 @@ export const theme = {
     surface: new DynamicValue(colors.surface_light, colors.surface_dark),
   },
 };
-
-export const legacyTheme = {
-  ...lightPaperTheme,
-  ...lightNavTheme,
-  lessRoundness: baseTheme.lessRoundness,
-  colors: {
-    ...lightPaperTheme.colors,
-    ...lightNavTheme.colors,
-    ...colors,
-    outlineColor: colors.divider_light,
-  },
-};

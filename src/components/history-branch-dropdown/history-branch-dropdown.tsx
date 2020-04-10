@@ -1,10 +1,15 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import * as React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {legacyTheme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {TouchableRipple} from 'react-native-paper';
 import {textStyles} from '../../constants/text-styles';
 import {SharkIconButton} from '../shark-icon-button/shark-icon-button';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
 
 interface HistoryBranchDropdownProps {
   branchName: string;
@@ -16,11 +21,15 @@ export const HistoryBranchDropdown = ({
   favorite,
   onFavorite,
 }: HistoryBranchDropdownProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+  const accent = useDynamicValue(theme.colors.primary);
+  const rippleColor = useDynamicValue(theme.colors.ripple_surface);
+
   return (
     <TouchableRipple
       style={styles.dropdownContinaer}
       onPress={() => {}}
-      rippleColor={legacyTheme.colors.outlineColor}>
+      rippleColor={rippleColor}>
       <View style={styles.dropdownView}>
         <Text numberOfLines={1} style={styles.branchName}>
           {branchName}
@@ -34,7 +43,7 @@ export const HistoryBranchDropdown = ({
         <Icon
           name="chevron-down"
           size={24}
-          color={legacyTheme.colors.accent}
+          color={accent}
           style={styles.dropdownButton}
         />
       </View>
@@ -42,7 +51,7 @@ export const HistoryBranchDropdown = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   dropdownContinaer: {
     paddingLeft: 16,
   },
@@ -55,6 +64,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     ...textStyles.callout,
     fontWeight: 'bold',
+    color: theme.colors.on_surface,
   },
   starButton: {
     marginRight: 7,
@@ -62,7 +72,7 @@ const styles = StyleSheet.create({
   buttonDivider: {
     height: 36,
     width: 1,
-    backgroundColor: legacyTheme.colors.outlineColor,
+    backgroundColor: theme.colors.divider,
   },
   dropdownButton: {
     padding: 16,

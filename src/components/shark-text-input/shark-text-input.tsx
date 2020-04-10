@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  StyleSheet,
   View,
   TextProps,
   TextInput,
@@ -10,7 +9,7 @@ import {
 } from 'react-native';
 import {textStyles} from '../../constants/text-styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {legacyTheme, theme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,

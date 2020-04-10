@@ -2,7 +2,6 @@
 import * as React from 'react';
 import {
   Animated,
-  StyleSheet,
   View,
   Text,
   StyleProp,
@@ -10,8 +9,9 @@ import {
 } from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import MaskedView from '@react-native-community/masked-view';
-import {legacyTheme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {textStyles} from '../../constants/text-styles';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface SharkButtonToggleGroupProps {
   values: string[];
@@ -23,6 +23,8 @@ export const SharkButtonToggleGroup = ({
   onSelect,
   style,
 }: SharkButtonToggleGroupProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const [prevSelectedIndex, setPrevSelectedIndex] = React.useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const selectedPanelLeft = React.useRef(new Animated.Value(0));
@@ -113,14 +115,14 @@ export const SharkButtonToggleGroup = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   container: {
     height: 48,
     position: 'relative',
-    borderRadius: legacyTheme.roundness,
-    borderColor: legacyTheme.colors.border,
+    borderRadius: theme.roundness,
+    borderColor: theme.colors.divider,
     borderWidth: 1,
-    overflow: "hidden",
+    overflow: 'hidden',
     padding: 4,
   },
   maskViewContainer: {
@@ -131,18 +133,18 @@ const styles = StyleSheet.create({
   blueMaskContainer: {
     position: 'absolute',
     backgroundColor: 'black',
-    borderRadius: legacyTheme.lessRoundness,
+    borderRadius: theme.lessRoundness,
     height: '100%',
     left: 0,
     top: 0,
   },
   blueMask: {
-    backgroundColor: legacyTheme.colors.accent,
+    backgroundColor: theme.colors.primary,
   },
   secondaryBG: {
     width: '100%',
     height: '100%',
-    backgroundColor: legacyTheme.colors.on_surface_secondary_light,
+    backgroundColor: theme.colors.on_surface_secondary,
   },
   baseButtonContainer: {
     flex: 1,
@@ -169,10 +171,10 @@ const styles = StyleSheet.create({
     ...textStyles.callout,
   },
   whiteText: {
-    color: 'white',
+    color: theme.colors.on_primary,
     zIndex: 1,
   },
   secondaryText: {
-    color: legacyTheme.colors.on_surface_secondary_light,
+    color: theme.colors.on_surface_secondary,
   },
 });
