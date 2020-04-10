@@ -19,7 +19,7 @@ import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-
 import {SlideUpDownSettingsAnimation} from '../../components/slide-up-down-settings-animation/slide-up-down-settings-animation';
 import SplitVideo from '../../../assets/videos/split.mp4';
 import Video from 'react-native-video';
-import RoundCheckbox from 'rn-round-checkbox';
+import RoundCheckbox from './RoundCheckbox';
 
 type StagingTypes = 'split' | 'sheet';
 
@@ -92,14 +92,8 @@ export const Settings = () => {
             <View style={styles.checkboxContainer}>
               <RoundCheckbox
                 checked={styleOfStaging === 'split'}
-                backgroundColor={
-                  styleOfStaging === 'split' ? theme.colors.accent : 'white'
-                }
-                borderColor={
-                  styleOfStaging === 'split'
-                    ? 'white'
-                    : theme.colors.on_surface_secondary_light
-                }
+                backgroundColor={theme.colors.accent}
+                borderColor={theme.colors.on_surface_secondary_light}
                 size={18}
               />
               <Text
@@ -125,14 +119,8 @@ export const Settings = () => {
             <View style={styles.checkboxContainer}>
               <RoundCheckbox
                 checked={styleOfStaging === 'sheet'}
-                backgroundColor={
-                  styleOfStaging === 'sheet' ? theme.colors.accent : 'white'
-                }
-                borderColor={
-                  styleOfStaging === 'sheet'
-                    ? 'white'
-                    : theme.colors.on_surface_secondary_light
-                }
+                backgroundColor={theme.colors.accent}
+                borderColor={theme.colors.on_surface_secondary_light}
                 size={18}
               />
               <Text
