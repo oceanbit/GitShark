@@ -25,6 +25,7 @@ import {
   darkPaperTheme,
   lightNavTheme,
   lightPaperTheme,
+  colors,
 } from './constants/theme';
 import {DarkModeProvider} from 'react-native-dark-mode';
 import DefaultPreference from 'react-native-default-preference';
@@ -35,6 +36,7 @@ import {
 import {useSystemDarkMode} from './hooks';
 import {DarkModeOptionTypes, SetDarkModeContext} from './constants';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 YellowBox.ignoreWarnings([
   /**
@@ -141,6 +143,13 @@ const App = () => {
 
   const isDarkMode =
     localDarkMode === 'auto' ? isSystemDarkMode : localDarkMode === 'dark';
+
+  React.useEffect(() => {
+    const surfaceColor = isDarkMode
+      ? colors.surface_dark
+      : colors.surface_light;
+    changeNavigationBarColor(surfaceColor, !isDarkMode, false);
+  }, [isDarkMode]);
 
   React.useEffect(() => {
     DefaultPreference.get('styleOfStaging').then(val => {
