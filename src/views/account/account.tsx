@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple, Checkbox} from 'react-native-paper';
 import {SharkButton} from '../../components/shark-button/shark-button';
 import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-pic';
+import {SharkTextInput} from '../../components/shark-text-input/shark-text-input';
 
 export const Account = () => {
   const history = useNavigation();
@@ -47,6 +48,25 @@ export const Account = () => {
             <Text style={styles.useGHText}>Use GitHub credentials</Text>
           </>
         </TouchableRipple>
+        <SharkTextInput
+          style={styles.textInput}
+          placeholder="Name"
+          value=""
+          onChangeText={() => {}}
+        />
+        <SharkTextInput
+          style={styles.textInput}
+          placeholder="Email"
+          value=""
+          onChangeText={() => {}}
+        />
+        <SharkButton
+          style={styles.saveButton}
+          text="Save changes"
+          onPress={() => {}}
+          type="primary"
+          disabled={true}
+        />
       </View>
     </View>
   );
@@ -97,5 +117,11 @@ const styles = StyleSheet.create({
   },
   useGHText: {
     ...textStyles.body_01,
+  },
+  textInput: {
+    marginTop: 16,
+  },
+  saveButton: {
+    marginVertical: 24,
   },
 });
