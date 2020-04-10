@@ -22,6 +22,7 @@ export default class RoundCheckbox extends React.PureComponent {
     iconColor: PropTypes.string,
     borderColor: PropTypes.string,
     checked: PropTypes.bool,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -32,6 +33,7 @@ export default class RoundCheckbox extends React.PureComponent {
     borderColor: 'grey',
     checked: false,
     onValueChange: () => {},
+    style: {},
   };
 
   state = {
@@ -46,18 +48,17 @@ export default class RoundCheckbox extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
     if (this.props.checked !== prevProps.checked) {
-      console.log(this.state.scaleAndOpacityOfCheckbox);
       if (this.props.checked) {
         Animated.timing(this.state.scaleAndOpacityOfCheckbox, {
           toValue: 1,
           duration: 300,
-          useNativeDriver: false,
+          useNativeDriver: true,
         }).start();
       } else {
         Animated.timing(this.state.scaleAndOpacityOfCheckbox, {
           toValue: 0,
           duration: 300,
-          useNativeDriver: false,
+          useNativeDriver: true,
         }).start();
       }
     }
@@ -90,7 +91,10 @@ export default class RoundCheckbox extends React.PureComponent {
     };
 
     return (
-      <TouchableWithoutFeedback hitSlop={hitSlop} onPress={this._onPress}>
+      <TouchableWithoutFeedback
+        hitSlop={hitSlop}
+        onPress={this._onPress}
+        style={this.props.style}>
         <View style={[styles.parentWrapper]}>
           <View
             shouldRasterizeIOS={true}
