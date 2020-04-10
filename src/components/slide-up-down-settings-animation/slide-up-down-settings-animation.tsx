@@ -6,9 +6,13 @@ import SheetDownVideo from '../../../assets/videos/sheet_down.mp4';
 
 interface SlideUpDownSettingsAnimationProps {
   direction: 'up' | 'down';
+  vidHeight: number;
+  vidWidth: number;
 }
 export const SlideUpDownSettingsAnimation = ({
   direction,
+  vidHeight,
+  vidWidth,
 }: SlideUpDownSettingsAnimationProps) => {
   const slideUpVideo = React.useRef<Video>();
   const slideDownVideo = React.useRef<Video>();
@@ -33,7 +37,7 @@ export const SlideUpDownSettingsAnimation = ({
       <Video
         source={SheetUpVideo}
         ref={slideUpVideo as any}
-        style={{height: 400, width: 400}}
+        style={{height: vidHeight, width: vidWidth}}
         muted={true}
         controls={false}
         resizeMode={'contain'}
@@ -50,8 +54,8 @@ export const SlideUpDownSettingsAnimation = ({
         style={{
           position: 'absolute',
           opacity: playUpVideo ? 1 : 0,
-          height: 400,
-          width: 400,
+          height: vidHeight,
+          width: vidWidth,
         }}
         muted={true}
         controls={false}

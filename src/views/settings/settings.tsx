@@ -1,5 +1,12 @@
 import * as React from 'react';
-import {StyleSheet, View, Text, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  Dimensions,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import {theme} from '../../constants/theme';
 import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group/shark-button-toggle-group';
 import {AppBar} from '../../components/app-bar/app-bar';
@@ -10,11 +17,21 @@ import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-pic';
 import {SlideUpDownSettingsAnimation} from '../../components/slide-up-down-settings-animation/slide-up-down-settings-animation';
-import {SharkButton} from '../../components/shark-button/shark-button';
+import SplitVideo from '../../../assets/videos/split.mp4';
+import Video from 'react-native-video';
+import RoundCheckbox from 'rn-round-checkbox';
+
+type StagingTypes = 'split' | 'sheet';
 
 export const Settings = () => {
   const history = useNavigation();
   const [direction, setDirection] = React.useState(false);
+  const [styleOfStaging, setStyleOfStaging] = React.useState<StagingTypes>(
+    'split',
+  );
+
+  const videoWidth = (Dimensions.get('window').width - 24 * 3) / 2;
+  const videoHeight = videoWidth * 2;
 
   return (
     <ScrollView style={styles.container}>
@@ -54,8 +71,83 @@ export const Settings = () => {
         theme.
       </Text>
       <SharkSubheader calloutText="Staging layout" />
-      <SharkButton onPress={() => setDirection(!direction)} text={'Press me'} />
-      <SlideUpDownSettingsAnimation direction={direction ? 'down' : 'up'} />
+      <View
+        style={{
+          display: 'flex',
+          justifyContent: 'space-around',
+          flexDirection: 'row',
+          marginBottom: 20,
+        }}>
+        <TouchableWithoutFeedback onPress={() => setStyleOfStaging('split')}>
+          <View style={styles.stagingVideoContainer}>
+            <Video
+              source={SplitVideo}
+              style={{height: videoHeight, width: videoWidth}}
+              muted={true}
+              controls={false}
+              resizeMode={'contain'}
+              paused={true}
+              repeat={false}
+            />
+            <View style={styles.checkboxContainer}>
+              <RoundCheckbox
+                checked={styleOfStaging === 'split'}
+                backgroundColor={
+                  styleOfStaging === 'split' ? theme.colors.accent : 'white'
+                }
+                borderColor={
+                  styleOfStaging === 'split'
+                    ? 'white'
+                    : theme.colors.on_surface_secondary_light
+                }
+                size={18}
+              />
+              <Text
+                style={[
+                  styles.checkboxText,
+                  styleOfStaging === 'split'
+                    ? {color: theme.colors.accent}
+                    : {},
+                ]}>
+                Split
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+
+        <TouchableWithoutFeedback onPress={() => setStyleOfStaging('sheet')}>
+          <View style={styles.stagingVideoContainer}>
+            <SlideUpDownSettingsAnimation
+              vidHeight={videoHeight}
+              vidWidth={videoWidth}
+              direction={styleOfStaging === 'sheet' ? 'down' : 'up'}
+            />
+            <View style={styles.checkboxContainer}>
+              <RoundCheckbox
+                checked={styleOfStaging === 'sheet'}
+                backgroundColor={
+                  styleOfStaging === 'sheet' ? theme.colors.accent : 'white'
+                }
+                borderColor={
+                  styleOfStaging === 'sheet'
+                    ? 'white'
+                    : theme.colors.on_surface_secondary_light
+                }
+                size={18}
+              />
+              <Text
+                style={[
+                  styles.checkboxText,
+                  styleOfStaging === 'sheet'
+                    ? {color: theme.colors.accent}
+                    : {},
+                ]}>
+                Sheet
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
     </ScrollView>
   );
 };
@@ -102,5 +194,20 @@ const styles = StyleSheet.create({
   },
   arrowIcon: {
     padding: 8,
+  },
+  stagingVideoContainer: {
+    flexDirection: 'column',
+  },
+  checkboxContainer: {
+    marginTop: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  checkboxText: {
+    marginLeft: 8,
+    flexShrink: 0,
+    ...textStyles.body_01,
   },
 });
