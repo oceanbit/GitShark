@@ -1,9 +1,14 @@
 import * as React from 'react';
 import {StyleSheet, View, StyleProp, ViewStyle, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {legacyTheme} from '../../constants/theme';
+import {legacyTheme, theme} from '../../constants/theme';
 import {textStyles} from '../../constants/text-styles';
 import {TouchableRipple} from 'react-native-paper';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
 
 interface SharkTextInputProps {
   onPress: () => void;
@@ -21,12 +26,16 @@ export const SharkButton = ({
   type = 'outline',
   disabled = false,
 }: SharkTextInputProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+  const accent = useDynamicValue(theme.colors.primary);
+  const on_surface = useDynamicValue(theme.colors.on_surface);
+
   const buttonPaddingStyle = icon ? styles.iconButton : styles.noIconButton;
   const buttonTypeStyle =
     type === 'outline' ? styles.outlineButton : styles.primaryButton;
   const buttonTextStyle =
     type === 'outline' ? styles.outlineButtonText : styles.primaryButtonText;
-  const iconColor = type === 'outline' ? legacyTheme.colors.accent : 'white';
+  const iconColor = type === 'outline' ? accent : on_surface;
   const stateStyle = disabled ? styles.disabled : {};
   return (
     <TouchableRipple
@@ -51,9 +60,9 @@ export const SharkButton = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   button: {
-    borderRadius: legacyTheme.roundness,
+    borderRadius: theme.roundness,
     alignContent: 'center',
     minHeight: 24,
     justifyContent: 'center',
@@ -69,18 +78,18 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   outlineButton: {
-    borderColor: legacyTheme.colors.outlineColor,
+    borderColor: theme.colors.divider,
     borderWidth: 2,
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
   },
   primaryButton: {
-    backgroundColor: legacyTheme.colors.accent,
+    backgroundColor: theme.colors.primary,
   },
   outlineButtonText: {
-    color: legacyTheme.colors.accent,
+    color: theme.colors.primary,
   },
   primaryButtonText: {
-    color: 'white',
+    color: theme.colors.on_primary,
   },
   iconView: {
     marginRight: 8,

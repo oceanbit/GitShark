@@ -146,6 +146,10 @@ export const theme = {
       colors.error_bubble_light,
       colors.error_bubble_dark,
     ),
+    floating_surface: new DynamicValue(
+      colors.floating_surface_light,
+      colors.floating_surface_dark,
+    ),
     on_change: new DynamicValue(colors.on_change_light, colors.on_change_dark),
     on_error: new DynamicValue(colors.on_error_light, colors.on_error_dark),
     on_primary: new DynamicValue(

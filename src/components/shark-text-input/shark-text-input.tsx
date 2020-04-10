@@ -74,6 +74,7 @@ export const SharkTextInput = ({
         onChangeText={onChangeText}
         placeholder={placeholder}
         style={[styles.textInput, textAreaStyles]}
+        placeholderTextColor={surfaceSecondary}
         numberOfLines={numberOfLines}
         multiline={multiline}
       />
@@ -102,7 +103,9 @@ const dynamicStyles = new DynamicStyleSheet({
     flexGrow: 1,
     flexShrink: 1,
     margin: 0,
+    backgroundColor: 'transparent',
     padding: 0,
     ...textStyles.body_01,
+    color: theme.colors.on_surface,
   },
 });

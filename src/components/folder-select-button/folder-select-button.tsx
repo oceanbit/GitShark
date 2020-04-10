@@ -2,9 +2,14 @@ import * as React from 'react';
 import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {legacyTheme} from '../../constants/theme';
+import {legacyTheme, theme} from '../../constants/theme';
 import RNFileSelector from 'react-native-file-selector';
 import {textStyles} from '../../constants/text-styles';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
 
 interface FolderSelectButtonProps {
   onFolderSelect: (path: string) => void;
@@ -16,6 +21,9 @@ export const FolderSelectButton = ({
   path,
   style,
 }: FolderSelectButtonProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+  const accent = useDynamicValue(theme.colors.primary);
+
   const selectDirectory = () => {
     RNFileSelector.Show({
       title: 'Select File',
@@ -35,7 +43,7 @@ export const FolderSelectButton = ({
       {!path && (
         <TouchableRipple onPress={() => selectDirectory()} style={style}>
           <View style={styles.selectFolderBtn}>
-            <Icon size={24} name="folder" color={legacyTheme.colors.accent} />
+            <Icon size={24} name="folder" color={accent} />
             <Text style={styles.selectFolderText}>Select folder...</Text>
           </View>
         </TouchableRipple>
@@ -49,7 +57,7 @@ export const FolderSelectButton = ({
               style={[styles.selectFolderText, styles.selectFolderBtnWithPath]}>
               {path}
             </Text>
-            <Icon size={24} name="folder-outline" color={legacyTheme.colors.accent} />
+            <Icon size={24} name="folder-outline" color={accent} />
           </View>
         </TouchableRipple>
       )}
@@ -57,14 +65,14 @@ export const FolderSelectButton = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   selectFolderBtn: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: legacyTheme.colors.outlineColor,
+    borderColor: theme.colors.divider,
     borderWidth: 2,
-    borderRadius: legacyTheme.roundness,
+    borderRadius: theme.roundness,
     fontSize: 16,
     lineHeight: 24,
     paddingVertical: 8,
@@ -72,11 +80,11 @@ const styles = StyleSheet.create({
   },
   selectFolderBtnWithPath: {
     flexGrow: 1,
-    color: legacyTheme.colors.disabled,
+    color: theme.colors.on_surface_secondary,
     marginRight: 12,
   },
   selectFolderText: {
-    color: legacyTheme.colors.accent,
+    color: theme.colors.primary,
     marginLeft: 8,
     ...textStyles.callout,
   },
