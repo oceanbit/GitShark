@@ -81,6 +81,8 @@ export const darkPaperTheme: PaperTheme = {
     accent: colors.primary_dark,
     background: colors.surface_dark,
     error: colors.error_dark,
+    surface: colors.surface_dark,
+    text: colors.on_surface_dark,
   },
 };
 
@@ -92,6 +94,8 @@ export const lightPaperTheme: PaperTheme = {
     accent: colors.primary_light,
     background: colors.surface_light,
     error: colors.error_light,
+    surface: colors.surface_light,
+    text: colors.on_surface_light,
   },
 };
 

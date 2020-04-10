@@ -2,14 +2,15 @@ import {Text, View} from 'react-native';
 import * as React from 'react';
 import {RepoCardCommitMetadata} from './repo-card-commit-metadata';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {legacyTheme} from '../../../constants/theme';
+import {theme} from '../../../constants/theme';
 import {TouchableRipple, Menu} from 'react-native-paper';
 import {Repo} from '../../../entities';
 import dayjs from 'dayjs';
 import {useNavigation} from '@react-navigation/native';
 import {RenameRepositoryDialog} from '../../rename-repository-dialog/rename-repository-dialog';
 import {DeleteRepositoryDialog} from '../../delete-repository-dialog/delete-repository-dialog';
-import {styles} from './repo-card.styles';
+import {dynamicStyles} from './repo-card.styles';
+import {useDynamicStyleSheet, useDynamicValue} from 'react-native-dark-mode';
 
 type DialogActionsType = '' | 'rename' | 'delete';
 interface RepoCardProps {
@@ -17,11 +18,16 @@ interface RepoCardProps {
   onUpdate: () => void;
 }
 export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState<DialogActionsType>('');
   const history = useNavigation();
 
   const updatedFromNow = dayjs(repo.lastUpdated).fromNow(true);
+
+  const accent = useDynamicValue(theme.colors.primary);
+  const ripplePrimary = useDynamicValue(theme.colors.ripple_surface);
 
   return (
     <>
@@ -32,7 +38,7 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
             repoId: repo.id,
           });
         }}
-        rippleColor={legacyTheme.colors.outlineColor}>
+        rippleColor={ripplePrimary}>
         <View>
           <View style={styles.topDisplayRow}>
             <View style={styles.repoNameAndDate}>
@@ -46,15 +52,12 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
             <Menu
               visible={isMenuOpen}
               onDismiss={() => setIsMenuOpen(false)}
+              contentStyle={styles.menu}
               anchor={
                 <TouchableRipple
                   style={styles.moreButtonContainer}
                   onPress={() => setIsMenuOpen(true)}>
-                  <Icon
-                    name="dots-horizontal"
-                    size={24}
-                    color={legacyTheme.colors.accent}
-                  />
+                  <Icon name="dots-horizontal" size={24} color={accent} />
                 </TouchableRipple>
               }>
               <Menu.Item
@@ -75,7 +78,7 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
           </View>
           <View style={styles.displayRow}>
             <View style={styles.branchView}>
-              <Icon name="check-circle" size={16} color={legacyTheme.colors.accent} />
+              <Icon name="check-circle" size={16} color={accent} />
               <Text style={styles.branchName}>{repo.currentBranchName}</Text>
             </View>
             <RepoCardCommitMetadata

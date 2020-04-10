@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {StyleSheet} from 'react-native';
-import {Button} from 'react-native-paper';
-import {legacyTheme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {ErrorMessageBox} from '../error-message-box/error-message-box';
 import {Repo} from 'src/entities';
 import {SharkTextInput} from '../shark-text-input/shark-text-input';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {SharkButton} from '../shark-button/shark-button';
 
 interface RenameRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -17,6 +17,8 @@ export const RenameRepositoryDialog = ({
   visible,
   repo,
 }: RenameRepositoryDialogProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const [repoName, setRepoName] = React.useState('');
   const [errorStr, setErrorStr] = React.useState('');
 
@@ -52,26 +54,24 @@ export const RenameRepositoryDialog = ({
       }
       actions={
         <>
-          <Button
+          <SharkButton
             onPress={() => onDismiss(false)}
-            mode="outlined"
-            color={legacyTheme.colors.accent}
-            style={styles.cancelBtn}>
-            Cancel
-          </Button>
-          <Button
+            type="outline"
+            style={styles.cancelBtn}
+            text={'Cancel'}
+          />
+          <SharkButton
             onPress={() => renameRepo()}
-            mode="contained"
-            color={legacyTheme.colors.accent}>
-            Rename
-          </Button>
+            type="primary"
+            text={'Rename'}
+          />
         </>
       }
     />
   );
 };
 
-const styles = StyleSheet.create({
+export const dynamicStyles = new DynamicStyleSheet({
   errorBox: {
     marginTop: 8,
   },
@@ -82,12 +82,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     borderWidth: 1,
-    borderColor: legacyTheme.colors.outlineColor,
-    borderRadius: legacyTheme.roundness,
+    borderColor: theme.colors.divider,
+    borderRadius: theme.roundness,
   },
   cancelBtn: {
-    borderColor: legacyTheme.colors.outlineColor,
-    borderWidth: 2,
     marginRight: 16,
   },
   dialogActions: {

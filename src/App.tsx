@@ -19,7 +19,6 @@ import {DatabaseLoadedContext} from './constants/database-loaded-context';
 import {
   lightNavTheme,
   lightPaperTheme,
-  legacyTheme,
   darkNavTheme,
   darkPaperTheme,
 } from './constants/theme';
@@ -89,7 +88,7 @@ const AppBase = () => {
     <NavigationContainer theme={isDarkMode ? darkNavTheme : lightNavTheme}>
       <PaperProvider theme={paperTheme}>
         <StatusBar
-          barStyle="dark-content"
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
           backgroundColor={paperTheme.colors.background}
         />
         <DatabaseLoadedContext.Provider value={isDBLoaded}>

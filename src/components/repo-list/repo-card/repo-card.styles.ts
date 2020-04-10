@@ -1,12 +1,12 @@
-import {StyleSheet} from 'react-native';
 import {textStyles} from '../../../constants/text-styles';
-import {legacyTheme} from '../../../constants/theme';
+import {theme} from '../../../constants/theme';
+import {DynamicStyleSheet} from 'react-native-dark-mode';
 
-export const styles = StyleSheet.create({
+export const dynamicStyles = new DynamicStyleSheet({
   cardContainer: {
     borderStyle: 'solid',
-    borderColor: legacyTheme.colors.outlineColor,
-    borderRadius: legacyTheme.roundness,
+    borderColor: theme.colors.divider,
+    borderRadius: theme.roundness,
     borderWidth: 1,
     paddingTop: 8,
     paddingBottom: 16,
@@ -39,9 +39,10 @@ export const styles = StyleSheet.create({
     flexShrink: 1,
     marginRight: 8,
     ...textStyles.headline_03,
+    color: theme.colors.on_surface,
   },
   lastUpdated: {
-    color: legacyTheme.colors.on_surface_secondary_light,
+    color: theme.colors.on_surface_secondary,
     ...textStyles.caption_02,
   },
   branchView: {
@@ -49,11 +50,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   branchName: {
-    color: legacyTheme.colors.accent,
+    color: theme.colors.primary,
     marginLeft: 4,
     ...textStyles.caption_01,
   },
   statusComponent: {
     marginRight: 16,
+  },
+  menu: {
+    backgroundColor: theme.colors.floating_surface,
   },
 });
