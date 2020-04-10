@@ -1,13 +1,13 @@
 import * as React from 'react';
-import {Image, StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {theme} from '../../constants/theme';
-import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group/shark-button-toggle-group';
 import {AppBar} from '../../components/app-bar/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader/shark-subheader';
 import {textStyles} from '../../constants/text-styles';
 import {useNavigation} from '@react-navigation/native';
-import {TouchableRipple} from 'react-native-paper';
+import {TouchableRipple, Checkbox} from 'react-native-paper';
 import {SharkButton} from '../../components/shark-button/shark-button';
+import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-pic';
 
 export const Account = () => {
   const history = useNavigation();
@@ -31,7 +31,23 @@ export const Account = () => {
         style={styles.commitAuthoringHeader}
         calloutText="Commit authoring"
       />
-      <View style={styles.commitAuthorContainer}></View>
+      <View style={styles.commitAuthorContainer}>
+        <View style={styles.authorPreview}>
+          <SharkProfilePic />
+          <View style={styles.authorPreviewText}>
+            <Text style={styles.authorName}>Name</Text>
+            <Text style={styles.authorEmail}>Email</Text>
+          </View>
+        </View>
+        <TouchableRipple style={styles.useGHCredsContainer} disabled={true}>
+          <>
+            <View style={styles.checkboxContainer}>
+              <Checkbox status={'unchecked'} onPress={() => {}} />
+            </View>
+            <Text style={styles.useGHText}>Use GitHub credentials</Text>
+          </>
+        </TouchableRipple>
+      </View>
     </View>
   );
 };
@@ -49,5 +65,37 @@ const styles = StyleSheet.create({
   },
   commitAuthorContainer: {
     paddingHorizontal: 16,
+  },
+  authorPreview: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  authorPreviewText: {
+    flexDirection: 'column',
+    marginLeft: 16,
+    flexGrow: 1,
+  },
+  authorName: {
+    ...textStyles.caption_01,
+  },
+  authorEmail: {
+    ...textStyles.caption_02,
+  },
+  useGHCredsContainer: {
+    opacity: 0.4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+    marginTop: 8,
+  },
+  checkboxContainer: {
+    height: 40,
+    width: 40,
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginRight: 16,
+  },
+  useGHText: {
+    ...textStyles.body_01,
   },
 });
