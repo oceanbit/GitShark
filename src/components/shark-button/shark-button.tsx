@@ -17,6 +17,8 @@ interface SharkTextInputProps {
   icon?: string;
   type?: 'outline' | 'primary';
   disabled?: boolean;
+  // When primary, what's the background color
+  backgroundColor?: string;
 }
 export const SharkButton = ({
   onPress,
@@ -25,6 +27,7 @@ export const SharkButton = ({
   style = {},
   type = 'outline',
   disabled = false,
+  backgroundColor,
 }: SharkTextInputProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
@@ -32,7 +35,11 @@ export const SharkButton = ({
 
   const buttonPaddingStyle = icon ? styles.iconButton : styles.noIconButton;
   const buttonTypeStyle =
-    type === 'outline' ? styles.outlineButton : styles.primaryButton;
+    type === 'outline'
+      ? styles.outlineButton
+      : {
+          backgroundColor: backgroundColor || accent,
+        };
   const buttonTextStyle =
     type === 'outline' ? styles.outlineButtonText : styles.primaryButtonText;
   const iconColor = type === 'outline' ? accent : on_surface;
@@ -81,9 +88,6 @@ const dynamicStyles = new DynamicStyleSheet({
     borderColor: theme.colors.divider,
     borderWidth: 2,
     backgroundColor: 'transparent',
-  },
-  primaryButton: {
-    backgroundColor: theme.colors.primary,
   },
   outlineButtonText: {
     color: theme.colors.primary,

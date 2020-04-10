@@ -1,8 +1,13 @@
 import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {legacyTheme} from '../../constants/theme';
+import {theme} from '../../constants/theme';
 import {textStyles} from '../../constants/text-styles';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
 
 interface ErrorMessageBoxProps {
   message: string;
@@ -12,26 +17,29 @@ export const ErrorMessageBox = ({
   message,
   style = {},
 }: ErrorMessageBoxProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+  const error = useDynamicValue(theme.colors.error);
+
   return (
     <View style={[styles.errorBoxContainer, style]}>
-      <Icon name="alert-circle" size={18} color={legacyTheme.colors.error_light} />
+      <Icon name="alert-circle" size={18} color={error} />
       <Text style={styles.errorText}>{message}</Text>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   errorBoxContainer: {
-    backgroundColor: legacyTheme.colors.error_light_background,
+    backgroundColor: theme.colors.error_bubble,
     flexDirection: 'row',
     paddingLeft: 7,
     paddingRight: 12,
     paddingVertical: 7,
-    borderRadius: legacyTheme.roundness,
+    borderRadius: theme.roundness,
   },
   errorText: {
     marginLeft: 7,
-    color: legacyTheme.colors.error_light,
+    color: theme.colors.error,
     ...textStyles.caption_01,
   },
 });

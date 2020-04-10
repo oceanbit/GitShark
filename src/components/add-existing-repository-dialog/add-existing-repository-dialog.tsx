@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyleSheet, Alert} from 'react-native';
-import {legacyTheme} from '../../constants/theme';
+import {Alert} from 'react-native';
+import {theme} from '../../constants/theme';
 import {AppDialog} from '../dialog/dialog';
 import {fs} from '../../constants/fs';
 import git from 'isomorphic-git/index.umd.min.js';
@@ -9,6 +9,7 @@ import {FolderSelectButton} from '../folder-select-button/folder-select-button';
 import {createNewRepo} from '../../services/git/createRepo';
 import {SharkButton} from '../shark-button/shark-button';
 import {SharkTextInput} from '../shark-text-input/shark-text-input';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface CreateRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -18,6 +19,8 @@ export const AddExistingRepositoryDialog = ({
   onDismiss,
   visible,
 }: CreateRepositoryDialogProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const [path, setPath] = React.useState('');
   const [repoName, setRepoName] = React.useState('');
   const [errorStr, setErrorStr] = React.useState('');
@@ -111,7 +114,7 @@ export const AddExistingRepositoryDialog = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   errorBox: {
     marginTop: 8,
   },
@@ -122,8 +125,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     borderWidth: 1,
-    borderColor: legacyTheme.colors.outlineColor,
-    borderRadius: legacyTheme.roundness,
+    borderColor: theme.colors.divider,
+    borderRadius: theme.roundness,
   },
   cancelBtn: {
     marginRight: 16,
