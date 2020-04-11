@@ -23,12 +23,18 @@ export const Commit = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const {repo} = React.useContext(RepoContext);
   const route = useRoute<any>();
-  const files = JSON.parse(route!.params!.files) as ChangesArrayItem[];
+  const getUpdate = route!.params!.updateFiles as Function;
+  const files = route!.params!.files as ChangesArrayItem[];
   const history = useNavigation();
   const [showDivider, setShowDivider] = React.useState(false);
 
   const [commitTitle, setCommitTitle] = React.useState('');
   const [commitBody, setCommitBody] = React.useState('');
+
+  if (!getUpdate) {
+    history.navigate('Repository');
+    return;
+  }
 
   const onStagedScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (!event.nativeEvent.contentOffset.y) {
@@ -41,12 +47,9 @@ export const Commit = () => {
   const headerLine = showDivider ? styles.underlineHeader : {};
 
   const onSubmit = async () => {
-    if (commitTitle) {
-      await commit({repo: repo!, description: commitBody, title: commitTitle});
-    }
-    history.navigate('Repository', {
-      shouldRequery: true,
-    });
+    await commit({repo: repo!, description: commitBody, title: commitTitle});
+    getUpdate();
+    history.navigate('Repository');
   };
 
   return (

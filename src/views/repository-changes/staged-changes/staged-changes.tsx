@@ -14,11 +14,13 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 interface StagedChangesProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
   stagedChanges: ChangesArrayItem[];
+  onCommit: () => void;
 }
 
 export const StagedChanges = ({
   removeFromStaged,
   stagedChanges,
+  onCommit,
 }: StagedChangesProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -47,12 +49,8 @@ export const StagedChanges = ({
         setSelectedStagedChanges([]);
       };
     }
-    return () => {
-      history.navigate('Commit', {
-        files: JSON.stringify(stagedChanges),
-      });
-    };
-  }, [removeFromStaged, selectedStagedChanges, history]);
+    return onCommit;
+  }, [onCommit, removeFromStaged, selectedStagedChanges]);
 
   const toggleSelected = (change: ChangesArrayItem) => {
     const filteredUnstaged = selectedStagedChanges.filter(

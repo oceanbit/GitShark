@@ -9,13 +9,14 @@ import {fs} from '../../constants/fs';
 import {UnstagedChanges} from './unstaged-changes';
 import {StagedChanges} from './staged-changes';
 import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
-import {useRoute} from '@react-navigation/native';
-import {DynamicStyleSheet, useDynamicStyleSheet} from "react-native-dark-mode";
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {useNavigation} from '@react-navigation/native';
 
 export const RepositoryChanges = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
-  const route = useRoute<any>();
+  const history = useNavigation();
+
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const {repo} = React.useContext(RepoContext);
   const [stagedChanges, setStagedChanges] = React.useState<ChangesArrayItem[]>(
@@ -55,15 +56,6 @@ export const RepositoryChanges = () => {
     getUpdate();
   }, [isDBLoaded, getUpdate]);
 
-  React.useEffect(() => {
-    // The page may be fully loaded already but a commit was just queried
-    // I also anticipate `shouldRequery` to be a boolean OR a string, hense the type casting
-    console.log(route?.params?.shouldRequery);
-    if (isDBLoaded && `${route?.params?.shouldRequery}` === 'true') {
-      getUpdate();
-    }
-  }, [isDBLoaded, route?.params]);
-
   const addToStaged = async (changes: ChangesArrayItem[]) => {
     const newUnstaged = unstagedChanges.filter(
       unChange =>
@@ -100,6 +92,13 @@ export const RepositoryChanges = () => {
     }
   };
 
+  const onCommit = React.useCallback(() => {
+    history.navigate('Commit', {
+      files: stagedChanges,
+      updateFiles: getUpdate,
+    });
+  }, [history, stagedChanges, getUpdate]);
+
   return (
     <>
       <View style={styles.container}>
@@ -113,6 +112,7 @@ export const RepositoryChanges = () => {
           <StagedChanges
             removeFromStaged={removeFromStaged}
             stagedChanges={stagedChanges}
+            onCommit={onCommit}
           />
         </View>
       </View>

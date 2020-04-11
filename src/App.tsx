@@ -24,10 +24,19 @@ import {
 } from './constants/theme';
 import {DarkModeProvider, useDarkMode} from 'react-native-dark-mode';
 
-// https://github.com/react-navigation/react-navigation/issues/7933#issuecomment-608283552
-// Remove once dep updates resolve this
 YellowBox.ignoreWarnings([
+  /**
+   * This is in place due to dependencies. Remove this once dep updates
+   * https://github.com/react-navigation/react-navigation/issues/7933#issuecomment-608283552
+   */
   'Calling `getNode()` on the ref of an Animated component is no longer necessary. You can now directly use the ref instead.',
+  /**
+   * I solumnly swear to handle all instances where serializable values are found in the navigation state and to use safegaurds
+   * to move users back to places they're familiar with. Right now, this is only used for the commit screen and we move
+   * the user back to the history screen if they're deep linked to that location somehow
+   * https://reactnavigation.org/docs/troubleshooting/#i-get-the-warning-non-serializable-values-were-found-in-the-navigation-state
+   */
+  'Non-serializable values were found in the navigation state',
 ]);
 
 const AppBase = () => {
