@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {StyleProp, ViewStyle} from 'react-native';
-import {ButtonToggleGroup} from './button-toggle-group';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
 import {theme} from '../../constants/theme';
+import {textStyles} from '../../constants/text-styles';
+import ButtonToggleGroup from 'react-native-button-toggle-group';
 
 interface SharkButtonToggleGroupProps {
   values: string[];
@@ -22,7 +23,6 @@ export const SharkButtonToggleGroup = ({
 
   const primary = useDynamicValue(theme.colors.primary);
   const on_primary = useDynamicValue(theme.colors.on_primary);
-  const surface = useDynamicValue(theme.colors.surface);
   const on_surface_secondary = useDynamicValue(
     theme.colors.on_surface_secondary,
   );
@@ -31,11 +31,12 @@ export const SharkButtonToggleGroup = ({
     <ButtonToggleGroup
       highlightBackgroundColor={primary}
       highlightTextColor={on_primary}
-      inactiveBackgroundColor={surface}
+      inactiveBackgroundColor={'transparent'}
       inactiveTextColor={on_surface_secondary}
       values={values}
       onSelect={onSelect}
       style={[styles.container, style]}
+      textStyle={styles.buttonText}
     />
   );
 };
@@ -47,5 +48,8 @@ const dynamicStyles = new DynamicStyleSheet({
     borderWidth: 1,
     borderRadius: theme.roundness,
     overflow: 'hidden',
+  },
+  buttonText: {
+    ...textStyles.callout,
   },
 });

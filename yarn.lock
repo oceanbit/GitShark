@@ -1233,7 +1233,7 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-plugin/-/eslint-plugin-1.0.0.tgz#ae9a430f2c5795debca491f15a989fce86ea75a0"
   integrity sha512-GLhSN8dRt4lpixPQh+8prSCy6PYk/MT/mvji/ojAd5yshowDo6HFsimCSTD/uWAdjpUq91XK9tVdTNWfGRlKQA==
 
-"@react-native-community/masked-view@0.1.8":
+"@react-native-community/masked-view@0.1.8", "@react-native-community/masked-view@^0.1.8":
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.8.tgz#05c9c800f258274a34abd584596464b86fbd92dc"
   integrity sha512-y+mnsPPC4Etzs/waHIC9Pj3DwhVQGqVru0n1KSqHZc0moKNAZ0NRBWYVat9awLIjjVrnepUva/+/bi31T4hR4A==
@@ -6178,6 +6178,14 @@ react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
+react-native-button-toggle-group@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-button-toggle-group/-/react-native-button-toggle-group-1.0.1.tgz#fd1fbe4e77328ce85111e4205377f9d3c206b3e7"
+  integrity sha512-xAnz2CBnoy4wpAQ8P2dFOP61vRYB4H4puDhks+/c7KBexCpyvMmifnD+K9BDN3DOALnXbSJ4pFtrJj1w0kpu2Q==
+  dependencies:
+    "@react-native-community/masked-view" "^0.1.8"
+    react-native-paper "^3.8.0"
+
 react-native-dark-mode@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/react-native-dark-mode/-/react-native-dark-mode-0.2.2.tgz#4faa335e36330bfca832ba8b3d2bd84c7b880381"
@@ -6224,6 +6232,15 @@ react-native-paper@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.7.0.tgz#4d122cef43c80202d559810ae6171ecb9e23c90c"
   integrity sha512-cRmQwbTPx8Si7h1r+vH0cHfNeUoSZrU/OeStaNm1I1SFtmLmGbdLUThShY/Y4VYU4A4QRmh3UmEGmpH4YVypHQ==
+  dependencies:
+    "@callstack/react-theme-provider" "^3.0.5"
+    color "^3.1.2"
+    react-native-safe-area-view "^0.14.6"
+
+react-native-paper@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.8.0.tgz#94d9b50b945ce91c90491cce34d1c27845503990"
+  integrity sha512-3oNHjhjhpi/UDbYwwgeWQKf1qRbqQ7aTO0EUHbcxPNEq5BLClpI3kBoS6JTKk4Ge86xeJikXHHXN953g1mVr3Q==
   dependencies:
     "@callstack/react-theme-provider" "^3.0.5"
     color "^3.1.2"
