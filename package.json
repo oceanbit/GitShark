@@ -11,7 +11,7 @@
     "android-send-key": "adb shell input keyevent 82"
   },
   "dependencies": {
-    "@react-native-community/masked-view": "https://github.com/elsaapp/react-native-masked-view.git#animated-mask-element",
+    "@react-native-community/masked-view": "0.1.8",
     "@react-navigation/material-bottom-tabs": "^5.1.7",
     "@react-navigation/native": "^5.1.4",
     "@react-navigation/stack": "^5.2.9",

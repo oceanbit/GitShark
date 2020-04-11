@@ -1,30 +1,36 @@
-/**
- * Delete when this PR is merged: https://github.com/vonovak/react-native-round-checkbox/pull/9
- */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {
   Animated,
   View,
   TouchableWithoutFeedback,
   StyleSheet,
+  ViewStyle,
+  StyleProp,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+const animationTime = 150;
+
 const hitSlop = {top: 8, bottom: 8, left: 8, right: 8};
 
-export default class RoundCheckbox extends React.PureComponent {
-  static propTypes = {
-    onValueChange: PropTypes.func,
-    icon: PropTypes.string,
-    size: PropTypes.number,
-    backgroundColor: PropTypes.string,
-    iconColor: PropTypes.string,
-    borderColor: PropTypes.string,
-    checked: PropTypes.bool,
-    style: PropTypes.object,
-  };
+interface RoundCheckboxProps {
+  onValueChange?: (val: boolean) => void;
+  icon?: string;
+  size?: number;
+  backgroundColor?: string;
+  iconColor?: string;
+  borderColor?: string;
+  checked?: boolean;
+  style?: StyleProp<ViewStyle>;
+}
 
+interface RoundCheckboxState {
+  scaleAndOpacityOfCheckbox: null | Animated.Value;
+}
+class RoundCheckbox extends React.PureComponent<
+  RoundCheckboxProps,
+  RoundCheckboxState
+> {
   static defaultProps = {
     icon: 'ios-checkmark',
     size: 24,
@@ -46,18 +52,18 @@ export default class RoundCheckbox extends React.PureComponent {
     });
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: RoundCheckboxProps) {
     if (this.props.checked !== prevProps.checked) {
       if (this.props.checked) {
-        Animated.timing(this.state.scaleAndOpacityOfCheckbox, {
+        Animated.timing(this.state.scaleAndOpacityOfCheckbox!, {
           toValue: 1,
-          duration: 300,
+          duration: animationTime,
           useNativeDriver: true,
         }).start();
       } else {
-        Animated.timing(this.state.scaleAndOpacityOfCheckbox, {
+        Animated.timing(this.state.scaleAndOpacityOfCheckbox!, {
           toValue: 0,
-          duration: 300,
+          duration: animationTime,
           useNativeDriver: true,
         }).start();
       }
@@ -65,13 +71,13 @@ export default class RoundCheckbox extends React.PureComponent {
   }
 
   render() {
-    const iconSize = parseInt(this.props.size * 1.3);
+    const iconSize = parseInt((this.props.size! * 1.3) as any, 10);
 
     const bothStyles = {
       width: this.props.size,
       height: this.props.size,
 
-      borderRadius: this.props.size / 2,
+      borderRadius: this.props.size! / 2,
     };
 
     const checkedStyles = {
@@ -100,7 +106,7 @@ export default class RoundCheckbox extends React.PureComponent {
             shouldRasterizeIOS={true}
             style={[uncheckedStyles, bothStyles, styles.commonWrapperStyles]}>
             <Icon
-              name={this.props.icon}
+              name={this.props.icon!}
               color={'transparent'}
               style={{
                 height: iconSize,
@@ -113,7 +119,7 @@ export default class RoundCheckbox extends React.PureComponent {
             shouldRasterizeIOS={true}
             style={[checkedStyles, bothStyles, styles.commonWrapperStyles]}>
             <Icon
-              name={this.props.icon}
+              name={this.props.icon!}
               color={this.props.iconColor}
               style={{
                 height: iconSize,
@@ -128,9 +134,11 @@ export default class RoundCheckbox extends React.PureComponent {
   }
 
   _onPress = () => {
-    this.props.onValueChange(!this.props.checked);
+    this.props.onValueChange!(!this.props.checked);
   };
 }
+
+export default RoundCheckbox;
 
 const styles = StyleSheet.create({
   parentWrapper: {

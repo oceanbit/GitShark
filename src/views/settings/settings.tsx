@@ -18,24 +18,20 @@ import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-
 import {SlideUpDownSettingsAnimation} from '../../components/slide-up-down-settings-animation/slide-up-down-settings-animation';
 import SplitVideo from '../../../assets/videos/split.mp4';
 import Video from 'react-native-video';
-import RoundCheckbox from './RoundCheckbox';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
+import {SharkCheckbox} from '../../components/shark-checkbox/shark-checkbox';
 
 type StagingTypes = 'split' | 'sheet';
 
 export const Settings = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
-  const on_surface_secondary = useDynamicValue(
-    theme.colors.on_surface_secondary,
-  );
 
   const history = useNavigation();
-  const [direction, setDirection] = React.useState(false);
   const [styleOfStaging, setStyleOfStaging] = React.useState<StagingTypes>(
     'split',
   );
@@ -100,12 +96,7 @@ export const Settings = () => {
               repeat={false}
             />
             <View style={styles.checkboxContainer}>
-              <RoundCheckbox
-                checked={styleOfStaging === 'split'}
-                backgroundColor={accent}
-                borderColor={on_surface_secondary}
-                size={18}
-              />
+              <SharkCheckbox checked={styleOfStaging === 'split'} />
               <Text
                 style={[
                   styles.checkboxText,
@@ -125,12 +116,7 @@ export const Settings = () => {
               direction={styleOfStaging === 'sheet' ? 'down' : 'up'}
             />
             <View style={styles.checkboxContainer}>
-              <RoundCheckbox
-                checked={styleOfStaging === 'sheet'}
-                backgroundColor={accent}
-                borderColor={on_surface_secondary}
-                size={18}
-              />
+              <SharkCheckbox checked={styleOfStaging === 'sheet'} />
               <Text
                 style={[
                   styles.checkboxText,

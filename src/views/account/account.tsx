@@ -10,6 +10,7 @@ import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-
 import {SharkTextInput} from '../../components/shark-text-input/shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {theme} from '../../constants/theme';
+import {SharkCheckbox} from "../../components/shark-checkbox/shark-checkbox";
 
 export const Account = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -46,7 +47,7 @@ export const Account = () => {
         <TouchableRipple style={styles.useGHCredsContainer} disabled={true}>
           <>
             <View style={styles.checkboxContainer}>
-              <Checkbox status={'unchecked'} onPress={() => {}} />
+              <SharkCheckbox checked={false} onValueChange={() => {}} />
             </View>
             <Text style={styles.useGHText}>Use GitHub credentials</Text>
           </>
@@ -117,7 +118,7 @@ const dynamicStyles = new DynamicStyleSheet({
     height: 40,
     width: 40,
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
     marginRight: 16,
   },
   useGHText: {

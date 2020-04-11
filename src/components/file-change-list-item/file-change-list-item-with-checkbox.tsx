@@ -3,6 +3,7 @@ import * as React from 'react';
 import {ChangesArrayItem} from '../../services/git';
 import {FileChangeListItem} from './file-change-list-item';
 import {Checkbox} from 'react-native-paper';
+import {SharkCheckbox} from '../shark-checkbox/shark-checkbox';
 
 interface FileChangeListItemProps {
   fileName: string;
@@ -21,10 +22,7 @@ export const FileChangeListItemWithCheckbox = ({
   return (
     <View style={styles.listItemContainer}>
       <View style={styles.checkbox}>
-        <Checkbox
-          status={isChecked ? 'checked' : 'unchecked'}
-          onPress={onToggle}
-        />
+        <SharkCheckbox checked={isChecked} onValueChange={onToggle} />
       </View>
       <FileChangeListItem
         fileName={fileName}
