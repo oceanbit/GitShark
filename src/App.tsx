@@ -67,7 +67,7 @@ const AppBase = () => {
     // TODO: Add error handling
     createConnection({
       type: 'react-native',
-      database: 'test',
+      database: 'gitshark',
       location: 'default',
       logging: ['error', 'query', 'schema'],
       synchronize: true,

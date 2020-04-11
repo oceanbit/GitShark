@@ -1,13 +1,13 @@
 import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
-@Entity()
+@Entity({name: 'remote'})
 export class Remote extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name: 'id'})
   id: number;
 
-  @Column({type: 'text'})
+  @Column({type: 'text', name: 'name'})
   name: string;
 
-  @Column({type: 'text'})
+  @Column({type: 'text', name: 'url'})
   url: string;
 }
