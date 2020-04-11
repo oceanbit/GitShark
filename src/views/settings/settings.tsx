@@ -16,10 +16,12 @@ import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-pic';
 import {SlideUpDownSettingsAnimation} from '../../components/slide-up-down-settings-animation/slide-up-down-settings-animation';
-import SplitVideo from '../../../assets/videos/split.mp4';
+import SplitVideoLight from '../../../assets/videos/split.mp4';
+import SplitVideoDark from '../../../assets/videos/split_dark.mp4';
 import Video from 'react-native-video';
 import {
   DynamicStyleSheet,
+  DynamicValue,
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
@@ -30,6 +32,9 @@ type StagingTypes = 'split' | 'sheet';
 export const Settings = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
+  const SplitVideo = useDynamicValue(
+    new DynamicValue(SplitVideoLight, SplitVideoDark),
+  );
 
   const history = useNavigation();
   const [styleOfStaging, setStyleOfStaging] = React.useState<StagingTypes>(

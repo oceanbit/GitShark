@@ -1,8 +1,11 @@
 import * as React from 'react';
 import {View} from 'react-native';
 import Video from 'react-native-video';
-import SheetUpVideo from '../../../assets/videos/sheet_up.mp4';
-import SheetDownVideo from '../../../assets/videos/sheet_down.mp4';
+import SheetUpVideoLight from '../../../assets/videos/sheet_up.mp4';
+import SheetUpVideoDark from '../../../assets/videos/sheet_up_dark.mp4';
+import SheetDownVideoLight from '../../../assets/videos/sheet_down.mp4';
+import SheetDownVideoDark from '../../../assets/videos/sheet_down_dark.mp4';
+import {DynamicValue, useDynamicValue} from 'react-native-dark-mode';
 
 interface SlideUpDownSettingsAnimationProps {
   direction: 'up' | 'down';
@@ -14,6 +17,13 @@ export const SlideUpDownSettingsAnimation = ({
   vidHeight,
   vidWidth,
 }: SlideUpDownSettingsAnimationProps) => {
+  const SheetUpVideo = useDynamicValue(
+    new DynamicValue(SheetUpVideoLight, SheetUpVideoDark),
+  );
+  const SheetDownVideo = useDynamicValue(
+    new DynamicValue(SheetDownVideoLight, SheetDownVideoDark),
+  );
+
   const slideUpVideo = React.useRef<Video>();
   const slideDownVideo = React.useRef<Video>();
   const [playUpVideo, setPlayUpVideo] = React.useState(
