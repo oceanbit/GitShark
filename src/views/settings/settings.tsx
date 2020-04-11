@@ -26,8 +26,7 @@ import {
   useDynamicValue,
 } from 'react-native-dark-mode';
 import {SharkCheckbox} from '../../components/shark-checkbox/shark-checkbox';
-
-type StagingTypes = 'split' | 'sheet';
+import {StyleOfStagingContext} from '../../constants/style-of-staging-context';
 
 export const Settings = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -37,8 +36,9 @@ export const Settings = () => {
   );
 
   const history = useNavigation();
-  const [styleOfStaging, setStyleOfStaging] = React.useState<StagingTypes>(
-    'split',
+
+  const {styleOfStaging, setStyleOfStaging} = React.useContext(
+    StyleOfStagingContext,
   );
 
   const videoWidth = (Dimensions.get('window').width - 24 * 3) / 2;

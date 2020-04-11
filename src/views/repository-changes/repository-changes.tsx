@@ -7,11 +7,14 @@ import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
 import {useNavigation} from '@react-navigation/native';
 import {StageSplitView} from '../../components/stage-split-view/stage-split-view';
 import {StageSheetView} from '../../components/stage-sheet-view/stage-sheet-view';
-
-const useSplitView = false;
+import {StyleOfStagingContext} from '../../constants/style-of-staging-context';
 
 export const RepositoryChanges = () => {
   const history = useNavigation();
+
+  const {styleOfStaging} = React.useContext(StyleOfStagingContext);
+
+  const useSplitView = styleOfStaging === 'split';
 
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const {repo} = React.useContext(RepoContext);

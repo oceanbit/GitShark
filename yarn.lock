@@ -6197,6 +6197,11 @@ react-native-dark-mode@^0.2.2:
     events "^3.0.0"
     toolkit.ts "^0.0.2"
 
+react-native-default-preference@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/react-native-default-preference/-/react-native-default-preference-1.4.2.tgz#0c0b36c0dd2f01413e7fc32f98363e19b39d4166"
+  integrity sha512-kNhBLv8s6kO2gJJFEKM7qew7oRvJnygjgG1CU2ZEY6SlG5qsRX8z1Ms7z1Oo/XB7fVfyXrAoZDGhIvy+uiByrg==
+
 "react-native-file-selector@https://github.com/crutchcorn/react-native-file-selector.git":
   version "1.0.0"
   resolved "https://github.com/crutchcorn/react-native-file-selector.git#15f760e456b9d426bf9d34e910d53a1c324307b8"

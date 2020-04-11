@@ -23,6 +23,11 @@ import {
   darkPaperTheme,
 } from './constants/theme';
 import {DarkModeProvider, useDarkMode} from 'react-native-dark-mode';
+import DefaultPreference from 'react-native-default-preference';
+import {
+  StagingTypes,
+  StyleOfStagingContext,
+} from './constants/style-of-staging-context';
 
 YellowBox.ignoreWarnings([
   /**
@@ -89,6 +94,23 @@ const AppBase = () => {
       });
   }, []);
 
+  const [styleOfStaging, setStyleOfStaging] = React.useState<StagingTypes>(
+    'split',
+  );
+
+  React.useEffect(() => {
+    DefaultPreference.get('styleOfStaging').then(val => {
+      if (val) {
+        setStyleOfStaging(val as StagingTypes);
+      }
+    });
+  }, []);
+
+  const updateStagingStyle = (val: StagingTypes) => {
+    DefaultPreference.set('styleOfStaging', val);
+    setStyleOfStaging(val);
+  };
+
   const Stack = createStackNavigator();
 
   const paperTheme = isDarkMode ? darkPaperTheme : lightPaperTheme;
@@ -101,12 +123,18 @@ const AppBase = () => {
           backgroundColor={paperTheme.colors.background}
         />
         <DatabaseLoadedContext.Provider value={isDBLoaded}>
-          <Stack.Navigator headerMode={'none'}>
-            <Stack.Screen name="RepoList" component={RepositoryList} />
-            <Stack.Screen name="Settings" component={Settings} />
-            <Stack.Screen name="Account" component={Account} />
-            <Stack.Screen name="RepoDetails" component={Repository} />
-          </Stack.Navigator>
+          <StyleOfStagingContext.Provider
+            value={{
+              styleOfStaging,
+              setStyleOfStaging: updateStagingStyle,
+            }}>
+            <Stack.Navigator headerMode={'none'}>
+              <Stack.Screen name="RepoList" component={RepositoryList} />
+              <Stack.Screen name="Settings" component={Settings} />
+              <Stack.Screen name="Account" component={Account} />
+              <Stack.Screen name="RepoDetails" component={Repository} />
+            </Stack.Navigator>
+          </StyleOfStagingContext.Provider>
         </DatabaseLoadedContext.Provider>
         <SafeAreaView />
       </PaperProvider>
