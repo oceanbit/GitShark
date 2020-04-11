@@ -55,7 +55,10 @@ export const colors = {
   on_surface_dark: '#E5EEFF', // Navy 100
   on_surface_light: '#132A58', // Navy 800
   on_surface_secondary_dark: 'rgba(229,238,255, 0.6)', // Navy 100 0.6 alpha
-  on_surface_secondary_light: 'rgba(19, 42, 88, 0.6)', // Navy 800 0.6 alpha
+  on_surface_secondary_light: 'rgba(19, 42, 88, 0.6)', // Navy 800 0.6 alpha=
+  // Please don't use these unless you really really don't have to
+  on_surface_secondary_dark_no_opacity: '#8f97a8', // Navy 100 "0.6 alpha"
+  on_surface_secondary_light_no_opacity: '#717f9b', // Navy 800 "0.6 alpha"
   primary_dark: '#99BBFF', // Electric Blue 200
   primary_light: '#002BFF', // Electric Blue 500
   ripple_primary_dark: 'rgba(153, 187, 255, 0.2)', // Electric Blue 200 0.2 alpha
@@ -167,6 +170,11 @@ export const theme = {
     on_surface_secondary: new DynamicValue(
       colors.on_surface_secondary_light,
       colors.on_surface_secondary_dark,
+    ),
+    // Please don't use this unless you ABSOLUTELY have to
+    on_surface_secondary_no_opacity: new DynamicValue(
+      colors.on_surface_secondary_light_no_opacity,
+      colors.on_surface_secondary_dark_no_opacity,
     ),
     primary: new DynamicValue(colors.primary_light, colors.primary_dark),
     ripple_primary: new DynamicValue(

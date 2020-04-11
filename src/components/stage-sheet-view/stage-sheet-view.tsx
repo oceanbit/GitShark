@@ -3,10 +3,11 @@ import {View, StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-import {colors} from '../../constants/theme';
+import {colors, theme} from '../../constants/theme';
 import {StagedChanges} from '../stage-split-view/staged-changes';
 import {ChangesArrayItem} from '../../services/git';
 import {UnstagedChanges} from '../stage-split-view/unstaged-changes';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const AnimatedView = Animated.View;
 
@@ -26,9 +27,12 @@ export const StageSheetView = ({
   removeFromStaged,
   onCommit,
 }: StageSheetViewProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const [parentHeight, setParentHeight] = React.useState(0);
 
-  const maxSheetHeight = parentHeight;
+  // + 2 because of the height of the top border
+  const maxSheetHeight = parentHeight + 2;
 
   const maxUnstagedHeight = parentHeight - minSheetHeight;
 
@@ -134,36 +138,14 @@ export const StageSheetView = ({
     </View>
   );
 };
-const styles = StyleSheet.create({
+
+const dynamicStyles = new DynamicStyleSheet({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.surface,
     height: '100%',
     position: 'relative',
     overflow: 'hidden',
-  },
-  shadowContainer: {
-    height: 38,
-    overflow: 'hidden',
-    borderBottomColor: colors.divider_light,
-    borderBottomWidth: 1,
-  },
-  shadowTop: {
-    elevation: 24,
-    height: 30,
-    top: 30,
-    width: '120%',
-    /**
-     * Do not ask me why, but whenever I remove this line and reload the app, the shadow disappears.
-     * It's somewhat sporadic when it appears and when it doesn't based on live reload and not.
-     * My best guess is that RN tries to "optimize" or something and just flat our removes this from the
-     * render entirely.
-     *
-     * TLDR Don't remove this line Corbin will be very cross with you. Ask Ed what happened last time it was removed
-     */
-    borderBottomWidth: 1,
-    position: 'relative',
-    left: '-10%',
   },
   handlerContainer: {
     alignSelf: 'center',
@@ -172,14 +154,13 @@ const styles = StyleSheet.create({
     width: 30,
   },
   trueHeader: {
-    backgroundColor: 'white',
-
-    borderTopColor: colors.divider_light,
-    borderTopWidth: 1,
+    backgroundColor: theme.colors.surface,
+    borderTopColor: theme.colors.divider,
+    borderTopWidth: 2,
   },
   handlerBar: {
     position: 'absolute',
-    backgroundColor: '#D1D1D6',
+    backgroundColor: theme.colors.on_surface_secondary_no_opacity,
     top: 5,
     borderRadius: 3,
     height: 4,
@@ -194,7 +175,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20 + 20,
   },
   contentContainer: {
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.surface,
     height: '100%',
   },
 });
