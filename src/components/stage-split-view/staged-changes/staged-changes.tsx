@@ -4,8 +4,8 @@ import {
   NativeSyntheticEvent,
   ScrollView,
 } from 'react-native';
-import {SharkSubheader} from '../../../components/shark-subheader/shark-subheader';
-import {FileChangeListItemWithCheckbox} from '../../../components/file-change-list-item/file-change-list-item-with-checkbox';
+import {SharkSubheader} from '../../shark-subheader/shark-subheader';
+import {FileChangeListItemWithCheckbox} from '../../file-change-list-item/file-change-list-item-with-checkbox';
 import {ChangesArrayItem} from '../../../services/git';
 import {theme} from '../../../constants/theme';
 import {useNavigation} from '@react-navigation/native';

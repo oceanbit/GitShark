@@ -1,20 +1,16 @@
 import * as React from 'react';
-import {View} from 'react-native';
 import git from 'isomorphic-git/index.umd.min.js';
-
 import {RepoContext} from '../../constants/repo-context';
 import {ChangesArrayItem, getRepoStatus} from '../../services/git';
-import {theme} from '../../constants/theme';
 import {fs} from '../../constants/fs';
-import {UnstagedChanges} from './unstaged-changes';
-import {StagedChanges} from './staged-changes';
 import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {useNavigation} from '@react-navigation/native';
+import {StageSplitView} from '../../components/stage-split-view/stage-split-view';
+import {StageSheetView} from '../../components/stage-sheet-view/stage-sheet-view';
+
+const useSplitView = false;
 
 export const RepositoryChanges = () => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
-
   const history = useNavigation();
 
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
@@ -101,50 +97,17 @@ export const RepositoryChanges = () => {
 
   return (
     <>
-      <View style={styles.container}>
-        <View style={[styles.halfSection, styles.firstSection]}>
-          <UnstagedChanges
-            addToStaged={addToStaged}
-            unstagedChanges={unstagedChanges}
-          />
-        </View>
-        <View style={styles.halfSection}>
-          <StagedChanges
-            removeFromStaged={removeFromStaged}
-            stagedChanges={stagedChanges}
-            onCommit={onCommit}
-          />
-        </View>
-      </View>
+      {useSplitView ? (
+        <StageSplitView
+          addToStaged={addToStaged}
+          unstagedChanges={unstagedChanges}
+          removeFromStaged={removeFromStaged}
+          stagedChanges={stagedChanges}
+          onCommit={onCommit}
+        />
+      ) : (
+        <StageSheetView />
+      )}
     </>
   );
 };
-
-const dynamicStyles = new DynamicStyleSheet({
-  container: {
-    height: '100%',
-  },
-  headingText: {
-    marginBottom: 16,
-    fontSize: 48,
-  },
-  fabview: {
-    position: 'absolute',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: '100%',
-    bottom: 16,
-  },
-  halfSection: {
-    height: '50%',
-  },
-  firstSection: {
-    borderBottomColor: theme.colors.divider,
-    borderBottomWidth: 1,
-  },
-  fab: {
-    margin: 0,
-    padding: 0,
-    left: 0,
-  },
-});
