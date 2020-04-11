@@ -106,7 +106,13 @@ export const RepositoryChanges = () => {
           onCommit={onCommit}
         />
       ) : (
-        <StageSheetView />
+        <StageSheetView
+          addToStaged={addToStaged}
+          unstagedChanges={unstagedChanges}
+          removeFromStaged={removeFromStaged}
+          stagedChanges={stagedChanges}
+          onCommit={onCommit}
+        />
       )}
     </>
   );

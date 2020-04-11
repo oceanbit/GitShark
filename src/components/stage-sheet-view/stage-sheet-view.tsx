@@ -1,19 +1,38 @@
 import * as React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {colors} from '../../constants/theme';
+import {StagedChanges} from '../stage-split-view/staged-changes';
+import {ChangesArrayItem} from '../../services/git';
+import {UnstagedChanges} from '../stage-split-view/unstaged-changes';
 
 const AnimatedView = Animated.View;
 
 // 24 for the shadow height
-const minHeight = 184 + 24;
+const minHeight = 184 + 38;
 
-export const StageSheetView = () => {
-  let bottomSheetRef = React.createRef<BottomSheet>();
+interface StageSheetViewProps {
+  unstagedChanges: ChangesArrayItem[];
+  stagedChanges: ChangesArrayItem[];
+  addToStaged: (changes: ChangesArrayItem[]) => Promise<void>;
+  removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
+  onCommit: () => void;
+}
+export const StageSheetView = ({
+  unstagedChanges,
+  stagedChanges,
+  addToStaged,
+  removeFromStaged,
+  onCommit,
+}: StageSheetViewProps) => {
+  const screenHeight = Dimensions.get('window').height;
+  const max = screenHeight - 54 - 64;
 
-  let fall = new Animated.Value(1);
+  const bottomSheetRef = React.createRef<BottomSheet>();
+
+  const fall = new Animated.Value(1);
 
   const onHeaderPress = () => {
     bottomSheetRef.current!.snapTo(1);
@@ -75,15 +94,19 @@ export const StageSheetView = () => {
         <View style={styles.shadowContainer}>
           <View style={styles.shadowTop} />
         </View>
-        {renderHandler()}
+        <View style={styles.trueHeader}>{renderHandler()}</View>
       </TouchableWithoutFeedback>
     );
   };
 
   const renderContent = () => {
     return (
-      <View>
-        <Text>Hello there, world</Text>
+      <View style={styles.contentContainer}>
+        <StagedChanges
+          onCommit={onCommit}
+          removeFromStaged={removeFromStaged}
+          stagedChanges={stagedChanges}
+        />
       </View>
     );
   };
@@ -92,11 +115,15 @@ export const StageSheetView = () => {
     <View style={styles.container}>
       <BottomSheet
         ref={bottomSheetRef}
-        initialSnap={1}
-        snapPoints={[300, minHeight]}
+        initialSnap={0}
+        snapPoints={[max, minHeight]}
         callbackNode={fall}
         renderHeader={renderHeader}
         renderContent={renderContent}
+      />
+      <UnstagedChanges
+        addToStaged={addToStaged}
+        unstagedChanges={unstagedChanges}
       />
     </View>
   );
@@ -135,6 +162,9 @@ const styles = StyleSheet.create({
     height: 24,
     width: 30,
   },
+  trueHeader: {
+    backgroundColor: 'white',
+  },
   handlerBar: {
     position: 'absolute',
     backgroundColor: '#D1D1D6',
@@ -150,5 +180,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingRight: 20,
     paddingLeft: 20 + 20,
+  },
+  contentContainer: {
+    backgroundColor: 'white',
+    height: '100%',
   },
 });
