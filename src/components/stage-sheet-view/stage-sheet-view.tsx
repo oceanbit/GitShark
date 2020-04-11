@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
@@ -10,8 +10,7 @@ import {UnstagedChanges} from '../stage-split-view/unstaged-changes';
 
 const AnimatedView = Animated.View;
 
-// 24 for the shadow height
-const minHeight = 184 + 38;
+const minSheetHeight = 184;
 
 interface StageSheetViewProps {
   unstagedChanges: ChangesArrayItem[];
@@ -27,8 +26,11 @@ export const StageSheetView = ({
   removeFromStaged,
   onCommit,
 }: StageSheetViewProps) => {
-  const screenHeight = Dimensions.get('window').height;
-  const max = screenHeight - 54 - 64;
+  const [parentHeight, setParentHeight] = React.useState(0);
+
+  const maxSheetHeight = parentHeight;
+
+  const maxUnstagedHeight = parentHeight - minSheetHeight;
 
   const bottomSheetRef = React.createRef<BottomSheet>();
 
@@ -91,9 +93,6 @@ export const StageSheetView = ({
       <TouchableWithoutFeedback
         key={'header-container'}
         onPress={onHeaderPress}>
-        <View style={styles.shadowContainer}>
-          <View style={styles.shadowTop} />
-        </View>
         <View style={styles.trueHeader}>{renderHandler()}</View>
       </TouchableWithoutFeedback>
     );
@@ -112,19 +111,26 @@ export const StageSheetView = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={styles.container}
+      onLayout={event => {
+        const {height} = event.nativeEvent.layout;
+        setParentHeight(height);
+      }}>
       <BottomSheet
         ref={bottomSheetRef}
         initialSnap={0}
-        snapPoints={[max, minHeight]}
+        snapPoints={[maxSheetHeight, minSheetHeight]}
         callbackNode={fall}
         renderHeader={renderHeader}
         renderContent={renderContent}
       />
-      <UnstagedChanges
-        addToStaged={addToStaged}
-        unstagedChanges={unstagedChanges}
-      />
+      <View style={{maxHeight: maxUnstagedHeight}}>
+        <UnstagedChanges
+          addToStaged={addToStaged}
+          unstagedChanges={unstagedChanges}
+        />
+      </View>
     </View>
   );
 };
@@ -132,6 +138,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    height: '100%',
+    position: 'relative',
+    overflow: 'hidden',
   },
   shadowContainer: {
     height: 38,
@@ -164,6 +173,9 @@ const styles = StyleSheet.create({
   },
   trueHeader: {
     backgroundColor: 'white',
+
+    borderTopColor: colors.divider_light,
+    borderTopWidth: 1,
   },
   handlerBar: {
     position: 'absolute',
