@@ -117,6 +117,15 @@ const styles = StyleSheet.create({
     height: 30,
     top: 30,
     width: '120%',
+    /**
+     * Do not ask me why, but whenever I remove this line and reload the app, the shadow disappears.
+     * It's somewhat sporadic when it appears and when it doesn't based on live reload and not.
+     * My best guess is that RN tries to "optimize" or something and just flat our removes this from the
+     * render entirely.
+     *
+     * TLDR Don't remove this line Corbin will be very cross with you. Ask Ed what happened last time it was removed
+     */
+    borderBottomWidth: 1,
     position: 'relative',
     left: '-10%',
   },
