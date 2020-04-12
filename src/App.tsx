@@ -28,6 +28,8 @@ import {
   StagingTypes,
   StyleOfStagingContext,
 } from './constants/style-of-staging-context';
+import {useSystemDarkMode} from './hooks';
+import {DarkModeOptionTypes, SetDarkModeContext} from './constants';
 
 YellowBox.ignoreWarnings([
   /**
@@ -44,9 +46,10 @@ YellowBox.ignoreWarnings([
   'Non-serializable values were found in the navigation state',
 ]);
 
-const AppBase = () => {
-  const isDarkMode = useDarkMode();
-
+const App = () => {
+  /**
+   * Database
+   */
   const [isDBLoaded, setIsDBLoaded] = React.useState(false);
 
   React.useEffect(() => {
@@ -94,9 +97,20 @@ const AppBase = () => {
       });
   }, []);
 
+  /**
+   * User settings
+   */
   const [styleOfStaging, setStyleOfStaging] = React.useState<StagingTypes>(
     'split',
   );
+
+  const [localDarkMode, setLocalDarkMode] = React.useState<DarkModeOptionTypes>(
+    'auto',
+  );
+  const isSystemDarkMode = useSystemDarkMode();
+
+  const isDarkMode =
+    localDarkMode === 'auto' ? isSystemDarkMode : localDarkMode === 'dark';
 
   React.useEffect(() => {
     DefaultPreference.get('styleOfStaging').then(val => {
@@ -104,11 +118,21 @@ const AppBase = () => {
         setStyleOfStaging(val as StagingTypes);
       }
     });
+    DefaultPreference.get('darkMode').then(val => {
+      if (val) {
+        setLocalDarkMode(val as DarkModeOptionTypes);
+      }
+    });
   }, []);
 
   const updateStagingStyle = (val: StagingTypes) => {
     DefaultPreference.set('styleOfStaging', val);
     setStyleOfStaging(val);
+  };
+
+  const updateLocalDarkMode = (val: DarkModeOptionTypes) => {
+    DefaultPreference.set('darkMode', val);
+    setLocalDarkMode(val);
   };
 
   const Stack = createStackNavigator();
@@ -128,25 +152,24 @@ const AppBase = () => {
               styleOfStaging,
               setStyleOfStaging: updateStagingStyle,
             }}>
-            <Stack.Navigator headerMode={'none'}>
-              <Stack.Screen name="RepoList" component={RepositoryList} />
-              <Stack.Screen name="Settings" component={Settings} />
-              <Stack.Screen name="Account" component={Account} />
-              <Stack.Screen name="RepoDetails" component={Repository} />
-            </Stack.Navigator>
+            <SetDarkModeContext.Provider
+              value={{
+                setDarkMode: updateLocalDarkMode,
+              }}>
+              <DarkModeProvider mode={isDarkMode ? 'dark' : 'light'}>
+                <Stack.Navigator headerMode={'none'}>
+                  <Stack.Screen name="RepoList" component={RepositoryList} />
+                  <Stack.Screen name="Settings" component={Settings} />
+                  <Stack.Screen name="Account" component={Account} />
+                  <Stack.Screen name="RepoDetails" component={Repository} />
+                </Stack.Navigator>
+              </DarkModeProvider>
+            </SetDarkModeContext.Provider>
           </StyleOfStagingContext.Provider>
         </DatabaseLoadedContext.Provider>
         <SafeAreaView />
       </PaperProvider>
     </NavigationContainer>
-  );
-};
-
-const App = () => {
-  return (
-    <DarkModeProvider>
-      <AppBase />
-    </DarkModeProvider>
   );
 };
 

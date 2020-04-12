@@ -22,24 +22,29 @@ import Video from 'react-native-video';
 import {
   DynamicStyleSheet,
   DynamicValue,
+  useDarkMode,
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
 import {SharkCheckbox} from '../../components/shark-checkbox/shark-checkbox';
-import {StyleOfStagingContext} from '../../constants/style-of-staging-context';
+import {
+  StyleOfStagingContext,
+  SetDarkModeContext,
+  DarkModeOptionTypes,
+} from '../../constants';
 
 export const Settings = () => {
+  const isDark = useDarkMode();
   const styles = useDynamicStyleSheet(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
-  const SplitVideo = useDynamicValue(
-    new DynamicValue(SplitVideoLight, SplitVideoDark),
-  );
 
   const history = useNavigation();
 
   const {styleOfStaging, setStyleOfStaging} = React.useContext(
     StyleOfStagingContext,
   );
+
+  const {setDarkMode} = React.useContext(SetDarkModeContext);
 
   const videoWidth = (Dimensions.get('window').width - 24 * 3) / 2;
   const videoHeight = videoWidth * 2;
@@ -74,7 +79,7 @@ export const Settings = () => {
       <SharkSubheader calloutText="Theme" />
       <SharkButtonToggleGroup
         values={['Auto', 'Light', 'Dark']}
-        onSelect={() => {}}
+        onSelect={val => setDarkMode(val.toLowerCase() as DarkModeOptionTypes)}
         style={styles.themeToggle}
       />
       <Text style={styles.themeText}>
@@ -91,15 +96,50 @@ export const Settings = () => {
         }}>
         <TouchableWithoutFeedback onPress={() => setStyleOfStaging('split')}>
           <View style={styles.stagingVideoContainer}>
-            <Video
-              source={SplitVideo}
-              style={{height: videoHeight, width: videoWidth}}
-              muted={true}
-              controls={false}
-              resizeMode={'contain'}
-              paused={true}
-              repeat={false}
-            />
+            {/*
+              We have to set the dark mode and light mode and stack them in order for the Video component
+              to switch colors at the same time as the rest of the app. Otherwise we get some loading jank
+              when switching color modes
+            */}
+            <View
+              style={{
+                height: videoHeight,
+                width: videoWidth,
+                position: 'relative',
+              }}>
+              <Video
+                source={SplitVideoLight}
+                muted={true}
+                controls={false}
+                resizeMode={'contain'}
+                paused={true}
+                repeat={false}
+                style={{
+                  height: videoHeight,
+                  width: videoWidth,
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  zIndex: isDark ? -1 : 1,
+                }}
+              />
+              <Video
+                source={SplitVideoDark}
+                muted={true}
+                controls={false}
+                resizeMode={'contain'}
+                paused={true}
+                repeat={false}
+                style={{
+                  height: videoHeight,
+                  width: videoWidth,
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  zIndex: isDark ? 1 : -1,
+                }}
+              />
+            </View>
             <View style={styles.checkboxContainer}>
               <SharkCheckbox checked={styleOfStaging === 'split'} />
               <Text
@@ -115,11 +155,37 @@ export const Settings = () => {
 
         <TouchableWithoutFeedback onPress={() => setStyleOfStaging('sheet')}>
           <View style={styles.stagingVideoContainer}>
-            <SlideUpDownSettingsAnimation
-              vidHeight={videoHeight}
-              vidWidth={videoWidth}
-              direction={styleOfStaging === 'sheet' ? 'down' : 'up'}
-            />
+            <View
+              style={{
+                height: videoHeight,
+                width: videoWidth,
+                position: 'relative',
+              }}>
+              <SlideUpDownSettingsAnimation
+                vidHeight={videoHeight}
+                vidWidth={videoWidth}
+                direction={styleOfStaging === 'sheet' ? 'down' : 'up'}
+                darkMode={false}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  zIndex: isDark ? -1 : 1,
+                }}
+              />
+              <SlideUpDownSettingsAnimation
+                vidHeight={videoHeight}
+                vidWidth={videoWidth}
+                direction={styleOfStaging === 'sheet' ? 'down' : 'up'}
+                darkMode={true}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  zIndex: isDark ? 1 : -1,
+                }}
+              />
+            </View>
             <View style={styles.checkboxContainer}>
               <SharkCheckbox checked={styleOfStaging === 'sheet'} />
               <Text
