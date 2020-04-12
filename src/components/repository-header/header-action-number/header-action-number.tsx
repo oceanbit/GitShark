@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {TouchableRipple} from 'react-native-paper';
-import {View, Text} from 'react-native';
+import {Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../../constants/theme';
-import {textStyles} from '../../../constants/text-styles';
+import {textStyles, theme} from '../../../constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,

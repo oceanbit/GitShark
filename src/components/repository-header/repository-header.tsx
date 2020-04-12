@@ -1,14 +1,14 @@
 import * as React from 'react';
-import {Menu, Divider} from 'react-native-paper';
+import {Divider, Menu} from 'react-native-paper';
 import {HeaderActionNumber} from './header-action-number/header-action-number';
 import {useNavigation} from '@react-navigation/native';
 import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '../../constants/fs';
+import {fs} from '../../constants';
 import http from 'isomorphic-git/http/web/index.js';
 import {Repo} from 'src/entities';
-import {SharkIconButton} from '../shark-icon-button/shark-icon-button';
-import {AppBar} from '../app-bar/app-bar';
-import {SharkMenu} from '../shark-menu/shark-menu';
+import {SharkIconButton} from '../shark-icon-button';
+import {AppBar} from '../app-bar';
+import {SharkMenu} from '../shark-menu';
 
 interface RepositoryHeaderProps {
   repo: Repo;

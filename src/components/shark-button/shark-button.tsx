@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {View, StyleProp, ViewStyle, Text} from 'react-native';
+import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
-import {textStyles} from '../../constants/text-styles';
+import {textStyles, theme} from '../../constants';
 import {TouchableRipple} from 'react-native-paper';
 import {
   DynamicStyleSheet,
@@ -20,6 +19,7 @@ interface SharkTextInputProps {
   // When primary, what's the background color
   backgroundColor?: string;
 }
+
 export const SharkButton = ({
   onPress,
   text,

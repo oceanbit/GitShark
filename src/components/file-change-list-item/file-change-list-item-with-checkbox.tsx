@@ -1,9 +1,8 @@
 import {StyleSheet, View} from 'react-native';
 import * as React from 'react';
-import {ChangesArrayItem} from '../../services/git';
+import {ChangesArrayItem} from '../../services';
 import {FileChangeListItem} from './file-change-list-item';
-import {Checkbox} from 'react-native-paper';
-import {SharkCheckbox} from '../shark-checkbox/shark-checkbox';
+import {SharkCheckbox} from '../shark-checkbox';
 
 interface FileChangeListItemProps {
   fileName: string;
@@ -12,6 +11,7 @@ interface FileChangeListItemProps {
   onToggle?: () => void;
   isChecked: boolean;
 }
+
 export const FileChangeListItemWithCheckbox = ({
   fileName,
   onPress = () => {},

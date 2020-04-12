@@ -1,7 +1,7 @@
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
+import {theme} from '../../constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -13,6 +13,7 @@ interface RepoCardCommitMetadataProps {
   commitsToPush: number;
   style?: StyleProp<ViewStyle>;
 }
+
 export const RepoCardCommitMetadata = ({
   commitsToPull,
   commitsToPush,
@@ -20,7 +21,9 @@ export const RepoCardCommitMetadata = ({
 }: RepoCardCommitMetadataProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
-  if (!commitsToPull && !commitsToPush) return null;
+  if (!commitsToPull && !commitsToPush) {
+    return null;
+  }
   return (
     <View style={[styles.arrowContainer, style]}>
       {!!commitsToPush && (

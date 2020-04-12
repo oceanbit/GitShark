@@ -1,20 +1,20 @@
 import * as React from 'react';
 import {Alert} from 'react-native';
-import {theme} from '../../constants/theme';
-import {AppDialog} from '../dialog/dialog';
-import {fs} from '../../constants/fs';
+import {fs, theme} from '../../constants';
+import {AppDialog} from '../dialog';
 import git from 'isomorphic-git/index.umd.min.js';
-import {ErrorMessageBox} from '../error-message-box/error-message-box';
-import {FolderSelectButton} from '../folder-select-button/folder-select-button';
-import {createNewRepo} from '../../services/git/createRepo';
-import {SharkButton} from '../shark-button/shark-button';
-import {SharkTextInput} from '../shark-text-input/shark-text-input';
+import {ErrorMessageBox} from '../error-message-box';
+import {FolderSelectButton} from '../folder-select-button';
+import {createNewRepo} from '../../services';
+import {SharkButton} from '../shark-button';
+import {SharkTextInput} from '../shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface CreateRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
 }
+
 export const AddExistingRepositoryDialog = ({
   onDismiss,
   visible,

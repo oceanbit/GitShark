@@ -1,14 +1,11 @@
-import {
-  Animated,
-  View,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {Animated, TouchableWithoutFeedback, View} from 'react-native';
 import * as React from 'react';
-import {theme} from '../../constants/theme';
-import {Surface} from 'react-native-paper';
-import {NavigationAwarePortal} from '../navigation-aware-portal/navigation-aware-portal';
 import {MutableRefObject} from 'react';
-import {DynamicStyleSheet, useDynamicStyleSheet} from "react-native-dark-mode";
+import {theme} from '../../constants';
+import {Surface} from 'react-native-paper';
+import {NavigationAwarePortal} from '../navigation-aware-portal';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+
 type ActionFabReactNode = (toggleAnimation: () => void) => React.ReactNode;
 
 interface ExtendedActionFabProps {
@@ -37,6 +34,8 @@ export const ExtendedActionFab = ({
   const fabBottomLocal = React.useRef(new Animated.Value(16));
   const fabBottom = fabBottomProps || fabBottomLocal;
   const scaleLocal = React.useRef(new Animated.Value(1));
+  // This code did work previously, leaving it there so we can quickly enable it again when it works
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const scale = scaleProps || scaleLocal;
 
   React.useEffect(() => {
@@ -135,8 +134,8 @@ export const ExtendedActionFab = ({
             <Animated.View style={[styles.fabContents, animatedFab]}>
               <View
                 onLayout={event => {
-                  const {height, width} = event.nativeEvent.layout;
-                  setFabSize({height, width});
+                  const {height, width: eventWidth} = event.nativeEvent.layout;
+                  setFabSize({height, width: eventWidth});
                 }}>
                 {fabDisplay}
               </View>
@@ -144,8 +143,8 @@ export const ExtendedActionFab = ({
             <Animated.View style={[styles.fabContents, animatedFabActions]}>
               <View
                 onLayout={event => {
-                  const {height, width} = event.nativeEvent.layout;
-                  setFabActionSize({height, width});
+                  const {height, width: eventWidth} = event.nativeEvent.layout;
+                  setFabActionSize({height, width: eventWidth});
                 }}>
                 {fabActionDisplay}
               </View>

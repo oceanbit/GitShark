@@ -1,15 +1,14 @@
 import * as React from 'react';
 import {
-  View,
-  TextProps,
+  StyleProp,
   TextInput,
   TextInputProps,
-  StyleProp,
+  TextProps,
+  View,
   ViewStyle,
 } from 'react-native';
-import {textStyles} from '../../constants/text-styles';
+import {textStyles, theme} from '../../constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -26,6 +25,7 @@ interface SharkTextInputProps {
   onChangeText: TextInputProps['onChangeText'];
   style?: StyleProp<ViewStyle>;
 }
+
 export const SharkTextInput = ({
   placeholder,
   prefixIcon,
@@ -56,6 +56,7 @@ export const SharkTextInput = ({
     ? {}
     : ({
         textAlignVertical: 'top',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any);
 
   return (

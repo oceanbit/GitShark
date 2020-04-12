@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
-import {RepoContext} from '../../constants/repo-context';
-import {CommitList} from '../../components/commit-list/commit-list';
-import {HistoryBranchDropdown} from '../../components/history-branch-dropdown/history-branch-dropdown';
-import {gitLog, GitLogCommit} from '../../services/git/gitLog';
-import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
+import {DatabaseLoadedContext, RepoContext} from '../../constants';
+import {CommitList} from '../../components/commit-list';
+import {HistoryBranchDropdown} from '../../components/history-branch-dropdown';
+import {gitLog, GitLogCommit} from '../../services';
 
 export const RepositoryHistory = () => {
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
@@ -14,7 +13,9 @@ export const RepositoryHistory = () => {
   const [commits, setCommits] = React.useState<GitLogCommit[]>([]);
 
   React.useEffect(() => {
-    if (!isDBLoaded) return;
+    if (!isDBLoaded) {
+      return;
+    }
     gitLog({repo: repo!})
       .then(repoCommits => setCommits(repoCommits))
       .catch(console.error);

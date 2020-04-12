@@ -1,11 +1,15 @@
 /**
  * @format
  */
+// eslint-disable-next-line no-undef
 FileReader.prototype.readAsArrayBuffer = function(blob) {
-  if (this.readyState === this.LOADING) throw new Error('InvalidStateError');
+  if (this.readyState === this.LOADING) {
+    throw new Error('InvalidStateError');
+  }
   this._setReadyState(this.LOADING);
   this._result = null;
   this._error = null;
+  // eslint-disable-next-line no-undef
   const fr = new FileReader();
   fr.onloadend = () => {
     const content = atob(
@@ -24,9 +28,10 @@ FileReader.prototype.readAsArrayBuffer = function(blob) {
 const chars =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 const atob = (input = '') => {
-  let str = input.replace(/=+$/, '');
+  const str = input.replace(/[=]+$/, '');
   let output = '';
 
+  // eslint-disable-next-line eqeqeq
   if (str.length % 4 == 1) {
     throw new Error(
       "'atob' failed: The string to be decoded is not correctly encoded.",
@@ -35,8 +40,10 @@ const atob = (input = '') => {
   for (
     let bc = 0, bs = 0, buffer, i = 0;
     (buffer = str.charAt(i++));
+    // eslint-disable-next-line no-bitwise
     ~buffer && ((bs = bc % 4 ? bs * 64 + buffer : buffer), bc++ % 4)
-      ? (output += String.fromCharCode(255 & (bs >> ((-2 * bc) & 6))))
+      ? // eslint-disable-next-line no-bitwise
+        (output += String.fromCharCode(255 & (bs >> ((-2 * bc) & 6))))
       : 0
   ) {
     buffer = chars.indexOf(buffer);

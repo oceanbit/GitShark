@@ -8,7 +8,9 @@ export const createNewRepo = async (path: string, name?: string) => {
   const newRepo = new Repo();
   const currentBranchName = await git.currentBranch({fs, dir: path});
 
-  if (!currentBranchName) throw 'This path is not a git repository';
+  if (!currentBranchName) {
+    throw 'This path is not a git repository';
+  }
   newRepo.currentBranchName = currentBranchName;
 
   /**

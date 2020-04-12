@@ -1,5 +1,5 @@
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
+import {theme} from '../../constants';
 import {TouchableRipple} from 'react-native-paper';
 import * as React from 'react';
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
@@ -11,6 +11,7 @@ interface SharkIconButtonProps {
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
 }
+
 export const SharkIconButton = ({
   iconName,
   onPress,

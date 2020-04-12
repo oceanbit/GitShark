@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {StyleProp, Image, ImagePropsBase, ImageStyle} from 'react-native';
-import {theme} from '../../constants/theme';
+import {Image, ImagePropsBase, ImageStyle, StyleProp} from 'react-native';
+import {theme} from '../../constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+
 const defaultProfPic = require('../../../assets/images/default-profile-pic.png');
 
 interface SharkProfilePicProps {
@@ -9,6 +10,7 @@ interface SharkProfilePicProps {
   size?: number;
   style?: StyleProp<ImageStyle>;
 }
+
 export const SharkProfilePic = ({
   source,
   size = 40,

@@ -2,12 +2,12 @@
  * @format
  */
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
   BaseEntity,
-  ManyToMany,
+  Column,
+  Entity,
   JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import {Remote} from './Remote';
 import {Branch} from './Branch';
@@ -45,11 +45,11 @@ export class Repo extends BaseEntity {
   })
   lastUpdated: Date;
 
-  @ManyToMany(type => Remote, {cascade: ['insert', 'remove']})
+  @ManyToMany(() => Remote, {cascade: ['insert', 'remove']})
   @JoinTable({name: 'repo__remotes'})
   remotes: Remote[];
 
-  @ManyToMany(type => Branch, {cascade: ['insert', 'remove']})
+  @ManyToMany(() => Branch, {cascade: ['insert', 'remove']})
   @JoinTable({name: 'repo__branches'})
   branches: Branch[];
 }

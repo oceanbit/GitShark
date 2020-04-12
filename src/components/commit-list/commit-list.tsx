@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {View} from 'react-native';
 import {CommitCard} from './commit-card/commit-card';
-import {theme} from '../../constants/theme';
-import {GitLogCommit} from 'src/services/git/gitLog';
+import {theme} from '../../constants';
+import {GitLogCommit} from '../../services';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface CommitListProps {

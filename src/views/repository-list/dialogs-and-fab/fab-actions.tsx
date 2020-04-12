@@ -2,13 +2,13 @@ import * as React from 'react';
 import {Text, View} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import {DialogSelection, ExtendedFabBase} from './types';
-import {textStyles} from '../../../constants/text-styles';
+import {textStyles, theme} from '../../../constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {theme} from '../../../constants/theme';
 
 interface FabActionsProps extends ExtendedFabBase {
   onSelect: (selection: DialogSelection) => void;
 }
+
 export const FabActions = ({toggleAnimation, onSelect}: FabActionsProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   return (

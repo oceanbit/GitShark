@@ -7,21 +7,19 @@ import {
   Text,
   View,
 } from 'react-native';
-import {RepoContext} from '../../constants/repo-context';
-import {theme} from '../../constants/theme';
+import {RepoContext, textStyles, theme} from '../../constants';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {SharkIconButton} from '../../components/shark-icon-button/shark-icon-button';
-import {textStyles} from '../../constants/text-styles';
-import {FileChangeListItem} from '../../components/file-change-list-item/file-change-list-item';
-import {SharkTextInput} from '../../components/shark-text-input/shark-text-input';
-import {SharkButton} from '../../components/shark-button/shark-button';
-import {ChangesArrayItem} from '../../services/git';
-import {commit} from '../../services/git/commit';
+import {SharkIconButton} from '../../components/shark-icon-button';
+import {FileChangeListItem} from '../../components/file-change-list-item';
+import {SharkTextInput} from '../../components/shark-text-input';
+import {SharkButton} from '../../components/shark-button';
+import {ChangesArrayItem, commit} from '../../services';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 export const Commit = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const {repo} = React.useContext(RepoContext);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const route = useRoute<any>();
   const getUpdate = route!.params!.updateFiles as Function;
   const files = route!.params!.files as ChangesArrayItem[];
@@ -33,7 +31,7 @@ export const Commit = () => {
 
   if (!getUpdate) {
     history.navigate('Repository');
-    return;
+    return null;
   }
 
   const onStagedScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {

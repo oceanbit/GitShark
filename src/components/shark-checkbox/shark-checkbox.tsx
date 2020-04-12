@@ -1,12 +1,13 @@
 import * as React from 'react';
 import RoundCheckbox from './round-checkbox';
 import {useDynamicValue} from 'react-native-dark-mode';
-import {theme} from '../../constants/theme';
+import {theme} from '../../constants';
 
 interface SharkCheckboxProps {
   checked: boolean;
   onValueChange?: (val: boolean) => void;
 }
+
 export const SharkCheckbox = ({checked, onValueChange}: SharkCheckboxProps) => {
   const accent = useDynamicValue(theme.colors.primary);
   const surface = useDynamicValue(theme.colors.surface);

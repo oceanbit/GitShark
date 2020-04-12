@@ -1,23 +1,23 @@
 import * as React from 'react';
 import {View} from 'react-native';
-import {Button} from 'react-native-paper';
-import {theme} from '../../constants/theme';
-import {AppDialog} from '../dialog/dialog';
-import {ErrorMessageBox} from '../error-message-box/error-message-box';
-import {Repo} from 'src/entities';
-import {deleteRepo} from '../../services/git/deleteRepo';
+import {theme} from '../../constants';
+import {AppDialog} from '../dialog';
+import {ErrorMessageBox} from '../error-message-box';
+import {Repo} from '../../entities';
+import {deleteRepo} from '../../services';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {SharkButton} from '../shark-button/shark-button';
+import {SharkButton} from '../shark-button';
 
 interface DeleteRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
   repo: Repo;
 }
+
 export const DeleteRepositoryDialog = ({
   onDismiss,
   visible,
@@ -25,7 +25,6 @@ export const DeleteRepositoryDialog = ({
 }: DeleteRepositoryDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const change_removal = useDynamicValue(theme.colors.change_removal);
-  const accent = useDynamicValue(theme.colors.primary);
 
   const [errorStr, setErrorStr] = React.useState('');
 

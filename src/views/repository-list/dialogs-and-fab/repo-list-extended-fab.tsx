@@ -4,9 +4,8 @@ import {Repo} from '../../../entities';
 import {DialogSelection, ExtendedFabBase} from './types';
 import {NewRepoFab} from './new-repo-fab';
 import {FabActions} from './fab-actions';
-import {textStyles} from '../../../constants/text-styles';
-import {theme} from '../../../constants/theme';
-import {ExtendedActionFab} from '../../../components/extended-action-fab/extended-action-fab';
+import {textStyles, theme} from '../../../constants';
+import {ExtendedActionFab} from '../../../components/extended-action-fab';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 export interface RepoListExtendedFabProps {
@@ -15,6 +14,7 @@ export interface RepoListExtendedFabProps {
   isLoading: boolean;
   setSelectedAction: (val: DialogSelection | '') => void;
 }
+
 export const RepoListExtendedFab = ({
   isDBLoaded,
   repos,
@@ -40,7 +40,7 @@ export const RepoListExtendedFab = ({
         onSelect={val => setSelectedAction(val)}
       />
     ),
-    [],
+    [setSelectedAction],
   );
 
   React.useEffect(() => {
@@ -60,7 +60,9 @@ export const RepoListExtendedFab = ({
   }, [isLoading, scale]);
 
   React.useEffect(() => {
-    if (!isDBLoaded) return;
+    if (!isDBLoaded) {
+      return;
+    }
     // There are no repos, show the FAB in the middle of the screen
     if (repos?.length) {
       Animated.timing(fabBottom.current, {

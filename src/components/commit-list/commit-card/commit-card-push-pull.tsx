@@ -1,7 +1,7 @@
 import {View} from 'react-native';
 import * as React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../../constants/theme';
+import {theme} from '../../../constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -12,6 +12,7 @@ interface CommitCardPushPullProps {
   needsPushing?: boolean;
   needsPulling?: boolean;
 }
+
 export const CommitCardPushPull = ({
   needsPushing,
   needsPulling,
@@ -19,7 +20,9 @@ export const CommitCardPushPull = ({
   const accent = useDynamicValue(theme.colors.primary);
   const styles = useDynamicStyleSheet(dynamicStyles);
 
-  if (!needsPushing && !needsPulling) return null;
+  if (!needsPushing && !needsPulling) {
+    return null;
+  }
   return (
     <View style={styles.arrowContainer}>
       {!!needsPushing && (

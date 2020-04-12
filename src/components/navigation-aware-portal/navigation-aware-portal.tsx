@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Animated, StyleSheet} from 'react-native';
 import {Portal} from 'react-native-paper';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 
 export const NavigationAwarePortal: React.FC = ({children}) => {
   const navigation = useNavigation();
@@ -42,7 +42,7 @@ export const NavigationAwarePortal: React.FC = ({children}) => {
       navigation.removeListener('focus', _show);
       navigation.removeListener('blur', _hide);
     };
-  }, [_hide, _show]);
+  }, [_hide, _show, isFocused, navigation]);
 
   return (
     <Portal>

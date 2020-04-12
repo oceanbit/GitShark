@@ -1,13 +1,11 @@
 import {Text, View} from 'react-native';
 import * as React from 'react';
-import {theme} from '../../../constants/theme';
+import {textStyles, theme} from '../../../constants';
 import {TouchableRipple} from 'react-native-paper';
-import {textStyles} from '../../../constants/text-styles';
 import {CommitCardPushPull} from './commit-card-push-pull';
 import dayjs from 'dayjs';
-import {GitLogCommit} from '../../../services/git/gitLog';
-import {getCommitHeaderBody} from '../../../services/git/getCommitHeaderBody';
-import {SharkProfilePic} from '../../shark-profile-pic/shark-profile-pic';
+import {getCommitHeaderBody, GitLogCommit} from '../../../services';
+import {SharkProfilePic} from '../../shark-profile-pic';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -17,6 +15,7 @@ import {
 interface CommitCardProps {
   commit: GitLogCommit;
 }
+
 export const CommitCard = ({commit}: CommitCardProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 

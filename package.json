@@ -8,6 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
     "android-send-key": "adb shell input keyevent 82"
   },
   "dependencies": {
@@ -56,8 +57,13 @@
     "@typescript-eslint/parser": "^2.26.0",
     "babel-jest": "^25.2.6",
     "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
     "jest": "^25.2.7",
+    "lint-staged": "^10.0.8",
     "metro-react-native-babel-preset": "^0.59.0",
+    "prettier": "^1.19.1",
     "react-test-renderer": "^16.9.0",
     "typescript": "^3.8.3"
   },
@@ -70,6 +76,16 @@
       "jsx",
       "json",
       "node"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "npm run format"
     ]
   }
 }

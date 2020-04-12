@@ -1,37 +1,36 @@
 import * as React from 'react';
 import {
-  View,
-  Text,
-  ScrollView,
   Dimensions,
+  ScrollView,
+  Text,
   TouchableWithoutFeedback,
+  View,
 } from 'react-native';
-import {theme} from '../../constants/theme';
-import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group/shark-button-toggle-group';
-import {AppBar} from '../../components/app-bar/app-bar';
-import {SharkSubheader} from '../../components/shark-subheader/shark-subheader';
-import {textStyles} from '../../constants/text-styles';
+import {
+  DarkModeOptionTypes,
+  SetDarkModeContext,
+  StyleOfStagingContext,
+  textStyles,
+  theme,
+} from '../../constants';
+import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group';
+import {AppBar} from '../../components/app-bar';
+import {SharkSubheader} from '../../components/shark-subheader';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-pic';
-import {SlideUpDownSettingsAnimation} from '../../components/slide-up-down-settings-animation/slide-up-down-settings-animation';
+import {SharkProfilePic} from '../../components/shark-profile-pic';
+import {SlideUpDownSettingsAnimation} from '../../components/slide-up-down-settings-animation';
 import SplitVideoLight from '../../../assets/videos/split.mp4';
 import SplitVideoDark from '../../../assets/videos/split_dark.mp4';
 import Video from 'react-native-video';
 import {
   DynamicStyleSheet,
-  DynamicValue,
   useDarkMode,
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {SharkCheckbox} from '../../components/shark-checkbox/shark-checkbox';
-import {
-  StyleOfStagingContext,
-  SetDarkModeContext,
-  DarkModeOptionTypes,
-} from '../../constants';
+import {SharkCheckbox} from '../../components/shark-checkbox';
 
 export const Settings = () => {
   const isDark = useDarkMode();

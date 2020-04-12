@@ -5,8 +5,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {theme} from '../../constants/theme';
-import {textStyles} from '../../constants/text-styles';
+import {textStyles, theme} from '../../constants';
 import ButtonToggleGroup from 'react-native-button-toggle-group';
 
 interface SharkButtonToggleGroupProps {
@@ -14,6 +13,7 @@ interface SharkButtonToggleGroupProps {
   onSelect: (val: string) => void;
   style?: StyleProp<ViewStyle>;
 }
+
 export const SharkButtonToggleGroup = ({
   values,
   onSelect,

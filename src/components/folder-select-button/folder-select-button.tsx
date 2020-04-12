@@ -2,9 +2,8 @@ import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
+import {textStyles, theme} from '../../constants';
 import RNFileSelector from 'react-native-file-selector';
-import {textStyles} from '../../constants/text-styles';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -16,6 +15,7 @@ interface FolderSelectButtonProps {
   path: string;
   style?: StyleProp<ViewStyle>;
 }
+
 export const FolderSelectButton = ({
   onFolderSelect,
   path,

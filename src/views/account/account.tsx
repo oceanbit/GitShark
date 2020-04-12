@@ -1,16 +1,15 @@
 import * as React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {AppBar} from '../../components/app-bar/app-bar';
-import {SharkSubheader} from '../../components/shark-subheader/shark-subheader';
-import {textStyles} from '../../constants/text-styles';
+import {Text, View} from 'react-native';
+import {AppBar} from '../../components/app-bar';
+import {SharkSubheader} from '../../components/shark-subheader';
+import {textStyles, theme} from '../../constants';
 import {useNavigation} from '@react-navigation/native';
-import {TouchableRipple, Checkbox} from 'react-native-paper';
-import {SharkButton} from '../../components/shark-button/shark-button';
-import {SharkProfilePic} from '../../components/shark-profile-pic/shark-profile-pic';
-import {SharkTextInput} from '../../components/shark-text-input/shark-text-input';
+import {TouchableRipple} from 'react-native-paper';
+import {SharkButton} from '../../components/shark-button';
+import {SharkProfilePic} from '../../components/shark-profile-pic';
+import {SharkTextInput} from '../../components/shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {theme} from '../../constants/theme';
-import {SharkCheckbox} from "../../components/shark-checkbox/shark-checkbox";
+import {SharkCheckbox} from '../../components/shark-checkbox';
 
 export const Account = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);

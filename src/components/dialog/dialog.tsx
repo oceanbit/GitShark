@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {Text, View} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
-import {textStyles} from '../../constants/text-styles';
-import {theme} from '../../constants/theme';
+import {textStyles, theme} from '../../constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface AppDialogProps {
@@ -20,6 +19,7 @@ interface AppDialogProps {
   onDismiss?: () => void;
   visible: boolean;
 }
+
 export const AppDialog = ({
   visible,
   dismissable,

@@ -3,8 +3,8 @@ import {UnstagedChanges} from './unstaged-changes';
 import {StagedChanges} from './staged-changes';
 import * as React from 'react';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {theme} from '../../constants/theme';
-import {ChangesArrayItem} from '../../services/git';
+import {theme} from '../../constants';
+import {ChangesArrayItem} from '../../services';
 
 interface StageSplitViewProps {
   unstagedChanges: ChangesArrayItem[];
@@ -13,6 +13,7 @@ interface StageSplitViewProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
   onCommit: () => void;
 }
+
 export const StageSplitView = ({
   addToStaged,
   unstagedChanges,

@@ -2,7 +2,7 @@ import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
 import {fs} from '../../constants/fs';
 import http from 'isomorphic-git/http/web/index.js';
 import {createNewRepo} from './createRepo';
-import {getRepoNameFromUri} from "../../utils";
+import {getRepoNameFromUri} from '../../utils';
 
 interface CloneRepoProps {
   path: string;
@@ -10,6 +10,7 @@ interface CloneRepoProps {
   uri: string;
   onProgress: ProgressCallback;
 }
+
 export const cloneRepo = async ({
   path,
   name,

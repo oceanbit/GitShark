@@ -4,10 +4,10 @@ import {
   NativeSyntheticEvent,
   ScrollView,
 } from 'react-native';
-import {SharkSubheader} from '../../shark-subheader/shark-subheader';
-import {FileChangeListItemWithCheckbox} from '../../file-change-list-item/file-change-list-item-with-checkbox';
-import {ChangesArrayItem} from '../../../services/git';
-import {theme} from '../../../constants/theme';
+import {SharkSubheader} from '../../shark-subheader';
+import {FileChangeListItemWithCheckbox} from '../../file-change-list-item';
+import {ChangesArrayItem} from '../../../services';
+import {theme} from '../../../constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface UnstagedChangesProps {

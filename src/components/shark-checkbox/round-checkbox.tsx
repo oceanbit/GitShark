@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {
   Animated,
-  View,
-  TouchableWithoutFeedback,
-  StyleSheet,
-  ViewStyle,
   StyleProp,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -27,6 +27,7 @@ interface RoundCheckboxProps {
 interface RoundCheckboxState {
   scaleAndOpacityOfCheckbox: null | Animated.Value;
 }
+
 class RoundCheckbox extends React.PureComponent<
   RoundCheckboxProps,
   RoundCheckboxState
@@ -47,6 +48,7 @@ class RoundCheckbox extends React.PureComponent<
   };
 
   componentDidMount() {
+    // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({
       scaleAndOpacityOfCheckbox: new Animated.Value(this.props.checked ? 1 : 0),
     });
@@ -71,6 +73,7 @@ class RoundCheckbox extends React.PureComponent<
   }
 
   render() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const iconSize = parseInt((this.props.size! * 1.3) as any, 10);
 
     const bothStyles = {

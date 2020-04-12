@@ -1,10 +1,9 @@
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
-import {theme} from '../../constants/theme';
+import {textStyles, theme} from '../../constants';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {textStyles} from '../../constants/text-styles';
-import {ChangesArrayItem} from '../../services/git';
+import {ChangesArrayItem} from '../../services';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -17,6 +16,7 @@ interface FileChangeListItemProps {
   fileStatus: ChangesArrayItem['fileStatus'];
   style?: StyleProp<ViewStyle>;
 }
+
 export const FileChangeListItem = ({
   fileName,
   onPress = () => {},
@@ -61,7 +61,13 @@ export const FileChangeListItem = ({
           />
         );
     }
-  }, [fileStatus, change_addition, change_removal, change_mixed]);
+  }, [
+    fileStatus,
+    change_addition,
+    change_removal,
+    change_mixed,
+    styles.changeIcon,
+  ]);
   return (
     <TouchableRipple
       style={[style, styles.listItemContainer]}

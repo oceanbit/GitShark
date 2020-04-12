@@ -11,7 +11,7 @@ export interface ChangesArrayItem {
 export const getRepoStatus = async (path: string) => {
   const statusArrArr = await git.statusMatrix({
     fs,
-    dir: `${path}`
+    dir: `${path}`,
   });
 
   console.log(statusArrArr);

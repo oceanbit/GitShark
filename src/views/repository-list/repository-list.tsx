@@ -1,14 +1,12 @@
 import * as React from 'react';
-import {View, Alert, ScrollView, Text} from 'react-native';
+import {Alert, ScrollView, Text, View} from 'react-native';
 import {Repo} from '../../entities';
 import {getRepository} from 'typeorm';
-import {RepoCard} from '../../components/repo-card/repo-card';
-import {textStyles} from '../../constants/text-styles';
-import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
-import {RepoListLoading} from '../../components/repo-list-loading/repo-list-loading';
-import {theme} from '../../constants/theme';
+import {RepoCard} from '../../components/repo-card';
+import {DatabaseLoadedContext, textStyles, theme} from '../../constants';
+import {RepoListLoading} from '../../components/repo-list-loading';
 import {DialogsAndFab} from './dialogs-and-fab';
-import {SharkIconButton} from '../../components/shark-icon-button/shark-icon-button';
+import {SharkIconButton} from '../../components/shark-icon-button';
 import {useNavigation} from '@react-navigation/native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
@@ -24,8 +22,8 @@ export const RepositoryList = () => {
   const findRepos = React.useCallback(async () => {
     try {
       const repoRepository = getRepository(Repo);
-      const repos = await repoRepository.find({});
-      setRepos(repos);
+      const foundRepos = await repoRepository.find({});
+      setRepos(foundRepos);
       return true; // Indicates this works
     } catch (e) {
       console.error(e);
@@ -34,7 +32,9 @@ export const RepositoryList = () => {
   }, []);
 
   React.useEffect(() => {
-    if (!isDBLoaded) return;
+    if (!isDBLoaded) {
+      return;
+    }
     findRepos();
   }, [findRepos, isDBLoaded]);
 

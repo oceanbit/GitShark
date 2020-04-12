@@ -1,19 +1,19 @@
 import * as React from 'react';
-import {theme} from '../../constants/theme';
-import {AppDialog} from '../dialog/dialog';
-import {fs} from '../../constants/fs';
+import {fs, theme} from '../../constants';
+import {AppDialog} from '../dialog';
 import git from 'isomorphic-git/index.umd.min.js';
-import {SharkTextInput} from '../shark-text-input/shark-text-input';
-import {ErrorMessageBox} from '../error-message-box/error-message-box';
-import {FolderSelectButton} from '../folder-select-button/folder-select-button';
-import {CloneRepositoryProgressDialog} from '../clone-repository-progress-dialog/clone-repository-progress-dialog';
-import {SharkButton} from '../shark-button/shark-button';
+import {SharkTextInput} from '../shark-text-input';
+import {ErrorMessageBox} from '../error-message-box';
+import {FolderSelectButton} from '../folder-select-button';
+import {CloneRepositoryProgressDialog} from '../clone-repository-progress-dialog';
+import {SharkButton} from '../shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface CloneRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
 }
+
 export const CloneRepositoryDialog = ({
   onDismiss,
   visible,

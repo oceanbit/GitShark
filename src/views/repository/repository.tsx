@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
 import {Alert} from 'react-native';
-import {theme} from '../../constants/theme';
-import {RepositoryHeader} from '../../components/repository-header/repository-header';
-import {RepoContext} from '../../constants/repo-context';
+import {RepoContext, theme} from '../../constants';
+import {RepositoryHeader} from '../../components/repository-header';
 import {useRoute} from '@react-navigation/native';
 import {getRepository} from 'typeorm';
 import {Repo} from '../../entities';
@@ -31,7 +30,7 @@ export const Repository = () => {
   const {repoId} = params! as Record<string, string>;
   const [repo, setRepo] = React.useState<Repo | null>(null);
 
-  React
+  React;
 
   React.useEffect(() => {
     const repoRepository = getRepository(Repo);
@@ -93,7 +92,7 @@ export const Repository = () => {
         />
       </Tab.Navigator>
     );
-  }, []);
+  }, [styles.bottomNav, accent, on_surface_secondary]);
 
   const Stack = createStackNavigator();
 

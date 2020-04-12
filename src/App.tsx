@@ -7,8 +7,13 @@ import {createConnection, getConnectionManager} from 'typeorm';
 import {Branch, Commit, Remote, Repo} from './entities';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-import {SafeAreaView, StatusBar, Alert, YellowBox} from 'react-native';
-import {PermissionsAndroid} from 'react-native';
+import {
+  Alert,
+  PermissionsAndroid,
+  SafeAreaView,
+  StatusBar,
+  YellowBox,
+} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {Repository} from './views/repository/repository';
 import {Account} from './views/account/account';
@@ -17,12 +22,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {DatabaseLoadedContext} from './constants/database-loaded-context';
 import {
-  lightNavTheme,
-  lightPaperTheme,
   darkNavTheme,
   darkPaperTheme,
+  lightNavTheme,
+  lightPaperTheme,
 } from './constants/theme';
-import {DarkModeProvider, useDarkMode} from 'react-native-dark-mode';
+import {DarkModeProvider} from 'react-native-dark-mode';
 import DefaultPreference from 'react-native-default-preference';
 import {
   StagingTypes,

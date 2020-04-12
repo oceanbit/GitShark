@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {CreateRepositoryDialog} from '../../../components/create-repository-dialog/create-repository-dialog';
-import {AddExistingRepositoryDialog} from '../../../components/add-existing-repository-dialog/add-existing-repository-dialog';
-import {CloneRepositoryDialog} from '../../../components/clone-repository-dialog/clone-repository-dialog';
+import {CreateRepositoryDialog} from '../../../components/create-repository-dialog';
+import {AddExistingRepositoryDialog} from '../../../components/add-existing-repository-dialog';
+import {CloneRepositoryDialog} from '../../../components/clone-repository-dialog';
 import {DialogSelection} from './types';
 import {
   RepoListExtendedFab,
@@ -12,6 +12,7 @@ interface DialogsProps
   extends Omit<RepoListExtendedFabProps, 'setSelectedAction'> {
   findRepos: () => Promise<boolean | undefined>;
 }
+
 export const DialogsAndFab = ({findRepos, ...props}: DialogsProps) => {
   const [selectedAction, setSelectedAction] = React.useState<
     DialogSelection | ''
@@ -19,7 +20,9 @@ export const DialogsAndFab = ({findRepos, ...props}: DialogsProps) => {
 
   const onDismiss = React.useCallback(
     (didUpdate: boolean) => {
-      if (didUpdate) findRepos();
+      if (didUpdate) {
+        findRepos();
+      }
       setSelectedAction('');
     },
     [findRepos],

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ProgressBar} from 'react-native-paper';
-import {theme} from '../../constants/theme';
-import {AppDialog} from '../dialog/dialog';
-import {ErrorMessageBox} from '../error-message-box/error-message-box';
-import {cloneRepo} from '../../services/git/cloneRepo';
-import {SharkButton} from '../shark-button/shark-button';
+import {theme} from '../../constants';
+import {AppDialog} from '../dialog';
+import {ErrorMessageBox} from '../error-message-box';
+import {cloneRepo} from '../../services';
+import {SharkButton} from '../shark-button';
 import {useDynamicValue} from 'react-native-dark-mode';
 
 // Note that since we're running isomorphic-git in the main thread, we're competing with React trying to update the UI.
@@ -30,6 +30,7 @@ interface CloneRepositoryProgressDialogProps {
   path: string;
   name?: string;
 }
+
 export const CloneRepositoryProgressDialog = ({
   onDismiss,
   visible,
@@ -54,11 +55,15 @@ export const CloneRepositoryProgressDialog = ({
       path,
       name,
       uri,
-      async onProgress({phase, loaded, total}) {
-        if (phases[phase]) {
-          setPhase(phase);
-          setLoaded(loaded);
-          setTotal(total || 0);
+      async onProgress({
+        phase: progressPhase,
+        loaded: progressLoaded,
+        total: progressTotal,
+      }) {
+        if (phases[progressPhase]) {
+          setPhase(progressPhase);
+          setLoaded(progressLoaded);
+          setTotal(progressTotal || 0);
           await pauseToRender();
         }
       },
@@ -72,7 +77,9 @@ export const CloneRepositoryProgressDialog = ({
   }, [path, name, uri, onDismiss]);
 
   React.useEffect(() => {
-    if (!visible) return;
+    if (!visible) {
+      return;
+    }
     cloneRepoCB();
   }, [cloneRepoCB, visible]);
 

@@ -1,13 +1,17 @@
 import * as React from 'react';
 import git from 'isomorphic-git/index.umd.min.js';
-import {RepoContext} from '../../constants/repo-context';
-import {ChangesArrayItem, getRepoStatus} from '../../services/git';
-import {fs} from '../../constants/fs';
-import {DatabaseLoadedContext} from '../../constants/database-loaded-context';
+import {
+  DatabaseLoadedContext,
+  fs,
+  RepoContext,
+  StyleOfStagingContext,
+} from '../../constants';
+import {ChangesArrayItem, getRepoStatus} from '../../services';
 import {useNavigation} from '@react-navigation/native';
-import {StageSplitView} from '../../components/stage-split-view/stage-split-view';
-import {StageSheetView} from '../../components/stage-sheet-view/stage-sheet-view';
-import {StyleOfStagingContext} from '../../constants/style-of-staging-context';
+import {
+  StageSheetView,
+  StageSplitView,
+} from '../../components/staging-screen-options';
 
 export const RepositoryChanges = () => {
   const history = useNavigation();
@@ -51,7 +55,9 @@ export const RepositoryChanges = () => {
   }, [repo]);
 
   React.useEffect(() => {
-    if (!isDBLoaded) return;
+    if (!isDBLoaded) {
+      return;
+    }
     getUpdate();
   }, [isDBLoaded, getUpdate]);
 

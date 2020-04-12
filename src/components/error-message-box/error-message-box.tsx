@@ -1,8 +1,7 @@
-import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
-import {textStyles} from '../../constants/text-styles';
+import {textStyles, theme} from '../../constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -13,6 +12,7 @@ interface ErrorMessageBoxProps {
   message: string;
   style?: StyleProp<ViewStyle>;
 }
+
 export const ErrorMessageBox = ({
   message,
   style = {},

@@ -5,6 +5,8 @@ import {Buffer} from 'buffer';
 function Err(name: string) {
   return class extends Error {
     public code = name;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any) {
       super(...args);
       if (this.message) {

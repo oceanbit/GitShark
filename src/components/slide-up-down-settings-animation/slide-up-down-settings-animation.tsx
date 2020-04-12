@@ -13,6 +13,7 @@ interface SlideUpDownSettingsAnimationProps {
   darkMode: boolean;
   style?: StyleProp<ViewStyle>;
 }
+
 export const SlideUpDownSettingsAnimation = ({
   direction,
   vidHeight,
@@ -24,8 +25,10 @@ export const SlideUpDownSettingsAnimation = ({
 
   const SheetDownVideo = !darkMode ? SheetDownVideoLight : SheetDownVideoDark;
 
-  const slideUpVideo = React.useRef<Video>();
-  const slideDownVideo = React.useRef<Video>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const slideUpVideo = React.useRef<Video>() as any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const slideDownVideo = React.useRef<Video>() as any;
   const [playUpVideo, setPlayUpVideo] = React.useState(
     () => direction === 'up',
   );
@@ -33,20 +36,20 @@ export const SlideUpDownSettingsAnimation = ({
   const [pausedUpVid, setPausedUpVid] = React.useState(true);
 
   React.useEffect(() => {
-    const playUpVideo = direction === 'up';
-    if (playUpVideo) {
+    const shouldPlayUpVideo = direction === 'up';
+    if (shouldPlayUpVideo) {
       setPausedDownVid(false);
     } else {
       setPausedUpVid(false);
     }
-    setPlayUpVideo(playUpVideo);
+    setPlayUpVideo(shouldPlayUpVideo);
   }, [direction]);
 
   return (
     <View style={style}>
       <Video
         source={SheetUpVideo}
-        ref={slideUpVideo as any}
+        ref={slideUpVideo}
         style={{height: vidHeight, width: vidWidth}}
         muted={true}
         controls={false}
@@ -60,7 +63,7 @@ export const SlideUpDownSettingsAnimation = ({
       />
       <Video
         source={SheetDownVideo}
-        ref={slideDownVideo as any}
+        ref={slideDownVideo}
         style={{
           position: 'absolute',
           opacity: playUpVideo ? 1 : 0,

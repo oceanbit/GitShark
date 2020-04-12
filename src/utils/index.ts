@@ -9,6 +9,7 @@ export const getRepoNameFromPath = (path: string) => {
    * test
    * test.git
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, repoName] = /(?:.*\/|^)(.*?)(?:\.git)?$/.exec(path) || [];
   return repoName;
 };
@@ -20,7 +21,7 @@ export const getRepoNameFromUri = (path: string) => {
    * https://github.com/unicorn-utterances/unicorn-utterances.git
    * https://github.com/unicorn-utterances/unicorn-utterances
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, repoName] = /(?:.*\/|^)(.*?)(?:\.git)?$/.exec(path) || [];
   return repoName;
 };
-

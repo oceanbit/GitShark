@@ -1,17 +1,18 @@
 import * as React from 'react';
-import {theme} from '../../constants/theme';
-import {AppDialog} from '../dialog/dialog';
-import {ErrorMessageBox} from '../error-message-box/error-message-box';
+import {theme} from '../../constants';
+import {AppDialog} from '../dialog';
+import {ErrorMessageBox} from '../error-message-box';
 import {Repo} from 'src/entities';
-import {SharkTextInput} from '../shark-text-input/shark-text-input';
+import {SharkTextInput} from '../shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkButton} from '../shark-button/shark-button';
+import {SharkButton} from '../shark-button';
 
 interface RenameRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
   repo: Repo;
 }
+
 export const RenameRepositoryDialog = ({
   onDismiss,
   visible,

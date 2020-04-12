@@ -1,10 +1,9 @@
 import {Text, View} from 'react-native';
 import * as React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants/theme';
+import {textStyles, theme} from '../../constants';
 import {TouchableRipple} from 'react-native-paper';
-import {textStyles} from '../../constants/text-styles';
-import {SharkIconButton} from '../shark-icon-button/shark-icon-button';
+import {SharkIconButton} from '../shark-icon-button';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -16,6 +15,7 @@ interface HistoryBranchDropdownProps {
   onFavorite: () => void;
   favorite: boolean;
 }
+
 export const HistoryBranchDropdown = ({
   branchName,
   favorite,

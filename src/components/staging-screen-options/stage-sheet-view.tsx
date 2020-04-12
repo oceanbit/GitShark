@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-import {colors, theme} from '../../constants/theme';
-import {StagedChanges} from '../stage-split-view/staged-changes';
-import {ChangesArrayItem} from '../../services/git';
-import {UnstagedChanges} from '../stage-split-view/unstaged-changes';
+import {theme} from '../../constants';
+import {StagedChanges} from './staged-changes';
+import {ChangesArrayItem} from '../../services';
+import {UnstagedChanges} from './unstaged-changes';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const AnimatedView = Animated.View;
@@ -20,6 +20,7 @@ interface StageSheetViewProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
   onCommit: () => void;
 }
+
 export const StageSheetView = ({
   unstagedChanges,
   stagedChanges,

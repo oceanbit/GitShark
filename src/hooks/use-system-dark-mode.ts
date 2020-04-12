@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {initialMode, eventEmitter} from 'react-native-dark-mode';
+import {eventEmitter, initialMode} from 'react-native-dark-mode';
 
 export const useSystemDarkMode = () => {
   const [isDarkMode, setIsDarkMode] = React.useState(initialMode === 'dark');
@@ -9,6 +9,7 @@ export const useSystemDarkMode = () => {
       setIsDarkMode(newMode === 'dark');
     };
     eventEmitter.on('currentModeChanged', listener);
+    // eslint-disable-next-line no-void
     return () => void eventEmitter.off('currentModeChanged', listener);
   }, []);
 

@@ -9,7 +9,9 @@ const headerBodyRegex = /(.{0,55}(?:\n|\r\n)|.{0,56})([\s\S]*)/;
 interface GetCommitHeaderBody {
   commit: GitLogCommit;
 }
+
 export const getCommitHeaderBody = ({commit}: GetCommitHeaderBody) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, title = '', message = ''] =
     headerBodyRegex.exec(commit.message) || [];
   return {title, message};

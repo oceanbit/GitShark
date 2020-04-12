@@ -30,7 +30,7 @@ export class Branch extends BaseEntity {
   @Column({type: 'text', name: 'name'})
   name: string;
 
-  @ManyToMany(type => Commit, {cascade: ['insert', 'remove']})
+  @ManyToMany(() => Commit, {cascade: ['insert', 'remove']})
   @JoinTable({name: 'branch__commits'})
   commits: Commit[];
 
@@ -41,7 +41,7 @@ export class Branch extends BaseEntity {
   isLocal: boolean;
 
   // If `isLocal` is true, this should have a value. Otherwise, this should have no value
-  @OneToOne(type => Branch, {nullable: true, cascade: ['insert', 'remove']})
+  @OneToOne(() => Branch, {nullable: true, cascade: ['insert', 'remove']})
   @JoinColumn({name: 'branch__trackedbranch'})
   trackedBranch?: Branch;
 
