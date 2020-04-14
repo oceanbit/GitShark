@@ -69,7 +69,8 @@ export const RepoListExtendedFab = ({
     // There are no repos, show the FAB in the middle of the screen
     if (repos?.length) {
       Animated.timing(fabBottom.current, {
-        toValue: 16 + insets.bottom,
+        // toValue: 16 + insets.bottom,
+        toValue: 16,
         duration: 300,
         useNativeDriver: false,
       }).start();
