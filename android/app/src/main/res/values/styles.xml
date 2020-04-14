@@ -1,9 +1,14 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:textColor">#000000</item>
+        <!-- Boolean internal attribute to adjust view layout based on system windows such as the status bar.
+            If true, adjusts the padding of this view to leave space for the system windows. API Level 1-->
+        <item name="android:fitsSystemWindows">true</item>
+        <!-- Flag indicating whether this Window is responsible for drawing the background for the system bars. API level 21-->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
-
 </resources>

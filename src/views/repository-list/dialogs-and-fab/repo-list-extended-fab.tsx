@@ -7,6 +7,7 @@ import {FabActions} from './fab-actions';
 import {textStyles, theme} from '../../../constants';
 import {ExtendedActionFab} from '../../../components/extended-action-fab';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {useSafeArea} from 'react-native-safe-area-context';
 
 export interface RepoListExtendedFabProps {
   repos: Repo[] | null;
@@ -21,6 +22,8 @@ export const RepoListExtendedFab = ({
   setSelectedAction,
   isLoading,
 }: RepoListExtendedFabProps) => {
+  const insets = useSafeArea();
+
   const styles = useDynamicStyleSheet(dynamicStyles);
   const fabBottom = React.useRef(new Animated.Value(16));
   const scale = React.useRef(new Animated.Value(0));
@@ -66,19 +69,19 @@ export const RepoListExtendedFab = ({
     // There are no repos, show the FAB in the middle of the screen
     if (repos?.length) {
       Animated.timing(fabBottom.current, {
-        toValue: 16,
+        toValue: 16 + insets.bottom,
         duration: 300,
         useNativeDriver: false,
       }).start();
       // There are repos, show it 16 from the bottom
     } else {
       Animated.timing(fabBottom.current, {
-        toValue: windowHeight / 2 - 80,
+        toValue: windowHeight / 2 - 80 + insets.bottom,
         duration: 300,
         useNativeDriver: false,
       }).start();
     }
-  }, [fabBottom, repos, isDBLoaded, windowHeight]);
+  }, [fabBottom, repos, isDBLoaded, windowHeight, insets]);
 
   const noReposBotttom = windowHeight / 2;
 

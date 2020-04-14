@@ -37,6 +37,7 @@ import {
 } from './constants/style-of-staging-context';
 import {useSystemDarkMode} from './hooks';
 import {DarkModeOptionTypes, SetDarkModeContext} from './constants';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 YellowBox.ignoreWarnings([
   /**
@@ -172,36 +173,38 @@ const App = () => {
   const paperTheme = isDarkMode ? darkPaperTheme : lightPaperTheme;
 
   return (
-    <NavigationContainer theme={isDarkMode ? darkNavTheme : lightNavTheme}>
-      <PaperProvider theme={paperTheme}>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={paperTheme.colors.background}
-        />
-        <DatabaseLoadedContext.Provider value={isDBLoaded}>
-          <StyleOfStagingContext.Provider
-            value={{
-              styleOfStaging,
-              setStyleOfStaging: updateStagingStyle,
-            }}>
-            <SetDarkModeContext.Provider
+    <SafeAreaProvider>
+      <NavigationContainer theme={isDarkMode ? darkNavTheme : lightNavTheme}>
+        <PaperProvider theme={paperTheme}>
+          <StatusBar
+            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            backgroundColor={'transparent'}
+          />
+          <DatabaseLoadedContext.Provider value={isDBLoaded}>
+            <StyleOfStagingContext.Provider
               value={{
-                setDarkMode: updateLocalDarkMode,
+                styleOfStaging,
+                setStyleOfStaging: updateStagingStyle,
               }}>
-              <DarkModeProvider mode={isDarkMode ? 'dark' : 'light'}>
-                <Stack.Navigator headerMode={'none'}>
-                  <Stack.Screen name="RepoList" component={RepositoryList} />
-                  <Stack.Screen name="Settings" component={Settings} />
-                  <Stack.Screen name="Account" component={Account} />
-                  <Stack.Screen name="RepoDetails" component={Repository} />
-                </Stack.Navigator>
-              </DarkModeProvider>
-            </SetDarkModeContext.Provider>
-          </StyleOfStagingContext.Provider>
-        </DatabaseLoadedContext.Provider>
-        <SafeAreaView />
-      </PaperProvider>
-    </NavigationContainer>
+              <SetDarkModeContext.Provider
+                value={{
+                  setDarkMode: updateLocalDarkMode,
+                }}>
+                <DarkModeProvider mode={isDarkMode ? 'dark' : 'light'}>
+                  <Stack.Navigator headerMode={'none'}>
+                    <Stack.Screen name="RepoList" component={RepositoryList} />
+                    <Stack.Screen name="Settings" component={Settings} />
+                    <Stack.Screen name="Account" component={Account} />
+                    <Stack.Screen name="RepoDetails" component={Repository} />
+                  </Stack.Navigator>
+                </DarkModeProvider>
+              </SetDarkModeContext.Provider>
+            </StyleOfStagingContext.Provider>
+          </DatabaseLoadedContext.Provider>
+          <SafeAreaView />
+        </PaperProvider>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 

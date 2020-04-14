@@ -9,9 +9,11 @@ import {DialogsAndFab} from './dialogs-and-fab';
 import {SharkIconButton} from '../../components/shark-icon-button';
 import {useNavigation} from '@react-navigation/native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {useSafeArea} from 'react-native-safe-area-context';
 
 export const RepositoryList = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
+  const insets = useSafeArea();
 
   const history = useNavigation();
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
@@ -40,9 +42,9 @@ export const RepositoryList = () => {
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={(styles.container, {marginTop: insets.top})}>
         <View style={styles.headingContainer}>
-          <Text style={styles.headingText}>Repositories</Text>
+          <Text style={styles.headingText}>Repositories {insets.bottom}</Text>
           <SharkIconButton
             onPress={() => {
               history.navigate('Settings');
@@ -52,7 +54,7 @@ export const RepositoryList = () => {
         </View>
         {isLoading && <RepoListLoading />}
         {!isLoading && !!repos?.length && (
-          <ScrollView>
+          <ScrollView style={{marginBottom: insets.bottom}}>
             {repos!.map(repo => {
               return (
                 <RepoCard
