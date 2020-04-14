@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View} from 'react-native';
+import {Linking, Text, View} from 'react-native';
 import {AppBar} from '../../components/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader';
 import {textStyles, theme} from '../../constants';
@@ -10,6 +10,7 @@ import {SharkProfilePic} from '../../components/shark-profile-pic';
 import {SharkTextInput} from '../../components/shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkCheckbox} from '../../components/shark-checkbox';
+import {githubOauthLink} from '../../constants/oauth';
 
 export const Account = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -29,7 +30,9 @@ export const Account = () => {
         text="Sign in with GitHub"
         type="primary"
         icon={'github-circle'}
-        onPress={() => {}}
+        onPress={() => {
+          Linking.openURL(githubOauthLink);
+        }}
       />
       <SharkSubheader
         style={styles.commitAuthoringHeader}

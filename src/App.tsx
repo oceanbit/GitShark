@@ -9,7 +9,9 @@ import {Provider as PaperProvider} from 'react-native-paper';
 
 import {
   Alert,
+  Linking,
   PermissionsAndroid,
+  Platform,
   SafeAreaView,
   StatusBar,
   YellowBox,
@@ -100,6 +102,31 @@ const App = () => {
         );
         console.error(err);
       });
+  }, []);
+
+  /**
+   * Get user deep linking
+   */
+  React.useEffect(() => {
+    type URLEventFn = Parameters<typeof Linking.removeEventListener>[1];
+    const handleOpenURL: URLEventFn = event => {
+      console.log('event.url', event.url);
+      const route = event.url.replace(/.*?:\/\//g, '');
+      console.log('route', route);
+      // do something with the url, in our case navigate(route)
+    };
+    if (Platform.OS === 'android') {
+      Linking.getInitialURL().then(url => {
+        console.log('url', url);
+      });
+    } else {
+      Linking.addEventListener('url', handleOpenURL);
+    }
+    return () => {
+      if (Platform.OS !== 'android') {
+        Linking.removeEventListener('url', handleOpenURL);
+      }
+    };
   }, []);
 
   /**
