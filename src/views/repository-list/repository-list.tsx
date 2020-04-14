@@ -42,7 +42,7 @@ export const RepositoryList = () => {
 
   return (
     <>
-      <View style={(styles.container, {marginTop: insets.top})}>
+      <View style={(styles.container, {marginTop: insets.bottom})}>
         <View style={styles.headingContainer}>
           <Text style={styles.headingText}>Repositories {insets.bottom}</Text>
           <SharkIconButton

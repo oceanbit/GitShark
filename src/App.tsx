@@ -179,6 +179,7 @@ const App = () => {
           <StatusBar
             barStyle={isDarkMode ? 'light-content' : 'dark-content'}
             backgroundColor={'transparent'}
+            translucent={true}
           />
           <DatabaseLoadedContext.Provider value={isDBLoaded}>
             <StyleOfStagingContext.Provider
