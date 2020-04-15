@@ -16,10 +16,14 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
+import {useSafeArea} from 'react-native-safe-area-context';
+import {SharkSafeTop} from '../../components/shark-safe-top';
 
 const Tab = createMaterialBottomTabNavigator();
 
 export const Repository = () => {
+  const insets = useSafeArea();
+
   const styles = useDynamicStyleSheet(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
   const on_surface_secondary = useDynamicValue(
@@ -67,7 +71,7 @@ export const Repository = () => {
       <Tab.Navigator
         labeled={true}
         shifting={false}
-        barStyle={styles.bottomNav}
+        barStyle={[styles.bottomNav, {paddingBottom: insets.bottom}]}
         inactiveColor={on_surface_secondary}
         activeColor={accent}>
         <Tab.Screen
@@ -92,18 +96,20 @@ export const Repository = () => {
         />
       </Tab.Navigator>
     );
-  }, [styles.bottomNav, accent, on_surface_secondary]);
+  }, [styles.bottomNav, accent, on_surface_secondary, insets.bottom]);
 
   const Stack = createStackNavigator();
 
   return (
-    <RepoContext.Provider value={contextValue}>
-      <RepositoryHeader repo={repo!} />
-      <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
-        <Stack.Screen name="Repository" component={Tabs} />
-        <Stack.Screen name="Commit" component={Commit} />
-      </Stack.Navigator>
-    </RepoContext.Provider>
+    <SharkSafeTop>
+      <RepoContext.Provider value={contextValue}>
+        <RepositoryHeader repo={repo!} />
+        <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
+          <Stack.Screen name="Repository" component={Tabs} />
+          <Stack.Screen name="Commit" component={Commit} />
+        </Stack.Navigator>
+      </RepoContext.Provider>
+    </SharkSafeTop>
   );
 };
 

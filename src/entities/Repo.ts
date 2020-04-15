@@ -1,6 +1,3 @@
-/**
- * @format
- */
 import {
   BaseEntity,
   Column,

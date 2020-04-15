@@ -45,13 +45,13 @@ export const colors = {
   error_dark: '#D9A68C', // Light Brown
   error_light: '#994D00', // Brown
   floating_surface_dark: '#182339', // Navy 900
-  floating_surface_light: '#FFF', // White
-  on_change_dark: '#000', // Black
-  on_change_light: '#FFF', // White
-  on_error_dark: '#000', // Black
-  on_error_light: '#FFF', // White
+  floating_surface_light: '#FFFFFF', // White
+  on_change_dark: '#000000', // Black
+  on_change_light: '#FFFFFF', // White
+  on_error_dark: '#000000', // Black
+  on_error_light: '#FFFFFF', // White
   on_primary_dark: '#00081A', // Navy Black
-  on_primary_light: '#FFF', // White
+  on_primary_light: '#FFFFFF', // White
   on_surface_dark: '#E5EEFF', // Navy 100
   on_surface_light: '#132A58', // Navy 800
   on_surface_secondary_dark: 'rgba(229,238,255, 0.6)', // Navy 100 0.6 alpha
@@ -66,7 +66,7 @@ export const colors = {
   ripple_surface_dark: 'rgba(230, 238, 255, 0.15)', // Navy 100 0.15 alpha
   ripple_surface_light: 'rgba(0, 51, 153, 0.12)', // Electric Blue 700 0.12 alpha
   surface_dark: '#0D1526', // Navy 1000
-  surface_light: '#FFF', // White
+  surface_light: '#FFFFFF', // White
 };
 
 const baseTheme = {

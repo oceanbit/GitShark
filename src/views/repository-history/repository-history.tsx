@@ -38,5 +38,7 @@ export const RepositoryHistory = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
 });

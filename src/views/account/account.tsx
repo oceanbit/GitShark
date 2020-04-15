@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Linking, Text, View} from 'react-native';
+import {ScrollView, Linking, Text, View} from 'react-native';
 import {AppBar} from '../../components/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader';
 import {textStyles, theme} from '../../constants';
@@ -11,6 +11,7 @@ import {SharkTextInput} from '../../components/shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkCheckbox} from '../../components/shark-checkbox';
 import {githubOauthLink} from '../../constants/oauth';
+import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 
 export const Account = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -18,7 +19,8 @@ export const Account = () => {
   const history = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <TopSpacerView />
       <AppBar
         leftIcon="arrow-left"
         onLeftSelect={() => history.goBack()}
@@ -74,7 +76,8 @@ export const Account = () => {
           disabled={true}
         />
       </View>
-    </View>
+      <BottomSpacerView />
+    </ScrollView>
   );
 };
 

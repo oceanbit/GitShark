@@ -31,6 +31,7 @@ import {
   useDynamicValue,
 } from 'react-native-dark-mode';
 import {SharkCheckbox} from '../../components/shark-checkbox';
+import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 
 export const Settings = () => {
   const isDark = useDarkMode();
@@ -50,6 +51,7 @@ export const Settings = () => {
 
   return (
     <ScrollView style={styles.container}>
+      <TopSpacerView />
       <AppBar
         leftIcon="arrow-left"
         onLeftSelect={() => history.goBack()}
@@ -198,6 +200,7 @@ export const Settings = () => {
           </View>
         </TouchableWithoutFeedback>
       </View>
+      <BottomSpacerView />
     </ScrollView>
   );
 };

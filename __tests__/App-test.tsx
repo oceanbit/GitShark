@@ -1,7 +1,3 @@
-/**
- * @format
- */
-
 import 'react-native';
 import * as React from 'react';
 import App from '../App';

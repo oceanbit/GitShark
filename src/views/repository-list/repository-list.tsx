@@ -9,11 +9,10 @@ import {DialogsAndFab} from './dialogs-and-fab';
 import {SharkIconButton} from '../../components/shark-icon-button';
 import {useNavigation} from '@react-navigation/native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {useSafeArea} from 'react-native-safe-area-context';
+import {BottomSpacerView, SharkSafeTop} from '../../components/shark-safe-top';
 
 export const RepositoryList = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
-  const insets = useSafeArea();
 
   const history = useNavigation();
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
@@ -41,10 +40,10 @@ export const RepositoryList = () => {
   }, [findRepos, isDBLoaded]);
 
   return (
-    <>
-      <View style={(styles.container, {marginTop: insets.bottom})}>
+    <SharkSafeTop>
+      <View style={styles.container}>
         <View style={styles.headingContainer}>
-          <Text style={styles.headingText}>Repositories {insets.bottom}</Text>
+          <Text style={styles.headingText}>Repositories</Text>
           <SharkIconButton
             onPress={() => {
               history.navigate('Settings');
@@ -54,7 +53,7 @@ export const RepositoryList = () => {
         </View>
         {isLoading && <RepoListLoading />}
         {!isLoading && !!repos?.length && (
-          <ScrollView style={{marginBottom: insets.bottom}}>
+          <ScrollView>
             {repos!.map(repo => {
               return (
                 <RepoCard
@@ -64,6 +63,7 @@ export const RepositoryList = () => {
                 />
               );
             })}
+            <BottomSpacerView additionalSpacing={30} />
           </ScrollView>
         )}
       </View>
@@ -73,13 +73,14 @@ export const RepositoryList = () => {
         repos={repos}
         findRepos={findRepos}
       />
-    </>
+    </SharkSafeTop>
   );
 };
 
 const dynamicStyles = new DynamicStyleSheet({
   container: {
-    padding: 16,
+    paddingTop: 16,
+    paddingHorizontal: 16,
     height: '100%',
     display: 'flex',
     flexDirection: 'column',

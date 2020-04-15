@@ -1,6 +1,3 @@
-/**
- * @format
- */
 import * as React from 'react';
 import 'reflect-metadata';
 import {createConnection, getConnectionManager} from 'typeorm';
@@ -179,7 +176,6 @@ const App = () => {
           <StatusBar
             barStyle={isDarkMode ? 'light-content' : 'dark-content'}
             backgroundColor={'transparent'}
-            translucent={true}
           />
           <DatabaseLoadedContext.Provider value={isDBLoaded}>
             <StyleOfStagingContext.Provider

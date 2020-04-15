@@ -1,6 +1,3 @@
-/**
- * @format
- */
 // eslint-disable-next-line no-undef
 FileReader.prototype.readAsArrayBuffer = function(blob) {
   if (this.readyState === this.LOADING) {
