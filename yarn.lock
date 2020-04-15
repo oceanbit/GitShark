@@ -6536,6 +6536,11 @@ react-native-gesture-handler@^1.6.1:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
+react-native-immersive-bars@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-immersive-bars/-/react-native-immersive-bars-1.0.0.tgz#8d23b2a4df45977676dcb9762b3230d4fa8f3fa6"
+  integrity sha512-pjU5a1yHMNbb/skb2AdnXYk4NvEN/XedCSS8lg1eCDfWfDbg1RwbcFNX0ayBOPr6OCMjBnHzHdcLnNGnHo8NTg==
+
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"

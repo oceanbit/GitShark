@@ -36,6 +36,7 @@ import {
 import {useSystemDarkMode} from './hooks';
 import {DarkModeOptionTypes, SetDarkModeContext} from './constants';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {changeBarColors} from 'react-native-immersive-bars';
 
 YellowBox.ignoreWarnings([
   /**
@@ -142,6 +143,10 @@ const App = () => {
 
   const isDarkMode =
     localDarkMode === 'auto' ? isSystemDarkMode : localDarkMode === 'dark';
+
+  React.useEffect(() => {
+    changeBarColors(isDarkMode);
+  }, [isDarkMode]);
 
   React.useEffect(() => {
     DefaultPreference.get('styleOfStaging').then(val => {
