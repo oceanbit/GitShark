@@ -23,10 +23,38 @@ public class MainActivity extends ReactActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Window w = getWindow();
+        boolean isDarkMode = false;
+        int translucentLightColor = Color.parseColor("#50000000");
+        int translucentDarkColor = Color.TRANSPARENT;
 
-        w.setStatusBarColor(Color.TRANSPARENT);
-        w.setNavigationBarColor(Color.TRANSPARENT);
-        w.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        // Set the navbar to be drawn over
+        // Both flags were added in Level 16
+        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+
+        // M was the first version that supported light mode status bar
+        boolean shouldTranslucizeStatusBar = Build.VERSION.SDK_INT <= Build.VERSION_CODES.M;
+        // O was the first version that supported light mode nav bar
+        boolean shouldTranslucizeNavBar = Build.VERSION.SDK_INT <= Build.VERSION_CODES.O;
+
+        if (shouldTranslucizeStatusBar) {
+            w.setStatusBarColor(isDarkMode ? translucentLightColor : translucentDarkColor);
+        } else {
+            w.setStatusBarColor(Color.TRANSPARENT);
+            if (!isDarkMode) {
+                flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+        }
+
+        if (shouldTranslucizeNavBar) {
+            w.setNavigationBarColor(isDarkMode ? translucentLightColor : translucentDarkColor);
+        } else {
+            w.setNavigationBarColor(Color.TRANSPARENT);
+            if (!isDarkMode) {
+                flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            }
+        }
+
+        w.getDecorView().setSystemUiVisibility(flags);
 
         super.onCreate(savedInstanceState);
     }
