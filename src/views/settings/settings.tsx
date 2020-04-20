@@ -32,6 +32,7 @@ import {
 } from 'react-native-dark-mode';
 import {SharkCheckbox} from '../../components/shark-checkbox';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
+import {AccountButton} from './account-button/account-button';
 
 export const Settings = () => {
   const isDark = useDarkMode();
@@ -58,25 +59,7 @@ export const Settings = () => {
         headline="Settings"
       />
       <SharkSubheader calloutText="Account" />
-      <TouchableRipple
-        style={styles.accountSection}
-        onPress={() => history.navigate('Account')}>
-        <>
-          <SharkProfilePic style={styles.userPic} />
-          <View style={styles.accountText}>
-            <Text style={styles.accountCallout}>Add account details</Text>
-            <Text style={styles.accountBody}>
-              Name, email, GitHub integration
-            </Text>
-          </View>
-          <Icon
-            style={styles.arrowIcon}
-            name="arrow-right"
-            size={24}
-            color={accent}
-          />
-        </>
-      </TouchableRipple>
+      <AccountButton />
       <SharkSubheader calloutText="Theme" />
       <SharkButtonToggleGroup
         values={['Auto', 'Light', 'Dark']}
@@ -210,44 +193,15 @@ const dynamicStyles = new DynamicStyleSheet({
     borderTopWidth: 1,
     borderTopColor: theme.colors.divider,
   },
-  accountSection: {
-    paddingVertical: 12,
-    paddingLeft: 16,
-    paddingRight: 8,
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  userPic: {
-    marginRight: 16,
-  },
   themeToggle: {
     marginHorizontal: 16,
     marginTop: 8,
-  },
-  accountCallout: {
-    ...textStyles.callout,
-    color: theme.colors.on_surface,
-  },
-  accountText: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginRight: 16,
-    flexGrow: 1,
-    color: theme.colors.on_surface,
-  },
-  accountBody: {
-    ...textStyles.body_02,
-    color: theme.colors.on_surface_secondary,
   },
   themeText: {
     marginVertical: 16,
     marginHorizontal: 16,
     ...textStyles.caption_02,
     color: theme.colors.on_surface_secondary,
-  },
-  arrowIcon: {
-    padding: 8,
   },
   stagingVideoContainer: {
     flexDirection: 'column',
