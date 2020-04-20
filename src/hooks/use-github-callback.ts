@@ -19,8 +19,19 @@ export const useGitHubCallback = () => {
         RNSecureKeyStore.set(GITHUB_STORAGE_KEY, query.access_token as string, {
           accessible: ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
         })
-          .then(() => getCurrentUser(query.access_token as string))
-          .then(data => data.json())
+          .then(async () => {
+            const token = query.access_token as string;
+            const currentUserRequest = await getCurrentUser(token);
+            const currentUser = await currentUserRequest.json();
+            // If the user has said "don't show email publicly", this is the only way to get their email
+            const currentUserEmailsRequest = await getCurrentUserEmails(token);
+            const currentUserEmails = await currentUserEmailsRequest.json();
+            const userEmail = currentUserEmails.find(email => email.primary);
+            return {
+              ...currentUser,
+              email: userEmail!.email,
+            };
+          })
           .then(data => {
             return DefaultPreference.set(
               'githubUser',
