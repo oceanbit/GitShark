@@ -35,6 +35,7 @@ import {
 } from './constants';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {changeBarColors} from 'react-native-immersive-bars';
+import {useManualUserData} from './hooks/use-manual-user-data';
 
 YellowBox.ignoreWarnings([
   /**
@@ -61,6 +62,8 @@ const App = () => {
    * Get user deep linking
    */
   const {gitHubUser, setUseGithub, useGitHub} = useGitHubUserData();
+
+  const {manualUser, setManualUser} = useManualUserData();
 
   /**
    * Get permissions to read/write from SD card
@@ -136,9 +139,8 @@ const App = () => {
                     gitHubUser,
                     setUseGithub,
                     useGitHub,
-                    manualEmail: '',
-                    manualName: '',
-                    setEmailAndName: () => {},
+                    manualUser,
+                    setManualUser,
                   }}>
                   <DarkModeProvider mode={isDarkMode ? 'dark' : 'light'}>
                     <Stack.Navigator headerMode={'none'}>
