@@ -1,0 +1,45 @@
+import {baseRequest} from './base-request';
+
+export interface CurrentUser {
+  login: string; // "octocat",
+  id: number; // 1,
+  node_id: string; // "MDQ6VXNlcjE=",
+  avatar_url: string; // "https://github.com/images/error/octocat_happy.gif",
+  gravatar_id: string; // "",
+  url: string; // "https://api.github.com/users/octocat",
+  html_url: string; // "https://github.com/octocat",
+  followers_url: string; // "https://api.github.com/users/octocat/followers",
+  following_url: string; // "https://api.github.com/users/octocat/following{/other_user}",
+  gists_url: string; // "https://api.github.com/users/octocat/gists{/gist_id}",
+  starred_url: string; // "https://api.github.com/users/octocat/starred{/owner}{/repo}",
+  subscriptions_url: string; // "https://api.github.com/users/octocat/subscriptions",
+  organizations_url: string; // "https://api.github.com/users/octocat/orgs",
+  repos_url: string; // "https://api.github.com/users/octocat/repos",
+  events_url: string; // "https://api.github.com/users/octocat/events{/privacy}",
+  received_events_url: string; // "https://api.github.com/users/octocat/received_events",
+  type: 'User'; // "User",
+  site_admin: false; // false,
+  name: string; // "monalisa octocat",
+  company: string; // "GitHub",
+  blog: string; // "https://github.com/blog",
+  location: string; // "San Francisco",
+  email: string; // "octocat@github.com",
+  hireable: false; // false,
+  bio: string; // "There once was...",
+  public_repos: number; // 2,
+  public_gists: number; // 1,
+  followers: number; // 20,
+  following: number; // 0,
+  created_at: string; // "2008-01-14T04:33:35Z",
+  updated_at: string; // "2008-01-14T04:33:35Z",
+  private_gists: number; // 81,
+  total_private_repos: number; // 100,
+  owned_private_repos: number; // 100,
+  disk_usage: number; // 10000,
+  collaborators: number; // 8,
+  two_factor_authentication: boolean; // true,
+}
+
+export const getCurrentUser = (gh_token: string) => {
+  return baseRequest<CurrentUser>({path: '/user', method: 'GET', gh_token});
+};
