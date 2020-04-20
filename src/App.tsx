@@ -4,13 +4,7 @@ import {createConnection, getConnectionManager} from 'typeorm';
 import {Branch, Commit, Remote, Repo} from './entities';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-import {
-  Alert,
-  PermissionsAndroid,
-  SafeAreaView,
-  StatusBar,
-  YellowBox,
-} from 'react-native';
+import {SafeAreaView, StatusBar, YellowBox} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {Repository} from './views/repository/repository';
 import {Account} from './views/account/account';
@@ -36,7 +30,12 @@ import {
   useLoadDatabase,
   useSystemDarkMode,
 } from './hooks';
-import {DarkModeOptionTypes, SetDarkModeContext} from './constants';
+import {
+  DARK_MODE_STORAGE_KEY,
+  DarkModeOptionTypes,
+  SetDarkModeContext,
+  STAGING_STYLE_STORAGE_KEY,
+} from './constants';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {changeBarColors} from 'react-native-immersive-bars';
 
@@ -91,12 +90,12 @@ const App = () => {
   }, [isDarkMode]);
 
   React.useEffect(() => {
-    DefaultPreference.get('styleOfStaging').then(val => {
+    DefaultPreference.get(STAGING_STYLE_STORAGE_KEY).then(val => {
       if (val) {
         setStyleOfStaging(val as StagingTypes);
       }
     });
-    DefaultPreference.get('darkMode').then(val => {
+    DefaultPreference.get(DARK_MODE_STORAGE_KEY).then(val => {
       if (val) {
         setLocalDarkMode(val as DarkModeOptionTypes);
       }
@@ -104,12 +103,12 @@ const App = () => {
   }, []);
 
   const updateStagingStyle = (val: StagingTypes) => {
-    DefaultPreference.set('styleOfStaging', val);
+    DefaultPreference.set(STAGING_STYLE_STORAGE_KEY, val);
     setStyleOfStaging(val);
   };
 
   const updateLocalDarkMode = (val: DarkModeOptionTypes) => {
-    DefaultPreference.set('darkMode', val);
+    DefaultPreference.set(DARK_MODE_STORAGE_KEY, val);
     setLocalDarkMode(val);
   };
 
