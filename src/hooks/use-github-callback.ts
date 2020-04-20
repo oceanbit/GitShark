@@ -5,7 +5,7 @@ import RNSecureKeyStore, {ACCESSIBLE} from 'react-native-secure-key-store';
 import {getCurrentUser, getCurrentUserEmails} from '../services';
 import DefaultPreference from 'react-native-default-preference';
 import {CachedGithubUser} from '../types/cached-github-user';
-import {GITHUB_STORAGE_KEY} from '../constants';
+import {GITHUB_STORAGE_KEY, GITHUB_USER_STORAGE_KEY} from '../constants';
 
 export const useGitHubCallback = () => {
   React.useEffect(() => {
@@ -34,7 +34,7 @@ export const useGitHubCallback = () => {
           })
           .then(data => {
             return DefaultPreference.set(
-              'githubUser',
+              GITHUB_USER_STORAGE_KEY,
               JSON.stringify({
                 name: data.name,
                 avatar_url: data.avatar_url,

@@ -7,3 +7,5 @@ export const GITHUB_STORAGE_KEY = 'ghToken';
 export const DARK_MODE_STORAGE_KEY = 'darkMode';
 
 export const STAGING_STYLE_STORAGE_KEY = 'styleOfStaging';
+
+export const GITHUB_USER_STORAGE_KEY = 'githubUser';

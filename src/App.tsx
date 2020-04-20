@@ -1,7 +1,5 @@
 import * as React from 'react';
 import 'reflect-metadata';
-import {createConnection, getConnectionManager} from 'typeorm';
-import {Branch, Commit, Remote, Repo} from './entities';
 import {Provider as PaperProvider} from 'react-native-paper';
 
 import {SafeAreaView, StatusBar, YellowBox} from 'react-native';
@@ -11,19 +9,17 @@ import {Account} from './views/account/account';
 import {Settings} from './views/settings/settings';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {DatabaseLoadedContext} from './constants/database-loaded-context';
 import {
   darkNavTheme,
   darkPaperTheme,
   lightNavTheme,
   lightPaperTheme,
-} from './constants/theme';
-import {DarkModeProvider} from 'react-native-dark-mode';
-import DefaultPreference from 'react-native-default-preference';
-import {
   StagingTypes,
   StyleOfStagingContext,
-} from './constants/style-of-staging-context';
+  DatabaseLoadedContext,
+} from './constants';
+import {DarkModeProvider} from 'react-native-dark-mode';
+import DefaultPreference from 'react-native-default-preference';
 import {
   useGetAndroidPermissions,
   useGitHubCallback,
