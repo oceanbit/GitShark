@@ -6,9 +6,7 @@ import {Provider as PaperProvider} from 'react-native-paper';
 
 import {
   Alert,
-  Linking,
   PermissionsAndroid,
-  Platform,
   SafeAreaView,
   StatusBar,
   YellowBox,
@@ -25,7 +23,6 @@ import {
   darkPaperTheme,
   lightNavTheme,
   lightPaperTheme,
-  colors,
 } from './constants/theme';
 import {DarkModeProvider} from 'react-native-dark-mode';
 import DefaultPreference from 'react-native-default-preference';
@@ -33,7 +30,12 @@ import {
   StagingTypes,
   StyleOfStagingContext,
 } from './constants/style-of-staging-context';
-import {useSystemDarkMode} from './hooks';
+import {
+  useGetAndroidPermissions,
+  useGitHubCallback,
+  useLoadDatabase,
+  useSystemDarkMode,
+} from './hooks';
 import {DarkModeOptionTypes, SetDarkModeContext} from './constants';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {changeBarColors} from 'react-native-immersive-bars';
@@ -57,77 +59,17 @@ const App = () => {
   /**
    * Database
    */
-  const [isDBLoaded, setIsDBLoaded] = React.useState(false);
-
-  React.useEffect(() => {
-    const askedPermission = PermissionsAndroid.requestMultiple([
-      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-    ]);
-    askedPermission.then(granted => {
-      if (
-        granted[PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE] ===
-          PermissionsAndroid.RESULTS.GRANTED &&
-        granted[PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE] ===
-          PermissionsAndroid.RESULTS.GRANTED
-      ) {
-        console.log('You can use external storage');
-      } else {
-        console.log('External storage permission denied');
-      }
-    });
-  }, []);
-
-  React.useEffect(() => {
-    // TODO: Add error handling
-    createConnection({
-      type: 'react-native',
-      database: 'gitshark',
-      location: 'default',
-      logging: ['error', 'query', 'schema'],
-      synchronize: true,
-      entities: [Branch, Commit, Remote, Repo],
-    })
-      .then(() => {
-        setIsDBLoaded(true);
-      })
-      .catch(err => {
-        if (err.name === 'AlreadyHasActiveConnectionError') {
-          const existentConn = getConnectionManager().get('default');
-          setIsDBLoaded(true);
-          return existentConn;
-        }
-        Alert.alert(
-          "There was an error loading the app's cache. Please restart the app and try again",
-        );
-        console.error(err);
-      });
-  }, []);
+  const isDBLoaded = useLoadDatabase();
 
   /**
    * Get user deep linking
    */
-  React.useEffect(() => {
-    type URLEventFn = Parameters<typeof Linking.removeEventListener>[1];
-    const handleOpenURL: URLEventFn = event => {
-      console.log('event.url', event.url);
-      const route = event.url.replace(/.*?:\/\//g, '');
-      console.log('route', route);
-      // do something with the url, in our case navigate(route)
-    };
-    if (Platform.OS === 'android') {
-      Linking.getInitialURL().then(url => {
-        console.log('url', url);
-      });
-    } else {
-      Linking.addEventListener('url', handleOpenURL);
-    }
-    return () => {
-      if (Platform.OS !== 'android') {
-        Linking.removeEventListener('url', handleOpenURL);
-      }
-    };
-  }, []);
+  useGitHubCallback();
+
+  /**
+   * Get permissions to read/write from SD card
+   */
+  useGetAndroidPermissions();
 
   /**
    * User settings
