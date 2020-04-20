@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text, View} from 'react-native';
-import {GitHubUserContext, textStyles, theme} from '../../../constants';
+import {UserContext, textStyles, theme} from '../../../constants';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,7 +12,7 @@ import {
   useDynamicValue,
 } from 'react-native-dark-mode';
 export const AccountButton = () => {
-  const ghUser = React.useContext(GitHubUserContext);
+  const ghUser = React.useContext(UserContext);
   const history = useNavigation();
 
   const styles = useDynamicStyleSheet(dynamicStyles);

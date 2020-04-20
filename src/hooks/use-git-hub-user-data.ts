@@ -5,12 +5,19 @@ import RNSecureKeyStore, {ACCESSIBLE} from 'react-native-secure-key-store';
 import {getCurrentUser, getCurrentUserEmails} from '../services';
 import DefaultPreference from 'react-native-default-preference';
 import {CachedGithubUser} from '../types';
-import {GITHUB_STORAGE_KEY, GITHUB_USER_STORAGE_KEY} from '../constants';
+import {
+  GITHUB_STORAGE_KEY,
+  GITHUB_USER_STORAGE_KEY,
+  MANUAL_USER_STORAGE_KEY,
+  SHOULD_USE_GITHUB_CREDS_KEY,
+} from '../constants';
 
-export const useGitHubCallback = () => {
+export const useGitHubUserData = () => {
   const [gitHubUser, setGitHubUser] = React.useState<CachedGithubUser | null>(
     null,
   );
+
+  const [useGitHub, setUseGithub] = React.useState<boolean>(false);
 
   /**
    * If the deep link is called by the GH callback, cache the user data
@@ -51,6 +58,21 @@ export const useGitHubCallback = () => {
               JSON.stringify(cachedGHUser),
             );
           })
+          .then(() => DefaultPreference.get(MANUAL_USER_STORAGE_KEY))
+          .then(manualUserJSON => {
+            const manualUser = JSON.parse(manualUserJSON);
+            /**
+             * If the user hasn't added any user info manually, then we just assume
+             * that they want to use GH credentials OOTB
+             */
+            if (!manualUser) {
+              setUseGithub(true);
+              return DefaultPreference.set(
+                SHOULD_USE_GITHUB_CREDS_KEY,
+                JSON.stringify(true),
+              );
+            }
+          })
           .catch(err =>
             console.error(
               `An error saving your GitHub credentials occured`,
@@ -86,5 +108,5 @@ export const useGitHubCallback = () => {
       .catch(e => console.error(e));
   }, []);
 
-  return gitHubUser;
+  return {gitHubUser, useGitHub, setUseGithub};
 };

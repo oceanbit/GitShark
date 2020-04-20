@@ -17,13 +17,13 @@ import {
   StagingTypes,
   StyleOfStagingContext,
   DatabaseLoadedContext,
-  GitHubUserContext,
+  UserContext,
 } from './constants';
 import {DarkModeProvider} from 'react-native-dark-mode';
 import DefaultPreference from 'react-native-default-preference';
 import {
   useGetAndroidPermissions,
-  useGitHubCallback,
+  useGitHubUserData,
   useLoadDatabase,
   useSystemDarkMode,
 } from './hooks';
@@ -60,7 +60,7 @@ const App = () => {
   /**
    * Get user deep linking
    */
-  const gitHubUser = useGitHubCallback();
+  const {gitHubUser, setUseGithub, useGitHub} = useGitHubUserData();
 
   /**
    * Get permissions to read/write from SD card
@@ -131,7 +131,15 @@ const App = () => {
                 value={{
                   setDarkMode: updateLocalDarkMode,
                 }}>
-                <GitHubUserContext.Provider value={{gitHubUser}}>
+                <UserContext.Provider
+                  value={{
+                    gitHubUser,
+                    setUseGithub,
+                    useGitHub,
+                    manualEmail: '',
+                    manualName: '',
+                    setEmailAndName: () => {},
+                  }}>
                   <DarkModeProvider mode={isDarkMode ? 'dark' : 'light'}>
                     <Stack.Navigator headerMode={'none'}>
                       <Stack.Screen
@@ -143,7 +151,7 @@ const App = () => {
                       <Stack.Screen name="RepoDetails" component={Repository} />
                     </Stack.Navigator>
                   </DarkModeProvider>
-                </GitHubUserContext.Provider>
+                </UserContext.Provider>
               </SetDarkModeContext.Provider>
             </StyleOfStagingContext.Provider>
           </DatabaseLoadedContext.Provider>
