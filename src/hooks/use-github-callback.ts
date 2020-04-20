@@ -4,10 +4,17 @@ import * as queryString from 'query-string';
 import RNSecureKeyStore, {ACCESSIBLE} from 'react-native-secure-key-store';
 import {getCurrentUser, getCurrentUserEmails} from '../services';
 import DefaultPreference from 'react-native-default-preference';
-import {CachedGithubUser} from '../types/cached-github-user';
+import {CachedGithubUser} from '../types';
 import {GITHUB_STORAGE_KEY, GITHUB_USER_STORAGE_KEY} from '../constants';
 
 export const useGitHubCallback = () => {
+  const [gitHubUser, setGitHubUser] = React.useState<CachedGithubUser | null>(
+    null,
+  );
+
+  /**
+   * If the deep link is called by the GH callback, cache the user data
+   */
   React.useEffect(() => {
     type URLEventFn = Parameters<typeof Linking.removeEventListener>[1];
     const handleOpenURL: URLEventFn = event => {
@@ -33,13 +40,15 @@ export const useGitHubCallback = () => {
             };
           })
           .then(data => {
+            const cachedGHUser: CachedGithubUser = {
+              name: data.name,
+              avatar_url: data.avatar_url,
+              email: data.email,
+            };
+            setGitHubUser(cachedGHUser);
             return DefaultPreference.set(
               GITHUB_USER_STORAGE_KEY,
-              JSON.stringify({
-                name: data.name,
-                avatar_url: data.avatar_url,
-                email: data.email,
-              } as CachedGithubUser),
+              JSON.stringify(cachedGHUser),
             );
           })
           .catch(err =>
@@ -63,4 +72,19 @@ export const useGitHubCallback = () => {
       }
     };
   }, []);
+
+  /**
+   * If data is already cached, set the user on initial load
+   */
+  React.useEffect(() => {
+    DefaultPreference.get(GITHUB_USER_STORAGE_KEY)
+      .then(data => {
+        if (data) {
+          setGitHubUser(JSON.parse(data) as CachedGithubUser);
+        }
+      })
+      .catch(e => console.error(e));
+  }, []);
+
+  return gitHubUser;
 };
