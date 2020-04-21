@@ -22,6 +22,9 @@ export const Account = () => {
     setManualUser,
   } = React.useContext(UserContext);
 
+  const [manualName, setManualName] = React.useState('');
+  const [manualEmail, setManualEmail] = React.useState('');
+
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const history = useNavigation();
@@ -29,6 +32,22 @@ export const Account = () => {
   const disabledStyling = {
     opacity: 0.4,
   };
+
+  const isGitHub = useGitHub && !!gitHubUser;
+
+  const authorImage = isGitHub ? {uri: gitHubUser!.avatar_url} : null;
+
+  const personName = isGitHub
+    ? gitHubUser!.name
+    : !!manualName
+    ? manualName
+    : 'Name';
+
+  const personEmail = isGitHub
+    ? gitHubUser!.email
+    : !!manualEmail
+    ? manualEmail
+    : 'Email';
 
   return (
     <ScrollView style={styles.container}>
@@ -54,16 +73,16 @@ export const Account = () => {
       />
       <View style={styles.commitAuthorContainer}>
         <View style={styles.authorPreview}>
-          <SharkProfilePic />
+          <SharkProfilePic source={authorImage} showGHLogo={isGitHub} />
           <View style={styles.authorPreviewText}>
-            <Text style={styles.authorName}>Name</Text>
-            <Text style={styles.authorEmail}>Email</Text>
+            <Text style={styles.authorName}>{personName}</Text>
+            <Text style={styles.authorEmail}>{personEmail}</Text>
           </View>
         </View>
         <TouchableRipple
           style={[
             styles.useGHCredsContainer,
-            !!gitHubUser ? {} : disabledStyling,
+            !gitHubUser ? disabledStyling : {},
           ]}
           onPress={() => setUseGithub(!useGitHub)}
           disabled={!gitHubUser}>
@@ -78,16 +97,16 @@ export const Account = () => {
           <SharkTextInput
             style={styles.textInput}
             placeholder="Name"
-            value=""
+            value={personName}
             disabled={useGitHub}
-            onChangeText={() => {}}
+            onChangeText={setManualName}
           />
           <SharkTextInput
             style={styles.textInput}
             placeholder="Email"
-            value=""
+            value={personEmail}
             disabled={useGitHub}
-            onChangeText={() => {}}
+            onChangeText={setManualEmail}
           />
           <SharkButton
             style={styles.saveButton}

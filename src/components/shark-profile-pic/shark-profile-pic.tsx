@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const defaultProfPic = require('../../../assets/images/default-profile-pic.png');
 
 interface SharkProfilePicProps {
-  source?: ImagePropsBase['source'];
+  source?: ImagePropsBase['source'] | null;
   size?: number;
   style?: StyleProp<ImageStyle>;
   showGHLogo?: boolean;
