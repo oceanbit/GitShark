@@ -22,8 +22,8 @@ export const Account = () => {
     setManualUser,
   } = React.useContext(UserContext);
 
-  const [manualName, setManualName] = React.useState('');
-  const [manualEmail, setManualEmail] = React.useState('');
+  const [manualName, setManualName] = React.useState(manualUser?.name || '');
+  const [manualEmail, setManualEmail] = React.useState(manualUser?.email || '');
 
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -84,7 +84,11 @@ export const Account = () => {
             styles.useGHCredsContainer,
             !gitHubUser ? disabledStyling : {},
           ]}
-          onPress={() => setUseGithub(!useGitHub)}
+          onPress={() => {
+            setUseGithub(!useGitHub);
+            setManualName('');
+            setManualEmail('');
+          }}
           disabled={!gitHubUser}>
           <>
             <View style={styles.checkboxContainer}>
@@ -96,15 +100,15 @@ export const Account = () => {
         <View style={useGitHub ? disabledStyling : {}}>
           <SharkTextInput
             style={styles.textInput}
-            placeholder="Name"
-            value={personName}
+            placeholder={personName}
+            value={manualName}
             disabled={useGitHub}
             onChangeText={setManualName}
           />
           <SharkTextInput
             style={styles.textInput}
-            placeholder="Email"
-            value={personEmail}
+            placeholder={personEmail}
+            value={manualEmail}
             disabled={useGitHub}
             onChangeText={setManualEmail}
           />
