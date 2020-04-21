@@ -42,6 +42,7 @@ export const SharkTextInput = ({
   errorStr,
   keyboardType,
 }: SharkTextInputProps) => {
+  const [isFocused, setIsFocused] = React.useState(false);
   const styles = useDynamicStyleSheet(dynamicStyles);
   const surfaceSecondary = useDynamicValue(theme.colors.on_surface_secondary);
   const accent = useDynamicValue(theme.colors.primary);
@@ -68,11 +69,20 @@ export const SharkTextInput = ({
 
   const errStyle = !!errorStr ? styles.errorField : {};
 
+  const focusedStyle = !!isFocused ? styles.focused : {};
+
   const disableStyle = !!disabled ? styles.disableStyle : {};
 
   return (
     <>
-      <View style={[styles.textInputContainer, padding, errStyle, style]}>
+      <View
+        style={[
+          styles.textInputContainer,
+          padding,
+          errStyle,
+          focusedStyle,
+          style,
+        ]}>
         {!!prefixIcon && (
           <Icon
             size={24}
@@ -91,6 +101,8 @@ export const SharkTextInput = ({
           multiline={multiline}
           editable={!disabled}
           keyboardType={keyboardType}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         />
         {!!postfixIcon && (
           <Icon
@@ -117,6 +129,7 @@ const dynamicStyles = new DynamicStyleSheet({
     borderRadius: theme.roundness,
     alignContent: 'center',
     overflow: 'hidden',
+    margin: 1,
   },
   errorField: {
     borderColor: theme.colors.error,
@@ -139,5 +152,10 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   disableStyle: {
     opacity: theme.disabledOpacity,
+  },
+  focused: {
+    borderColor: theme.colors.primary,
+    borderWidth: 2,
+    margin: 0,
   },
 });

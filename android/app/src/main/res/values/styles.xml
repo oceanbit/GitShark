@@ -3,5 +3,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:textColor">#000000</item>
+        <!-- The color of the carrot color in text boxes. -->
+        <item name="colorControlActivated">#002BFF</item>
     </style>
 </resources>

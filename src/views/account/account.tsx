@@ -75,6 +75,11 @@ export const Account = () => {
     if (hasError) {
       return;
     }
+
+    setManualUser({
+      email: manualEmail,
+      name: manualName,
+    });
   };
 
   return (
