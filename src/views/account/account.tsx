@@ -96,8 +96,7 @@ export const Account = () => {
           headline="Accounts"
         />
         <SharkSubheader calloutText="GitHub integration" />
-
-        {isGitHub ? (
+        {!!gitHubUser ? (
           <GitHubLogout />
         ) : (
           <SharkButton
