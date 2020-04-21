@@ -69,7 +69,7 @@ export const StageSheetView = ({
                   ),
                 },
               ],
-            },
+            } as any,
           ]}
         />
         <AnimatedView
@@ -86,7 +86,7 @@ export const StageSheetView = ({
                   ),
                 },
               ],
-            },
+            } as any,
           ]}
         />
       </View>
@@ -110,6 +110,7 @@ export const StageSheetView = ({
           onCommit={onCommit}
           removeFromStaged={removeFromStaged}
           stagedChanges={stagedChanges}
+          inSheet={true}
         />
       </View>
     );
@@ -155,7 +156,7 @@ const dynamicStyles = new DynamicStyleSheet({
     width: 30,
   },
   trueHeader: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: theme.colors.floating_surface,
     borderTopColor: theme.colors.divider,
     borderTopWidth: 2,
   },
@@ -176,7 +177,7 @@ const dynamicStyles = new DynamicStyleSheet({
     paddingLeft: 20 + 20,
   },
   contentContainer: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: theme.colors.floating_surface,
     height: '100%',
   },
 });

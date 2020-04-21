@@ -14,12 +14,14 @@ interface StagedChangesProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
   stagedChanges: ChangesArrayItem[];
   onCommit: () => void;
+  inSheet?: boolean;
 }
 
 export const StagedChanges = ({
   removeFromStaged,
   stagedChanges,
   onCommit,
+  inSheet,
 }: StagedChangesProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -61,13 +63,16 @@ export const StagedChanges = ({
     setSelectedStagedChanges([...selectedStagedChanges, change]);
   };
 
+  const underlineStyle = showStagedDivider ? styles.underlineHeader : {};
+  const floatingStyle = inSheet ? styles.subheaderFloating : {};
+
   return (
     <>
       <SharkSubheader
         buttonText={stagedBtnText}
         calloutText={'Staged'}
         onButtonClick={stagedBtnAction}
-        style={showStagedDivider ? styles.underlineHeader : {}}
+        style={[underlineStyle, floatingStyle]}
       />
       <ScrollView style={styles.changesList} onScroll={onStagedScroll}>
         {stagedChanges.map(props => {
@@ -95,5 +100,8 @@ const dynamicStyles = new DynamicStyleSheet({
   underlineHeader: {
     borderBottomColor: theme.colors.divider,
     borderBottomWidth: 1,
+  },
+  subheaderFloating: {
+    backgroundColor: theme.colors.floating_surface,
   },
 });

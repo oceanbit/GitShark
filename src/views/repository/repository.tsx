@@ -101,7 +101,7 @@ export const Repository = () => {
   const Stack = createStackNavigator();
 
   return (
-    <SharkSafeTop>
+    <SharkSafeTop isFloating={true}>
       <RepoContext.Provider value={contextValue}>
         <RepositoryHeader repo={repo!} />
         <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
@@ -115,7 +115,7 @@ export const Repository = () => {
 
 const dynamicStyles = new DynamicStyleSheet({
   bottomNav: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: theme.colors.floating_surface,
     borderTopWidth: 1,
     borderTopColor: theme.colors.divider,
   },

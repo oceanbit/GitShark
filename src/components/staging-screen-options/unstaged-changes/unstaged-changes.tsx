@@ -60,13 +60,15 @@ export const UnstagedChanges = ({
     setSelectedUnstagedChanges([...selectedUnstagedChanges, change]);
   };
 
+  const underlineStyle = showUnstagedDivider ? styles.underlineHeader : {};
+
   return (
     <>
       <SharkSubheader
         buttonText={unstagedBtnText}
         calloutText={'Unstaged'}
         onButtonClick={unstagedBtnAction}
-        style={showUnstagedDivider ? styles.underlineHeader : {}}
+        style={underlineStyle}
       />
       <ScrollView style={styles.changesList} onScroll={onUnstagedScroll}>
         {unstagedChanges.map(props => {

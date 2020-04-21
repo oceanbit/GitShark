@@ -89,7 +89,7 @@ export const Account = () => {
       behavior="height"
       enabled>
       <ScrollView style={styles.container}>
-        <TopSpacerView />
+        <TopSpacerView isFloating={true} />
         <AppBar
           leftIcon="arrow-left"
           onLeftSelect={() => history.goBack()}

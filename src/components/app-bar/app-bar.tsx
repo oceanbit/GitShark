@@ -47,6 +47,7 @@ const dynamicStyles = new DynamicStyleSheet({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: theme.colors.floating_surface,
   },
   bottomBar: {
     borderBottomWidth: 1,

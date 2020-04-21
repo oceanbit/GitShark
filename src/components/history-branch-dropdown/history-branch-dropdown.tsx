@@ -54,6 +54,7 @@ export const HistoryBranchDropdown = ({
 const dynamicStyles = new DynamicStyleSheet({
   dropdownContinaer: {
     paddingLeft: 16,
+    backgroundColor: theme.colors.floating_surface,
   },
   dropdownView: {
     flexDirection: 'row',
