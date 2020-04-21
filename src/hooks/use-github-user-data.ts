@@ -17,7 +17,7 @@ export const useGitHubUserData = () => {
     null,
   );
 
-  const [useGitHub, setUseGithub] = React.useState<boolean>(false);
+  const [useGitHub, setUseGithubLocal] = React.useState<boolean>(false);
 
   /**
    * If the deep link is called by the GH callback, cache the user data
@@ -66,7 +66,7 @@ export const useGitHubUserData = () => {
              * that they want to use GH credentials OOTB
              */
             if (!manualUser) {
-              setUseGithub(true);
+              setUseGithubLocal(true);
               return DefaultPreference.set(
                 SHOULD_USE_GITHUB_CREDS_KEY,
                 JSON.stringify(true),
@@ -105,6 +105,20 @@ export const useGitHubUserData = () => {
           setGitHubUser(JSON.parse(data) as CachedGithubUser);
         }
       })
+      .catch(e => console.error(e));
+
+    DefaultPreference.get(SHOULD_USE_GITHUB_CREDS_KEY)
+      .then(data => {
+        if (data) {
+          setUseGithubLocal(JSON.parse(data) as boolean);
+        }
+      })
+      .catch(e => console.error(e));
+  }, []);
+
+  const setUseGithub = React.useCallback((val: boolean) => {
+    DefaultPreference.set(SHOULD_USE_GITHUB_CREDS_KEY, JSON.stringify(val))
+      .then(() => setUseGithubLocal(val))
       .catch(e => console.error(e));
   }, []);
 

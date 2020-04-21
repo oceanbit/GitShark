@@ -12,15 +12,27 @@ import {
   useDynamicValue,
 } from 'react-native-dark-mode';
 export const AccountButton = () => {
-  const ghUser = React.useContext(UserContext);
+  const {useGitHub, gitHubUser, manualUser} = React.useContext(UserContext);
   const history = useNavigation();
 
   const styles = useDynamicStyleSheet(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
 
-  const isGitHub = !!ghUser;
+  const isGitHub = useGitHub && !!gitHubUser;
 
-  const authorImage = isGitHub ? {uri: ghUser!.gitHubUser!.avatar_url} : null;
+  const authorImage = isGitHub ? {uri: gitHubUser!.avatar_url} : null;
+
+  const personName = isGitHub
+    ? gitHubUser!.name
+    : !!manualUser
+    ? manualUser.name
+    : 'Add account details';
+
+  const personEmail = isGitHub
+    ? gitHubUser!.email
+    : !!manualUser
+    ? manualUser.email
+    : 'Name, email, GitHub integration';
 
   return (
     <TouchableRipple
@@ -29,10 +41,8 @@ export const AccountButton = () => {
       <>
         <SharkProfilePic style={styles.userPic} source={authorImage as any} />
         <View style={styles.accountText}>
-          <Text style={styles.accountCallout}>Add account details</Text>
-          <Text style={styles.accountBody}>
-            Name, email, GitHub integration
-          </Text>
+          <Text style={styles.accountCallout}>{personName}</Text>
+          <Text style={styles.accountBody}>{personEmail}</Text>
         </View>
         <Icon
           style={styles.arrowIcon}
