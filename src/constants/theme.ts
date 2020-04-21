@@ -72,6 +72,7 @@ export const colors = {
 const baseTheme = {
   ...DefaultTheme,
   roundness: 8,
+  disabledOpacity: 0.4,
   lessRoundness: 4,
   fonts: configureFonts(fontConfig),
 };

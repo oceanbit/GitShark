@@ -103,6 +103,6 @@ const dynamicStyles = new DynamicStyleSheet({
     ...textStyles.callout,
   },
   disabled: {
-    opacity: 0.4,
+    opacity: theme.disabledOpacity,
   },
 });

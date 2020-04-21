@@ -97,29 +97,27 @@ export const Account = () => {
             <Text style={styles.useGHText}>Use GitHub credentials</Text>
           </>
         </TouchableRipple>
-        <View style={useGitHub ? disabledStyling : {}}>
-          <SharkTextInput
-            style={styles.textInput}
-            placeholder={personName}
-            value={manualName}
-            disabled={useGitHub}
-            onChangeText={setManualName}
-          />
-          <SharkTextInput
-            style={styles.textInput}
-            placeholder={personEmail}
-            value={manualEmail}
-            disabled={useGitHub}
-            onChangeText={setManualEmail}
-          />
-          <SharkButton
-            style={styles.saveButton}
-            text="Save changes"
-            onPress={() => {}}
-            type="primary"
-            disabled={true}
-          />
-        </View>
+        <SharkTextInput
+          style={styles.textInput}
+          placeholder={personName}
+          value={manualName}
+          disabled={useGitHub}
+          onChangeText={setManualName}
+        />
+        <SharkTextInput
+          style={styles.textInput}
+          placeholder={personEmail}
+          value={manualEmail}
+          disabled={useGitHub}
+          onChangeText={setManualEmail}
+        />
+        <SharkButton
+          style={styles.saveButton}
+          text="Save changes"
+          onPress={() => {}}
+          type="primary"
+          disabled={true}
+        />
       </View>
       <BottomSpacerView />
     </ScrollView>

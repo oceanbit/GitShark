@@ -14,6 +14,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
+import {ErrorMessageBox} from '../error-message-box';
 
 interface SharkTextInputProps {
   placeholder: string;
@@ -25,6 +26,7 @@ interface SharkTextInputProps {
   onChangeText: TextInputProps['onChangeText'];
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
+  errorStr?: string;
 }
 
 export const SharkTextInput = ({
@@ -36,6 +38,7 @@ export const SharkTextInput = ({
   onChangeText,
   style = {},
   disabled,
+  errorStr,
 }: SharkTextInputProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const surfaceSecondary = useDynamicValue(theme.colors.on_surface_secondary);
@@ -61,30 +64,44 @@ export const SharkTextInput = ({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any);
 
+  const errStyle = !!errorStr ? styles.errorField : {};
+
+  const disableStyle = !!disabled ? styles.disableStyle : {};
+
   return (
-    <View style={[styles.textInputContainer, padding, style]}>
-      {!!prefixIcon && (
-        <Icon
-          size={24}
-          name={prefixIcon}
-          color={surfaceSecondary}
-          style={styles.icon}
+    <>
+      <View style={[styles.textInputContainer, padding, errStyle, style]}>
+        {!!prefixIcon && (
+          <Icon
+            size={24}
+            name={prefixIcon}
+            color={surfaceSecondary}
+            style={[styles.icon, disableStyle]}
+          />
+        )}
+        <TextInput
+          value={value}
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          style={[styles.textInput, textAreaStyles, disableStyle]}
+          placeholderTextColor={surfaceSecondary}
+          numberOfLines={numberOfLines}
+          multiline={multiline}
+          editable={!disabled}
         />
+        {!!postfixIcon && (
+          <Icon
+            size={24}
+            name={postfixIcon}
+            color={accent}
+            style={[styles.icon, disableStyle]}
+          />
+        )}
+      </View>
+      {!!errorStr && (
+        <ErrorMessageBox message={errorStr} style={styles.errorBox} />
       )}
-      <TextInput
-        value={value}
-        onChangeText={onChangeText}
-        placeholder={placeholder}
-        style={[styles.textInput, textAreaStyles]}
-        placeholderTextColor={surfaceSecondary}
-        numberOfLines={numberOfLines}
-        multiline={multiline}
-        editable={!disabled}
-      />
-      {!!postfixIcon && (
-        <Icon size={24} name={postfixIcon} color={accent} style={styles.icon} />
-      )}
-    </View>
+    </>
   );
 };
 
@@ -98,6 +115,12 @@ const dynamicStyles = new DynamicStyleSheet({
     alignContent: 'center',
     overflow: 'hidden',
   },
+  errorField: {
+    borderColor: theme.colors.error,
+  },
+  errorBox: {
+    marginTop: 8,
+  },
   icon: {
     marginHorizontal: 4,
     padding: 8,
@@ -110,5 +133,8 @@ const dynamicStyles = new DynamicStyleSheet({
     padding: 0,
     ...textStyles.body_01,
     color: theme.colors.on_surface,
+  },
+  disableStyle: {
+    opacity: theme.disabledOpacity,
   },
 });
