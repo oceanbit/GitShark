@@ -1,7 +1,12 @@
 import * as React from 'react';
-import {Image, ImagePropsBase, ImageStyle, StyleProp} from 'react-native';
+import {Image, ImagePropsBase, ImageStyle, StyleProp, View} from 'react-native';
 import {theme} from '../../constants';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const defaultProfPic = require('../../../assets/images/default-profile-pic.png');
 
@@ -9,32 +14,66 @@ interface SharkProfilePicProps {
   source?: ImagePropsBase['source'];
   size?: number;
   style?: StyleProp<ImageStyle>;
+  showGHLogo?: boolean;
 }
 
 export const SharkProfilePic = ({
   source,
   size = 40,
   style = {},
+  showGHLogo,
 }: SharkProfilePicProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
+  const on_surface = useDynamicValue(theme.colors.on_surface);
 
   const sizeStyle = {
     height: size,
     width: size,
   };
   return (
-    <Image
-      source={source || defaultProfPic}
-      defaultSource={defaultProfPic}
-      style={[sizeStyle, styles.profPic, style]}
-    />
+    <View style={[styles.container, style]}>
+      <Image
+        source={source || defaultProfPic}
+        defaultSource={defaultProfPic}
+        style={[sizeStyle, styles.profPic]}
+      />
+      {showGHLogo && (
+        <View style={styles.gitHubLogo}>
+          <Icon
+            size={16}
+            name={'github-circle'}
+            color={on_surface}
+            style={{textAlign: 'center'}}
+          />
+        </View>
+      )}
+    </View>
   );
 };
 
 const dynamicStyles = new DynamicStyleSheet({
+  container: {
+    position: 'relative',
+  },
   profPic: {
     borderRadius: 50,
     borderWidth: 1,
     borderColor: theme.colors.divider,
+  },
+  gitHubLogo: {
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+    borderRadius: 50,
+    height: 16,
+    width: 16,
+    borderWidth: 1,
+    borderColor: theme.colors.surface,
+    backgroundColor: theme.colors.surface,
+    bottom: 0,
+    right: 0,
+    marginRight: 1,
   },
 });

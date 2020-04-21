@@ -17,9 +17,6 @@ import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group
 import {AppBar} from '../../components/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader';
 import {useNavigation} from '@react-navigation/native';
-import {TouchableRipple} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {SharkProfilePic} from '../../components/shark-profile-pic';
 import {SlideUpDownSettingsAnimation} from '../../components/slide-up-down-settings-animation';
 import SplitVideoLight from '../../../assets/videos/split.mp4';
 import SplitVideoDark from '../../../assets/videos/split_dark.mp4';

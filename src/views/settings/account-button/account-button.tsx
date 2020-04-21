@@ -39,7 +39,11 @@ export const AccountButton = () => {
       style={styles.accountSection}
       onPress={() => history.navigate('Account')}>
       <>
-        <SharkProfilePic style={styles.userPic} source={authorImage as any} />
+        <SharkProfilePic
+          style={styles.userPic}
+          source={authorImage as any}
+          showGHLogo={isGitHub}
+        />
         <View style={styles.accountText}>
           <Text style={styles.accountCallout}>{personName}</Text>
           <Text style={styles.accountBody}>{personEmail}</Text>
