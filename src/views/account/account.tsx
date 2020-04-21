@@ -12,6 +12,7 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkCheckbox} from '../../components/shark-checkbox';
 import {githubOauthLink} from '../../constants/oauth';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
+import {validateEmail} from '../../utils';
 
 export const Account = () => {
   const {
@@ -25,13 +26,12 @@ export const Account = () => {
   const [manualName, setManualName] = React.useState(manualUser?.name || '');
   const [manualEmail, setManualEmail] = React.useState(manualUser?.email || '');
 
+  const [manualNameError, setManualNameError] = React.useState('');
+  const [manualEmailError, setManualEmailError] = React.useState('');
+
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const history = useNavigation();
-
-  const disabledStyling = {
-    opacity: 0.4,
-  };
 
   const isGitHub = useGitHub && !!gitHubUser;
 
@@ -48,6 +48,28 @@ export const Account = () => {
     : !!manualEmail
     ? manualEmail
     : 'Email';
+
+  const saveChanges = () => {
+    let hasError = false;
+    const noEmptyStr = 'Field cannot be empty.';
+    if (!manualName) {
+      setManualNameError(noEmptyStr);
+      hasError = true;
+    }
+    if (!manualEmail) {
+      setManualEmailError(noEmptyStr);
+      hasError = true;
+    } else {
+      const isValid = validateEmail(manualEmail);
+      if (!isValid) {
+        setManualEmailError('Please input a valid email address');
+        hasError = true;
+      }
+    }
+    if (hasError) {
+      return;
+    }
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -82,7 +104,7 @@ export const Account = () => {
         <TouchableRipple
           style={[
             styles.useGHCredsContainer,
-            !gitHubUser ? disabledStyling : {},
+            !gitHubUser ? styles.disabledStyling : {},
           ]}
           onPress={() => {
             setUseGithub(!useGitHub);
@@ -102,21 +124,30 @@ export const Account = () => {
           placeholder={personName}
           value={manualName}
           disabled={useGitHub}
-          onChangeText={setManualName}
+          errorStr={manualNameError}
+          onChangeText={val => {
+            setManualName(val);
+            setManualNameError('');
+          }}
         />
         <SharkTextInput
           style={styles.textInput}
           placeholder={personEmail}
           value={manualEmail}
           disabled={useGitHub}
-          onChangeText={setManualEmail}
+          errorStr={manualEmailError}
+          onChangeText={val => {
+            setManualEmail(val);
+            setManualEmailError('');
+          }}
+          keyboardType={'email-address'}
         />
         <SharkButton
           style={styles.saveButton}
           text="Save changes"
-          onPress={() => {}}
+          onPress={() => saveChanges()}
           type="primary"
-          disabled={true}
+          disabled={useGitHub}
         />
       </View>
       <BottomSpacerView />
@@ -177,5 +208,8 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   saveButton: {
     marginVertical: 24,
+  },
+  disabledStyling: {
+    opacity: theme.disabledOpacity,
   },
 });

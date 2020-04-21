@@ -27,6 +27,7 @@ interface SharkTextInputProps {
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   errorStr?: string;
+  keyboardType?: TextInputProps['keyboardType'];
 }
 
 export const SharkTextInput = ({
@@ -39,6 +40,7 @@ export const SharkTextInput = ({
   style = {},
   disabled,
   errorStr,
+  keyboardType,
 }: SharkTextInputProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const surfaceSecondary = useDynamicValue(theme.colors.on_surface_secondary);
@@ -88,6 +90,7 @@ export const SharkTextInput = ({
           numberOfLines={numberOfLines}
           multiline={multiline}
           editable={!disabled}
+          keyboardType={keyboardType}
         />
         {!!postfixIcon && (
           <Icon
