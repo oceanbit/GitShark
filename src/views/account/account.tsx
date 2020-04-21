@@ -2,7 +2,7 @@ import * as React from 'react';
 import {ScrollView, Linking, Text, View} from 'react-native';
 import {AppBar} from '../../components/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader';
-import {textStyles, theme} from '../../constants';
+import {textStyles, theme, UserContext} from '../../constants';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import {SharkButton} from '../../components/shark-button';
@@ -14,9 +14,21 @@ import {githubOauthLink} from '../../constants/oauth';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 
 export const Account = () => {
+  const {
+    useGitHub,
+    setUseGithub,
+    gitHubUser,
+    manualUser,
+    setManualUser,
+  } = React.useContext(UserContext);
+
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const history = useNavigation();
+
+  const disabledStyling = {
+    opacity: 0.4,
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -48,33 +60,43 @@ export const Account = () => {
             <Text style={styles.authorEmail}>Email</Text>
           </View>
         </View>
-        <TouchableRipple style={styles.useGHCredsContainer} disabled={true}>
+        <TouchableRipple
+          style={[
+            styles.useGHCredsContainer,
+            !!gitHubUser ? {} : disabledStyling,
+          ]}
+          onPress={() => setUseGithub(!useGitHub)}
+          disabled={!gitHubUser}>
           <>
             <View style={styles.checkboxContainer}>
-              <SharkCheckbox checked={false} onValueChange={() => {}} />
+              <SharkCheckbox checked={useGitHub} onValueChange={() => {}} />
             </View>
             <Text style={styles.useGHText}>Use GitHub credentials</Text>
           </>
         </TouchableRipple>
-        <SharkTextInput
-          style={styles.textInput}
-          placeholder="Name"
-          value=""
-          onChangeText={() => {}}
-        />
-        <SharkTextInput
-          style={styles.textInput}
-          placeholder="Email"
-          value=""
-          onChangeText={() => {}}
-        />
-        <SharkButton
-          style={styles.saveButton}
-          text="Save changes"
-          onPress={() => {}}
-          type="primary"
-          disabled={true}
-        />
+        <View style={useGitHub ? disabledStyling : {}}>
+          <SharkTextInput
+            style={styles.textInput}
+            placeholder="Name"
+            value=""
+            disabled={useGitHub}
+            onChangeText={() => {}}
+          />
+          <SharkTextInput
+            style={styles.textInput}
+            placeholder="Email"
+            value=""
+            disabled={useGitHub}
+            onChangeText={() => {}}
+          />
+          <SharkButton
+            style={styles.saveButton}
+            text="Save changes"
+            onPress={() => {}}
+            type="primary"
+            disabled={true}
+          />
+        </View>
       </View>
       <BottomSpacerView />
     </ScrollView>
@@ -113,7 +135,6 @@ const dynamicStyles = new DynamicStyleSheet({
     color: theme.colors.on_surface,
   },
   useGHCredsContainer: {
-    opacity: 0.4,
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 8,

@@ -24,6 +24,7 @@ interface SharkTextInputProps {
   value: TextInputProps['value'];
   onChangeText: TextInputProps['onChangeText'];
   style?: StyleProp<ViewStyle>;
+  disabled?: boolean;
 }
 
 export const SharkTextInput = ({
@@ -34,6 +35,7 @@ export const SharkTextInput = ({
   value,
   onChangeText,
   style = {},
+  disabled,
 }: SharkTextInputProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const surfaceSecondary = useDynamicValue(theme.colors.on_surface_secondary);
@@ -77,6 +79,7 @@ export const SharkTextInput = ({
         placeholderTextColor={surfaceSecondary}
         numberOfLines={numberOfLines}
         multiline={multiline}
+        editable={!disabled}
       />
       {!!postfixIcon && (
         <Icon size={24} name={postfixIcon} color={accent} style={styles.icon} />
