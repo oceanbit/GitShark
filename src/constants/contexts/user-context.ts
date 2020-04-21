@@ -7,6 +7,7 @@ interface GitHubUserContextType {
   setManualUser: (val: ManualUser) => void;
   useGitHub: boolean;
   setUseGithub: (val: boolean) => void;
+  logoutGitHub: () => void;
 }
 
 export const UserContext = React.createContext<GitHubUserContextType>({
@@ -15,4 +16,5 @@ export const UserContext = React.createContext<GitHubUserContextType>({
   setManualUser: () => {},
   setUseGithub: () => {},
   useGitHub: false,
+  logoutGitHub: () => {},
 });

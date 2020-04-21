@@ -19,6 +19,7 @@ import {SharkCheckbox} from '../../components/shark-checkbox';
 import {githubOauthLink} from '../../constants/oauth';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {validateEmail} from '../../utils';
+import {GitHubLogout} from './github-logout/github-logout';
 
 export const Account = () => {
   const {
@@ -95,15 +96,20 @@ export const Account = () => {
           headline="Accounts"
         />
         <SharkSubheader calloutText="GitHub integration" />
-        <SharkButton
-          style={styles.signinGithubButton}
-          text="Sign in with GitHub"
-          type="primary"
-          icon={'github-circle'}
-          onPress={() => {
-            Linking.openURL(githubOauthLink);
-          }}
-        />
+
+        {isGitHub ? (
+          <GitHubLogout />
+        ) : (
+          <SharkButton
+            style={styles.signinGithubButton}
+            text="Sign in with GitHub"
+            type="primary"
+            icon={'github-circle'}
+            onPress={() => {
+              Linking.openURL(githubOauthLink);
+            }}
+          />
+        )}
         <SharkSubheader
           style={styles.commitAuthoringHeader}
           calloutText="Commit authoring"

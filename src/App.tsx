@@ -61,7 +61,12 @@ const App = () => {
   /**
    * Get user deep linking
    */
-  const {gitHubUser, setUseGithub, useGitHub} = useGitHubUserData();
+  const {
+    gitHubUser,
+    setUseGithub,
+    useGitHub,
+    logoutGitHub,
+  } = useGitHubUserData();
 
   const {manualUser, setManualUser} = useManualUserData();
 
@@ -141,6 +146,7 @@ const App = () => {
                     useGitHub,
                     manualUser,
                     setManualUser,
+                    logoutGitHub,
                   }}>
                   <DarkModeProvider mode={isDarkMode ? 'dark' : 'light'}>
                     <Stack.Navigator headerMode={'none'}>

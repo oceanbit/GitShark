@@ -6,7 +6,7 @@ import {getCurrentUser, getCurrentUserEmails} from '../services';
 import DefaultPreference from 'react-native-default-preference';
 import {CachedGithubUser} from '../types';
 import {
-  GITHUB_STORAGE_KEY,
+  GITHUB_TOKEN_STORAGE_KEY,
   GITHUB_USER_STORAGE_KEY,
   MANUAL_USER_STORAGE_KEY,
   SHOULD_USE_GITHUB_CREDS_KEY,
@@ -30,9 +30,13 @@ export const useGitHubUserData = () => {
       }
       const {query} = queryString.parseUrl(event.url);
       if (query.access_token) {
-        RNSecureKeyStore.set(GITHUB_STORAGE_KEY, query.access_token as string, {
-          accessible: ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
-        })
+        RNSecureKeyStore.set(
+          GITHUB_TOKEN_STORAGE_KEY,
+          query.access_token as string,
+          {
+            accessible: ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
+          },
+        )
           .then(async () => {
             const token = query.access_token as string;
             const currentUserRequest = await getCurrentUser(token);
@@ -99,18 +103,16 @@ export const useGitHubUserData = () => {
    * If data is already cached, set the user on initial load
    */
   React.useEffect(() => {
-    DefaultPreference.get(GITHUB_USER_STORAGE_KEY)
-      .then(data => {
-        if (data) {
-          setGitHubUser(JSON.parse(data) as CachedGithubUser);
+    Promise.all([
+      DefaultPreference.get(GITHUB_USER_STORAGE_KEY),
+      DefaultPreference.get(SHOULD_USE_GITHUB_CREDS_KEY),
+    ])
+      .then(([userData, useGHData]) => {
+        if (userData) {
+          setGitHubUser(JSON.parse(userData) as CachedGithubUser);
         }
-      })
-      .catch(e => console.error(e));
-
-    DefaultPreference.get(SHOULD_USE_GITHUB_CREDS_KEY)
-      .then(data => {
-        if (data) {
-          setUseGithubLocal(JSON.parse(data) as boolean);
+        if (useGHData) {
+          setUseGithubLocal(JSON.parse(useGHData) as boolean);
         }
       })
       .catch(e => console.error(e));
@@ -122,5 +124,17 @@ export const useGitHubUserData = () => {
       .catch(e => console.error(e));
   }, []);
 
-  return {gitHubUser, useGitHub, setUseGithub};
+  const logoutGitHub = React.useCallback(() => {
+    Promise.all([
+      DefaultPreference.set(SHOULD_USE_GITHUB_CREDS_KEY, JSON.stringify(false)),
+      RNSecureKeyStore.remove(GITHUB_TOKEN_STORAGE_KEY),
+    ])
+      .then(() => {
+        setGitHubUser(null);
+        setUseGithubLocal(false);
+      })
+      .catch(e => console.error(e));
+  }, []);
+
+  return {gitHubUser, useGitHub, setUseGithub, logoutGitHub};
 };
