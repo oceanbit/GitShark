@@ -14,15 +14,18 @@ interface HistoryBranchDropdownProps {
   branchName: string;
   onFavorite: () => void;
   favorite: boolean;
+  setExpanded: (val: boolean) => void;
+  expanded: boolean;
 }
 
 export const HistoryBranchDropdown = ({
   branchName,
   favorite,
   onFavorite,
+  expanded,
+  setExpanded,
 }: HistoryBranchDropdownProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
-  const accent = useDynamicValue(theme.colors.primary);
   const rippleColor = useDynamicValue(theme.colors.ripple_surface);
 
   return (
@@ -40,11 +43,9 @@ export const HistoryBranchDropdown = ({
           iconName={favorite ? 'star' : 'star-outline'}
         />
         <View style={styles.buttonDivider} />
-        <Icon
-          name="chevron-down"
-          size={24}
-          color={accent}
-          style={styles.dropdownButton}
+        <SharkIconButton
+          iconName={expanded ? 'chevron-up' : 'chevron-down'}
+          onPress={() => setExpanded(!expanded)}
         />
       </View>
     </TouchableRipple>
@@ -74,8 +75,5 @@ const dynamicStyles = new DynamicStyleSheet({
     height: 36,
     width: 1,
     backgroundColor: theme.colors.divider,
-  },
-  dropdownButton: {
-    padding: 16,
   },
 });
