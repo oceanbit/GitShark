@@ -28,8 +28,8 @@ const fontConfig: Parameters<typeof configureFonts>[0] = {
 };
 
 export const colors = {
-  background_dark: '#00081A', // Navy Black
-  background_light: '#F7F9FD', // Navy 50
+  tinted_surface_dark: '#182339', // Navy Black
+  tinted_surface_light: '#F7F9FD', // Navy 50
   change_addition_dark: '#91EFD8', // Light Green
   change_addition_light: '#00B286', // Green
   change_mixed_dark: '#FFDC99', // Light Gold
@@ -128,9 +128,9 @@ export const lightNavTheme: NavTheme = {
 export const theme = {
   ...baseTheme,
   colors: {
-    background: new DynamicValue(
-      colors.background_light,
-      colors.background_dark,
+    tinted_surface: new DynamicValue(
+      colors.tinted_surface_light,
+      colors.tinted_surface_dark,
     ),
     change_addition: new DynamicValue(
       colors.change_addition_light,
