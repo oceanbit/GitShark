@@ -65,12 +65,11 @@ export const HistoryBranchDropdown = ({
           iconName={favorite ? 'star' : 'star-outline'}
         />
         <View style={styles.buttonDivider} />
-        <Animated.View style={{transform: [{rotate: rotation}]}}>
-          <SharkIconButton
-            iconName={'chevron-down'}
-            onPress={() => setExpanded(!expanded)}
-          />
-        </Animated.View>
+        <SharkIconButton
+          iconName={'chevron-down'}
+          onPress={() => setExpanded(!expanded)}
+          iconStyle={{transform: [{rotate: rotation}]}}
+        />
       </View>
     </TouchableRipple>
   );

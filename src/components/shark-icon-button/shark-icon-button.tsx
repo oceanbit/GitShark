@@ -2,14 +2,14 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants';
 import {TouchableRipple} from 'react-native-paper';
 import * as React from 'react';
-import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
+import {StyleProp, StyleSheet, ViewStyle, Animated} from 'react-native';
 import {useDynamicValue} from 'react-native-dark-mode';
 
 interface SharkIconButtonProps {
   iconName: string;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
-  iconStyle?: StyleProp<ViewStyle>;
+  iconStyle?: any;
   disabled?: boolean;
 }
 
@@ -29,7 +29,9 @@ export const SharkIconButton = ({
       onPress={onPress}
       disabled={disabled}
       rippleColor={dividerColor}>
-      <Icon name={iconName} size={24} color={accentColor} style={iconStyle} />
+      <Animated.View style={iconStyle}>
+        <Icon name={iconName} size={24} color={accentColor} />
+      </Animated.View>
     </TouchableRipple>
   );
 };
