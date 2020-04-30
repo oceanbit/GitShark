@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View, Text} from 'react-native';
 
 import {DatabaseLoadedContext, RepoContext} from '../../constants';
 import {CommitList} from '../../components/commit-list';
@@ -36,7 +36,11 @@ export const RepositoryHistory = () => {
           />
         }
         expanded={showBranches}
-        topLayer={<View />}
+        topLayer={
+          <View>
+            <Text>Hello</Text>
+          </View>
+        }
         bottomLayer={
           <ScrollView>
             <CommitList commits={commits} />

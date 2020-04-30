@@ -9,6 +9,7 @@ interface SharkIconButtonProps {
   iconName: string;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
+  iconStyle?: StyleProp<ViewStyle>;
   disabled?: boolean;
 }
 
@@ -16,6 +17,7 @@ export const SharkIconButton = ({
   iconName,
   onPress,
   style = {},
+  iconStyle = {},
   disabled = false,
 }: SharkIconButtonProps) => {
   const dividerColor = useDynamicValue(theme.colors.divider);
@@ -27,7 +29,7 @@ export const SharkIconButton = ({
       onPress={onPress}
       disabled={disabled}
       rippleColor={dividerColor}>
-      <Icon name={iconName} size={24} color={accentColor} />
+      <Icon name={iconName} size={24} color={accentColor} style={iconStyle} />
     </TouchableRipple>
   );
 };

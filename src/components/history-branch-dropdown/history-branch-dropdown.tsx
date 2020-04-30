@@ -1,6 +1,5 @@
-import {Text, View} from 'react-native';
+import {Text, View, Animated} from 'react-native';
 import * as React from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {textStyles, theme} from '../../constants';
 import {TouchableRipple} from 'react-native-paper';
 import {SharkIconButton} from '../shark-icon-button';
@@ -28,6 +27,29 @@ export const HistoryBranchDropdown = ({
   const styles = useDynamicStyleSheet(dynamicStyles);
   const rippleColor = useDynamicValue(theme.colors.ripple_surface);
 
+  const [rotatevalue] = React.useState(new Animated.Value(0));
+
+  React.useEffect(() => {
+    if (expanded) {
+      Animated.timing(rotatevalue, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(rotatevalue, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [expanded, rotatevalue]);
+
+  const rotation = rotatevalue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '180deg'],
+  });
+
   return (
     <TouchableRipple
       style={styles.dropdownContinaer}
@@ -43,10 +65,12 @@ export const HistoryBranchDropdown = ({
           iconName={favorite ? 'star' : 'star-outline'}
         />
         <View style={styles.buttonDivider} />
-        <SharkIconButton
-          iconName={expanded ? 'chevron-up' : 'chevron-down'}
-          onPress={() => setExpanded(!expanded)}
-        />
+        <Animated.View style={{transform: [{rotate: rotation}]}}>
+          <SharkIconButton
+            iconName={'chevron-down'}
+            onPress={() => setExpanded(!expanded)}
+          />
+        </Animated.View>
       </View>
     </TouchableRipple>
   );
