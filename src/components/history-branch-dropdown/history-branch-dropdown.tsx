@@ -52,19 +52,17 @@ export const HistoryBranchDropdown = ({
 
   return (
     <TouchableRipple
-      style={styles.dropdownContinaer}
-      onPress={() => {}}
+      style={styles.dropdownContainer}
+      onPress={() => setExpanded(!expanded)}
       rippleColor={rippleColor}>
       <View style={styles.dropdownView}>
-        <Text numberOfLines={1} style={styles.branchName}>
-          {branchName}
-        </Text>
         <SharkIconButton
-          style={styles.starButton}
           onPress={onFavorite}
           iconName={favorite ? 'star' : 'star-outline'}
         />
-        <View style={styles.buttonDivider} />
+        <Text numberOfLines={1} style={styles.branchName}>
+          {branchName}
+        </Text>
         <SharkIconButton
           iconName={'chevron-down'}
           onPress={() => setExpanded(!expanded)}
@@ -76,8 +74,10 @@ export const HistoryBranchDropdown = ({
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  dropdownContinaer: {
-    paddingLeft: 16,
+  dropdownContainer: {
+    paddingHorizontal: 8,
+    flexShrink: 0,
+    minHeight: 40,
     backgroundColor: theme.colors.floating_surface,
   },
   dropdownView: {
@@ -85,18 +85,10 @@ const dynamicStyles = new DynamicStyleSheet({
     alignItems: 'center',
   },
   branchName: {
-    marginRight: 16,
+    marginHorizontal: 8,
     flexGrow: 1,
-    ...textStyles.callout,
-    fontWeight: 'bold',
+    ...textStyles.body_01,
     color: theme.colors.on_surface,
-  },
-  starButton: {
-    marginRight: 7,
-  },
-  buttonDivider: {
-    height: 36,
-    width: 1,
-    backgroundColor: theme.colors.divider,
+    marginVertical: 16,
   },
 });
