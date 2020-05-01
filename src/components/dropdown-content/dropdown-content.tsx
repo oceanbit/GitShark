@@ -8,12 +8,14 @@ interface DropdownContentProps {
   bottomLayer: React.ReactNode;
   header: React.ReactNode;
   expanded: boolean;
+  animationTime: number;
 }
 export const DropdownContent = ({
   topLayer,
   bottomLayer,
   header,
   expanded,
+  animationTime = 300,
 }: DropdownContentProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -30,17 +32,17 @@ export const DropdownContent = ({
     if (expanded) {
       Animated.timing(animatedHeight, {
         toValue: height,
-        duration: 300,
+        duration: animationTime,
         useNativeDriver: false,
       }).start();
     } else {
       Animated.timing(animatedHeight, {
         toValue: 0,
-        duration: 300,
+        duration: animationTime,
         useNativeDriver: false,
       }).start();
     }
-  }, [expanded, animatedHeight, height]);
+  }, [expanded, animatedHeight, height, animationTime]);
 
   return (
     <View style={styles.container}>

@@ -14,9 +14,9 @@ export const CommitList = ({commits}: CommitListProps) => {
 
   return (
     <View>
-      {commits.map(commit => {
+      {commits.map((commit, i) => {
         return (
-          <View style={styles.commitCardItem} key={commit.oid}>
+          <View style={i === 0 ? {} : styles.commitCardItem} key={commit.oid}>
             <CommitCard commit={commit} />
           </View>
         );

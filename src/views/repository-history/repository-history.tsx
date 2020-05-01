@@ -44,6 +44,7 @@ export const RepositoryHistory = () => {
             branchName={'the_big_branch'}
           />
         }
+        animationTime={150}
         expanded={showBranches}
         topLayer={
           <View>
