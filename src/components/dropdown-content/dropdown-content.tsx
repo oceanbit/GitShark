@@ -3,19 +3,19 @@ import {View, Animated} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {theme} from '../../constants';
 
+const animTiming = 150;
+
 interface DropdownContentProps {
   topLayer: React.ReactNode;
   bottomLayer: React.ReactNode;
   header: React.ReactNode;
   expanded: boolean;
-  animationTime: number;
 }
 export const DropdownContent = ({
   topLayer,
   bottomLayer,
   header,
   expanded,
-  animationTime = 300,
 }: DropdownContentProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -25,24 +25,48 @@ export const DropdownContent = ({
    * and setting that directly using onLayout
    */
   const [height, setHeight] = React.useState(0);
+  const [showScrim, setShowScrim] = React.useState(false);
 
   const [animatedHeight] = React.useState(new Animated.Value(0));
+  // The scrim, when a lower opacity, has issues with other items on screen's zIndex
+  // So we manually set "scrim" to "true" while animations are running and then "false"
+  // When those animations finish
+  const [scrimOpacity] = React.useState(new Animated.Value(0));
 
   React.useEffect(() => {
+    setShowScrim(true);
     if (expanded) {
-      Animated.timing(animatedHeight, {
-        toValue: height,
-        duration: animationTime,
-        useNativeDriver: false,
-      }).start();
+      Animated.parallel([
+        Animated.timing(animatedHeight, {
+          toValue: height,
+          duration: animTiming,
+          useNativeDriver: false,
+        }),
+        Animated.timing(scrimOpacity, {
+          toValue: 0.3,
+          duration: animTiming,
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
+        setShowScrim(false);
+      });
     } else {
-      Animated.timing(animatedHeight, {
-        toValue: 0,
-        duration: animationTime,
-        useNativeDriver: false,
-      }).start();
+      Animated.parallel([
+        Animated.timing(animatedHeight, {
+          toValue: 0,
+          duration: animTiming,
+          useNativeDriver: false,
+        }),
+        Animated.timing(scrimOpacity, {
+          toValue: 0,
+          duration: animTiming,
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
+        setShowScrim(false);
+      });
     }
-  }, [expanded, animatedHeight, height, animationTime]);
+  }, [expanded, animatedHeight, height, scrimOpacity]);
 
   return (
     <View style={styles.container}>
@@ -57,6 +81,12 @@ export const DropdownContent = ({
           style={[styles.topLayerContainer, {height: animatedHeight}]}>
           <View style={{height}}>{topLayer}</View>
         </Animated.View>
+        <Animated.View
+          style={[
+            styles.scrim,
+            {opacity: scrimOpacity, zIndex: showScrim ? 1 : -1},
+          ]}
+        />
         {bottomLayer}
       </View>
     </View>
@@ -83,7 +113,15 @@ const dynamicStyles = new DynamicStyleSheet({
     top: 0,
     overflow: 'hidden',
     width: '100%',
-    zIndex: 1,
+    zIndex: 2,
     backgroundColor: theme.colors.surface,
+  },
+  scrim: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'black',
   },
 });
