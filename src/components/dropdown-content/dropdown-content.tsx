@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View} from 'react-native';
+import {View, Animated} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {theme} from '../../constants';
 
@@ -23,6 +23,25 @@ export const DropdownContent = ({
    * and setting that directly using onLayout
    */
   const [height, setHeight] = React.useState(0);
+
+  const [animatedHeight] = React.useState(new Animated.Value(0));
+
+  React.useEffect(() => {
+    if (expanded) {
+      Animated.timing(animatedHeight, {
+        toValue: height,
+        duration: 300,
+        useNativeDriver: false,
+      }).start();
+    } else {
+      Animated.timing(animatedHeight, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: false,
+      }).start();
+    }
+  }, [expanded, animatedHeight, height]);
+
   return (
     <View style={styles.container}>
       <View>{header}</View>
@@ -32,10 +51,10 @@ export const DropdownContent = ({
           setHeight(eventHeight);
         }}
         style={styles.contentContainer}>
-        <View
-          style={[styles.topLayerContainer, {height: expanded ? height : 0}]}>
+        <Animated.View
+          style={[styles.topLayerContainer, {height: animatedHeight}]}>
           <View style={{height}}>{topLayer}</View>
-        </View>
+        </Animated.View>
         {bottomLayer}
       </View>
     </View>
@@ -49,7 +68,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexGrow: 1,
     position: 'relative',
   },
-  bottomLayerContainer: {
+  contentContainer: {
     flexGrow: 1,
     // Be smol, then grow to height. This fixes issues with header overlap
     height: 1,
