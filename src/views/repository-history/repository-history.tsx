@@ -23,6 +23,15 @@ export const RepositoryHistory = () => {
       .catch(console.error);
   }, [isDBLoaded, repo]);
 
+  const bottomLayer = React.useMemo(
+    () => (
+      <ScrollView>
+        <CommitList commits={commits} />
+      </ScrollView>
+    ),
+    [commits],
+  );
+
   return (
     <View style={styles.container}>
       <DropdownContent
@@ -41,11 +50,7 @@ export const RepositoryHistory = () => {
             <Text>Hello</Text>
           </View>
         }
-        bottomLayer={
-          <ScrollView>
-            <CommitList commits={commits} />
-          </ScrollView>
-        }
+        bottomLayer={bottomLayer}
       />
     </View>
   );
@@ -53,6 +58,6 @@ export const RepositoryHistory = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: '100%',
   },
 });
