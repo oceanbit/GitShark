@@ -3,18 +3,22 @@
  * "repository-history" as it's part of the dropdown component there
  */
 import * as React from 'react';
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkSubheader} from '../../components/shark-subheader';
 import {SharkDivider} from '../../components/shark-divider';
 import {BranchListItem} from '../../components/branch-list-item';
 import {RemoteBranchListItem} from '../../components/remote-branch-list-item';
+import {DropdownContent} from '../../components/dropdown-content';
+import {AnimatedDropdownArrow} from '../../components/animated-dropdown-arrow';
 
 export const Branches = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
+  const [expanded, setExpanded] = React.useState(false);
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <SharkSubheader calloutText="Local" buttonText="Add new" />
       <BranchListItem
         isFavorite={false}
@@ -36,19 +40,76 @@ export const Branches = () => {
       />
       <SharkDivider />
       <SharkSubheader calloutText="Remotes" buttonText="Add new" />
-      <RemoteBranchListItem
-        branch={{
-          name: 'develop',
-        }}
-        style={styles.remoteBranch}
-      />
-      <RemoteBranchListItem
-        branch={{
-          name: 'master',
-        }}
-        style={styles.remoteBranch}
-      />
-    </View>
+
+      <View style={{display: 'flex', width: 40}}>
+        <AnimatedDropdownArrow setExpanded={setExpanded} expanded={expanded} />
+      </View>
+
+      <DropdownContent expanded={expanded}>
+        <>
+          <RemoteBranchListItem
+            branch={{
+              name: 'develop',
+            }}
+            style={styles.remoteBranch}
+          />
+          <RemoteBranchListItem
+            branch={{
+              name: 'master',
+            }}
+            style={styles.remoteBranch}
+          />
+          <RemoteBranchListItem
+            branch={{
+              name: 'develop',
+            }}
+            style={styles.remoteBranch}
+          />
+          <RemoteBranchListItem
+            branch={{
+              name: 'master',
+            }}
+            style={styles.remoteBranch}
+          />
+          <RemoteBranchListItem
+            branch={{
+              name: 'develop',
+            }}
+            style={styles.remoteBranch}
+          />
+          <RemoteBranchListItem
+            branch={{
+              name: 'master',
+            }}
+            style={styles.remoteBranch}
+          />
+          <RemoteBranchListItem
+            branch={{
+              name: 'develop',
+            }}
+            style={styles.remoteBranch}
+          />
+          <RemoteBranchListItem
+            branch={{
+              name: 'master',
+            }}
+            style={styles.remoteBranch}
+          />
+          <RemoteBranchListItem
+            branch={{
+              name: 'develop',
+            }}
+            style={styles.remoteBranch}
+          />
+          <RemoteBranchListItem
+            branch={{
+              name: 'master',
+            }}
+            style={styles.remoteBranch}
+          />
+        </>
+      </DropdownContent>
+    </ScrollView>
   );
 };
 

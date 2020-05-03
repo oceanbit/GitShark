@@ -5,7 +5,7 @@ import {DatabaseLoadedContext, RepoContext} from '../../constants';
 import {CommitList} from '../../components/commit-list';
 import {HistoryBranchDropdown} from '../../components/history-branch-dropdown';
 import {gitLog, GitLogCommit} from '../../services';
-import {DropdownContent} from '../../components/dropdown-content';
+import {OverlayDropdownContent} from '../../components/overlay-dropdown-content';
 import {Branches} from '../branches';
 
 export const RepositoryHistory = () => {
@@ -35,7 +35,7 @@ export const RepositoryHistory = () => {
 
   return (
     <View style={styles.container}>
-      <DropdownContent
+      <OverlayDropdownContent
         header={
           <HistoryBranchDropdown
             onFavorite={() => {}}
