@@ -61,4 +61,11 @@ export const textStyles = {
     fontSize: 12,
     lineHeight: 16,
   },
+
+  overline: {
+    fontFamily: 'rubik_regular',
+    fontWeight: 'normal' as 'normal',
+    fontSize: 9,
+    lineHeight: 12,
+  },
 };

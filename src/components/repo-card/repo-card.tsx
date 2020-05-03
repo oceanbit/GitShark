@@ -1,6 +1,6 @@
 import {Text, View} from 'react-native';
 import * as React from 'react';
-import {RepoCardCommitMetadata} from './repo-card-commit-metadata';
+import {PushPullArrows} from '../push-pull-arrows';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../constants';
 import {Menu, TouchableRipple} from 'react-native-paper';
@@ -83,7 +83,7 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
               <Icon name="check-circle" size={16} color={accent} />
               <Text style={styles.branchName}>{repo.currentBranchName}</Text>
             </View>
-            <RepoCardCommitMetadata
+            <PushPullArrows
               commitsToPull={repo.commitsToPull}
               commitsToPush={repo.commitsToPush}
               style={styles.statusComponent}

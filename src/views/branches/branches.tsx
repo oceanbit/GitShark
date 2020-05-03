@@ -3,16 +3,19 @@
  * "repository-history" as it's part of the dropdown component there
  */
 import * as React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkSubheader} from '../../components/shark-subheader';
+import {SharkDivider} from '../../components/shark-divider';
 
 export const Branches = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   return (
     <View style={styles.container}>
-      <SharkSubheader buttonText="Add new" calloutText="Local" />
+      <SharkSubheader calloutText="Local" buttonText="Add new" />
+      <SharkDivider />
+      <SharkSubheader calloutText="Remotes" buttonText="Add new" />
     </View>
   );
 };
