@@ -8,6 +8,7 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkSubheader} from '../../components/shark-subheader';
 import {SharkDivider} from '../../components/shark-divider';
 import {BranchListItem} from '../../components/branch-list-item';
+import {RemoteBranchListItem} from '../../components/remote-branch-list-item';
 
 export const Branches = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -35,6 +36,18 @@ export const Branches = () => {
       />
       <SharkDivider />
       <SharkSubheader calloutText="Remotes" buttonText="Add new" />
+      <RemoteBranchListItem
+        branch={{
+          name: 'develop',
+        }}
+        style={styles.remoteBranch}
+      />
+      <RemoteBranchListItem
+        branch={{
+          name: 'master',
+        }}
+        style={styles.remoteBranch}
+      />
     </View>
   );
 };
@@ -42,5 +55,8 @@ export const Branches = () => {
 const dynamicStyles = new DynamicStyleSheet({
   container: {
     height: '100%',
+  },
+  remoteBranch: {
+    marginLeft: 40,
   },
 });
