@@ -30,6 +30,7 @@ import {
 import {SharkCheckbox} from '../../components/shark-checkbox';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {AccountButton} from './account-button/account-button';
+import {SharkDivider} from '../../components/shark-divider';
 
 export const Settings = () => {
   const isDark = useDarkMode();
@@ -48,7 +49,7 @@ export const Settings = () => {
   const videoHeight = videoWidth * 2;
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView>
       <TopSpacerView isFloating={true} />
       <AppBar
         leftIcon="arrow-left"
@@ -186,10 +187,6 @@ export const Settings = () => {
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  container: {
-    borderTopWidth: 1,
-    borderTopColor: theme.colors.divider,
-  },
   themeToggle: {
     marginHorizontal: 16,
     marginTop: 8,

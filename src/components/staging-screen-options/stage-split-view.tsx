@@ -3,8 +3,8 @@ import {UnstagedChanges} from './unstaged-changes';
 import {StagedChanges} from './staged-changes';
 import * as React from 'react';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {theme} from '../../constants';
 import {ChangesArrayItem} from '../../services';
+import {SharkDivider} from '../shark-divider';
 
 interface StageSplitViewProps {
   unstagedChanges: ChangesArrayItem[];
@@ -26,12 +26,13 @@ export const StageSplitView = ({
   return (
     <>
       <View style={styles.container}>
-        <View style={[styles.halfSection, styles.firstSection]}>
+        <View style={styles.halfSection}>
           <UnstagedChanges
             addToStaged={addToStaged}
             unstagedChanges={unstagedChanges}
           />
         </View>
+        <SharkDivider />
         <View style={styles.halfSection}>
           <StagedChanges
             removeFromStaged={removeFromStaged}
@@ -61,10 +62,6 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   halfSection: {
     height: '50%',
-  },
-  firstSection: {
-    borderBottomColor: theme.colors.divider,
-    borderBottomWidth: 1,
   },
   fab: {
     margin: 0,

@@ -15,6 +15,8 @@ import {SharkTextInput} from '../../components/shark-text-input';
 import {SharkButton} from '../../components/shark-button';
 import {ChangesArrayItem, commit} from '../../services';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {SharkDivider} from '../../components/shark-divider';
+import {BottomSpacerView} from '../../components/shark-safe-top';
 
 export const Commit = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -42,8 +44,6 @@ export const Commit = () => {
     setShowDivider(true);
   };
 
-  const headerLine = showDivider ? styles.underlineHeader : {};
-
   const onSubmit = async () => {
     await commit({repo: repo!, description: commitBody, title: commitTitle});
     getUpdate();
@@ -54,12 +54,12 @@ export const Commit = () => {
     <KeyboardAvoidingView
       style={{flex: 1, flexDirection: 'column'}}
       behavior="padding"
-      enabled
-      keyboardVerticalOffset={100}>
-      <View style={[styles.commitHeaderContainer, headerLine]}>
+      enabled>
+      <View style={[styles.commitHeaderContainer]}>
         <SharkIconButton onPress={() => history.goBack()} iconName="close" />
         <Text style={styles.commitHeader}>Commit changes</Text>
       </View>
+      {showDivider && <SharkDivider />}
       <ScrollView style={styles.fileChanges} onScroll={onStagedScroll}>
         {files.map(file => (
           <FileChangeListItem
@@ -69,6 +69,7 @@ export const Commit = () => {
           />
         ))}
       </ScrollView>
+      <SharkDivider />
       <View style={styles.commitData}>
         <SharkTextInput
           placeholder={'Commit title'}
@@ -90,6 +91,7 @@ export const Commit = () => {
           />
         </View>
       </View>
+      <BottomSpacerView />
     </KeyboardAvoidingView>
   );
 };
@@ -103,10 +105,6 @@ const dynamicStyles = new DynamicStyleSheet({
     paddingVertical: 16,
     paddingHorizontal: 8,
   },
-  underlineHeader: {
-    borderBottomColor: theme.colors.divider,
-    borderBottomWidth: 1,
-  },
   commitHeader: {
     marginLeft: 8,
     ...textStyles.headline_03,
@@ -116,8 +114,6 @@ const dynamicStyles = new DynamicStyleSheet({
     padding: 8,
   },
   commitData: {
-    borderTopColor: theme.colors.divider,
-    borderTopWidth: 1,
     padding: 16,
   },
   textarea: {

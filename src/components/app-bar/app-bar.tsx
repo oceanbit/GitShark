@@ -3,6 +3,7 @@ import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {SharkIconButton} from '../shark-icon-button';
 import {textStyles, theme} from '../../constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {SharkDivider} from '../shark-divider';
 
 interface AppBarProps {
   headline: string;
@@ -25,18 +26,20 @@ export const AppBar = ({
 }: AppBarProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
-  const botttomBarStyle = hasBottomBorder ? styles.bottomBar : {};
   return (
-    <View style={[styles.container, botttomBarStyle, style]}>
-      {!!leftIcon && (
-        <SharkIconButton iconName={leftIcon} onPress={onLeftSelect} />
-      )}
-      <View style={styles.textContainer}>
-        <Text style={styles.headline}>{headline}</Text>
-        {!!caption && <Text style={styles.caption}>{caption}</Text>}
+    <>
+      <View style={[styles.container, style]}>
+        {!!leftIcon && (
+          <SharkIconButton iconName={leftIcon} onPress={onLeftSelect} />
+        )}
+        <View style={styles.textContainer}>
+          <Text style={styles.headline}>{headline}</Text>
+          {!!caption && <Text style={styles.caption}>{caption}</Text>}
+        </View>
+        {rightChild}
       </View>
-      {rightChild}
-    </View>
+      {hasBottomBorder && <SharkDivider />}
+    </>
   );
 };
 
@@ -48,10 +51,6 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: theme.colors.floating_surface,
-  },
-  bottomBar: {
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.divider,
   },
   textContainer: {
     display: 'flex',

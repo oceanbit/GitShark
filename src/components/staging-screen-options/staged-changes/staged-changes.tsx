@@ -9,6 +9,7 @@ import {FileChangeListItemWithCheckbox} from '../../file-change-list-item';
 import {ChangesArrayItem} from '../../../services';
 import {theme} from '../../../constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {SharkDivider} from '../../shark-divider';
 
 interface StagedChangesProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
@@ -63,7 +64,6 @@ export const StagedChanges = ({
     setSelectedStagedChanges([...selectedStagedChanges, change]);
   };
 
-  const underlineStyle = showStagedDivider ? styles.underlineHeader : {};
   const floatingStyle = inSheet ? styles.subheaderFloating : {};
 
   return (
@@ -72,8 +72,9 @@ export const StagedChanges = ({
         buttonText={stagedBtnText}
         calloutText={'Staged'}
         onButtonClick={stagedBtnAction}
-        style={[underlineStyle, floatingStyle]}
+        style={floatingStyle}
       />
+      {showStagedDivider && <SharkDivider />}
       <ScrollView style={styles.changesList} onScroll={onStagedScroll}>
         {stagedChanges.map(props => {
           const isChecked = !!selectedStagedChanges.find(
@@ -96,10 +97,6 @@ export const StagedChanges = ({
 const dynamicStyles = new DynamicStyleSheet({
   changesList: {
     paddingHorizontal: 16,
-  },
-  underlineHeader: {
-    borderBottomColor: theme.colors.divider,
-    borderBottomWidth: 1,
   },
   subheaderFloating: {
     backgroundColor: theme.colors.floating_surface,

@@ -7,8 +7,8 @@ import {
 import {SharkSubheader} from '../../shark-subheader';
 import {FileChangeListItemWithCheckbox} from '../../file-change-list-item';
 import {ChangesArrayItem} from '../../../services';
-import {theme} from '../../../constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {SharkDivider} from '../../shark-divider';
 
 interface UnstagedChangesProps {
   addToStaged: (changes: ChangesArrayItem[]) => Promise<void>;
@@ -60,16 +60,14 @@ export const UnstagedChanges = ({
     setSelectedUnstagedChanges([...selectedUnstagedChanges, change]);
   };
 
-  const underlineStyle = showUnstagedDivider ? styles.underlineHeader : {};
-
   return (
     <>
       <SharkSubheader
         buttonText={unstagedBtnText}
         calloutText={'Unstaged'}
         onButtonClick={unstagedBtnAction}
-        style={underlineStyle}
       />
+      {showUnstagedDivider && <SharkDivider />}
       <ScrollView style={styles.changesList} onScroll={onUnstagedScroll}>
         {unstagedChanges.map(props => {
           const isChecked = !!selectedUnstagedChanges.find(
@@ -92,9 +90,5 @@ export const UnstagedChanges = ({
 const dynamicStyles = new DynamicStyleSheet({
   changesList: {
     paddingHorizontal: 16,
-  },
-  underlineHeader: {
-    borderBottomColor: theme.colors.divider,
-    borderBottomWidth: 1,
   },
 });

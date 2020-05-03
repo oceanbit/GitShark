@@ -20,6 +20,7 @@ import {githubOauthLink} from '../../constants/oauth';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {validateEmail} from '../../utils';
 import {GitHubLogout} from './github-logout/github-logout';
+import {SharkDivider} from '../../components/shark-divider';
 
 export const Account = () => {
   const {
@@ -109,10 +110,8 @@ export const Account = () => {
             }}
           />
         )}
-        <SharkSubheader
-          style={styles.commitAuthoringHeader}
-          calloutText="Commit authoring"
-        />
+        <SharkDivider />
+        <SharkSubheader calloutText="Commit authoring" />
         <View style={styles.commitAuthorContainer}>
           <View style={styles.authorPreview}>
             <SharkProfilePic source={authorImage} showGHLogo={isGitHub} />
@@ -182,10 +181,6 @@ const dynamicStyles = new DynamicStyleSheet({
     marginBottom: 24,
     marginTop: 8,
     marginHorizontal: 16,
-  },
-  commitAuthoringHeader: {
-    borderTopWidth: 1,
-    borderTopColor: theme.colors.divider,
   },
   commitAuthorContainer: {
     paddingHorizontal: 16,
