@@ -8,6 +8,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
+import {AnimatedDropdownArrow} from '../animated-dropdown-arrow';
 
 interface HistoryBranchDropdownProps {
   branchName: string;
@@ -29,7 +30,6 @@ export const HistoryBranchDropdown = ({
   const styles = useDynamicStyleSheet(dynamicStyles);
   const rippleColor = useDynamicValue(theme.colors.ripple_surface);
 
-  const [rotatevalue] = React.useState(new Animated.Value(0));
   const [marginLeft] = React.useState(new Animated.Value(0));
   const [branchNameOpacity] = React.useState(new Animated.Value(0));
   const [selectBranchesOpacity] = React.useState(new Animated.Value(0));
@@ -37,11 +37,6 @@ export const HistoryBranchDropdown = ({
   React.useEffect(() => {
     if (expanded) {
       Animated.parallel([
-        Animated.timing(rotatevalue, {
-          toValue: 1,
-          duration: animDuration,
-          useNativeDriver: true,
-        }),
         Animated.timing(marginLeft, {
           toValue: -40,
           duration: animDuration,
@@ -60,11 +55,6 @@ export const HistoryBranchDropdown = ({
       ]).start();
     } else {
       Animated.parallel([
-        Animated.timing(rotatevalue, {
-          toValue: 0,
-          duration: animDuration,
-          useNativeDriver: true,
-        }),
         Animated.timing(marginLeft, {
           toValue: 0,
           duration: animDuration,
@@ -82,18 +72,7 @@ export const HistoryBranchDropdown = ({
         }),
       ]).start();
     }
-  }, [
-    expanded,
-    rotatevalue,
-    marginLeft,
-    branchNameOpacity,
-    selectBranchesOpacity,
-  ]);
-
-  const rotation = rotatevalue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '180deg'],
-  });
+  }, [expanded, marginLeft, branchNameOpacity, selectBranchesOpacity]);
 
   return (
     <TouchableRipple
@@ -116,11 +95,7 @@ export const HistoryBranchDropdown = ({
             {branchName}
           </Animated.Text>
         </View>
-        <SharkIconButton
-          iconName={'chevron-down'}
-          onPress={() => setExpanded(!expanded)}
-          iconStyle={{transform: [{rotate: rotation}]}}
-        />
+        <AnimatedDropdownArrow setExpanded={setExpanded} expanded={expanded} />
       </Animated.View>
     </TouchableRipple>
   );
