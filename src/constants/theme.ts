@@ -67,6 +67,10 @@ export const colors = {
   ripple_surface_light: 'rgba(0, 51, 153, 0.12)', // Electric Blue 700 0.12 alpha
   surface_dark: '#0D1526', // Navy 1000
   surface_light: '#FFFFFF', // White
+  // Electric Blue 500 0.1 alpha
+  selected_primary_light: 'rgba(0, 43, 255, 0.1)',
+  // Electric Blue 200 0.15 alpha
+  selected_primary_dark: 'rgba(153, 187, 255, 0.15)',
 };
 
 const baseTheme = {
@@ -187,5 +191,9 @@ export const theme = {
       colors.ripple_surface_dark,
     ),
     surface: new DynamicValue(colors.surface_light, colors.surface_dark),
+    selected_primary: new DynamicValue(
+      colors.selected_primary_light,
+      colors.selected_primary_dark,
+    ),
   },
 };

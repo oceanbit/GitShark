@@ -7,6 +7,7 @@ import {View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkSubheader} from '../../components/shark-subheader';
 import {SharkDivider} from '../../components/shark-divider';
+import {BranchListItem} from '../../components/branch-list-item';
 
 export const Branches = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -14,6 +15,24 @@ export const Branches = () => {
   return (
     <View style={styles.container}>
       <SharkSubheader calloutText="Local" buttonText="Add new" />
+      <BranchListItem
+        isFavorite={false}
+        selected={false}
+        branch={{
+          name: 'develop',
+          up: 4,
+          down: 0,
+        }}
+      />
+      <BranchListItem
+        isFavorite={false}
+        selected={true}
+        branch={{
+          name: 'master',
+          up: 2,
+          down: 2,
+        }}
+      />
       <SharkDivider />
       <SharkSubheader calloutText="Remotes" buttonText="Add new" />
     </View>
