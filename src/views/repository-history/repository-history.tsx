@@ -1,11 +1,12 @@
 import * as React from 'react';
-import {ScrollView, StyleSheet, View, Text} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
 import {DatabaseLoadedContext, RepoContext} from '../../constants';
 import {CommitList} from '../../components/commit-list';
 import {HistoryBranchDropdown} from '../../components/history-branch-dropdown';
 import {gitLog, GitLogCommit} from '../../services';
 import {DropdownContent} from '../../components/dropdown-content';
+import {Branches} from '../branches';
 
 export const RepositoryHistory = () => {
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
@@ -45,11 +46,7 @@ export const RepositoryHistory = () => {
           />
         }
         expanded={showBranches}
-        topLayer={
-          <View>
-            <Text>Hello</Text>
-          </View>
-        }
+        topLayer={<Branches />}
         bottomLayer={bottomLayer}
       />
     </View>
