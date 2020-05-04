@@ -21,7 +21,6 @@ export const DropdownContent = ({children, expanded}: DropdownContentProps) => {
   const [animatedHeight] = React.useState(new Animated.Value(0));
 
   React.useEffect(() => {
-    console.log(height);
     if (expanded) {
       Animated.timing(animatedHeight, {
         toValue: height,

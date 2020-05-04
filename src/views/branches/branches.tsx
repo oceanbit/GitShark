@@ -79,7 +79,7 @@ const dynamicStyles = new DynamicStyleSheet({
     height: '100%',
   },
   remoteBranch: {
-    marginLeft: 40,
+    paddingLeft: 56,
   },
   remoteDivider: {
     marginTop: 16,
