@@ -42,6 +42,9 @@ export const DropdownContent = ({children, expanded}: DropdownContentProps) => {
         {children}
       </Animated.View>
       {/* Unrender the children once the height is calcuated */}
+      {/* This is the children to grab the height from. It's rendered */}
+      {/* Offscreen, then we unrender it. This is because the `animatedHeight` is */}
+      {/* Set to `0` and the children are set to `0` as a result. This fixes that */}
       {!height && (
         <View
           style={styles.offscreenView}
