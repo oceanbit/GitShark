@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View} from 'react-native';
+import {View, FlatList} from 'react-native';
 import {CommitCard} from './commit-card/commit-card';
 import {theme} from '../../constants';
 import {GitLogCommit} from '../../services';
@@ -13,15 +13,15 @@ export const CommitList = ({commits}: CommitListProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   return (
-    <View>
-      {commits.map((commit, i) => {
-        return (
-          <View style={i === 0 ? {} : styles.commitCardItem} key={commit.oid}>
-            <CommitCard commit={commit} />
-          </View>
-        );
-      })}
-    </View>
+    <FlatList
+      data={commits}
+      keyExtractor={commit => commit.oid}
+      renderItem={({item: commit, index: i}) => (
+        <View style={i === 0 ? {} : styles.commitCardItem} key={commit.oid}>
+          <CommitCard commit={commit} />
+        </View>
+      )}
+    />
   );
 };
 

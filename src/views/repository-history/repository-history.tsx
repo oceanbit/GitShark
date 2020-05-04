@@ -24,29 +24,31 @@ export const RepositoryHistory = () => {
       .catch(console.error);
   }, [isDBLoaded, repo]);
 
-  const bottomLayer = React.useMemo(
+  const bottomLayer = React.useMemo(() => <CommitList commits={commits} />, [
+    commits,
+  ]);
+
+  const topLayer = React.useMemo(() => <Branches />, []);
+
+  const header = React.useMemo(
     () => (
-      <ScrollView>
-        <CommitList commits={commits} />
-      </ScrollView>
+      <HistoryBranchDropdown
+        onFavorite={() => {}}
+        setExpanded={setShowBranches}
+        expanded={showBranches}
+        favorite={false}
+        branchName={'the_big_branch'}
+      />
     ),
-    [commits],
+    [setShowBranches, showBranches],
   );
 
   return (
     <View style={styles.container}>
       <OverlayDropdownContent
-        header={
-          <HistoryBranchDropdown
-            onFavorite={() => {}}
-            setExpanded={setShowBranches}
-            expanded={showBranches}
-            favorite={false}
-            branchName={'the_big_branch'}
-          />
-        }
+        header={header}
         expanded={showBranches}
-        topLayer={<Branches />}
+        topLayer={topLayer}
         bottomLayer={bottomLayer}
       />
     </View>
