@@ -9,7 +9,8 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
-    "android-send-key": "adb shell input keyevent 82"
+    "android-send-key": "adb shell input keyevent 82",
+    "build-apk": "cd android && ./gradlew assembleRelease"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.8",
