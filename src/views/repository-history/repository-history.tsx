@@ -1,28 +1,26 @@
 import * as React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
-import {DatabaseLoadedContext, RepoContext} from '../../constants';
+import {RepoContext} from '../../constants';
 import {CommitList} from '../../components/commit-list';
 import {HistoryBranchDropdown} from '../../components/history-branch-dropdown';
-import {gitLog, GitLogCommit} from '../../services';
 import {OverlayDropdownContent} from '../../components/overlay-dropdown-content';
 import {Branches} from '../branches';
+import {useSelector, useDispatch} from 'react-redux';
+import {RootState, getGitLog} from '../../store';
 
 export const RepositoryHistory = () => {
-  const isDBLoaded = React.useContext(DatabaseLoadedContext);
+  const {commits} = useSelector((state: RootState) => state.commits);
+  const dispatch = useDispatch();
+
   const {repo} = React.useContext(RepoContext);
   const [showBranches, setShowBranches] = React.useState(false);
 
-  const [commits, setCommits] = React.useState<GitLogCommit[]>([]);
-
   React.useEffect(() => {
-    if (!isDBLoaded) {
-      return;
-    }
-    gitLog({repo: repo!})
-      .then(repoCommits => setCommits(repoCommits))
-      .catch(console.error);
-  }, [isDBLoaded, repo]);
+    dispatch(getGitLog(repo!)).then(({error}) => {
+      if (error) console.error(error);
+    });
+  }, [repo, dispatch]);
 
   const bottomLayer = React.useMemo(() => <CommitList commits={commits} />, [
     commits,

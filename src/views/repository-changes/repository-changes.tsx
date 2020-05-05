@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
   DatabaseLoadedContext,
-  fs,
   RepoContext,
   StyleOfStagingContext,
 } from '../../constants';
