@@ -38,7 +38,7 @@ export const Repository = () => {
   React.useEffect(() => {
     const repoRepository = getRepository(Repo);
     repoRepository
-      .findOne(repoId, {relations: ['branches']})
+      .findOne(repoId, {relations: ['branches', 'commits']})
       .then(newRepo => {
         if (!newRepo) {
           Alert.alert(

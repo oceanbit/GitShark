@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import {Remote} from './Remote';
 import {Branch} from './Branch';
+import {Commit} from './Commit';
 
 @Entity({name: 'repo'})
 export class Repo extends BaseEntity {
@@ -41,6 +42,13 @@ export class Repo extends BaseEntity {
     name: 'lastupdated',
   })
   lastUpdated: Date;
+
+  /**
+   * This is a cache of the first 5 commits we want to show in the commit list
+   */
+  @ManyToMany(() => Commit, {cascade: ['insert', 'remove']})
+  @JoinTable({name: 'repo__commits'})
+  commits: Commit[];
 
   @ManyToMany(() => Remote, {cascade: ['insert', 'remove']})
   @JoinTable({name: 'repo__remotes'})
