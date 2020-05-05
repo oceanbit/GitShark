@@ -1,19 +1,28 @@
 import * as React from 'react';
-import git from 'isomorphic-git/index.umd.min.js';
 import {
   DatabaseLoadedContext,
   fs,
   RepoContext,
   StyleOfStagingContext,
 } from '../../constants';
-import {ChangesArrayItem, getRepoStatus} from '../../services';
+import {ChangesArrayItem} from '../../services';
 import {useNavigation} from '@react-navigation/native';
 import {
   StageSheetView,
   StageSplitView,
 } from '../../components/staging-screen-options';
+import {useSelector, useDispatch} from 'react-redux';
+import {
+  RootState,
+  getGitStatus,
+  addToStaged,
+  removeFromStaged,
+} from '../../store';
 
 export const RepositoryChanges = () => {
+  const {staged, unstaged} = useSelector((state: RootState) => state.changes);
+  const dispatch = useDispatch();
+
   const history = useNavigation();
 
   const {styleOfStaging} = React.useContext(StyleOfStagingContext);
@@ -22,37 +31,13 @@ export const RepositoryChanges = () => {
 
   const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const {repo} = React.useContext(RepoContext);
-  const [stagedChanges, setStagedChanges] = React.useState<ChangesArrayItem[]>(
-    [],
-  );
-  const [unstagedChanges, setUnstagedChanges] = React.useState<
-    ChangesArrayItem[]
-  >([]);
+
   const getUpdate = React.useCallback(() => {
     if (!repo) {
       return;
     }
-    getRepoStatus(repo.path)
-      .then(newFiles => {
-        const onlyChangedFiles = newFiles.filter(
-          file => file.fileStatus !== 'unmodified',
-        );
-        const [unstaged, staged] = onlyChangedFiles.reduce(
-          (prev, change) => {
-            if (!change.staged) {
-              prev[0].push(change);
-            } else {
-              prev[1].push(change);
-            }
-            return prev;
-          },
-          [[], []] as ChangesArrayItem[][],
-        );
-        setStagedChanges(staged);
-        setUnstagedChanges(unstaged);
-      })
-      .catch(e => console.error(e));
-  }, [repo]);
+    dispatch(getGitStatus(repo.path));
+  }, [repo, dispatch]);
 
   React.useEffect(() => {
     if (!isDBLoaded) {
@@ -61,65 +46,45 @@ export const RepositoryChanges = () => {
     getUpdate();
   }, [isDBLoaded, getUpdate]);
 
-  const addToStaged = async (changes: ChangesArrayItem[]) => {
-    const newUnstaged = unstagedChanges.filter(
-      unChange =>
-        !changes.find(change => unChange.fileName === change.fileName),
-    );
-    const newStaged = [...stagedChanges, ...changes];
-    setUnstagedChanges(newUnstaged);
-    setStagedChanges(newStaged);
-    const changePromises = changes.map(change =>
-      git.add({fs, dir: repo!.path, filepath: change.fileName}),
-    );
-    try {
-      await Promise.all(changePromises);
-    } catch (e) {
-      console.error(e);
-    }
+  const addToStagedLocal = async (changes: ChangesArrayItem[]) => {
+    dispatch(addToStaged({repo: repo!, changes})).then(({error}) => {
+      if (error) {
+        console.error(error);
+      }
+    });
   };
 
-  const removeFromStaged = async (changes: ChangesArrayItem[]) => {
-    const newStaged = stagedChanges.filter(
-      unChange =>
-        !changes.find(change => unChange.fileName === change.fileName),
-    );
-    const newUnstaged = [...unstagedChanges, ...changes];
-    setUnstagedChanges(newUnstaged);
-    setStagedChanges(newStaged);
-    const changePromises = changes.map(change =>
-      git.remove({fs, dir: repo!.path, filepath: change.fileName}),
-    );
-    try {
-      await Promise.all(changePromises);
-    } catch (e) {
-      console.error(e);
-    }
+  const removeFromStagedLocal = async (changes: ChangesArrayItem[]) => {
+    dispatch(removeFromStaged({repo: repo!, changes})).then(({error}) => {
+      if (error) {
+        console.error(error);
+      }
+    });
   };
 
   const onCommit = React.useCallback(() => {
     history.navigate('Commit', {
-      files: stagedChanges,
+      files: staged,
       updateFiles: getUpdate,
     });
-  }, [history, stagedChanges, getUpdate]);
+  }, [history, staged, getUpdate]);
 
   return (
     <>
       {useSplitView ? (
         <StageSplitView
-          addToStaged={addToStaged}
-          unstagedChanges={unstagedChanges}
-          removeFromStaged={removeFromStaged}
-          stagedChanges={stagedChanges}
+          addToStaged={addToStagedLocal}
+          unstagedChanges={unstaged}
+          removeFromStaged={removeFromStagedLocal}
+          stagedChanges={staged}
           onCommit={onCommit}
         />
       ) : (
         <StageSheetView
-          addToStaged={addToStaged}
-          unstagedChanges={unstagedChanges}
-          removeFromStaged={removeFromStaged}
-          stagedChanges={stagedChanges}
+          addToStaged={addToStagedLocal}
+          unstagedChanges={unstaged}
+          removeFromStaged={removeFromStagedLocal}
+          stagedChanges={staged}
           onCommit={onCommit}
         />
       )}

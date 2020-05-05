@@ -36,6 +36,8 @@ import {
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {changeBarColors} from 'react-native-immersive-bars';
 import {useManualUserData} from './hooks/use-manual-user-data';
+import {Provider} from 'react-redux';
+import {store} from './store';
 
 YellowBox.ignoreWarnings([
   /**
@@ -122,51 +124,56 @@ const App = () => {
   const paperTheme = isDarkMode ? darkPaperTheme : lightPaperTheme;
 
   return (
-    <SafeAreaProvider>
-      <NavigationContainer theme={isDarkMode ? darkNavTheme : lightNavTheme}>
-        <PaperProvider theme={paperTheme}>
-          <StatusBar
-            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-            backgroundColor={'transparent'}
-          />
-          <DatabaseLoadedContext.Provider value={isDBLoaded}>
-            <StyleOfStagingContext.Provider
-              value={{
-                styleOfStaging,
-                setStyleOfStaging: updateStagingStyle,
-              }}>
-              <SetDarkModeContext.Provider
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <NavigationContainer theme={isDarkMode ? darkNavTheme : lightNavTheme}>
+          <PaperProvider theme={paperTheme}>
+            <StatusBar
+              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+              backgroundColor={'transparent'}
+            />
+            <DatabaseLoadedContext.Provider value={isDBLoaded}>
+              <StyleOfStagingContext.Provider
                 value={{
-                  setDarkMode: updateLocalDarkMode,
+                  styleOfStaging,
+                  setStyleOfStaging: updateStagingStyle,
                 }}>
-                <UserContext.Provider
+                <SetDarkModeContext.Provider
                   value={{
-                    gitHubUser,
-                    setUseGithub,
-                    useGitHub,
-                    manualUser,
-                    setManualUser,
-                    logoutGitHub,
+                    setDarkMode: updateLocalDarkMode,
                   }}>
-                  <DarkModeProvider mode={isDarkMode ? 'dark' : 'light'}>
-                    <Stack.Navigator headerMode={'none'}>
-                      <Stack.Screen
-                        name="RepoList"
-                        component={RepositoryList}
-                      />
-                      <Stack.Screen name="Settings" component={Settings} />
-                      <Stack.Screen name="Account" component={Account} />
-                      <Stack.Screen name="RepoDetails" component={Repository} />
-                    </Stack.Navigator>
-                  </DarkModeProvider>
-                </UserContext.Provider>
-              </SetDarkModeContext.Provider>
-            </StyleOfStagingContext.Provider>
-          </DatabaseLoadedContext.Provider>
-          <SafeAreaView />
-        </PaperProvider>
-      </NavigationContainer>
-    </SafeAreaProvider>
+                  <UserContext.Provider
+                    value={{
+                      gitHubUser,
+                      setUseGithub,
+                      useGitHub,
+                      manualUser,
+                      setManualUser,
+                      logoutGitHub,
+                    }}>
+                    <DarkModeProvider mode={isDarkMode ? 'dark' : 'light'}>
+                      <Stack.Navigator headerMode={'none'}>
+                        <Stack.Screen
+                          name="RepoList"
+                          component={RepositoryList}
+                        />
+                        <Stack.Screen name="Settings" component={Settings} />
+                        <Stack.Screen name="Account" component={Account} />
+                        <Stack.Screen
+                          name="RepoDetails"
+                          component={Repository}
+                        />
+                      </Stack.Navigator>
+                    </DarkModeProvider>
+                  </UserContext.Provider>
+                </SetDarkModeContext.Provider>
+              </StyleOfStagingContext.Provider>
+            </DatabaseLoadedContext.Provider>
+            <SafeAreaView />
+          </PaperProvider>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </Provider>
   );
 };
 
