@@ -14,8 +14,6 @@ export const getRepoStatus = async (path: string) => {
     dir: `${path}`,
   });
 
-  console.log(statusArrArr);
-
   const changesArray: ChangesArrayItem[] = statusArrArr.map(statusArr => {
     const [fileName, headStatus, workdirStatus, stageStatus] = statusArr;
     switch (`${headStatus} ${workdirStatus} ${stageStatus}`) {

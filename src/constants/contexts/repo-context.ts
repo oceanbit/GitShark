@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Repo} from '../entities';
+import {Repo} from '../../entities';
 
 interface RepoContextType {
   repo: Repo | null;
