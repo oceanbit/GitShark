@@ -6,18 +6,19 @@ import {CommitList} from '../../components/commit-list';
 import {HistoryBranchDropdown} from '../../components/history-branch-dropdown';
 import {OverlayDropdownContent} from '../../components/overlay-dropdown-content';
 import {Branches} from '../branches';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {RootState, getGitLog} from '../../store';
+import {useThunkDispatch} from '../../hooks';
 
 export const RepositoryHistory = () => {
   const {commits} = useSelector((state: RootState) => state.commits);
-  const dispatch = useDispatch();
+  const dispatch = useThunkDispatch();
 
   const {repo} = React.useContext(RepoContext);
   const [showBranches, setShowBranches] = React.useState(false);
 
   React.useEffect(() => {
-    dispatch(getGitLog(repo!)).then(({error}) => {
+    dispatch(getGitLog(repo!)).then(({error}: any) => {
       if (error) console.error(error);
     });
   }, [repo, dispatch]);

@@ -10,17 +10,18 @@ import {
   StageSheetView,
   StageSplitView,
 } from '../../components/staging-screen-options';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {
   RootState,
   getGitStatus,
   addToStaged,
   removeFromStaged,
 } from '../../store';
+import {useThunkDispatch} from '../../hooks';
 
 export const RepositoryChanges = () => {
   const {staged, unstaged} = useSelector((state: RootState) => state.changes);
-  const dispatch = useDispatch();
+  const dispatch = useThunkDispatch();
 
   const history = useNavigation();
 
@@ -46,18 +47,14 @@ export const RepositoryChanges = () => {
   }, [isDBLoaded, getUpdate]);
 
   const addToStagedLocal = async (changes: ChangesArrayItem[]) => {
-    dispatch(addToStaged({repo: repo!, changes})).then(({error}) => {
-      if (error) {
-        console.error(error);
-      }
+    dispatch(addToStaged({repo: repo!, changes})).then(({error}: any) => {
+      if (error) console.error(error);
     });
   };
 
   const removeFromStagedLocal = async (changes: ChangesArrayItem[]) => {
-    dispatch(removeFromStaged({repo: repo!, changes})).then(({error}) => {
-      if (error) {
-        console.error(error);
-      }
+    dispatch(removeFromStaged({repo: repo!, changes})).then(({error}: any) => {
+      if (error) console.error(error);
     });
   };
 
