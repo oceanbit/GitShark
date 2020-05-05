@@ -18,6 +18,7 @@ import {
 } from 'react-native-dark-mode';
 import {useSafeArea} from 'react-native-safe-area-context';
 import {SharkSafeTop} from '../../components/shark-safe-top';
+import {getRepoData} from '../../services/git';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -45,6 +46,14 @@ export const Repository = () => {
           );
           return;
         }
+        const start = Date.now();
+        getRepoData(newRepo.path).then(data => {
+          console.log(data);
+          const end = Date.now();
+          console.log(
+            `IT TOOK ${(end - start) / 1000} SECONDS TO POPULATE DATA`,
+          );
+        });
         setRepo(newRepo!);
         console.log(newRepo);
       })
