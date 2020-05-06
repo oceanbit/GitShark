@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {RepoContext, textStyles, theme} from '../../constants';
+import {textStyles, theme} from '../../constants';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {SharkIconButton} from '../../components/shark-icon-button';
 import {FileChangeListItem} from '../../components/file-change-list-item';
@@ -17,10 +17,13 @@ import {ChangesArrayItem, commit} from '../../services';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkDivider} from '../../components/shark-divider';
 import {BottomSpacerView} from '../../components/shark-safe-top';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store';
 
 export const Commit = () => {
+  const {repo} = useSelector((state: RootState) => state.repository);
+
   const styles = useDynamicStyleSheet(dynamicStyles);
-  const {repo} = React.useContext(RepoContext);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const route = useRoute<any>();
   const getUpdate = route!.params!.updateFiles as Function;

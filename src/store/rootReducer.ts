@@ -1,3 +1,4 @@
+import {repositoryReducer} from './repoSlice';
 import {combineReducers} from '@reduxjs/toolkit';
 import {databaseReducer} from './databaseSlice';
 import {changesReducer} from './gitChangesSlice';
@@ -9,6 +10,7 @@ export const rootReducer = combineReducers({
   commits: commitsReducer,
   database: databaseReducer,
   branches: branchesReducer,
+  repository: repositoryReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

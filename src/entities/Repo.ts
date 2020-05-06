@@ -59,6 +59,46 @@ export class Repo extends BaseEntity {
   branches: Branch[];
 }
 
+export const getReduxRepo = (repo: Repo) => {
+  const {
+    id,
+    name,
+    currentBranchName,
+    commitsToPull,
+    commitsToPush,
+    path,
+    commits,
+    remotes,
+    branches,
+  } = repo;
+  return {
+    id,
+    name,
+    currentBranchName,
+    commitsToPull,
+    commitsToPush,
+    path,
+    // lastUpdated,
+    commits,
+    remotes,
+    branches,
+  };
+};
+
+export type ReduxRepo = Pick<
+  Repo,
+  | 'id'
+  | 'name'
+  | 'currentBranchName'
+  | 'commitsToPull'
+  | 'commitsToPush'
+  | 'path'
+  | 'lastUpdated'
+  | 'commits'
+  | 'remotes'
+  | 'branches'
+>;
+
 export interface RepoMock {
   id: number;
   name: string;

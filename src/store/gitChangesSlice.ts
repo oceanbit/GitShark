@@ -2,15 +2,16 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {getRepoStatus, ChangesArrayItem} from '../services';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '../constants';
-import {Repo} from '../entities';
 import {RootState} from './rootReducer';
 
 export const getGitStatus = createAsyncThunk(
   'commits/getGitStatus',
   async (path: string, {getState}) => {
-    const {database} = getState() as RootState;
+    const {database, repository} = getState() as any;
     if (!database.isLoaded) return;
-    const newFiles = await getRepoStatus(path);
+    const repo = repository.repo;
+    if (!repo) return;
+    const newFiles = await getRepoStatus(repo.path);
     const onlyChangedFiles = newFiles.filter(
       file => file.fileStatus !== 'unmodified',
     );
@@ -29,14 +30,12 @@ export const getGitStatus = createAsyncThunk(
   },
 );
 
-interface StagedChangesPayload {
-  repo: Repo;
-  changes: ChangesArrayItem[];
-}
-
 export const addToStaged = createAsyncThunk(
   'commits/addToStaged',
-  async ({repo, changes}: StagedChangesPayload) => {
+  async (changes: ChangesArrayItem[], {getState}) => {
+    const {repository} = getState() as any;
+    const repo = repository.repo;
+    if (!repo) return;
     return Promise.all(
       changes.map(change =>
         git.add({fs, dir: repo!.path, filepath: change.fileName}),
@@ -47,7 +46,10 @@ export const addToStaged = createAsyncThunk(
 
 export const removeFromStaged = createAsyncThunk(
   'commits/removeFromStaged',
-  async ({repo, changes}: StagedChangesPayload) => {
+  async (changes: ChangesArrayItem[], {getState}) => {
+    const {repository} = getState() as any;
+    const repo = repository.repo;
+    if (!repo) return;
     return Promise.all(
       changes.map(change =>
         git.remove({fs, dir: repo!.path, filepath: change.fileName}),
@@ -66,14 +68,15 @@ const changesSlice = createSlice({
   reducers: {},
   extraReducers: {
     [getGitStatus.fulfilled.toString()]: (state, action) => {
+      if (!action.payload) return;
       state.staged = action.payload.staged;
       state.unstaged = action.payload.unstaged;
     },
     [addToStaged.pending.toString()]: (
       state,
-      action: {meta: {arg: StagedChangesPayload}},
+      action: {meta: {arg: ChangesArrayItem[]}},
     ) => {
-      const {changes} = action.meta.arg;
+      const changes = action.meta.arg;
       const newUnstaged = state.unstaged.filter(
         unChange =>
           !changes.find(change => unChange.fileName === change.fileName),
@@ -84,9 +87,9 @@ const changesSlice = createSlice({
     },
     [removeFromStaged.pending.toString()]: (
       state,
-      action: {meta: {arg: StagedChangesPayload}},
+      action: {meta: {arg: ChangesArrayItem[]}},
     ) => {
-      const {changes} = action.meta.arg;
+      const changes = action.meta.arg;
       const newStaged = state.staged.filter(
         unChange =>
           !changes.find(change => unChange.fileName === change.fileName),

@@ -1,7 +1,5 @@
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
-
-import {RepoContext} from '../../constants';
 import {CommitList} from '../../components/commit-list';
 import {HistoryBranchDropdown} from '../../components/history-branch-dropdown';
 import {OverlayDropdownContent} from '../../components/overlay-dropdown-content';
@@ -14,14 +12,13 @@ export const RepositoryHistory = () => {
   const {commits} = useSelector((state: RootState) => state.commits);
   const dispatch = useThunkDispatch();
 
-  const {repo} = React.useContext(RepoContext);
   const [showBranches, setShowBranches] = React.useState(false);
 
   React.useEffect(() => {
-    dispatch(getGitLog(repo!)).then(({error}: any) => {
+    dispatch(getGitLog()).then(({error}: any) => {
       if (error) console.error(error);
     });
-  }, [repo, dispatch]);
+  }, [dispatch]);
 
   const bottomLayer = React.useMemo(() => <CommitList commits={commits} />, [
     commits,

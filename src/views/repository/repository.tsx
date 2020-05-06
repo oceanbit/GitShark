@@ -1,11 +1,8 @@
 import * as React from 'react';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
-import {Alert} from 'react-native';
-import {RepoContext, theme} from '../../constants';
+import {theme} from '../../constants';
 import {RepositoryHeader} from '../../components/repository-header';
 import {useRoute} from '@react-navigation/native';
-import {getRepository} from 'typeorm';
-import {Repo} from '../../entities';
 import {RepositoryHistory} from '../repository-history/repository-history';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -18,11 +15,15 @@ import {
 } from 'react-native-dark-mode';
 import {useSafeArea} from 'react-native-safe-area-context';
 import {SharkSafeTop} from '../../components/shark-safe-top';
-import {getRepoData} from '../../services/git';
+import {useSelector} from 'react-redux';
+import {RootState, findRepo} from '../../store';
+import {useThunkDispatch} from '../../hooks';
 
 const Tab = createMaterialBottomTabNavigator();
 
 export const Repository = () => {
+  const {repo} = useSelector((state: RootState) => state.repository);
+  const dispatch = useThunkDispatch();
   const insets = useSafeArea();
 
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -33,36 +34,10 @@ export const Repository = () => {
 
   const {params} = useRoute();
   const {repoId} = params! as Record<string, string>;
-  const [repo, setRepo] = React.useState<Repo | null>(null);
 
   React.useEffect(() => {
-    const repoRepository = getRepository(Repo);
-    repoRepository
-      .findOne(repoId, {relations: ['branches', 'commits']})
-      .then(newRepo => {
-        if (!newRepo) {
-          Alert.alert(
-            'There was an issue loading that repository. Please restart the app and try again',
-          );
-          return;
-        }
-        setRepo(newRepo!);
-      })
-      .catch(e => {
-        console.error(e);
-        Alert.alert(
-          'There was an issue loading that repository. Please restart the app and try again',
-        );
-      });
-  }, [repoId, setRepo]);
-
-  const contextValue = React.useMemo(
-    () => ({
-      repo,
-      setRepo,
-    }),
-    [repo, setRepo],
-  );
+    dispatch(findRepo(repoId)).then(console.log);
+  }, [repoId, dispatch]);
 
   const Tabs = React.useCallback(() => {
     return (
@@ -98,15 +73,15 @@ export const Repository = () => {
 
   const Stack = createStackNavigator();
 
+  if (!repo) return null;
+
   return (
     <SharkSafeTop isFloating={true}>
-      <RepoContext.Provider value={contextValue}>
-        <RepositoryHeader repo={repo!} />
-        <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
-          <Stack.Screen name="Repository" component={Tabs} />
-          <Stack.Screen name="Commit" component={Commit} />
-        </Stack.Navigator>
-      </RepoContext.Provider>
+      <RepositoryHeader repo={repo!} />
+      <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
+        <Stack.Screen name="Repository" component={Tabs} />
+        <Stack.Screen name="Commit" component={Commit} />
+      </Stack.Navigator>
     </SharkSafeTop>
   );
 };

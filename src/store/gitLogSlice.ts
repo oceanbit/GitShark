@@ -20,7 +20,10 @@ export const storeGitLog = createAsyncThunk(
 
 export const getGitLog = createAsyncThunk(
   'commits/getGitLog',
-  async (repo: Repo, {dispatch}) => {
+  async (_, {dispatch, getState}) => {
+    const {repository} = getState() as any;
+    const repo = repository.repo;
+    if (!repo) return;
     const commits = await gitLog({repo});
     dispatch(storeGitLog({repo, commits}));
     return commits;

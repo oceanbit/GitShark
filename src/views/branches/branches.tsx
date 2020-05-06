@@ -12,7 +12,7 @@ import {RemoteBranchListItem} from '../../components/remote-branch-list-item';
 import {DropdownContent} from '../../components/dropdown-content';
 import {AnimatedDropdownArrow} from '../../components/animated-dropdown-arrow';
 import {SharkIconButton} from '../../components/shark-icon-button';
-import {RepoContext, textStyles, theme} from '../../constants';
+import {textStyles, theme} from '../../constants';
 import {TouchableRipple} from 'react-native-paper';
 import {useSelector} from 'react-redux';
 import {RootState, getBranchData} from '../../store';
@@ -28,7 +28,7 @@ export const Branches = () => {
 
   const [expanded, setExpanded] = React.useState(false);
 
-  const {repo} = React.useContext(RepoContext);
+  const {repo} = useSelector((state: RootState) => state.repository);
 
   React.useEffect(() => {
     if (!repo) return;
