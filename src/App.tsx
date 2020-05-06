@@ -37,7 +37,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {changeBarColors} from 'react-native-immersive-bars';
 import {useManualUserData} from './hooks/use-manual-user-data';
 import {Provider} from 'react-redux';
-import {store} from './store';
+import {store, setupDatabase} from './store';
+import {useThunkDispatch} from './hooks';
 
 YellowBox.ignoreWarnings([
   /**
@@ -54,11 +55,15 @@ YellowBox.ignoreWarnings([
   'Non-serializable values were found in the navigation state',
 ]);
 
-const App = () => {
+const AppBase = () => {
+  const dispatch = useThunkDispatch();
+
   /**
    * Database
    */
-  const isDBLoaded = useLoadDatabase();
+  React.useEffect(() => {
+    dispatch(setupDatabase());
+  }, [dispatch]);
 
   /**
    * Get user deep linking
@@ -124,55 +129,53 @@ const App = () => {
   const paperTheme = isDarkMode ? darkPaperTheme : lightPaperTheme;
 
   return (
-    <Provider store={store}>
-      <SafeAreaProvider>
-        <NavigationContainer theme={isDarkMode ? darkNavTheme : lightNavTheme}>
-          <PaperProvider theme={paperTheme}>
-            <StatusBar
-              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-              backgroundColor={'transparent'}
-            />
-            <DatabaseLoadedContext.Provider value={isDBLoaded}>
-              <StyleOfStagingContext.Provider
+    <SafeAreaProvider>
+      <NavigationContainer theme={isDarkMode ? darkNavTheme : lightNavTheme}>
+        <PaperProvider theme={paperTheme}>
+          <StatusBar
+            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            backgroundColor={'transparent'}
+          />
+          <StyleOfStagingContext.Provider
+            value={{
+              styleOfStaging,
+              setStyleOfStaging: updateStagingStyle,
+            }}>
+            <SetDarkModeContext.Provider
+              value={{
+                setDarkMode: updateLocalDarkMode,
+              }}>
+              <UserContext.Provider
                 value={{
-                  styleOfStaging,
-                  setStyleOfStaging: updateStagingStyle,
+                  gitHubUser,
+                  setUseGithub,
+                  useGitHub,
+                  manualUser,
+                  setManualUser,
+                  logoutGitHub,
                 }}>
-                <SetDarkModeContext.Provider
-                  value={{
-                    setDarkMode: updateLocalDarkMode,
-                  }}>
-                  <UserContext.Provider
-                    value={{
-                      gitHubUser,
-                      setUseGithub,
-                      useGitHub,
-                      manualUser,
-                      setManualUser,
-                      logoutGitHub,
-                    }}>
-                    <DarkModeProvider mode={isDarkMode ? 'dark' : 'light'}>
-                      <Stack.Navigator headerMode={'none'}>
-                        <Stack.Screen
-                          name="RepoList"
-                          component={RepositoryList}
-                        />
-                        <Stack.Screen name="Settings" component={Settings} />
-                        <Stack.Screen name="Account" component={Account} />
-                        <Stack.Screen
-                          name="RepoDetails"
-                          component={Repository}
-                        />
-                      </Stack.Navigator>
-                    </DarkModeProvider>
-                  </UserContext.Provider>
-                </SetDarkModeContext.Provider>
-              </StyleOfStagingContext.Provider>
-            </DatabaseLoadedContext.Provider>
-            <SafeAreaView />
-          </PaperProvider>
-        </NavigationContainer>
-      </SafeAreaProvider>
+                <DarkModeProvider mode={isDarkMode ? 'dark' : 'light'}>
+                  <Stack.Navigator headerMode={'none'}>
+                    <Stack.Screen name="RepoList" component={RepositoryList} />
+                    <Stack.Screen name="Settings" component={Settings} />
+                    <Stack.Screen name="Account" component={Account} />
+                    <Stack.Screen name="RepoDetails" component={Repository} />
+                  </Stack.Navigator>
+                </DarkModeProvider>
+              </UserContext.Provider>
+            </SetDarkModeContext.Provider>
+          </StyleOfStagingContext.Provider>
+          <SafeAreaView />
+        </PaperProvider>
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
+};
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <AppBase />
     </Provider>
   );
 };

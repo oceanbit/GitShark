@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  DatabaseLoadedContext,
-  RepoContext,
-  StyleOfStagingContext,
-} from '../../constants';
+import {RepoContext, StyleOfStagingContext} from '../../constants';
 import {ChangesArrayItem} from '../../services';
 import {useNavigation} from '@react-navigation/native';
 import {
@@ -28,8 +24,6 @@ export const RepositoryChanges = () => {
   const {styleOfStaging} = React.useContext(StyleOfStagingContext);
 
   const useSplitView = styleOfStaging === 'split';
-
-  const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const {repo} = React.useContext(RepoContext);
 
   const getUpdate = React.useCallback(() => {
@@ -40,11 +34,8 @@ export const RepositoryChanges = () => {
   }, [repo, dispatch]);
 
   React.useEffect(() => {
-    if (!isDBLoaded) {
-      return;
-    }
     getUpdate();
-  }, [isDBLoaded, getUpdate]);
+  }, [getUpdate]);
 
   const addToStagedLocal = async (changes: ChangesArrayItem[]) => {
     dispatch(addToStaged({repo: repo!, changes})).then(({error}: any) => {

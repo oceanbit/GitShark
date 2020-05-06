@@ -10,12 +10,16 @@ import {SharkIconButton} from '../../components/shark-icon-button';
 import {useNavigation} from '@react-navigation/native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {BottomSpacerView, SharkSafeTop} from '../../components/shark-safe-top';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store';
 
 export const RepositoryList = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
+  const {isLoaded: isDBLoaded} = useSelector(
+    (state: RootState) => state.database,
+  );
 
   const history = useNavigation();
-  const isDBLoaded = React.useContext(DatabaseLoadedContext);
   const [repos, setRepos] = React.useState<Repo[] | null>(null);
 
   const isLoading = !isDBLoaded || !repos;

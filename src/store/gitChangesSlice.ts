@@ -3,10 +3,13 @@ import {getRepoStatus, ChangesArrayItem} from '../services';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '../constants';
 import {Repo} from '../entities';
+import {RootState} from './rootReducer';
 
 export const getGitStatus = createAsyncThunk(
   'commits/getGitStatus',
-  async (path: string) => {
+  async (path: string, {getState}) => {
+    const {database} = getState() as RootState;
+    if (!database.isLoaded) return;
     const newFiles = await getRepoStatus(path);
     const onlyChangedFiles = newFiles.filter(
       file => file.fileStatus !== 'unmodified',
