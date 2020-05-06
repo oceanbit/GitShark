@@ -14,57 +14,51 @@ import {AnimatedDropdownArrow} from '../../components/animated-dropdown-arrow';
 import {SharkIconButton} from '../../components/shark-icon-button';
 import {RepoContext, textStyles, theme} from '../../constants';
 import {TouchableRipple} from 'react-native-paper';
-import {Branch} from '../../entities';
+import {useSelector} from 'react-redux';
+import {RootState, getBranchData} from '../../store';
+import {useThunkDispatch} from '../../hooks';
 
 export const Branches = () => {
+  const {localBranches, remoteBranches, remotes} = useSelector(
+    (state: RootState) => state.branches,
+  );
+  const dispatch = useThunkDispatch();
+
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const [expanded, setExpanded] = React.useState(false);
 
   const {repo} = React.useContext(RepoContext);
 
+  React.useEffect(() => {
+    if (!repo) return;
+    dispatch(getBranchData(repo.path));
+  }, [repo, dispatch]);
+
   if (!repo) return null;
-
-  const {remotes, localBranches} = repo.branches.reduce(
-    (prev, branch) => {
-      if (branch.isLocal) {
-        prev.localBranches.push(branch);
-        return prev;
-      }
-      const remoteName = branch.associatedRemote!;
-      if (!prev.remotes[remoteName]) {
-        prev.remotes[remoteName] = [branch];
-      } else {
-        prev.remotes[remoteName].push(branch);
-      }
-      return prev;
-    },
-    {remotes: {} as Record<string, Branch[]>, localBranches: [] as Branch[]},
-  );
-
-  const remotesArr = Object.entries(remotes);
 
   return (
     <ScrollView style={styles.container}>
       <SharkSubheader calloutText="Local" buttonText="Add new" />
-      {localBranches.map(branch => {
-        const isSelected = branch.name === repo?.currentBranchName;
-        return (
-          <BranchListItem
-            key={branch.id}
-            isFavorite={false}
-            selected={isSelected}
-            branch={{
-              name: branch.name,
-              up: 4,
-              down: 0,
-            }}
-          />
-        );
-      })}
+      {!!localBranches &&
+        localBranches.map(branch => {
+          const isSelected = branch === repo?.currentBranchName;
+          return (
+            <BranchListItem
+              key={branch}
+              isFavorite={false}
+              selected={isSelected}
+              branch={{
+                name: branch,
+                up: 4,
+                down: 0,
+              }}
+            />
+          );
+        })}
       <SharkDivider style={styles.remoteDivider} />
       <SharkSubheader calloutText="Remotes" buttonText="Add new" />
-      {remotesArr.map(([name, remoteBranches]) => {
+      {remotes.map(remote => {
         return (
           <>
             <TouchableRipple
@@ -76,7 +70,7 @@ export const Branches = () => {
                   expanded={expanded}
                 />
                 {/* This is a mock, we'll need to replace it with the list of real remotes soon */}
-                <Text style={styles.remoteHeader}>{name}</Text>
+                <Text style={styles.remoteHeader}>{remote.remote}</Text>
                 <SharkIconButton
                   iconName="dots-horizontal"
                   onPress={() => {}}
@@ -84,16 +78,18 @@ export const Branches = () => {
               </>
             </TouchableRipple>
             <DropdownContent expanded={expanded}>
-              {remoteBranches.map(branch => {
-                return (
-                  <RemoteBranchListItem
-                    branch={{
-                      name: branch.name,
-                    }}
-                    style={styles.remoteBranch}
-                  />
-                );
-              })}
+              {remoteBranches
+                .filter(branch => branch.remote === remote.remote)
+                .map(branch => {
+                  return (
+                    <RemoteBranchListItem
+                      branch={{
+                        name: branch.name,
+                      }}
+                      style={styles.remoteBranch}
+                    />
+                  );
+                })}
             </DropdownContent>
           </>
         );
