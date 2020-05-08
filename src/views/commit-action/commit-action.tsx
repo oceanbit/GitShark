@@ -20,9 +20,8 @@ import {BottomSpacerView} from '../../components/shark-safe-top';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store';
 
-export const Commit = () => {
+export const CommitAction = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
-
   const styles = useDynamicStyleSheet(dynamicStyles);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const route = useRoute<any>();

@@ -46,7 +46,7 @@ export const RepositoryChanges = () => {
   };
 
   const onCommit = React.useCallback(() => {
-    history.navigate('Commit', {
+    history.navigate('CommitAction', {
       files: staged,
       updateFiles: getUpdate,
     });

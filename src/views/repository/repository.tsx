@@ -7,7 +7,7 @@ import {RepositoryHistory} from '../repository-history/repository-history';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Commit} from '../commit/commit';
+import {CommitAction} from '../commit-action/commit-action';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -80,7 +80,7 @@ export const Repository = () => {
       <RepositoryHeader repo={repo!} />
       <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
         <Stack.Screen name="Repository" component={Tabs} />
-        <Stack.Screen name="Commit" component={Commit} />
+        <Stack.Screen name="CommitAction" component={CommitAction} />
       </Stack.Navigator>
     </SharkSafeTop>
   );
