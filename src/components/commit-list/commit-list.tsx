@@ -7,9 +7,10 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface CommitListProps {
   commits: GitLogCommit[];
+  onPress: (commit: GitLogCommit) => void;
 }
 
-export const CommitList = ({commits}: CommitListProps) => {
+export const CommitList = ({commits, onPress}: CommitListProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   return (
@@ -18,7 +19,7 @@ export const CommitList = ({commits}: CommitListProps) => {
       keyExtractor={commit => commit.oid}
       renderItem={({item: commit, index: i}) => (
         <View style={i === 0 ? {} : styles.commitCardItem} key={commit.oid}>
-          <CommitCard commit={commit} />
+          <CommitCard commit={commit} onPress={onPress} />
         </View>
       )}
     />

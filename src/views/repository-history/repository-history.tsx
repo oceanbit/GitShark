@@ -7,6 +7,7 @@ import {Branches} from '../branches';
 import {useSelector} from 'react-redux';
 import {RootState, getGitLog} from '../../store';
 import {useThunkDispatch} from '../../hooks';
+import {useNavigation} from '@react-navigation/native';
 
 export const RepositoryHistory = () => {
   const {commits} = useSelector((state: RootState) => state.commits);
@@ -20,9 +21,19 @@ export const RepositoryHistory = () => {
     });
   }, [dispatch]);
 
-  const bottomLayer = React.useMemo(() => <CommitList commits={commits} />, [
-    commits,
-  ]);
+  const history = useNavigation();
+
+  const bottomLayer = React.useMemo(
+    () => (
+      <CommitList
+        commits={commits}
+        onPress={() => {
+          history.navigate('CommitDetails');
+        }}
+      />
+    ),
+    [commits, history],
+  );
 
   const topLayer = React.useMemo(() => <Branches />, []);
 

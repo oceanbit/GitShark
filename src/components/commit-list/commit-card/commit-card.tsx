@@ -14,9 +14,10 @@ import {
 
 interface CommitCardProps {
   commit: GitLogCommit;
+  onPress: (commit: GitLogCommit) => void;
 }
 
-export const CommitCard = ({commit}: CommitCardProps) => {
+export const CommitCard = ({commit, onPress}: CommitCardProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const rippleColor = useDynamicValue(theme.colors.ripple_surface);
@@ -38,7 +39,9 @@ export const CommitCard = ({commit}: CommitCardProps) => {
   return (
     <TouchableRipple
       style={styles.commitContainer}
-      onPress={() => {}}
+      onPress={() => {
+        onPress(commit);
+      }}
       rippleColor={rippleColor}>
       <View>
         <View style={styles.commitHeading}>

@@ -8,6 +8,7 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createStackNavigator} from '@react-navigation/stack';
 import {CommitAction} from '../commit-action/commit-action';
+import {CommitDetails} from '../commit-details/commit-details';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -81,6 +82,7 @@ export const Repository = () => {
       <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
         <Stack.Screen name="Repository" component={Tabs} />
         <Stack.Screen name="CommitAction" component={CommitAction} />
+        <Stack.Screen name="CommitDetails" component={CommitDetails} />
       </Stack.Navigator>
     </SharkSafeTop>
   );
