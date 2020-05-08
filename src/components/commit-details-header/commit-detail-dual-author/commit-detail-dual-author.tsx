@@ -9,6 +9,8 @@ const authorImageSize = 40;
 
 const imageContainerWidth = 56;
 
+const expandedLeft = (imageContainerWidth - authorImageSize) / 2;
+
 const topImageCollapsed = {
   top: 4,
   left: 0,
@@ -43,26 +45,41 @@ export const CommitDetailsDualAuthor = ({
     [nameHeight],
   );
 
+  const extendedTop = React.useMemo(() => {
+    const top = (nameHeight + emailHeight - authorImageSize) / 2;
+    return {
+      // Just "half of" nameHeight and emailHeight in order
+      // to center with the top container
+      top,
+      // 16 margin from the top image by baseline
+      // Plus the name and email height of bottom container
+      bottom:
+        top +
+        authorImageSize +
+        (16 + nameHeight + emailHeight - authorImageSize) / 2,
+    };
+  }, [nameHeight, emailHeight]);
+
   React.useEffect(() => {
     if (expanded) {
       Animated.parallel([
         Animated.timing(bottomImageLeft, {
-          toValue: 0,
+          toValue: expandedLeft,
           duration: animDuration,
           useNativeDriver: false,
         }),
         Animated.timing(bottomImageTop, {
-          toValue: 0,
+          toValue: extendedTop.bottom,
           duration: animDuration,
           useNativeDriver: false,
         }),
         Animated.timing(topImageLeft, {
-          toValue: 0,
+          toValue: expandedLeft,
           duration: animDuration,
           useNativeDriver: false,
         }),
         Animated.timing(topImageTop, {
-          toValue: 0,
+          toValue: extendedTop.top,
           duration: animDuration,
           useNativeDriver: false,
         }),
@@ -98,6 +115,7 @@ export const CommitDetailsDualAuthor = ({
     bottomImageTop,
     topImageLeft,
     topImageTop,
+    extendedTop,
   ]);
 
   const topImage = {
@@ -161,7 +179,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   imageContainer: {
     width: imageContainerWidth,
-    backgroundColor: 'red',
+    marginRight: 8,
   },
   imageView: {
     position: 'absolute',
