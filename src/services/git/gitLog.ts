@@ -1,5 +1,5 @@
 import {fs} from './../../constants/fs';
-import {Repo} from 'src/entities';
+import {ReduxRepo} from 'src/entities';
 import git, {ReadCommitResult} from 'isomorphic-git/index.umd.min.js';
 
 export type GitLogCommit = ReadCommitResult['commit'] & {
@@ -7,7 +7,7 @@ export type GitLogCommit = ReadCommitResult['commit'] & {
 };
 
 interface GitLogProps {
-  repo: Repo;
+  repo: ReduxRepo;
 }
 
 export const gitLog = async ({repo}: GitLogProps) => {

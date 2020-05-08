@@ -24,7 +24,6 @@ const repositorySlice = createSlice({
   reducers: {},
   extraReducers: {
     [findRepo.fulfilled.toString()]: (state, action) => {
-      console.log('I AM FUFILLED', action.payload);
       state.repo = action.payload;
     },
   },

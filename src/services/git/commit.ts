@@ -1,11 +1,11 @@
 import git from 'isomorphic-git/index.umd.min.js';
-import {Repo} from '../../entities';
+import {ReduxRepo} from '../../entities';
 import {fs} from '../../constants/fs';
 
 interface commitProps {
   title?: string;
   description?: string;
-  repo: Repo;
+  repo: ReduxRepo;
 }
 
 export const commit = async ({title, description, repo}: commitProps) => {

@@ -5,13 +5,13 @@ import {useNavigation} from '@react-navigation/native';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '../../constants';
 import http from 'isomorphic-git/http/web/index.js';
-import {Repo} from 'src/entities';
+import {ReduxRepo} from 'src/entities';
 import {SharkIconButton} from '../shark-icon-button';
 import {AppBar} from '../app-bar';
 import {SharkMenu} from '../shark-menu';
 
 interface RepositoryHeaderProps {
-  repo: Repo;
+  repo: ReduxRepo;
 }
 
 export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {

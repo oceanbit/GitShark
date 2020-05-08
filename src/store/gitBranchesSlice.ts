@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '../constants/fs';
+import {fs} from '../constants';
 
 const getRemotesAndBranchesFn = async (path: string) => {
   const remotes = await git.listRemotes({fs, dir: path});
@@ -70,6 +70,7 @@ const branchesSlice = createSlice({
       state,
       action: PayloadAction<RemotesAndBranches>,
     ) => {
+      if (!action.payload) return;
       state.remotes = action.payload.remotes;
       state.remoteBranches = action.payload.remoteBranches;
     },
