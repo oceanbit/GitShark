@@ -19,26 +19,46 @@ export const DropdownContent = ({children, expanded}: DropdownContentProps) => {
   const [height, setHeight] = React.useState(0);
 
   const [animatedHeight] = React.useState(new Animated.Value(0));
+  const [animatedOpacity] = React.useState(new Animated.Value(0));
 
   React.useEffect(() => {
     if (expanded) {
-      Animated.timing(animatedHeight, {
-        toValue: height,
-        duration: animTiming,
-        useNativeDriver: false,
-      }).start();
+      Animated.parallel([
+        Animated.timing(animatedHeight, {
+          toValue: height,
+          duration: animTiming,
+          useNativeDriver: false,
+        }),
+        Animated.timing(animatedOpacity, {
+          toValue: 1,
+          duration: animTiming,
+          useNativeDriver: false,
+        }),
+      ]).start();
     } else {
-      Animated.timing(animatedHeight, {
-        toValue: 0,
-        duration: animTiming,
-        useNativeDriver: false,
-      }).start();
+      Animated.parallel([
+        Animated.timing(animatedHeight, {
+          toValue: 0,
+          duration: animTiming,
+          useNativeDriver: false,
+        }),
+        Animated.timing(animatedOpacity, {
+          toValue: 0,
+          duration: animTiming,
+          useNativeDriver: false,
+        }),
+      ]).start();
     }
-  }, [expanded, animatedHeight, height]);
+  }, [expanded, animatedHeight, animatedOpacity, height]);
 
   return (
     <>
-      <Animated.View style={{height: animatedHeight, overflow: 'hidden'}}>
+      <Animated.View
+        style={{
+          opacity: animatedOpacity,
+          height: animatedHeight,
+          overflow: 'hidden',
+        }}>
         {children}
       </Animated.View>
       {/* Unrender the children once the height is calcuated */}
