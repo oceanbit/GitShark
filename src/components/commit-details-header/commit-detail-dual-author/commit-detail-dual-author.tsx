@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Animated} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {DropdownContent} from '../../dropdown-content';
 import {textStyles, theme} from '../../../constants';
@@ -9,6 +9,13 @@ const authorImageSize = 40;
 
 const imageContainerWidth = 56;
 
+const topImageCollapsed = {
+  top: 4,
+  left: 0,
+};
+
+const animDuration = 150;
+
 interface CommitDetailsDualAuthorProps {
   expanded: boolean;
 }
@@ -17,33 +24,101 @@ export const CommitDetailsDualAuthor = ({
 }: CommitDetailsDualAuthorProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
+  const [bottomImageLeft] = React.useState(new Animated.Value(0));
+  const [bottomImageTop] = React.useState(new Animated.Value(0));
+  const [topImageLeft] = React.useState(new Animated.Value(0));
+  const [topImageTop] = React.useState(new Animated.Value(0));
+
   const emailRef = React.useRef<any>({});
 
   const [nameHeight, setNameHeight] = React.useState(0);
 
   const emailHeight = emailRef?.current?.height || 0;
 
+  const bottomImageCollapsed = React.useMemo(
+    () => ({
+      top: nameHeight * 2 - 4 - authorImageSize,
+      left: imageContainerWidth - authorImageSize,
+    }),
+    [nameHeight],
+  );
+
+  React.useEffect(() => {
+    if (expanded) {
+      Animated.parallel([
+        Animated.timing(bottomImageLeft, {
+          toValue: 0,
+          duration: animDuration,
+          useNativeDriver: false,
+        }),
+        Animated.timing(bottomImageTop, {
+          toValue: 0,
+          duration: animDuration,
+          useNativeDriver: false,
+        }),
+        Animated.timing(topImageLeft, {
+          toValue: 0,
+          duration: animDuration,
+          useNativeDriver: false,
+        }),
+        Animated.timing(topImageTop, {
+          toValue: 0,
+          duration: animDuration,
+          useNativeDriver: false,
+        }),
+      ]).start();
+    } else {
+      Animated.parallel([
+        Animated.timing(bottomImageLeft, {
+          toValue: bottomImageCollapsed.left,
+          duration: animDuration,
+          useNativeDriver: false,
+        }),
+        Animated.timing(bottomImageTop, {
+          toValue: bottomImageCollapsed.top,
+          duration: animDuration,
+          useNativeDriver: false,
+        }),
+        Animated.timing(topImageLeft, {
+          toValue: topImageCollapsed.left,
+          duration: animDuration,
+          useNativeDriver: false,
+        }),
+        Animated.timing(topImageTop, {
+          toValue: topImageCollapsed.top,
+          duration: animDuration,
+          useNativeDriver: false,
+        }),
+      ]).start();
+    }
+  }, [
+    expanded,
+    bottomImageCollapsed,
+    bottomImageLeft,
+    bottomImageTop,
+    topImageLeft,
+    topImageTop,
+  ]);
+
   const topImage = {
-    top: 4,
-    left: 0,
+    top: topImageTop,
+    left: topImageLeft,
   };
 
   const bottomImage = {
-    top: nameHeight * 2 - 4 - authorImageSize,
-    left: imageContainerWidth - authorImageSize,
+    left: bottomImageLeft,
+    top: bottomImageTop,
   };
-
-  React.useEffect(() => {});
 
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <View style={[styles.imageView, topImage]}>
+        <Animated.View style={[styles.imageView, topImage]}>
           <SharkProfilePic size={authorImageSize} />
-        </View>
-        <View style={[styles.imageView, bottomImage]}>
+        </Animated.View>
+        <Animated.View style={[styles.imageView, bottomImage]}>
           <SharkProfilePic size={authorImageSize} />
-        </View>
+        </Animated.View>
       </View>
       <View style={styles.peoplesContainer}>
         <View
