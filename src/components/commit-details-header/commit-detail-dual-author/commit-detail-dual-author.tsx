@@ -12,11 +12,26 @@ export const CommitDetailsDualAuthor = ({
 }: CommitDetailsDualAuthorProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
+  const emailRef = React.useRef<any>({});
+
+  const [nameHeight, setNameHeight] = React.useState(0);
+
+  const emailHeight = emailRef?.current?.height || 0;
+
+  console.log(nameHeight, emailHeight);
+
   return (
     <View style={styles.container}>
-      <View style={styles.personContainer}>
+      <View
+        style={styles.personContainer}
+        onLayout={event => {
+          const {height: eventHeight} = event.nativeEvent.layout;
+          // We only want the height _ignoring_ the email. As such, because the email is hidden on
+          // initial render, we can ignore susequent updates that `onLayout` runs
+          if (!nameHeight) setNameHeight(eventHeight);
+        }}>
         <Text style={styles.personName}>Corbin Crutchley</Text>
-        <DropdownContent expanded={expanded}>
+        <DropdownContent expanded={expanded} ref={emailRef}>
           <Text style={styles.personEmail}>crutchcorn@gmail.com</Text>
         </DropdownContent>
         <Text style={styles.personDate}>Authored on 12 Feb 2020 12:00</Text>
@@ -31,7 +46,7 @@ export const CommitDetailsDualAuthor = ({
       <View style={styles.personContainer}>
         <Text style={styles.personName}>Eduardo Pratti</Text>
         <DropdownContent expanded={expanded}>
-          <Text style={styles.personEmail}>edismean@gmail.com</Text>
+          <Text style={styles.personEmail}>edismeme@gmail.com</Text>
         </DropdownContent>
         <Text style={styles.personDate}>Commited on 14 Feb 2020 12:00</Text>
       </View>
