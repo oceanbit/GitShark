@@ -1,13 +1,16 @@
 import * as React from 'react';
-import {Text, View} from 'react-native';
+import {View, Button} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {CommitDetailsHeader} from '../../components/commit-details-header';
 
 export const CommitDetails = () => {
+  const [headerExpanded, setHeaderExpanded] = React.useState(false);
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   return (
     <View style={styles.container}>
-      <Text>Hello, world</Text>
+      <CommitDetailsHeader expanded={headerExpanded} />
+      <Button title="Click" onPress={() => setHeaderExpanded(v => !v)} />
     </View>
   );
 };
