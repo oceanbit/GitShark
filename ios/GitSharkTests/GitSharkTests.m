@@ -14,11 +14,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface GitGuiTests : XCTestCase
+@interface GitSharkTests : XCTestCase
 
 @end
 
-@implementation GitGuiTests
+@implementation GitSharkTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

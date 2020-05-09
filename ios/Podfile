@@ -36,7 +36,7 @@ target 'GitShark' do
 
 
 
-  target 'GitGuiTests' do
+  target 'GitSharkTests' do
     inherit! :search_paths
     # Pods for testing
   end

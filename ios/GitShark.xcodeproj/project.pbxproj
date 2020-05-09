@@ -7,55 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* GitGuiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GitGuiTests.m */; };
-		01708226CEC34BB0B1119837 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D834F6A821C44104930C2F6D /* AntDesign.ttf */; };
+		00E356F31AD99517003FC87E /* GitSharkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GitSharkTests.m */; };
 		03D5CBCFD50D49A7AC342670 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5885004FBB8148D0BFA49367 /* Rubik-Bold.ttf */; };
-		05A22148CB8F41FAADBE3430 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09C2552980EA48A591C016FF /* Entypo.ttf */; };
-		07FC09AC81524EB2961766BE /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA3228C01CA54C54B33A8167 /* MaterialCommunityIcons.ttf */; };
-		0B0EDB55214941B687A735D5 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C68A18B649404CA289EE2B40 /* Octicons.ttf */; };
 		0DBC33DE0FDC4814B69EECB7 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14E47D939E4044B990FFCA6E /* Rubik-Medium.ttf */; };
 		0F6965498C9946CBBF478136 /* rubik_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCD7C3C43F0947F1B754B279 /* rubik_light.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1FE7664C4C244E788A03C18B /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE9AC6AC1F574808B91AD1E8 /* FontAwesome5_Solid.ttf */; };
-		286EBCD58D0A43EBB9BAF10F /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F1DE6B22E2241BAB47C5646 /* FontAwesome.ttf */; };
 		2BCFE23C5619C6E6833E2F38 /* libPods-GitShark-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A24EB3ABD4E39ED035739DA /* libPods-GitShark-tvOS.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* GitGuiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GitGuiTests.m */; };
+		2DCD954D1E0B4F2C00145EB5 /* GitSharkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GitSharkTests.m */; };
 		4809720928C94F0C8C0A45E4 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99B17CCE4987457AB782BD7A /* Rubik-Regular.ttf */; };
 		4DB8AC0905644225A483C915 /* rubik_medium_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5971DB1D9A2A48E8AE718A46 /* rubik_medium_italic.ttf */; };
-		510FF046D8D74637BC989175 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47D688CCC27F42F1A06B5D1F /* EvilIcons.ttf */; };
-		56F9DCDE814E4B1D965237BB /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9FC2E6637254DC8A539033F /* SimpleLineIcons.ttf */; };
 		761653760B354F899B3376E9 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AE84DC76F9B4D998E051CCC /* Rubik-LightItalic.ttf */; };
-		844D58B300714086B1671718 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78BA0FE7A6214B9FA247397A /* Fontisto.ttf */; };
-		8EACAB7456274B819EAB7E9D /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F12A64FF1574590849947F2 /* Feather.ttf */; };
 		91BAFB0AA9752C850A64AF61 /* libPods-GitShark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF2861835EAE37C3BDFDFF2 /* libPods-GitShark.a */; };
 		9B38967270534AAE9262D4D3 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB1C5652417446AEA92D6C8F /* Rubik-BlackItalic.ttf */; };
 		A75EE32465294E18AB284E65 /* rubik_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E522E02AA4E54CC29C5A766D /* rubik_Italic.ttf */; };
 		B67A25259ED14732AAE439DD /* rubik_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F359DD37D474083AEC52717 /* rubik_medium.ttf */; };
 		B8BCC2E8420147088081780C /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B03B1A173AE4421B2348B4F /* Rubik-BoldItalic.ttf */; };
-		CB2C049EE0DF4AE4B716F27D /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D98F23BED40F4654A6D748D2 /* MaterialIcons.ttf */; };
 		CD353D72D6104C39BB4CC8D4 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747FD97B973F40A095FD885C /* Rubik-Light.ttf */; };
 		CDC44B1CD35B4614B94A6AD5 /* rubik_boldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F497ECA6659541D590CED245 /* rubik_boldItalic.ttf */; };
-		D23B19BFC8DC40A499DD7ECF /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB539D7166DA4369A4B9276A /* FontAwesome5_Brands.ttf */; };
 		D2DEDEA341C847238167521F /* rubik_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98600476F6E142A2A23BD7A0 /* rubik_regular.ttf */; };
 		D580C195A8334203B80F251F /* rubik_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 418693F7AAF849F8929A0F58 /* rubik_bold.ttf */; };
 		DCF404703DEE42B19EFB458E /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29F093D4DE2544AEB8AFC567 /* Rubik-Italic.ttf */; };
-		DE2B63500F11429C167AE8B9 /* libPods-GitGuiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F1BA33DAB0E30E286E5324 /* libPods-GitGuiTests.a */; };
-		DEAB85DA53F64454A46876C8 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36257B369805492B8EB4CF93 /* Ionicons.ttf */; };
-		E616E329D8AB4C748599740E /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A71EFB4DB96D47AFB14C8A8F /* Foundation.ttf */; };
+		DE2B63500F11429C167AE8B9 /* libPods-GitSharkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F1BA33DAB0E30E286E5324 /* libPods-GitSharkTests.a */; };
 		E6213BA90C1C4C3CB798311F /* rubik_lightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 70A1D36EF7BC4EB0A8C0A24C /* rubik_lightItalic.ttf */; };
 		E97539B138E4BF1DB64BDC9F /* libPods-GitShark-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C3251FEC5E3189C8D87FBC /* libPods-GitShark-tvOSTests.a */; };
 		EB321A79A4F44129B429CCB6 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8612453D4E1443392F94964 /* Rubik-Black.ttf */; };
 		F4EF59553BFC412F9927DB8A /* rubik_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71EBFF9618F548158D9D23E8 /* rubik_black.ttf */; };
-		F893E8DD9FC54556977D0210 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 055E551E72D54601A20293CF /* FontAwesome5_Regular.ttf */; };
 		FB0812DB9FF94E9E936A9A1B /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E75C8608C5434677AD1AE644 /* Rubik-MediumItalic.ttf */; };
 		FF6C8553EE454977B3AEF0A9 /* rubik_blackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C36C545EEDEE4011B6060716 /* rubik_blackItalic.ttf */; };
-		FFCB2D43D0F64EFE8E5B660A /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C1DA6CDEF4F4736BC9EBF03 /* Zocial.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,11 +61,9 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* GitGuiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitGuiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* GitSharkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitSharkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* GitGuiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GitGuiTests.m; sourceTree = "<group>"; };
-		055E551E72D54601A20293CF /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
-		09C2552980EA48A591C016FF /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* GitSharkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GitSharkTests.m; sourceTree = "<group>"; };
 		0B03B1A173AE4421B2348B4F /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-BoldItalic.ttf"; path = "../assets/fonts/Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* GitShark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitShark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = GitShark/AppDelegate.h; sourceTree = "<group>"; };
@@ -94,16 +76,11 @@
 		29F093D4DE2544AEB8AFC567 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Italic.ttf"; path = "../assets/fonts/Rubik-Italic.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* GitShark-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GitShark-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* GitShark-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GitShark-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F12A64FF1574590849947F2 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		2F359DD37D474083AEC52717 /* rubik_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_medium.ttf; path = ../assets/fonts/rubik_medium.ttf; sourceTree = "<group>"; };
-		36257B369805492B8EB4CF93 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		3A24EB3ABD4E39ED035739DA /* libPods-GitShark-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E9FD1141DA1BEE58607EAC8 /* Pods-GitGuiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitGuiTests.release.xcconfig"; path = "Target Support Files/Pods-GitGuiTests/Pods-GitGuiTests.release.xcconfig"; sourceTree = "<group>"; };
+		3E9FD1141DA1BEE58607EAC8 /* Pods-GitSharkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitSharkTests.release.xcconfig"; path = "Target Support Files/Pods-GitSharkTests/Pods-GitSharkTests.release.xcconfig"; sourceTree = "<group>"; };
 		418693F7AAF849F8929A0F58 /* rubik_bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_bold.ttf; path = ../assets/fonts/rubik_bold.ttf; sourceTree = "<group>"; };
-		47D688CCC27F42F1A06B5D1F /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		4C1DA6CDEF4F4736BC9EBF03 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		4F1DE6B22E2241BAB47C5646 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		55F1BA33DAB0E30E286E5324 /* libPods-GitGuiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitGuiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		55F1BA33DAB0E30E286E5324 /* libPods-GitSharkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitSharkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5885004FBB8148D0BFA49367 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Bold.ttf"; path = "../assets/fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		5971DB1D9A2A48E8AE718A46 /* rubik_medium_italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_medium_italic.ttf; path = ../assets/fonts/rubik_medium_italic.ttf; sourceTree = "<group>"; };
 		70A1D36EF7BC4EB0A8C0A24C /* rubik_lightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_lightItalic.ttf; path = ../assets/fonts/rubik_lightItalic.ttf; sourceTree = "<group>"; };
@@ -111,32 +88,23 @@
 		71EBFF9618F548158D9D23E8 /* rubik_black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_black.ttf; path = ../assets/fonts/rubik_black.ttf; sourceTree = "<group>"; };
 		747B5A4B0CF50F231A7A6D82 /* Pods-GitShark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark.release.xcconfig"; path = "Target Support Files/Pods-GitShark/Pods-GitShark.release.xcconfig"; sourceTree = "<group>"; };
 		747FD97B973F40A095FD885C /* Rubik-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Light.ttf"; path = "../assets/fonts/Rubik-Light.ttf"; sourceTree = "<group>"; };
-		78BA0FE7A6214B9FA247397A /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		8AE84DC76F9B4D998E051CCC /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-LightItalic.ttf"; path = "../assets/fonts/Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
 		98600476F6E142A2A23BD7A0 /* rubik_regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_regular.ttf; path = ../assets/fonts/rubik_regular.ttf; sourceTree = "<group>"; };
 		99B17CCE4987457AB782BD7A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Regular.ttf"; path = "../assets/fonts/Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		9C6A9CE37C4EED6230BA1914 /* Pods-GitShark-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOSTests/Pods-GitShark-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		A71EFB4DB96D47AFB14C8A8F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		AB539D7166DA4369A4B9276A /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		ADAAC27A5FFFB4C5965E718A /* Pods-GitShark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark.debug.xcconfig"; path = "Target Support Files/Pods-GitShark/Pods-GitShark.debug.xcconfig"; sourceTree = "<group>"; };
 		B8612453D4E1443392F94964 /* Rubik-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Black.ttf"; path = "../assets/fonts/Rubik-Black.ttf"; sourceTree = "<group>"; };
-		BA3228C01CA54C54B33A8167 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		BCD7C3C43F0947F1B754B279 /* rubik_light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_light.ttf; path = ../assets/fonts/rubik_light.ttf; sourceTree = "<group>"; };
-		BE9AC6AC1F574808B91AD1E8 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		C36C545EEDEE4011B6060716 /* rubik_blackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_blackItalic.ttf; path = ../assets/fonts/rubik_blackItalic.ttf; sourceTree = "<group>"; };
-		C68A18B649404CA289EE2B40 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		C9E2D98AC67DEBDC88910B0B /* Pods-GitShark-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOS.release.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOS/Pods-GitShark-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		CB1C5652417446AEA92D6C8F /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-BlackItalic.ttf"; path = "../assets/fonts/Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
-		D834F6A821C44104930C2F6D /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		D98F23BED40F4654A6D748D2 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		D9FC2E6637254DC8A539033F /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		E522E02AA4E54CC29C5A766D /* rubik_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_Italic.ttf; path = ../assets/fonts/rubik_Italic.ttf; sourceTree = "<group>"; };
 		E75C8608C5434677AD1AE644 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-MediumItalic.ttf"; path = "../assets/fonts/Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
 		E9C471DEACF1876F2703804D /* Pods-GitShark-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOSTests/Pods-GitShark-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ECF2861835EAE37C3BDFDFF2 /* libPods-GitShark.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F01696402F6678590DDDA6A3 /* Pods-GitGuiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitGuiTests.debug.xcconfig"; path = "Target Support Files/Pods-GitGuiTests/Pods-GitGuiTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F01696402F6678590DDDA6A3 /* Pods-GitSharkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitSharkTests.debug.xcconfig"; path = "Target Support Files/Pods-GitSharkTests/Pods-GitSharkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F497ECA6659541D590CED245 /* rubik_boldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_boldItalic.ttf; path = ../assets/fonts/rubik_boldItalic.ttf; sourceTree = "<group>"; };
 		F5CF411A2F76909FFA40C145 /* Pods-GitShark-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOS/Pods-GitShark-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE2B63500F11429C167AE8B9 /* libPods-GitGuiTests.a in Frameworks */,
+				DE2B63500F11429C167AE8B9 /* libPods-GitSharkTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,13 +145,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* GitGuiTests */ = {
+		00E356EF1AD99517003FC87E /* GitSharkTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* GitGuiTests.m */,
+				00E356F21AD99517003FC87E /* GitSharkTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = GitGuiTests;
+			path = GitSharkTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -213,7 +181,7 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				55F1BA33DAB0E30E286E5324 /* libPods-GitGuiTests.a */,
+				55F1BA33DAB0E30E286E5324 /* libPods-GitSharkTests.a */,
 				ECF2861835EAE37C3BDFDFF2 /* libPods-GitShark.a */,
 				3A24EB3ABD4E39ED035739DA /* libPods-GitShark-tvOS.a */,
 				70C3251FEC5E3189C8D87FBC /* libPods-GitShark-tvOSTests.a */,
@@ -233,7 +201,7 @@
 			children = (
 				13B07FAE1A68108700A75B9A /* GitShark */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* GitGuiTests */,
+				00E356EF1AD99517003FC87E /* GitSharkTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				FC3FA7F49FD046F18011EA2B /* Resources */,
@@ -248,7 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* GitShark.app */,
-				00E356EE1AD99517003FC87E /* GitGuiTests.xctest */,
+				00E356EE1AD99517003FC87E /* GitSharkTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* GitShark-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* GitShark-tvOSTests.xctest */,
 			);
@@ -258,8 +226,8 @@
 		F8160F33A947174099C9502C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F01696402F6678590DDDA6A3 /* Pods-GitGuiTests.debug.xcconfig */,
-				3E9FD1141DA1BEE58607EAC8 /* Pods-GitGuiTests.release.xcconfig */,
+				F01696402F6678590DDDA6A3 /* Pods-GitSharkTests.debug.xcconfig */,
+				3E9FD1141DA1BEE58607EAC8 /* Pods-GitSharkTests.release.xcconfig */,
 				ADAAC27A5FFFB4C5965E718A /* Pods-GitShark.debug.xcconfig */,
 				747B5A4B0CF50F231A7A6D82 /* Pods-GitShark.release.xcconfig */,
 				F5CF411A2F76909FFA40C145 /* Pods-GitShark-tvOS.debug.xcconfig */,
@@ -283,22 +251,6 @@
 				14E47D939E4044B990FFCA6E /* Rubik-Medium.ttf */,
 				E75C8608C5434677AD1AE644 /* Rubik-MediumItalic.ttf */,
 				99B17CCE4987457AB782BD7A /* Rubik-Regular.ttf */,
-				D834F6A821C44104930C2F6D /* AntDesign.ttf */,
-				09C2552980EA48A591C016FF /* Entypo.ttf */,
-				47D688CCC27F42F1A06B5D1F /* EvilIcons.ttf */,
-				2F12A64FF1574590849947F2 /* Feather.ttf */,
-				4F1DE6B22E2241BAB47C5646 /* FontAwesome.ttf */,
-				AB539D7166DA4369A4B9276A /* FontAwesome5_Brands.ttf */,
-				055E551E72D54601A20293CF /* FontAwesome5_Regular.ttf */,
-				BE9AC6AC1F574808B91AD1E8 /* FontAwesome5_Solid.ttf */,
-				78BA0FE7A6214B9FA247397A /* Fontisto.ttf */,
-				A71EFB4DB96D47AFB14C8A8F /* Foundation.ttf */,
-				36257B369805492B8EB4CF93 /* Ionicons.ttf */,
-				BA3228C01CA54C54B33A8167 /* MaterialCommunityIcons.ttf */,
-				D98F23BED40F4654A6D748D2 /* MaterialIcons.ttf */,
-				C68A18B649404CA289EE2B40 /* Octicons.ttf */,
-				D9FC2E6637254DC8A539033F /* SimpleLineIcons.ttf */,
-				4C1DA6CDEF4F4736BC9EBF03 /* Zocial.ttf */,
 				71EBFF9618F548158D9D23E8 /* rubik_black.ttf */,
 				C36C545EEDEE4011B6060716 /* rubik_blackItalic.ttf */,
 				418693F7AAF849F8929A0F58 /* rubik_bold.ttf */,
@@ -316,9 +268,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* GitGuiTests */ = {
+		00E356ED1AD99517003FC87E /* GitSharkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "GitGuiTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "GitSharkTests" */;
 			buildPhases = (
 				A8AAF55ABCFEB19A12BFA718 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -330,9 +282,9 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = GitGuiTests;
-			productName = GitGuiTests;
-			productReference = 00E356EE1AD99517003FC87E /* GitGuiTests.xctest */;
+			name = GitSharkTests;
+			productName = GitSharkTests;
+			productReference = 00E356EE1AD99517003FC87E /* GitSharkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		13B07F861A680F5B00A75B9A /* GitShark */ = {
@@ -406,14 +358,20 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 73UF4KLZM8;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 73UF4KLZM8;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 73UF4KLZM8;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 73UF4KLZM8;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
@@ -434,7 +392,7 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* GitShark */,
-				00E356ED1AD99517003FC87E /* GitGuiTests */,
+				00E356ED1AD99517003FC87E /* GitSharkTests */,
 				2D02E47A1E0B4A5D006451C7 /* GitShark-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* GitShark-tvOSTests */,
 			);
@@ -465,22 +423,6 @@
 				0DBC33DE0FDC4814B69EECB7 /* Rubik-Medium.ttf in Resources */,
 				FB0812DB9FF94E9E936A9A1B /* Rubik-MediumItalic.ttf in Resources */,
 				4809720928C94F0C8C0A45E4 /* Rubik-Regular.ttf in Resources */,
-				01708226CEC34BB0B1119837 /* AntDesign.ttf in Resources */,
-				05A22148CB8F41FAADBE3430 /* Entypo.ttf in Resources */,
-				510FF046D8D74637BC989175 /* EvilIcons.ttf in Resources */,
-				8EACAB7456274B819EAB7E9D /* Feather.ttf in Resources */,
-				286EBCD58D0A43EBB9BAF10F /* FontAwesome.ttf in Resources */,
-				D23B19BFC8DC40A499DD7ECF /* FontAwesome5_Brands.ttf in Resources */,
-				F893E8DD9FC54556977D0210 /* FontAwesome5_Regular.ttf in Resources */,
-				1FE7664C4C244E788A03C18B /* FontAwesome5_Solid.ttf in Resources */,
-				844D58B300714086B1671718 /* Fontisto.ttf in Resources */,
-				E616E329D8AB4C748599740E /* Foundation.ttf in Resources */,
-				DEAB85DA53F64454A46876C8 /* Ionicons.ttf in Resources */,
-				07FC09AC81524EB2961766BE /* MaterialCommunityIcons.ttf in Resources */,
-				CB2C049EE0DF4AE4B716F27D /* MaterialIcons.ttf in Resources */,
-				0B0EDB55214941B687A735D5 /* Octicons.ttf in Resources */,
-				56F9DCDE814E4B1D965237BB /* SimpleLineIcons.ttf in Resources */,
-				FFCB2D43D0F64EFE8E5B660A /* Zocial.ttf in Resources */,
 				F4EF59553BFC412F9927DB8A /* rubik_black.ttf in Resources */,
 				FF6C8553EE454977B3AEF0A9 /* rubik_blackItalic.ttf in Resources */,
 				D580C195A8334203B80F251F /* rubik_bold.ttf in Resources */,
@@ -687,7 +629,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GitGuiTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-GitSharkTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -739,7 +681,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* GitGuiTests.m in Sources */,
+				00E356F31AD99517003FC87E /* GitSharkTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,7 +707,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* GitGuiTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* GitSharkTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,14 +741,15 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F01696402F6678590DDDA6A3 /* Pods-GitGuiTests.debug.xcconfig */;
+			baseConfigurationReference = F01696402F6678590DDDA6A3 /* Pods-GitSharkTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 73UF4KLZM8;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = GitGuiTests/Info.plist;
+				INFOPLIST_FILE = GitSharkTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -822,11 +765,12 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E9FD1141DA1BEE58607EAC8 /* Pods-GitGuiTests.release.xcconfig */;
+			baseConfigurationReference = 3E9FD1141DA1BEE58607EAC8 /* Pods-GitSharkTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = GitGuiTests/Info.plist;
+				DEVELOPMENT_TEAM = 73UF4KLZM8;
+				INFOPLIST_FILE = GitSharkTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -847,6 +791,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 73UF4KLZM8;
 				INFOPLIST_FILE = GitShark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -867,6 +812,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 73UF4KLZM8;
 				INFOPLIST_FILE = GitShark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -892,6 +838,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 73UF4KLZM8;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "GitShark-tvOS/Info.plist";
@@ -921,6 +868,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 73UF4KLZM8;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "GitShark-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -947,6 +895,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 73UF4KLZM8;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "GitShark-tvOSTests/Info.plist";
@@ -975,6 +924,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 73UF4KLZM8;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "GitShark-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1093,7 +1043,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "GitGuiTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "GitSharkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
