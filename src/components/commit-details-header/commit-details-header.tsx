@@ -6,6 +6,7 @@ import {textStyles, theme} from '../../constants';
 import {DropdownContent} from '../dropdown-content';
 import {AnimatedDropdownArrow} from '../animated-dropdown-arrow';
 import {TouchableRipple} from 'react-native-paper';
+import {CommitDetailsMoreInfo} from './commit-details-more-info';
 
 interface CommitDetailsHeaderProps {
   expanded: boolean;
@@ -57,7 +58,7 @@ export const CommitDetailsHeader = ({
       </Text>
       <CommitDetailsDualAuthor expanded={expanded} style={styles.authorBlock} />
       <DropdownContent expanded={expanded}>
-        <Text>Hello</Text>
+        <CommitDetailsMoreInfo />
       </DropdownContent>
       <TouchableRipple
         style={styles.dropdownContainer}
@@ -96,9 +97,13 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   authorBlock: {
     marginTop: 8,
+    paddingVertical: 4,
+    paddingLeft: 8,
+    paddingRight: 16,
   },
   dropdownContainer: {
-    paddingHorizontal: 24,
+    paddingLeft: 16,
+    paddingRight: 24,
     paddingVertical: 8,
     display: 'flex',
     flexWrap: 'nowrap',
