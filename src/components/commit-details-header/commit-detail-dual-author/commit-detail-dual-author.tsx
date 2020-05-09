@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View, Animated} from 'react-native';
+import {Text, View, Animated, StyleProp, ViewStyle} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {DropdownContent} from '../../dropdown-content';
 import {textStyles, theme} from '../../../constants';
@@ -20,9 +20,11 @@ const animDuration = 150;
 
 interface CommitDetailsDualAuthorProps {
   expanded: boolean;
+  style?: StyleProp<ViewStyle>;
 }
 export const CommitDetailsDualAuthor = ({
   expanded,
+  style,
 }: CommitDetailsDualAuthorProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -129,7 +131,7 @@ export const CommitDetailsDualAuthor = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.imageContainer}>
         <Animated.View style={[styles.imageView, topImage]}>
           <SharkProfilePic size={authorImageSize} />

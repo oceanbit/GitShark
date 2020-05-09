@@ -9,14 +9,14 @@ export const CommitDetails = () => {
 
   return (
     <View style={styles.container}>
-      <CommitDetailsHeader expanded={headerExpanded} />
-      <Button title="Click" onPress={() => setHeaderExpanded(v => !v)} />
+      <CommitDetailsHeader
+        expanded={headerExpanded}
+        setExpanded={setHeaderExpanded}
+      />
     </View>
   );
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  container: {
-    padding: 16,
-  },
+  container: {},
 });
