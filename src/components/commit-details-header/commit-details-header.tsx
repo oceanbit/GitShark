@@ -113,7 +113,7 @@ const dynamicStyles = new DynamicStyleSheet({
   dropdownText: {
     ...textStyles.caption_01,
     color: theme.colors.primary,
-    marginLeft: 24,
+    marginLeft: 16,
     flexGrow: 1,
     textAlignVertical: 'center',
   },
