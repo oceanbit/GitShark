@@ -11,6 +11,7 @@ import {TouchableRipple} from 'react-native-paper';
 
 export const CommitDetailsMoreInfo = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
+  const surfaceSecondary = useDynamicValue(theme.colors.on_surface_secondary);
 
   const [showCopied, setShowCopied] = React.useState(false);
 
@@ -21,8 +22,14 @@ export const CommitDetailsMoreInfo = () => {
     setShowCopied(true);
     setTimeout(() => {
       setShowCopied(false);
-    }, 3000);
+    }, 1250);
   };
+
+  const copyTextColor = showCopied
+    ? {
+        color: surfaceSecondary,
+      }
+    : {};
 
   return (
     <View style={styles.container}>
@@ -41,7 +48,9 @@ export const CommitDetailsMoreInfo = () => {
         </View>
       </View>
 
-      <TouchableRipple style={styles.sectionContainer} onPress={copyText}>
+      <TouchableRipple
+        style={[styles.sectionContainer, styles.shaSectionContainer]}
+        onPress={copyText}>
         <>
           <View style={styles.sectionTitle}>
             <Text style={styles.sectionTitleText}>SHA</Text>
@@ -50,7 +59,7 @@ export const CommitDetailsMoreInfo = () => {
             <Text style={styles.shaText} ellipsizeMode="tail" numberOfLines={1}>
               2d1c7df6cf06b54d982b1b5ffd0551f06b54d982b1b5ffd0551
             </Text>
-            <Text style={styles.copyText}>
+            <Text style={[styles.copyText, copyTextColor]}>
               {!showCopied ? 'Copy' : 'Copied'}
             </Text>
           </View>
@@ -61,14 +70,10 @@ export const CommitDetailsMoreInfo = () => {
         <View style={styles.sectionTitle}>
           <Text style={styles.sectionTitleText}>PAR</Text>
         </View>
-        <View style={[styles.sectionBody, styles.tagsContainer]}>
-          <CommitPill
-            name="origin/master"
-            isGitHub={true}
-            color={orng}
-            style={styles.tag}
-          />
-          <CommitPill name="master" color={prpl} style={styles.tag} />
+        <View style={styles.sectionBody}>
+          <TouchableRipple style={styles.parButton} onPress={() => {}}>
+            <Text style={styles.parText}>8a26e06</Text>
+          </TouchableRipple>
         </View>
       </View>
     </View>
@@ -87,6 +92,9 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   sectionContainer: {
     flexDirection: 'row',
+    paddingVertical: 8,
+  },
+  shaSectionContainer: {
     paddingVertical: 12,
   },
   sectionTitle: {
@@ -113,5 +121,16 @@ const dynamicStyles = new DynamicStyleSheet({
     marginHorizontal: 16,
     ...textStyles.caption_01,
     color: theme.colors.primary,
+  },
+  parButton: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderWidth: 1,
+    borderColor: theme.colors.divider,
+    borderRadius: theme.lessRoundness,
+  },
+  parText: {
+    color: theme.colors.primary,
+    ...textStyles.caption_01,
   },
 });

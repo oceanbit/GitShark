@@ -104,7 +104,6 @@ const dynamicStyles = new DynamicStyleSheet({
   dropdownContainer: {
     paddingLeft: 16,
     paddingRight: 24,
-    paddingVertical: 8,
     display: 'flex',
     flexWrap: 'nowrap',
     flexDirection: 'row',
