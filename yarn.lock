@@ -6566,7 +6566,7 @@ react-native-default-preference@^1.4.2:
 
 "react-native-file-selector@https://github.com/crutchcorn/react-native-file-selector.git":
   version "1.0.0"
-  resolved "https://github.com/crutchcorn/react-native-file-selector.git#15f760e456b9d426bf9d34e910d53a1c324307b8"
+  resolved "https://github.com/crutchcorn/react-native-file-selector.git#d4890eca3ae70250210502f7f43c0196c757a4df"
 
 "react-native-fs@https://github.com/crutchcorn/react-native-fs.git#all-commands":
   version "2.16.4"
