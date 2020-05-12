@@ -6,7 +6,7 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkDivider} from '../shark-divider';
 
 interface AppBarProps {
-  headline: string;
+  headline?: string;
   caption?: string;
   rightChild?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
@@ -33,7 +33,7 @@ export const AppBar = ({
           <SharkIconButton iconName={leftIcon} onPress={onLeftSelect} />
         )}
         <View style={styles.textContainer}>
-          <Text style={styles.headline}>{headline}</Text>
+          {!!headline && <Text style={styles.headline}>{headline}</Text>}
           {!!caption && <Text style={styles.caption}>{caption}</Text>}
         </View>
         {rightChild}
