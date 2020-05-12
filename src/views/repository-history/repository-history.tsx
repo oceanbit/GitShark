@@ -8,6 +8,7 @@ import {useSelector} from 'react-redux';
 import {RootState, getGitLog} from '../../store';
 import {useThunkDispatch} from '../../hooks';
 import {useNavigation} from '@react-navigation/native';
+import {RepositoryHeader} from '../../components/repository-header';
 
 export const RepositoryHistory = () => {
   const {commits} = useSelector((state: RootState) => state.commits);
@@ -51,14 +52,17 @@ export const RepositoryHistory = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <OverlayDropdownContent
-        header={header}
-        expanded={showBranches}
-        topLayer={topLayer}
-        bottomLayer={bottomLayer}
-      />
-    </View>
+    <>
+      <RepositoryHeader />
+      <View style={styles.container}>
+        <OverlayDropdownContent
+          header={header}
+          expanded={showBranches}
+          topLayer={topLayer}
+          bottomLayer={bottomLayer}
+        />
+      </View>
+    </>
   );
 };
 

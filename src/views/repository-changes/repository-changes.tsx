@@ -14,6 +14,7 @@ import {
   removeFromStaged,
 } from '../../store';
 import {useThunkDispatch} from '../../hooks';
+import {RepositoryHeader} from '../../components/repository-header';
 
 export const RepositoryChanges = () => {
   const {staged, unstaged} = useSelector((state: RootState) => state.changes);
@@ -54,6 +55,7 @@ export const RepositoryChanges = () => {
 
   return (
     <>
+      <RepositoryHeader />
       {useSplitView ? (
         <StageSplitView
           addToStaged={addToStagedLocal}

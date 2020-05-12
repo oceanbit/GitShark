@@ -5,16 +5,14 @@ import {useNavigation} from '@react-navigation/native';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '../../constants';
 import http from 'isomorphic-git/http/web/index.js';
-import {ReduxRepo} from 'src/entities';
 import {SharkIconButton} from '../shark-icon-button';
 import {AppBar} from '../app-bar';
 import {SharkMenu} from '../shark-menu';
+import {RootState} from '../../store';
+import {useSelector} from 'react-redux';
 
-interface RepositoryHeaderProps {
-  repo: ReduxRepo;
-}
-
-export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
+export const RepositoryHeader = () => {
+  const {repo} = useSelector((state: RootState) => state.repository);
   const history = useNavigation();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

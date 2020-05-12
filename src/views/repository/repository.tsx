@@ -41,7 +41,7 @@ export const Repository = () => {
 
     return () => {
       // When repo is exited, we need to dispatch a clearing of the repo data
-      dispatch(clearRepo(repoId));
+      dispatch(clearRepo());
     };
   }, [repoId, dispatch]);
 
@@ -83,7 +83,6 @@ export const Repository = () => {
 
   return (
     <SharkSafeTop isFloating={true}>
-      <RepositoryHeader repo={repo!} />
       <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
         <Stack.Screen name="Repository" component={Tabs} />
         <Stack.Screen name="CommitAction" component={CommitAction} />
