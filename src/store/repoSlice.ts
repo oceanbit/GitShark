@@ -1,6 +1,9 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {Repo, getReduxRepo, ReduxRepo} from '../entities';
 import {getRepository} from 'typeorm';
+import {clearChanges} from './gitChangesSlice';
+import {clearLog} from './gitLogSlice';
+import {clearBranches} from './gitBranchesSlice';
 
 export const findRepo = createAsyncThunk(
   'repository/findRepo',
@@ -16,15 +19,28 @@ export const findRepo = createAsyncThunk(
   },
 );
 
+export const clearRepo = createAsyncThunk(
+  'repository/clearRepo',
+  async (_, {dispatch}) => {
+    dispatch(clearChanges());
+    dispatch(clearLog());
+    dispatch(clearBranches());
+  },
+);
+
+const initialState = {
+  repo: null as ReduxRepo | null,
+};
 const repositorySlice = createSlice({
   name: 'repository',
-  initialState: {
-    repo: null as ReduxRepo | null,
-  },
+  initialState,
   reducers: {},
   extraReducers: {
     [findRepo.fulfilled.toString()]: (state, action) => {
       state.repo = action.payload;
+    },
+    [clearRepo.fulfilled.toString()]: (_, __) => {
+      return initialState;
     },
   },
 });

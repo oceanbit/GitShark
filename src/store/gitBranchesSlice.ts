@@ -50,21 +50,27 @@ type ThenArg<T> = T extends PromiseLike<infer U> ? U : T;
 
 type RemotesAndBranches = ThenArg<ReturnType<typeof getRemotesAndBranchesFn>>;
 
+const initialState = {
+  localBranches: [] as string[],
+  remoteBranches: [] as {
+    name: string;
+    remote: string;
+  }[],
+  remotes: [] as {
+    remote: string;
+    url: string;
+  }[],
+  loading: 'idle',
+};
+
 const branchesSlice = createSlice({
   name: 'commits',
-  initialState: {
-    localBranches: [] as string[],
-    remoteBranches: [] as {
-      name: string;
-      remote: string;
-    }[],
-    remotes: [] as {
-      remote: string;
-      url: string;
-    }[],
-    loading: 'idle',
+  initialState,
+  reducers: {
+    clearBranches() {
+      return initialState;
+    },
   },
-  reducers: {},
   extraReducers: {
     [getRemotesAndBranches.fulfilled.toString()]: (
       state,
@@ -83,4 +89,5 @@ const branchesSlice = createSlice({
   },
 });
 
+export const {clearBranches} = branchesSlice.actions;
 export const branchesReducer = branchesSlice.reducer;

@@ -57,14 +57,20 @@ export const removeFromStaged = createAsyncThunk(
   },
 );
 
+const initialState = {
+  staged: [] as ChangesArrayItem[],
+  unstaged: [] as ChangesArrayItem[],
+  loading: 'idle',
+};
+
 const changesSlice = createSlice({
   name: 'changes',
-  initialState: {
-    staged: [] as ChangesArrayItem[],
-    unstaged: [] as ChangesArrayItem[],
-    loading: 'idle',
+  initialState,
+  reducers: {
+    clearChanges() {
+      return initialState;
+    },
   },
-  reducers: {},
   extraReducers: {
     [getGitStatus.fulfilled.toString()]: (state, action) => {
       if (!action.payload) return;
@@ -100,4 +106,5 @@ const changesSlice = createSlice({
   },
 });
 
+export const {clearChanges} = changesSlice.actions;
 export const changesReducer = changesSlice.reducer;

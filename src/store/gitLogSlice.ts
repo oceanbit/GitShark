@@ -30,13 +30,19 @@ export const getGitLog = createAsyncThunk(
   },
 );
 
+const initialState = {
+  commits: [] as GitLogCommit[],
+  loading: 'idle',
+};
+
 const commitsSlice = createSlice({
   name: 'commits',
-  initialState: {
-    commits: [] as GitLogCommit[],
-    loading: 'idle',
+  initialState,
+  reducers: {
+    clearLog() {
+      return initialState;
+    },
   },
-  reducers: {},
   extraReducers: {
     [getGitLog.fulfilled.toString()]: (
       state,
@@ -47,4 +53,5 @@ const commitsSlice = createSlice({
   },
 });
 
+export const {clearLog} = commitsSlice.actions;
 export const commitsReducer = commitsSlice.reducer;

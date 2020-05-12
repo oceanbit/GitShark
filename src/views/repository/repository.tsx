@@ -17,7 +17,7 @@ import {
 import {useSafeArea} from 'react-native-safe-area-context';
 import {SharkSafeTop} from '../../components/shark-safe-top';
 import {useSelector} from 'react-redux';
-import {RootState, findRepo} from '../../store';
+import {RootState, findRepo, clearRepo} from '../../store';
 import {useThunkDispatch} from '../../hooks';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -38,6 +38,11 @@ export const Repository = () => {
 
   React.useEffect(() => {
     dispatch(findRepo(repoId)).then(console.log);
+
+    return () => {
+      // When repo is exited, we need to dispatch a clearing of the repo data
+      dispatch(clearRepo(repoId));
+    };
   }, [repoId, dispatch]);
 
   const Tabs = React.useCallback(() => {
