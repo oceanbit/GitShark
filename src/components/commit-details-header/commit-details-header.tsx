@@ -7,15 +7,27 @@ import {DropdownContent} from '../dropdown-content';
 import {AnimatedDropdownArrow} from '../animated-dropdown-arrow';
 import {TouchableRipple} from 'react-native-paper';
 import {CommitDetailsMoreInfo} from './commit-details-more-info';
+import {CommitMessageDropdown} from './commit-message-dropdown/commit-message-dropdown';
+
+const messageDefault = `
+The \`FormStyle\` enum offers two options, and the explanation of the difference between the two can be found on the CLDR official website. Sadly, the link changed and the one currently referenced is a dead-end. This commit fixes the link.
+
+PR Close #37069
+`.trim();
 
 interface CommitDetailsHeaderProps {
   expanded: boolean;
   setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
-  commitDescriptionExpanded?: boolean;
+  message?: string;
+  messageExpanded: boolean;
+  setMessageExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export const CommitDetailsHeader = ({
   expanded,
   setExpanded,
+  messageExpanded,
+  setMessageExpanded,
+  message = messageDefault,
 }: CommitDetailsHeaderProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const [showMoreInfoOpacity] = React.useState(new Animated.Value(0));
@@ -56,6 +68,13 @@ export const CommitDetailsHeader = ({
       <Text style={styles.commitStyle}>
         fix(dev-infra): exit non-zero if commit message validation failed
       </Text>
+      {!!message && (
+        <CommitMessageDropdown
+          message={message}
+          expanded={messageExpanded}
+          setExpanded={setMessageExpanded}
+        />
+      )}
       <CommitDetailsDualAuthor expanded={expanded} style={styles.authorBlock} />
       <DropdownContent expanded={expanded}>
         <CommitDetailsMoreInfo />
