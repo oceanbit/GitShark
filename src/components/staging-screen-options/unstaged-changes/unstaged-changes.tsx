@@ -4,11 +4,11 @@ import {
   NativeSyntheticEvent,
   ScrollView,
 } from 'react-native';
-import {SharkSubheader} from '../../shark-subheader';
 import {FileChangeListItemWithCheckbox} from '../../file-change-list-item';
 import {ChangesArrayItem} from '../../../services';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkDivider} from '../../shark-divider';
+import {FileActionsBar} from '../../file-actions-bar';
 
 interface UnstagedChangesProps {
   addToStaged: (changes: ChangesArrayItem[]) => Promise<void>;
@@ -62,11 +62,7 @@ export const UnstagedChanges = ({
 
   return (
     <>
-      <SharkSubheader
-        buttonText={unstagedBtnText}
-        calloutText={'Unstaged'}
-        onButtonClick={unstagedBtnAction}
-      />
+      <FileActionsBar />
       {showUnstagedDivider && <SharkDivider />}
       <ScrollView style={styles.changesList} onScroll={onUnstagedScroll}>
         {unstagedChanges.map(props => {
