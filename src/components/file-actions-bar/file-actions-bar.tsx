@@ -1,23 +1,51 @@
 import * as React from 'react';
-import {StyleProp, Text, View, ViewStyle} from 'react-native';
+import {StyleProp, Text, View, ViewStyle, Animated} from 'react-native';
 import {textStyles, theme} from '../../constants';
 import {SharkButton} from '../shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {FileActionsBarToggleButton} from './file-actions-bar-toggle-button';
 import {GrowWidthContent} from '../grow-width-content';
 
+const animTiming = 150;
+
 interface FileActionsBarProps {
   style?: StyleProp<ViewStyle>;
 }
-
 export const FileActionsBar = ({style = {}}: FileActionsBarProps) => {
   const [showMore, setShowMore] = React.useState(false);
 
   const styles = useDynamicStyleSheet(dynamicStyles);
 
+  const [textLeft] = React.useState(new Animated.Value(0));
+
+  React.useEffect(() => {
+    if (showMore) {
+      Animated.timing(textLeft, {
+        toValue: -400,
+        duration: animTiming,
+        useNativeDriver: false,
+      }).start();
+    } else {
+      Animated.timing(textLeft, {
+        toValue: 16,
+        duration: animTiming,
+        useNativeDriver: false,
+      }).start();
+    }
+  }, [showMore, textLeft]);
+
   return (
     <View style={[styles.subheaderContainer, style]}>
-      <Text style={styles.subheaderText}>Unstaged</Text>
+      <Animated.Text
+        style={[
+          styles.subheaderText,
+          {
+            left: textLeft,
+          },
+        ]}>
+        Unstaged
+      </Animated.Text>
+      <View />
       <View style={styles.showMoreView}>
         <SharkButton
           onPress={() => {}}
@@ -29,14 +57,14 @@ export const FileActionsBar = ({style = {}}: FileActionsBarProps) => {
             <SharkButton
               onPress={() => {}}
               text={'Discard'}
-              style={styles.calloutButton}
+              style={[styles.calloutButton, styles.dividerLeft]}
               // This prevents text breaking from animating incorrectly
               textProps={{numberOfLines: 1}}
             />
             <SharkButton
               onPress={() => {}}
               text={'Ignore'}
-              style={styles.calloutButton}
+              style={[styles.calloutButton, styles.dividerLeft]}
               textProps={{numberOfLines: 1}}
             />
           </View>
@@ -44,6 +72,7 @@ export const FileActionsBar = ({style = {}}: FileActionsBarProps) => {
         <FileActionsBarToggleButton
           showMore={showMore}
           setShowMore={setShowMore}
+          style={styles.dividerLeft}
         />
       </View>
     </View>
@@ -59,6 +88,7 @@ const dynamicStyles = new DynamicStyleSheet({
     backgroundColor: theme.colors.surface,
     padding: 16,
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   moreViewButtons: {
     flexDirection: 'row',
@@ -68,10 +98,14 @@ const dynamicStyles = new DynamicStyleSheet({
     ...textStyles.callout,
     flexGrow: 1,
     color: theme.colors.on_surface,
+    position: 'absolute',
   },
   calloutButton: {
-    marginLeft: 16,
     borderWidth: 0,
+    borderRadius: 0,
+    // There's a fun 1px issue on the bottom. Hacky solve by just adding 1 to padding of bottom
+    // That's what I call a galaxy brained move right there
+    paddingBottom: 9,
   },
   showMoreView: {
     flexDirection: 'row',
@@ -83,4 +117,8 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   iconButton: {},
   dotsIcon: {},
+  dividerLeft: {
+    borderColor: theme.colors.divider,
+    borderLeftWidth: 2,
+  },
 });

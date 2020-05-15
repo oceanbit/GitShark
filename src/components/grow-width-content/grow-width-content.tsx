@@ -2,7 +2,7 @@ import * as React from 'react';
 import {View, Animated} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
-const animTiming = 500;
+const animTiming = 150;
 
 interface GrowWidthContentProps {
   children: React.ReactNode;
@@ -18,7 +18,6 @@ export const GrowWidthContent = React.forwardRef(
      * and setting that directly using onLayout
      */
     const [width, setWidth] = React.useState(0);
-    const [height, setHeight] = React.useState(0);
 
     React.useImperativeHandle(
       ref,
@@ -68,7 +67,6 @@ export const GrowWidthContent = React.forwardRef(
             opacity: animatedOpacity,
             width: animatedWidth,
             overflow: 'hidden',
-            height: height,
           }}>
           {children}
         </Animated.View>
@@ -85,7 +83,6 @@ export const GrowWidthContent = React.forwardRef(
                 height: eventHeight,
               } = event.nativeEvent.layout;
               setWidth(eventWidth);
-              setHeight(eventHeight);
             }}>
             {children}
           </View>
