@@ -11,7 +11,7 @@ const animTiming = 150;
 
 interface FileActionsBarProps {
   style?: StyleProp<ViewStyle>;
-  isItemSelected?: boolean;
+  isItemSelected: boolean;
 }
 export const FileActionsBar = ({
   style = {},
@@ -54,7 +54,7 @@ export const FileActionsBar = ({
       <View style={styles.showMoreView}>
         <StageButtonToggle
           buttonStyle={styles.calloutButton}
-          isStage={!!isItemSelected}
+          isStage={isItemSelected}
         />
         <GrowWidthContent expanded={showMore}>
           <View style={styles.moreViewButtons}>
@@ -73,11 +73,13 @@ export const FileActionsBar = ({
             />
           </View>
         </GrowWidthContent>
-        <FileActionsBarToggleButton
-          showMore={showMore}
-          setShowMore={setShowMore}
-          style={styles.dividerLeft}
-        />
+        <GrowWidthContent expanded={isItemSelected}>
+          <FileActionsBarToggleButton
+            showMore={showMore}
+            setShowMore={setShowMore}
+            style={styles.dividerLeft}
+          />
+        </GrowWidthContent>
       </View>
     </View>
   );

@@ -137,6 +137,8 @@ export const StageButtonToggle = ({
 const dynamicStyles = new DynamicStyleSheet({
   textContainer: {
     position: 'relative',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   buttonContainer: {
     position: 'absolute',
