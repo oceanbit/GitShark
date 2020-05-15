@@ -34,10 +34,6 @@ export const UnstagedChanges = ({
     setShowUnstagedDivider(true);
   };
 
-  const unstagedBtnText = selectedUnstagedChanges.length
-    ? 'Stage'
-    : 'Stage All';
-
   const unstagedBtnAction = React.useMemo(() => {
     if (selectedUnstagedChanges.length) {
       return async () => {
@@ -62,7 +58,7 @@ export const UnstagedChanges = ({
 
   return (
     <>
-      <FileActionsBar />
+      <FileActionsBar isItemSelected={!!selectedUnstagedChanges.length} />
       {showUnstagedDivider && <SharkDivider />}
       <ScrollView style={styles.changesList} onScroll={onUnstagedScroll}>
         {unstagedChanges.map(props => {

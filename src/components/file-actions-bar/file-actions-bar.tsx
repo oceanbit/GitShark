@@ -1,17 +1,22 @@
 import * as React from 'react';
-import {StyleProp, Text, View, ViewStyle, Animated} from 'react-native';
+import {StyleProp, View, ViewStyle, Animated} from 'react-native';
 import {textStyles, theme} from '../../constants';
 import {SharkButton} from '../shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {FileActionsBarToggleButton} from './file-actions-bar-toggle-button';
 import {GrowWidthContent} from '../grow-width-content';
+import {StageButtonToggle} from './stage-button-toggle';
 
 const animTiming = 150;
 
 interface FileActionsBarProps {
   style?: StyleProp<ViewStyle>;
+  isItemSelected?: boolean;
 }
-export const FileActionsBar = ({style = {}}: FileActionsBarProps) => {
+export const FileActionsBar = ({
+  style = {},
+  isItemSelected,
+}: FileActionsBarProps) => {
   const [showMore, setShowMore] = React.useState(false);
 
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -47,10 +52,9 @@ export const FileActionsBar = ({style = {}}: FileActionsBarProps) => {
       </Animated.Text>
       <View />
       <View style={styles.showMoreView}>
-        <SharkButton
-          onPress={() => {}}
-          text={'Stage'}
-          style={styles.calloutButton}
+        <StageButtonToggle
+          buttonStyle={styles.calloutButton}
+          isStage={!!isItemSelected}
         />
         <GrowWidthContent expanded={showMore}>
           <View style={styles.moreViewButtons}>
