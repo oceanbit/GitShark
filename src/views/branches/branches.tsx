@@ -5,18 +5,18 @@
 import * as React from 'react';
 import {ScrollView, Text} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkSubheader} from '../../components/shark-subheader';
-import {SharkDivider} from '../../components/shark-divider';
+import {SharkSubheader} from '@components/shark-subheader';
+import {SharkDivider} from '@components/shark-divider';
 import {BranchListItem} from './components/branch-list-item';
 import {RemoteBranchListItem} from './components/remote-branch-list-item';
-import {DropdownContent} from '../../components/dropdown-content';
-import {AnimatedDropdownArrow} from '../../components/animated-dropdown-arrow';
-import {SharkIconButton} from '../../components/shark-icon-button';
-import {textStyles, theme} from '../../constants';
+import {DropdownContent} from '@components/dropdown-content';
+import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
+import {SharkIconButton} from '@components/shark-icon-button';
+import {textStyles, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {useSelector} from 'react-redux';
-import {RootState, getBranchData} from '../../store';
-import {useThunkDispatch} from '../../hooks';
+import {RootState, getBranchData} from '@store';
+import {useThunkDispatch} from '@hooks';
 
 export const Branches = () => {
   const {localBranches, remoteBranches, remotes} = useSelector(

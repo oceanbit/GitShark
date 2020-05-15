@@ -2,15 +2,15 @@ import * as React from 'react';
 import {Linking, Platform} from 'react-native';
 import * as queryString from 'query-string';
 import RNSecureKeyStore, {ACCESSIBLE} from 'react-native-secure-key-store';
-import {getCurrentUser, getCurrentUserEmails} from '../services';
+import {getCurrentUser, getCurrentUserEmails} from '@services';
 import DefaultPreference from 'react-native-default-preference';
-import {CachedGithubUser} from '../types';
+import {CachedGithubUser} from '@types';
 import {
   GITHUB_TOKEN_STORAGE_KEY,
   GITHUB_USER_STORAGE_KEY,
   MANUAL_USER_STORAGE_KEY,
   SHOULD_USE_GITHUB_CREDS_KEY,
-} from '../constants';
+} from '@constants';
 
 export const useGitHubUserData = () => {
   const [gitHubUser, setGitHubUser] = React.useState<CachedGithubUser | null>(

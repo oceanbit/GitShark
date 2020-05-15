@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {Text, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkButton} from '../../../components/shark-button';
-import {UserContext} from '../../../constants/contexts';
-import {textStyles, theme} from '../../../constants';
+import {SharkButton} from '@components/shark-button';
+import {UserContext, textStyles, theme} from '@constants';
 
 export const GitHubLogout = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);

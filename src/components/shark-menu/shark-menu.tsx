@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Menu} from 'react-native-paper';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {theme} from '../../constants';
+import {theme} from '@constants';
 
 export const SharkMenu = ({
   children,

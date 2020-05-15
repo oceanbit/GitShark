@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {StyleProp, Animated, View, ViewStyle} from 'react-native';
-import {textStyles, theme} from '../../../../../constants';
+import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkIconButton} from '../../../../../components/shark-icon-button';
+import {SharkIconButton} from '@components/shark-icon-button';
 
 interface FileActionsBarToggleButtonProps {
   style?: StyleProp<ViewStyle>;

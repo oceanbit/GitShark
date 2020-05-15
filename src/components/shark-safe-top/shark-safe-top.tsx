@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useSafeArea} from 'react-native-safe-area-context';
 import {View} from 'react-native';
 import {useDynamicValue} from 'react-native-dark-mode';
-import {theme} from '../../constants';
+import {theme} from '@constants';
 
 interface SharkSafeTopProps {
   isFloating?: boolean;

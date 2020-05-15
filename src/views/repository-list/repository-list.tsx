@@ -1,17 +1,17 @@
 import * as React from 'react';
 import {Alert, ScrollView, Text, View} from 'react-native';
-import {Repo} from '../../entities';
+import {Repo} from '@entities';
 import {getRepository} from 'typeorm';
 import {RepoCard} from './components/repo-card';
-import {DatabaseLoadedContext, textStyles, theme} from '../../constants';
+import {textStyles, theme} from '@constants';
 import {RepoListLoading} from './components/repo-list-loading';
 import {DialogsAndFab} from './components/dialogs-and-fab';
-import {SharkIconButton} from '../../components/shark-icon-button';
+import {SharkIconButton} from '@components/shark-icon-button';
 import {useNavigation} from '@react-navigation/native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {BottomSpacerView, SharkSafeTop} from '../../components/shark-safe-top';
 import {useSelector} from 'react-redux';
-import {RootState} from '../../store';
+import {RootState} from '@store';
 
 export const RepositoryList = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);

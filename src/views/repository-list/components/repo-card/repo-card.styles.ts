@@ -1,4 +1,4 @@
-import {textStyles, theme} from '../../../../constants';
+import {textStyles, theme} from '@constants';
 import {DynamicStyleSheet} from 'react-native-dark-mode';
 
 export const dynamicStyles = new DynamicStyleSheet({

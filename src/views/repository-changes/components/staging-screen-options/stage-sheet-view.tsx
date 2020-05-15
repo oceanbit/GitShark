@@ -3,9 +3,9 @@ import {StyleSheet, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-import {theme} from '../../../../constants';
+import {theme} from '@constants';
 import {StagedChanges} from './staged-changes';
-import {ChangesArrayItem} from '../../../../services';
+import {ChangesArrayItem} from '@services';
 import {UnstagedChanges} from './unstaged-changes';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 

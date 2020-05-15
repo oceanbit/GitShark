@@ -5,8 +5,8 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {CommitPill} from '../../../../../components/commit-pill';
-import {theme, textStyles} from '../../../../../constants';
+import {CommitPill} from '@components/commit-pill';
+import {theme, textStyles} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 
 export const CommitDetailsMoreInfo = () => {

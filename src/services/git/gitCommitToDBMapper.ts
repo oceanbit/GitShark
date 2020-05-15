@@ -1,5 +1,5 @@
 import {ReadCommitResult} from 'isomorphic-git/index.umd.min';
-import {Commit} from '../../entities';
+import {Commit} from '@entities';
 
 export const gitCommitToDBMapper = (_gitCommit: ReadCommitResult) => {
   const gitCommit = new Commit();

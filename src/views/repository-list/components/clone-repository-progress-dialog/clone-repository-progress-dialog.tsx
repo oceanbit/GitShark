@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ProgressBar} from 'react-native-paper';
-import {theme} from '../../../../constants';
-import {AppDialog} from '../../../../components/dialog';
-import {ErrorMessageBox} from '../../../../components/error-message-box';
-import {cloneRepo} from '../../../../services';
-import {SharkButton} from '../../../../components/shark-button';
+import {theme} from '@constants';
+import {AppDialog} from '@components/dialog';
+import {ErrorMessageBox} from '@components/error-message-box';
+import {cloneRepo} from '@services';
+import {SharkButton} from '@components/shark-button';
 import {useDynamicValue} from 'react-native-dark-mode';
 
 // Note that since we're running isomorphic-git in the main thread, we're competing with React trying to update the UI.

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
-import {textStyles, theme} from '../../constants';
+import {textStyles, theme} from '@constants';
 import {SharkButton} from '../shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 

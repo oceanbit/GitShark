@@ -1,5 +1,5 @@
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../constants';
+import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import * as React from 'react';
 import {StyleProp, StyleSheet, ViewStyle, Animated} from 'react-native';

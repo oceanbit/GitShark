@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {gitLog, GitLogCommit, gitCommitToDBMapper} from '../services';
-import {Repo} from '../entities';
+import {gitLog, GitLogCommit, gitCommitToDBMapper} from '@services';
+import {Repo} from '@entities';
 
 interface StoreGitLogPayload {
   repo: Repo;

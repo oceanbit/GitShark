@@ -5,7 +5,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {textStyles, theme} from '../../constants';
+import {textStyles, theme} from '@constants';
 import ButtonToggleGroup from 'react-native-button-toggle-group';
 
 interface SharkButtonToggleGroupProps {

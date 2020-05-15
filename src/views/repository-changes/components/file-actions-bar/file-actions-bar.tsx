@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {StyleProp, View, ViewStyle, Animated} from 'react-native';
-import {textStyles, theme} from '../../../../constants';
-import {SharkButton} from '../../../../components/shark-button';
+import {textStyles, theme} from '@constants';
+import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {FileActionsBarToggleButton} from './file-actions-bar-toggle-button';
-import {GrowWidthContent} from '../../../../components/grow-width-content';
+import {GrowWidthContent} from '@components/grow-width-content';
 import {StageButtonToggle} from './stage-button-toggle';
 
 const animTiming = 150;

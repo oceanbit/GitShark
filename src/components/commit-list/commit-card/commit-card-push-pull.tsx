@@ -1,7 +1,7 @@
 import {View} from 'react-native';
 import * as React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../../constants';
+import {theme} from '@constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,

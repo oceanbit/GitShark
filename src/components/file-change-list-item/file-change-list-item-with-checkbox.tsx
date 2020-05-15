@@ -1,6 +1,6 @@
 import {StyleSheet, View} from 'react-native';
 import * as React from 'react';
-import {ChangesArrayItem} from '../../services';
+import {ChangesArrayItem} from '@services';
 import {FileChangeListItem} from './file-change-list-item';
 import {SharkCheckbox} from '../shark-checkbox';
 

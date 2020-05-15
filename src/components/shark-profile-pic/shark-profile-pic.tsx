@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Image, ImagePropsBase, ImageStyle, StyleProp, View} from 'react-native';
-import {theme} from '../../constants';
+import {theme} from '@constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,

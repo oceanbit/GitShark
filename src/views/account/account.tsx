@@ -6,21 +6,21 @@ import {
   Text,
   View,
 } from 'react-native';
-import {AppBar} from '../../components/app-bar';
-import {SharkSubheader} from '../../components/shark-subheader';
-import {textStyles, theme, UserContext} from '../../constants';
+import {AppBar} from '@components/app-bar';
+import {SharkSubheader} from '@components/shark-subheader';
+import {textStyles, theme, UserContext} from '@constants';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
-import {SharkButton} from '../../components/shark-button';
-import {SharkProfilePic} from '../../components/shark-profile-pic';
-import {SharkTextInput} from '../../components/shark-text-input';
+import {SharkButton} from '@components/shark-button';
+import {SharkProfilePic} from '@components/shark-profile-pic';
+import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkCheckbox} from '../../components/shark-checkbox';
-import {githubOauthLink} from '../../constants/oauth';
-import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
-import {validateEmail} from '../../utils';
+import {SharkCheckbox} from '@components/shark-checkbox';
+import {BottomSpacerView, TopSpacerView} from '@components/shark-safe-top';
+import {githubOauthLink} from '@constants/oauth';
+import {validateEmail} from '@utils';
 import {GitHubLogout} from './github-logout/github-logout';
-import {SharkDivider} from '../../components/shark-divider';
+import {SharkDivider} from '@components/shark-divider';
 
 export const Account = () => {
   const {

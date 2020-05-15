@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {Repo, getReduxRepo, ReduxRepo} from '../entities';
+import {Repo, getReduxRepo, ReduxRepo} from '@entities';
 import {getRepository} from 'typeorm';
 import {clearChanges} from './gitChangesSlice';
 import {clearLog} from './gitLogSlice';

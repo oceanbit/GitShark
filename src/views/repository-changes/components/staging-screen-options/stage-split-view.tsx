@@ -3,8 +3,8 @@ import {UnstagedChanges} from './unstaged-changes';
 import {StagedChanges} from './staged-changes';
 import * as React from 'react';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {ChangesArrayItem} from '../../../../services';
-import {SharkDivider} from '../../../../components/shark-divider';
+import {ChangesArrayItem} from '@services';
+import {SharkDivider} from '@components/shark-divider';
 
 interface StageSplitViewProps {
   unstagedChanges: ChangesArrayItem[];

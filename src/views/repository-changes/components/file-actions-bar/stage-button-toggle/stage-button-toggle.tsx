@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, Animated, StyleProp, ViewStyle} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkButton} from '../../../../../components/shark-button';
+import {SharkButton} from '@components/shark-button';
 
 interface StageButtonToggleProps {
   isStage: boolean;

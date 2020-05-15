@@ -4,12 +4,12 @@ import {
   NativeSyntheticEvent,
   ScrollView,
 } from 'react-native';
-import {SharkSubheader} from '../../../../../components/shark-subheader';
-import {FileChangeListItemWithCheckbox} from '../../../../../components/file-change-list-item';
-import {ChangesArrayItem} from '../../../../../services';
-import {theme} from '../../../../../constants';
+import {SharkSubheader} from '@components/shark-subheader';
+import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
+import {ChangesArrayItem} from '@services';
+import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkDivider} from '../../../../../components/shark-divider';
+import {SharkDivider} from '@components/shark-divider';
 
 interface StagedChangesProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;

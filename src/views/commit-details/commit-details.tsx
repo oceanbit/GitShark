@@ -6,12 +6,12 @@ import {
   useDynamicValue,
 } from 'react-native-dark-mode';
 import {CommitDetailsHeader} from './components/commit-details-header';
-import {AppBar} from '../../components/app-bar';
-import {SharkMenu} from '../../components/shark-menu';
+import {AppBar} from '@components/app-bar';
+import {SharkMenu} from '@components/shark-menu';
 import {Menu} from 'react-native-paper';
-import {SharkIconButton} from '../../components/shark-icon-button';
-import {SharkDivider} from '../../components/shark-divider';
-import {textStyles, theme} from '../../constants';
+import {SharkIconButton} from '@components/shark-icon-button';
+import {SharkDivider} from '@components/shark-divider';
+import {textStyles, theme} from '@constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const CommitDetails = () => {

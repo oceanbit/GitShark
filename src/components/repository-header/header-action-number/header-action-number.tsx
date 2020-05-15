@@ -2,7 +2,7 @@ import * as React from 'react';
 import {TouchableRipple} from 'react-native-paper';
 import {Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {textStyles, theme} from '../../../constants';
+import {textStyles, theme} from '@constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,

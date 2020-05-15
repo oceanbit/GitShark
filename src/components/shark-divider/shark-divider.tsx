@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, StyleProp, ViewStyle} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {theme} from '../../constants';
+import {theme} from '@constants';
 
 interface SharkDividerProps {
   style?: StyleProp<ViewStyle>;

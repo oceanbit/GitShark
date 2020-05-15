@@ -3,12 +3,12 @@ import {Divider, Menu} from 'react-native-paper';
 import {HeaderActionNumber} from './header-action-number/header-action-number';
 import {useNavigation} from '@react-navigation/native';
 import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '../../constants';
+import {fs} from '@constants';
 import http from 'isomorphic-git/http/web/index.js';
 import {SharkIconButton} from '../shark-icon-button';
 import {AppBar} from '../app-bar';
 import {SharkMenu} from '../shark-menu';
-import {RootState} from '../../store';
+import {RootState} from '@store/rootReducer';
 import {useSelector} from 'react-redux';
 
 export const RepositoryHeader = () => {

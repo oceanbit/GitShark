@@ -1,5 +1,5 @@
 import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '../../constants/fs';
+import {fs} from '@constants';
 
 export interface ChangesArrayItem {
   fileName: string;

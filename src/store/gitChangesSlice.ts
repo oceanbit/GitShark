@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {getRepoStatus, ChangesArrayItem} from '../services';
+import {getRepoStatus, ChangesArrayItem} from '@services';
 import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '../constants';
+import {fs} from '@constants';
 
 export const getGitStatus = createAsyncThunk(
   'commits/getGitStatus',

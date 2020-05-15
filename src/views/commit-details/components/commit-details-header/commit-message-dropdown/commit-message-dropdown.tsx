@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {View, Text, Animated} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {AnimatedDropdownArrow} from '../../../../../components/animated-dropdown-arrow';
-import {theme, textStyles} from '../../../../../constants';
+import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
+import {theme, textStyles} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 
 const animTiming = 150;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {SharkIconButton} from '../shark-icon-button';
-import {textStyles, theme} from '../../constants';
+import {textStyles, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkDivider} from '../shark-divider';
 

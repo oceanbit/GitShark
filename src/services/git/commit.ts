@@ -1,6 +1,6 @@
 import git from 'isomorphic-git/index.umd.min.js';
-import {ReduxRepo} from '../../entities';
-import {fs} from '../../constants/fs';
+import {ReduxRepo} from '@entities';
+import {fs} from '@constants';
 
 interface commitProps {
   title?: string;

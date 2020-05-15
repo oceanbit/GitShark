@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {CheckmarkBase} from '../checkmark-base';
 import {useDynamicValue} from 'react-native-dark-mode';
-import {theme} from '../../constants';
+import {theme} from '@constants';
 
 interface SharkCheckboxProps {
   checked: boolean;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Text, View} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import {DialogSelection, ExtendedFabBase} from './types';
-import {textStyles, theme} from '../../../../constants';
+import {textStyles, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface FabActionsProps extends ExtendedFabBase {

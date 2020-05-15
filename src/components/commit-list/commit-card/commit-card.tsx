@@ -1,10 +1,10 @@
 import {Text, View} from 'react-native';
 import * as React from 'react';
-import {textStyles, theme} from '../../../constants';
+import {textStyles, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {CommitCardPushPull} from './commit-card-push-pull';
 import dayjs from 'dayjs';
-import {getCommitHeaderBody, GitLogCommit} from '../../../services';
+import {getCommitHeaderBody, GitLogCommit} from '@services';
 import {SharkProfilePic} from '../../shark-profile-pic';
 import {
   DynamicStyleSheet,

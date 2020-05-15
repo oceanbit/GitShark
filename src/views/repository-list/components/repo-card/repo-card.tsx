@@ -1,17 +1,17 @@
 import {Text, View} from 'react-native';
 import * as React from 'react';
-import {PushPullArrows} from '../../../../components/push-pull-arrows';
+import {PushPullArrows} from '@components/push-pull-arrows';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {theme} from '../../../../constants';
+import {theme} from '@constants';
 import {Menu, TouchableRipple} from 'react-native-paper';
-import {Repo} from '../../../../entities';
+import {Repo} from '@entities';
 import dayjs from 'dayjs';
 import {useNavigation} from '@react-navigation/native';
 import {RenameRepositoryDialog} from '../rename-repository-dialog';
 import {DeleteRepositoryDialog} from '../delete-repository-dialog';
 import {dynamicStyles} from './repo-card.styles';
 import {useDynamicStyleSheet, useDynamicValue} from 'react-native-dark-mode';
-import {SharkMenu} from '../../../../components/shark-menu';
+import {SharkMenu} from '@components/shark-menu';
 
 type DialogActionsType = '' | 'rename' | 'delete';
 

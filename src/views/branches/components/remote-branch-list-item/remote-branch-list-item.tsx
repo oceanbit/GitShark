@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Text, StyleProp, ViewStyle} from 'react-native';
-import {theme, textStyles} from '../../../../constants';
+import {theme, textStyles} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkIconButton} from '../../../../components/shark-icon-button';
+import {SharkIconButton} from '@components/shark-icon-button';
 import {TouchableRipple} from 'react-native-paper';
 
 interface BranchMock {

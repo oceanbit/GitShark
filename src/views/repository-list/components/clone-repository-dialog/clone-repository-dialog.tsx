@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {fs, theme} from '../../../../constants';
-import {AppDialog} from '../../../../components/dialog';
+import {fs, theme} from '@constants';
+import {AppDialog} from '@components/dialog';
 import git from 'isomorphic-git/index.umd.min.js';
-import {SharkTextInput} from '../../../../components/shark-text-input';
-import {ErrorMessageBox} from '../../../../components/error-message-box';
-import {FolderSelectButton} from '../../../../components/folder-select-button';
+import {SharkTextInput} from '@components/shark-text-input';
+import {ErrorMessageBox} from '@components/error-message-box';
+import {FolderSelectButton} from '@components/folder-select-button';
 import {CloneRepositoryProgressDialog} from '../clone-repository-progress-dialog';
-import {SharkButton} from '../../../../components/shark-button';
+import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface CloneRepositoryDialogProps {

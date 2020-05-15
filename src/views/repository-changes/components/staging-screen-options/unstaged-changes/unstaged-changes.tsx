@@ -4,10 +4,10 @@ import {
   NativeSyntheticEvent,
   ScrollView,
 } from 'react-native';
-import {FileChangeListItemWithCheckbox} from '../../../../../components/file-change-list-item';
-import {ChangesArrayItem} from '../../../../../services';
+import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
+import {ChangesArrayItem} from '@services';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkDivider} from '../../../../../components/shark-divider';
+import {SharkDivider} from '@components/shark-divider';
 import {FileActionsBar} from '../../file-actions-bar';
 
 interface UnstagedChangesProps {

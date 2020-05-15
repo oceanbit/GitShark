@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {Animated, Dimensions, Text, View} from 'react-native';
-import {Repo} from '../../../../entities';
+import {Repo} from '@entities';
 import {DialogSelection, ExtendedFabBase} from './types';
 import {NewRepoFab} from './new-repo-fab';
 import {FabActions} from './fab-actions';
-import {textStyles, theme} from '../../../../constants';
-import {ExtendedActionFab} from '../../../../components/extended-action-fab';
+import {textStyles, theme} from '@constants';
+import {ExtendedActionFab} from '@components/extended-action-fab';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {useSafeArea} from 'react-native-safe-area-context';
 

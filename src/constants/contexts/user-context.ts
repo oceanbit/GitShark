@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {CachedGithubUser, ManualUser} from '../../types';
+import {CachedGithubUser, ManualUser} from '@types';
 
 interface GitHubUserContextType {
   gitHubUser: null | CachedGithubUser;

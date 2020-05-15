@@ -1,4 +1,4 @@
-import {CurrentUser} from '../services';
+import {CurrentUser} from '@services';
 
 export type CachedGithubUser = Pick<
   CurrentUser,

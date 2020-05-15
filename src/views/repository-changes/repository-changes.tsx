@@ -1,20 +1,15 @@
 import * as React from 'react';
-import {StyleOfStagingContext} from '../../constants';
-import {ChangesArrayItem} from '../../services';
+import {StyleOfStagingContext} from '@constants';
+import {ChangesArrayItem} from '@services';
 import {useNavigation} from '@react-navigation/native';
 import {
   StageSheetView,
   StageSplitView,
 } from './components/staging-screen-options';
 import {useSelector} from 'react-redux';
-import {
-  RootState,
-  getGitStatus,
-  addToStaged,
-  removeFromStaged,
-} from '../../store';
-import {useThunkDispatch} from '../../hooks';
-import {RepositoryHeader} from '../../components/repository-header';
+import {RootState, getGitStatus, addToStaged, removeFromStaged} from '@store';
+import {useThunkDispatch} from '@hooks';
+import {RepositoryHeader} from '@components/repository-header';
 
 export const RepositoryChanges = () => {
   const {staged, unstaged} = useSelector((state: RootState) => state.changes);

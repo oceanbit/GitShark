@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
 import Video from 'react-native-video';
-import SheetUpVideoLight from '../../../../../assets/videos/sheet_up.mp4';
-import SheetUpVideoDark from '../../../../../assets/videos/sheet_up_dark.mp4';
-import SheetDownVideoLight from '../../../../../assets/videos/sheet_down.mp4';
-import SheetDownVideoDark from '../../../../../assets/videos/sheet_down_dark.mp4';
+import SheetUpVideoLight from '@assets/videos/sheet_up.mp4';
+import SheetUpVideoDark from '@assets/videos/sheet_up_dark.mp4';
+import SheetDownVideoLight from '@assets/videos/sheet_down.mp4';
+import SheetDownVideoDark from '@assets/videos/sheet_down_dark.mp4';
 
 interface SlideUpDownSettingsAnimationProps {
   direction: 'up' | 'down';

@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {textStyles, theme} from '../../constants';
+import {textStyles, theme} from '@constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   DynamicStyleSheet,

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {Alert} from 'react-native';
-import {fs, theme} from '../../../../constants';
-import {AppDialog} from '../../../../components/dialog';
+import {fs, theme} from '@constants';
+import {AppDialog} from '@components/dialog';
 import git from 'isomorphic-git/index.umd.min.js';
-import {ErrorMessageBox} from '../../../../components/error-message-box';
-import {FolderSelectButton} from '../../../../components/folder-select-button';
-import {createNewRepo} from '../../../../services';
-import {SharkButton} from '../../../../components/shark-button';
-import {SharkTextInput} from '../../../../components/shark-text-input';
+import {ErrorMessageBox} from '@components/error-message-box';
+import {FolderSelectButton} from '@components/folder-select-button';
+import {createNewRepo} from '@services';
+import {SharkButton} from '@components/shark-button';
+import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface CreateRepositoryDialogProps {

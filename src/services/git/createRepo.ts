@@ -1,7 +1,7 @@
-import {Branch, Remote, Repo} from '../../entities';
-import {getRepoNameFromPath} from '../../utils';
+import {Branch, Remote, Repo} from '@entities';
+import {getRepoNameFromPath} from '@utils';
 import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '../../constants/fs';
+import {fs} from '@constants';
 import {gitCommitToDBMapper} from './gitCommitToDBMapper';
 
 export const createNewRepo = async (path: string, name?: string) => {

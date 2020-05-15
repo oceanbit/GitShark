@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {createConnection, getConnectionManager} from 'typeorm';
-import {Branch, Commit, Remote, Repo} from '../entities';
+import {Branch, Commit, Remote, Repo} from '@entities';
 
 export const setupDatabase = createAsyncThunk(
   'database/setupDatabase',

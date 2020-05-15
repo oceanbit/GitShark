@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Text, View} from 'react-native';
-import {UserContext, textStyles, theme} from '../../../constants';
+import {UserContext, textStyles, theme} from '@constants';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {SharkProfilePic} from '../../../components/shark-profile-pic';
+import {SharkProfilePic} from '@components/shark-profile-pic';
 
 import {
   DynamicStyleSheet,

@@ -1,9 +1,9 @@
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
-import {textStyles, theme} from '../../constants';
+import {textStyles, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {ChangesArrayItem} from '../../services';
+import {ChangesArrayItem} from '@services';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,

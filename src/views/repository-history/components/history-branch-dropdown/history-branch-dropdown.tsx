@@ -1,14 +1,14 @@
-import {Text, View, Animated} from 'react-native';
+import {View, Animated} from 'react-native';
 import * as React from 'react';
-import {textStyles, theme} from '../../../../constants';
+import {textStyles, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
-import {SharkIconButton} from '../../../../components/shark-icon-button';
+import {SharkIconButton} from '@components/shark-icon-button';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {AnimatedDropdownArrow} from '../../../../components/animated-dropdown-arrow';
+import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 
 interface HistoryBranchDropdownProps {
   branchName: string;

@@ -1,8 +1,8 @@
 import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
-import {fs} from '../../constants/fs';
+import {fs} from '@constants';
 import http from 'isomorphic-git/http/web/index.js';
 import {createNewRepo} from './createRepo';
-import {getRepoNameFromUri} from '../../utils';
+import {getRepoNameFromUri} from '@utils';
 
 interface CloneRepoProps {
   path: string;

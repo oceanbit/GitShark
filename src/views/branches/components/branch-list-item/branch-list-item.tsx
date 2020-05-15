@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {Text} from 'react-native';
-import {theme, textStyles} from '../../../../constants';
+import {theme, textStyles} from '@constants';
 import {
   DynamicStyleSheet,
   useDynamicValue,
   useDynamicStyleSheet,
 } from 'react-native-dark-mode';
-import {PushPullArrows} from '../../../../components/push-pull-arrows';
-import {SharkIconButton} from '../../../../components/shark-icon-button';
+import {PushPullArrows} from '@components/push-pull-arrows';
+import {SharkIconButton} from '@components/shark-icon-button';
 import {TouchableRipple} from 'react-native-paper';
 
 interface BranchMock {

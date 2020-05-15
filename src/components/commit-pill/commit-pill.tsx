@@ -5,7 +5,7 @@ import {
   useDynamicValue,
   useDynamicStyleSheet,
 } from 'react-native-dark-mode';
-import {textStyles, theme} from '../../constants';
+import {textStyles, theme} from '@constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface CommitPillProps {

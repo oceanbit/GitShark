@@ -1,7 +1,7 @@
 import * as React from 'react';
 import DefaultPreference from 'react-native-default-preference';
-import {ManualUser} from '../types';
-import {MANUAL_USER_STORAGE_KEY} from '../constants';
+import {ManualUser} from '@types';
+import {MANUAL_USER_STORAGE_KEY} from '@constants';
 
 export const useManualUserData = () => {
   const [manualUser, setManualUserLocal] = React.useState<ManualUser | null>(

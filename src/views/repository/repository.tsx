@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
-import {theme} from '../../constants';
+import {theme} from '@constants';
 import {useRoute} from '@react-navigation/native';
 import {RepositoryHistory} from '../repository-history/repository-history';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
@@ -14,10 +14,10 @@ import {
   useDynamicValue,
 } from 'react-native-dark-mode';
 import {useSafeArea} from 'react-native-safe-area-context';
-import {SharkSafeTop} from '../../components/shark-safe-top';
+import {SharkSafeTop} from '@components/shark-safe-top';
 import {useSelector} from 'react-redux';
-import {RootState, findRepo, clearRepo} from '../../store';
-import {useThunkDispatch} from '../../hooks';
+import {RootState, findRepo, clearRepo} from '@store';
+import {useThunkDispatch} from '@hooks';
 
 const Tab = createMaterialBottomTabNavigator();
 

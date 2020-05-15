@@ -1,5 +1,5 @@
-import {fs} from './../../constants/fs';
-import {ReduxRepo} from '../../entities';
+import {fs} from '@constants';
+import {ReduxRepo} from '@entities';
 import git, {ReadCommitResult} from 'isomorphic-git/index.umd.min.js';
 
 export type GitLogCommit = ReadCommitResult['commit'] & {

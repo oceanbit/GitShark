@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Text, View} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
-import {textStyles, theme} from '../../constants';
+import {textStyles, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface AppDialogProps {
