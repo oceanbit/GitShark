@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
 import {theme} from '../../constants';
-import {RepositoryHeader} from '../../components/repository-header';
 import {useRoute} from '@react-navigation/native';
 import {RepositoryHistory} from '../repository-history/repository-history';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';

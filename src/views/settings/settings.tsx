@@ -17,7 +17,7 @@ import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group
 import {AppBar} from '../../components/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader';
 import {useNavigation} from '@react-navigation/native';
-import {SlideUpDownSettingsAnimation} from '../../components/slide-up-down-settings-animation';
+import {SlideUpDownSettingsAnimation} from './components/slide-up-down-settings-animation';
 import SplitVideoLight from '../../../assets/videos/split.mp4';
 import SplitVideoDark from '../../../assets/videos/split_dark.mp4';
 import Video from 'react-native-video';
@@ -30,7 +30,6 @@ import {
 import {SharkRadio} from '../../components/shark-radio';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {AccountButton} from './account-button/account-button';
-import {SharkDivider} from '../../components/shark-divider';
 
 export const Settings = () => {
   const isDark = useDarkMode();

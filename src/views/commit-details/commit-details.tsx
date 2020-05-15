@@ -5,7 +5,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {CommitDetailsHeader} from '../../components/commit-details-header';
+import {CommitDetailsHeader} from './components/commit-details-header';
 import {AppBar} from '../../components/app-bar';
 import {SharkMenu} from '../../components/shark-menu';
 import {Menu} from 'react-native-paper';

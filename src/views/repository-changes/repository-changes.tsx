@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {
   StageSheetView,
   StageSplitView,
-} from '../../components/staging-screen-options';
+} from './components/staging-screen-options';
 import {useSelector} from 'react-redux';
 import {
   RootState,
