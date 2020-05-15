@@ -4,6 +4,7 @@ import {textStyles, theme} from '../../constants';
 import {SharkButton} from '../shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {FileActionsBarToggleButton} from './file-actions-bar-toggle-button';
+import {GrowWidthContent} from '../grow-width-content';
 
 interface FileActionsBarProps {
   style?: StyleProp<ViewStyle>;
@@ -23,20 +24,23 @@ export const FileActionsBar = ({style = {}}: FileActionsBarProps) => {
           text={'Stage'}
           style={styles.calloutButton}
         />
-        {showMore && (
-          <>
+        <GrowWidthContent expanded={showMore}>
+          <View style={styles.moreViewButtons}>
             <SharkButton
               onPress={() => {}}
               text={'Discard'}
               style={styles.calloutButton}
+              // This prevents text breaking from animating incorrectly
+              textProps={{numberOfLines: 1}}
             />
             <SharkButton
               onPress={() => {}}
               text={'Ignore'}
               style={styles.calloutButton}
+              textProps={{numberOfLines: 1}}
             />
-          </>
-        )}
+          </View>
+        </GrowWidthContent>
         <FileActionsBarToggleButton
           showMore={showMore}
           setShowMore={setShowMore}
@@ -55,6 +59,10 @@ const dynamicStyles = new DynamicStyleSheet({
     backgroundColor: theme.colors.surface,
     padding: 16,
     alignItems: 'center',
+  },
+  moreViewButtons: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
   },
   subheaderText: {
     ...textStyles.callout,
