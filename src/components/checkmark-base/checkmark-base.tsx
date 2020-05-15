@@ -13,7 +13,7 @@ const animationTime = 150;
 
 const hitSlop = {top: 8, bottom: 8, left: 8, right: 8};
 
-interface RoundCheckboxProps {
+interface CheckmarkBaseProps {
   onValueChange?: (val: boolean) => void;
   icon?: string;
   size?: number;
@@ -22,18 +22,19 @@ interface RoundCheckboxProps {
   borderColor?: string;
   checked?: boolean;
   style?: StyleProp<ViewStyle>;
+  borderRadius: number;
 }
 
-interface RoundCheckboxState {
+interface CheckmarkBaseState {
   scaleAndOpacityOfCheckbox: null | Animated.Value;
 }
 
-class RoundCheckbox extends React.PureComponent<
-  RoundCheckboxProps,
-  RoundCheckboxState
+export class CheckmarkBase extends React.PureComponent<
+  CheckmarkBaseProps,
+  CheckmarkBaseState
 > {
   static defaultProps = {
-    icon: 'ios-checkmark',
+    icon: 'checkmark-outline',
     size: 24,
     backgroundColor: '#007AFF',
     iconColor: 'white',
@@ -54,7 +55,7 @@ class RoundCheckbox extends React.PureComponent<
     });
   }
 
-  componentDidUpdate(prevProps: RoundCheckboxProps) {
+  componentDidUpdate(prevProps: CheckmarkBaseProps) {
     if (this.props.checked !== prevProps.checked) {
       if (this.props.checked) {
         Animated.timing(this.state.scaleAndOpacityOfCheckbox!, {
@@ -79,8 +80,7 @@ class RoundCheckbox extends React.PureComponent<
     const bothStyles = {
       width: this.props.size,
       height: this.props.size,
-
-      borderRadius: this.props.size! / 2,
+      borderRadius: this.props.borderRadius,
     };
 
     const checkedStyles = {
@@ -109,7 +109,7 @@ class RoundCheckbox extends React.PureComponent<
             shouldRasterizeIOS={true}
             style={[uncheckedStyles, bothStyles, styles.commonWrapperStyles]}>
             <Icon
-              name={this.props.icon!}
+              name={'ios-checkmark'}
               color={'transparent'}
               style={{
                 height: iconSize,
@@ -122,7 +122,7 @@ class RoundCheckbox extends React.PureComponent<
             shouldRasterizeIOS={true}
             style={[checkedStyles, bothStyles, styles.commonWrapperStyles]}>
             <Icon
-              name={this.props.icon!}
+              name={'ios-checkmark'}
               color={this.props.iconColor}
               style={{
                 height: iconSize,
@@ -141,14 +141,12 @@ class RoundCheckbox extends React.PureComponent<
   };
 }
 
-export default RoundCheckbox;
-
 const styles = StyleSheet.create({
   parentWrapper: {
     position: 'relative',
   },
   commonWrapperStyles: {
-    borderWidth: 1,
+    borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },

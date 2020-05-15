@@ -2,7 +2,7 @@ import * as React from 'react';
 import {theme} from '../../constants';
 import {AppDialog} from '../dialog';
 import {ErrorMessageBox} from '../error-message-box';
-import {Repo} from 'src/entities';
+import {Repo} from '../../entities';
 import {SharkTextInput} from '../shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkButton} from '../shark-button';

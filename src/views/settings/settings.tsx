@@ -27,7 +27,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {SharkCheckbox} from '../../components/shark-checkbox';
+import {SharkRadio} from '../../components/shark-radio';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {AccountButton} from './account-button/account-button';
 import {SharkDivider} from '../../components/shark-divider';
@@ -123,7 +123,7 @@ export const Settings = () => {
               />
             </View>
             <View style={styles.checkboxContainer}>
-              <SharkCheckbox checked={styleOfStaging === 'split'} />
+              <SharkRadio checked={styleOfStaging === 'split'} />
               <Text
                 style={[
                   styles.checkboxText,
@@ -169,7 +169,7 @@ export const Settings = () => {
               />
             </View>
             <View style={styles.checkboxContainer}>
-              <SharkCheckbox checked={styleOfStaging === 'sheet'} />
+              <SharkRadio checked={styleOfStaging === 'sheet'} />
               <Text
                 style={[
                   styles.checkboxText,

@@ -3,12 +3,12 @@ import {CheckmarkBase} from '../checkmark-base';
 import {useDynamicValue} from 'react-native-dark-mode';
 import {theme} from '../../constants';
 
-interface SharkCheckboxProps {
+interface SharkRadioProps {
   checked: boolean;
   onValueChange?: (val: boolean) => void;
 }
 
-export const SharkCheckbox = ({checked, onValueChange}: SharkCheckboxProps) => {
+export const SharkRadio = ({checked, onValueChange}: SharkRadioProps) => {
   const accent = useDynamicValue(theme.colors.primary);
   const surface = useDynamicValue(theme.colors.surface);
   const on_surface_secondary = useDynamicValue(
@@ -23,7 +23,7 @@ export const SharkCheckbox = ({checked, onValueChange}: SharkCheckboxProps) => {
       size={18}
       iconColor={surface}
       onValueChange={onValueChange}
-      borderRadius={3}
+      borderRadius={50}
     />
   );
 };
