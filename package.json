@@ -15,6 +15,7 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@react-native-community/masked-view": "0.1.8",
     "@react-navigation/material-bottom-tabs": "^5.1.7",
     "@react-navigation/native": "^5.1.4",

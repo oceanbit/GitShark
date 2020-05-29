@@ -1,4 +1,8 @@
 const path = require("path");
+const fs = require('fs');
+const appDirectory = fs.realpathSync(process.cwd());
+
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = ({ config, mode }) => {
   config.module.rules.push(
@@ -24,28 +28,29 @@ module.exports = ({ config, mode }) => {
       },
   );
 
-  config.module.rules.push(
-      {
-        test: /\.(js|jsx|mjs)$/,
-        exclude: [/node_modules/],
-        loader: require.resolve('babel-loader'),
-        options: {
-          babelrc: false,
-          presets: ['react-app'],
-          plugins: [
-            [
-              "module-resolver",
-              {
-                "alias": {
-                  "react-native": "./node_modules/react-native-web",
-                }
-              }
-            ]
-          ],
-          cacheDirectory: true,
-        },
-      },
-  );
+      console.log(resolveApp('../node_modules/react-native-vector-icons'));
+
+  config.module.rules.push({
+    test: /\.(js|jsx|mjs)$/,
+    exclude: /node_modules\/(?!(react-native-elements|react-native-vector-icons)\/).*/,
+    loader: require.resolve('babel-loader'),
+    options: {
+      babelrc: false,
+      presets: ['react-app'],
+      plugins: [
+        '@babel/plugin-proposal-class-properties',
+        [
+          'module-resolver',
+          {
+            alias: {
+              'react-native': './node_modules/react-native-web',
+            },
+          },
+        ],
+      ],
+      cacheDirectory: true,
+    },
+  });
 
 
   config.module.rules.push(
@@ -59,7 +64,7 @@ module.exports = ({ config, mode }) => {
       }
   );
 
-  config.resolve.extensions.push('.ts', '.tsx');
+  config.resolve.extensions.push('.ts', '.tsx', '.js');
 
   return config;
 };
