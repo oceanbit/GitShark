@@ -19,6 +19,22 @@ module.exports = ({ config, mode }) => {
               {
                 "alias": {
                   "react-native": "./node_modules/react-native-web",
+                  "@components/*": "./src/components/*",
+                  "@constants": "./src/constants",
+                  "@constants/*": "./src/constants/*",
+                  "@entities": "./src/entities",
+                  "@entities/*": "./src/entities/*",
+                  "@hooks": "./src/hooks",
+                  "@hooks/*": "./src/hooks/*",
+                  "@types": "./src/types",
+                  "@types/*": "./src/types/*",
+                  "@utils": "./src/utils",
+                  "@utils/*": "./src/utils/*",
+                  "@store": "./src/store",
+                  "@store/*": "./src/store/*",
+                  "@assets/*": "./assets/*",
+                  "@services": "./src/services",
+                  "@services/*": "./src/services/*"
                 }
               }
             ]
