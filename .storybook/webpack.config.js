@@ -36,9 +36,12 @@ module.exports = ({ config, mode }) => {
     loader: require.resolve('babel-loader'),
     options: {
       babelrc: false,
-      presets: ['react-app'],
+      presets: [
+        'react-app',
+      ],
       plugins: [
         '@babel/plugin-proposal-class-properties',
+        '@babel/plugin-proposal-object-rest-spread',
         [
           'module-resolver',
           {
