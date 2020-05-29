@@ -2,6 +2,8 @@ const path = require("path");
 const fs = require('fs');
 const appDirectory = fs.realpathSync(process.cwd());
 
+const webpack = require('webpack');
+
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = ({ config, mode }) => {
@@ -19,6 +21,8 @@ module.exports = ({ config, mode }) => {
               {
                 "alias": {
                   "react-native": "./node_modules/react-native-web",
+                  "react-native-fs": "./.storybook/fs",
+                 // Brought in from tsconfig "paths"
                   "@components/*": "./src/components/*",
                   "@constants": "./src/constants",
                   "@constants/*": "./src/constants/*",
