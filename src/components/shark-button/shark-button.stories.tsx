@@ -2,6 +2,6 @@ import React from 'react';
 import {storiesOf} from '@storybook/react';
 import {SharkButton} from './shark-button';
 
-storiesOf('Shark Button', module).add('to Storybook', () => (
+storiesOf('Shark Components/Button', module).add('default styling', () => (
   <SharkButton text="Press Me" onPress={() => {}} />
 ));

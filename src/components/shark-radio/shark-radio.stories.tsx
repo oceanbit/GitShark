@@ -20,4 +20,6 @@ const SharkRadioDemo = () => {
   );
 };
 
-storiesOf('Shark Radios', module).add('to Storybook', () => <SharkRadioDemo />);
+storiesOf('Shark Components/Radio', module).add('default styling', () => (
+  <SharkRadioDemo />
+));

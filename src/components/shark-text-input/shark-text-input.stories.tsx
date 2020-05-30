@@ -15,4 +15,6 @@ const SharkInputDemo = ({...props}: any) => {
   );
 };
 
-storiesOf('Shark Input', module).add('to Storybook', () => <SharkInputDemo />);
+storiesOf('Shark Components/Text Input', module).add('default styling', () => (
+  <SharkInputDemo />
+));
