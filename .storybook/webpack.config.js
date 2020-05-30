@@ -21,6 +21,14 @@ module.exports = ({config, mode}) => {
             alias: {
               'react-native': './node_modules/react-native-web',
               'react-native-fs': './.storybook/fs',
+              // Right now, MaskedView does not have web support. This should be fixed
+              '@react-native-community/masked-view': './.storybook/masked-view',
+              // https://github.com/bakerface/react-native-svg-web#readme
+              'react-native-svg': 'react-native-svg-web',
+              // https://github.com/react-native-web-community/react-native-web-linear-gradient#readme
+              'react-native-linear-gradient':
+                'react-native-web-linear-gradient',
+              'react-content-loader/native': 'react-content-loader',
               // Brought in from tsconfig "paths"
               '@components': './src/components',
               '@constants': './src/constants',

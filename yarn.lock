@@ -11634,6 +11634,11 @@ react-native-sqlite-storage@^5.0.0:
   resolved "https://registry.yarnpkg.com/react-native-sqlite-storage/-/react-native-sqlite-storage-5.0.0.tgz#fb015c928b59d3000360fb0774a99545e7a695d6"
   integrity sha512-c1Joq3/tO1nmIcP8SkRZNolPSbfvY8uZg5lXse0TmjIPC0qHVbk96IMvWGyly1TmYCIpxpuDRc0/xCffDbYIvg==
 
+react-native-svg-web@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/react-native-svg-web/-/react-native-svg-web-1.0.8.tgz#f72c41ccba1a2e450b01dc40b2b68fde104e92e7"
+  integrity sha512-oi+u8gNZvqkP35/XJNs8CDIlucqD6n1uhQZjQ+9J/m2abQ3YOAZSzZ23/8YeOsNDabl0pYsZFinG89K4E6EMgA==
+
 react-native-svg@^12.0.3:
   version "12.1.0"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-12.1.0.tgz#acfe48c35cd5fca3d5fd767abae0560c36cfc03d"
@@ -11659,6 +11664,11 @@ react-native-video@^4.4.5:
     keymirror "^0.1.1"
     prop-types "^15.5.10"
     shaka-player "^2.4.4"
+
+react-native-web-linear-gradient@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-web-linear-gradient/-/react-native-web-linear-gradient-1.1.1.tgz#3c872f099695a31d90448fa5d137f04e81ad7a11"
+  integrity sha512-tjah65P8tSwMi/bzi+/JEinpyhL4875npOyHvm51HfF3uq8XmD6GzlxU7LIIgpqXw7GeI/1UghBCKHAoGIAVeQ==
 
 react-native-web@^0.12.2:
   version "0.12.2"
