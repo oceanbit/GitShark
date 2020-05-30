@@ -2,7 +2,7 @@ import * as React from 'react';
 import 'reflect-metadata';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-import {SafeAreaView, StatusBar, YellowBox} from 'react-native';
+import {StatusBar, YellowBox} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {Repository} from './views/repository/repository';
 import {Account} from './views/account/account';
@@ -16,7 +16,6 @@ import {
   lightPaperTheme,
   StagingTypes,
   StyleOfStagingContext,
-  DatabaseLoadedContext,
   UserContext,
 } from './constants';
 import {DarkModeProvider} from 'react-native-dark-mode';
@@ -24,7 +23,6 @@ import DefaultPreference from 'react-native-default-preference';
 import {
   useGetAndroidPermissions,
   useGitHubUserData,
-  useLoadDatabase,
   useSystemDarkMode,
 } from './hooks';
 import {
@@ -165,7 +163,6 @@ const AppBase = () => {
               </UserContext.Provider>
             </SetDarkModeContext.Provider>
           </StyleOfStagingContext.Provider>
-          <SafeAreaView />
         </PaperProvider>
       </NavigationContainer>
     </SafeAreaProvider>

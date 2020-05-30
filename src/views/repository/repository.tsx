@@ -13,7 +13,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {useSafeArea} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {SharkSafeTop} from '@components/shark-safe-top';
 import {useSelector} from 'react-redux';
 import {RootState, findRepo, clearRepo} from '@store';
@@ -24,7 +24,7 @@ const Tab = createMaterialBottomTabNavigator();
 export const Repository = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
   const dispatch = useThunkDispatch();
-  const insets = useSafeArea();
+  const insets = useSafeAreaInsets();
 
   const styles = useDynamicStyleSheet(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);

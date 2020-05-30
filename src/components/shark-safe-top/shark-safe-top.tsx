@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useSafeArea} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {View} from 'react-native';
 import {useDynamicValue} from 'react-native-dark-mode';
 import {theme} from '@constants';
@@ -12,7 +12,7 @@ export const SharkSafeTop: React.FC<SharkSafeTopProps> = ({
   isFloating,
 }) => {
   const floating = useDynamicValue(theme.colors.floating_surface);
-  const insets = useSafeArea();
+  const insets = useSafeAreaInsets();
 
   const floatingStyle = isFloating ? {backgroundColor: floating} : {};
 
@@ -33,7 +33,7 @@ export const TopSpacerView = ({
   isFloating,
 }: SpacerViewProps) => {
   const floating = useDynamicValue(theme.colors.floating_surface);
-  const insets = useSafeArea();
+  const insets = useSafeAreaInsets();
 
   const floatingStyle = isFloating ? {backgroundColor: floating} : {};
 
@@ -43,7 +43,7 @@ export const TopSpacerView = ({
 };
 
 export const BottomSpacerView = ({additionalSpacing = 0}) => {
-  const insets = useSafeArea();
+  const insets = useSafeAreaInsets();
 
   return <View style={{height: insets.bottom + additionalSpacing}} />;
 };

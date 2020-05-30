@@ -7,7 +7,7 @@ import {FabActions} from './fab-actions';
 import {textStyles, theme} from '@constants';
 import {ExtendedActionFab} from '@components/extended-action-fab';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {useSafeArea} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export interface RepoListExtendedFabProps {
   repos: Repo[] | null;
@@ -22,7 +22,7 @@ export const RepoListExtendedFab = ({
   setSelectedAction,
   isLoading,
 }: RepoListExtendedFabProps) => {
-  const insets = useSafeArea();
+  const insets = useSafeAreaInsets();
 
   const styles = useDynamicStyleSheet(dynamicStyles);
   const fabBottom = React.useRef(new Animated.Value(16));
