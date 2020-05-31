@@ -7,6 +7,7 @@ import {RepositoryHistoryUI} from './repository-history.ui';
 import {Branches} from '../branches';
 
 export const RepositoryHistory = () => {
+  const {repo} = useSelector((state: RootState) => state.repository);
   const {commits} = useSelector((state: RootState) => state.commits);
   const dispatch = useThunkDispatch();
 
@@ -29,6 +30,7 @@ export const RepositoryHistory = () => {
       commits={commits}
       onCommitNavigate={onCommitNavigate}
       topLayer={topLayer}
+      repo={repo}
     />
   );
 };

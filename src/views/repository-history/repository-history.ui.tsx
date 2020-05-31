@@ -4,16 +4,19 @@ import {CommitList} from '@components/commit-list';
 import {HistoryBranchDropdown} from './components/history-branch-dropdown';
 import {OverlayDropdownContent} from '@components/overlay-dropdown-content';
 import {RepositoryHeader} from '@components/repository-header';
+import {ReduxRepo} from '@entities';
 
 interface RepositoryHistoryUIProps {
   commits: any[];
   onCommitNavigate: () => void;
   topLayer: React.ReactNode;
+  repo: ReduxRepo | null;
 }
 export const RepositoryHistoryUI = ({
   commits,
   onCommitNavigate,
   topLayer,
+  repo,
 }: RepositoryHistoryUIProps) => {
   const [showBranches, setShowBranches] = React.useState(false);
 
@@ -37,7 +40,7 @@ export const RepositoryHistoryUI = ({
 
   return (
     <>
-      <RepositoryHeader />
+      <RepositoryHeader repo={repo} />
       <View style={styles.container}>
         <OverlayDropdownContent
           header={header}
