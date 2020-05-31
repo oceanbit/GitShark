@@ -21,6 +21,9 @@ module.exports = ({config, mode}) => {
             alias: {
               'react-native': './node_modules/react-native-web',
               'react-native-fs': './.storybook/fs',
+              'react-native-reanimated': './.storybook/reanimated',
+              // https://github.com/osdnk/react-native-reanimated-bottom-sheet/issues/217
+              'reanimated-bottom-sheet': './.storybook/default-noop',
               // Right now, MaskedView does not have web support. This should be fixed
               '@react-native-community/masked-view': './.storybook/masked-view',
               // https://github.com/bakerface/react-native-svg-web#readme

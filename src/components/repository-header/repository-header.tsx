@@ -23,7 +23,7 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
   const history = useNavigation();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  if (!repo) return;
+  if (!repo) return null;
 
   return (
     <AppBar
