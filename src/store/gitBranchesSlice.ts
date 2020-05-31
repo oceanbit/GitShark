@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '../constants';
+import {RemoteBranch, Remotes} from '@types';
 
 const getRemotesAndBranchesFn = async (path: string) => {
   const remotes = await git.listRemotes({fs, dir: path});
@@ -52,14 +53,8 @@ type RemotesAndBranches = ThenArg<ReturnType<typeof getRemotesAndBranchesFn>>;
 
 const initialState = {
   localBranches: [] as string[],
-  remoteBranches: [] as {
-    name: string;
-    remote: string;
-  }[],
-  remotes: [] as {
-    remote: string;
-    url: string;
-  }[],
+  remoteBranches: [] as RemoteBranch[],
+  remotes: [] as Remotes[],
   loading: 'idle',
 };
 
