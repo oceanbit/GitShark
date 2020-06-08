@@ -18,8 +18,8 @@ import {AppBar} from '../../components/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader';
 import {useNavigation} from '@react-navigation/native';
 import {SlideUpDownSettingsAnimation} from './components/slide-up-down-settings-animation';
-import SplitVideoLight from '../../../assets/videos/split.mp4';
-import SplitVideoDark from '../../../assets/videos/split_dark.mp4';
+import SplitVideoLight from '@assets/videos/split.mp4';
+import SplitVideoDark from '@assets/videos/split_dark.mp4';
 import Video from 'react-native-video';
 import {
   DynamicStyleSheet,
@@ -93,8 +93,9 @@ export const Settings = () => {
                 muted={true}
                 controls={false}
                 resizeMode={'contain'}
-                paused={true}
+                paused={false}
                 repeat={false}
+                disableFocus={true}
                 style={{
                   height: videoHeight,
                   width: videoWidth,
@@ -109,8 +110,9 @@ export const Settings = () => {
                 muted={true}
                 controls={false}
                 resizeMode={'contain'}
-                paused={true}
+                paused={false}
                 repeat={false}
+                disableFocus={true}
                 style={{
                   height: videoHeight,
                   width: videoWidth,

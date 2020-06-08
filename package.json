@@ -30,7 +30,7 @@
     "buffer": "^5.5.0",
     "core-js": "3",
     "dayjs": "^1.8.23",
-    "isomorphic-git": "^1.4.1",
+    "isomorphic-git": "^1.4.4",
     "query-string": "^6.12.1",
     "react": "^16.9.0",
     "react-content-loader": "^5.0.2",

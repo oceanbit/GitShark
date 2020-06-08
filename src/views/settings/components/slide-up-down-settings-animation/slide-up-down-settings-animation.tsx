@@ -51,6 +51,7 @@ export const SlideUpDownSettingsAnimation = ({
         source={SheetUpVideo}
         ref={slideUpVideo}
         style={{height: vidHeight, width: vidWidth}}
+        disableFocus={true}
         muted={true}
         controls={false}
         resizeMode={'contain'}
@@ -70,6 +71,7 @@ export const SlideUpDownSettingsAnimation = ({
           height: vidHeight,
           width: vidWidth,
         }}
+        disableFocus={true}
         muted={true}
         controls={false}
         resizeMode={'contain'}
