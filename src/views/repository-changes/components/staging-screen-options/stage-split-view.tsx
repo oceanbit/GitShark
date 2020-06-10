@@ -48,6 +48,7 @@ export const StageSplitView = ({
 const dynamicStyles = new DynamicStyleSheet({
   container: {
     height: '100%',
+    flex: 1,
   },
   headingText: {
     marginBottom: 16,

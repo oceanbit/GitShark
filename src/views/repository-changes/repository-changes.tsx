@@ -10,6 +10,7 @@ import {useSelector} from 'react-redux';
 import {RootState, getGitStatus, addToStaged, removeFromStaged} from '@store';
 import {useThunkDispatch} from '@hooks';
 import {RepositoryHeader} from '@components/repository-header';
+import {StyleSheet, View} from 'react-native';
 
 export const RepositoryChanges = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
@@ -50,7 +51,7 @@ export const RepositoryChanges = () => {
   }, [history, staged, getUpdate]);
 
   return (
-    <>
+    <View style={styles.container}>
       <RepositoryHeader repo={repo} />
       {useSplitView ? (
         <StageSplitView
@@ -69,6 +70,15 @@ export const RepositoryChanges = () => {
           onCommit={onCommit}
         />
       )}
-    </>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    height: 1,
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
