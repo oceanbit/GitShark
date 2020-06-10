@@ -63,6 +63,7 @@ export const BranchesUI = ({
         return (
           <>
             <TouchableRipple
+              key={remote.remote}
               style={styles.dropDownHeader}
               onPress={() => setExpanded(v => !v)}>
               <>
@@ -84,6 +85,7 @@ export const BranchesUI = ({
                 .map(branch => {
                   return (
                     <RemoteBranchListItem
+                      key={branch.name}
                       branch={{
                         name: branch.name,
                       }}

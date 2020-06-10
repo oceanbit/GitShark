@@ -14,5 +14,5 @@ export const getCommitHeaderBody = ({commit}: GetCommitHeaderBody) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, title = '', message = ''] =
     headerBodyRegex.exec(commit.message) || [];
-  return {title, message};
+  return {title: title.trim(), message: message.trim()};
 };
