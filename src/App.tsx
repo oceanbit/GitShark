@@ -38,6 +38,10 @@ import {Provider} from 'react-redux';
 import {store, setupDatabase} from './store';
 import {useThunkDispatch} from './hooks';
 
+// TODO: Remove once https://github.com/isomorphic-git/isomorphic-git/pull/1156
+// eslint-disable-next-line no-undef
+CompressionStream = null;
+
 YellowBox.ignoreWarnings([
   /**
    * This is in place due to dependencies. Remove this once dep updates
