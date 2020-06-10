@@ -7,11 +7,15 @@ interface StageButtonToggleProps {
   isStage: boolean;
   buttonStyle?: StyleProp<ViewStyle>;
   animTiming?: number;
+  onStageAll: () => void;
+  onStage: () => void;
 }
 export const StageButtonToggle = ({
   isStage,
   buttonStyle,
   animTiming = 150,
+  onStageAll,
+  onStage,
 }: StageButtonToggleProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -80,7 +84,7 @@ export const StageButtonToggle = ({
             },
           ]}>
           <SharkButton
-            onPress={() => {}}
+            onPress={onStageAll}
             text={'Stage All'}
             textProps={{numberOfLines: 1}}
             style={buttonStyle}
@@ -89,7 +93,7 @@ export const StageButtonToggle = ({
 
         <View style={styles.buttonContainer}>
           <SharkButton
-            onPress={() => {}}
+            onPress={onStage}
             text={'Stage'}
             textProps={{numberOfLines: 1}}
             style={buttonStyle}

@@ -34,15 +34,14 @@ export const UnstagedChanges = ({
     setShowUnstagedDivider(true);
   };
 
-  const unstagedBtnAction = React.useMemo(() => {
-    if (selectedUnstagedChanges.length) {
-      return async () => {
-        await addToStaged(selectedUnstagedChanges);
-        setSelectedUnstagedChanges([]);
-      };
-    }
-    return () => addToStaged(unstagedChanges);
-  }, [addToStaged, selectedUnstagedChanges, unstagedChanges]);
+  const onStage = React.useCallback(async () => {
+    await addToStaged(selectedUnstagedChanges);
+    setSelectedUnstagedChanges([]);
+  }, [addToStaged, selectedUnstagedChanges]);
+
+  const onStageAll = React.useCallback(async () => {
+    await addToStaged(unstagedChanges);
+  }, [addToStaged, unstagedChanges]);
 
   const toggleSelected = (change: ChangesArrayItem) => {
     const filteredUnstaged = selectedUnstagedChanges.filter(
@@ -58,7 +57,11 @@ export const UnstagedChanges = ({
 
   return (
     <>
-      <FileActionsBar isItemSelected={!!selectedUnstagedChanges.length} />
+      <FileActionsBar
+        isItemSelected={!!selectedUnstagedChanges.length}
+        onStage={onStage}
+        onStageAll={onStageAll}
+      />
       {showUnstagedDivider && <SharkDivider />}
       <ScrollView style={styles.changesList} onScroll={onUnstagedScroll}>
         {unstagedChanges.map(props => {

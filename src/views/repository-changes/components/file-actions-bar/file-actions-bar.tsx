@@ -12,10 +12,15 @@ const animTiming = 150;
 interface FileActionsBarProps {
   style?: StyleProp<ViewStyle>;
   isItemSelected: boolean;
+
+  onStageAll: () => void;
+  onStage: () => void;
 }
 export const FileActionsBar = ({
   style = {},
   isItemSelected,
+  onStageAll,
+  onStage,
 }: FileActionsBarProps) => {
   const [showMore, setShowMore] = React.useState(false);
 
@@ -55,6 +60,8 @@ export const FileActionsBar = ({
         <StageButtonToggle
           buttonStyle={styles.calloutButton}
           isStage={isItemSelected}
+          onStage={onStage}
+          onStageAll={onStageAll}
         />
         <GrowWidthContent expanded={showMore}>
           <View style={styles.moreViewButtons}>
