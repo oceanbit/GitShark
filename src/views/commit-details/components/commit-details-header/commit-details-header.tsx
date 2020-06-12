@@ -2,6 +2,7 @@ import * as React from 'react';
 import {View, Text, Animated} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {CommitDetailsDualAuthor} from './commit-detail-dual-author';
+import {CommitDetailsSingleAuthor} from './commit-detail-single-author';
 import {textStyles, theme} from '@constants';
 import {DropdownContent} from '@components/dropdown-content';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
@@ -32,10 +33,7 @@ export const CommitDetailsHeader = ({
   const [showMoreInfoOpacity] = React.useState(new Animated.Value(0));
   const [showLessInfoOpacity] = React.useState(new Animated.Value(0));
 
-  const showOne =
-    !author ||
-    (author.email === committer.email &&
-      author.timestamp === committer.timestamp);
+  const showOne = !author || author.email === committer.email;
 
   React.useEffect(() => {
     if (expanded) {
@@ -77,6 +75,13 @@ export const CommitDetailsHeader = ({
           message={message}
           expanded={messageExpanded}
           setExpanded={setMessageExpanded}
+        />
+      )}
+      {showOne && (
+        <CommitDetailsSingleAuthor
+          style={styles.authorBlock}
+          committer={committer}
+          author={author}
         />
       )}
       {!showOne && (

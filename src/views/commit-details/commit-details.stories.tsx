@@ -28,11 +28,16 @@ PR Close #37069
 const shortMessage = 'Closes #37069';
 
 const CommitDetailsDemo = ({...props}: any) => {
-  const twoAuthors = boolean('Should show two authors', true);
+  const twoAuthors = boolean('Two authors', true);
+  const diffTimeStamps = boolean('Different timestamps', false);
 
   const longText = boolean('Long message', true);
 
-  const authorLocal = twoAuthors ? author : undefined;
+  const authorLocal = twoAuthors
+    ? author
+    : diffTimeStamps
+    ? {...committer, timestamp: 3}
+    : committer;
 
   const message = longText ? longMessage : shortMessage;
 
