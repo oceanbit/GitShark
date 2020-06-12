@@ -27,6 +27,12 @@ export const CommitMessageDropdown = ({
     </Text>
   );
 
+  const isLongText = React.useMemo(() => {
+    if (!smallTextHeight || !bigTextHeight) return true;
+    if (smallTextHeight < bigTextHeight) return true;
+    return false;
+  }, [smallTextHeight, bigTextHeight]);
+
   const bigText = <Text style={styles.text}>{message}</Text>;
 
   const [animatedHeight] = React.useState(new Animated.Value(0));
@@ -75,24 +81,33 @@ export const CommitMessageDropdown = ({
 
   return (
     <>
-      <TouchableRipple
-        style={[styles.container, styles.marginContainer]}
-        onPress={() => setExpanded(v => !v)}>
-        <Animated.View
-          style={[styles.innerContainer, {height: animatedHeight}]}>
-          <View style={styles.textContainer}>
-            {!expanded ? <>{smallText}</> : <>{bigText}</>}
-          </View>
-          <View style={styles.fakeIcon} />
+      {isLongText && (
+        <TouchableRipple
+          style={[styles.container, styles.marginContainer]}
+          onPress={() => setExpanded(v => !v)}>
           <Animated.View
-            style={[styles.dropdownArrow, {bottom: animatedBottom}]}>
-            <AnimatedDropdownArrow
-              expanded={expanded}
-              setExpanded={setExpanded as any}
-            />
+            style={[styles.innerContainer, {height: animatedHeight}]}>
+            <View style={styles.textContainer}>
+              {!expanded ? <>{smallText}</> : <>{bigText}</>}
+            </View>
+            <View style={styles.fakeIcon} />
+            <Animated.View
+              style={[styles.dropdownArrow, {bottom: animatedBottom}]}>
+              <AnimatedDropdownArrow
+                expanded={expanded}
+                setExpanded={setExpanded as any}
+              />
+            </Animated.View>
           </Animated.View>
-        </Animated.View>
-      </TouchableRipple>
+        </TouchableRipple>
+      )}
+      {!isLongText && (
+        <View style={[styles.container, styles.marginContainer]}>
+          <View style={styles.innerContainer}>
+            <View style={styles.textContainer}>{smallText}</View>
+          </View>
+        </View>
+      )}
       <View style={styles.offScreenView}>
         {!smallTextHeight && (
           <View

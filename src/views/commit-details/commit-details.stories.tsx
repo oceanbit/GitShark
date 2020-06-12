@@ -32,6 +32,7 @@ const CommitDetailsDemo = ({...props}: any) => {
   const diffTimeStamps = boolean('Different timestamps', false);
 
   const longText = boolean('Long message', true);
+  const noText = boolean('No message', false);
 
   const authorLocal = twoAuthors
     ? author
@@ -39,7 +40,7 @@ const CommitDetailsDemo = ({...props}: any) => {
     ? {...committer, timestamp: 3}
     : committer;
 
-  const message = longText ? longMessage : shortMessage;
+  const message = noText ? '' : longText ? longMessage : shortMessage;
 
   return (
     <StorybookProvider>
