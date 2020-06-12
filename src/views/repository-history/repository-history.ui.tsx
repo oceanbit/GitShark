@@ -5,10 +5,11 @@ import {HistoryBranchDropdown} from './components/history-branch-dropdown';
 import {OverlayDropdownContent} from '@components/overlay-dropdown-content';
 import {RepositoryHeader} from '@components/repository-header';
 import {ReduxRepo} from '@entities';
+import {GitLogCommit} from '@services';
 
 interface RepositoryHistoryUIProps {
   commits: any[];
-  onCommitNavigate: () => void;
+  onCommitNavigate: (commit: GitLogCommit) => void;
   topLayer: React.ReactNode;
   repo: ReduxRepo | null;
 }
