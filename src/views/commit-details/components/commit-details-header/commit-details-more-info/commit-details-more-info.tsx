@@ -11,12 +11,12 @@ import {TouchableRipple} from 'react-native-paper';
 
 interface CommitDetailsMoreInfoProps {
   sha: string;
-  par: string;
-  onNavToPar: () => void;
+  parents: string[];
+  onNavToPar: (val: string) => void;
 }
 export const CommitDetailsMoreInfo = ({
   sha,
-  par,
+  parents,
   onNavToPar,
 }: CommitDetailsMoreInfoProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -82,11 +82,16 @@ export const CommitDetailsMoreInfo = ({
         <View style={styles.sectionTitle}>
           <Text style={styles.sectionTitleText}>PAR</Text>
         </View>
-        <View style={styles.sectionBody}>
-          <TouchableRipple style={styles.parButton} onPress={onNavToPar}>
-            <Text style={styles.parText}>{par}</Text>
-          </TouchableRipple>
-        </View>
+        <ScrollView horizontal={true} style={styles.sectionBody}>
+          {parents.map(parent => (
+            <TouchableRipple
+              style={styles.parButton}
+              onPress={() => onNavToPar(parent)}
+              key={parent}>
+              <Text style={styles.parText}>{parent.slice(0, 7)}</Text>
+            </TouchableRipple>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -135,6 +140,7 @@ const dynamicStyles = new DynamicStyleSheet({
     color: theme.colors.primary,
   },
   parButton: {
+    marginRight: 8,
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderWidth: 1,

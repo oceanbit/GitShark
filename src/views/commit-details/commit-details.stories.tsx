@@ -56,7 +56,7 @@ const CommitDetailsDemo = ({...props}: any) => {
         committer={committer}
         message={message}
         sha={sha}
-        par={par}
+        parents={[par]}
         title={header}
         onNavToPar={() => {}}
       />

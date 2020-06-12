@@ -3,23 +3,50 @@ import {useSelector} from 'react-redux';
 import {RootState} from '@store';
 import {CommitDetailsUI} from './commit-details.ui';
 import {getCommitHeaderBody} from '@services';
+import git from 'isomorphic-git/index.umd.min.js';
+import {fs} from '@constants';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {GitLogCommit} from '@services';
 
 export const CommitDetails = () => {
-  const {selectedCommit} = useSelector((state: RootState) => state.commits);
+  const {repo} = useSelector((state: RootState) => state.repository);
+  const {
+    params: {commitId},
+  } = (useRoute() as any) as {params: {commitId: string}};
+  const [commit, setCommit] = React.useState<GitLogCommit | null>(null);
 
-  if (!selectedCommit) return null;
+  const navigation = useNavigation<any>();
 
-  const {title, message} = getCommitHeaderBody({commit: selectedCommit});
+  React.useEffect(() => {
+    if (!repo || !commitId) return;
+    git
+      .readCommit({gitdir: repo.path, fs: fs, oid: commitId})
+      .then(ccommit => {
+        setCommit({
+          ...ccommit.commit,
+          oid: ccommit.oid,
+        });
+      })
+      .catch(err => console.log(err));
+  }, [commitId, repo]);
+
+  if (!commit) return null;
+
+  const {title, message} = getCommitHeaderBody({commit});
 
   return (
     <CommitDetailsUI
       title={title}
       message={message}
-      committer={selectedCommit.committer}
-      author={selectedCommit.author}
-      par={selectedCommit.parent[0]}
-      sha={selectedCommit.oid}
-      onNavToPar={() => {}}
+      committer={commit.committer}
+      author={commit.author}
+      parents={commit.parent}
+      sha={commit.oid}
+      onNavToPar={parentOid => {
+        navigation.push('CommitDetails', {
+          commitId: parentOid,
+        });
+      }}
     />
   );
 };

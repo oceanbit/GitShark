@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useSelector} from 'react-redux';
-import {RootState, getGitLog, selectCommit} from '@store';
+import {RootState, getGitLog} from '@store';
 import {useThunkDispatch} from '@hooks';
 import {GitLogCommit} from '@services';
 import {useNavigation} from '@react-navigation/native';
@@ -21,9 +21,9 @@ export const RepositoryHistory = () => {
   const history = useNavigation();
 
   const onCommitNavigate = (commit: GitLogCommit) => {
-    // We should have a way to clean this up later, as-of now, there is no commit selected
-    dispatch(selectCommit(commit));
-    history.navigate('CommitDetails');
+    history.navigate('CommitDetails', {
+      commitId: commit.oid,
+    });
   };
 
   const topLayer = React.useMemo(() => <Branches />, []);

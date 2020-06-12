@@ -33,7 +33,6 @@ export const getGitLog = createAsyncThunk(
 const initialState = {
   commits: [] as GitLogCommit[],
   loading: 'idle',
-  selectedCommit: null as GitLogCommit | null,
 };
 
 const commitsSlice = createSlice({
@@ -42,9 +41,6 @@ const commitsSlice = createSlice({
   reducers: {
     clearLog() {
       return initialState;
-    },
-    selectCommit: (state, action: PayloadAction<GitLogCommit | null>) => {
-      state.selectedCommit = action.payload;
     },
   },
   extraReducers: {
@@ -57,5 +53,5 @@ const commitsSlice = createSlice({
   },
 });
 
-export const {clearLog, selectCommit} = commitsSlice.actions;
+export const {clearLog} = commitsSlice.actions;
 export const commitsReducer = commitsSlice.reducer;

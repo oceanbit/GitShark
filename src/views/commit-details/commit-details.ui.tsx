@@ -27,8 +27,8 @@ interface CommitDetailsUIProps {
   message: string;
   title: string;
   sha: string;
-  par: string;
-  onNavToPar: () => void;
+  parents: string[];
+  onNavToPar: (val: string) => void;
 }
 
 export const CommitDetailsUI = ({
@@ -37,7 +37,7 @@ export const CommitDetailsUI = ({
   message,
   title,
   sha,
-  par,
+  parents,
   onNavToPar,
 }: CommitDetailsUIProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -85,7 +85,7 @@ export const CommitDetailsUI = ({
           author={author}
           title={title}
           sha={sha}
-          par={par}
+          parents={parents}
           onNavToPar={onNavToPar}
         />
         <SharkDivider />

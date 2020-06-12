@@ -21,8 +21,8 @@ interface CommitDetailsHeaderProps {
   author?: GitLogCommit['author'];
   title: string;
   sha: string;
-  par: string;
-  onNavToPar: () => void;
+  parents: string[];
+  onNavToPar: (val: string) => void;
 }
 export const CommitDetailsHeader = ({
   expanded,
@@ -34,7 +34,7 @@ export const CommitDetailsHeader = ({
   author,
   title,
   sha,
-  par,
+  parents,
   onNavToPar,
 }: CommitDetailsHeaderProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -97,7 +97,11 @@ export const CommitDetailsHeader = ({
         />
       )}
       <DropdownContent expanded={expanded}>
-        <CommitDetailsMoreInfo sha={sha} par={par} onNavToPar={onNavToPar} />
+        <CommitDetailsMoreInfo
+          sha={sha}
+          parents={parents}
+          onNavToPar={onNavToPar}
+        />
       </DropdownContent>
       <TouchableRipple
         style={styles.dropdownContainer}
