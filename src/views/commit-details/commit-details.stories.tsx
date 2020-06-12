@@ -27,6 +27,13 @@ PR Close #37069
 
 const shortMessage = 'Closes #37069';
 
+const header =
+  'fix(dev-infra): exit non-zero if commit message validation failed';
+
+const sha = '2d1c7df6cf06b54d982b1b5ffd0551f06b54d982b1b5ffd0551';
+
+const par = '8a26e06';
+
 const CommitDetailsDemo = ({...props}: any) => {
   const twoAuthors = boolean('Two authors', true);
   const diffTimeStamps = boolean('Different timestamps', false);
@@ -48,6 +55,10 @@ const CommitDetailsDemo = ({...props}: any) => {
         author={authorLocal}
         committer={committer}
         message={message}
+        sha={sha}
+        par={par}
+        title={header}
+        onNavToPar={() => {}}
       />
     </StorybookProvider>
   );

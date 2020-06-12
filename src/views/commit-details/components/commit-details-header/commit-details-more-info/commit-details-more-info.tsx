@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text} from 'react-native';
+import {View, ScrollView, Text} from 'react-native';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -9,7 +9,16 @@ import {CommitPill} from '@components/commit-pill';
 import {theme, textStyles} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 
-export const CommitDetailsMoreInfo = () => {
+interface CommitDetailsMoreInfoProps {
+  sha: string;
+  par: string;
+  onNavToPar: () => void;
+}
+export const CommitDetailsMoreInfo = ({
+  sha,
+  par,
+  onNavToPar,
+}: CommitDetailsMoreInfoProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const surfaceSecondary = useDynamicValue(theme.colors.on_surface_secondary);
 
@@ -37,7 +46,10 @@ export const CommitDetailsMoreInfo = () => {
         <View style={styles.sectionTitle}>
           <Text style={styles.sectionTitleText}>REF</Text>
         </View>
-        <View style={[styles.sectionBody, styles.tagsContainer]}>
+        {/* We want to support when there are so many tags that they overflow. Keep this a ScrollView */}
+        <ScrollView
+          horizontal={true}
+          style={[styles.sectionBody, styles.tagsContainer]}>
           <CommitPill
             name="origin/master"
             isGitHub={true}
@@ -45,7 +57,7 @@ export const CommitDetailsMoreInfo = () => {
             style={styles.tag}
           />
           <CommitPill name="master" color={prpl} style={styles.tag} />
-        </View>
+        </ScrollView>
       </View>
 
       <TouchableRipple
@@ -57,7 +69,7 @@ export const CommitDetailsMoreInfo = () => {
           </View>
           <View style={styles.sectionBody}>
             <Text style={styles.shaText} ellipsizeMode="tail" numberOfLines={1}>
-              2d1c7df6cf06b54d982b1b5ffd0551f06b54d982b1b5ffd0551
+              {sha}
             </Text>
             <Text style={[styles.copyText, copyTextColor]}>
               {!showCopied ? 'Copy' : 'Copied'}
@@ -71,8 +83,8 @@ export const CommitDetailsMoreInfo = () => {
           <Text style={styles.sectionTitleText}>PAR</Text>
         </View>
         <View style={styles.sectionBody}>
-          <TouchableRipple style={styles.parButton} onPress={() => {}}>
-            <Text style={styles.parText}>8a26e06</Text>
+          <TouchableRipple style={styles.parButton} onPress={onNavToPar}>
+            <Text style={styles.parText}>{par}</Text>
           </TouchableRipple>
         </View>
       </View>

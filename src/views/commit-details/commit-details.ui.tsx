@@ -25,12 +25,20 @@ interface CommitDetailsUIProps {
   committer: GitLogCommit['committer'];
   author?: GitLogCommit['author'];
   message: string;
+  title: string;
+  sha: string;
+  par: string;
+  onNavToPar: () => void;
 }
 
 export const CommitDetailsUI = ({
   committer,
   author,
-  message = messageDefault,
+  message,
+  title,
+  sha,
+  par,
+  onNavToPar,
 }: CommitDetailsUIProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const change_addition = useDynamicValue(theme.colors.change_addition);
@@ -75,6 +83,10 @@ export const CommitDetailsUI = ({
           message={message}
           committer={committer}
           author={author}
+          title={title}
+          sha={sha}
+          par={par}
+          onNavToPar={onNavToPar}
         />
         <SharkDivider />
         <View style={styles.changesHeader}>

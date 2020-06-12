@@ -19,6 +19,10 @@ interface CommitDetailsHeaderProps {
   setMessageExpanded: React.Dispatch<React.SetStateAction<boolean>>;
   committer: GitLogCommit['committer'];
   author?: GitLogCommit['author'];
+  title: string;
+  sha: string;
+  par: string;
+  onNavToPar: () => void;
 }
 export const CommitDetailsHeader = ({
   expanded,
@@ -28,6 +32,10 @@ export const CommitDetailsHeader = ({
   message,
   committer,
   author,
+  title,
+  sha,
+  par,
+  onNavToPar,
 }: CommitDetailsHeaderProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const [showMoreInfoOpacity] = React.useState(new Animated.Value(0));
@@ -67,9 +75,7 @@ export const CommitDetailsHeader = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.commitStyle}>
-        fix(dev-infra): exit non-zero if commit message validation failed
-      </Text>
+      <Text style={styles.commitStyle}>{title}</Text>
       {!!message && (
         <CommitMessageDropdown
           message={message}
@@ -91,7 +97,7 @@ export const CommitDetailsHeader = ({
         />
       )}
       <DropdownContent expanded={expanded}>
-        <CommitDetailsMoreInfo />
+        <CommitDetailsMoreInfo sha={sha} par={par} onNavToPar={onNavToPar} />
       </DropdownContent>
       <TouchableRipple
         style={styles.dropdownContainer}
