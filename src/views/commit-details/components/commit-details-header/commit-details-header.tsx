@@ -8,30 +8,34 @@ import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 import {TouchableRipple} from 'react-native-paper';
 import {CommitDetailsMoreInfo} from './commit-details-more-info';
 import {CommitMessageDropdown} from './commit-message-dropdown/commit-message-dropdown';
-
-const messageDefault = `
-The \`FormStyle\` enum offers two options, and the explanation of the difference between the two can be found on the CLDR official website. Sadly, the link changed and the one currently referenced is a dead-end. This commit fixes the link.
-
-PR Close #37069
-`.trim();
+import {GitLogCommit} from '@services';
 
 interface CommitDetailsHeaderProps {
   expanded: boolean;
   setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
-  message?: string;
+  message: string;
   messageExpanded: boolean;
   setMessageExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+  committer: GitLogCommit['committer'];
+  author?: GitLogCommit['author'];
 }
 export const CommitDetailsHeader = ({
   expanded,
   setExpanded,
   messageExpanded,
   setMessageExpanded,
-  message = messageDefault,
+  message,
+  committer,
+  author,
 }: CommitDetailsHeaderProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const [showMoreInfoOpacity] = React.useState(new Animated.Value(0));
   const [showLessInfoOpacity] = React.useState(new Animated.Value(0));
+
+  const showOne =
+    !author ||
+    (author.email === committer.email &&
+      author.timestamp === committer.timestamp);
 
   React.useEffect(() => {
     if (expanded) {
@@ -75,7 +79,12 @@ export const CommitDetailsHeader = ({
           setExpanded={setMessageExpanded}
         />
       )}
-      <CommitDetailsDualAuthor expanded={expanded} style={styles.authorBlock} />
+      {!showOne && (
+        <CommitDetailsDualAuthor
+          expanded={expanded}
+          style={styles.authorBlock}
+        />
+      )}
       <DropdownContent expanded={expanded}>
         <CommitDetailsMoreInfo />
       </DropdownContent>

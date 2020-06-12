@@ -5,7 +5,7 @@ import {fs} from '@constants';
 
 export const getGitStatus = createAsyncThunk(
   'commits/getGitStatus',
-  async (path: string, {getState}) => {
+  async (_, {getState}) => {
     const {database, repository} = getState() as any;
     if (!database.isLoaded) return;
     const repo = repository.repo;
