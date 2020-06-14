@@ -20,7 +20,7 @@ export const CommitDetails = () => {
   React.useEffect(() => {
     if (!repo || !commitId) return;
     git
-      .readCommit({gitdir: repo.path, fs: fs, oid: commitId})
+      .readCommit({dir: repo.path, fs: fs, oid: commitId})
       .then(ccommit => {
         setCommit({
           ...ccommit.commit,
