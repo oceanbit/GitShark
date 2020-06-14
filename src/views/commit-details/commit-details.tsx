@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '@store';
 import {CommitDetailsUI} from './commit-details.ui';
-import {getCommitHeaderBody} from '@services';
+import {getCommitHeaderBody, getFileStateChanges} from '@services';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {useNavigation, useRoute} from '@react-navigation/native';
@@ -29,6 +29,16 @@ export const CommitDetails = () => {
       })
       .catch(err => console.log(err));
   }, [commitId, repo]);
+
+  React.useEffect(() => {
+    if (!repo || !commit) return;
+    getFileStateChanges(commit.oid, commit.parent[0], repo.path).then(files =>
+      console.log(
+        'files',
+        files.filter(file => file.type !== 'equal'),
+      ),
+    );
+  }, [repo, commit]);
 
   if (!commit) return null;
 
