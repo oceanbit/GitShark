@@ -59,6 +59,7 @@ const CommitDetailsDemo = ({...props}: any) => {
         parents={[par]}
         title={header}
         onNavToPar={() => {}}
+        files={[]}
       />
     </StorybookProvider>
   );

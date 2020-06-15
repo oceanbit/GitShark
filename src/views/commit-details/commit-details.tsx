@@ -15,6 +15,8 @@ export const CommitDetails = () => {
   } = (useRoute() as any) as {params: {commitId: string}};
   const [commit, setCommit] = React.useState<GitLogCommit | null>(null);
 
+  const [files, setFiles] = React.useState<any[]>([]);
+
   const navigation = useNavigation<any>();
 
   React.useEffect(() => {
@@ -32,12 +34,10 @@ export const CommitDetails = () => {
 
   React.useEffect(() => {
     if (!repo || !commit) return;
-    getFileStateChanges(commit.oid, commit.parent[0], repo.path).then(files =>
-      console.log(
-        'files',
-        files.filter(file => file.type !== 'equal'),
-      ),
-    );
+    getFileStateChanges(commit.oid, commit.parent[0], repo.path).then(files => {
+      const newFiles = files.filter(file => file.fileStatus !== 'unmodified');
+      setFiles(newFiles);
+    });
   }, [repo, commit]);
 
   if (!commit) return null;
@@ -52,6 +52,7 @@ export const CommitDetails = () => {
       author={commit.author}
       parents={commit.parent}
       sha={commit.oid}
+      files={files}
       onNavToPar={parentOid => {
         navigation.push('CommitDetails', {
           commitId: parentOid,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView, KeyboardAvoidingView} from 'react-native';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -13,7 +13,8 @@ import {SharkIconButton} from '@components/shark-icon-button';
 import {SharkDivider} from '@components/shark-divider';
 import {textStyles, theme} from '@constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {GitLogCommit} from '@services';
+import {ChangesArrayItem, GitLogCommit} from '@services';
+import {FileChangeListItem} from '@components/file-change-list-item';
 
 const messageDefault = `
 The \`FormStyle\` enum offers two options, and the explanation of the difference between the two can be found on the CLDR official website. Sadly, the link changed and the one currently referenced is a dead-end. This commit fixes the link.
@@ -29,6 +30,7 @@ interface CommitDetailsUIProps {
   sha: string;
   parents: string[];
   onNavToPar: (val: string) => void;
+  files: ChangesArrayItem[];
 }
 
 export const CommitDetailsUI = ({
@@ -39,6 +41,7 @@ export const CommitDetailsUI = ({
   sha,
   parents,
   onNavToPar,
+  files,
 }: CommitDetailsUIProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const change_addition = useDynamicValue(theme.colors.change_addition);
@@ -74,7 +77,7 @@ export const CommitDetailsUI = ({
         }
       />
 
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <CommitDetailsHeader
           expanded={headerExpanded}
           setExpanded={setHeaderExpanded}
@@ -111,7 +114,15 @@ export const CommitDetailsUI = ({
             <Text style={[styles.iconText, styles.modifiedText]}>1</Text>
           </View>
         </View>
-      </View>
+        <SharkDivider />
+        {files.map(file => (
+          <FileChangeListItem
+            key={file.fileName}
+            fileName={file.fileName}
+            fileStatus={file.fileStatus}
+          />
+        ))}
+      </ScrollView>
     </>
   );
 };

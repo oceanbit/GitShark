@@ -1,11 +1,12 @@
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
+import {ChangesArrayItem} from '@services/git/status';
 
-export async function getFileStateChanges(
+export const getFileStateChanges = async (
   commitHash1: string,
   commitHash2: string,
   dir: string,
-) {
+): Promise<ChangesArrayItem[]> => {
   return git.walk({
     fs,
     dir,
@@ -26,15 +27,15 @@ export async function getFileStateChanges(
       const Boid = await B.oid();
 
       // determine modification type
-      let type = 'equal';
+      let type: ChangesArrayItem['fileStatus'] = 'unmodified';
       if (Aoid !== Boid) {
-        type = 'modify';
+        type = 'modified';
       }
       if (Aoid === undefined) {
-        type = 'add';
+        type = 'added';
       }
       if (Boid === undefined) {
-        type = 'remove';
+        type = 'deleted';
       }
       if (Aoid === undefined && Boid === undefined) {
         console.log('Something weird happened:');
@@ -43,9 +44,11 @@ export async function getFileStateChanges(
       }
 
       return {
-        path: `/${filepath}`,
-        type: type,
-      };
+        fileName: filepath,
+        staged: false,
+        unstagedChanges: false,
+        fileStatus: type,
+      } as ChangesArrayItem;
     },
   });
-}
+};
