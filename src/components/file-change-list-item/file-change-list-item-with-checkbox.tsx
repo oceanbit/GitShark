@@ -47,7 +47,6 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   checkbox: {
     marginRight: 16,
-    marginBottom: 8,
   },
   listItem: {
     flexGrow: 1,
