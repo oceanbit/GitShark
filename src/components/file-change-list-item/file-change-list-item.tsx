@@ -98,6 +98,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   fileName: {
     flexGrow: 1,
+    width: 1,
     marginRight: 12,
     ...textStyles.body_01,
     color: theme.colors.on_surface,

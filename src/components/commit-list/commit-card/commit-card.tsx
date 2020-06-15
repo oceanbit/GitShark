@@ -53,7 +53,7 @@ export const CommitCard = ({commit, onPress}: CommitCardProps) => {
             needsPulling={needsPulling}
             needsPushing={needsPushing}
           />
-          <View style={{flexGrow: 1}} />
+          <View style={{flexGrow: 1, width: 1}} />
           <Text style={styles.timeStr}>
             {dateStr} • {timeStr}
           </Text>

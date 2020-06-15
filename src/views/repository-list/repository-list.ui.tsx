@@ -78,6 +78,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   headingText: {
     flexGrow: 1,
+    width: 1,
     ...textStyles.headline_01,
     color: theme.colors.on_surface,
   },

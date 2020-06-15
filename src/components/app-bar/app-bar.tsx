@@ -56,6 +56,7 @@ const dynamicStyles = new DynamicStyleSheet({
     display: 'flex',
     flexDirection: 'column',
     flexGrow: 1,
+    width: 1,
     marginLeft: 8,
   },
   headline: {
