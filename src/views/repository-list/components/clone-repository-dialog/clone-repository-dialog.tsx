@@ -72,7 +72,7 @@ export const CloneRepositoryDialog = ({
               value={repoUrl}
               onChangeText={val => setRepoUrl(val)}
               prefixIcon={'link'}
-              postfixIcon={'clipboard-text'}
+              postfixIcon={'copy'}
             />
             <FolderSelectButton
               path={path}

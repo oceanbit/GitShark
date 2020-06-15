@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {TouchableRipple} from 'react-native-paper';
 import {Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {textStyles, theme} from '@constants';
 import {
   DynamicStyleSheet,

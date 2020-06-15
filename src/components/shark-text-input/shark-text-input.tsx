@@ -8,7 +8,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import {textStyles, theme} from '@constants';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,

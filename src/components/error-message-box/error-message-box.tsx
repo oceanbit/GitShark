@@ -1,6 +1,6 @@
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {textStyles, theme} from '@constants';
 import {
   DynamicStyleSheet,
@@ -22,7 +22,7 @@ export const ErrorMessageBox = ({
 
   return (
     <View style={[styles.errorBoxContainer, style]}>
-      <Icon name="alert-circle" size={18} color={error} />
+      <Icon name="error" size={18} color={error} />
       <Text style={styles.errorText}>{message}</Text>
     </View>
   );

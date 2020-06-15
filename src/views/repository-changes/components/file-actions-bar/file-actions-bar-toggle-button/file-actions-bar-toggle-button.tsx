@@ -60,7 +60,7 @@ export const FileActionsBarToggleButton = ({
   return (
     <View style={[styles.iconContainer, style]}>
       <SharkIconButton
-        iconName="dots-horizontal"
+        iconName="menu"
         style={styles.iconButton}
         onPress={() => setShowMore(v => !v)}
         iconStyle={{

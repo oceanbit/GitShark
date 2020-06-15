@@ -27,20 +27,20 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
 
   return (
     <AppBar
-      leftIcon="arrow-left"
+      leftIcon="arrow_left"
       onLeftSelect={() => history.goBack()}
       headline="Repository"
       caption="Last fetched: 5min ago"
       rightChild={
         <>
-          <HeaderActionNumber iconName="arrow-up-circle" val={4} />
-          <HeaderActionNumber iconName="arrow-down-circle" val={0} />
+          <HeaderActionNumber iconName="push" val={4} />
+          <HeaderActionNumber iconName="pull" val={0} />
           <SharkMenu
             visible={isMenuOpen}
             onDismiss={() => setIsMenuOpen(false)}
             anchor={
               <SharkIconButton
-                iconName="dots-horizontal"
+                iconName="menu"
                 onPress={() => setIsMenuOpen(true)}
               />
             }>

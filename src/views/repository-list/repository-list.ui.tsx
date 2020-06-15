@@ -30,10 +30,7 @@ export const RepositoryListUI = ({
       <View style={styles.container}>
         <View style={styles.headingContainer}>
           <Text style={styles.headingText}>Repositories</Text>
-          <SharkIconButton
-            onPress={navigateToSettings}
-            iconName={'settings-outline'}
-          />
+          <SharkIconButton onPress={navigateToSettings} iconName={'settings'} />
         </View>
         {isLoading && <RepoListLoading />}
         {!isLoading && !!repos?.length && (

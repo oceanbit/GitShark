@@ -50,7 +50,7 @@ export const BranchListItem = ({
           style={styles.arrowStyles}
         />
         <SharkIconButton
-          iconName={isFavorite ? 'star' : 'star-outline'}
+          iconName={isFavorite ? 'favorite_selected' : 'favorite'}
           primaryColor={selected}
           onPress={() => {}}
         />
@@ -60,7 +60,7 @@ export const BranchListItem = ({
           onPress={() => {}}
         />
         <SharkIconButton
-          iconName="dots-horizontal"
+          iconName="menu"
           primaryColor={selected}
           onPress={() => {}}
         />

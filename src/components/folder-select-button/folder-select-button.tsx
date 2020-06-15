@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {textStyles, theme} from '@constants';
 import RNFileSelector from 'react-native-file-selector';
 import {
@@ -57,7 +57,7 @@ export const FolderSelectButton = ({
               style={[styles.selectFolderText, styles.selectFolderBtnWithPath]}>
               {path}
             </Text>
-            <Icon size={24} name="folder-outline" color={accent} />
+            <Icon size={24} name="folder" color={accent} />
           </View>
         </TouchableRipple>
       )}

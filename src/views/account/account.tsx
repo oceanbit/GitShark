@@ -92,7 +92,7 @@ export const Account = () => {
       <ScrollView style={styles.container}>
         <TopSpacerView isFloating={true} />
         <AppBar
-          leftIcon="arrow-left"
+          leftIcon="arrow_left"
           onLeftSelect={() => history.goBack()}
           headline="Accounts"
         />
@@ -104,7 +104,7 @@ export const Account = () => {
             style={styles.signinGithubButton}
             text="Sign in with GitHub"
             type="primary"
-            icon={'github-circle'}
+            icon={'github'}
             onPress={() => {
               Linking.openURL(githubOauthLink);
             }}

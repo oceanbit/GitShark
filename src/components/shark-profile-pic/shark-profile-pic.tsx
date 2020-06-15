@@ -6,7 +6,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 
 const defaultProfPic = require('../../../assets/images/default-profile-pic.png');
 
@@ -41,7 +41,7 @@ export const SharkProfilePic = ({
         <View style={styles.gitHubLogo}>
           <Icon
             size={16}
-            name={'github-circle'}
+            name={'github'}
             color={on_surface}
             style={{textAlign: 'center'}}
           />

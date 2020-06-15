@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import {UserContext, textStyles, theme} from '@constants';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 
 import {
@@ -50,7 +50,7 @@ export const AccountButton = () => {
         </View>
         <Icon
           style={styles.arrowIcon}
-          name="arrow-right"
+          name="arrow_right"
           size={24}
           color={accent}
         />

@@ -1,4 +1,4 @@
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import * as React from 'react';

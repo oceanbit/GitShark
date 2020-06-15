@@ -82,7 +82,7 @@ export const HistoryBranchDropdown = ({
       <Animated.View style={[styles.dropdownView, {marginLeft}]}>
         <SharkIconButton
           onPress={onFavorite}
-          iconName={favorite ? 'star' : 'star-outline'}
+          iconName={favorite ? 'favorite_selected' : 'favorite'}
         />
         <View style={styles.textContainer}>
           <Animated.Text

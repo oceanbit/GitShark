@@ -1,7 +1,7 @@
 import {Text, View} from 'react-native';
 import * as React from 'react';
 import {PushPullArrows} from '@components/push-pull-arrows';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
 import {Menu, TouchableRipple} from 'react-native-paper';
 import {Repo} from '@entities';
@@ -59,7 +59,7 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
                 <TouchableRipple
                   style={styles.moreButtonContainer}
                   onPress={() => setIsMenuOpen(true)}>
-                  <Icon name="dots-horizontal" size={24} color={accent} />
+                  <Icon name="menu" size={24} color={accent} />
                 </TouchableRipple>
               }>
               <Menu.Item
@@ -80,7 +80,7 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
           </View>
           <View style={styles.displayRow}>
             <View style={styles.branchView}>
-              <Icon name="check-circle" size={16} color={accent} />
+              <Icon name="radio_selected" size={16} color={accent} />
               <Text style={styles.branchName}>{repo.currentBranchName}</Text>
             </View>
             <PushPullArrows

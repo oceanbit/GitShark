@@ -30,7 +30,7 @@ export const RemoteBranchListItem = ({
           onPress={() => {}}
         />
         <SharkIconButton
-          iconName="dots-horizontal"
+          iconName="menu"
           primaryColor={false}
           onPress={() => {}}
         />

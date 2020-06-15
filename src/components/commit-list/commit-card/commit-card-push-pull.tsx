@@ -1,6 +1,6 @@
 import {View} from 'react-native';
 import * as React from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
 import {
   DynamicStyleSheet,
@@ -27,13 +27,13 @@ export const CommitCardPushPull = ({
     <View style={styles.arrowContainer}>
       {!!needsPushing && (
         <View style={styles.commitNumberView}>
-          <Icon name="arrow-up" size={10} color={accent} />
+          <Icon name="arrow_up" size={10} color={accent} />
         </View>
       )}
       {!!needsPushing && needsPulling && <View style={styles.middleLine} />}
       {!!needsPulling && (
         <View style={styles.commitNumberView}>
-          <Icon name="arrow-down" size={10} color={accent} />
+          <Icon name="arrow_down" size={10} color={accent} />
         </View>
       )}
     </View>

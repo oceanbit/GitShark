@@ -4,7 +4,7 @@ import {theme} from '@constants';
 import {useRoute} from '@react-navigation/native';
 import {RepositoryHistory} from '../repository-history/repository-history';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {createStackNavigator} from '@react-navigation/stack';
 import {CommitAction} from '../commit-action/commit-action';
 import {CommitDetails} from '../commit-details/commit-details';
@@ -58,7 +58,7 @@ export const Repository = () => {
           options={{
             tabBarLabel: 'Changes',
             tabBarIcon: ({color}) => (
-              <Icon name="file-multiple" color={color} size={24} />
+              <Icon name="changes" color={color} size={24} />
             ),
           }}
         />

@@ -2,7 +2,7 @@ import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import {textStyles, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {ChangesArrayItem} from '@services';
 import {
   DynamicStyleSheet,
@@ -35,7 +35,7 @@ export const FileChangeListItem = ({
       case 'added':
         return (
           <Icon
-            name="plus-circle"
+            name="change_addition"
             size={24}
             color={change_addition}
             style={styles.changeIcon}
@@ -44,7 +44,7 @@ export const FileChangeListItem = ({
       case 'deleted':
         return (
           <Icon
-            name="minus-circle"
+            name="change_removal"
             size={24}
             color={change_removal}
             style={styles.changeIcon}
@@ -54,7 +54,7 @@ export const FileChangeListItem = ({
       default:
         return (
           <Icon
-            name="dots-horizontal-circle"
+            name="change_mixed"
             size={24}
             color={change_mixed}
             style={styles.changeIcon}
@@ -76,7 +76,7 @@ export const FileChangeListItem = ({
       <View style={styles.listItemView}>
         {statusIcon}
         <Text style={styles.fileName}>{fileName}</Text>
-        <Icon name="chevron-right" size={24} color={accent} />
+        <Icon name="arrow_right" size={24} color={accent} />
       </View>
     </TouchableRipple>
   );

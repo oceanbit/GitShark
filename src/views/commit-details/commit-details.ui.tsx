@@ -12,15 +12,9 @@ import {Menu} from 'react-native-paper';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {SharkDivider} from '@components/shark-divider';
 import {textStyles, theme} from '@constants';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {ChangesArrayItem, GitLogCommit} from '@services';
 import {FileChangeListItem} from '@components/file-change-list-item';
-
-const messageDefault = `
-The \`FormStyle\` enum offers two options, and the explanation of the difference between the two can be found on the CLDR official website. Sadly, the link changed and the one currently referenced is a dead-end. This commit fixes the link.
-
-PR Close #37069
-`.trim();
 
 interface CommitDetailsUIProps {
   committer: GitLogCommit['committer'];
@@ -62,7 +56,7 @@ export const CommitDetailsUI = ({
   return (
     <>
       <AppBar
-        leftIcon="arrow-left"
+        leftIcon="arrow_left"
         onLeftSelect={() => {}}
         hasBottomBorder={false}
         rightChild={
@@ -71,7 +65,7 @@ export const CommitDetailsUI = ({
             onDismiss={() => setIsMenuOpen(false)}
             anchor={
               <SharkIconButton
-                iconName="dots-horizontal"
+                iconName="menu"
                 onPress={() => setIsMenuOpen(true)}
               />
             }>
@@ -101,7 +95,7 @@ export const CommitDetailsUI = ({
           <View style={styles.growContainer} />
           {!!added && (
             <View style={styles.infoBlock}>
-              <Icon name="plus-circle" size={24} color={change_addition} />
+              <Icon name="change_addition" size={24} color={change_addition} />
               <Text style={[styles.iconText, styles.additionText]}>
                 {added}
               </Text>
@@ -110,7 +104,7 @@ export const CommitDetailsUI = ({
 
           {!!removed && (
             <View style={[styles.infoBlock]}>
-              <Icon name="minus-circle" size={24} color={change_removal} />
+              <Icon name="change_removal" size={24} color={change_removal} />
               <Text style={[styles.iconText, styles.removalText]}>
                 {removed}
               </Text>
@@ -119,11 +113,7 @@ export const CommitDetailsUI = ({
 
           {!!modified && (
             <View style={[styles.infoBlock]}>
-              <Icon
-                name="dots-horizontal-circle"
-                size={24}
-                color={change_mixed}
-              />
+              <Icon name="change_mixed" size={24} color={change_mixed} />
               <Text style={[styles.iconText, styles.modifiedText]}>
                 {modified}
               </Text>

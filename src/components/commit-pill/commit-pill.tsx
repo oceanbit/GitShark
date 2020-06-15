@@ -6,7 +6,7 @@ import {
   useDynamicStyleSheet,
 } from 'react-native-dark-mode';
 import {textStyles, theme} from '@constants';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 
 interface CommitPillProps {
   isGitHub?: boolean;
@@ -24,7 +24,7 @@ export const CommitPill = ({isGitHub, name, color, style}: CommitPillProps) => {
         {isGitHub && (
           <Icon
             size={16}
-            name={'github-circle'}
+            name={'github'}
             color={on_surface}
             style={{textAlign: 'center'}}
           />

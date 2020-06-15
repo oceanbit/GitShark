@@ -1,6 +1,6 @@
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from '@components/shark-icon';
 import {theme, textStyles} from '@constants';
 import {
   DynamicStyleSheet,
@@ -32,7 +32,7 @@ export const PushPullArrows = ({
     <View style={[styles.arrowContainer, style]}>
       {!!commitsToPush && (
         <View style={styles.commitNumberView}>
-          <Icon name="arrow-up" size={10} color={color} />
+          <Icon name="arrow_up" size={10} color={color} />
           <Text style={[styles.commitNumberText, {color}]}>
             {commitsToPush}
           </Text>
@@ -41,7 +41,7 @@ export const PushPullArrows = ({
       {!!commitsToPush && !!commitsToPull && <View style={styles.middleLine} />}
       {!!commitsToPull && (
         <View style={styles.commitNumberView}>
-          <Icon name="arrow-down" size={10} color={color} />
+          <Icon name="arrow_down" size={10} color={color} />
           <Text style={[styles.commitNumberText, {color}]}>
             {commitsToPull}
           </Text>

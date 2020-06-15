@@ -38,7 +38,7 @@ export const AnimatedDropdownArrow = ({
 
   return (
     <SharkIconButton
-      iconName={'chevron-down'}
+      iconName={'arrow_down'}
       style={style}
       onPress={() => setExpanded(!expanded)}
       iconStyle={{transform: [{rotate: rotation}]}}
