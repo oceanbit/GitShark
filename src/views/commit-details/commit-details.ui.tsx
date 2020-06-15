@@ -48,6 +48,10 @@ export const CommitDetailsUI = ({
   const change_removal = useDynamicValue(theme.colors.change_removal);
   const change_mixed = useDynamicValue(theme.colors.change_mixed);
 
+  const added = files.filter(file => file.fileStatus === 'added').length;
+  const removed = files.filter(file => file.fileStatus === 'deleted').length;
+  const modified = files.filter(file => file.fileStatus === 'modified').length;
+
   const [headerExpanded, setHeaderExpanded] = React.useState(false);
   const [headerMessageExpanded, setHeaderMessageExpanded] = React.useState(
     false,
@@ -95,32 +99,46 @@ export const CommitDetailsUI = ({
         <View style={styles.changesHeader}>
           <Text style={styles.changesHeaderText}>Changes</Text>
           <View style={styles.growContainer} />
-          <View style={styles.infoBlock}>
-            <Icon name="plus-circle" size={24} color={change_addition} />
-            <Text style={[styles.iconText, styles.additionText]}>1</Text>
-          </View>
+          {!!added && (
+            <View style={styles.infoBlock}>
+              <Icon name="plus-circle" size={24} color={change_addition} />
+              <Text style={[styles.iconText, styles.additionText]}>
+                {added}
+              </Text>
+            </View>
+          )}
 
-          <View style={[styles.infoBlock]}>
-            <Icon name="minus-circle" size={24} color={change_removal} />
-            <Text style={[styles.iconText, styles.removalText]}>1</Text>
-          </View>
+          {!!removed && (
+            <View style={[styles.infoBlock]}>
+              <Icon name="minus-circle" size={24} color={change_removal} />
+              <Text style={[styles.iconText, styles.removalText]}>
+                {removed}
+              </Text>
+            </View>
+          )}
 
-          <View style={[styles.infoBlock]}>
-            <Icon
-              name="dots-horizontal-circle"
-              size={24}
-              color={change_mixed}
-            />
-            <Text style={[styles.iconText, styles.modifiedText]}>1</Text>
-          </View>
+          {!!modified && (
+            <View style={[styles.infoBlock]}>
+              <Icon
+                name="dots-horizontal-circle"
+                size={24}
+                color={change_mixed}
+              />
+              <Text style={[styles.iconText, styles.modifiedText]}>
+                {modified}
+              </Text>
+            </View>
+          )}
         </View>
         <SharkDivider />
         {files.map(file => (
-          <FileChangeListItem
-            key={file.fileName}
-            fileName={file.fileName}
-            fileStatus={file.fileStatus}
-          />
+          <React.Fragment key={file.fileName}>
+            <FileChangeListItem
+              fileName={file.fileName}
+              fileStatus={file.fileStatus}
+            />
+            <SharkDivider />
+          </React.Fragment>
         ))}
       </ScrollView>
     </>
@@ -144,7 +162,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   infoBlock: {
     marginLeft: 8,
-    paddingHorizontal: 4,
+    paddingLeft: 8,
     flexDirection: 'row',
     alignItems: 'center',
   },

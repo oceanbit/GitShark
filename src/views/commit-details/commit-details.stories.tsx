@@ -59,7 +59,26 @@ const CommitDetailsDemo = ({...props}: any) => {
         parents={[par]}
         title={header}
         onNavToPar={() => {}}
-        files={[]}
+        files={[
+          {
+            fileStatus: 'modified',
+            fileName: 'CHANGELOG.md',
+            unstagedChanges: false,
+            staged: false,
+          },
+          {
+            fileStatus: 'deleted',
+            fileName: 'README.md',
+            unstagedChanges: false,
+            staged: false,
+          },
+          {
+            fileStatus: 'added',
+            fileName: 'TEST.md',
+            unstagedChanges: false,
+            staged: false,
+          },
+        ]}
       />
     </StorybookProvider>
   );
