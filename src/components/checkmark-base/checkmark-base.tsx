@@ -15,7 +15,6 @@ const hitSlop = {top: 8, bottom: 8, left: 8, right: 8};
 
 interface CheckmarkBaseProps {
   onValueChange?: (val: boolean) => void;
-  icon?: string;
   size?: number;
   backgroundColor?: string;
   iconColor?: string;
@@ -34,7 +33,6 @@ export class CheckmarkBase extends React.PureComponent<
   CheckmarkBaseState
 > {
   static defaultProps = {
-    icon: 'checkmark-outline',
     size: 24,
     backgroundColor: '#007AFF',
     iconColor: 'white',

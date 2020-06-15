@@ -11,6 +11,7 @@ interface SharkSubheaderProps {
   style?: StyleProp<ViewStyle>;
   buttonType?: SharkButtonProps['type'];
   buttonDisabled?: boolean;
+  leftChild?: React.ReactNode;
 }
 
 export const SharkSubheader = ({
@@ -20,11 +21,13 @@ export const SharkSubheader = ({
   style = {},
   buttonType,
   buttonDisabled = false,
+  leftChild = null,
 }: SharkSubheaderProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   return (
     <View style={[styles.subheaderContainer, style]}>
+      {leftChild}
       <Text style={styles.subheaderText}>{calloutText}</Text>
       {!!buttonText && (
         <SharkButton
