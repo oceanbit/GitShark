@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {Icon} from '@components/shark-icon';
 
 const animationTime = 150;
 
@@ -16,12 +16,12 @@ const hitSlop = {top: 8, bottom: 8, left: 8, right: 8};
 interface CheckmarkBaseProps {
   onValueChange?: (val: boolean) => void;
   size?: number;
-  backgroundColor?: string;
-  iconColor?: string;
-  borderColor?: string;
   checked?: boolean;
   style?: StyleProp<ViewStyle>;
-  borderRadius: number;
+  unselectedIcon: string;
+  selectedIcon: string;
+  unselectedColor: string;
+  selectedColor: string;
 }
 
 interface CheckmarkBaseState {
@@ -33,13 +33,12 @@ export class CheckmarkBase extends React.PureComponent<
   CheckmarkBaseState
 > {
   static defaultProps = {
-    size: 24,
-    backgroundColor: '#007AFF',
-    iconColor: 'white',
-    borderColor: 'grey',
+    size: 18,
     checked: false,
     onValueChange: () => {},
     style: {},
+    unselectedIcon: '',
+    selectedIcon: '',
   };
 
   state = {
@@ -78,23 +77,15 @@ export class CheckmarkBase extends React.PureComponent<
     const bothStyles = {
       width: this.props.size,
       height: this.props.size,
-      borderRadius: this.props.borderRadius,
     };
 
     const checkedStyles = {
-      backgroundColor: this.props.backgroundColor,
-      borderColor: this.props.backgroundColor,
       opacity: this.state.scaleAndOpacityOfCheckbox,
       scaleX: this.state.scaleAndOpacityOfCheckbox,
       scaleY: this.state.scaleAndOpacityOfCheckbox,
       position: 'absolute',
       top: 0,
       left: 0,
-    };
-
-    const uncheckedStyles = {
-      backgroundColor: 'transparent',
-      borderColor: this.props.borderColor,
     };
 
     return (
@@ -105,14 +96,15 @@ export class CheckmarkBase extends React.PureComponent<
         <View style={[styles.parentWrapper]}>
           <View
             shouldRasterizeIOS={true}
-            style={[uncheckedStyles, bothStyles, styles.commonWrapperStyles]}>
+            style={[bothStyles, styles.commonWrapperStyles]}>
             <Icon
-              name={'ios-checkmark'}
-              color={'transparent'}
+              name={this.props.unselectedIcon}
+              color={this.props.unselectedColor}
+              size={iconSize}
               style={{
                 height: iconSize,
+                width: iconSize,
                 fontSize: iconSize,
-                backgroundColor: 'transparent',
               }}
             />
           </View>
@@ -120,12 +112,13 @@ export class CheckmarkBase extends React.PureComponent<
             shouldRasterizeIOS={true}
             style={[checkedStyles, bothStyles, styles.commonWrapperStyles]}>
             <Icon
-              name={'ios-checkmark'}
-              color={this.props.iconColor}
+              name={this.props.selectedIcon}
+              color={this.props.selectedColor}
+              size={iconSize}
               style={{
                 height: iconSize,
+                width: iconSize,
                 fontSize: iconSize,
-                backgroundColor: 'transparent',
               }}
             />
           </Animated.View>
@@ -144,7 +137,6 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   commonWrapperStyles: {
-    borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },

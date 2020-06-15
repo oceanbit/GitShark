@@ -10,7 +10,6 @@ interface SharkCheckboxProps {
 
 export const SharkCheckbox = ({checked, onValueChange}: SharkCheckboxProps) => {
   const accent = useDynamicValue(theme.colors.primary);
-  const surface = useDynamicValue(theme.colors.surface);
   const on_surface_secondary = useDynamicValue(
     theme.colors.on_surface_secondary,
   );
@@ -18,12 +17,12 @@ export const SharkCheckbox = ({checked, onValueChange}: SharkCheckboxProps) => {
   return (
     <CheckmarkBase
       checked={checked}
-      backgroundColor={accent}
-      borderColor={on_surface_secondary}
-      size={18}
-      iconColor={surface}
       onValueChange={onValueChange}
-      borderRadius={3}
+      unselectedIcon={'checkbox_unselected'}
+      selectedIcon={'checkbox_selected'}
+      size={18}
+      unselectedColor={on_surface_secondary}
+      selectedColor={accent}
     />
   );
 };
