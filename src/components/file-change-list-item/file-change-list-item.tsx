@@ -70,7 +70,7 @@ export const FileChangeListItem = ({
   ]);
   return (
     <TouchableRipple
-      style={[style, styles.listItemContainer]}
+      style={[styles.listItemContainer, style]}
       onPress={onPress}
       rippleColor={divider}>
       <View style={styles.listItemView}>
@@ -84,15 +84,10 @@ export const FileChangeListItem = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   listItemContainer: {
-    borderStyle: 'solid',
-    borderColor: theme.colors.divider,
-    borderRadius: theme.roundness,
-    borderWidth: 1,
     paddingLeft: 12,
     paddingVertical: 12,
     paddingRight: 8,
     justifyContent: 'center',
-    marginBottom: 8,
   },
   listItemView: {
     flexDirection: 'row',

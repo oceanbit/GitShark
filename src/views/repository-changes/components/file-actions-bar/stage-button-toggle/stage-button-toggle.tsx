@@ -85,7 +85,7 @@ export const StageButtonToggle = ({
           ]}>
           <SharkButton
             onPress={onStageAll}
-            text={'Stage All'}
+            text={'Stage all'}
             textProps={{numberOfLines: 1}}
             style={buttonStyle}
           />

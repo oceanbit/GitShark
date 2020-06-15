@@ -9,7 +9,7 @@ import {
   useDynamicValue,
 } from 'react-native-dark-mode';
 
-interface SharkTextInputProps {
+export interface SharkButtonProps {
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
   text: string;
@@ -30,7 +30,7 @@ export const SharkButton = ({
   disabled = false,
   backgroundColor,
   textProps = {},
-}: SharkTextInputProps) => {
+}: SharkButtonProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
   const on_primary = useDynamicValue(theme.colors.on_primary);

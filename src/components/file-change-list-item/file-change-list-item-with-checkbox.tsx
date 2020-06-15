@@ -1,8 +1,10 @@
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import * as React from 'react';
 import {ChangesArrayItem} from '@services';
 import {FileChangeListItem} from './file-change-list-item';
 import {SharkCheckbox} from '../shark-checkbox';
+import {theme} from '@constants';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface FileChangeListItemProps {
   fileName: string;
@@ -19,6 +21,8 @@ export const FileChangeListItemWithCheckbox = ({
   onToggle = () => {},
   isChecked,
 }: FileChangeListItemProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   return (
     <View style={styles.listItemContainer}>
       <View style={styles.checkbox}>
@@ -34,7 +38,7 @@ export const FileChangeListItemWithCheckbox = ({
   );
 };
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   listItemContainer: {
     display: 'flex',
     flexDirection: 'row',

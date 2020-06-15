@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  ScrollView,
-} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
 import {ChangesArrayItem} from '@services';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
@@ -24,16 +20,6 @@ export const UnstagedChanges = ({
   const [selectedUnstagedChanges, setSelectedUnstagedChanges] = React.useState<
     ChangesArrayItem[]
   >([]);
-  const [showUnstagedDivider, setShowUnstagedDivider] = React.useState(false);
-
-  const onUnstagedScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (!event.nativeEvent.contentOffset.y) {
-      setShowUnstagedDivider(false);
-      return;
-    }
-    setShowUnstagedDivider(true);
-  };
-
   const onStage = React.useCallback(async () => {
     await addToStaged(selectedUnstagedChanges);
     setSelectedUnstagedChanges([]);
@@ -62,19 +48,23 @@ export const UnstagedChanges = ({
         onStage={onStage}
         onStageAll={onStageAll}
       />
-      {showUnstagedDivider && <SharkDivider />}
-      <ScrollView style={styles.changesList} onScroll={onUnstagedScroll}>
-        {unstagedChanges.map(props => {
+      {!!unstagedChanges.length && <SharkDivider />}
+      <ScrollView>
+        {unstagedChanges.map((props, i, arr) => {
           const isChecked = !!selectedUnstagedChanges.find(
             change => change.fileName === props.fileName,
           );
           return (
-            <FileChangeListItemWithCheckbox
-              isChecked={isChecked}
-              key={props.fileName}
-              onToggle={() => toggleSelected(props)}
-              {...props}
-            />
+            <React.Fragment key={props.fileName}>
+              <View style={styles.changeItem}>
+                <FileChangeListItemWithCheckbox
+                  isChecked={isChecked}
+                  onToggle={() => toggleSelected(props)}
+                  {...props}
+                />
+              </View>
+              {i !== arr.length - 1 && <SharkDivider />}
+            </React.Fragment>
           );
         })}
       </ScrollView>
@@ -83,7 +73,7 @@ export const UnstagedChanges = ({
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  changesList: {
+  changeItem: {
     paddingHorizontal: 16,
   },
 });

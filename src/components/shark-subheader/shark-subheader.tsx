@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {textStyles, theme} from '@constants';
-import {SharkButton} from '../shark-button';
+import {SharkButton, SharkButtonProps} from '../shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface SharkSubheaderProps {
@@ -9,6 +9,8 @@ interface SharkSubheaderProps {
   buttonText?: string;
   onButtonClick?: () => void;
   style?: StyleProp<ViewStyle>;
+  buttonType?: SharkButtonProps['type'];
+  buttonDisabled?: boolean;
 }
 
 export const SharkSubheader = ({
@@ -16,6 +18,8 @@ export const SharkSubheader = ({
   buttonText,
   onButtonClick = () => {},
   style = {},
+  buttonType,
+  buttonDisabled = false,
 }: SharkSubheaderProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -27,6 +31,8 @@ export const SharkSubheader = ({
           onPress={onButtonClick}
           text={buttonText}
           style={styles.calloutButton}
+          type={buttonType}
+          disabled={buttonDisabled}
         />
       )}
     </View>

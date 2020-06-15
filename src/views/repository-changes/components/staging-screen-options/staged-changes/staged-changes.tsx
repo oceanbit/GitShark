@@ -3,6 +3,7 @@ import {
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
+  View,
 } from 'react-native';
 import {SharkSubheader} from '@components/shark-subheader';
 import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
@@ -30,17 +31,8 @@ export const StagedChanges = ({
     ChangesArrayItem[]
   >([]);
 
-  const [showStagedDivider, setShowStagedDivider] = React.useState(false);
-
-  const onStagedScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (!event.nativeEvent.contentOffset.y) {
-      setShowStagedDivider(false);
-      return;
-    }
-    setShowStagedDivider(true);
-  };
-
-  const stagedBtnText = selectedStagedChanges.length ? 'Unstage' : 'Commit All';
+  const stagedBtnText = selectedStagedChanges.length ? 'Unstage' : 'Commit all';
+  const buttonType = selectedStagedChanges.length ? 'outline' : 'primary';
 
   const stagedBtnAction = React.useMemo(() => {
     if (selectedStagedChanges.length) {
@@ -73,20 +65,27 @@ export const StagedChanges = ({
         calloutText={'Staged'}
         onButtonClick={stagedBtnAction}
         style={floatingStyle}
+        buttonType={buttonType}
+        buttonDisabled={!stagedChanges.length}
       />
-      {showStagedDivider && <SharkDivider />}
-      <ScrollView style={styles.changesList} onScroll={onStagedScroll}>
-        {stagedChanges.map(props => {
+      {!!stagedChanges.length && <SharkDivider />}
+      <ScrollView>
+        {stagedChanges.map((props, i, arr) => {
           const isChecked = !!selectedStagedChanges.find(
             change => change.fileName === props.fileName,
           );
           return (
-            <FileChangeListItemWithCheckbox
-              isChecked={isChecked}
-              key={props.fileName}
-              onToggle={() => toggleSelected(props)}
-              {...props}
-            />
+            <React.Fragment key={props.fileName}>
+              <View style={styles.changeItem}>
+                <FileChangeListItemWithCheckbox
+                  isChecked={isChecked}
+                  key={props.fileName}
+                  onToggle={() => toggleSelected(props)}
+                  {...props}
+                />
+              </View>
+              {i !== arr.length - 1 && <SharkDivider />}
+            </React.Fragment>
           );
         })}
       </ScrollView>
@@ -95,7 +94,7 @@ export const StagedChanges = ({
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  changesList: {
+  changeItem: {
     paddingHorizontal: 16,
   },
   subheaderFloating: {
