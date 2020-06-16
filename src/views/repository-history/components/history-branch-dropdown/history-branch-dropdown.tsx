@@ -130,7 +130,6 @@ const dynamicStyles = new DynamicStyleSheet({
   branchName: {
     width: '100%',
     position: 'absolute',
-    height: '100%',
     textAlignVertical: 'center',
     left: 0,
     ...textStyles.body_01,
