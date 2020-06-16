@@ -49,6 +49,7 @@ export const UnstagedChanges = ({
         onStageAll={onStageAll}
         unstagedChanges={unstagedChanges}
         selectedUnstagedChanges={selectedUnstagedChanges}
+        setSelectedUnstagedChanges={setSelectedUnstagedChanges}
       />
       {!!unstagedChanges.length && <SharkDivider />}
       <ScrollView>

@@ -75,7 +75,9 @@ export const StagedChanges = ({
               !!stagedChanges.length
             }
             indeterminate={!!selectedStagedChanges.length}
-            onValueChange={() => {}}
+            onValueChange={selectAll => {
+              setSelectedStagedChanges(selectAll ? stagedChanges : []);
+            }}
           />
         }
       />

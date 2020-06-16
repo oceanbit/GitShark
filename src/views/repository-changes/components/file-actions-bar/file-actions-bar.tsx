@@ -19,6 +19,7 @@ interface FileActionsBarProps {
   onStage: () => void;
   selectedUnstagedChanges: ChangesArrayItem[];
   unstagedChanges: ChangesArrayItem[];
+  setSelectedUnstagedChanges: (changes: ChangesArrayItem[]) => void;
 }
 export const FileActionsBar = ({
   style = {},
@@ -27,6 +28,7 @@ export const FileActionsBar = ({
   onStage,
   selectedUnstagedChanges,
   unstagedChanges,
+  setSelectedUnstagedChanges,
 }: FileActionsBarProps) => {
   const [showMore, setShowMore] = React.useState(false);
 
@@ -59,7 +61,9 @@ export const FileActionsBar = ({
             !!unstagedChanges.length
           }
           indeterminate={!!selectedUnstagedChanges.length}
-          onValueChange={() => {}}
+          onValueChange={selectAll => {
+            setSelectedUnstagedChanges(selectAll ? unstagedChanges : []);
+          }}
         />
         <Animated.Text style={styles.subheaderText}>Unstaged</Animated.Text>
       </Animated.View>
