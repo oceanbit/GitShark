@@ -1,11 +1,9 @@
 import * as React from 'react';
 import {
   Animated,
-  StyleProp,
   StyleSheet,
   TouchableWithoutFeedback,
   View,
-  ViewStyle,
 } from 'react-native';
 import {Icon} from '@components/shark-icon';
 
@@ -20,7 +18,6 @@ interface CheckmarkBaseProps {
   onValueChange?: (val: boolean) => void;
   size?: number;
   state?: BaseState;
-  style?: StyleProp<ViewStyle>;
   unselectedIcon: string;
   selectedIcon: string;
   unselectedColor: string;
@@ -41,7 +38,6 @@ export class CheckmarkBase extends React.PureComponent<
     size: 18,
     state: 'unchecked',
     onValueChange: () => {},
-    style: {},
     unselectedIcon: '',
     indetermindateIcon: '',
     selectedIcon: '',
@@ -118,9 +114,6 @@ export class CheckmarkBase extends React.PureComponent<
   }
 
   render() {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const iconSize = parseInt((this.props.size! * 1.3) as any, 10);
-
     const bothStyles = {
       width: this.props.size,
       height: this.props.size,
@@ -145,10 +138,7 @@ export class CheckmarkBase extends React.PureComponent<
     };
 
     return (
-      <TouchableWithoutFeedback
-        hitSlop={hitSlop}
-        onPress={this._onPress}
-        style={this.props.style}>
+      <TouchableWithoutFeedback hitSlop={hitSlop} onPress={this._onPress}>
         <View style={[styles.parentWrapper]}>
           <View
             shouldRasterizeIOS={true}
@@ -156,11 +146,11 @@ export class CheckmarkBase extends React.PureComponent<
             <Icon
               name={this.props.unselectedIcon}
               color={this.props.unselectedColor}
-              size={iconSize}
+              size={this.props.size}
               style={{
-                height: iconSize,
-                width: iconSize,
-                fontSize: iconSize,
+                height: this.props.size,
+                width: this.props.size,
+                fontSize: this.props.size,
               }}
             />
           </View>
@@ -174,11 +164,11 @@ export class CheckmarkBase extends React.PureComponent<
             <Icon
               name={this.props.indetermindateIcon || ''}
               color={this.props.selectedColor}
-              size={iconSize}
+              size={this.props.size}
               style={{
-                height: iconSize,
-                width: iconSize,
-                fontSize: iconSize,
+                height: this.props.size,
+                width: this.props.size,
+                fontSize: this.props.size,
               }}
             />
           </Animated.View>
@@ -188,11 +178,11 @@ export class CheckmarkBase extends React.PureComponent<
             <Icon
               name={this.props.selectedIcon}
               color={this.props.selectedColor}
-              size={iconSize}
+              size={this.props.size}
               style={{
-                height: iconSize,
-                width: iconSize,
-                fontSize: iconSize,
+                height: this.props.size,
+                width: this.props.size,
+                fontSize: this.props.size,
               }}
             />
           </Animated.View>

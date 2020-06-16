@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {View} from 'react-native';
 import {CheckmarkBase} from '../checkmark-base';
 import {useDynamicValue} from 'react-native-dark-mode';
 import {theme} from '@constants';
@@ -21,17 +22,19 @@ export const SharkCheckbox = ({
   );
 
   return (
-    <CheckmarkBase
-      state={
-        checked ? 'checked' : indeterminate ? 'indeterminate' : 'unchecked'
-      }
-      onValueChange={onValueChange}
-      unselectedIcon={'checkbox_unselected'}
-      selectedIcon={'checkbox_selected'}
-      indetermindateIcon={'checkbox_intermediate'}
-      size={18}
-      unselectedColor={on_surface_secondary}
-      selectedColor={accent}
-    />
+    <View style={{padding: 8}}>
+      <CheckmarkBase
+        state={
+          checked ? 'checked' : indeterminate ? 'indeterminate' : 'unchecked'
+        }
+        onValueChange={onValueChange}
+        unselectedIcon={'checkbox_unselected'}
+        selectedIcon={'checkbox_selected'}
+        indetermindateIcon={'checkbox_intermediate'}
+        size={24}
+        unselectedColor={on_surface_secondary}
+        selectedColor={accent}
+      />
+    </View>
   );
 };
