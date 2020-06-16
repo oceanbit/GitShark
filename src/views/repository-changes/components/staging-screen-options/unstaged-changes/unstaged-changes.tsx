@@ -47,6 +47,9 @@ export const UnstagedChanges = ({
         isItemSelected={!!selectedUnstagedChanges.length}
         onStage={onStage}
         onStageAll={onStageAll}
+        unstagedChanges={unstagedChanges}
+        selectedUnstagedChanges={selectedUnstagedChanges}
+        setSelectedUnstagedChanges={setSelectedUnstagedChanges}
       />
       {!!unstagedChanges.length && <SharkDivider />}
       <ScrollView>
@@ -73,7 +76,5 @@ export const UnstagedChanges = ({
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  changeItem: {
-    paddingHorizontal: 16,
-  },
+  changeItem: {},
 });

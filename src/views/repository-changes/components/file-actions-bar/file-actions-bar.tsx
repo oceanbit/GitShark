@@ -6,21 +6,29 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {FileActionsBarToggleButton} from './file-actions-bar-toggle-button';
 import {GrowWidthContent} from '@components/grow-width-content';
 import {StageButtonToggle} from './stage-button-toggle';
+import {SharkCheckbox} from '@components/shark-checkbox';
+import {SharkSubheader} from '@components/shark-subheader';
+import {ChangesArrayItem} from '@services';
 
 const animTiming = 150;
 
 interface FileActionsBarProps {
   style?: StyleProp<ViewStyle>;
   isItemSelected: boolean;
-
   onStageAll: () => void;
   onStage: () => void;
+  selectedUnstagedChanges: ChangesArrayItem[];
+  unstagedChanges: ChangesArrayItem[];
+  setSelectedUnstagedChanges: (changes: ChangesArrayItem[]) => void;
 }
 export const FileActionsBar = ({
   style = {},
   isItemSelected,
   onStageAll,
   onStage,
+  selectedUnstagedChanges,
+  unstagedChanges,
+  setSelectedUnstagedChanges,
 }: FileActionsBarProps) => {
   const [showMore, setShowMore] = React.useState(false);
 
@@ -37,7 +45,7 @@ export const FileActionsBar = ({
       }).start();
     } else {
       Animated.timing(textLeft, {
-        toValue: 16,
+        toValue: 8,
         duration: animTiming,
         useNativeDriver: false,
       }).start();
@@ -46,15 +54,19 @@ export const FileActionsBar = ({
 
   return (
     <View style={[styles.subheaderContainer, style]}>
-      <Animated.Text
-        style={[
-          styles.subheaderText,
-          {
-            left: textLeft,
-          },
-        ]}>
-        Unstaged
-      </Animated.Text>
+      <Animated.View style={[styles.subheaderTextContainer, {left: textLeft}]}>
+        <SharkCheckbox
+          checked={
+            unstagedChanges.length === selectedUnstagedChanges.length &&
+            !!unstagedChanges.length
+          }
+          indeterminate={!!selectedUnstagedChanges.length}
+          onValueChange={selectAll => {
+            setSelectedUnstagedChanges(selectAll ? unstagedChanges : []);
+          }}
+        />
+        <Animated.Text style={styles.subheaderText}>Unstaged</Animated.Text>
+      </Animated.View>
       <View />
       <View style={styles.showMoreView}>
         <StageButtonToggle
@@ -99,7 +111,10 @@ const dynamicStyles = new DynamicStyleSheet({
     alignContent: 'center',
     overflow: 'hidden',
     backgroundColor: theme.colors.surface,
-    padding: 16,
+    paddingVertical: 16,
+    paddingRight: 16,
+    // This is overwritten by the `left` property set in the animation
+    paddingLeft: 8,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -107,11 +122,17 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
     flexWrap: 'nowrap',
   },
-  subheaderText: {
-    ...textStyles.callout,
-    flexGrow: 1,
-    color: theme.colors.on_surface,
+  subheaderTextContainer: {
     position: 'absolute',
+    flexGrow: 1,
+    flexDirection: 'row',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  subheaderText: {
+    marginLeft: 8,
+    ...textStyles.callout,
+    color: theme.colors.on_surface,
   },
   calloutButton: {
     borderWidth: 0,

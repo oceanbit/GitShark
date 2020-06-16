@@ -76,7 +76,9 @@ export const FileChangeListItem = ({
       <View style={styles.listItemView}>
         {statusIcon}
         <Text style={styles.fileName}>{fileName}</Text>
-        <Icon name="arrow_right" size={24} color={accent} />
+        <View style={styles.arrowIcon}>
+          <Icon name="arrow_right" size={24} color={accent} />
+        </View>
       </View>
     </TouchableRipple>
   );
@@ -84,22 +86,25 @@ export const FileChangeListItem = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   listItemContainer: {
-    paddingLeft: 12,
-    paddingVertical: 12,
+    paddingLeft: 16,
     paddingRight: 8,
     justifyContent: 'center',
+    paddingVertical: 8,
   },
   listItemView: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   changeIcon: {
-    marginRight: 12,
+    marginRight: 16,
+  },
+  arrowIcon: {
+    paddingHorizontal: 8,
   },
   fileName: {
     flexGrow: 1,
     width: 1,
-    marginRight: 12,
+    marginRight: 8,
     ...textStyles.body_01,
     color: theme.colors.on_surface,
   },
