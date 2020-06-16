@@ -39,12 +39,7 @@ export const SharkProfilePic = ({
       />
       {showGHLogo && (
         <View style={styles.gitHubLogo}>
-          <Icon
-            size={16}
-            name={'github'}
-            color={on_surface}
-            style={{textAlign: 'center'}}
-          />
+          <Icon size={16} name={'github'} color={on_surface} />
         </View>
       )}
     </View>
@@ -67,13 +62,10 @@ const dynamicStyles = new DynamicStyleSheet({
     justifyContent: 'center',
     alignContent: 'center',
     borderRadius: 50,
-    height: 16,
-    width: 16,
     borderWidth: 1,
     borderColor: theme.colors.surface,
     backgroundColor: theme.colors.surface,
     bottom: 0,
     right: 0,
-    marginRight: 1,
   },
 });
