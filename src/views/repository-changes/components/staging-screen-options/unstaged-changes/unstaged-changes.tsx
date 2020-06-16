@@ -76,7 +76,5 @@ export const UnstagedChanges = ({
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  changeItem: {
-    paddingHorizontal: 16,
-  },
+  changeItem: {},
 });

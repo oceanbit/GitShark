@@ -107,9 +107,7 @@ export const StagedChanges = ({
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  changeItem: {
-    paddingHorizontal: 16,
-  },
+  changeItem: {},
   subheaderFloating: {
     backgroundColor: theme.colors.floating_surface,
   },

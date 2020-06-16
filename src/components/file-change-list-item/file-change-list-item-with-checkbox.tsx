@@ -50,5 +50,6 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   listItem: {
     flexGrow: 1,
+    paddingLeft: 0,
   },
 });
