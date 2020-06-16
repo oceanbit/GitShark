@@ -75,14 +75,6 @@ module.exports = ({config, mode}) => {
   });
 
   config.module.rules.push({
-    test: /\.(gif|jpe?g|png|svg)$/,
-    use: {
-      loader: 'url-loader',
-      options: {name: '[name].[ext]'},
-    },
-  });
-
-  config.module.rules.push({
     test: /\.css$/,
     use: [
       {
@@ -106,6 +98,17 @@ module.exports = ({config, mode}) => {
     },
     include: path.resolve(__dirname, 'node_modules/react-native-vector-icons'),
   });
+
+  // The file loader baked-in does not load images properly. Replacing it fixes image loading
+  const fileLoaderIndex = config.module.rules.findIndex(rule => rule.test.toString().includes('png'));
+
+  config.module.rules[fileLoaderIndex] = {
+    test: /\.(svg|ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/,
+    use: {
+      loader: 'file-loader',
+      options: {name: '[name].[ext]'},
+    },
+  };
 
   config.resolve.extensions.push('.ts', '.tsx', '.js');
 

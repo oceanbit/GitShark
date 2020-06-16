@@ -37,7 +37,7 @@
     "react-dom": "^16.13.1",
     "react-native": "0.61.5",
     "react-native-button-toggle-group": "^1.0.1",
-    "react-native-dark-mode": "^0.2.2",
+    "react-native-dark-mode": "https://github.com/crutchcorn/react-native-dark-mode.git#build",
     "react-native-default-preference": "^1.4.2",
     "react-native-file-selector": "https://github.com/crutchcorn/react-native-file-selector.git",
     "react-native-fs": "https://github.com/crutchcorn/react-native-fs.git#all-commands",
