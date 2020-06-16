@@ -13,19 +13,24 @@ const animationTime = 150;
 
 const hitSlop = {top: 8, bottom: 8, left: 8, right: 8};
 
+type BaseState = 'checked' | 'unchecked' | 'indeterminate';
+
 interface CheckmarkBaseProps {
+  // `false` = 'unchecked', `true` = `checked`
   onValueChange?: (val: boolean) => void;
   size?: number;
-  checked?: boolean;
+  state?: BaseState;
   style?: StyleProp<ViewStyle>;
   unselectedIcon: string;
   selectedIcon: string;
   unselectedColor: string;
+  indetermindateIcon?: string;
   selectedColor: string;
 }
 
 interface CheckmarkBaseState {
   scaleAndOpacityOfCheckbox: null | Animated.Value;
+  scaleAndOpacityOfIndeterminate: null | Animated.Value;
 }
 
 export class CheckmarkBase extends React.PureComponent<
@@ -34,38 +39,80 @@ export class CheckmarkBase extends React.PureComponent<
 > {
   static defaultProps = {
     size: 18,
-    checked: false,
+    state: 'unchecked',
     onValueChange: () => {},
     style: {},
     unselectedIcon: '',
+    indetermindateIcon: '',
     selectedIcon: '',
   };
 
   state = {
     scaleAndOpacityOfCheckbox: null,
+    scaleAndOpacityOfIndeterminate: null,
   };
 
   componentDidMount() {
     // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({
-      scaleAndOpacityOfCheckbox: new Animated.Value(this.props.checked ? 1 : 0),
+      scaleAndOpacityOfCheckbox: new Animated.Value(
+        this.props.state === 'checked' ? 1 : 0,
+      ),
+      scaleAndOpacityOfIndeterminate: new Animated.Value(
+        this.props.state === 'indeterminate' ? 1 : 0,
+      ),
     });
   }
 
   componentDidUpdate(prevProps: CheckmarkBaseProps) {
-    if (this.props.checked !== prevProps.checked) {
-      if (this.props.checked) {
-        Animated.timing(this.state.scaleAndOpacityOfCheckbox!, {
-          toValue: 1,
-          duration: animationTime,
-          useNativeDriver: true,
-        }).start();
-      } else {
-        Animated.timing(this.state.scaleAndOpacityOfCheckbox!, {
-          toValue: 0,
-          duration: animationTime,
-          useNativeDriver: true,
-        }).start();
+    if (this.props.state !== prevProps.state) {
+      switch (this.props.state) {
+        case 'checked': {
+          Animated.parallel([
+            Animated.timing(this.state.scaleAndOpacityOfCheckbox!, {
+              toValue: 1,
+              duration: animationTime,
+              useNativeDriver: true,
+            }),
+            Animated.timing(this.state.scaleAndOpacityOfIndeterminate!, {
+              toValue: 0,
+              duration: animationTime,
+              useNativeDriver: true,
+            }),
+          ]).start();
+          return;
+        }
+        case 'indeterminate': {
+          Animated.parallel([
+            Animated.timing(this.state.scaleAndOpacityOfCheckbox!, {
+              toValue: 0,
+              duration: animationTime,
+              useNativeDriver: true,
+            }),
+            Animated.timing(this.state.scaleAndOpacityOfIndeterminate!, {
+              toValue: 1,
+              duration: animationTime,
+              useNativeDriver: true,
+            }),
+          ]).start();
+          return;
+        }
+        case 'unchecked':
+        default: {
+          Animated.parallel([
+            Animated.timing(this.state.scaleAndOpacityOfCheckbox!, {
+              toValue: 0,
+              duration: animationTime,
+              useNativeDriver: true,
+            }),
+            Animated.timing(this.state.scaleAndOpacityOfIndeterminate!, {
+              toValue: 0,
+              duration: animationTime,
+              useNativeDriver: true,
+            }),
+          ]).start();
+          return;
+        }
       }
     }
   }
@@ -83,6 +130,15 @@ export class CheckmarkBase extends React.PureComponent<
       opacity: this.state.scaleAndOpacityOfCheckbox,
       scaleX: this.state.scaleAndOpacityOfCheckbox,
       scaleY: this.state.scaleAndOpacityOfCheckbox,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+    };
+
+    const indeterminateStyles = {
+      opacity: this.state.scaleAndOpacityOfIndeterminate,
+      scaleX: this.state.scaleAndOpacityOfIndeterminate,
+      scaleY: this.state.scaleAndOpacityOfIndeterminate,
       position: 'absolute',
       top: 0,
       left: 0,
@@ -110,6 +166,24 @@ export class CheckmarkBase extends React.PureComponent<
           </View>
           <Animated.View
             shouldRasterizeIOS={true}
+            style={[
+              indeterminateStyles,
+              bothStyles,
+              styles.commonWrapperStyles,
+            ]}>
+            <Icon
+              name={this.props.indetermindateIcon || ''}
+              color={this.props.selectedColor}
+              size={iconSize}
+              style={{
+                height: iconSize,
+                width: iconSize,
+                fontSize: iconSize,
+              }}
+            />
+          </Animated.View>
+          <Animated.View
+            shouldRasterizeIOS={true}
             style={[checkedStyles, bothStyles, styles.commonWrapperStyles]}>
             <Icon
               name={this.props.selectedIcon}
@@ -128,7 +202,16 @@ export class CheckmarkBase extends React.PureComponent<
   }
 
   _onPress = () => {
-    this.props.onValueChange!(!this.props.checked);
+    switch (this.props.state) {
+      case 'checked':
+        this.props.onValueChange!(false);
+        break;
+      case 'indeterminate':
+      case 'unchecked':
+      default:
+        this.props.onValueChange!(true);
+        break;
+    }
   };
 }
 

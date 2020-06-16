@@ -16,7 +16,7 @@ export const SharkRadio = ({checked, onValueChange}: SharkRadioProps) => {
 
   return (
     <CheckmarkBase
-      checked={checked}
+      state={checked ? 'checked' : 'unchecked'}
       onValueChange={onValueChange}
       unselectedIcon={'radio_unselected'}
       selectedIcon={'radio_selected'}
