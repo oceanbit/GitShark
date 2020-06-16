@@ -27,7 +27,7 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
 
   return (
     <AppBar
-      leftIcon="arrow_left"
+      leftIcon="back"
       onLeftSelect={() => history.goBack()}
       headline="Repository"
       caption="Last fetched: 5min ago"

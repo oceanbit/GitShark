@@ -56,7 +56,7 @@ export const CommitDetailsUI = ({
   return (
     <>
       <AppBar
-        leftIcon="arrow_left"
+        leftIcon="back"
         onLeftSelect={() => {}}
         hasBottomBorder={false}
         rightChild={

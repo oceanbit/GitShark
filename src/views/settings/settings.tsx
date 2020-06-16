@@ -51,7 +51,7 @@ export const Settings = () => {
     <ScrollView>
       <TopSpacerView isFloating={true} />
       <AppBar
-        leftIcon="arrow_left"
+        leftIcon="back"
         onLeftSelect={() => history.goBack()}
         headline="Settings"
       />
