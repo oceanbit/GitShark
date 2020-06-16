@@ -47,6 +47,8 @@ export const UnstagedChanges = ({
         isItemSelected={!!selectedUnstagedChanges.length}
         onStage={onStage}
         onStageAll={onStageAll}
+        unstagedChanges={unstagedChanges}
+        selectedUnstagedChanges={selectedUnstagedChanges}
       />
       {!!unstagedChanges.length && <SharkDivider />}
       <ScrollView>

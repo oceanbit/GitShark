@@ -6,21 +6,27 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {FileActionsBarToggleButton} from './file-actions-bar-toggle-button';
 import {GrowWidthContent} from '@components/grow-width-content';
 import {StageButtonToggle} from './stage-button-toggle';
+import {SharkCheckbox} from '@components/shark-checkbox';
+import {SharkSubheader} from '@components/shark-subheader';
+import {ChangesArrayItem} from '@services';
 
 const animTiming = 150;
 
 interface FileActionsBarProps {
   style?: StyleProp<ViewStyle>;
   isItemSelected: boolean;
-
   onStageAll: () => void;
   onStage: () => void;
+  selectedUnstagedChanges: ChangesArrayItem[];
+  unstagedChanges: ChangesArrayItem[];
 }
 export const FileActionsBar = ({
   style = {},
   isItemSelected,
   onStageAll,
   onStage,
+  selectedUnstagedChanges,
+  unstagedChanges,
 }: FileActionsBarProps) => {
   const [showMore, setShowMore] = React.useState(false);
 
@@ -46,15 +52,17 @@ export const FileActionsBar = ({
 
   return (
     <View style={[styles.subheaderContainer, style]}>
-      <Animated.Text
-        style={[
-          styles.subheaderText,
-          {
-            left: textLeft,
-          },
-        ]}>
-        Unstaged
-      </Animated.Text>
+      <Animated.View style={[styles.subheaderTextContainer, {left: textLeft}]}>
+        <SharkCheckbox
+          checked={
+            unstagedChanges.length === selectedUnstagedChanges.length &&
+            !!unstagedChanges.length
+          }
+          indeterminate={!!selectedUnstagedChanges.length}
+          onValueChange={() => {}}
+        />
+        <Animated.Text style={styles.subheaderText}>Unstaged</Animated.Text>
+      </Animated.View>
       <View />
       <View style={styles.showMoreView}>
         <StageButtonToggle
@@ -107,11 +115,16 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
     flexWrap: 'nowrap',
   },
+  subheaderTextContainer: {
+    position: 'absolute',
+    flexGrow: 1,
+    flexDirection: 'row',
+    display: 'flex',
+    alignItems: 'center',
+  },
   subheaderText: {
     ...textStyles.callout,
-    flexGrow: 1,
     color: theme.colors.on_surface,
-    position: 'absolute',
   },
   calloutButton: {
     borderWidth: 0,

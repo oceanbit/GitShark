@@ -5,6 +5,7 @@ import {theme} from '@constants';
 
 interface SharkCheckboxProps {
   checked: boolean;
+  // Checked takes priority over this. This is because it's easier to leave `indeterminate` as true than falsify it
   indeterminate?: boolean;
   onValueChange?: (val: boolean) => void;
 }
@@ -22,7 +23,7 @@ export const SharkCheckbox = ({
   return (
     <CheckmarkBase
       state={
-        indeterminate ? 'indeterminate' : checked ? 'checked' : 'unchecked'
+        checked ? 'checked' : indeterminate ? 'indeterminate' : 'unchecked'
       }
       onValueChange={onValueChange}
       unselectedIcon={'checkbox_unselected'}

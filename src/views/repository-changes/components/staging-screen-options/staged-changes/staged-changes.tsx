@@ -11,6 +11,7 @@ import {ChangesArrayItem} from '@services';
 import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkDivider} from '@components/shark-divider';
+import {SharkCheckbox} from '@components/shark-checkbox';
 
 interface StagedChangesProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
@@ -67,6 +68,16 @@ export const StagedChanges = ({
         style={floatingStyle}
         buttonType={buttonType}
         buttonDisabled={!stagedChanges.length}
+        leftChild={
+          <SharkCheckbox
+            checked={
+              stagedChanges.length === selectedStagedChanges.length &&
+              !!stagedChanges.length
+            }
+            indeterminate={!!selectedStagedChanges.length}
+            onValueChange={() => {}}
+          />
+        }
       />
       {!!stagedChanges.length && <SharkDivider />}
       <ScrollView>
