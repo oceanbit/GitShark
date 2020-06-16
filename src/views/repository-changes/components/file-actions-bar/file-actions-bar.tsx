@@ -45,7 +45,7 @@ export const FileActionsBar = ({
       }).start();
     } else {
       Animated.timing(textLeft, {
-        toValue: 16,
+        toValue: 8,
         duration: animTiming,
         useNativeDriver: false,
       }).start();
@@ -111,7 +111,10 @@ const dynamicStyles = new DynamicStyleSheet({
     alignContent: 'center',
     overflow: 'hidden',
     backgroundColor: theme.colors.surface,
-    padding: 16,
+    paddingVertical: 16,
+    paddingRight: 16,
+    // This is overwritten by the `left` property set in the animation
+    paddingLeft: 8,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -127,6 +130,7 @@ const dynamicStyles = new DynamicStyleSheet({
     alignItems: 'center',
   },
   subheaderText: {
+    marginLeft: 8,
     ...textStyles.callout,
     color: theme.colors.on_surface,
   },
