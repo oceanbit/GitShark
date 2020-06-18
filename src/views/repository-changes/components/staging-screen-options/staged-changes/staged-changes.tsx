@@ -1,11 +1,18 @@
 import * as React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
+import {SharkSubheader} from '@components/shark-subheader';
 import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
 import {ChangesArrayItem} from '@services';
 import {textStyles, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkDivider} from '@components/shark-divider';
-import {FadeCheckbox} from '../fade-checkbox';
+import {SharkCheckbox} from '@components/shark-checkbox';
 import {SharkButton} from '@components/shark-button';
 
 interface StagedChangesProps {
@@ -57,10 +64,15 @@ export const StagedChanges = ({
   return (
     <>
       <View style={[styles.subheaderContainer, floatingStyle]}>
-        <FadeCheckbox
-          changes={stagedChanges}
-          selectedChanges={selectedStagedChanges}
-          setChanges={setSelectedStagedChanges}
+        <SharkCheckbox
+          checked={
+            stagedChanges.length === selectedStagedChanges.length &&
+            !!stagedChanges.length
+          }
+          indeterminate={!!selectedStagedChanges.length}
+          onValueChange={selectAll => {
+            setSelectedStagedChanges(selectAll ? stagedChanges : []);
+          }}
         />
         <Text style={styles.subheaderText}>{'Staged'}</Text>
         <SharkButton

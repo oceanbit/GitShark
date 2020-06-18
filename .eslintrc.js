@@ -20,6 +20,5 @@ module.exports = {
     '@typescript-eslint/class-name-casing': 'off',
     'react-native/no-inline-styles': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
 };
