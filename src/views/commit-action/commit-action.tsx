@@ -25,7 +25,7 @@ export const CommitAction = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const route = useRoute<any>();
-  const getUpdate = route!.params!.updateFiles as Function;
+  const getUpdate = route!.params!.updateFiles as () => any;
   const files = route!.params!.files as ChangesArrayItem[];
   const history = useNavigation();
   const [showDivider, setShowDivider] = React.useState(false);

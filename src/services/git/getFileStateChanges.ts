@@ -11,7 +11,7 @@ export const getFileStateChanges = async (
     fs,
     dir,
     trees: [git.TREE({ref: commitHash1}), git.TREE({ref: commitHash2})],
-    map: async function(filepath, walked) {
+    map: async function (filepath, walked) {
       const [A, B] = walked || [];
 
       // ignore directories
