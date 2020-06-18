@@ -6,8 +6,7 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {FileActionsBarToggleButton} from './file-actions-bar-toggle-button';
 import {GrowWidthContent} from '@components/grow-width-content';
 import {StageButtonToggle} from './stage-button-toggle';
-import {SharkCheckbox} from '@components/shark-checkbox';
-import {SharkSubheader} from '@components/shark-subheader';
+import {FadeCheckbox} from '../staging-screen-options/fade-checkbox';
 import {ChangesArrayItem} from '@services';
 
 const animTiming = 150;
@@ -55,15 +54,10 @@ export const FileActionsBar = ({
   return (
     <View style={[styles.subheaderContainer, style]}>
       <Animated.View style={[styles.subheaderTextContainer, {left: textLeft}]}>
-        <SharkCheckbox
-          checked={
-            unstagedChanges.length === selectedUnstagedChanges.length &&
-            !!unstagedChanges.length
-          }
-          indeterminate={!!selectedUnstagedChanges.length}
-          onValueChange={selectAll => {
-            setSelectedUnstagedChanges(selectAll ? unstagedChanges : []);
-          }}
+        <FadeCheckbox
+          changes={unstagedChanges}
+          selectedChanges={selectedUnstagedChanges}
+          setChanges={setSelectedUnstagedChanges}
         />
         <Animated.Text style={styles.subheaderText}>Unstaged</Animated.Text>
       </Animated.View>
