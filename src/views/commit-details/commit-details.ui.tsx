@@ -95,7 +95,7 @@ export const CommitDetailsUI = ({
           <View style={styles.growContainer} />
           {!!added && (
             <View style={styles.infoBlock}>
-              <Icon name="change_addition" size={24} color={change_addition} />
+              <Icon name="change_addition" size={16} color={change_addition} />
               <Text style={[styles.iconText, styles.additionText]}>
                 {added}
               </Text>
@@ -104,7 +104,7 @@ export const CommitDetailsUI = ({
 
           {!!removed && (
             <View style={[styles.infoBlock]}>
-              <Icon name="change_removal" size={24} color={change_removal} />
+              <Icon name="change_removal" size={16} color={change_removal} />
               <Text style={[styles.iconText, styles.removalText]}>
                 {removed}
               </Text>
@@ -113,7 +113,7 @@ export const CommitDetailsUI = ({
 
           {!!modified && (
             <View style={[styles.infoBlock]}>
-              <Icon name="change_mixed" size={24} color={change_mixed} />
+              <Icon name="change_mixed" size={16} color={change_mixed} />
               <Text style={[styles.iconText, styles.modifiedText]}>
                 {modified}
               </Text>
@@ -152,7 +152,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   infoBlock: {
     marginLeft: 8,
-    paddingLeft: 8,
+    padding: 4,
     flexDirection: 'row',
     alignItems: 'center',
   },
