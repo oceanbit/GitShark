@@ -12,7 +12,7 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const AnimatedView = Animated.View;
 
-const minSheetHeight = 184;
+const minSheetHeight = 100;
 
 interface StageSheetViewProps {
   unstagedChanges: ChangesArrayItem[];
