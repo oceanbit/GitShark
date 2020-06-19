@@ -61,6 +61,10 @@ export const StagedChanges = ({
 
   const floatingStyle = inSheet ? styles.subheaderFloating : {};
 
+  const disabled = !stagedChanges.length;
+
+  const disabledStyles = disabled ? styles.disabledStyling : {};
+
   return (
     <>
       <View style={[styles.subheaderContainer, floatingStyle]}>
@@ -73,15 +77,15 @@ export const StagedChanges = ({
           onValueChange={selectAll => {
             setSelectedStagedChanges(selectAll ? stagedChanges : []);
           }}
-          disabled={!stagedChanges.length}
+          disabled={disabled}
         />
-        <Text style={styles.subheaderText}>{'Staged'}</Text>
+        <Text style={[styles.subheaderText, disabledStyles]}>{'Staged'}</Text>
         <SharkButton
           onPress={stagedBtnAction}
           text={stagedBtnText}
           style={styles.calloutButton}
           type={buttonType}
-          disabled={!stagedChanges.length}
+          disabled={disabled}
         />
       </View>
       {!!stagedChanges.length && <SharkDivider />}
@@ -133,5 +137,8 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   calloutButton: {
     marginLeft: 16,
+  },
+  disabledStyling: {
+    opacity: theme.disabledOpacity,
   },
 });
