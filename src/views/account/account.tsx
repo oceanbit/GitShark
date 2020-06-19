@@ -133,6 +133,7 @@ export const Account = () => {
             disabled={!gitHubUser}>
             <>
               <View style={styles.checkboxContainer}>
+                {/* Not setting disabled since valuechange is noop and we set styling above */}
                 <SharkCheckbox checked={useGitHub} onValueChange={() => {}} />
               </View>
               <Text style={styles.useGHText}>Use GitHub credentials</Text>

@@ -64,6 +64,7 @@ export const FileActionsBar = ({
           onValueChange={selectAll => {
             setSelectedUnstagedChanges(selectAll ? unstagedChanges : []);
           }}
+          disabled={!unstagedChanges.length}
         />
         <Animated.Text style={styles.subheaderText}>Unstaged</Animated.Text>
       </Animated.View>

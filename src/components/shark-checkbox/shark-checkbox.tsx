@@ -1,7 +1,11 @@
 import * as React from 'react';
 import {View} from 'react-native';
 import {CheckmarkBase} from '../checkmark-base';
-import {useDynamicValue} from 'react-native-dark-mode';
+import {
+  DynamicStyleSheet,
+  useDynamicValue,
+  useDynamicStyleSheet,
+} from 'react-native-dark-mode';
 import {theme} from '@constants';
 
 interface SharkCheckboxProps {
@@ -9,25 +13,31 @@ interface SharkCheckboxProps {
   // Checked takes priority over this. This is because it's easier to leave `indeterminate` as true than falsify it
   indeterminate?: boolean;
   onValueChange?: (val: boolean) => void;
+  disabled?: boolean;
 }
 
 export const SharkCheckbox = ({
   checked,
   indeterminate,
   onValueChange,
+  disabled,
 }: SharkCheckboxProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyles);
+
   const accent = useDynamicValue(theme.colors.primary);
   const on_surface_secondary = useDynamicValue(
     theme.colors.on_surface_secondary,
   );
 
+  const disabledStyles = disabled ? styles.disabledStyling : {};
+
   return (
-    <View style={{padding: 8}}>
+    <View style={[styles.checkboxContainer, disabledStyles]}>
       <CheckmarkBase
         state={
           checked ? 'checked' : indeterminate ? 'indeterminate' : 'unchecked'
         }
-        onValueChange={onValueChange}
+        onValueChange={!disabled ? onValueChange : () => {}}
         unselectedIcon={'checkbox_unselected'}
         selectedIcon={'checkbox_selected'}
         indetermindateIcon={'checkbox_intermediate'}
@@ -38,3 +48,12 @@ export const SharkCheckbox = ({
     </View>
   );
 };
+
+const dynamicStyles = new DynamicStyleSheet({
+  checkboxContainer: {
+    padding: 8,
+  },
+  disabledStyling: {
+    opacity: theme.disabledOpacity,
+  },
+});

@@ -73,6 +73,7 @@ export const StagedChanges = ({
           onValueChange={selectAll => {
             setSelectedStagedChanges(selectAll ? stagedChanges : []);
           }}
+          disabled={!stagedChanges.length}
         />
         <Text style={styles.subheaderText}>{'Staged'}</Text>
         <SharkButton
