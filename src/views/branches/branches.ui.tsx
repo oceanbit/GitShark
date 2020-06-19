@@ -22,12 +22,14 @@ interface BranchesUIProps {
   repo: ReduxRepo | null;
   remotes: Remotes[];
   remoteBranches: RemoteBranch[];
+  onCreateBranch: () => void;
 }
 export const BranchesUI = ({
   localBranches,
   repo,
   remotes,
   remoteBranches,
+  onCreateBranch,
 }: BranchesUIProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -40,7 +42,11 @@ export const BranchesUI = ({
 
   return (
     <ScrollView style={styles.container}>
-      <SharkSubheader calloutText="Local" buttonText="Add new" />
+      <SharkSubheader
+        calloutText="Local"
+        buttonText="Add new"
+        onButtonClick={onCreateBranch}
+      />
       {!!localBranches &&
         localBranches.map(branch => {
           const isSelected = branch === repo?.currentBranchName;
@@ -58,7 +64,11 @@ export const BranchesUI = ({
           );
         })}
       <SharkDivider style={styles.remoteDivider} />
-      <SharkSubheader calloutText="Remotes" buttonText="Add new" />
+      <SharkSubheader
+        calloutText="Remotes"
+        buttonText="Add new"
+        onButtonClick={() => {}}
+      />
       {remotes.map(remote => {
         return (
           <>

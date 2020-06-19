@@ -7,8 +7,10 @@ import {useSelector} from 'react-redux';
 import {RootState, getBranchData} from '@store';
 import {useThunkDispatch} from '@hooks';
 import {BranchesUI} from './branches.ui';
+import {CreateBranchDialog} from './components/create-branch-dialog';
 
 export const Branches = () => {
+  const [createBranch, setCreateBranch] = React.useState(false);
   const {localBranches, remoteBranches, remotes} = useSelector(
     (state: RootState) => state.branches,
   );
@@ -24,11 +26,20 @@ export const Branches = () => {
   if (!repo) return null;
 
   return (
-    <BranchesUI
-      localBranches={localBranches}
-      repo={repo}
-      remotes={remotes}
-      remoteBranches={remoteBranches}
-    />
+    <>
+      <BranchesUI
+        localBranches={localBranches}
+        repo={repo}
+        remotes={remotes}
+        remoteBranches={remoteBranches}
+        onCreateBranch={() => setCreateBranch(true)}
+      />
+      <CreateBranchDialog
+        visible={createBranch}
+        onDismiss={() => {
+          setCreateBranch(false);
+        }}
+      />
+    </>
   );
 };
