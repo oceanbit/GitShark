@@ -30,6 +30,9 @@ export const StageButtonToggle = ({
   const [animatedWidth] = React.useState(new Animated.Value(0));
   const [stageAllOpacity] = React.useState(new Animated.Value(0));
 
+  // If we don't manually set the zIndex, it will cause issues where we can press non-displayed buttons
+  const [drawStageAllAbove, setDrawStageAllAbove] = React.useState(true);
+
   React.useEffect(() => {
     if (isStage) {
       Animated.parallel([
@@ -43,7 +46,9 @@ export const StageButtonToggle = ({
           duration: animTiming,
           useNativeDriver: false,
         }),
-      ]).start();
+      ]).start(() => {
+        setDrawStageAllAbove(false);
+      });
     } else {
       Animated.parallel([
         Animated.timing(animatedWidth, {
@@ -56,7 +61,9 @@ export const StageButtonToggle = ({
           duration: animTiming,
           useNativeDriver: false,
         }),
-      ]).start();
+      ]).start(() => {
+        setDrawStageAllAbove(true);
+      });
     }
   }, [
     isStage,
@@ -81,6 +88,7 @@ export const StageButtonToggle = ({
             styles.buttonContainer,
             {
               opacity: stageAllOpacity,
+              zIndex: drawStageAllAbove ? 1 : 0,
             },
           ]}>
           <SharkButton
@@ -91,7 +99,13 @@ export const StageButtonToggle = ({
           />
         </Animated.View>
 
-        <View style={styles.buttonContainer}>
+        <View
+          style={[
+            styles.buttonContainer,
+            {
+              zIndex: drawStageAllAbove ? 0 : 1,
+            },
+          ]}>
           <SharkButton
             onPress={onStage}
             text={'Stage'}
