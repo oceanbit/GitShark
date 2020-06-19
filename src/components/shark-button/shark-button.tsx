@@ -104,6 +104,8 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   btnText: {
     textAlign: 'center',
+    // IDK why this works, but it sure does
+    textAlignVertical: 'center',
     ...textStyles.callout,
   },
   disabled: {
