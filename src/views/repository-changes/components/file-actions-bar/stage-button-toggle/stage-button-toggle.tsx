@@ -9,6 +9,7 @@ interface StageButtonToggleProps {
   animTiming?: number;
   onStageAll: () => void;
   onStage: () => void;
+  disabled: boolean;
 }
 export const StageButtonToggle = ({
   isStage,
@@ -16,6 +17,7 @@ export const StageButtonToggle = ({
   animTiming = 150,
   onStageAll,
   onStage,
+  disabled,
 }: StageButtonToggleProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -96,6 +98,7 @@ export const StageButtonToggle = ({
             text={'Stage all'}
             textProps={{numberOfLines: 1}}
             style={buttonStyle}
+            disabled={disabled}
           />
         </Animated.View>
 
@@ -104,6 +107,8 @@ export const StageButtonToggle = ({
             styles.buttonContainer,
             {
               zIndex: drawStageAllAbove ? 0 : 1,
+              // This makes sure that when the "stage all" is disabled, it doesn't leak into this
+              opacity: disabled ? 0 : 1,
             },
           ]}>
           <SharkButton

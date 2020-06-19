@@ -52,6 +52,10 @@ export const FileActionsBar = ({
     }
   }, [showMore, textLeft]);
 
+  const disabled = !unstagedChanges.length;
+
+  const disabledStyles = disabled ? styles.disabledStyling : {};
+
   return (
     <View style={[styles.subheaderContainer, style]}>
       <Animated.View style={[styles.subheaderTextContainer, {left: textLeft}]}>
@@ -64,9 +68,11 @@ export const FileActionsBar = ({
           onValueChange={selectAll => {
             setSelectedUnstagedChanges(selectAll ? unstagedChanges : []);
           }}
-          disabled={!unstagedChanges.length}
+          disabled={disabled}
         />
-        <Animated.Text style={styles.subheaderText}>Unstaged</Animated.Text>
+        <Animated.Text style={[styles.subheaderText, disabledStyles]}>
+          Unstaged
+        </Animated.Text>
       </Animated.View>
       <View />
       <View style={styles.showMoreView}>
@@ -75,6 +81,7 @@ export const FileActionsBar = ({
           isStage={isItemSelected}
           onStage={onStage}
           onStageAll={onStageAll}
+          disabled={disabled}
         />
         <GrowWidthContent expanded={showMore}>
           <View style={styles.moreViewButtons}>
@@ -155,5 +162,8 @@ const dynamicStyles = new DynamicStyleSheet({
   dividerLeft: {
     borderColor: theme.colors.divider,
     borderLeftWidth: 2,
+  },
+  disabledStyling: {
+    opacity: theme.disabledOpacity,
   },
 });
