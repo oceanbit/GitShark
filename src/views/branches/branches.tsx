@@ -34,7 +34,7 @@ export const Branches = () => {
       branchName: string;
       checkAfterCreate: boolean;
     }) => {
-      createBranch({branchName, checkAfterCreate, repo: repo!})
+      createBranch({branchName, checkAfterCreate, repo: repo!, dispatch})
         .then(() => {
           setCreateBranchDialog(false);
           setErrorStr('');

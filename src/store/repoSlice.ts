@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {Repo, getReduxRepo, ReduxRepo} from '@entities';
-import {getRepository} from 'typeorm';
+import {getRepository, getConnection} from 'typeorm';
 import {clearChanges} from './gitChangesSlice';
 import {clearLog} from './gitLogSlice';
 import {clearBranches} from './gitBranchesSlice';
@@ -16,6 +16,24 @@ export const findRepo = createAsyncThunk(
     });
     if (!repo) return null;
     return Promise.resolve(getReduxRepo(repo));
+  },
+);
+
+export const changeBranch = createAsyncThunk(
+  'repository/changeBranch',
+  async (
+    {repoId, branchName}: {repoId: string | number; branchName: string},
+    {getState},
+  ) => {
+    const {database} = getState() as any;
+    if (!database.isLoaded) return;
+    await getConnection()
+      .createQueryBuilder()
+      .update(Repo)
+      .set({currentBranchName: branchName})
+      .where('id = :id', {id: repoId})
+      .execute();
+    return branchName;
   },
 );
 
@@ -41,6 +59,9 @@ const repositorySlice = createSlice({
     },
     [clearRepo.fulfilled.toString()]: (_, __) => {
       return initialState;
+    },
+    [changeBranch.fulfilled.toString()]: (state, action) => {
+      state.repo!.currentBranchName = action.payload;
     },
   },
 });
