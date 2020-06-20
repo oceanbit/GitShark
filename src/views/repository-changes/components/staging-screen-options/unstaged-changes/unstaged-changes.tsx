@@ -53,7 +53,7 @@ export const UnstagedChanges = ({
       />
       {!!unstagedChanges.length && <SharkDivider />}
       <ScrollView>
-        {unstagedChanges.map((props, i, arr) => {
+        {unstagedChanges.map(props => {
           const isChecked = !!selectedUnstagedChanges.find(
             change => change.fileName === props.fileName,
           );
@@ -66,7 +66,7 @@ export const UnstagedChanges = ({
                   {...props}
                 />
               </View>
-              {i !== arr.length - 1 && <SharkDivider />}
+              <SharkDivider />
             </React.Fragment>
           );
         })}

@@ -28,7 +28,6 @@ export const CommitAction = () => {
   const getUpdate = route!.params!.updateFiles as () => any;
   const files = route!.params!.files as ChangesArrayItem[];
   const history = useNavigation();
-  const [showDivider, setShowDivider] = React.useState(false);
 
   const [commitTitle, setCommitTitle] = React.useState('');
   const [commitBody, setCommitBody] = React.useState('');
@@ -37,14 +36,6 @@ export const CommitAction = () => {
     history.navigate('Repository');
     return null;
   }
-
-  const onStagedScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (!event.nativeEvent.contentOffset.y) {
-      setShowDivider(false);
-      return;
-    }
-    setShowDivider(true);
-  };
 
   const onSubmit = async () => {
     await commit({repo: repo!, description: commitBody, title: commitTitle});
@@ -61,14 +52,16 @@ export const CommitAction = () => {
         <SharkIconButton onPress={() => history.goBack()} iconName="close" />
         <Text style={styles.commitHeader}>Commit changes</Text>
       </View>
-      {showDivider && <SharkDivider />}
-      <ScrollView style={styles.fileChanges} onScroll={onStagedScroll}>
+      <SharkDivider />
+      <ScrollView>
         {files.map(file => (
-          <FileChangeListItem
-            key={file.fileName}
-            fileName={file.fileName}
-            fileStatus={file.fileStatus}
-          />
+          <React.Fragment key={file.fileName}>
+            <FileChangeListItem
+              fileName={file.fileName}
+              fileStatus={file.fileStatus}
+            />
+            <SharkDivider />
+          </React.Fragment>
         ))}
       </ScrollView>
       <SharkDivider />
@@ -111,9 +104,6 @@ const dynamicStyles = new DynamicStyleSheet({
     marginLeft: 8,
     ...textStyles.headline_03,
     color: theme.colors.on_surface,
-  },
-  fileChanges: {
-    padding: 8,
   },
   commitData: {
     padding: 16,

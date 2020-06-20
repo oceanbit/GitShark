@@ -90,7 +90,7 @@ export const StagedChanges = ({
       </View>
       {!!stagedChanges.length && <SharkDivider />}
       <ScrollView>
-        {stagedChanges.map((props, i, arr) => {
+        {stagedChanges.map(props => {
           const isChecked = !!selectedStagedChanges.find(
             change => change.fileName === props.fileName,
           );
@@ -104,7 +104,7 @@ export const StagedChanges = ({
                   {...props}
                 />
               </View>
-              {i !== arr.length - 1 && <SharkDivider />}
+              <SharkDivider />
             </React.Fragment>
           );
         })}
