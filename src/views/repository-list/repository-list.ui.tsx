@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Alert, ScrollView, Text, View} from 'react-native';
-import {Repo} from '@entities';
+import {ScrollView, Text, View} from 'react-native';
+import {ReduxRepo} from '@entities';
 import {RepoCard} from './components/repo-card';
 import {textStyles, theme} from '@constants';
 import {RepoListLoading} from './components/repo-list-loading';
@@ -13,7 +13,7 @@ interface RepositoryListUIProps {
   isLoading: boolean;
   isDBLoaded: boolean;
   navigateToSettings: () => void;
-  repos: Repo[] | null;
+  repos: ReduxRepo[] | null;
   findRepos: () => Promise<void>;
 }
 export const RepositoryListUI = ({

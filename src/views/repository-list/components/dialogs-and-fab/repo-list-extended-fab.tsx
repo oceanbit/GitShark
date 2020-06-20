@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Animated, Dimensions, Text, View} from 'react-native';
-import {Repo} from '@entities';
+import {ReduxRepo} from '@entities';
 import {DialogSelection, ExtendedFabBase} from './types';
 import {NewRepoFab} from './new-repo-fab';
 import {FabActions} from './fab-actions';
@@ -10,7 +10,7 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export interface RepoListExtendedFabProps {
-  repos: Repo[] | null;
+  repos: ReduxRepo[] | null;
   isDBLoaded: boolean;
   isLoading: boolean;
   setSelectedAction: (val: DialogSelection | '') => void;

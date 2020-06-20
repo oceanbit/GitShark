@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
-import {Repo} from '@entities';
+import {ReduxRepo} from '@entities';
 import {deleteRepo} from '@services';
 import {
   DynamicStyleSheet,
@@ -15,7 +15,7 @@ import {SharkButton} from '@components/shark-button';
 interface DeleteRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
-  repo: Repo;
+  repo: ReduxRepo;
 }
 
 export const DeleteRepositoryDialog = ({

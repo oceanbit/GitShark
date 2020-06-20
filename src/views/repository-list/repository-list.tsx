@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Alert} from 'react-native';
-import {Repo} from '@entities';
 import {useThunkDispatch} from '@hooks';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
@@ -17,9 +16,8 @@ export const RepositoryList = () => {
   const {repoList} = useSelector((state: RootState) => state.repoList);
 
   const history = useNavigation();
-  const [repos] = React.useState<Repo[] | null>(null);
 
-  const isLoading = !isDBLoaded || !repos;
+  const isLoading = !isDBLoaded || !repoList;
 
   const findRepos = React.useCallback(async () => {
     try {
@@ -46,7 +44,7 @@ export const RepositoryList = () => {
       isLoading={isLoading}
       isDBLoaded={isDBLoaded}
       navigateToSettings={navigateToSettings}
-      repos={repos}
+      repos={repoList}
       findRepos={findRepos}
     />
   );

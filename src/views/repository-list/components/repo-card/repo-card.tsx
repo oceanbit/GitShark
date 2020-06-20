@@ -4,7 +4,7 @@ import {PushPullArrows} from '@components/push-pull-arrows';
 import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
 import {Menu, TouchableRipple} from 'react-native-paper';
-import {Repo} from '@entities';
+import {ReduxRepo} from '@entities';
 import dayjs from 'dayjs';
 import {useNavigation} from '@react-navigation/native';
 import {RenameRepositoryDialog} from '../rename-repository-dialog';
@@ -16,7 +16,7 @@ import {SharkMenu} from '@components/shark-menu';
 type DialogActionsType = '' | 'rename' | 'delete';
 
 interface RepoCardProps {
-  repo: Repo;
+  repo: ReduxRepo;
   onUpdate: () => void;
 }
 

@@ -2,7 +2,8 @@ import * as React from 'react';
 import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
-import {Repo} from '@entities';
+import {ReduxRepo} from '@entities';
+import {renameRepo} from '@services';
 import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkButton} from '@components/shark-button';
@@ -10,7 +11,7 @@ import {SharkButton} from '@components/shark-button';
 interface RenameRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
-  repo: Repo;
+  repo: ReduxRepo;
 }
 
 export const RenameRepositoryDialog = ({
@@ -23,12 +24,11 @@ export const RenameRepositoryDialog = ({
   const [repoName, setRepoName] = React.useState('');
   const [errorStr, setErrorStr] = React.useState('');
 
-  const renameRepo = async () => {
+  const renameRepoLocal = async () => {
     if (!repoName) {
       setErrorStr('You must input a value for the repository name');
     }
-    repo.name = repoName;
-    await repo.save();
+    await renameRepo(repo.id, repoName);
     onDismiss(true);
     setRepoName('');
     setErrorStr('');
@@ -62,7 +62,7 @@ export const RenameRepositoryDialog = ({
             text={'Cancel'}
           />
           <SharkButton
-            onPress={() => renameRepo()}
+            onPress={() => renameRepoLocal()}
             type="primary"
             text={'Rename'}
           />

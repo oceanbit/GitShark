@@ -11,7 +11,7 @@ const RepositoryListDemo = ({...props}: any) => {
         isDBLoaded={false}
         navigateToSettings={() => {}}
         repos={[]}
-        findRepos={() => Promise.resolve(false)}
+        findRepos={() => {}}
       />
     </StorybookProvider>
   );

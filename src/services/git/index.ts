@@ -8,4 +8,5 @@ export * from './getFileStateChanges';
 export * from './getRepoData';
 export * from './gitCommitToDBMapper';
 export * from './gitLog';
+export * from './renameRepo';
 export * from './status';
