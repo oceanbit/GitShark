@@ -2,7 +2,7 @@ import {ReduxRepo} from '@entities';
 import {fs} from '@constants';
 import git from 'isomorphic-git/index.umd.min.js';
 import {ThunkDispatchType} from '@hooks';
-import {changeBranch} from '@store';
+import {changeBranch, findRepoList} from '@store';
 
 interface CreateBranchProps {
   repo: ReduxRepo;
@@ -25,5 +25,6 @@ export const createBranch = async ({
 
   if (checkAfterCreate) {
     dispatch(changeBranch({repoId: repo.id, branchName}));
+    dispatch(findRepoList());
   }
 };
