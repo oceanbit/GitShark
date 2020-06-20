@@ -9,6 +9,8 @@ import {
 import {PushPullArrows} from '@components/push-pull-arrows';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {TouchableRipple} from 'react-native-paper';
+import {Divider, Menu} from 'react-native-paper';
+import {SharkMenu} from '@components/shark-menu';
 
 interface BranchMock {
   name: string;
@@ -27,6 +29,8 @@ export const BranchListItem = ({
   selected,
   isFavorite,
 }: BranchListItemProps) => {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const selected_primary = useDynamicValue(theme.colors.selected_primary);
@@ -59,11 +63,21 @@ export const BranchListItem = ({
           primaryColor={selected}
           onPress={() => {}}
         />
-        <SharkIconButton
-          iconName="menu"
-          primaryColor={selected}
-          onPress={() => {}}
-        />
+        <SharkMenu
+          visible={isMenuOpen}
+          onDismiss={() => setIsMenuOpen(false)}
+          anchor={
+            <SharkIconButton
+              iconName="menu"
+              primaryColor={selected}
+              onPress={() => setIsMenuOpen(true)}
+            />
+          }>
+          <Menu.Item onPress={() => {}} title={`Checkout ${branch.name}`} />
+          <Divider />
+          <Menu.Item onPress={() => {}} title="Rename" />
+          <Menu.Item onPress={() => {}} title="Delete" />
+        </SharkMenu>
       </>
     </TouchableRipple>
   );
