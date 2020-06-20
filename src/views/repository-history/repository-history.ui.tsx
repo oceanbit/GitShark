@@ -56,6 +56,7 @@ export const RepositoryHistoryUI = ({
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
+    height: 1,
+    flexGrow: 1,
   },
 });

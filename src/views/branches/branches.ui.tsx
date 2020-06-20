@@ -109,9 +109,7 @@ export const BranchesUI = ({
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  container: {
-    height: '100%',
-  },
+  container: {},
   remoteBranch: {
     paddingLeft: 56,
   },
