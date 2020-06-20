@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text} from 'react-native';
+import {View, TouchableWithoutFeedback, Text} from 'react-native';
 import {AppDialog} from '@components/dialog';
 import {SharkTextInput} from '@components/shark-text-input';
 import {ErrorMessageBox} from '@components/error-message-box';
@@ -56,13 +56,17 @@ export const CreateBranchDialog = ({
           {!!errorStr && (
             <ErrorMessageBox style={styles.errorBox} message={errorStr} />
           )}
-          <View style={styles.checkboxContainer}>
-            <SharkCheckbox
-              checked={checkAfterCreate}
-              onValueChange={setCheckAfterCreate}
-            />
-            <Text style={styles.checkoutText}>Checkout after creation</Text>
-          </View>
+          <TouchableWithoutFeedback
+            style={styles.checkboxContainer}
+            onPress={() => setCheckAfterCreate(v => !v)}>
+            <View style={styles.checkboxView}>
+              <SharkCheckbox
+                checked={checkAfterCreate}
+                onValueChange={setCheckAfterCreate}
+              />
+              <Text style={styles.checkoutText}>Checkout after creation</Text>
+            </View>
+          </TouchableWithoutFeedback>
         </>
       }
       actions={
@@ -93,11 +97,13 @@ const dynamicStyles = new DynamicStyleSheet({
     borderWidth: 2,
     marginRight: 16,
   },
-  checkboxContainer: {
-    marginTop: 8,
+  checkboxView: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  checkboxContainer: {
+    marginTop: 8,
   },
   checkoutText: {
     color: theme.colors.on_surface,
