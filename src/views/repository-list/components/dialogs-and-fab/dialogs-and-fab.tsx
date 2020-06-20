@@ -10,7 +10,7 @@ import {
 
 interface DialogsProps
   extends Omit<RepoListExtendedFabProps, 'setSelectedAction'> {
-  findRepos: () => Promise<boolean | undefined>;
+  findRepos: () => Promise<void>;
 }
 
 export const DialogsAndFab = ({findRepos, ...props}: DialogsProps) => {

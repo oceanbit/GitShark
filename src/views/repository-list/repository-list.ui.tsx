@@ -14,7 +14,7 @@ interface RepositoryListUIProps {
   isDBLoaded: boolean;
   navigateToSettings: () => void;
   repos: Repo[] | null;
-  findRepos: () => Promise<boolean | undefined>;
+  findRepos: () => Promise<void>;
 }
 export const RepositoryListUI = ({
   isLoading,

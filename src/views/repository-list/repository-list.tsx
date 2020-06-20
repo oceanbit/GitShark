@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Alert} from 'react-native';
 import {Repo} from '@entities';
-import {getRepository} from 'typeorm';
+import {useThunkDispatch} from '@hooks';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import {RootState} from '@store';
+import {RootState, findRepoList} from '@store';
 import {RepositoryListUI} from './repository-list.ui';
 
 export const RepositoryList = () => {
@@ -12,22 +12,23 @@ export const RepositoryList = () => {
     (state: RootState) => state.database,
   );
 
+  const dispatch = useThunkDispatch();
+
+  const {repoList} = useSelector((state: RootState) => state.repoList);
+
   const history = useNavigation();
-  const [repos, setRepos] = React.useState<Repo[] | null>(null);
+  const [repos] = React.useState<Repo[] | null>(null);
 
   const isLoading = !isDBLoaded || !repos;
 
   const findRepos = React.useCallback(async () => {
     try {
-      const repoRepository = getRepository(Repo);
-      const foundRepos = await repoRepository.find({});
-      setRepos(foundRepos);
-      return true; // Indicates this works
+      dispatch(findRepoList());
     } catch (e) {
       console.error(e);
       Alert.alert('There was an error finding the repos!');
     }
-  }, []);
+  }, [dispatch]);
 
   React.useEffect(() => {
     if (!isDBLoaded) {
