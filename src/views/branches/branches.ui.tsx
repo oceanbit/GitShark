@@ -23,6 +23,7 @@ interface BranchesUIProps {
   remotes: Remotes[];
   remoteBranches: RemoteBranch[];
   onCreateBranch: () => void;
+  onDeleteLocalBranch: (branchName: string) => Promise<void>;
 }
 export const BranchesUI = ({
   localBranches,
@@ -30,6 +31,7 @@ export const BranchesUI = ({
   remotes,
   remoteBranches,
   onCreateBranch,
+  onDeleteLocalBranch,
 }: BranchesUIProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -60,6 +62,7 @@ export const BranchesUI = ({
                 up: 4,
                 down: 0,
               }}
+              onDeleteLocalBranch={onDeleteLocalBranch}
             />
           );
         })}

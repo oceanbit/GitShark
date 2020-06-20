@@ -22,12 +22,14 @@ interface BranchListItemProps {
   branch: BranchMock;
   selected: boolean;
   isFavorite: boolean;
+  onDeleteLocalBranch: (branchName: string) => Promise<void>;
 }
 
 export const BranchListItem = ({
   branch,
   selected,
   isFavorite,
+  onDeleteLocalBranch,
 }: BranchListItemProps) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -76,7 +78,11 @@ export const BranchListItem = ({
           <Menu.Item onPress={() => {}} title={`Checkout ${branch.name}`} />
           <Divider />
           <Menu.Item onPress={() => {}} title="Rename" />
-          <Menu.Item onPress={() => {}} title="Delete" />
+          <Menu.Item
+            onPress={() => onDeleteLocalBranch(branch.name)}
+            title="Delete"
+            disabled={selected}
+          />
         </SharkMenu>
       </>
     </TouchableRipple>
