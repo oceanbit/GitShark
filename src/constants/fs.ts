@@ -95,6 +95,13 @@ const writeFile = async (
     content = Buffer.from(content).toString('base64');
   }
 
+  // DO NOT REMOVE THIS. WHILE THIS SEEMS UNCOMMON, IT"S A WORKAROUND FOR A BUG IN AOSP
+  // https://github.com/crutchcorn/GitShark/issues/17
+  // https://github.com/isomorphic-git/isomorphic-git/issues/1126
+  try {
+    await unlink(path);
+  } catch (e) {}
+
   await RNFS.writeFile(path, content as string, encoding);
 };
 
