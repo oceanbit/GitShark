@@ -79,8 +79,8 @@ export const SharkTextInput = ({
         style={[
           styles.textInputContainer,
           padding,
-          errStyle,
           focusedStyle,
+          errStyle,
           style,
         ]}>
         {!!prefixIcon && (

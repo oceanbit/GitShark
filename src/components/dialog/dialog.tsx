@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, KeyboardAvoidingView} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
 import {textStyles, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
@@ -38,10 +38,12 @@ export const AppDialog = ({
         dismissable={dismissable}
         onDismiss={onDismiss}
         style={styles.dialogContainer}>
-        <Text style={styles.dialogTitle}>{title}</Text>
-        <Text style={styles.mainText}>{text}</Text>
-        {main}
-        <View style={styles.dialogActions}>{actions}</View>
+        <KeyboardAvoidingView behavior="position" enabled>
+          <Text style={styles.dialogTitle}>{title}</Text>
+          <Text style={styles.mainText}>{text}</Text>
+          {main}
+          <View style={styles.dialogActions}>{actions}</View>
+        </KeyboardAvoidingView>
       </Dialog>
     </Portal>
   );

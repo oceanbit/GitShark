@@ -11,11 +11,19 @@ import {textStyles, theme} from '@constants';
 interface CreateBranchDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
+  onBranchCreate: (props: {
+    branchName: string;
+    checkAfterCreate: boolean;
+  }) => void;
+  // The array of local branch names, to validate user input against
+  branches: string[];
 }
 
 export const CreateBranchDialog = ({
   onDismiss,
   visible,
+  onBranchCreate,
+  branches,
 }: CreateBranchDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -30,14 +38,7 @@ export const CreateBranchDialog = ({
     onDismiss(bool);
   };
 
-  const checkAndClone = async () => {
-    // const gitBranchName = await getGitBranchName();
-    // if (gitBranchName) {
-    //   setErrorStr('The folder selected is already a git repository.');
-    //   return;
-    // }
-    // setIsCloning(true);
-  };
+  const isNameTaken = branches.includes(branchName);
 
   return (
     <AppDialog
@@ -52,6 +53,7 @@ export const CreateBranchDialog = ({
             value={branchName}
             onChangeText={val => setBranchName(val)}
             prefixIcon={'branch'}
+            errorStr={isNameTaken ? 'Branch name is already taken' : ''}
           />
           {!!errorStr && (
             <ErrorMessageBox style={styles.errorBox} message={errorStr} />
@@ -78,8 +80,9 @@ export const CreateBranchDialog = ({
             text={'Cancel'}
           />
           <SharkButton
-            onPress={() => checkAndClone()}
+            onPress={() => onBranchCreate({branchName, checkAfterCreate})}
             type="primary"
+            disabled={isNameTaken}
             text={'Create'}
           />
         </>

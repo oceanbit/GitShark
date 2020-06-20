@@ -23,6 +23,17 @@ export const Branches = () => {
     dispatch(getBranchData(repo.path));
   }, [repo, dispatch]);
 
+  const onBranchCreate = React.useCallback(
+    ({
+      branchName,
+      checkAfterCreate,
+    }: {
+      branchName: string;
+      checkAfterCreate: boolean;
+    }) => {},
+    [],
+  );
+
   if (!repo) return null;
 
   return (
@@ -39,6 +50,8 @@ export const Branches = () => {
         onDismiss={() => {
           setCreateBranch(false);
         }}
+        onBranchCreate={onBranchCreate}
+        branches={localBranches || []}
       />
     </>
   );
