@@ -17,6 +17,7 @@ interface CreateBranchDialogProps {
   }) => void;
   // The array of local branch names, to validate user input against
   branches: string[];
+  errorStr: string;
 }
 
 export const CreateBranchDialog = ({
@@ -24,17 +25,16 @@ export const CreateBranchDialog = ({
   visible,
   onBranchCreate,
   branches,
+  errorStr,
 }: CreateBranchDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const [branchName, setBranchName] = React.useState('');
   const [checkAfterCreate, setCheckAfterCreate] = React.useState(false);
-  const [errorStr, setErrorStr] = React.useState('');
 
   const parentOnDismiss = (bool: boolean) => {
     setBranchName('');
     setCheckAfterCreate(false);
-    setErrorStr('');
     onDismiss(bool);
   };
 

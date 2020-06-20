@@ -4,13 +4,16 @@
  */
 import * as React from 'react';
 import {useSelector} from 'react-redux';
-import {RootState, getBranchData} from '@store';
+import {RootState, getBranchData, getLocalBranches} from '@store';
 import {useThunkDispatch} from '@hooks';
+import {createBranch} from '@services';
 import {BranchesUI} from './branches.ui';
 import {CreateBranchDialog} from './components/create-branch-dialog';
 
 export const Branches = () => {
-  const [createBranch, setCreateBranch] = React.useState(false);
+  const [createBranchDialog, setCreateBranchDialog] = React.useState(false);
+  // For the branch dialog
+  const [errorStr, setErrorStr] = React.useState('');
   const {localBranches, remoteBranches, remotes} = useSelector(
     (state: RootState) => state.branches,
   );
@@ -30,8 +33,16 @@ export const Branches = () => {
     }: {
       branchName: string;
       checkAfterCreate: boolean;
-    }) => {},
-    [],
+    }) => {
+      createBranch({branchName, checkAfterCreate, repo: repo!})
+        .then(() => {
+          setCreateBranchDialog(false);
+          setErrorStr('');
+          dispatch(getLocalBranches(repo!.path));
+        })
+        .catch(e => setErrorStr(e));
+    },
+    [repo, dispatch],
   );
 
   if (!repo) return null;
@@ -43,15 +54,17 @@ export const Branches = () => {
         repo={repo}
         remotes={remotes}
         remoteBranches={remoteBranches}
-        onCreateBranch={() => setCreateBranch(true)}
+        onCreateBranch={() => setCreateBranchDialog(true)}
       />
       <CreateBranchDialog
-        visible={createBranch}
+        visible={createBranchDialog}
         onDismiss={() => {
-          setCreateBranch(false);
+          setCreateBranchDialog(false);
+          setErrorStr('');
         }}
         onBranchCreate={onBranchCreate}
         branches={localBranches || []}
+        errorStr={errorStr}
       />
     </>
   );

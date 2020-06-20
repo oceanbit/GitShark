@@ -1,5 +1,6 @@
 export * from './cloneRepo';
 export * from './commit';
+export * from './createBranch';
 export * from './createRepo';
 export * from './deleteRepo';
 export * from './getCommitHeaderBody';
