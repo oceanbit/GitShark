@@ -1,3 +1,4 @@
+export * from './checkoutBranch';
 export * from './cloneRepo';
 export * from './commit';
 export * from './createBranch';

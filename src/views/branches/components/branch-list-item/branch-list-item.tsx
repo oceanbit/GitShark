@@ -24,6 +24,7 @@ interface BranchListItemProps {
   selected: boolean;
   isFavorite: boolean;
   onDeleteLocalBranch: (branchName: string) => Promise<void>;
+  onCheckoutBranch: (branchName: string) => Promise<void>;
 }
 
 type BranchListItemDialogTypes = 'delete' | '';
@@ -33,6 +34,7 @@ export const BranchListItem = ({
   selected,
   isFavorite,
   onDeleteLocalBranch,
+  onCheckoutBranch,
 }: BranchListItemProps) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState<BranchListItemDialogTypes>(
@@ -82,7 +84,12 @@ export const BranchListItem = ({
                 onPress={() => setIsMenuOpen(true)}
               />
             }>
-            <Menu.Item onPress={() => {}} title={`Checkout ${branch.name}`} />
+            <Menu.Item
+              onPress={() => {
+                onCheckoutBranch(branch.name);
+              }}
+              title={`Checkout ${branch.name}`}
+            />
             <Divider />
             <Menu.Item onPress={() => {}} title="Rename" />
             <Menu.Item

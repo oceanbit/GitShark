@@ -6,7 +6,7 @@ import * as React from 'react';
 import {useSelector} from 'react-redux';
 import {RootState, getBranchData, getLocalBranches} from '@store';
 import {useThunkDispatch} from '@hooks';
-import {createBranch, deleteLocalBranch} from '@services';
+import {createBranch, deleteLocalBranch, checkoutBranch} from '@services';
 import {BranchesUI} from './branches.ui';
 import {CreateBranchDialog} from './components/create-branch-dialog';
 
@@ -52,6 +52,13 @@ export const Branches = () => {
     [dispatch, repo],
   );
 
+  const onCheckoutBranch = React.useCallback(
+    async (branchName: string) => {
+      await checkoutBranch({branchName, dispatch, repo: repo!});
+    },
+    [dispatch, repo],
+  );
+
   if (!repo) return null;
 
   return (
@@ -63,6 +70,7 @@ export const Branches = () => {
         remoteBranches={remoteBranches}
         onCreateBranch={() => setCreateBranchDialog(true)}
         onDeleteLocalBranch={onLocalBranchDelete}
+        onCheckoutBranch={onCheckoutBranch}
       />
       <CreateBranchDialog
         visible={createBranchDialog}

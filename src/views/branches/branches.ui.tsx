@@ -24,6 +24,7 @@ interface BranchesUIProps {
   remoteBranches: RemoteBranch[];
   onCreateBranch: () => void;
   onDeleteLocalBranch: (branchName: string) => Promise<void>;
+  onCheckoutBranch: (branchName: string) => Promise<void>;
 }
 export const BranchesUI = ({
   localBranches,
@@ -32,6 +33,7 @@ export const BranchesUI = ({
   remoteBranches,
   onCreateBranch,
   onDeleteLocalBranch,
+  onCheckoutBranch,
 }: BranchesUIProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -63,6 +65,7 @@ export const BranchesUI = ({
                 down: 0,
               }}
               onDeleteLocalBranch={onDeleteLocalBranch}
+              onCheckoutBranch={onCheckoutBranch}
             />
           );
         })}
