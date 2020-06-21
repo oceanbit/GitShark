@@ -1,58 +1,47 @@
 import * as React from 'react';
-import {View, TouchableWithoutFeedback, Text} from 'react-native';
 import {AppDialog} from '@components/dialog';
 import {SharkTextInput} from '@components/shark-text-input';
-import {ErrorMessageBox} from '@components/error-message-box';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkCheckbox} from '@components/shark-checkbox';
 import {textStyles, theme} from '@constants';
 
-interface CreateBranchDialogProps {
-  onDismiss: (didUpdate: boolean) => void;
+interface RenameBranchDialogProps {
+  onDismiss: () => void;
   visible: boolean;
-  onBranchCreate: (props: {
-    branchName: string;
-    checkAfterCreate: boolean;
-  }) => void;
+  onBranchRename: (props: {branchName: string}) => void;
   // The array of local branch names, to validate user input against
   branches: string[];
-  errorStr: string;
 }
 
-export const CreateBranchDialog = ({
+export const RenameBranchDialog = ({
   onDismiss,
   visible,
-  onBranchCreate,
+  onBranchRename,
   branches,
-  errorStr,
-}: CreateBranchDialogProps) => {
+}: RenameBranchDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const [branchName, setBranchName] = React.useState('');
-  const [checkAfterCreate, setCheckAfterCreate] = React.useState(false);
+
+  const parentOnDismiss = () => {
+    setBranchName('');
+    onDismiss();
+  };
 
   React.useEffect(() => {
     if (visible) return;
     // When dismissed via `visible=false`, reset the values within
     setBranchName('');
-    setCheckAfterCreate(false);
   }, [visible]);
-
-  const parentOnDismiss = (bool: boolean) => {
-    setBranchName('');
-    setCheckAfterCreate(false);
-    onDismiss(bool);
-  };
 
   const isNameTaken = branches.includes(branchName);
 
   return (
     <AppDialog
       visible={visible}
-      onDismiss={() => parentOnDismiss(false)}
-      title={'Create branch'}
-      text={'Uncommitted changes will be moved to the new branch.'}
+      onDismiss={() => parentOnDismiss()}
+      title={'Rename branch'}
+      text={'Rename your local branch to a new name.'}
       main={
         <>
           <SharkTextInput
@@ -62,20 +51,6 @@ export const CreateBranchDialog = ({
             prefixIcon={'branch'}
             errorStr={isNameTaken ? 'Branch name is already taken' : ''}
           />
-          {!!errorStr && (
-            <ErrorMessageBox style={styles.errorBox} message={errorStr} />
-          )}
-          <TouchableWithoutFeedback
-            style={styles.checkboxContainer}
-            onPress={() => setCheckAfterCreate(v => !v)}>
-            <View style={styles.checkboxView}>
-              <SharkCheckbox
-                checked={checkAfterCreate}
-                onValueChange={setCheckAfterCreate}
-              />
-              <Text style={styles.checkoutText}>Checkout after creation</Text>
-            </View>
-          </TouchableWithoutFeedback>
         </>
       }
       actions={
@@ -87,10 +62,10 @@ export const CreateBranchDialog = ({
             text={'Cancel'}
           />
           <SharkButton
-            onPress={() => onBranchCreate({branchName, checkAfterCreate})}
+            onPress={() => onBranchRename({branchName})}
             type="primary"
             disabled={isNameTaken}
-            text={'Create'}
+            text={'Rename'}
           />
         </>
       }
@@ -106,14 +81,6 @@ const dynamicStyles = new DynamicStyleSheet({
     borderColor: theme.colors.divider,
     borderWidth: 2,
     marginRight: 16,
-  },
-  checkboxView: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  checkboxContainer: {
-    marginTop: 8,
   },
   checkoutText: {
     color: theme.colors.on_surface,

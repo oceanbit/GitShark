@@ -66,6 +66,7 @@ export const BranchesUI = ({
               }}
               onDeleteLocalBranch={onDeleteLocalBranch}
               onCheckoutBranch={onCheckoutBranch}
+              localBranches={localBranches}
             />
           );
         })}

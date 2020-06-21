@@ -12,6 +12,7 @@ import {TouchableRipple} from 'react-native-paper';
 import {Divider, Menu} from 'react-native-paper';
 import {SharkMenu} from '@components/shark-menu';
 import {DeleteBranchDialog} from '../delete-branch-dialog';
+import {RenameBranchDialog} from '../rename-branch-dialog';
 
 interface BranchMock {
   name: string;
@@ -21,16 +22,18 @@ interface BranchMock {
 
 interface BranchListItemProps {
   branch: BranchMock;
+  localBranches: string[];
   selected: boolean;
   isFavorite: boolean;
   onDeleteLocalBranch: (branchName: string) => Promise<void>;
   onCheckoutBranch: (branchName: string) => Promise<void>;
 }
 
-type BranchListItemDialogTypes = 'delete' | '';
+type BranchListItemDialogTypes = 'delete' | 'rename' | '';
 
 export const BranchListItem = ({
   branch,
+  localBranches,
   selected,
   isFavorite,
   onDeleteLocalBranch,
@@ -91,7 +94,13 @@ export const BranchListItem = ({
               title={`Checkout ${branch.name}`}
             />
             <Divider />
-            <Menu.Item onPress={() => {}} title="Rename" />
+            <Menu.Item
+              onPress={() => {
+                setDialogOpen('rename');
+                setIsMenuOpen(false);
+              }}
+              title="Rename"
+            />
             <Menu.Item
               onPress={() => {
                 setDialogOpen('delete');
@@ -109,6 +118,16 @@ export const BranchListItem = ({
           if (shouldDelete) onDeleteLocalBranch(branch.name);
         }}
         visible={dialogOpen === 'delete'}
+      />
+      <RenameBranchDialog
+        onDismiss={() => {
+          setDialogOpen('');
+        }}
+        onBranchRename={({branchName}) => {
+          setDialogOpen('');
+        }}
+        visible={dialogOpen === 'rename'}
+        branches={localBranches}
       />
     </>
   );
