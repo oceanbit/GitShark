@@ -11,6 +11,7 @@ import {SharkIconButton} from '@components/shark-icon-button';
 import {TouchableRipple} from 'react-native-paper';
 import {Divider, Menu} from 'react-native-paper';
 import {SharkMenu} from '@components/shark-menu';
+import {DeleteBranchDialog} from '../delete-branch-dialog';
 
 interface BranchMock {
   name: string;
@@ -25,6 +26,8 @@ interface BranchListItemProps {
   onDeleteLocalBranch: (branchName: string) => Promise<void>;
 }
 
+type BranchListItemDialogTypes = 'delete' | '';
+
 export const BranchListItem = ({
   branch,
   selected,
@@ -32,6 +35,9 @@ export const BranchListItem = ({
   onDeleteLocalBranch,
 }: BranchListItemProps) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = React.useState<BranchListItemDialogTypes>(
+    '',
+  );
 
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -44,48 +50,60 @@ export const BranchListItem = ({
     : styles.branchNameNormal;
 
   return (
-    <TouchableRipple style={[styles.container, bgColor]} onPress={() => {}}>
-      <>
-        <Text style={[styles.branchName, branchNameSelected]}>
-          {branch.name}
-        </Text>
-        <PushPullArrows
-          primaryText={selected}
-          commitsToPull={branch.down}
-          commitsToPush={branch.up}
-          style={styles.arrowStyles}
-        />
-        <SharkIconButton
-          iconName={isFavorite ? 'favorite_selected' : 'favorite'}
-          primaryColor={selected}
-          onPress={() => {}}
-        />
-        <SharkIconButton
-          iconName="history"
-          primaryColor={selected}
-          onPress={() => {}}
-        />
-        <SharkMenu
-          visible={isMenuOpen}
-          onDismiss={() => setIsMenuOpen(false)}
-          anchor={
-            <SharkIconButton
-              iconName="menu"
-              primaryColor={selected}
-              onPress={() => setIsMenuOpen(true)}
-            />
-          }>
-          <Menu.Item onPress={() => {}} title={`Checkout ${branch.name}`} />
-          <Divider />
-          <Menu.Item onPress={() => {}} title="Rename" />
-          <Menu.Item
-            onPress={() => onDeleteLocalBranch(branch.name)}
-            title="Delete"
-            disabled={selected}
+    <>
+      <TouchableRipple style={[styles.container, bgColor]} onPress={() => {}}>
+        <>
+          <Text style={[styles.branchName, branchNameSelected]}>
+            {branch.name}
+          </Text>
+          <PushPullArrows
+            primaryText={selected}
+            commitsToPull={branch.down}
+            commitsToPush={branch.up}
+            style={styles.arrowStyles}
           />
-        </SharkMenu>
-      </>
-    </TouchableRipple>
+          <SharkIconButton
+            iconName={isFavorite ? 'favorite_selected' : 'favorite'}
+            primaryColor={selected}
+            onPress={() => {}}
+          />
+          <SharkIconButton
+            iconName="history"
+            primaryColor={selected}
+            onPress={() => {}}
+          />
+          <SharkMenu
+            visible={isMenuOpen}
+            onDismiss={() => setIsMenuOpen(false)}
+            anchor={
+              <SharkIconButton
+                iconName="menu"
+                primaryColor={selected}
+                onPress={() => setIsMenuOpen(true)}
+              />
+            }>
+            <Menu.Item onPress={() => {}} title={`Checkout ${branch.name}`} />
+            <Divider />
+            <Menu.Item onPress={() => {}} title="Rename" />
+            <Menu.Item
+              onPress={() => {
+                setDialogOpen('delete');
+                setIsMenuOpen(false);
+              }}
+              title="Delete"
+              disabled={selected}
+            />
+          </SharkMenu>
+        </>
+      </TouchableRipple>
+      <DeleteBranchDialog
+        onDismiss={shouldDelete => {
+          setDialogOpen('');
+          if (shouldDelete) onDeleteLocalBranch(branch.name);
+        }}
+        visible={dialogOpen === 'delete'}
+      />
+    </>
   );
 };
 
