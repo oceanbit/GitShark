@@ -5,35 +5,35 @@ const iOS = Platform.OS === 'ios';
 export const textStyles = {
   display: {
     fontFamily: iOS ? 'Rubik' : 'rubik_bold',
-    fontWeight: iOS ? 'bold' : ('normal' as const),
+    fontWeight: iOS ? ('bold' as const) : ('normal' as const),
     fontSize: 48,
     lineHeight: 64,
   },
 
   headline_01: {
     fontFamily: iOS ? 'Rubik' : 'rubik_bold',
-    fontWeight: iOS ? 'bold' : ('normal' as const),
+    fontWeight: iOS ? ('bold' as const) : ('normal' as const),
     fontSize: 34,
     lineHeight: 48,
   },
 
   headline_02: {
     fontFamily: iOS ? 'Rubik' : 'rubik_bold',
-    fontWeight: iOS ? 'bold' : ('normal' as const),
+    fontWeight: iOS ? ('bold' as const) : ('normal' as const),
     fontSize: 28,
     lineHeight: 36,
   },
 
   headline_03: {
     fontFamily: iOS ? 'Rubik' : 'rubik_medium',
-    fontWeight: iOS ? '500' : ('normal' as const),
+    fontWeight: iOS ? ('500' as const) : ('normal' as const),
     fontSize: 20,
     lineHeight: 28,
   },
 
   callout: {
     fontFamily: iOS ? 'Rubik' : 'rubik_medium',
-    fontWeight: iOS ? '500' : ('normal' as const),
+    fontWeight: iOS ? ('500' as const) : ('normal' as const),
     fontSize: 16,
     lineHeight: 24,
   },
@@ -54,7 +54,7 @@ export const textStyles = {
 
   caption_01: {
     fontFamily: iOS ? 'Rubik' : 'rubik_medium',
-    fontWeight: iOS ? '500' : ('normal' as const),
+    fontWeight: iOS ? ('500' as const) : ('normal' as const),
     fontSize: 12,
     lineHeight: 16,
   },
