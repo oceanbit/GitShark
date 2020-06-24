@@ -52,6 +52,7 @@ export const SlideUpDownSettingsAnimation = ({
         ref={slideUpVideo}
         style={{height: vidHeight, width: vidWidth}}
         disableFocus={true}
+        playWhenInactive={true}
         muted={true}
         controls={false}
         resizeMode={'contain'}
@@ -72,6 +73,7 @@ export const SlideUpDownSettingsAnimation = ({
           width: vidWidth,
         }}
         disableFocus={true}
+        playWhenInactive={true}
         muted={true}
         controls={false}
         resizeMode={'contain'}
