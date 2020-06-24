@@ -2,7 +2,7 @@ import * as React from 'react';
 import 'reflect-metadata';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-import {StatusBar, YellowBox} from 'react-native';
+import {Platform, StatusBar, YellowBox} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {Repository} from './views/repository/repository';
 import {Account} from './views/account/account';
@@ -100,7 +100,9 @@ const AppBase = () => {
     localDarkMode === 'auto' ? isSystemDarkMode : localDarkMode === 'dark';
 
   React.useEffect(() => {
-    changeBarColors(isDarkMode);
+    if (Platform.OS === 'android') {
+      changeBarColors(isDarkMode);
+    }
   }, [isDarkMode]);
 
   React.useEffect(() => {
