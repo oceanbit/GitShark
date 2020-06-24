@@ -8,7 +8,7 @@ import {
 } from 'react-native-dark-mode';
 import {Icon} from '@components/shark-icon';
 
-const defaultProfPic = require('../../../assets/images/default-profile-pic.png');
+import defaultProfPic from '@assets/images/default-profile-pic.png';
 
 interface SharkProfilePicProps {
   source?: ImagePropsBase['source'] | null;

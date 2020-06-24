@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   Dimensions,
+  Image,
   ScrollView,
   Text,
   TouchableWithoutFeedback,
@@ -18,9 +19,8 @@ import {AppBar} from '../../components/app-bar';
 import {SharkSubheader} from '../../components/shark-subheader';
 import {useNavigation} from '@react-navigation/native';
 import {SlideUpDownSettingsAnimation} from './components/slide-up-down-settings-animation';
-import SplitVideoLight from '@assets/videos/split.mp4';
-import SplitVideoDark from '@assets/videos/split_dark.mp4';
-import Video from 'react-native-video';
+import SplitLight from '@assets/images/split.png';
+import SplitDark from '@assets/images/split_dark.png';
 import {
   DynamicStyleSheet,
   useDarkMode,
@@ -88,14 +88,9 @@ export const Settings = () => {
                 width: videoWidth,
                 position: 'relative',
               }}>
-              <Video
-                source={SplitVideoLight}
-                muted={true}
-                controls={false}
+              <Image
+                source={SplitLight}
                 resizeMode={'contain'}
-                paused={false}
-                repeat={false}
-                disableFocus={true}
                 style={{
                   height: videoHeight,
                   width: videoWidth,
@@ -105,14 +100,9 @@ export const Settings = () => {
                   zIndex: isDark ? -1 : 1,
                 }}
               />
-              <Video
-                source={SplitVideoDark}
-                muted={true}
-                controls={false}
+              <Image
+                source={SplitDark}
                 resizeMode={'contain'}
-                paused={false}
-                repeat={false}
-                disableFocus={true}
                 style={{
                   height: videoHeight,
                   width: videoWidth,

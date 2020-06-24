@@ -38,9 +38,10 @@ export class CheckmarkBase extends React.PureComponent<
     size: 18,
     state: 'unchecked',
     onValueChange: () => {},
-    unselectedIcon: '',
-    indetermindateIcon: '',
-    selectedIcon: '',
+    // These icons should never actually be used. They're simply here to shut up the warning of invalid icon name
+    unselectedIcon: 'menu',
+    indetermindateIcon: 'menu',
+    selectedIcon: 'menu',
   };
 
   state = {
