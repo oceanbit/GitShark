@@ -41,7 +41,6 @@
     "react-native-button-toggle-group": "^1.0.3",
     "react-native-dark-mode": "^0.2.2",
     "react-native-default-preference": "^1.4.2",
-    "react-native-file-selector": "https://github.com/crutchcorn/react-native-file-selector.git",
     "react-native-fs": "https://github.com/crutchcorn/react-native-fs.git#all-commands",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-immersive-bars": "^1.0.0",

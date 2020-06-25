@@ -3,7 +3,7 @@ import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
 import {textStyles, theme} from '@constants';
-import RNFileSelector from 'react-native-file-selector';
+// import RNFileSelector from 'react-native-file-selector';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -25,17 +25,17 @@ export const FolderSelectButton = ({
   const accent = useDynamicValue(theme.colors.primary);
 
   const selectDirectory = () => {
-    RNFileSelector.Show({
-      title: 'Select File',
-      chooseFolderMode: true,
-      onDone: (selectedPath: string) => {
-        console.log('file selected: ' + selectedPath);
-        onFolderSelect(selectedPath);
-      },
-      onCancel: () => {
-        console.log('cancelled');
-      },
-    });
+    // RNFileSelector.Show({
+    //   title: 'Select File',
+    //   chooseFolderMode: true,
+    //   onDone: (selectedPath: string) => {
+    //     console.log('file selected: ' + selectedPath);
+    //     onFolderSelect(selectedPath);
+    //   },
+    //   onCancel: () => {
+    //     console.log('cancelled');
+    //   },
+    // });
   };
 
   return (

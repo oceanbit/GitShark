@@ -10854,10 +10854,6 @@ react-native-default-preference@^1.4.2:
   resolved "https://registry.yarnpkg.com/react-native-default-preference/-/react-native-default-preference-1.4.3.tgz#3c6411d32ea4ebc5286fbf5915546fc57a6014f6"
   integrity sha512-sQDYwGEdxwKwXKP/8Intc81FyH33Rv8ZvOxdmPX4NM75RAIVeBc13pdabEqycAimNZoY5IDvGp4o1cTTa5gNrA==
 
-"react-native-file-selector@https://github.com/crutchcorn/react-native-file-selector.git":
-  version "1.0.0"
-  resolved "https://github.com/crutchcorn/react-native-file-selector.git#25b59f753904d7e3753efc4a6b25f93c547b43ac"
-
 "react-native-fs@https://github.com/crutchcorn/react-native-fs.git#all-commands":
   version "2.16.4"
   resolved "https://github.com/crutchcorn/react-native-fs.git#11f131f0e90f100f94b3e1daa86cf7a3479b973c"
