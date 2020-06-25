@@ -11,7 +11,6 @@ PODS:
     - React-Core (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/turbomodule/core (= 0.61.5)
-  - FileBrowser (1.0.0)
   - Folly (2018.10.22.00):
     - boost-for-react-native
     - DoubleConversion
@@ -185,7 +184,7 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
   - React-jsinspector (0.61.5)
-  - react-native-safe-area-context (0.7.3):
+  - react-native-safe-area-context (3.0.5):
     - React
   - react-native-sqlite-storage (5.0.0):
     - React
@@ -231,20 +230,17 @@ PODS:
     - ReactCommon/jscallinvoker (= 0.61.5)
   - ReactNativeDarkMode (0.2.2):
     - React
-  - RNCMaskedView (0.1.8):
+  - RNCMaskedView (0.1.10):
     - React
-  - RNDefaultPreference (1.4.2):
-    - React
-  - RNFileSelector (1.0.0):
-    - FileBrowser
+  - RNDefaultPreference (1.4.3):
     - React
   - RNFS (2.16.4):
     - React
   - RNGestureHandler (1.6.1):
     - React
-  - RNReanimated (1.8.0):
+  - RNReanimated (1.9.0):
     - React
-  - RNScreens (2.4.0):
+  - RNScreens (2.8.0):
     - React
   - RNSecureKeyStore (1.0.0):
     - React
@@ -289,7 +285,6 @@ DEPENDENCIES:
   - ReactNativeDarkMode (from `../node_modules/react-native-dark-mode`)
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNDefaultPreference (from `../node_modules/react-native-default-preference`)
-  - RNFileSelector (from `../node_modules/react-native-file-selector/ios`)
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -302,7 +297,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
-    - FileBrowser
 
 EXTERNAL SOURCES:
   BVLinearGradient:
@@ -367,8 +361,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/masked-view"
   RNDefaultPreference:
     :path: "../node_modules/react-native-default-preference"
-  RNFileSelector:
-    :path: "../node_modules/react-native-file-selector/ios"
   RNFS:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
@@ -392,7 +384,6 @@ SPEC CHECKSUMS:
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   FBLazyVector: aaeaf388755e4f29cd74acbc9e3b8da6d807c37f
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
-  FileBrowser: 2ca91ff61c9ea09665eb3b8f9e64a7a77e66a0bf
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
@@ -404,7 +395,7 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
+  react-native-safe-area-context: e768fca90207ee68924b3d0877633f2ce9cc9d68
   react-native-sqlite-storage: 418ef4afc5e6df6ce3574c4617e5f0b65cffde55
   react-native-video: eee541262ada11bc7ffe8ec5508e6a877937c462
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
@@ -418,13 +409,12 @@ SPEC CHECKSUMS:
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   ReactNativeDarkMode: 0178ffca3b10f6a7c9f49d6f9810232b328fa949
-  RNCMaskedView: 4383c3140f1235391fd6029968c166f09ddd0973
-  RNDefaultPreference: 1f8133ec0bc0f9453cdada578564ba1ef551fb44
-  RNFileSelector: f15e056d4317ad0fc9b93c908cac63ee3dbd5965
+  RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
+  RNDefaultPreference: 2f8d6d54230edbd78708ada8d63bb275e5a8415b
   RNFS: 90d1a32d3bc8f75cc7fc3dd2f67506049664346b
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
-  RNScreens: b5c0e1b2b04512919e78bd3898e144a157ce2363
+  RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
+  RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244
   RNSecureKeyStore: f1ad870e53806453039f650720d2845c678d89c8
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4

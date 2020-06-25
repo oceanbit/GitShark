@@ -55,16 +55,7 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Rubik-Black.ttf</string>
-		<string>Rubik-BlackItalic.ttf</string>
-		<string>Rubik-Bold.ttf</string>
-		<string>Rubik-BoldItalic.ttf</string>
-		<string>Rubik-Italic.ttf</string>
-		<string>Rubik-Light.ttf</string>
-		<string>Rubik-LightItalic.ttf</string>
-		<string>Rubik-Medium.ttf</string>
-		<string>Rubik-MediumItalic.ttf</string>
-		<string>Rubik-Regular.ttf</string>
+		<string>icomoon.ttf</string>
 		<string>rubik_black.ttf</string>
 		<string>rubik_blackItalic.ttf</string>
 		<string>rubik_bold.ttf</string>
@@ -72,8 +63,8 @@
 		<string>rubik_Italic.ttf</string>
 		<string>rubik_light.ttf</string>
 		<string>rubik_lightItalic.ttf</string>
-		<string>rubik_medium_italic.ttf</string>
 		<string>rubik_medium.ttf</string>
+		<string>rubik_medium_italic.ttf</string>
 		<string>rubik_regular.ttf</string>
 	</array>
 </dict>

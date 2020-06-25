@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* GitSharkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GitSharkTests.m */; };
-		03D5CBCFD50D49A7AC342670 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5885004FBB8148D0BFA49367 /* Rubik-Bold.ttf */; };
-		0DBC33DE0FDC4814B69EECB7 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14E47D939E4044B990FFCA6E /* Rubik-Medium.ttf */; };
 		0F6965498C9946CBBF478136 /* rubik_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCD7C3C43F0947F1B754B279 /* rubik_light.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
@@ -20,25 +18,18 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* GitSharkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GitSharkTests.m */; };
-		4809720928C94F0C8C0A45E4 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99B17CCE4987457AB782BD7A /* Rubik-Regular.ttf */; };
 		4DB8AC0905644225A483C915 /* rubik_medium_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5971DB1D9A2A48E8AE718A46 /* rubik_medium_italic.ttf */; };
-		761653760B354F899B3376E9 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AE84DC76F9B4D998E051CCC /* Rubik-LightItalic.ttf */; };
+		596DD79CEB174ED19FF98C01 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 729A8D37AF37424393FE8FBA /* icomoon.ttf */; };
 		91BAFB0AA9752C850A64AF61 /* libPods-GitShark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF2861835EAE37C3BDFDFF2 /* libPods-GitShark.a */; };
-		9B38967270534AAE9262D4D3 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB1C5652417446AEA92D6C8F /* Rubik-BlackItalic.ttf */; };
 		A75EE32465294E18AB284E65 /* rubik_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E522E02AA4E54CC29C5A766D /* rubik_Italic.ttf */; };
 		B67A25259ED14732AAE439DD /* rubik_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F359DD37D474083AEC52717 /* rubik_medium.ttf */; };
-		B8BCC2E8420147088081780C /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B03B1A173AE4421B2348B4F /* Rubik-BoldItalic.ttf */; };
-		CD353D72D6104C39BB4CC8D4 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747FD97B973F40A095FD885C /* Rubik-Light.ttf */; };
 		CDC44B1CD35B4614B94A6AD5 /* rubik_boldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F497ECA6659541D590CED245 /* rubik_boldItalic.ttf */; };
 		D2DEDEA341C847238167521F /* rubik_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98600476F6E142A2A23BD7A0 /* rubik_regular.ttf */; };
 		D580C195A8334203B80F251F /* rubik_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 418693F7AAF849F8929A0F58 /* rubik_bold.ttf */; };
-		DCF404703DEE42B19EFB458E /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29F093D4DE2544AEB8AFC567 /* Rubik-Italic.ttf */; };
 		DE2B63500F11429C167AE8B9 /* libPods-GitSharkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F1BA33DAB0E30E286E5324 /* libPods-GitSharkTests.a */; };
 		E6213BA90C1C4C3CB798311F /* rubik_lightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 70A1D36EF7BC4EB0A8C0A24C /* rubik_lightItalic.ttf */; };
 		E97539B138E4BF1DB64BDC9F /* libPods-GitShark-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C3251FEC5E3189C8D87FBC /* libPods-GitShark-tvOSTests.a */; };
-		EB321A79A4F44129B429CCB6 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8612453D4E1443392F94964 /* Rubik-Black.ttf */; };
 		F4EF59553BFC412F9927DB8A /* rubik_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71EBFF9618F548158D9D23E8 /* rubik_black.ttf */; };
-		FB0812DB9FF94E9E936A9A1B /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E75C8608C5434677AD1AE644 /* Rubik-MediumItalic.ttf */; };
 		FF6C8553EE454977B3AEF0A9 /* rubik_blackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C36C545EEDEE4011B6060716 /* rubik_blackItalic.ttf */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +77,7 @@
 		70A1D36EF7BC4EB0A8C0A24C /* rubik_lightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_lightItalic.ttf; path = ../assets/fonts/rubik_lightItalic.ttf; sourceTree = "<group>"; };
 		70C3251FEC5E3189C8D87FBC /* libPods-GitShark-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71EBFF9618F548158D9D23E8 /* rubik_black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_black.ttf; path = ../assets/fonts/rubik_black.ttf; sourceTree = "<group>"; };
+		729A8D37AF37424393FE8FBA /* icomoon.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = icomoon.ttf; path = ../assets/fonts/icomoon.ttf; sourceTree = "<group>"; };
 		747B5A4B0CF50F231A7A6D82 /* Pods-GitShark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark.release.xcconfig"; path = "Target Support Files/Pods-GitShark/Pods-GitShark.release.xcconfig"; sourceTree = "<group>"; };
 		747FD97B973F40A095FD885C /* Rubik-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Light.ttf"; path = "../assets/fonts/Rubik-Light.ttf"; sourceTree = "<group>"; };
 		8AE84DC76F9B4D998E051CCC /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-LightItalic.ttf"; path = "../assets/fonts/Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -261,6 +253,7 @@
 				5971DB1D9A2A48E8AE718A46 /* rubik_medium_italic.ttf */,
 				2F359DD37D474083AEC52717 /* rubik_medium.ttf */,
 				98600476F6E142A2A23BD7A0 /* rubik_regular.ttf */,
+				729A8D37AF37424393FE8FBA /* icomoon.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -413,16 +406,6 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				EB321A79A4F44129B429CCB6 /* Rubik-Black.ttf in Resources */,
-				9B38967270534AAE9262D4D3 /* Rubik-BlackItalic.ttf in Resources */,
-				03D5CBCFD50D49A7AC342670 /* Rubik-Bold.ttf in Resources */,
-				B8BCC2E8420147088081780C /* Rubik-BoldItalic.ttf in Resources */,
-				DCF404703DEE42B19EFB458E /* Rubik-Italic.ttf in Resources */,
-				CD353D72D6104C39BB4CC8D4 /* Rubik-Light.ttf in Resources */,
-				761653760B354F899B3376E9 /* Rubik-LightItalic.ttf in Resources */,
-				0DBC33DE0FDC4814B69EECB7 /* Rubik-Medium.ttf in Resources */,
-				FB0812DB9FF94E9E936A9A1B /* Rubik-MediumItalic.ttf in Resources */,
-				4809720928C94F0C8C0A45E4 /* Rubik-Regular.ttf in Resources */,
 				F4EF59553BFC412F9927DB8A /* rubik_black.ttf in Resources */,
 				FF6C8553EE454977B3AEF0A9 /* rubik_blackItalic.ttf in Resources */,
 				D580C195A8334203B80F251F /* rubik_bold.ttf in Resources */,
@@ -433,6 +416,7 @@
 				4DB8AC0905644225A483C915 /* rubik_medium_italic.ttf in Resources */,
 				B67A25259ED14732AAE439DD /* rubik_medium.ttf in Resources */,
 				D2DEDEA341C847238167521F /* rubik_regular.ttf in Resources */,
+				596DD79CEB174ED19FF98C01 /* icomoon.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,15 +481,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-GitShark/Pods-GitShark-resources.sh",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/documents@2x.png",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/file@2x.png",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/FileBrowser.xib",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/folder@2x.png",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/image@2x.png",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/pdf@2x.png",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/PreviewTransitionViewController.xib",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/WebviewPreviewViewContoller.xib",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/zip@2x.png",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -525,15 +500,6 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/documents@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/file@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FileBrowser.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/folder@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/image@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/pdf@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PreviewTransitionViewController.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WebviewPreviewViewContoller.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zip@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",

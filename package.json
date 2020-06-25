@@ -13,7 +13,9 @@
     "build-apk": "cd android && ./gradlew assembleRelease",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "clean": "react-native-clean-project"
+    "clean": "react-native-clean-project",
+    "clear-xcode-cache": "cd ios && bash ../resetXcode.sh && cd ../",
+    "pod-install": "cd ios/ && pod install && cd .."
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.1",
