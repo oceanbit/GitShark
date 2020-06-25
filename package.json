@@ -36,7 +36,7 @@
     "react-content-loader": "^5.0.2",
     "react-dom": "^16.13.1",
     "react-native": "0.61.5",
-    "react-native-button-toggle-group": "^1.0.1",
+    "react-native-button-toggle-group": "^1.0.3",
     "react-native-dark-mode": "^0.2.2",
     "react-native-default-preference": "^1.4.2",
     "react-native-file-selector": "https://github.com/crutchcorn/react-native-file-selector.git",
