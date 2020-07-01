@@ -1,7 +1,7 @@
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import {Icon} from '@components/shark-icon';
-import {theme, textStyles} from '@constants';
+import {theme, textStyles, spacing} from '@constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -64,7 +64,7 @@ export const dynamicStyles = new DynamicStyleSheet({
     backgroundColor: theme.colors.divider,
   },
   commitNumberView: {
-    padding: 6,
+    padding: spacing.xs,
     flexDirection: 'row',
     alignItems: 'center',
   },

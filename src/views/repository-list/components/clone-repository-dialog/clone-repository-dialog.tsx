@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {fs, theme} from '@constants';
+import {fs, spacing, theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import git from 'isomorphic-git/index.umd.min.js';
 import {SharkTextInput} from '@components/shark-text-input';
@@ -122,15 +122,16 @@ export const CloneRepositoryDialog = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   errorBox: {
-    marginTop: 8,
+    marginTop: spacing.xs,
   },
   folderSelect: {
-    marginTop: 8,
+    marginTop: spacing.xs,
   },
   textInput: {
-    marginTop: 8,
-    paddingVertical: 16,
-    paddingHorizontal: 12,
+    marginTop: spacing.xs,
+    paddingVertical: spacing.m,
+    paddingHorizontal: spacing.s,
+    // TODO: FIXME WITH TEXT STYLING
     fontSize: 16,
     lineHeight: 24,
     borderWidth: 1,
@@ -140,10 +141,10 @@ const dynamicStyles = new DynamicStyleSheet({
   cancelBtn: {
     borderColor: theme.colors.divider,
     borderWidth: 2,
-    marginRight: 16,
+    marginRight: spacing.m,
   },
   dialogActions: {
-    marginTop: 16,
+    marginTop: spacing.m,
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },

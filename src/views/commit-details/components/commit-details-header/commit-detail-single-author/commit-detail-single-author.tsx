@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Text, View, Animated, StyleProp, ViewStyle} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {DropdownContent} from '@components/dropdown-content';
-import {textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 import {GitLogCommit} from '@services';
 
@@ -51,7 +51,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   imageContainer: {
     width: imageContainerWidth,
-    marginRight: 8,
+    marginRight: spacing.xs,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text, StyleProp, ViewStyle} from 'react-native';
-import {theme, textStyles} from '@constants';
+import {theme, textStyles, spacing} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {TouchableRipple} from 'react-native-paper';
@@ -44,14 +44,14 @@ const dynamicStyles = new DynamicStyleSheet({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    paddingVertical: 8,
-    paddingLeft: 16,
-    paddingRight: 8,
+    paddingVertical: spacing.xs,
+    paddingLeft: spacing.m,
+    paddingRight: spacing.xs,
     alignItems: 'center',
   },
   arrowStyles: {
-    marginLeft: 16,
-    marginRight: 8,
+    marginLeft: spacing.m,
+    marginRight: spacing.xs,
   },
   branchName: {
     flexGrow: 1,

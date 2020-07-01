@@ -6,7 +6,7 @@ import {
   useDynamicValue,
 } from 'react-native-dark-mode';
 import {CommitPill} from '@components/commit-pill';
-import {theme, textStyles} from '@constants';
+import {theme, textStyles, spacing} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 
 interface CommitDetailsMoreInfoProps {
@@ -105,14 +105,14 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
   },
   tag: {
-    marginRight: 8,
+    marginRight: spacing.xs,
   },
   sectionContainer: {
     flexDirection: 'row',
-    paddingVertical: 8,
+    paddingVertical: spacing.xs,
   },
   shaSectionContainer: {
-    paddingVertical: 12,
+    paddingVertical: spacing.s,
   },
   sectionTitle: {
     width: 72,
@@ -135,14 +135,14 @@ const dynamicStyles = new DynamicStyleSheet({
     flexGrow: 1,
   },
   copyText: {
-    marginHorizontal: 16,
+    marginHorizontal: spacing.m,
     ...textStyles.caption_01,
     color: theme.colors.primary,
   },
   parButton: {
-    marginRight: 8,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+    marginRight: spacing.xs,
+    paddingHorizontal: spacing.xs,
+    paddingVertical: spacing.xxs,
     borderWidth: 1,
     borderColor: theme.colors.divider,
     borderRadius: theme.lessRoundness,

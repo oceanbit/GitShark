@@ -2,7 +2,7 @@ import * as React from 'react';
 import {AppDialog} from '@components/dialog';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {theme} from '@constants';
+import {spacing, theme} from '@constants';
 
 interface DeleteBranchDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -50,6 +50,6 @@ const dynamicStyles = new DynamicStyleSheet({
   cancelBtn: {
     borderColor: theme.colors.divider,
     borderWidth: 2,
-    marginRight: 16,
+    marginRight: spacing.m,
   },
 });

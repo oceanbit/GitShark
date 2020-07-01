@@ -1,6 +1,6 @@
 import {Text, View} from 'react-native';
 import * as React from 'react';
-import {textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {CommitCardPushPull} from './commit-card-push-pull';
 import dayjs from 'dayjs';
@@ -67,22 +67,22 @@ export const CommitCard = ({commit, onPress}: CommitCardProps) => {
 
 const dynamicStyles = new DynamicStyleSheet({
   commitContainer: {
-    paddingHorizontal: 16,
+    paddingHorizontal: spacing.m,
     paddingTop: 20,
-    paddingBottom: 16,
+    paddingBottom: spacing.m,
   },
   commitHeading: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: spacing.m,
   },
   developerName: {
-    paddingVertical: 4,
-    paddingHorizontal: 8,
+    paddingVertical: spacing.xxs,
+    paddingHorizontal: spacing.xs,
     borderWidth: 1,
     borderColor: theme.colors.divider,
     borderRadius: theme.lessRoundness,
-    marginHorizontal: 8,
+    marginHorizontal: spacing.xs,
     color: theme.colors.on_surface,
     ...textStyles.caption_01,
   },

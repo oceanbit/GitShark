@@ -3,7 +3,7 @@ import {View, Text, Animated} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {CommitDetailsDualAuthor} from './commit-detail-dual-author';
 import {CommitDetailsSingleAuthor} from './commit-detail-single-author';
-import {textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import {DropdownContent} from '@components/dropdown-content';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 import {TouchableRipple} from 'react-native-paper';
@@ -135,18 +135,18 @@ const dynamicStyles = new DynamicStyleSheet({
   container: {},
   commitStyle: {
     ...textStyles.callout,
-    marginHorizontal: 16,
-    marginBottom: 8,
+    marginHorizontal: spacing.m,
+    marginBottom: spacing.xs,
   },
   authorBlock: {
-    marginTop: 8,
-    paddingVertical: 4,
-    paddingLeft: 8,
-    paddingRight: 16,
+    marginTop: spacing.xs,
+    paddingVertical: spacing.xxs,
+    paddingLeft: spacing.xs,
+    paddingRight: spacing.m,
   },
   dropdownContainer: {
-    paddingLeft: 16,
-    paddingRight: 24,
+    paddingLeft: spacing.m,
+    paddingRight: spacing.l,
     display: 'flex',
     flexWrap: 'nowrap',
     flexDirection: 'row',
@@ -155,7 +155,7 @@ const dynamicStyles = new DynamicStyleSheet({
   dropdownText: {
     ...textStyles.caption_01,
     color: theme.colors.primary,
-    marginLeft: 16,
+    marginLeft: spacing.m,
     flexGrow: 1,
     textAlignVertical: 'center',
   },

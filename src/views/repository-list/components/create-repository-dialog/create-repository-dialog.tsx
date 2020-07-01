@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Alert} from 'react-native';
-import {fs, theme} from '@constants';
+import {fs, spacing, theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import git from 'isomorphic-git/index.umd.min.js';
 import {ErrorMessageBox} from '@components/error-message-box';
@@ -126,12 +126,13 @@ export const CreateRepositoryDialog = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   errorBox: {
-    marginTop: 8,
+    marginTop: spacing.xs,
   },
   textInput: {
-    marginTop: 8,
-    paddingVertical: 16,
-    paddingHorizontal: 12,
+    marginTop: spacing.xs,
+    paddingVertical: spacing.m,
+    paddingHorizontal: spacing.s,
+    // TODO: FIXME WITH TEXT STYLING
     fontSize: 16,
     lineHeight: 24,
     borderWidth: 1,
@@ -139,10 +140,10 @@ const dynamicStyles = new DynamicStyleSheet({
     borderRadius: theme.roundness,
   },
   cancelBtn: {
-    marginRight: 16,
+    marginRight: spacing.m,
   },
   dialogActions: {
-    marginTop: 16,
+    marginTop: spacing.m,
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },

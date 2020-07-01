@@ -61,15 +61,15 @@ export const AccountButton = () => {
 
 const dynamicStyles = new DynamicStyleSheet({
   accountSection: {
-    paddingVertical: 12,
-    paddingLeft: 16,
-    paddingRight: 8,
+    paddingVertical: spacing.s,
+    paddingLeft: spacing.m,
+    paddingRight: spacing.xs,
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
   },
   userPic: {
-    marginRight: 16,
+    marginRight: spacing.m,
   },
   accountCallout: {
     ...textStyles.callout,
@@ -78,7 +78,7 @@ const dynamicStyles = new DynamicStyleSheet({
   accountText: {
     display: 'flex',
     flexDirection: 'column',
-    marginRight: 16,
+    marginRight: spacing.m,
     flexGrow: 1,
     color: theme.colors.on_surface,
   },

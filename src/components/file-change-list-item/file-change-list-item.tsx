@@ -1,6 +1,6 @@
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
-import {textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
 import {ChangesArrayItem} from '@services';
@@ -86,25 +86,25 @@ export const FileChangeListItem = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   listItemContainer: {
-    paddingLeft: 16,
-    paddingRight: 8,
+    paddingLeft: spacing.m,
+    paddingRight: spacing.xs,
     justifyContent: 'center',
-    paddingVertical: 8,
+    paddingVertical: spacing.xs,
   },
   listItemView: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   changeIcon: {
-    marginRight: 16,
+    marginRight: spacing.m,
   },
   arrowIcon: {
-    paddingHorizontal: 8,
+    paddingHorizontal: spacing.xs,
   },
   fileName: {
     flexGrow: 1,
     width: 1,
-    marginRight: 8,
+    marginRight: spacing.xs,
     ...textStyles.body_01,
     color: theme.colors.on_surface,
   },

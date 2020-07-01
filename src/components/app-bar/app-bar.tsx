@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {SharkIconButton} from '../shark-icon-button';
-import {textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkDivider} from '../shark-divider';
 
@@ -45,8 +45,8 @@ export const AppBar = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   container: {
-    paddingHorizontal: 8,
-    paddingVertical: 16,
+    paddingHorizontal: spacing.xs,
+    paddingVertical: spacing.m,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -57,7 +57,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'column',
     flexGrow: 1,
     width: 1,
-    marginLeft: 8,
+    marginLeft: spacing.xs,
   },
   headline: {
     ...textStyles.headline_03,

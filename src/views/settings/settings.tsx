@@ -10,6 +10,7 @@ import {
 import {
   DarkModeOptionTypes,
   SetDarkModeContext,
+  spacing,
   StyleOfStagingContext,
   textStyles,
   theme,
@@ -179,12 +180,12 @@ export const Settings = () => {
 
 const dynamicStyles = new DynamicStyleSheet({
   themeToggle: {
-    marginHorizontal: 16,
-    marginTop: 8,
+    marginHorizontal: spacing.m,
+    marginTop: spacing.xs,
   },
   themeText: {
-    marginVertical: 16,
-    marginHorizontal: 16,
+    marginVertical: spacing.m,
+    marginHorizontal: spacing.m,
     ...textStyles.caption_02,
     color: theme.colors.on_surface_secondary,
   },
@@ -192,14 +193,14 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'column',
   },
   checkboxContainer: {
-    marginTop: 16,
+    marginTop: spacing.m,
     alignItems: 'center',
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'row',
   },
   checkboxText: {
-    marginLeft: 8,
+    marginLeft: spacing.xs,
     flexShrink: 0,
     ...textStyles.body_01,
     color: theme.colors.on_surface_secondary,

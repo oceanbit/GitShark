@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
-import {textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import RNFileSelector from 'react-native-file-selector';
 import {
   DynamicStyleSheet,
@@ -73,19 +73,20 @@ const dynamicStyles = new DynamicStyleSheet({
     borderColor: theme.colors.divider,
     borderWidth: 2,
     borderRadius: theme.roundness,
+    // TODO: FIXME WITH TEXT STYLING
     fontSize: 16,
     lineHeight: 24,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.m,
   },
   selectFolderBtnWithPath: {
     flexGrow: 1,
     color: theme.colors.on_surface_secondary,
-    marginRight: 12,
+    marginRight: spacing.s,
   },
   selectFolderText: {
     color: theme.colors.primary,
-    marginLeft: 8,
+    marginLeft: spacing.xs,
     ...textStyles.callout,
   },
 });

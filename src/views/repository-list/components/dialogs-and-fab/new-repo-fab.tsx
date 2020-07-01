@@ -2,7 +2,7 @@ import {TouchableRipple} from 'react-native-paper';
 import {Text} from 'react-native';
 import * as React from 'react';
 import {ExtendedFabBase} from './types';
-import {textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 export const NewRepoFab = ({toggleAnimation}: ExtendedFabBase) => {
@@ -20,7 +20,7 @@ export const NewRepoFab = ({toggleAnimation}: ExtendedFabBase) => {
 
 const dynamicStyles = new DynamicStyleSheet({
   fab: {
-    paddingVertical: 12,
+    paddingVertical: spacing.s,
     paddingHorizontal: 28,
   },
   fabActionText: {
