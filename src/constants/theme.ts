@@ -5,25 +5,14 @@ import {
 } from 'react-native-paper';
 import {Theme as NavTheme} from '@react-navigation/native/src/types';
 import {DynamicValue} from 'react-native-dark-mode';
+import {rubikLight, rubikMedium, rubikRegular} from './text-styles';
 
 const fontConfig: Parameters<typeof configureFonts>[0] = {
   default: {
-    regular: {
-      fontFamily: 'rubik_regular',
-      fontWeight: 'normal' as const,
-    },
-    medium: {
-      fontFamily: 'rubik_medium',
-      fontWeight: 'normal' as const,
-    },
-    light: {
-      fontFamily: 'rubik_light',
-      fontWeight: 'normal' as const,
-    },
-    thin: {
-      fontFamily: 'rubik_light',
-      fontWeight: 'normal' as const,
-    },
+    regular: rubikRegular,
+    medium: rubikMedium,
+    light: rubikLight,
+    thin: rubikLight,
   },
 };
 
