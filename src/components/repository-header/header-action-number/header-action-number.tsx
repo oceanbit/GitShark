@@ -2,7 +2,7 @@ import * as React from 'react';
 import {TouchableRipple} from 'react-native-paper';
 import {Text, View} from 'react-native';
 import {Icon} from '@components/shark-icon';
-import {textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -36,26 +36,26 @@ export const HeaderActionNumber = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   repoHeader: {
-    padding: 8,
+    padding: spacing.xs,
     flexDirection: 'row',
     alignItems: 'center',
   },
   container: {
-    marginRight: 8,
+    marginRight: spacing.xs,
   },
   outlineContainer: {
     borderWidth: 2,
     borderColor: theme.colors.divider,
     borderRadius: theme.roundness,
-    marginRight: 8,
+    marginRight: spacing.xs,
   },
   backBtn: {
-    padding: 8,
+    padding: spacing.xs,
     borderRadius: 50,
   },
   valText: {
     ...textStyles.callout,
-    marginLeft: 8,
+    marginLeft: spacing.xs,
     marginRight: 2,
     color: theme.colors.primary,
   },

@@ -21,7 +21,6 @@ export const SharkRadio = ({checked, onValueChange}: SharkRadioProps) => {
       unselectedIcon={'radio_unselected'}
       selectedIcon={'radio_selected'}
       size={24}
-      style={{margin: 8}}
       unselectedColor={on_surface_secondary}
       selectedColor={accent}
     />

@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import {Icon} from '@components/shark-icon';
 import {
   DynamicStyleSheet,
@@ -135,11 +135,11 @@ const dynamicStyles = new DynamicStyleSheet({
     borderColor: theme.colors.error,
   },
   errorBox: {
-    marginTop: 8,
+    marginTop: spacing.xs,
   },
   icon: {
-    marginHorizontal: 4,
-    padding: 8,
+    marginHorizontal: spacing.xxs,
+    padding: spacing.xs,
   },
   textInput: {
     flexGrow: 1,

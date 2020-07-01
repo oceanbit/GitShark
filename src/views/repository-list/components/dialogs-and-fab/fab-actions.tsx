@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Text, View} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import {DialogSelection, ExtendedFabBase} from './types';
-import {textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface FabActionsProps extends ExtendedFabBase {
@@ -43,13 +43,13 @@ export const FabActions = ({toggleAnimation, onSelect}: FabActionsProps) => {
 
 const dynamicStyles = new DynamicStyleSheet({
   fabActions: {
-    borderRadius: 14,
-    paddingTop: 12,
-    paddingBottom: 12,
+    borderRadius: spacing.s,
+    paddingTop: spacing.s,
+    paddingBottom: spacing.s,
     top: 0,
   },
   fabActionBtn: {
-    padding: 12,
+    padding: spacing.s,
     width: '100%',
   },
   fabActionText: {

@@ -1,5 +1,5 @@
 import {Icon} from '@components/shark-icon';
-import {theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import * as React from 'react';
 import {StyleProp, StyleSheet, ViewStyle, Animated} from 'react-native';
@@ -43,6 +43,6 @@ export const SharkIconButton = ({
 
 const styles = StyleSheet.create({
   iconPadding: {
-    padding: 8,
+    padding: spacing.xs,
   },
 });

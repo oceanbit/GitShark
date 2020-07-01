@@ -1,7 +1,7 @@
 import {Animated, TouchableWithoutFeedback, View} from 'react-native';
 import * as React from 'react';
 import {MutableRefObject} from 'react';
-import {theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {Surface} from 'react-native-paper';
 import {NavigationAwarePortal} from '../navigation-aware-portal';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
@@ -167,7 +167,7 @@ const dynamicStyles = new DynamicStyleSheet({
   mainContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 12,
+    padding: spacing.s,
     width: '100%',
     position: 'absolute',
   },

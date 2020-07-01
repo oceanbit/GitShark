@@ -12,7 +12,7 @@ import {RemoteBranchListItem} from './components/remote-branch-list-item';
 import {DropdownContent} from '@components/dropdown-content';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 import {SharkIconButton} from '@components/shark-icon-button';
-import {textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {RemoteBranch, Remotes} from '@types';
 import {ReduxRepo} from '@entities';
@@ -121,15 +121,15 @@ const dynamicStyles = new DynamicStyleSheet({
     paddingLeft: 56,
   },
   remoteDivider: {
-    marginTop: 16,
+    marginTop: spacing.m,
   },
   dropDownHeader: {
-    padding: 8,
+    padding: spacing.xs,
     flexDirection: 'row',
     alignItems: 'center',
   },
   remoteHeader: {
-    marginHorizontal: 8,
+    marginHorizontal: spacing.xs,
     color: theme.colors.on_surface,
     width: 1,
     flexGrow: 1,

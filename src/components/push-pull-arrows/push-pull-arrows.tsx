@@ -69,7 +69,6 @@ export const dynamicStyles = new DynamicStyleSheet({
     alignItems: 'center',
   },
   commitNumberText: {
-    fontSize: 10,
     marginLeft: 2,
     ...textStyles.overline,
   },

@@ -5,6 +5,7 @@ import * as React from 'react';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {ChangesArrayItem} from '@services';
 import {SharkDivider} from '@components/shark-divider';
+import {spacing} from '@constants';
 
 interface StageSplitViewProps {
   unstagedChanges: ChangesArrayItem[];
@@ -50,23 +51,7 @@ const dynamicStyles = new DynamicStyleSheet({
     height: '100%',
     flex: 1,
   },
-  headingText: {
-    marginBottom: 16,
-    fontSize: 48,
-  },
-  fabview: {
-    position: 'absolute',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: '100%',
-    bottom: 16,
-  },
   halfSection: {
     height: '50%',
-  },
-  fab: {
-    margin: 0,
-    padding: 0,
-    left: 0,
   },
 });

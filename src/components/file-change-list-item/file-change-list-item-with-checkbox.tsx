@@ -3,7 +3,7 @@ import * as React from 'react';
 import {ChangesArrayItem} from '@services';
 import {FileChangeListItem} from './file-change-list-item';
 import {SharkCheckbox} from '../shark-checkbox';
-import {theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface FileChangeListItemProps {
@@ -46,7 +46,7 @@ const dynamicStyles = new DynamicStyleSheet({
     alignItems: 'center',
   },
   checkbox: {
-    padding: 8,
+    padding: spacing.xs,
   },
   listItem: {
     flexGrow: 1,
