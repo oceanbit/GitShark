@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle, TextProps} from 'react-native';
 import {Icon} from '@components/shark-icon';
-import {spacing, textStyles, theme} from '@constants';
+import {borders, spacing, textStyles, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {
   DynamicStyleSheet,
@@ -90,7 +90,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   outlineButton: {
     borderColor: theme.colors.divider,
-    borderWidth: 2,
+    borderWidth: borders.thick,
     backgroundColor: 'transparent',
   },
   outlineButtonText: {

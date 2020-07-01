@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {spacing, theme} from '@constants';
+import {borders, spacing, theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {ReduxRepo} from '@entities';
@@ -83,7 +83,7 @@ export const dynamicStyles = new DynamicStyleSheet({
     // TODO: FIXME WITH TEXT STYLING
     fontSize: 16,
     lineHeight: 24,
-    borderWidth: 1,
+    borderWidth: borders.normal,
     borderColor: theme.colors.divider,
     borderRadius: theme.roundness,
   },

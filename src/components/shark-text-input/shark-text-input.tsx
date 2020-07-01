@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {spacing, textStyles, theme} from '@constants';
+import {borders, spacing, textStyles, theme} from '@constants';
 import {Icon} from '@components/shark-icon';
 import {
   DynamicStyleSheet,
@@ -125,7 +125,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
     flexWrap: 'nowrap',
     borderColor: theme.colors.divider,
-    borderWidth: 1,
+    borderWidth: borders.normal,
     borderRadius: theme.roundness,
     alignContent: 'center',
     overflow: 'hidden',
@@ -155,7 +155,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   focused: {
     borderColor: theme.colors.primary,
-    borderWidth: 2,
+    borderWidth: borders.thick,
     margin: 0,
   },
 });

@@ -4,7 +4,7 @@ import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 // TODO: This WAS importing from `react-native-gesture-handler`. Still may be needed, double check
 import {TouchableWithoutFeedback} from 'react-native';
-import {theme} from '@constants';
+import {borders, theme} from '@constants';
 import {StagedChanges} from './staged-changes';
 import {ChangesArrayItem} from '@services';
 import {UnstagedChanges} from './unstaged-changes';
@@ -159,7 +159,7 @@ const dynamicStyles = new DynamicStyleSheet({
   trueHeader: {
     backgroundColor: theme.colors.floating_surface,
     borderTopColor: theme.colors.divider,
-    borderTopWidth: 2,
+    borderTopWidth: borders.thick,
   },
   handlerBar: {
     position: 'absolute',

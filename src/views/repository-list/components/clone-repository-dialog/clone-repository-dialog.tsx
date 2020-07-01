@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {fs, spacing, theme} from '@constants';
+import {borders, fs, spacing, theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import git from 'isomorphic-git/index.umd.min.js';
 import {SharkTextInput} from '@components/shark-text-input';
@@ -134,13 +134,13 @@ const dynamicStyles = new DynamicStyleSheet({
     // TODO: FIXME WITH TEXT STYLING
     fontSize: 16,
     lineHeight: 24,
-    borderWidth: 1,
+    borderWidth: borders.normal,
     borderColor: theme.colors.divider,
     borderRadius: theme.roundness,
   },
   cancelBtn: {
     borderColor: theme.colors.divider,
-    borderWidth: 2,
+    borderWidth: borders.thick,
     marginRight: spacing.m,
   },
   dialogActions: {

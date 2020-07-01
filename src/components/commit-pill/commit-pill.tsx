@@ -5,7 +5,7 @@ import {
   useDynamicValue,
   useDynamicStyleSheet,
 } from 'react-native-dark-mode';
-import {spacing, textStyles, theme} from '@constants';
+import {borders, spacing, textStyles, theme} from '@constants';
 import {Icon} from '@components/shark-icon';
 
 interface CommitPillProps {
@@ -45,7 +45,7 @@ export const CommitPill = ({isGitHub, name, color, style}: CommitPillProps) => {
 
 const dynamicStyles = new DynamicStyleSheet({
   container: {
-    borderWidth: 1,
+    borderWidth: borders.normal,
     position: 'relative',
     borderRadius: theme.lessRoundness,
   },

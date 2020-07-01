@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, FlatList} from 'react-native';
 import {CommitCard} from './commit-card/commit-card';
-import {theme} from '@constants';
+import {borders, theme} from '@constants';
 import {GitLogCommit} from '@services';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
@@ -28,7 +28,7 @@ export const CommitList = ({commits, onPress}: CommitListProps) => {
 
 const dynamicStyles = new DynamicStyleSheet({
   commitCardItem: {
-    borderTopWidth: 1,
+    borderTopWidth: borders.normal,
     borderTopColor: theme.colors.divider,
   },
 });

@@ -1,6 +1,6 @@
 import {View, Animated} from 'react-native';
 import * as React from 'react';
-import {spacing, textStyles, theme} from '@constants';
+import {borders, spacing, textStyles, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {
@@ -106,7 +106,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexShrink: 0,
     minHeight: 40,
     backgroundColor: theme.colors.floating_surface,
-    borderBottomWidth: 1,
+    borderBottomWidth: borders.normal,
     borderBottomColor: theme.colors.divider,
   },
   dropdownView: {

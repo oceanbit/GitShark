@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleProp, View, ViewStyle, Animated} from 'react-native';
-import {spacing, textStyles, theme} from '@constants';
+import {borders, spacing, textStyles, theme} from '@constants';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {FileActionsBarToggleButton} from './file-actions-bar-toggle-button';
@@ -152,7 +152,7 @@ const dynamicStyles = new DynamicStyleSheet({
   showMoreView: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    borderWidth: 2,
+    borderWidth: borders.thick,
     borderColor: theme.colors.divider,
     borderRadius: theme.roundness,
     overflow: 'hidden',
@@ -161,7 +161,7 @@ const dynamicStyles = new DynamicStyleSheet({
   dotsIcon: {},
   dividerLeft: {
     borderColor: theme.colors.divider,
-    borderLeftWidth: 2,
+    borderLeftWidth: borders.thick,
   },
   disabledStyling: {
     opacity: theme.disabledOpacity,

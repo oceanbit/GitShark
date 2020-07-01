@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
-import {spacing, textStyles, theme} from '@constants';
+import {borders, spacing, textStyles, theme} from '@constants';
 import RNFileSelector from 'react-native-file-selector';
 import {
   DynamicStyleSheet,
@@ -71,11 +71,9 @@ const dynamicStyles = new DynamicStyleSheet({
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: theme.colors.divider,
-    borderWidth: 2,
+    borderWidth: borders.thick,
     borderRadius: theme.roundness,
-    // TODO: FIXME WITH TEXT STYLING
-    fontSize: 16,
-    lineHeight: 24,
+    ...textStyles.callout,
     paddingVertical: spacing.xs,
     paddingHorizontal: spacing.m,
   },
