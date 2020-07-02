@@ -135,11 +135,11 @@ const dynamicStyles = new DynamicStyleSheet({
     fontSize: 16,
     lineHeight: 24,
     borderWidth: borders.normal,
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderRadius: theme.roundness,
   },
   cancelBtn: {
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderWidth: borders.thick,
     marginRight: spacing.m,
   },

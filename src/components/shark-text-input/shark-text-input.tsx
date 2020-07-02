@@ -124,7 +124,7 @@ const dynamicStyles = new DynamicStyleSheet({
   textInputContainer: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderWidth: borders.normal,
     borderRadius: theme.roundness,
     alignContent: 'center',

@@ -89,7 +89,7 @@ const dynamicStyles = new DynamicStyleSheet({
     paddingVertical: spacing.xs,
   },
   outlineButton: {
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderWidth: borders.thick,
     backgroundColor: 'transparent',
   },

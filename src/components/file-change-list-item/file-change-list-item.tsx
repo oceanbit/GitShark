@@ -27,7 +27,6 @@ export const FileChangeListItem = ({
   const change_addition = useDynamicValue(theme.colors.change_addition);
   const change_removal = useDynamicValue(theme.colors.change_removal);
   const change_mixed = useDynamicValue(theme.colors.change_mixed);
-  const divider = useDynamicValue(theme.colors.divider);
   const accent = useDynamicValue(theme.colors.primary);
 
   const statusIcon = React.useMemo(() => {
@@ -71,8 +70,7 @@ export const FileChangeListItem = ({
   return (
     <TouchableRipple
       style={[styles.listItemContainer, style]}
-      onPress={onPress}
-      rippleColor={divider}>
+      onPress={onPress}>
       <View style={styles.listItemView}>
         {statusIcon}
         <Text style={styles.fileName}>{fileName}</Text>

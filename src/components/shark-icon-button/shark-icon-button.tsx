@@ -22,7 +22,6 @@ export const SharkIconButton = ({
   disabled = false,
   primaryColor = true,
 }: SharkIconButtonProps) => {
-  const dividerColor = useDynamicValue(theme.colors.divider);
   const accentColor = useDynamicValue(theme.colors.primary);
   const onSurfaceColor = useDynamicValue(theme.colors.on_surface);
 
@@ -32,8 +31,7 @@ export const SharkIconButton = ({
     <TouchableRipple
       style={[styles.iconPadding, style]}
       onPress={onPress}
-      disabled={disabled}
-      rippleColor={dividerColor}>
+      disabled={disabled}>
       <Animated.View style={iconStyle}>
         <Icon name={iconName} size={24} color={iconColor} />
       </Animated.View>

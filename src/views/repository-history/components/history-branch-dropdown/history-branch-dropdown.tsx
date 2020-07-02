@@ -107,7 +107,7 @@ const dynamicStyles = new DynamicStyleSheet({
     minHeight: 40,
     backgroundColor: theme.colors.floating_surface,
     borderBottomWidth: borders.normal,
-    borderBottomColor: theme.colors.divider,
+    borderBottomColor: theme.colors.tint_on_surface_16,
   },
   dropdownView: {
     flexDirection: 'row',

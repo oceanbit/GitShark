@@ -4,7 +4,7 @@ import {DynamicStyleSheet} from 'react-native-dark-mode';
 export const dynamicStyles = new DynamicStyleSheet({
   cardContainer: {
     borderStyle: 'solid',
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderRadius: theme.roundness,
     borderWidth: 1,
     paddingTop: 8,

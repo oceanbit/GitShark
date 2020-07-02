@@ -43,7 +43,7 @@ export const SharkButtonToggleGroup = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   container: {
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     padding: spacing.xxs,
     borderWidth: borders.normal,
     borderRadius: theme.roundness,

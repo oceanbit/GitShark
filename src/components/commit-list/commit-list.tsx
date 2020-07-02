@@ -29,6 +29,6 @@ export const CommitList = ({commits, onPress}: CommitListProps) => {
 const dynamicStyles = new DynamicStyleSheet({
   commitCardItem: {
     borderTopWidth: borders.normal,
-    borderTopColor: theme.colors.divider,
+    borderTopColor: theme.colors.tint_on_surface_16,
   },
 });

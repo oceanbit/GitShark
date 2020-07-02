@@ -144,7 +144,7 @@ const dynamicStyles = new DynamicStyleSheet({
     paddingHorizontal: spacing.xs,
     paddingVertical: spacing.xxs,
     borderWidth: borders.normal,
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderRadius: theme.lessRoundness,
   },
   parText: {

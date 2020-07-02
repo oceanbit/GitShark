@@ -126,7 +126,7 @@ const dynamicStyles = new DynamicStyleSheet({
     // FIXME WITH TEXT STYLING
     lineHeight: 24,
     borderWidth: borders.normal,
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderRadius: theme.roundness,
   },
   cancelBtn: {

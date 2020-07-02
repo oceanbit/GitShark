@@ -15,6 +15,6 @@ const dynamicStyles = new DynamicStyleSheet({
   divider: {
     width: '100%',
     borderTopWidth: borders.normal,
-    borderTopColor: theme.colors.divider,
+    borderTopColor: theme.colors.tint_on_surface_16,
   },
 });

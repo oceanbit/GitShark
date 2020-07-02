@@ -78,7 +78,7 @@ const dynamicStyles = new DynamicStyleSheet({
     marginTop: spacing.xs,
   },
   cancelBtn: {
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderWidth: borders.thick,
     marginRight: spacing.m,
   },

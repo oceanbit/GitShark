@@ -95,6 +95,6 @@ const dynamicStyles = new DynamicStyleSheet({
   bottomNav: {
     backgroundColor: theme.colors.floating_surface,
     borderTopWidth: borders.normal,
-    borderTopColor: theme.colors.divider,
+    borderTopColor: theme.colors.tint_on_surface_16,
   },
 });

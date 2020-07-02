@@ -53,7 +53,7 @@ const dynamicStyles = new DynamicStyleSheet({
   profPic: {
     borderRadius: 50,
     borderWidth: borders.normal,
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
   },
   gitHubLogo: {
     position: 'absolute',

@@ -70,7 +70,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderWidth: borders.thick,
     borderRadius: theme.roundness,
     ...textStyles.callout,
