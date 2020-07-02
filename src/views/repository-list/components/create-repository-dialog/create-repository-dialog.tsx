@@ -130,14 +130,6 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   textInput: {
     marginTop: spacing.xs,
-    paddingVertical: spacing.m,
-    paddingHorizontal: spacing.s,
-    // TODO: FIXME WITH TEXT STYLING
-    fontSize: 16,
-    lineHeight: 24,
-    borderWidth: borders.normal,
-    borderColor: theme.colors.divider,
-    borderRadius: theme.roundness,
   },
   cancelBtn: {
     marginRight: spacing.m,
