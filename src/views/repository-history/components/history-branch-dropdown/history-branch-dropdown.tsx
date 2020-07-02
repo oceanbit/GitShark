@@ -1,6 +1,6 @@
 import {View, Animated} from 'react-native';
 import * as React from 'react';
-import {borders, spacing, textStyles, theme} from '@constants';
+import {spacing, textStyles, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {
@@ -9,6 +9,7 @@ import {
   useDynamicValue,
 } from 'react-native-dark-mode';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
+import {SharkDivider} from '@components/shark-divider';
 
 interface HistoryBranchDropdownProps {
   branchName: string;
@@ -75,29 +76,35 @@ export const HistoryBranchDropdown = ({
   }, [expanded, marginLeft, branchNameOpacity, selectBranchesOpacity]);
 
   return (
-    <TouchableRipple
-      style={styles.dropdownContainer}
-      onPress={() => setExpanded(!expanded)}
-      rippleColor={rippleColor}>
-      <Animated.View style={[styles.dropdownView, {marginLeft}]}>
-        <SharkIconButton
-          onPress={onFavorite}
-          iconName={favorite ? 'favorite_selected' : 'favorite'}
-        />
-        <View style={styles.textContainer}>
-          <Animated.Text
-            style={[styles.selectBranches, {opacity: selectBranchesOpacity}]}>
-            Select branches
-          </Animated.Text>
-          <Animated.Text
-            numberOfLines={1}
-            style={[styles.branchName, {opacity: branchNameOpacity}]}>
-            {branchName}
-          </Animated.Text>
-        </View>
-        <AnimatedDropdownArrow setExpanded={setExpanded} expanded={expanded} />
-      </Animated.View>
-    </TouchableRipple>
+    <>
+      <TouchableRipple
+        style={styles.dropdownContainer}
+        onPress={() => setExpanded(!expanded)}
+        rippleColor={rippleColor}>
+        <Animated.View style={[styles.dropdownView, {marginLeft}]}>
+          <SharkIconButton
+            onPress={onFavorite}
+            iconName={favorite ? 'favorite_selected' : 'favorite'}
+          />
+          <View style={styles.textContainer}>
+            <Animated.Text
+              style={[styles.selectBranches, {opacity: selectBranchesOpacity}]}>
+              Select branches
+            </Animated.Text>
+            <Animated.Text
+              numberOfLines={1}
+              style={[styles.branchName, {opacity: branchNameOpacity}]}>
+              {branchName}
+            </Animated.Text>
+          </View>
+          <AnimatedDropdownArrow
+            setExpanded={setExpanded}
+            expanded={expanded}
+          />
+        </Animated.View>
+      </TouchableRipple>
+      <SharkDivider />
+    </>
   );
 };
 
@@ -106,8 +113,6 @@ const dynamicStyles = new DynamicStyleSheet({
     flexShrink: 0,
     minHeight: 40,
     backgroundColor: theme.colors.floating_surface,
-    borderBottomWidth: borders.normal,
-    borderBottomColor: theme.colors.divider,
   },
   dropdownView: {
     flexDirection: 'row',

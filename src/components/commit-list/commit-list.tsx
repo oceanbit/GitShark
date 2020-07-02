@@ -1,9 +1,8 @@
 import * as React from 'react';
-import {View, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
 import {CommitCard} from './commit-card/commit-card';
-import {borders, theme} from '@constants';
 import {GitLogCommit} from '@services';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {SharkDivider} from '@components/shark-divider';
 
 interface CommitListProps {
   commits: GitLogCommit[];
@@ -11,24 +10,16 @@ interface CommitListProps {
 }
 
 export const CommitList = ({commits, onPress}: CommitListProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
-
   return (
     <FlatList
       data={commits}
       keyExtractor={commit => commit.oid}
       renderItem={({item: commit, index: i}) => (
-        <View style={i === 0 ? {} : styles.commitCardItem} key={commit.oid}>
+        <React.Fragment key={commit.oid}>
+          {i !== 0 && <SharkDivider />}
           <CommitCard commit={commit} onPress={onPress} />
-        </View>
+        </React.Fragment>
       )}
     />
   );
 };
-
-const dynamicStyles = new DynamicStyleSheet({
-  commitCardItem: {
-    borderTopWidth: borders.normal,
-    borderTopColor: theme.colors.divider,
-  },
-});
