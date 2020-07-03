@@ -14,6 +14,7 @@ import {
   StyleOfStagingContext,
   textStyles,
   theme,
+  opacity,
 } from '../../constants';
 import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group';
 import {AppBar} from '../../components/app-bar';
@@ -187,7 +188,8 @@ const dynamicStyles = new DynamicStyleSheet({
     marginVertical: spacing.m,
     marginHorizontal: spacing.m,
     ...textStyles.caption_02,
-    color: theme.colors.on_surface_secondary,
+    color: theme.colors.on_surface,
+    opacity: opacity.secondary,
   },
   stagingVideoContainer: {
     flexDirection: 'column',
@@ -203,6 +205,7 @@ const dynamicStyles = new DynamicStyleSheet({
     marginLeft: spacing.xs,
     flexShrink: 0,
     ...textStyles.body_01,
-    color: theme.colors.on_surface_secondary,
+    color: theme.colors.on_surface,
+    opacity: opacity.secondary,
   },
 });

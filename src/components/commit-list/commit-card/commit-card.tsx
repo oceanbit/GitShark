@@ -1,6 +1,6 @@
 import {Text, View} from 'react-native';
 import * as React from 'react';
-import {borders, spacing, textStyles, theme} from '@constants';
+import {borders, spacing, textStyles, theme, opacity} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {CommitCardPushPull} from './commit-card-push-pull';
 import dayjs from 'dayjs';
@@ -86,8 +86,9 @@ const dynamicStyles = new DynamicStyleSheet({
     ...textStyles.caption_01,
   },
   timeStr: {
-    color: theme.colors.on_surface_secondary,
+    color: theme.colors.on_surface,
     ...textStyles.caption_02,
+    opacity: opacity.secondary,
   },
   commitHeaderTxt: {
     color: theme.colors.on_surface,
@@ -98,7 +99,8 @@ const dynamicStyles = new DynamicStyleSheet({
     color: theme.colors.primary,
   },
   commitBody: {
-    color: theme.colors.on_surface_secondary,
+    color: theme.colors.on_surface,
     ...textStyles.body_02,
+    opacity: opacity.secondary,
   },
 });

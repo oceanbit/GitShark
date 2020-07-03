@@ -79,7 +79,8 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   selectFolderBtnWithPath: {
     flexGrow: 1,
-    color: theme.colors.on_surface_secondary,
+    color: theme.colors.on_surface,
+    opacity: opacity.secondary,
     marginRight: spacing.s,
   },
   selectFolderText: {

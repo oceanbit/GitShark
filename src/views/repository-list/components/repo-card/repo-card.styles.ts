@@ -1,4 +1,4 @@
-import {textStyles, theme} from '@constants';
+import {textStyles, theme, opacity} from '@constants';
 import {DynamicStyleSheet} from 'react-native-dark-mode';
 
 export const dynamicStyles = new DynamicStyleSheet({
@@ -41,7 +41,8 @@ export const dynamicStyles = new DynamicStyleSheet({
     color: theme.colors.on_surface,
   },
   lastUpdated: {
-    color: theme.colors.on_surface_secondary,
+    color: theme.colors.on_surface,
+    opacity: opacity.secondary,
     ...textStyles.caption_02,
   },
   branchView: {

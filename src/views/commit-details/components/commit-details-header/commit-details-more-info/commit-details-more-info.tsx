@@ -6,7 +6,7 @@ import {
   useDynamicValue,
 } from 'react-native-dark-mode';
 import {CommitPill} from '@components/commit-pill';
-import {theme, textStyles, spacing, borders} from '@constants';
+import {theme, textStyles, spacing, borders, opacity} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 
 interface CommitDetailsMoreInfoProps {
@@ -130,7 +130,8 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   shaText: {
     ...textStyles.caption_02,
-    color: theme.colors.on_surface_secondary,
+    color: theme.colors.on_surface,
+    opacity: opacity.secondary,
     width: 1,
     flexGrow: 1,
   },
