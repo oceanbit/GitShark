@@ -76,13 +76,38 @@ export const lightNavTheme: NavTheme = {
 export const theme = {
   ...baseTheme,
   colors: {
-    tinted_surface: new DynamicValue(
-      seasideTheme.tinted_surface_light,
-      seasideTheme.tinted_surface_dark,
+    on_primary: new DynamicValue(
+      seasideTheme.on_primary_light,
+      seasideTheme.on_primary_dark,
+    ),
+    primary: new DynamicValue(
+      seasideTheme.primary_light,
+      seasideTheme.primary_dark,
+    ),
+    on_surface: new DynamicValue(
+      seasideTheme.on_surface_light,
+      seasideTheme.on_surface_dark,
+    ),
+    floating_surface: new DynamicValue(
+      seasideTheme.floating_surface_light,
+      seasideTheme.floating_surface_dark,
+    ),
+    surface: new DynamicValue(
+      seasideTheme.surface_light,
+      seasideTheme.surface_dark,
+    ),
+    error: new DynamicValue(seasideTheme.error_light, seasideTheme.error_dark),
+    on_change: new DynamicValue(
+      seasideTheme.on_change_light,
+      seasideTheme.on_change_dark,
     ),
     change_addition: new DynamicValue(
       seasideTheme.change_addition_light,
       seasideTheme.change_addition_dark,
+    ),
+    change_removal: new DynamicValue(
+      seasideTheme.change_removal_light,
+      seasideTheme.change_removal_dark,
     ),
     change_mixed: new DynamicValue(
       seasideTheme.change_mixed_light,
@@ -92,67 +117,48 @@ export const theme = {
       seasideTheme.change_refactored_light,
       seasideTheme.change_refactored_dark,
     ),
-    change_removal: new DynamicValue(
-      seasideTheme.change_removal_light,
-      seasideTheme.change_removal_dark,
-    ),
-    tint_on_surface_16: new DynamicValue(
-      seasideTheme.tint_on_surface_16_light,
-      seasideTheme.tint_on_surface_16_dark,
-    ),
-    error: new DynamicValue(seasideTheme.error_light, seasideTheme.error_dark),
-    error_bubble: new DynamicValue(
-      seasideTheme.error_bubble_light,
-      seasideTheme.error_bubble_dark,
-    ),
-    floating_surface: new DynamicValue(
-      seasideTheme.floating_surface_light,
-      seasideTheme.floating_surface_dark,
-    ),
-    on_change: new DynamicValue(
-      seasideTheme.on_change_light,
-      seasideTheme.on_change_dark,
-    ),
-    on_error: new DynamicValue(
-      seasideTheme.on_error_light,
-      seasideTheme.on_error_dark,
-    ),
-    on_primary: new DynamicValue(
-      seasideTheme.on_primary_light,
-      seasideTheme.on_primary_dark,
-    ),
-    on_surface: new DynamicValue(
-      seasideTheme.on_surface_light,
-      seasideTheme.on_surface_dark,
-    ),
-    on_surface_secondary: new DynamicValue(
-      seasideTheme.on_surface_secondary_light,
-      seasideTheme.on_surface_secondary_dark,
-    ),
-    // Please don't use this unless you ABSOLUTELY have to
-    on_surface_secondary_no_opacity: new DynamicValue(
-      seasideTheme.on_surface_secondary_light_no_opacity,
-      seasideTheme.on_surface_secondary_dark_no_opacity,
-    ),
-    primary: new DynamicValue(
-      seasideTheme.primary_light,
-      seasideTheme.primary_dark,
-    ),
+
     ripple_primary: new DynamicValue(
       seasideTheme.ripple_primary_light,
       seasideTheme.ripple_primary_dark,
     ),
     ripple_surface: new DynamicValue(
-      seasideTheme.ripple_surface_light,
-      seasideTheme.ripple_surface_dark,
+      seasideTheme.ripple_on_surface_light,
+      seasideTheme.ripple_on_surface_dark,
     ),
-    surface: new DynamicValue(
-      seasideTheme.surface_light,
-      seasideTheme.surface_dark,
+    tint_on_surface_16: new DynamicValue(
+      seasideTheme.tint_on_surface_16_light,
+      seasideTheme.tint_on_surface_16_dark,
     ),
-    selected_primary: new DynamicValue(
-      seasideTheme.selected_primary_light,
-      seasideTheme.selected_primary_dark,
+    tint_on_surface_08: new DynamicValue(
+      seasideTheme.tint_on_surface_08_light,
+      seasideTheme.tint_on_surface_08_dark,
     ),
+    tint_primary_20: new DynamicValue(
+      seasideTheme.tint_primary_20_light,
+      seasideTheme.tint_primary_20_dark,
+    ),
+    tint_primary_10: new DynamicValue(
+      seasideTheme.tint_primary_10_light,
+      seasideTheme.tint_primary_10_dark,
+    ),
+
+    // error_bubble: new DynamicValue(
+    //   seasideTheme.error_bubble_light,
+    //   seasideTheme.error_bubble_dark,
+    // ),
+    // on_error: new DynamicValue(
+    //   seasideTheme.on_error_light,
+    //   seasideTheme.on_error_dark,
+    // ),
+    on_surface_secondary: new DynamicValue(
+      seasideTheme.tint_on_surface_16_light,
+      seasideTheme.tint_on_surface_16_dark,
+    ),
+    // // Please don't use this unless you ABSOLUTELY have to
+    // on_surface_secondary_no_opacity: new DynamicValue(
+    //   seasideTheme.on_surface_secondary_light_no_opacity,
+    //   seasideTheme.on_surface_secondary_dark_no_opacity,
+    // ),
   },
 };
