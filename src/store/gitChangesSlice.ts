@@ -36,9 +36,15 @@ export const addToStaged = createAsyncThunk(
     const repo = repository.repo;
     if (!repo) return;
     return Promise.all(
-      changes.map(change =>
-        git.add({fs, dir: repo!.path, filepath: change.fileName}),
-      ),
+      changes.map(change => {
+        if (change.fileStatus === 'deleted') {
+          // TODO: Remove when this is handled
+          // https://github.com/isomorphic-git/isomorphic-git/issues/1099#issuecomment-653428486
+          return git.remove({fs, dir: repo!.path, filepath: change.fileName});
+        } else {
+          return git.add({fs, dir: repo!.path, filepath: change.fileName});
+        }
+      }),
     );
   },
 );
@@ -50,9 +56,19 @@ export const removeFromStaged = createAsyncThunk(
     const repo = repository.repo;
     if (!repo) return;
     return Promise.all(
-      changes.map(change =>
-        git.remove({fs, dir: repo!.path, filepath: change.fileName}),
-      ),
+      changes.map(change => {
+        if (change.fileStatus === 'deleted') {
+          // TODO: Remove when this is handled
+          // https://github.com/isomorphic-git/isomorphic-git/issues/1099#issuecomment-653428486
+          return git.resetIndex({
+            fs,
+            dir: repo!.path,
+            filepath: change.fileName,
+          });
+        } else {
+          return git.remove({fs, dir: repo!.path, filepath: change.fileName});
+        }
+      }),
     );
   },
 );
