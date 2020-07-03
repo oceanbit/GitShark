@@ -7,6 +7,21 @@ import {theme as seasideTheme} from 'seaside/theme';
 import {Theme as NavTheme} from '@react-navigation/native/src/types';
 import {DynamicValue} from 'react-native-dark-mode';
 import {rubikLight, rubikMedium, rubikRegular} from './text-styles';
+import {opacity} from './opacity';
+
+// Taken from: https://github.com/regexhq/hsla-regex
+// Don't add a `/g` flag it breaks JavaScereipt
+// // // Have a problem with how I spelt JS right then? Well I have a problem with how JS treats the g flag
+// https://stackoverflow.com/questions/18462784/why-is-javascript-regex-matching-every-second-time
+const hslaRegex = /hsla\((\d+),\s*([\d.]+)%,\s*([\d.]+)%,\s*(\d*(?:\.\d+)?)\)/i;
+
+const getSecondaryStatic = (color: string) => {
+  const hsla = hslaRegex.exec(color) || [];
+  const newVal = `hsla(${hsla[1]},${hsla[2]}%,${
+    hsla[3]
+  }%,${opacity.secondary.toFixed(1)})`;
+  return newVal;
+};
 
 const fontConfig: Parameters<typeof configureFonts>[0] = {
   default: {
@@ -142,6 +157,16 @@ export const theme = {
       seasideTheme.tint_primary_10_light,
       seasideTheme.tint_primary_10_dark,
     ),
+    // PLEASE use `on_surface` with `opacity.secondary` instead! This is anti-pattern
+    on_surface_secondary: new DynamicValue(
+      getSecondaryStatic(seasideTheme.on_surface_light),
+      getSecondaryStatic(seasideTheme.on_surface_dark),
+    ),
+    // // No seriously, please don't use this unless you ABSOLUTELY have to
+    on_surface_secondary_no_opacity: new DynamicValue(
+      '#717f9b', // Navy 800 "0.6 alpha"
+      '#8f97a8', // Navy 100 "0.6 alpha"
+    ),
 
     // error_bubble: new DynamicValue(
     //   seasideTheme.error_bubble_light,
@@ -150,15 +175,6 @@ export const theme = {
     // on_error: new DynamicValue(
     //   seasideTheme.on_error_light,
     //   seasideTheme.on_error_dark,
-    // ),
-    on_surface_secondary: new DynamicValue(
-      seasideTheme.tint_on_surface_16_light,
-      seasideTheme.tint_on_surface_16_dark,
-    ),
-    // // Please don't use this unless you ABSOLUTELY have to
-    // on_surface_secondary_no_opacity: new DynamicValue(
-    //   seasideTheme.on_surface_secondary_light_no_opacity,
-    //   seasideTheme.on_surface_secondary_dark_no_opacity,
     // ),
   },
 };
