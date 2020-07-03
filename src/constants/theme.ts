@@ -112,6 +112,10 @@ export const theme = {
       seasideTheme.surface_dark,
     ),
     error: new DynamicValue(seasideTheme.error_light, seasideTheme.error_dark),
+    error_background: new DynamicValue(
+      seasideTheme.error_background_light,
+      seasideTheme.error_background_dark,
+    ),
     on_change: new DynamicValue(
       seasideTheme.on_change_light,
       seasideTheme.on_change_dark,
@@ -141,6 +145,10 @@ export const theme = {
       seasideTheme.ripple_on_surface_light,
       seasideTheme.ripple_on_surface_dark,
     ),
+    tint_on_surface_24: new DynamicValue(
+      seasideTheme.tint_on_surface_24_light,
+      seasideTheme.tint_on_surface_24_dark,
+    ),
     tint_on_surface_16: new DynamicValue(
       seasideTheme.tint_on_surface_16_light,
       seasideTheme.tint_on_surface_16_dark,
@@ -148,6 +156,10 @@ export const theme = {
     tint_on_surface_08: new DynamicValue(
       seasideTheme.tint_on_surface_08_light,
       seasideTheme.tint_on_surface_08_dark,
+    ),
+    tint_on_surface_04: new DynamicValue(
+      seasideTheme.tint_on_surface_04_light,
+      seasideTheme.tint_on_surface_04_dark,
     ),
     tint_primary_20: new DynamicValue(
       seasideTheme.tint_primary_20_light,
@@ -167,14 +179,5 @@ export const theme = {
       '#717f9b', // Navy 800 "0.6 alpha"
       '#8f97a8', // Navy 100 "0.6 alpha"
     ),
-
-    // error_bubble: new DynamicValue(
-    //   seasideTheme.error_bubble_light,
-    //   seasideTheme.error_bubble_dark,
-    // ),
-    // on_error: new DynamicValue(
-    //   seasideTheme.on_error_light,
-    //   seasideTheme.on_error_dark,
-    // ),
   },
 };

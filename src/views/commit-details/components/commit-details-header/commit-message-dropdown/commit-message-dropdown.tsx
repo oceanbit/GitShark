@@ -143,7 +143,7 @@ const dynamicStyles = new DynamicStyleSheet({
     borderRadius: theme.roundness,
     borderWidth: borders.normal,
     borderColor: theme.colors.tint_on_surface_16,
-    backgroundColor: theme.colors.surface,
+    backgroundColor: theme.colors.tint_on_surface_04,
     paddingLeft: spacing.s,
     paddingVertical: spacing.s,
     paddingRight: spacing.xs,

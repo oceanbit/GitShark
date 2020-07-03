@@ -11664,10 +11664,10 @@ schema-utils@^2.0.1, schema-utils@^2.5.0, schema-utils@^2.6.5, schema-utils@^2.6
     ajv "^6.12.2"
     ajv-keywords "^3.4.1"
 
-seaside@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/seaside/-/seaside-0.0.2.tgz#4fd58d29100fe0148f280d093f2804b88df3c390"
-  integrity sha512-alojdFrLBvT+mMwJVxug5q+f5ZW5B+zMZQrXhIFV5AwD8L72Jm1DFfqhahXva/EtLCi1EFn9DI7LYDMfIMLlXQ==
+seaside@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/seaside/-/seaside-0.0.3.tgz#60e50db97fb99f9abe9a4a942fecac7bac5f814f"
+  integrity sha512-aDyvdnUh9uUCet44mM8K8Bz9jqmzCtZHOlTl37wCGeNbesQrl4mgi2Z0JDW8qq8Tck0Vb6aQZ52stHL27TZxXg==
 
 select@^1.1.2:
   version "1.1.2"
