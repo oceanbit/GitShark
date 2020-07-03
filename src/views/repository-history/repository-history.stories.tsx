@@ -12,6 +12,10 @@ const RepositoryListDemo = ({...props}: any) => {
         repo={{currentBranchName: 'master'} as any}
         remotes={[]}
         remoteBranches={[]}
+        onBranchRename={() => Promise.resolve()}
+        onCheckoutBranch={() => Promise.resolve()}
+        onCreateBranch={() => Promise.resolve()}
+        onDeleteLocalBranch={() => Promise.resolve()}
       />
     ),
     [],

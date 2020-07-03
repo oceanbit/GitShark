@@ -4,6 +4,7 @@ import {getRepository, getConnection} from 'typeorm';
 import {clearChanges} from './gitChangesSlice';
 import {clearLog} from './gitLogSlice';
 import {clearBranches} from './gitBranchesSlice';
+import {findRepoList} from '@store/repoListSlice';
 
 export const findRepo = createAsyncThunk(
   'repository/findRepo',
@@ -23,7 +24,7 @@ export const changeBranch = createAsyncThunk(
   'repository/changeBranch',
   async (
     {repoId, branchName}: {repoId: string | number; branchName: string},
-    {getState},
+    {getState, dispatch},
   ) => {
     const {database} = getState() as any;
     if (!database.isLoaded) return;
@@ -33,6 +34,8 @@ export const changeBranch = createAsyncThunk(
       .set({currentBranchName: branchName})
       .where('id = :id', {id: repoId})
       .execute();
+    // If this is not updated, the repo list will not display the proper branch name
+    dispatch(findRepoList());
     return branchName;
   },
 );

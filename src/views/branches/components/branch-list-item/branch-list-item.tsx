@@ -27,6 +27,11 @@ interface BranchListItemProps {
   isFavorite: boolean;
   onDeleteLocalBranch: (branchName: string) => Promise<void>;
   onCheckoutBranch: (branchName: string) => Promise<void>;
+  onBranchRename: (props: {
+    branchName: string;
+    selected: boolean;
+    oldBranchName: string;
+  }) => Promise<void>;
 }
 
 type BranchListItemDialogTypes = 'delete' | 'rename' | '';
@@ -38,6 +43,7 @@ export const BranchListItem = ({
   isFavorite,
   onDeleteLocalBranch,
   onCheckoutBranch,
+  onBranchRename,
 }: BranchListItemProps) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState<BranchListItemDialogTypes>(
@@ -125,6 +131,7 @@ export const BranchListItem = ({
         }}
         onBranchRename={({branchName}) => {
           setDialogOpen('');
+          onBranchRename({branchName, selected, oldBranchName: branch.name});
         }}
         visible={dialogOpen === 'rename'}
         branches={localBranches}

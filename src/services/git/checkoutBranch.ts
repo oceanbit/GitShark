@@ -1,3 +1,5 @@
+import git from 'isomorphic-git/index.umd.min.js';
+import {fs} from '@constants';
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
 import {changeBranch, findRepoList} from '@store';
@@ -12,6 +14,6 @@ export const checkoutBranch = async ({
   branchName,
   dispatch,
 }: CheckoutBranchProps) => {
+  await git.checkout({fs, ref: branchName, dir: repo.path});
   dispatch(changeBranch({repoId: repo.id, branchName}));
-  dispatch(findRepoList());
 };

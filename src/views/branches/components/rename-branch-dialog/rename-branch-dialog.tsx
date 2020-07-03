@@ -56,7 +56,7 @@ export const RenameBranchDialog = ({
       actions={
         <>
           <SharkButton
-            onPress={() => parentOnDismiss(false)}
+            onPress={() => parentOnDismiss()}
             type="outline"
             style={styles.cancelBtn}
             text={'Cancel'}
