@@ -30,7 +30,7 @@ export const ErrorMessageBox = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   errorBoxContainer: {
-    backgroundColor: theme.colors.error_bubble,
+    backgroundColor: theme.colors.error_background,
     flexDirection: 'row',
     paddingLeft: 7,
     paddingRight: spacing.s,

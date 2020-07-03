@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text, View} from 'react-native';
-import {UserContext, textStyles, theme, spacing} from '@constants';
+import {UserContext, textStyles, theme, spacing, opacity} from '@constants';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
@@ -84,7 +84,8 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   accountBody: {
     ...textStyles.body_02,
-    color: theme.colors.on_surface_secondary,
+    color: theme.colors.on_surface,
+    opacity: opacity.secondary,
   },
   arrowIcon: {
     padding: spacing.xs,

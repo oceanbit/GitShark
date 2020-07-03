@@ -153,14 +153,14 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
     flexWrap: 'nowrap',
     borderWidth: borders.thick,
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderRadius: theme.roundness,
     overflow: 'hidden',
   },
   iconButton: {},
   dotsIcon: {},
   dividerLeft: {
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderLeftWidth: borders.thick,
   },
   disabledStyling: {

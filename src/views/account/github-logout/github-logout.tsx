@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Text, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkButton} from '@components/shark-button';
-import {UserContext, textStyles, theme, spacing} from '@constants';
+import {UserContext, textStyles, theme, spacing, opacity} from '@constants';
 
 export const GitHubLogout = () => {
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -36,6 +36,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   body2: {
     ...textStyles.body_02,
-    color: theme.colors.on_surface_secondary,
+    color: theme.colors.on_surface,
+    opacity: opacity.secondary,
   },
 });

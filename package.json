@@ -60,6 +60,7 @@
     "react-native-web-linear-gradient": "^1.1.1",
     "react-redux": "^7.2.0",
     "reanimated-bottom-sheet": "^1.0.0-alpha.19",
+    "seaside": "0.0.3",
     "text-encoding": "^0.7.0",
     "typeorm": "^0.2.24"
   },

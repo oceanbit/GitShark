@@ -52,9 +52,9 @@ export const BranchListItem = ({
 
   const styles = useDynamicStyleSheet(dynamicStyles);
 
-  const selected_primary = useDynamicValue(theme.colors.selected_primary);
+  const tint_primary_10 = useDynamicValue(theme.colors.tint_primary_10);
 
-  const bgColor = selected ? {backgroundColor: selected_primary} : {};
+  const bgColor = selected ? {backgroundColor: tint_primary_10} : {};
 
   const branchNameSelected = selected
     ? styles.branchSelected

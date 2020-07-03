@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Text, View, Animated, StyleProp, ViewStyle} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {DropdownContent} from '@components/dropdown-content';
-import {spacing, textStyles, theme} from '@constants';
+import {spacing, textStyles, theme, opacity} from '@constants';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 
 const authorImageSize = 40;
@@ -202,7 +202,8 @@ const dynamicStyles = new DynamicStyleSheet({
     ...textStyles.caption_01,
   },
   personDate: {
-    color: theme.colors.on_surface_secondary,
+    color: theme.colors.on_surface,
+    opacity: opacity.secondary,
     ...textStyles.caption_02,
   },
   peopleMargin: {

@@ -48,7 +48,7 @@ export const DeleteBranchDialog = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   cancelBtn: {
-    borderColor: theme.colors.divider,
+    borderColor: theme.colors.tint_on_surface_16,
     borderWidth: borders.thick,
     marginRight: spacing.m,
   },
