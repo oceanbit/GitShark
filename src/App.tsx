@@ -148,6 +148,7 @@ const AppBase = () => {
             <SetDarkModeContext.Provider
               value={{
                 setDarkMode: updateLocalDarkMode,
+                localDarkMode,
               }}>
               <UserContext.Provider
                 value={{

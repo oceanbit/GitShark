@@ -10,12 +10,14 @@ import ButtonToggleGroup from 'react-native-button-toggle-group';
 
 interface SharkButtonToggleGroupProps {
   values: string[];
+  value: string;
   onSelect: (val: string) => void;
   style?: StyleProp<ViewStyle>;
 }
 
 export const SharkButtonToggleGroup = ({
   values,
+  value,
   onSelect,
   style = {},
 }: SharkButtonToggleGroupProps) => {
@@ -34,6 +36,7 @@ export const SharkButtonToggleGroup = ({
       inactiveBackgroundColor={'transparent'}
       inactiveTextColor={on_surface_secondary}
       values={values}
+      value={value}
       onSelect={onSelect}
       style={[styles.container, style]}
       textStyle={styles.buttonText}

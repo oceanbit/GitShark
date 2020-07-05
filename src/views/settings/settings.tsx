@@ -44,7 +44,13 @@ export const Settings = () => {
     StyleOfStagingContext,
   );
 
-  const {setDarkMode} = React.useContext(SetDarkModeContext);
+  const {setDarkMode, localDarkMode} = React.useContext(SetDarkModeContext);
+
+  // This is fragile and bad. Oh well
+  const matchingLocalMode = `${localDarkMode[0].toUpperCase()}${localDarkMode.slice(
+    1,
+    localDarkMode.length,
+  )}`;
 
   const videoWidth = (Dimensions.get('window').width - 24 * 3) / 2;
   const videoHeight = videoWidth * 2;
@@ -62,6 +68,7 @@ export const Settings = () => {
       <SharkSubheader calloutText="Theme" />
       <SharkButtonToggleGroup
         values={['Auto', 'Light', 'Dark']}
+        value={matchingLocalMode}
         onSelect={val => setDarkMode(val.toLowerCase() as DarkModeOptionTypes)}
         style={styles.themeToggle}
       />
