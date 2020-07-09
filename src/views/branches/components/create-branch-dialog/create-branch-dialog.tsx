@@ -6,7 +6,7 @@ import {ErrorMessageBox} from '@components/error-message-box';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkCheckbox} from '@components/shark-checkbox';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 
 interface CreateBranchDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -100,12 +100,12 @@ export const CreateBranchDialog = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   errorBox: {
-    marginTop: spacing.xs,
+    marginTop: theme.spacing.xs,
   },
   cancelBtn: {
     borderColor: theme.colors.tint_on_surface_16,
     borderWidth: theme.borders.thick,
-    marginRight: spacing.m,
+    marginRight: theme.spacing.m,
   },
   checkboxView: {
     display: 'flex',
@@ -113,7 +113,7 @@ const dynamicStyles = new DynamicStyleSheet({
     alignItems: 'center',
   },
   checkboxContainer: {
-    marginTop: spacing.xs,
+    marginTop: theme.spacing.xs,
   },
   checkoutText: {
     color: theme.colors.on_surface,

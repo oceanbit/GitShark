@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text} from 'react-native';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -144,14 +144,14 @@ const dynamicStyles = new DynamicStyleSheet({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    paddingVertical: spacing.xs,
-    paddingLeft: spacing.m,
-    paddingRight: spacing.xs,
+    paddingVertical: theme.spacing.xs,
+    paddingLeft: theme.spacing.m,
+    paddingRight: theme.spacing.xs,
     alignItems: 'center',
   },
   arrowStyles: {
-    marginLeft: spacing.m,
-    marginRight: spacing.xs,
+    marginLeft: theme.spacing.m,
+    marginRight: theme.spacing.xs,
   },
   branchName: {
     flexGrow: 1,

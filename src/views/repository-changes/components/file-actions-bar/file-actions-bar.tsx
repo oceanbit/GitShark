@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Animated, StyleProp, View, ViewStyle} from 'react-native';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {FileActionsBarToggleButton} from './file-actions-bar-toggle-button';
@@ -119,10 +119,10 @@ const dynamicStyles = new DynamicStyleSheet({
     alignContent: 'center',
     overflow: 'hidden',
     backgroundColor: theme.colors.surface,
-    paddingVertical: spacing.m,
-    paddingRight: spacing.m,
+    paddingVertical: theme.spacing.m,
+    paddingRight: theme.spacing.m,
     // This is overwritten by the `left` property set in the animation
-    paddingLeft: spacing.xs,
+    paddingLeft: theme.spacing.xs,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -138,7 +138,7 @@ const dynamicStyles = new DynamicStyleSheet({
     alignItems: 'center',
   },
   subheaderText: {
-    marginLeft: spacing.xs,
+    marginLeft: theme.spacing.xs,
     ...theme.textStyles.callout,
     color: theme.colors.on_surface,
   },
@@ -147,7 +147,7 @@ const dynamicStyles = new DynamicStyleSheet({
     borderRadius: 0,
     // There's a fun 1px issue on the bottom. Hacky solve by just adding 1 to padding of bottom
     // That's what I call a galaxy brained move right there
-    paddingBottom: spacing.xs + 1,
+    paddingBottom: theme.spacing.xs + 1,
   },
   showMoreView: {
     flexDirection: 'row',

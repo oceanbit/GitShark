@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {KeyboardAvoidingView, ScrollView, Text, View} from 'react-native';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {FileChangeListItem} from '@components/file-change-list-item';
@@ -90,19 +90,19 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'center',
-    paddingVertical: spacing.m,
-    paddingHorizontal: spacing.xs,
+    paddingVertical: theme.spacing.m,
+    paddingHorizontal: theme.spacing.xs,
   },
   commitHeader: {
-    marginLeft: spacing.xs,
+    marginLeft: theme.spacing.xs,
     ...theme.textStyles.headline_03,
     color: theme.colors.on_surface,
   },
   commitData: {
-    padding: spacing.m,
+    padding: theme.spacing.m,
   },
   textarea: {
     height: 128,
-    marginVertical: spacing.m,
+    marginVertical: theme.spacing.m,
   },
 });

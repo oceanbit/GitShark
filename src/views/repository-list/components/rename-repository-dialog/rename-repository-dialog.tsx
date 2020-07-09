@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {spacing} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {ReduxRepo} from '@entities';
@@ -7,6 +6,7 @@ import {renameRepo} from '@services';
 import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkButton} from '@components/shark-button';
+import {theme} from '@constants';
 
 interface RenameRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -74,16 +74,16 @@ export const RenameRepositoryDialog = ({
 
 export const dynamicStyles = new DynamicStyleSheet({
   errorBox: {
-    marginTop: spacing.xs,
+    marginTop: theme.spacing.xs,
   },
   textInput: {
-    marginTop: spacing.xs,
+    marginTop: theme.spacing.xs,
   },
   cancelBtn: {
-    marginRight: spacing.m,
+    marginRight: theme.spacing.m,
   },
   dialogActions: {
-    marginTop: spacing.m,
+    marginTop: theme.spacing.m,
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },

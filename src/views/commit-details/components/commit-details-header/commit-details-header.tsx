@@ -3,12 +3,12 @@ import {Animated, Text, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {CommitDetailsDualAuthor} from './commit-detail-dual-author';
 import {CommitDetailsSingleAuthor} from './commit-detail-single-author';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {DropdownContent} from '@components/dropdown-content';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 import {TouchableRipple} from 'react-native-paper';
 import {CommitDetailsMoreInfo} from './commit-details-more-info';
-import {CommitMessageDropdown} from './commit-message-dropdown/commit-message-dropdown';
+import {CommitMessageDropdown} from './commit-message-dropdown';
 import {GitLogCommit} from '@services';
 
 interface CommitDetailsHeaderProps {
@@ -136,18 +136,18 @@ const dynamicStyles = new DynamicStyleSheet({
   container: {},
   commitStyle: {
     ...theme.textStyles.callout,
-    marginHorizontal: spacing.m,
-    marginBottom: spacing.xs,
+    marginHorizontal: theme.spacing.m,
+    marginBottom: theme.spacing.xs,
   },
   authorBlock: {
-    marginTop: spacing.xs,
-    paddingVertical: spacing.xxs,
-    paddingLeft: spacing.xs,
-    paddingRight: spacing.m,
+    marginTop: theme.spacing.xs,
+    paddingVertical: theme.spacing.xxs,
+    paddingLeft: theme.spacing.xs,
+    paddingRight: theme.spacing.m,
   },
   dropdownContainer: {
-    paddingLeft: spacing.m,
-    paddingRight: spacing.l,
+    paddingLeft: theme.spacing.m,
+    paddingRight: theme.spacing.l,
     display: 'flex',
     flexWrap: 'nowrap',
     flexDirection: 'row',
@@ -156,7 +156,7 @@ const dynamicStyles = new DynamicStyleSheet({
   dropdownText: {
     ...theme.textStyles.caption_01,
     color: theme.colors.primary,
-    marginLeft: spacing.m,
+    marginLeft: theme.spacing.m,
     flexGrow: 1,
     textAlignVertical: 'center',
   },

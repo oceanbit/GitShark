@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Animated, Text, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 
 const animTiming = 150;
@@ -145,16 +145,16 @@ const dynamicStyles = new DynamicStyleSheet({
     borderWidth: theme.borders.normal,
     borderColor: theme.colors.tint_on_surface_16,
     backgroundColor: theme.colors.tint_on_surface_04,
-    paddingLeft: spacing.s,
-    paddingVertical: spacing.s,
-    paddingRight: spacing.xs,
-    marginVertical: spacing.xs,
+    paddingLeft: theme.spacing.s,
+    paddingVertical: theme.spacing.s,
+    paddingRight: theme.spacing.xs,
+    marginVertical: theme.spacing.xs,
   },
   // This margin makes the horizontal sizing of the text component smaller, which makes the
   // height larger on text overflow. We have to conditionally apply that logic to the "text height"
   // render comps
   marginContainer: {
-    marginHorizontal: spacing.m,
+    marginHorizontal: theme.spacing.m,
   },
   innerContainer: {
     flexDirection: 'row',
@@ -171,13 +171,13 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   fakeIcon: {
     width: 40,
-    marginLeft: spacing.xs,
+    marginLeft: theme.spacing.xs,
   },
   dropdownArrow: {
     position: 'absolute',
-    right: spacing.xs,
+    right: theme.spacing.xs,
     // This is not correct for the collapsed state, thanks to font scaling
-    bottom: spacing.m,
+    bottom: theme.spacing.m,
   },
   offScreenView: {
     position: 'absolute',

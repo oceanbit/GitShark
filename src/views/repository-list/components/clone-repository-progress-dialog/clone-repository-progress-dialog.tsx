@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ProgressBar} from 'react-native-paper';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {cloneRepo} from '@services';
@@ -124,9 +124,9 @@ export const CloneRepositoryProgressDialog = ({
 const styles = StyleSheet.create({
   dialogContainer: {
     margin: 0,
-    paddingHorizontal: spacing.l,
+    paddingHorizontal: theme.spacing.l,
     paddingTop: 20,
-    paddingBottom: spacing.m,
+    paddingBottom: theme.spacing.m,
   },
   progressContainer: {
     width: '100%',

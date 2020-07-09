@@ -5,7 +5,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import ButtonToggleGroup from 'react-native-button-toggle-group';
 
 interface SharkButtonToggleGroupProps {
@@ -47,7 +47,7 @@ export const SharkButtonToggleGroup = ({
 const dynamicStyles = new DynamicStyleSheet({
   container: {
     borderColor: theme.colors.tint_on_surface_16,
-    padding: spacing.xxs,
+    padding: theme.spacing.xxs,
     borderWidth: theme.borders.normal,
     borderRadius: theme.borderRadius.regular,
     overflow: 'hidden',

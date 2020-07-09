@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleProp, Text, TextProps, View, ViewStyle} from 'react-native';
 import {Icon} from '@components/shark-icon';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {
   DynamicStyleSheet,
@@ -80,13 +80,13 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
   },
   noIconButton: {
-    paddingHorizontal: spacing.m,
-    paddingVertical: spacing.xs,
+    paddingHorizontal: theme.spacing.m,
+    paddingVertical: theme.spacing.xs,
   },
   iconButton: {
-    paddingLeft: spacing.s,
-    paddingRight: spacing.m,
-    paddingVertical: spacing.xs,
+    paddingLeft: theme.spacing.s,
+    paddingRight: theme.spacing.m,
+    paddingVertical: theme.spacing.xs,
   },
   outlineButton: {
     borderColor: theme.colors.tint_on_surface_16,
@@ -100,7 +100,7 @@ const dynamicStyles = new DynamicStyleSheet({
     color: theme.colors.on_primary,
   },
   iconView: {
-    marginRight: spacing.xs,
+    marginRight: theme.spacing.xs,
   },
   btnText: {
     textAlign: 'center',

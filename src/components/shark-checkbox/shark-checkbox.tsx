@@ -6,7 +6,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 
 interface SharkCheckboxProps {
   checked: boolean;
@@ -51,7 +51,7 @@ export const SharkCheckbox = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   checkboxContainer: {
-    padding: spacing.xs,
+    padding: theme.spacing.xs,
   },
   disabledStyling: {
     opacity: theme.opacity.disabled,

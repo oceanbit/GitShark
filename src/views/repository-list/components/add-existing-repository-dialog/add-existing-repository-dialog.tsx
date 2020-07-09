@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Alert} from 'react-native';
-import {fs, spacing} from '@constants';
+import {fs, theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import git from 'isomorphic-git/index.umd.min.js';
 import {ErrorMessageBox} from '@components/error-message-box';
@@ -116,16 +116,16 @@ export const AddExistingRepositoryDialog = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   errorBox: {
-    marginTop: spacing.xs,
+    marginTop: theme.spacing.xs,
   },
   textInput: {
-    marginTop: spacing.xs,
+    marginTop: theme.spacing.xs,
   },
   cancelBtn: {
-    marginRight: spacing.m,
+    marginRight: theme.spacing.m,
   },
   dialogActions: {
-    marginTop: spacing.m,
+    marginTop: theme.spacing.m,
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },

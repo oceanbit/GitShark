@@ -1,6 +1,6 @@
 import {Animated, View} from 'react-native';
 import * as React from 'react';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {
@@ -117,12 +117,12 @@ const dynamicStyles = new DynamicStyleSheet({
   dropdownView: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: spacing.xs,
+    paddingHorizontal: theme.spacing.xs,
   },
   textContainer: {
-    marginHorizontal: spacing.xs,
+    marginHorizontal: theme.spacing.xs,
     flexGrow: 1,
-    marginVertical: spacing.m,
+    marginVertical: theme.spacing.m,
     height: 20,
   },
   selectBranches: {

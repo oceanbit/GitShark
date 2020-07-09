@@ -79,7 +79,7 @@
     "@storybook/react": "^5.3.19",
     "@types/jest": "^26.0.0",
     "@types/node": "^14.0.13",
-    "@types/react-native": "^0.62.1",
+    "@types/react-native": "^0.61.23",
     "@types/react-native-vector-icons": "^6.4.5",
     "@types/react-native-video": "^5.0.1",
     "@types/react-test-renderer": "^16.9.2",

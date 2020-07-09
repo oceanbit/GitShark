@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {AppBar} from '@components/app-bar';
 import {SharkSubheader} from '@components/shark-subheader';
-import {spacing, theme, UserContext} from '@constants';
+import {theme, UserContext} from '@constants';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import {SharkButton} from '@components/shark-button';
@@ -179,12 +179,12 @@ export const Account = () => {
 const dynamicStyles = new DynamicStyleSheet({
   container: {},
   signinGithubButton: {
-    marginBottom: spacing.l,
-    marginTop: spacing.xs,
-    marginHorizontal: spacing.m,
+    marginBottom: theme.spacing.l,
+    marginTop: theme.spacing.xs,
+    marginHorizontal: theme.spacing.m,
   },
   commitAuthorContainer: {
-    paddingHorizontal: spacing.m,
+    paddingHorizontal: theme.spacing.m,
   },
   authorPreview: {
     flexDirection: 'row',
@@ -192,7 +192,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   authorPreviewText: {
     flexDirection: 'column',
-    marginLeft: spacing.m,
+    marginLeft: theme.spacing.m,
     flexGrow: 1,
   },
   authorName: {
@@ -206,25 +206,25 @@ const dynamicStyles = new DynamicStyleSheet({
   useGHCredsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: spacing.xs,
-    marginTop: spacing.xs,
+    paddingVertical: theme.spacing.xs,
+    marginTop: theme.spacing.xs,
   },
   checkboxContainer: {
     height: 40,
     width: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: spacing.m,
+    marginRight: theme.spacing.m,
   },
   useGHText: {
     ...theme.textStyles.body_01,
     color: theme.colors.on_surface,
   },
   textInput: {
-    marginTop: spacing.m,
+    marginTop: theme.spacing.m,
   },
   saveButton: {
-    marginVertical: spacing.l,
+    marginVertical: theme.spacing.l,
   },
   disabledStyling: {
     opacity: theme.opacity.disabled,

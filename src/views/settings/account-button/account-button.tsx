@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text, View} from 'react-native';
-import {opacity, spacing, theme, UserContext} from '@constants';
+import {theme, UserContext} from '@constants';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
@@ -62,15 +62,15 @@ export const AccountButton = () => {
 
 const dynamicStyles = new DynamicStyleSheet({
   accountSection: {
-    paddingVertical: spacing.s,
-    paddingLeft: spacing.m,
-    paddingRight: spacing.xs,
+    paddingVertical: theme.spacing.s,
+    paddingLeft: theme.spacing.m,
+    paddingRight: theme.spacing.xs,
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
   },
   userPic: {
-    marginRight: spacing.m,
+    marginRight: theme.spacing.m,
   },
   accountCallout: {
     ...theme.textStyles.callout,
@@ -79,7 +79,7 @@ const dynamicStyles = new DynamicStyleSheet({
   accountText: {
     display: 'flex',
     flexDirection: 'column',
-    marginRight: spacing.m,
+    marginRight: theme.spacing.m,
     flexGrow: 1,
     color: theme.colors.on_surface,
   },
@@ -89,6 +89,6 @@ const dynamicStyles = new DynamicStyleSheet({
     opacity: theme.opacity.secondary,
   },
   arrowIcon: {
-    padding: spacing.xs,
+    padding: theme.spacing.xs,
   },
 });

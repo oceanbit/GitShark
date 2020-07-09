@@ -11,7 +11,7 @@ import {SharkMenu} from '@components/shark-menu';
 import {Menu} from 'react-native-paper';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {SharkDivider} from '@components/shark-divider';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {Icon} from '@components/shark-icon';
 import {ChangesArrayItem, GitLogCommit} from '@services';
 import {FileChangeListItem} from '@components/file-change-list-item';
@@ -138,7 +138,7 @@ export const CommitDetailsUI = ({
 const dynamicStyles = new DynamicStyleSheet({
   container: {},
   changesHeader: {
-    padding: spacing.m,
+    padding: theme.spacing.m,
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'center',
@@ -151,13 +151,13 @@ const dynamicStyles = new DynamicStyleSheet({
     color: theme.colors.on_surface,
   },
   infoBlock: {
-    marginLeft: spacing.xs,
-    padding: spacing.xxs,
+    marginLeft: theme.spacing.xs,
+    padding: theme.spacing.xxs,
     flexDirection: 'row',
     alignItems: 'center',
   },
   iconText: {
-    marginLeft: spacing.xxs,
+    marginLeft: theme.spacing.xxs,
     ...theme.textStyles.caption_01,
   },
   additionText: {

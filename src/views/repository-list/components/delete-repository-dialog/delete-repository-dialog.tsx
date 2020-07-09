@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View} from 'react-native';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {ReduxRepo} from '@entities';
@@ -80,10 +80,10 @@ export const DeleteRepositoryDialog = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   errorBox: {
-    marginTop: spacing.xs,
+    marginTop: theme.spacing.xs,
   },
   cancelBtn: {
-    marginTop: spacing.xs,
+    marginTop: theme.spacing.xs,
   },
   buttonContainer: {
     flexDirection: 'column',

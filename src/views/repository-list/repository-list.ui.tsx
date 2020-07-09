@@ -2,7 +2,7 @@ import * as React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {ReduxRepo} from '@entities';
 import {RepoCard} from './components/repo-card';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {RepoListLoading} from './components/repo-list-loading';
 import {DialogsAndFab} from './components/dialogs-and-fab';
 import {SharkIconButton} from '@components/shark-icon-button';
@@ -61,8 +61,8 @@ export const RepositoryListUI = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   container: {
-    paddingTop: spacing.m,
-    paddingHorizontal: spacing.m,
+    paddingTop: theme.spacing.m,
+    paddingHorizontal: theme.spacing.m,
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -72,7 +72,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'center',
-    marginBottom: spacing.m,
+    marginBottom: theme.spacing.m,
   },
   headingText: {
     flexGrow: 1,
@@ -88,7 +88,7 @@ const dynamicStyles = new DynamicStyleSheet({
     textAlign: 'center',
     width: '100%',
     // Edgecase for parent padding
-    left: spacing.m,
+    left: theme.spacing.m,
   },
   fabview: {
     position: 'absolute',

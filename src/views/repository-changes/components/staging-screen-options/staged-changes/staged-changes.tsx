@@ -2,7 +2,7 @@ import * as React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
 import {ChangesArrayItem} from '@services';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkDivider} from '@components/shark-divider';
 import {SharkCheckbox} from '@components/shark-checkbox';
@@ -117,19 +117,19 @@ const dynamicStyles = new DynamicStyleSheet({
     alignContent: 'center',
     overflow: 'hidden',
     backgroundColor: theme.colors.surface,
-    paddingVertical: spacing.m,
-    paddingRight: spacing.m,
-    paddingLeft: spacing.xs,
+    paddingVertical: theme.spacing.m,
+    paddingRight: theme.spacing.m,
+    paddingLeft: theme.spacing.xs,
     alignItems: 'center',
   },
   subheaderText: {
-    marginLeft: spacing.xs,
+    marginLeft: theme.spacing.xs,
     ...theme.textStyles.callout,
     flexGrow: 1,
     color: theme.colors.on_surface,
   },
   calloutButton: {
-    marginLeft: spacing.m,
+    marginLeft: theme.spacing.m,
   },
   disabledStyling: {
     opacity: theme.opacity.disabled,

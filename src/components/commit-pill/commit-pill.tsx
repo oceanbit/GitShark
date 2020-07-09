@@ -5,7 +5,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
-import {spacing, theme} from '@constants';
+import {theme} from '@constants';
 import {Icon} from '@components/shark-icon';
 
 interface CommitPillProps {
@@ -53,12 +53,12 @@ const dynamicStyles = new DynamicStyleSheet({
   paddingContainer: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    paddingLeft: spacing.xxs,
-    paddingRight: spacing.xs,
+    paddingLeft: theme.spacing.xxs,
+    paddingRight: theme.spacing.xs,
     paddingVertical: 2,
   },
   tagName: {
-    marginLeft: spacing.xxs,
+    marginLeft: theme.spacing.xxs,
     ...theme.textStyles.caption_02,
     color: theme.colors.on_surface,
   },

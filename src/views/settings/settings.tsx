@@ -10,7 +10,6 @@ import {
 import {
   DarkModeOptionTypes,
   SetDarkModeContext,
-  spacing,
   StyleOfStagingContext,
   theme,
 } from '../../constants';
@@ -186,28 +185,28 @@ export const Settings = () => {
 
 const dynamicStyles = new DynamicStyleSheet({
   themeToggle: {
-    marginHorizontal: spacing.m,
-    marginTop: spacing.xs,
+    marginHorizontal: theme.spacing.m,
+    marginTop: theme.spacing.xs,
   },
   themeText: {
-    marginVertical: spacing.m,
-    marginHorizontal: spacing.m,
+    marginVertical: theme.spacing.m,
+    marginHorizontal: theme.spacing.m,
     ...theme.textStyles.caption_02,
     color: theme.colors.on_surface,
-    opacity: opacity.secondary,
+    opacity: theme.opacity.secondary,
   },
   stagingVideoContainer: {
     flexDirection: 'column',
   },
   checkboxContainer: {
-    marginTop: spacing.m,
+    marginTop: theme.spacing.m,
     alignItems: 'center',
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'row',
   },
   checkboxText: {
-    marginLeft: spacing.xs,
+    marginLeft: theme.spacing.xs,
     flexShrink: 0,
     ...theme.textStyles.body_01,
     color: theme.colors.on_surface,
