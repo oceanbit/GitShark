@@ -11,7 +11,6 @@ import {
 import {Theme as NavTheme} from '@react-navigation/native/src/types';
 import {DynamicValue} from 'react-native-dark-mode';
 import {rubikLight, rubikMedium, rubikRegular, textStyles} from './text-styles';
-import {opacity} from './opacity';
 
 // Taken from: https://github.com/regexhq/hsla-regex
 // Don't add a `/g` flag it breaks JavaScereipt
@@ -23,7 +22,7 @@ const getSecondaryStatic = (color: string) => {
   const hsla = hslaRegex.exec(color) || [];
   const newVal = `hsla(${hsla[1]},${hsla[2]}%,${
     hsla[3]
-  }%,${opacity.secondary.toFixed(1)})`;
+  }%,${fullTheme.opacity.secondary.toFixed(1)})`;
   return newVal;
 };
 

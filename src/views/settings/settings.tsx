@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {
   DarkModeOptionTypes,
-  opacity,
   SetDarkModeContext,
   spacing,
   StyleOfStagingContext,
@@ -212,6 +211,6 @@ const dynamicStyles = new DynamicStyleSheet({
     flexShrink: 0,
     ...theme.textStyles.body_01,
     color: theme.colors.on_surface,
-    opacity: opacity.secondary,
+    opacity: theme.opacity.secondary,
   },
 });

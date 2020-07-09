@@ -66,7 +66,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   personDate: {
     color: theme.colors.on_surface,
-    opacity: opacity.secondary,
+    opacity: theme.opacity.secondary,
     ...theme.textStyles.caption_02,
   },
   personEmail: {

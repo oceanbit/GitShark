@@ -86,7 +86,7 @@ const dynamicStyles = new DynamicStyleSheet({
   accountBody: {
     ...theme.textStyles.body_02,
     color: theme.colors.on_surface,
-    opacity: opacity.secondary,
+    opacity: theme.opacity.secondary,
   },
   arrowIcon: {
     padding: spacing.xs,

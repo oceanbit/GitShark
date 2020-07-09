@@ -132,7 +132,7 @@ const dynamicStyles = new DynamicStyleSheet({
   shaText: {
     ...theme.textStyles.caption_02,
     color: theme.colors.on_surface,
-    opacity: opacity.secondary,
+    opacity: theme.opacity.secondary,
     width: 1,
     flexGrow: 1,
   },

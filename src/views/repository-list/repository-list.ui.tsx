@@ -83,7 +83,7 @@ const dynamicStyles = new DynamicStyleSheet({
   noRepos: {
     ...theme.textStyles.headline_01,
     color: theme.colors.on_surface,
-    opacity: 0.4,
+    opacity: theme.opacity.disabled,
     position: 'absolute',
     textAlign: 'center',
     width: '100%',
