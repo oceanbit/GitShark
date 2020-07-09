@@ -175,7 +175,7 @@ const dynamicStyles = new DynamicStyleSheet({
     position: 'absolute',
     bottom: 0,
     zIndex: 10,
-    borderRadius: theme.roundness,
+    borderRadius: theme.borderRadius.regular,
     backgroundColor: theme.colors.primary,
     elevation: 6,
   },

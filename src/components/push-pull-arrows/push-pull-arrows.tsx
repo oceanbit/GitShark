@@ -55,7 +55,7 @@ export const dynamicStyles = new DynamicStyleSheet({
   arrowContainer: {
     borderStyle: 'solid',
     borderColor: theme.colors.tint_on_surface_16,
-    borderRadius: theme.lessRoundness,
+    borderRadius: theme.borderRadius.small,
     borderWidth: borders.normal,
     flexDirection: 'row',
   },

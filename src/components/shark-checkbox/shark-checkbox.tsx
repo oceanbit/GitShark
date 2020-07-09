@@ -54,6 +54,6 @@ const dynamicStyles = new DynamicStyleSheet({
     padding: spacing.xs,
   },
   disabledStyling: {
-    opacity: theme.disabledOpacity,
+    opacity: theme.opacity.disabled,
   },
 });

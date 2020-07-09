@@ -72,7 +72,7 @@ const dynamicStyles = new DynamicStyleSheet({
     alignItems: 'center',
     borderColor: theme.colors.tint_on_surface_16,
     borderWidth: borders.thick,
-    borderRadius: theme.roundness,
+    borderRadius: theme.borderRadius.regular,
     ...textStyles.callout,
     paddingVertical: spacing.xs,
     paddingHorizontal: spacing.m,

@@ -139,6 +139,6 @@ const dynamicStyles = new DynamicStyleSheet({
     marginLeft: spacing.m,
   },
   disabledStyling: {
-    opacity: theme.disabledOpacity,
+    opacity: theme.opacity.disabled,
   },
 });

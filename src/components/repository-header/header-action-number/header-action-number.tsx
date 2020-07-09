@@ -46,7 +46,7 @@ const dynamicStyles = new DynamicStyleSheet({
   outlineContainer: {
     borderWidth: borders.thick,
     borderColor: theme.colors.tint_on_surface_16,
-    borderRadius: theme.roundness,
+    borderRadius: theme.borderRadius.regular,
     marginRight: spacing.xs,
   },
   backBtn: {

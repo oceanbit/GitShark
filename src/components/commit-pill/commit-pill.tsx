@@ -47,7 +47,7 @@ const dynamicStyles = new DynamicStyleSheet({
   container: {
     borderWidth: borders.normal,
     position: 'relative',
-    borderRadius: theme.lessRoundness,
+    borderRadius: theme.borderRadius.small,
   },
   paddingContainer: {
     flexDirection: 'row',

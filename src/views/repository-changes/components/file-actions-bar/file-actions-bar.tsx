@@ -154,7 +154,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexWrap: 'nowrap',
     borderWidth: borders.thick,
     borderColor: theme.colors.tint_on_surface_16,
-    borderRadius: theme.roundness,
+    borderRadius: theme.borderRadius.regular,
     overflow: 'hidden',
   },
   iconButton: {},
@@ -164,6 +164,6 @@ const dynamicStyles = new DynamicStyleSheet({
     borderLeftWidth: borders.thick,
   },
   disabledStyling: {
-    opacity: theme.disabledOpacity,
+    opacity: theme.opacity.disabled,
   },
 });

@@ -35,7 +35,7 @@ const dynamicStyles = new DynamicStyleSheet({
     paddingLeft: 7,
     paddingRight: spacing.s,
     paddingVertical: 7,
-    borderRadius: theme.roundness,
+    borderRadius: theme.borderRadius.regular,
   },
   errorText: {
     marginLeft: 7,

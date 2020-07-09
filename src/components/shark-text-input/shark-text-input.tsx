@@ -126,7 +126,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexWrap: 'nowrap',
     borderColor: theme.colors.tint_on_surface_16,
     borderWidth: borders.normal,
-    borderRadius: theme.roundness,
+    borderRadius: theme.borderRadius.regular,
     alignContent: 'center',
     overflow: 'hidden',
     margin: 1,
@@ -151,7 +151,7 @@ const dynamicStyles = new DynamicStyleSheet({
     color: theme.colors.on_surface,
   },
   disableStyle: {
-    opacity: theme.disabledOpacity,
+    opacity: theme.opacity.disabled,
   },
   focused: {
     borderColor: theme.colors.primary,

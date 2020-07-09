@@ -140,7 +140,7 @@ export const CommitMessageDropdown = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   container: {
-    borderRadius: theme.roundness,
+    borderRadius: theme.borderRadius.regular,
     borderWidth: borders.normal,
     borderColor: theme.colors.tint_on_surface_16,
     backgroundColor: theme.colors.tint_on_surface_04,

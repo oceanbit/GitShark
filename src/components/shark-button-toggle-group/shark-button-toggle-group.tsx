@@ -49,7 +49,7 @@ const dynamicStyles = new DynamicStyleSheet({
     borderColor: theme.colors.tint_on_surface_16,
     padding: spacing.xxs,
     borderWidth: borders.normal,
-    borderRadius: theme.roundness,
+    borderRadius: theme.borderRadius.regular,
     overflow: 'hidden',
   },
   buttonText: {

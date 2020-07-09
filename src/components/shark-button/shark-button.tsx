@@ -73,7 +73,7 @@ export const SharkButton = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   button: {
-    borderRadius: theme.roundness,
+    borderRadius: theme.borderRadius.regular,
     alignContent: 'center',
     minHeight: 24,
     justifyContent: 'center',
@@ -109,6 +109,6 @@ const dynamicStyles = new DynamicStyleSheet({
     ...textStyles.callout,
   },
   disabled: {
-    opacity: theme.disabledOpacity,
+    opacity: theme.opacity.disabled,
   },
 });
