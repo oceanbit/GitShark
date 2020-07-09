@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Image, ImagePropsBase, ImageStyle, StyleProp, View} from 'react-native';
-import {borders, theme} from '@constants';
+import {theme} from '@constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -52,7 +52,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   profPic: {
     borderRadius: 50,
-    borderWidth: borders.normal,
+    borderWidth: theme.borders.normal,
     borderColor: theme.colors.tint_on_surface_16,
   },
   gitHubLogo: {
@@ -62,7 +62,7 @@ const dynamicStyles = new DynamicStyleSheet({
     justifyContent: 'center',
     alignContent: 'center',
     borderRadius: 50,
-    borderWidth: borders.normal,
+    borderWidth: theme.borders.normal,
     borderColor: theme.colors.surface,
     backgroundColor: theme.colors.surface,
     bottom: 0,

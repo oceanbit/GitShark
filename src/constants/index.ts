@@ -1,4 +1,3 @@
-export * from './borders';
 export * from './contexts';
 export * from './fs';
 export * from './opacity';

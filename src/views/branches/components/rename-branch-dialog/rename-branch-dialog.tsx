@@ -3,7 +3,7 @@ import {AppDialog} from '@components/dialog';
 import {SharkTextInput} from '@components/shark-text-input';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {borders, spacing, theme} from '@constants';
+import {spacing, theme} from '@constants';
 
 interface RenameBranchDialogProps {
   onDismiss: () => void;
@@ -79,7 +79,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   cancelBtn: {
     borderColor: theme.colors.tint_on_surface_16,
-    borderWidth: borders.thick,
+    borderWidth: theme.borders.thick,
     marginRight: spacing.m,
   },
   checkoutText: {

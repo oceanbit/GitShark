@@ -6,7 +6,7 @@ import {ErrorMessageBox} from '@components/error-message-box';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkCheckbox} from '@components/shark-checkbox';
-import {borders, spacing, theme} from '@constants';
+import {spacing, theme} from '@constants';
 
 interface CreateBranchDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -104,7 +104,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   cancelBtn: {
     borderColor: theme.colors.tint_on_surface_16,
-    borderWidth: borders.thick,
+    borderWidth: theme.borders.thick,
     marginRight: spacing.m,
   },
   checkboxView: {

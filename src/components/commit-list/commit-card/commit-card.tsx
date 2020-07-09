@@ -1,6 +1,6 @@
 import {Text, View} from 'react-native';
 import * as React from 'react';
-import {borders, opacity, spacing, theme} from '@constants';
+import {opacity, spacing, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {CommitCardPushPull} from './commit-card-push-pull';
 import dayjs from 'dayjs';
@@ -78,7 +78,7 @@ const dynamicStyles = new DynamicStyleSheet({
   developerName: {
     paddingVertical: spacing.xxs,
     paddingHorizontal: spacing.xs,
-    borderWidth: borders.normal,
+    borderWidth: theme.borders.normal,
     borderColor: theme.colors.tint_on_surface_16,
     borderRadius: theme.borderRadius.small,
     marginHorizontal: spacing.xs,

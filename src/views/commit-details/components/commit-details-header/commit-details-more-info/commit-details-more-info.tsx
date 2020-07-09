@@ -6,7 +6,7 @@ import {
   useDynamicValue,
 } from 'react-native-dark-mode';
 import {CommitPill} from '@components/commit-pill';
-import {borders, opacity, spacing, theme} from '@constants';
+import {opacity, spacing, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 
 interface CommitDetailsMoreInfoProps {
@@ -145,7 +145,7 @@ const dynamicStyles = new DynamicStyleSheet({
     marginRight: spacing.xs,
     paddingHorizontal: spacing.xs,
     paddingVertical: spacing.xxs,
-    borderWidth: borders.normal,
+    borderWidth: theme.borders.normal,
     borderColor: theme.colors.tint_on_surface_16,
     borderRadius: theme.borderRadius.small,
   },

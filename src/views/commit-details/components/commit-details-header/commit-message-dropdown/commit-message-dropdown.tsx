@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Animated, Text, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
-import {borders, spacing, theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 
 const animTiming = 150;
@@ -142,7 +142,7 @@ export const CommitMessageDropdown = ({
 const dynamicStyles = new DynamicStyleSheet({
   container: {
     borderRadius: theme.borderRadius.regular,
-    borderWidth: borders.normal,
+    borderWidth: theme.borders.normal,
     borderColor: theme.colors.tint_on_surface_16,
     backgroundColor: theme.colors.tint_on_surface_04,
     paddingLeft: spacing.s,

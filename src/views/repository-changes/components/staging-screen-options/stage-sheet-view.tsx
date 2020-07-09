@@ -3,7 +3,7 @@ import * as React from 'react';
 import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
-import {borders, theme} from '@constants';
+import {theme} from '@constants';
 import {StagedChanges} from './staged-changes';
 import {ChangesArrayItem} from '@services';
 import {UnstagedChanges} from './unstaged-changes';
@@ -158,7 +158,7 @@ const dynamicStyles = new DynamicStyleSheet({
   trueHeader: {
     backgroundColor: theme.colors.floating_surface,
     borderTopColor: theme.colors.tint_on_surface_16,
-    borderTopWidth: borders.thick,
+    borderTopWidth: theme.borders.thick,
   },
   handlerBar: {
     position: 'absolute',

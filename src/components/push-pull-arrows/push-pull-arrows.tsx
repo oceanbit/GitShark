@@ -1,7 +1,7 @@
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import {Icon} from '@components/shark-icon';
-import {borders, spacing, theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -56,7 +56,7 @@ export const dynamicStyles = new DynamicStyleSheet({
     borderStyle: 'solid',
     borderColor: theme.colors.tint_on_surface_16,
     borderRadius: theme.borderRadius.small,
-    borderWidth: borders.normal,
+    borderWidth: theme.borders.normal,
     flexDirection: 'row',
   },
   middleLine: {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
-import {borders, theme} from '@constants';
+import {theme} from '@constants';
 import {useRoute} from '@react-navigation/native';
 import {RepositoryHistory} from '../repository-history/repository-history';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
@@ -94,7 +94,7 @@ export const Repository = () => {
 const dynamicStyles = new DynamicStyleSheet({
   bottomNav: {
     backgroundColor: theme.colors.floating_surface,
-    borderTopWidth: borders.normal,
+    borderTopWidth: theme.borders.normal,
     borderTopColor: theme.colors.tint_on_surface_16,
   },
 });
