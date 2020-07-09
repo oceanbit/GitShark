@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useSelector} from 'react-redux';
-import {RootState, getGitLog} from '@store';
+import {getGitLog, RootState} from '@store';
 import {useThunkDispatch} from '@hooks';
 import {GitLogCommit} from '@services';
 import {useNavigation} from '@react-navigation/native';

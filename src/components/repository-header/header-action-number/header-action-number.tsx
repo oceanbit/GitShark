@@ -2,7 +2,7 @@ import * as React from 'react';
 import {TouchableRipple} from 'react-native-paper';
 import {Text, View} from 'react-native';
 import {Icon} from '@components/shark-icon';
-import {borders, spacing, textStyles, theme} from '@constants';
+import {borders, spacing, theme} from '@constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -54,7 +54,7 @@ const dynamicStyles = new DynamicStyleSheet({
     borderRadius: 50,
   },
   valText: {
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
     marginLeft: spacing.xs,
     marginRight: 2,
     color: theme.colors.primary,

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Text, View, KeyboardAvoidingView} from 'react-native';
+import {KeyboardAvoidingView, Text, View} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
-import {spacing, textStyles, theme, opacity} from '@constants';
+import {opacity, spacing, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface AppDialogProps {
@@ -59,14 +59,14 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   dialogTitle: {
     marginBottom: 4,
-    ...textStyles.headline_03,
+    ...theme.textStyles.headline_03,
     color: theme.colors.on_surface,
   },
   mainText: {
     color: theme.colors.on_surface,
     opacity: opacity.secondary,
     marginBottom: 20,
-    ...textStyles.body_02,
+    ...theme.textStyles.body_02,
   },
   dialogActions: {
     marginTop: spacing.m,

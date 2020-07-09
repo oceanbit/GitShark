@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {View, ScrollView, Text} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
 import {CommitPill} from '@components/commit-pill';
-import {theme, textStyles, spacing, borders, opacity} from '@constants';
+import {borders, opacity, spacing, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 
 interface CommitDetailsMoreInfoProps {
@@ -14,6 +14,7 @@ interface CommitDetailsMoreInfoProps {
   parents: string[];
   onNavToPar: (val: string) => void;
 }
+
 export const CommitDetailsMoreInfo = ({
   sha,
   parents,
@@ -120,7 +121,7 @@ const dynamicStyles = new DynamicStyleSheet({
     justifyContent: 'center',
   },
   sectionTitleText: {
-    ...textStyles.caption_01,
+    ...theme.textStyles.caption_01,
     textAlign: 'center',
   },
   sectionBody: {
@@ -129,7 +130,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
   },
   shaText: {
-    ...textStyles.caption_02,
+    ...theme.textStyles.caption_02,
     color: theme.colors.on_surface,
     opacity: opacity.secondary,
     width: 1,
@@ -137,7 +138,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   copyText: {
     marginHorizontal: spacing.m,
-    ...textStyles.caption_01,
+    ...theme.textStyles.caption_01,
     color: theme.colors.primary,
   },
   parButton: {
@@ -150,6 +151,6 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   parText: {
     color: theme.colors.primary,
-    ...textStyles.caption_01,
+    ...theme.textStyles.caption_01,
   },
 });

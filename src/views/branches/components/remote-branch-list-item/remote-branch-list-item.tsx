@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Text, StyleProp, ViewStyle} from 'react-native';
-import {theme, textStyles, spacing} from '@constants';
+import {StyleProp, Text, ViewStyle} from 'react-native';
+import {spacing, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {TouchableRipple} from 'react-native-paper';
@@ -56,7 +56,7 @@ const dynamicStyles = new DynamicStyleSheet({
   branchName: {
     flexGrow: 1,
     width: 1,
-    ...textStyles.body_01,
+    ...theme.textStyles.body_01,
     color: theme.colors.on_surface,
   },
 });

@@ -2,7 +2,7 @@ import {Icon} from '@components/shark-icon';
 import {spacing, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import * as React from 'react';
-import {StyleProp, StyleSheet, ViewStyle, Animated} from 'react-native';
+import {Animated, StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import {useDynamicValue} from 'react-native-dark-mode';
 
 interface SharkIconButtonProps {

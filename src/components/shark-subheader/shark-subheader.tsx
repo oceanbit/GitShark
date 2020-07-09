@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
-import {spacing, textStyles, theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {SharkButton, SharkButtonProps} from '../shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
@@ -53,7 +53,7 @@ const dynamicStyles = new DynamicStyleSheet({
     alignItems: 'center',
   },
   subheaderText: {
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
     flexGrow: 1,
     color: theme.colors.on_surface,
   },

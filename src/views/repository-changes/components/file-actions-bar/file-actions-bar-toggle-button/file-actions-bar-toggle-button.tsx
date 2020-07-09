@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleProp, Animated, View, ViewStyle} from 'react-native';
+import {Animated, StyleProp, View, ViewStyle} from 'react-native';
 import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkIconButton} from '@components/shark-icon-button';

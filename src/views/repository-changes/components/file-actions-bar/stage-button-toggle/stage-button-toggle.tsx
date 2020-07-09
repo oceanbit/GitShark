@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Animated, StyleProp, ViewStyle} from 'react-native';
+import {Animated, StyleProp, View, ViewStyle} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkButton} from '@components/shark-button';
 
@@ -11,6 +11,7 @@ interface StageButtonToggleProps {
   onStage: () => void;
   disabled: boolean;
 }
+
 export const StageButtonToggle = ({
   isStage,
   buttonStyle,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, ScrollView} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
 import {ChangesArrayItem} from '@services';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';

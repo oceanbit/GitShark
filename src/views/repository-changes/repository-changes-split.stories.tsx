@@ -1,10 +1,7 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 import {StorybookProvider} from '@components/storybook-provider';
-import {
-  StageSheetView,
-  StageSplitView,
-} from './components/staging-screen-options';
+import {StageSplitView} from './components/staging-screen-options';
 import {RepositoryHeader} from '@components/repository-header';
 
 const RepositoryChangesSplitDemo = () => {

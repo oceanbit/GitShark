@@ -1,6 +1,6 @@
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
-import {spacing, textStyles, theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
 import {ChangesArrayItem} from '@services';
@@ -103,7 +103,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexGrow: 1,
     width: 1,
     marginRight: spacing.xs,
-    ...textStyles.body_01,
+    ...theme.textStyles.body_01,
     color: theme.colors.on_surface,
   },
 });

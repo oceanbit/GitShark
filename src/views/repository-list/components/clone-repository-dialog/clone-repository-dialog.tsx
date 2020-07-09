@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {borders, fs, spacing, theme} from '@constants';
+import {fs, spacing} from '@constants';
 import {AppDialog} from '@components/dialog';
 import git from 'isomorphic-git/index.umd.min.js';
 import {SharkTextInput} from '@components/shark-text-input';

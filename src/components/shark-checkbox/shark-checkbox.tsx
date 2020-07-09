@@ -3,8 +3,8 @@ import {View} from 'react-native';
 import {CheckmarkBase} from '../checkmark-base';
 import {
   DynamicStyleSheet,
-  useDynamicValue,
   useDynamicStyleSheet,
+  useDynamicValue,
 } from 'react-native-dark-mode';
 import {spacing, theme} from '@constants';
 

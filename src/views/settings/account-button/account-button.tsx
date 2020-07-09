@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text, View} from 'react-native';
-import {UserContext, textStyles, theme, spacing, opacity} from '@constants';
+import {opacity, spacing, theme, UserContext} from '@constants';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
@@ -11,6 +11,7 @@ import {
   useDynamicStyleSheet,
   useDynamicValue,
 } from 'react-native-dark-mode';
+
 export const AccountButton = () => {
   const {useGitHub, gitHubUser, manualUser} = React.useContext(UserContext);
   const history = useNavigation();
@@ -72,7 +73,7 @@ const dynamicStyles = new DynamicStyleSheet({
     marginRight: spacing.m,
   },
   accountCallout: {
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
     color: theme.colors.on_surface,
   },
   accountText: {
@@ -83,7 +84,7 @@ const dynamicStyles = new DynamicStyleSheet({
     color: theme.colors.on_surface,
   },
   accountBody: {
-    ...textStyles.body_02,
+    ...theme.textStyles.body_02,
     color: theme.colors.on_surface,
     opacity: opacity.secondary,
   },

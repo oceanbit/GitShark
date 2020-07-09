@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {borders, spacing, theme} from '@constants';
+import {spacing} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {ReduxRepo} from '@entities';

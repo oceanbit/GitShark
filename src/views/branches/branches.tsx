@@ -4,12 +4,12 @@
  */
 import * as React from 'react';
 import {useSelector} from 'react-redux';
-import {RootState, getBranchData, getLocalBranches} from '@store';
+import {getBranchData, getLocalBranches, RootState} from '@store';
 import {useThunkDispatch} from '@hooks';
 import {
+  checkoutBranch,
   createBranch,
   deleteLocalBranch,
-  checkoutBranch,
   renameBranch,
 } from '@services';
 import {BranchesUI} from './branches.ui';

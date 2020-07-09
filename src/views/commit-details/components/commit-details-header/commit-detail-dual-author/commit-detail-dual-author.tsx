@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {Text, View, Animated, StyleProp, ViewStyle} from 'react-native';
+import {Animated, StyleProp, Text, View, ViewStyle} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {DropdownContent} from '@components/dropdown-content';
-import {spacing, textStyles, theme, opacity} from '@constants';
+import {opacity, spacing, theme} from '@constants';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 
 const authorImageSize = 40;
@@ -22,6 +22,7 @@ interface CommitDetailsDualAuthorProps {
   expanded: boolean;
   style?: StyleProp<ViewStyle>;
 }
+
 export const CommitDetailsDualAuthor = ({
   expanded,
   style,
@@ -199,18 +200,18 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   personName: {
     color: theme.colors.on_surface,
-    ...textStyles.caption_01,
+    ...theme.textStyles.caption_01,
   },
   personDate: {
     color: theme.colors.on_surface,
     opacity: opacity.secondary,
-    ...textStyles.caption_02,
+    ...theme.textStyles.caption_02,
   },
   peopleMargin: {
     marginBottom: spacing.xs,
   },
   personEmail: {
     color: theme.colors.on_surface,
-    ...textStyles.caption_02,
+    ...theme.textStyles.caption_02,
   },
 });

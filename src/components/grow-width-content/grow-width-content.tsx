@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Animated} from 'react-native';
+import {Animated, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const animTiming = 150;
@@ -8,6 +8,7 @@ interface GrowWidthContentProps {
   children: React.ReactNode;
   expanded: boolean;
 }
+
 export const GrowWidthContent = React.forwardRef(
   ({children, expanded}: GrowWidthContentProps, ref) => {
     const styles = useDynamicStyleSheet(dynamicStyles);

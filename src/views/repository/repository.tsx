@@ -16,7 +16,7 @@ import {
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {SharkSafeTop} from '@components/shark-safe-top';
 import {useSelector} from 'react-redux';
-import {RootState, findRepo, clearRepo} from '@store';
+import {clearRepo, findRepo, RootState} from '@store';
 import {useThunkDispatch} from '@hooks';
 
 const Tab = createMaterialBottomTabNavigator();

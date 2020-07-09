@@ -1,13 +1,6 @@
 import * as React from 'react';
-import {
-  KeyboardAvoidingView,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
-import {spacing, textStyles, theme} from '@constants';
+import {KeyboardAvoidingView, ScrollView, Text, View} from 'react-native';
+import {spacing, theme} from '@constants';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {FileChangeListItem} from '@components/file-change-list-item';
@@ -102,7 +95,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   commitHeader: {
     marginLeft: spacing.xs,
-    ...textStyles.headline_03,
+    ...theme.textStyles.headline_03,
     color: theme.colors.on_surface,
   },
   commitData: {

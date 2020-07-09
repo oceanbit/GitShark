@@ -7,6 +7,7 @@ import {theme} from '@constants';
 interface SharkSafeTopProps {
   isFloating?: boolean;
 }
+
 export const SharkSafeTop: React.FC<SharkSafeTopProps> = ({
   children,
   isFloating,

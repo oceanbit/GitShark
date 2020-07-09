@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {View, Text, Animated} from 'react-native';
+import {Animated, Text, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
-import {theme, textStyles, spacing, borders} from '@constants';
+import {borders, spacing, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 
 const animTiming = 150;
@@ -12,6 +12,7 @@ interface CommitMessageDropdownProps {
   expanded: boolean;
   setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 export const CommitMessageDropdown = ({
   message,
   expanded,
@@ -165,7 +166,7 @@ const dynamicStyles = new DynamicStyleSheet({
     width: 1,
   },
   text: {
-    ...textStyles.caption_02,
+    ...theme.textStyles.caption_02,
     color: theme.colors.on_surface,
   },
   fakeIcon: {

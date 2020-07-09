@@ -13,6 +13,7 @@ interface RepositoryHistoryUIProps {
   topLayer: React.ReactNode;
   repo: ReduxRepo | null;
 }
+
 export const RepositoryHistoryUI = ({
   commits,
   onCommitNavigate,

@@ -8,6 +8,7 @@ interface AnimatedDropdownArrowProps {
   animDuration?: number;
   style?: StyleProp<ViewStyle>;
 }
+
 export const AnimatedDropdownArrow = ({
   expanded,
   setExpanded,

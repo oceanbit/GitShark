@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {AppBar} from '@components/app-bar';
 import {SharkSubheader} from '@components/shark-subheader';
-import {spacing, textStyles, theme, UserContext} from '@constants';
+import {spacing, theme, UserContext} from '@constants';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableRipple} from 'react-native-paper';
 import {SharkButton} from '@components/shark-button';
@@ -196,11 +196,11 @@ const dynamicStyles = new DynamicStyleSheet({
     flexGrow: 1,
   },
   authorName: {
-    ...textStyles.caption_01,
+    ...theme.textStyles.caption_01,
     color: theme.colors.on_surface,
   },
   authorEmail: {
-    ...textStyles.caption_02,
+    ...theme.textStyles.caption_02,
     color: theme.colors.on_surface,
   },
   useGHCredsContainer: {
@@ -217,7 +217,7 @@ const dynamicStyles = new DynamicStyleSheet({
     marginRight: spacing.m,
   },
   useGHText: {
-    ...textStyles.body_01,
+    ...theme.textStyles.body_01,
     color: theme.colors.on_surface,
   },
   textInput: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import {withKnobs, boolean} from '@storybook/addon-knobs';
+import {boolean, withKnobs} from '@storybook/addon-knobs';
 import {CommitDetailsUI} from './commit-details.ui';
 import {StorybookProvider} from '@components/storybook-provider';
 import {GitLogCommit} from '@services';

@@ -19,6 +19,7 @@ import {ReduxRepo} from '@entities';
 interface RepositoryHeaderProps {
   repo: ReduxRepo | null;
 }
+
 export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
   const history = useNavigation();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);

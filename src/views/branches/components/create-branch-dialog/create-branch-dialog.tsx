@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {View, TouchableWithoutFeedback, Text} from 'react-native';
+import {Text, TouchableWithoutFeedback, View} from 'react-native';
 import {AppDialog} from '@components/dialog';
 import {SharkTextInput} from '@components/shark-text-input';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkCheckbox} from '@components/shark-checkbox';
-import {borders, spacing, textStyles, theme} from '@constants';
+import {borders, spacing, theme} from '@constants';
 
 interface CreateBranchDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -117,6 +117,6 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   checkoutText: {
     color: theme.colors.on_surface,
-    ...textStyles.body_01,
+    ...theme.textStyles.body_01,
   },
 });

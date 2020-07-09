@@ -3,7 +3,7 @@ import {Alert} from 'react-native';
 import {useThunkDispatch} from '@hooks';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import {RootState, findRepoList} from '@store';
+import {findRepoList, RootState} from '@store';
 import {RepositoryListUI} from './repository-list.ui';
 
 export const RepositoryList = () => {

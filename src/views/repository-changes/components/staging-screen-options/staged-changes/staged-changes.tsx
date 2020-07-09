@@ -1,15 +1,8 @@
 import * as React from 'react';
-import {
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
-import {SharkSubheader} from '@components/shark-subheader';
+import {ScrollView, Text, View} from 'react-native';
 import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
 import {ChangesArrayItem} from '@services';
-import {spacing, textStyles, theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkDivider} from '@components/shark-divider';
 import {SharkCheckbox} from '@components/shark-checkbox';
@@ -131,7 +124,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   subheaderText: {
     marginLeft: spacing.xs,
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
     flexGrow: 1,
     color: theme.colors.on_surface,
   },

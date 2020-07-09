@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {View, Text, Animated} from 'react-native';
+import {Animated, Text, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {CommitDetailsDualAuthor} from './commit-detail-dual-author';
 import {CommitDetailsSingleAuthor} from './commit-detail-single-author';
-import {spacing, textStyles, theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {DropdownContent} from '@components/dropdown-content';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 import {TouchableRipple} from 'react-native-paper';
@@ -24,6 +24,7 @@ interface CommitDetailsHeaderProps {
   parents: string[];
   onNavToPar: (val: string) => void;
 }
+
 export const CommitDetailsHeader = ({
   expanded,
   setExpanded,
@@ -134,7 +135,7 @@ export const CommitDetailsHeader = ({
 const dynamicStyles = new DynamicStyleSheet({
   container: {},
   commitStyle: {
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
     marginHorizontal: spacing.m,
     marginBottom: spacing.xs,
   },
@@ -153,7 +154,7 @@ const dynamicStyles = new DynamicStyleSheet({
     alignItems: 'center',
   },
   dropdownText: {
-    ...textStyles.caption_01,
+    ...theme.textStyles.caption_01,
     color: theme.colors.primary,
     marginLeft: spacing.m,
     flexGrow: 1,

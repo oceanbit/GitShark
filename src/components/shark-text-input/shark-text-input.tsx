@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {borders, spacing, textStyles, theme} from '@constants';
+import {borders, spacing, theme} from '@constants';
 import {Icon} from '@components/shark-icon';
 import {
   DynamicStyleSheet,
@@ -147,7 +147,7 @@ const dynamicStyles = new DynamicStyleSheet({
     margin: 0,
     backgroundColor: 'transparent',
     padding: 0,
-    ...textStyles.body_01,
+    ...theme.textStyles.body_01,
     color: theme.colors.on_surface,
   },
   disableStyle: {

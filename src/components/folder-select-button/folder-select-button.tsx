@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
-import {borders, spacing, textStyles, theme, opacity} from '@constants';
+import {borders, opacity, spacing, theme} from '@constants';
 import RNFileSelector from 'react-native-file-selector';
 import {
   DynamicStyleSheet,
@@ -73,7 +73,7 @@ const dynamicStyles = new DynamicStyleSheet({
     borderColor: theme.colors.tint_on_surface_16,
     borderWidth: borders.thick,
     borderRadius: theme.borderRadius.regular,
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
     paddingVertical: spacing.xs,
     paddingHorizontal: spacing.m,
   },
@@ -86,6 +86,6 @@ const dynamicStyles = new DynamicStyleSheet({
   selectFolderText: {
     color: theme.colors.primary,
     marginLeft: spacing.xs,
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
   },
 });

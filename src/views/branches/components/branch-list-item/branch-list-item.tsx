@@ -1,15 +1,14 @@
 import * as React from 'react';
 import {Text} from 'react-native';
-import {theme, textStyles, spacing} from '@constants';
+import {spacing, theme} from '@constants';
 import {
   DynamicStyleSheet,
-  useDynamicValue,
   useDynamicStyleSheet,
+  useDynamicValue,
 } from 'react-native-dark-mode';
 import {PushPullArrows} from '@components/push-pull-arrows';
 import {SharkIconButton} from '@components/shark-icon-button';
-import {TouchableRipple} from 'react-native-paper';
-import {Divider, Menu} from 'react-native-paper';
+import {Divider, Menu, TouchableRipple} from 'react-native-paper';
 import {SharkMenu} from '@components/shark-menu';
 import {DeleteBranchDialog} from '../delete-branch-dialog';
 import {RenameBranchDialog} from '../rename-branch-dialog';
@@ -159,11 +158,11 @@ const dynamicStyles = new DynamicStyleSheet({
     width: 1,
   },
   branchSelected: {
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
     color: theme.colors.primary,
   },
   branchNameNormal: {
-    ...textStyles.body_01,
+    ...theme.textStyles.body_01,
     color: theme.colors.on_surface,
   },
 });

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Animated} from 'react-native';
+import {Animated, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const animTiming = 150;
@@ -8,6 +8,7 @@ interface DropdownContentProps {
   children: React.ReactNode;
   expanded: boolean;
 }
+
 export const DropdownContent = React.forwardRef(
   ({children, expanded}: DropdownContentProps, ref) => {
     const styles = useDynamicStyleSheet(dynamicStyles);

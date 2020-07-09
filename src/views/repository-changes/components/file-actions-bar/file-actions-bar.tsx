@@ -1,13 +1,12 @@
 import * as React from 'react';
-import {StyleProp, View, ViewStyle, Animated} from 'react-native';
-import {borders, spacing, textStyles, theme} from '@constants';
+import {Animated, StyleProp, View, ViewStyle} from 'react-native';
+import {borders, spacing, theme} from '@constants';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {FileActionsBarToggleButton} from './file-actions-bar-toggle-button';
 import {GrowWidthContent} from '@components/grow-width-content';
 import {StageButtonToggle} from './stage-button-toggle';
 import {SharkCheckbox} from '@components/shark-checkbox';
-import {SharkSubheader} from '@components/shark-subheader';
 import {ChangesArrayItem} from '@services';
 
 const animTiming = 150;
@@ -21,6 +20,7 @@ interface FileActionsBarProps {
   unstagedChanges: ChangesArrayItem[];
   setSelectedUnstagedChanges: (changes: ChangesArrayItem[]) => void;
 }
+
 export const FileActionsBar = ({
   style = {},
   isItemSelected,
@@ -139,7 +139,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   subheaderText: {
     marginLeft: spacing.xs,
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
     color: theme.colors.on_surface,
   },
   calloutButton: {

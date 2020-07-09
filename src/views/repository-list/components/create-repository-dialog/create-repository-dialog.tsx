@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Alert} from 'react-native';
-import {borders, fs, spacing, theme} from '@constants';
+import {fs, spacing} from '@constants';
 import {AppDialog} from '@components/dialog';
 import git from 'isomorphic-git/index.umd.min.js';
 import {ErrorMessageBox} from '@components/error-message-box';

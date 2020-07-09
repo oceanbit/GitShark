@@ -12,7 +12,7 @@ import {RemoteBranchListItem} from './components/remote-branch-list-item';
 import {DropdownContent} from '@components/dropdown-content';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 import {SharkIconButton} from '@components/shark-icon-button';
-import {spacing, textStyles, theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {RemoteBranch, Remotes} from '@types';
 import {ReduxRepo} from '@entities';
@@ -31,6 +31,7 @@ interface BranchesUIProps {
     oldBranchName: string;
   }) => Promise<void>;
 }
+
 export const BranchesUI = ({
   localBranches,
   repo,
@@ -140,6 +141,6 @@ const dynamicStyles = new DynamicStyleSheet({
     color: theme.colors.on_surface,
     width: 1,
     flexGrow: 1,
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
   },
 });

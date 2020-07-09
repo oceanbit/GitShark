@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Text, View, StyleProp, ViewStyle} from 'react-native';
+import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {spacing, textStyles, theme, opacity} from '@constants';
+import {opacity, spacing, theme} from '@constants';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 import {GitLogCommit} from '@services';
 
@@ -15,6 +15,7 @@ interface CommitDetailsSingleAuthorProps {
   committer: GitLogCommit['committer'];
   author?: GitLogCommit['author'];
 }
+
 export const CommitDetailsSingleAuthor = ({
   // _IF_ there is an author, the email will be the same, the only diff will be the timestamp potentially
   author,
@@ -61,15 +62,15 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   personName: {
     color: theme.colors.on_surface,
-    ...textStyles.caption_01,
+    ...theme.textStyles.caption_01,
   },
   personDate: {
     color: theme.colors.on_surface,
     opacity: opacity.secondary,
-    ...textStyles.caption_02,
+    ...theme.textStyles.caption_02,
   },
   personEmail: {
     color: theme.colors.on_surface,
-    ...textStyles.caption_02,
+    ...theme.textStyles.caption_02,
   },
 });

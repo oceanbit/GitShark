@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {View, Text, StyleProp, ViewStyle} from 'react-native';
+import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {
   DynamicStyleSheet,
-  useDynamicValue,
   useDynamicStyleSheet,
+  useDynamicValue,
 } from 'react-native-dark-mode';
-import {borders, spacing, textStyles, theme} from '@constants';
+import {borders, spacing, theme} from '@constants';
 import {Icon} from '@components/shark-icon';
 
 interface CommitPillProps {
@@ -14,6 +14,7 @@ interface CommitPillProps {
   color: string;
   style?: StyleProp<ViewStyle>;
 }
+
 export const CommitPill = ({isGitHub, name, color, style}: CommitPillProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const on_surface = useDynamicValue(theme.colors.on_surface);
@@ -58,7 +59,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   tagName: {
     marginLeft: spacing.xxs,
-    ...textStyles.caption_02,
+    ...theme.textStyles.caption_02,
     color: theme.colors.on_surface,
   },
   background: {

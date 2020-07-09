@@ -1,7 +1,7 @@
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import {Icon} from '@components/shark-icon';
-import {theme, textStyles, spacing, borders} from '@constants';
+import {borders, spacing, theme} from '@constants';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -70,7 +70,7 @@ export const dynamicStyles = new DynamicStyleSheet({
   },
   commitNumberText: {
     marginLeft: 2,
-    ...textStyles.overline,
+    ...theme.textStyles.overline,
   },
   primaryText: {
     color: theme.colors.primary,

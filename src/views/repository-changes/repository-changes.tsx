@@ -7,7 +7,7 @@ import {
   StageSplitView,
 } from './components/staging-screen-options';
 import {useSelector} from 'react-redux';
-import {RootState, getGitStatus, addToStaged, removeFromStaged} from '@store';
+import {addToStaged, getGitStatus, removeFromStaged, RootState} from '@store';
 import {useThunkDispatch} from '@hooks';
 import {RepositoryHeader} from '@components/repository-header';
 import {StyleSheet, View} from 'react-native';

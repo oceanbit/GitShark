@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text, ScrollView, KeyboardAvoidingView} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -11,7 +11,7 @@ import {SharkMenu} from '@components/shark-menu';
 import {Menu} from 'react-native-paper';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {SharkDivider} from '@components/shark-divider';
-import {spacing, textStyles, theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {Icon} from '@components/shark-icon';
 import {ChangesArrayItem, GitLogCommit} from '@services';
 import {FileChangeListItem} from '@components/file-change-list-item';
@@ -147,7 +147,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexGrow: 1,
   },
   changesHeaderText: {
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
     color: theme.colors.on_surface,
   },
   infoBlock: {
@@ -158,7 +158,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   iconText: {
     marginLeft: spacing.xxs,
-    ...textStyles.caption_01,
+    ...theme.textStyles.caption_01,
   },
   additionText: {
     color: theme.colors.change_addition,

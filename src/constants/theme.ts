@@ -97,9 +97,9 @@ const colors = Object.keys(lightSeaside.colors).reduce(
     const lightVal = lightSeaside.colors[theKey];
     const darkVal = darkSeaside.colors[theKey];
     if (lightVal === darkVal) {
-      prev[theKey] = lightVal;
+      prev[theKey] = lightVal as any;
     } else {
-      prev[theKey] = (new DynamicValue(lightVal, darkVal) as any) as string;
+      prev[theKey] = new DynamicValue(lightVal, darkVal);
     }
     return prev;
   },
@@ -109,7 +109,7 @@ const colors = Object.keys(lightSeaside.colors).reduce(
       getSecondaryStatic(fullTheme.colors.on_surface_dark),
     ),
     on_surface_secondary_no_opacity: new DynamicValue('#717f9b', '#8f97a8'),
-  } as typeof lightSeaside.colors & {
+  } as Record<keyof typeof lightSeaside.colors, DynamicValue<string>> & {
     on_surface_secondary: DynamicValue<string>;
     on_surface_secondary_no_opacity: DynamicValue<string>;
   },

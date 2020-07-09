@@ -2,11 +2,14 @@ import * as React from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '@store';
 import {CommitDetailsUI} from './commit-details.ui';
-import {getCommitHeaderBody, getFileStateChanges} from '@services';
+import {
+  getCommitHeaderBody,
+  getFileStateChanges,
+  GitLogCommit,
+} from '@services';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {GitLogCommit} from '@services';
 
 export const CommitDetails = () => {
   const {repo} = useSelector((state: RootState) => state.repository);

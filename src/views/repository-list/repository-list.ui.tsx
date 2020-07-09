@@ -2,7 +2,7 @@ import * as React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {ReduxRepo} from '@entities';
 import {RepoCard} from './components/repo-card';
-import {spacing, textStyles, theme} from '@constants';
+import {spacing, theme} from '@constants';
 import {RepoListLoading} from './components/repo-list-loading';
 import {DialogsAndFab} from './components/dialogs-and-fab';
 import {SharkIconButton} from '@components/shark-icon-button';
@@ -16,6 +16,7 @@ interface RepositoryListUIProps {
   repos: ReduxRepo[] | null;
   findRepos: () => Promise<void>;
 }
+
 export const RepositoryListUI = ({
   isLoading,
   isDBLoaded,
@@ -76,11 +77,11 @@ const dynamicStyles = new DynamicStyleSheet({
   headingText: {
     flexGrow: 1,
     width: 1,
-    ...textStyles.headline_01,
+    ...theme.textStyles.headline_01,
     color: theme.colors.on_surface,
   },
   noRepos: {
-    ...textStyles.headline_01,
+    ...theme.textStyles.headline_01,
     color: theme.colors.on_surface,
     opacity: 0.4,
     position: 'absolute',

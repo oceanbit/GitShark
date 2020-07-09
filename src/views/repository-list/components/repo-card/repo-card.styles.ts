@@ -1,11 +1,11 @@
-import {textStyles, theme, opacity} from '@constants';
+import {opacity, theme} from '@constants';
 import {DynamicStyleSheet} from 'react-native-dark-mode';
 
 export const dynamicStyles = new DynamicStyleSheet({
   cardContainer: {
     borderStyle: 'solid',
     borderColor: theme.colors.tint_on_surface_16,
-    borderRadius: theme.roundness,
+    borderRadius: theme.borderRadius.regular,
     borderWidth: 1,
     paddingTop: 8,
     paddingBottom: 16,
@@ -37,13 +37,13 @@ export const dynamicStyles = new DynamicStyleSheet({
     flexGrow: 1,
     flexShrink: 1,
     marginRight: 8,
-    ...textStyles.headline_03,
+    ...theme.textStyles.headline_03,
     color: theme.colors.on_surface,
   },
   lastUpdated: {
     color: theme.colors.on_surface,
     opacity: opacity.secondary,
-    ...textStyles.caption_02,
+    ...theme.textStyles.caption_02,
   },
   branchView: {
     flexDirection: 'row',
@@ -52,7 +52,7 @@ export const dynamicStyles = new DynamicStyleSheet({
   branchName: {
     color: theme.colors.primary,
     marginLeft: 4,
-    ...textStyles.caption_01,
+    ...theme.textStyles.caption_01,
   },
   statusComponent: {
     marginRight: 16,

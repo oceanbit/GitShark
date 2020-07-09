@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {StyleProp, Text, View, ViewStyle, TextProps} from 'react-native';
+import {StyleProp, Text, TextProps, View, ViewStyle} from 'react-native';
 import {Icon} from '@components/shark-icon';
-import {borders, spacing, textStyles, theme} from '@constants';
+import {borders, spacing, theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {
   DynamicStyleSheet,
@@ -106,7 +106,7 @@ const dynamicStyles = new DynamicStyleSheet({
     textAlign: 'center',
     // IDK why this works, but it sure does
     textAlignVertical: 'center',
-    ...textStyles.callout,
+    ...theme.textStyles.callout,
   },
   disabled: {
     opacity: theme.opacity.disabled,

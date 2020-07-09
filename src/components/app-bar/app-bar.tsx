@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {SharkIconButton} from '../shark-icon-button';
-import {spacing, textStyles, theme, opacity} from '@constants';
+import {opacity, spacing, theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkDivider} from '../shark-divider';
 
@@ -60,11 +60,11 @@ const dynamicStyles = new DynamicStyleSheet({
     marginLeft: spacing.xs,
   },
   headline: {
-    ...textStyles.headline_03,
+    ...theme.textStyles.headline_03,
     color: theme.colors.on_surface,
   },
   caption: {
-    ...textStyles.caption_02,
+    ...theme.textStyles.caption_02,
     color: theme.colors.on_surface,
     opacity: opacity.secondary,
   },

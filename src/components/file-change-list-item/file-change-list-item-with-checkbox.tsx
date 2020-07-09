@@ -3,7 +3,7 @@ import * as React from 'react';
 import {ChangesArrayItem} from '@services';
 import {FileChangeListItem} from './file-change-list-item';
 import {SharkCheckbox} from '../shark-checkbox';
-import {spacing, theme} from '@constants';
+import {spacing} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 interface FileChangeListItemProps {

@@ -5,7 +5,6 @@ import * as React from 'react';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {ChangesArrayItem} from '@services';
 import {SharkDivider} from '@components/shark-divider';
-import {spacing} from '@constants';
 
 interface StageSplitViewProps {
   unstagedChanges: ChangesArrayItem[];

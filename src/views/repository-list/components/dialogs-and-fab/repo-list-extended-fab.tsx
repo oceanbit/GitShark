@@ -4,7 +4,7 @@ import {ReduxRepo} from '@entities';
 import {DialogSelection, ExtendedFabBase} from './types';
 import {NewRepoFab} from './new-repo-fab';
 import {FabActions} from './fab-actions';
-import {textStyles, theme} from '@constants';
+import {theme} from '@constants';
 import {ExtendedActionFab} from '@components/extended-action-fab';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -106,7 +106,7 @@ export const RepoListExtendedFab = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   noRepos: {
-    ...textStyles.headline_01,
+    ...theme.textStyles.headline_01,
     color: theme.colors.on_surface,
     opacity: 0.4,
     position: 'absolute',

@@ -9,12 +9,11 @@ import {
 } from 'react-native';
 import {
   DarkModeOptionTypes,
+  opacity,
   SetDarkModeContext,
   spacing,
   StyleOfStagingContext,
-  textStyles,
   theme,
-  opacity,
 } from '../../constants';
 import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group';
 import {AppBar} from '../../components/app-bar';
@@ -194,7 +193,7 @@ const dynamicStyles = new DynamicStyleSheet({
   themeText: {
     marginVertical: spacing.m,
     marginHorizontal: spacing.m,
-    ...textStyles.caption_02,
+    ...theme.textStyles.caption_02,
     color: theme.colors.on_surface,
     opacity: opacity.secondary,
   },
@@ -211,7 +210,7 @@ const dynamicStyles = new DynamicStyleSheet({
   checkboxText: {
     marginLeft: spacing.xs,
     flexShrink: 0,
-    ...textStyles.body_01,
+    ...theme.textStyles.body_01,
     color: theme.colors.on_surface,
     opacity: opacity.secondary,
   },
