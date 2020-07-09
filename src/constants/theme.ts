@@ -88,96 +88,31 @@ export const lightNavTheme: NavTheme = {
   },
 };
 
-export const theme = {
-  ...baseTheme,
-  colors: {
-    on_primary: new DynamicValue(
-      seasideTheme.on_primary_light,
-      seasideTheme.on_primary_dark,
-    ),
-    primary: new DynamicValue(
-      seasideTheme.primary_light,
-      seasideTheme.primary_dark,
-    ),
-    on_surface: new DynamicValue(
-      seasideTheme.on_surface_light,
-      seasideTheme.on_surface_dark,
-    ),
-    floating_surface: new DynamicValue(
-      seasideTheme.floating_surface_light,
-      seasideTheme.floating_surface_dark,
-    ),
-    surface: new DynamicValue(
-      seasideTheme.surface_light,
-      seasideTheme.surface_dark,
-    ),
-    error: new DynamicValue(seasideTheme.error_light, seasideTheme.error_dark),
-    error_background: new DynamicValue(
-      seasideTheme.error_background_light,
-      seasideTheme.error_background_dark,
-    ),
-    on_change: new DynamicValue(
-      seasideTheme.on_change_light,
-      seasideTheme.on_change_dark,
-    ),
-    change_addition: new DynamicValue(
-      seasideTheme.change_addition_light,
-      seasideTheme.change_addition_dark,
-    ),
-    change_removal: new DynamicValue(
-      seasideTheme.change_removal_light,
-      seasideTheme.change_removal_dark,
-    ),
-    change_mixed: new DynamicValue(
-      seasideTheme.change_mixed_light,
-      seasideTheme.change_mixed_dark,
-    ),
-    change_refactored: new DynamicValue(
-      seasideTheme.change_refactored_light,
-      seasideTheme.change_refactored_dark,
-    ),
-
-    ripple_primary: new DynamicValue(
-      seasideTheme.ripple_primary_light,
-      seasideTheme.ripple_primary_dark,
-    ),
-    ripple_surface: new DynamicValue(
-      seasideTheme.ripple_on_surface_light,
-      seasideTheme.ripple_on_surface_dark,
-    ),
-    tint_on_surface_24: new DynamicValue(
-      seasideTheme.tint_on_surface_24_light,
-      seasideTheme.tint_on_surface_24_dark,
-    ),
-    tint_on_surface_16: new DynamicValue(
-      seasideTheme.tint_on_surface_16_light,
-      seasideTheme.tint_on_surface_16_dark,
-    ),
-    tint_on_surface_08: new DynamicValue(
-      seasideTheme.tint_on_surface_08_light,
-      seasideTheme.tint_on_surface_08_dark,
-    ),
-    tint_on_surface_04: new DynamicValue(
-      seasideTheme.tint_on_surface_04_light,
-      seasideTheme.tint_on_surface_04_dark,
-    ),
-    tint_primary_20: new DynamicValue(
-      seasideTheme.tint_primary_20_light,
-      seasideTheme.tint_primary_20_dark,
-    ),
-    tint_primary_10: new DynamicValue(
-      seasideTheme.tint_primary_10_light,
-      seasideTheme.tint_primary_10_dark,
-    ),
-    // PLEASE use `on_surface` with `opacity.secondary` instead! This is anti-pattern
+/**
+ * This is an awful lot of hackiness. Crazy how it still works, iddnit?
+ */
+const colors = Object.keys(lightTheme).reduce(
+  (prev, key: string) => {
+    const theKey = key as 'primary';
+    const lightVal = lightTheme[theKey];
+    const darkVal = darkTheme[theKey];
+    if (lightVal === darkVal) {
+      prev[theKey] = lightVal;
+    } else {
+      prev[theKey] = (new DynamicValue(lightVal, darkVal) as any) as string;
+    }
+    return prev;
+  },
+  {
     on_surface_secondary: new DynamicValue(
       getSecondaryStatic(seasideTheme.on_surface_light),
       getSecondaryStatic(seasideTheme.on_surface_dark),
     ),
-    // // No seriously, please don't use this unless you ABSOLUTELY have to
-    on_surface_secondary_no_opacity: new DynamicValue(
-      '#717f9b', // Navy 800 "0.6 alpha"
-      '#8f97a8', // Navy 100 "0.6 alpha"
-    ),
-  },
+    on_surface_secondary_no_opacity: new DynamicValue('#717f9b', '#8f97a8'),
+  } as typeof lightTheme,
+);
+
+export const theme = {
+  ...baseTheme,
+  colors,
 };
