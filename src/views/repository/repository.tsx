@@ -25,7 +25,9 @@ const Tab = createMaterialBottomTabNavigator();
 
 export const Repository = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
-  const {remotes} = useSelector((state: RootState) => state.branches);
+  const {remotes, localBranches, remoteBranches} = useSelector(
+    (state: RootState) => state.branches,
+  );
   const dispatch = useThunkDispatch();
   const insets = useSafeAreaInsets();
 
@@ -92,7 +94,12 @@ export const Repository = () => {
           <Stack.Screen name="CommitDetails" component={CommitDetails} />
         </Stack.Navigator>
       </SharkSafeTop>
-      <PushDialog visible={false} onDismiss={() => {}} />
+      <PushDialog
+        visible={false}
+        onDismiss={() => {}}
+        localBranches={localBranches}
+        remoteBranches={remoteBranches}
+      />
       <FetchDialog visible={false} onDismiss={() => {}} remotes={remotes} />
     </>
   );

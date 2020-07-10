@@ -1,34 +1,60 @@
 import * as React from 'react';
-import {Alert, View, Text} from 'react-native';
-import {fs, theme} from '@constants';
+import {View, Text} from 'react-native';
+import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
-import git from 'isomorphic-git/index.umd.min.js';
-import {ErrorMessageBox} from '@components/error-message-box';
-import {FolderSelectButton} from '@components/folder-select-button';
-import {createNewRepo} from '@services';
 import {SharkButton} from '@components/shark-button';
-import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {Picker} from '@react-native-community/picker';
 import {SharkCheckbox} from '@components/shark-checkbox';
+import {RemoteBranch} from '@types';
+
+const remoteBranchToString = (branch: RemoteBranch) =>
+  `${branch?.remote}/${branch?.name}`;
 
 interface PushDialogProps {
-  onDismiss: (didUpdate: boolean) => void;
+  onDismiss: (
+    props: {
+      destination: RemoteBranch;
+      forcePush: boolean;
+      branch: string;
+    } | null,
+  ) => void;
   visible: boolean;
+  localBranches: string[];
+  remoteBranches: RemoteBranch[];
 }
 
-export const PushDialog = ({onDismiss, visible}: PushDialogProps) => {
+export const PushDialog = ({
+  onDismiss,
+  visible,
+  localBranches,
+  remoteBranches,
+}: PushDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
-  const [path, setPath] = React.useState('');
-  const [repoName, setRepoName] = React.useState('');
-  const [errorStr, setErrorStr] = React.useState('');
+  const [branch, setBranch] = React.useState(localBranches[0]);
+  const [destination, setDestination] = React.useState(
+    remoteBranchToString(remoteBranches[0]),
+  );
+
+  const [forcePush, setForcePush] = React.useState(false);
 
   const parentOnDismiss = (bool: boolean) => {
-    setPath('');
-    setRepoName('');
-    setErrorStr('');
-    onDismiss(bool);
+    if (bool) {
+      const realRemoteBranch = remoteBranches.find(
+        r => remoteBranchToString(r) === destination,
+      )!;
+      onDismiss({
+        destination: realRemoteBranch,
+        forcePush,
+        branch,
+      });
+    } else {
+      onDismiss(null);
+    }
+    setBranch(localBranches[0]);
+    setDestination(remoteBranchToString(remoteBranches[0]));
+    setForcePush(false);
   };
 
   return (
@@ -44,10 +70,11 @@ export const PushDialog = ({onDismiss, visible}: PushDialogProps) => {
           {/* TODO: REPLACE WITH REAL SEASIDE SELECT COMPONENT */}
           <View style={styles.pickerView}>
             <Picker
-              selectedValue={'main'}
-              onValueChange={(itemValue, itemIndex) => {}}>
-              <Picker.Item label="main" value="main" />
-              <Picker.Item label="javascript" value="js" />
+              selectedValue={branch}
+              onValueChange={v => setBranch(v as string)}>
+              {localBranches.map(branch => (
+                <Picker.Item key={branch} label={branch} value={branch} />
+              ))}
             </Picker>
           </View>
 
@@ -55,15 +82,26 @@ export const PushDialog = ({onDismiss, visible}: PushDialogProps) => {
 
           <View style={styles.pickerView}>
             <Picker
-              selectedValue={'main'}
-              onValueChange={(itemValue, itemIndex) => {}}>
-              <Picker.Item label="origin/main" value="main" />
-              <Picker.Item label="origin/develop" value="js" />
+              selectedValue={destination}
+              onValueChange={v => setDestination(v as string)}>
+              {remoteBranches.map(rBranch => {
+                const branchDisplay = remoteBranchToString(rBranch);
+                return (
+                  <Picker.Item
+                    key={branchDisplay}
+                    label={branchDisplay}
+                    value={branchDisplay}
+                  />
+                );
+              })}
             </Picker>
           </View>
 
           <View style={styles.checkbox}>
-            <SharkCheckbox checked={false} />
+            <SharkCheckbox
+              checked={forcePush}
+              onValueChange={v => setForcePush(v)}
+            />
             <Text style={styles.checkboxText}>Force Push</Text>
           </View>
         </>

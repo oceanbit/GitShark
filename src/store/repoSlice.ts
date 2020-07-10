@@ -3,7 +3,11 @@ import {Repo, getReduxRepo, ReduxRepo} from '@entities';
 import {getRepository, getConnection} from 'typeorm';
 import {clearChanges} from './gitChangesSlice';
 import {clearLog} from './gitLogSlice';
-import {clearBranches, getRemotesAndBranches} from './gitBranchesSlice';
+import {
+  clearBranches,
+  getLocalBranches,
+  getRemotesAndBranches,
+} from './gitBranchesSlice';
 import {findRepoList} from '@store/repoListSlice';
 
 export const findRepo = createAsyncThunk(
@@ -17,6 +21,7 @@ export const findRepo = createAsyncThunk(
     });
     if (!repo) return null;
     dispatch(getRemotesAndBranches(repo.path));
+    dispatch(getLocalBranches(repo.path));
     return Promise.resolve(getReduxRepo(repo));
   },
 );

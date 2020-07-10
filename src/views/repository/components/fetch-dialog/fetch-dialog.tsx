@@ -42,7 +42,7 @@ export const FetchDialog = ({
     } else {
       onDismiss(null);
     }
-    setRemote(remotes[0].remote);
+    setRemote(remotes[0]?.remote);
     setFetchAll(false);
     setPrune(false);
   };
