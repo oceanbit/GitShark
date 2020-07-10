@@ -18,6 +18,7 @@ import {SharkSafeTop} from '@components/shark-safe-top';
 import {useSelector} from 'react-redux';
 import {clearRepo, findRepo, RootState} from '@store';
 import {useThunkDispatch} from '@hooks';
+import {PushDialog} from './components/push-dialog';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -81,13 +82,16 @@ export const Repository = () => {
   if (!repo) return null;
 
   return (
-    <SharkSafeTop isFloating={true}>
-      <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
-        <Stack.Screen name="Repository" component={Tabs} />
-        <Stack.Screen name="CommitAction" component={CommitAction} />
-        <Stack.Screen name="CommitDetails" component={CommitDetails} />
-      </Stack.Navigator>
-    </SharkSafeTop>
+    <>
+      <SharkSafeTop isFloating={true}>
+        <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
+          <Stack.Screen name="Repository" component={Tabs} />
+          <Stack.Screen name="CommitAction" component={CommitAction} />
+          <Stack.Screen name="CommitDetails" component={CommitDetails} />
+        </Stack.Navigator>
+      </SharkSafeTop>
+      <PushDialog visible={false} />
+    </>
   );
 };
 
