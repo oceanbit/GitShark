@@ -1,12 +1,6 @@
 import * as React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {ProgressBar} from 'react-native-paper';
-import {theme} from '@constants';
-import {AppDialog} from '@components/dialog';
-import {ErrorMessageBox} from '@components/error-message-box';
 import {cloneRepo} from '@services';
-import {SharkButton} from '@components/shark-button';
-import {useDynamicValue} from 'react-native-dark-mode';
+import {ProgressErrorDialog} from '@components/progress-error-dialog';
 
 // Note that since we're running isomorphic-git in the main thread, we're competing with React trying to update the UI.
 // In order to achieve smooth progress bars, we need to insert a little pause.
@@ -38,8 +32,6 @@ export const CloneRepositoryProgressDialog = ({
   name,
   uri,
 }: CloneRepositoryProgressDialogProps) => {
-  const accent = useDynamicValue(theme.colors.primary);
-
   const [errorStr, setErrorStr] = React.useState('');
 
   /**
@@ -84,52 +76,16 @@ export const CloneRepositoryProgressDialog = ({
   }, [cloneRepoCB, visible]);
 
   return (
-    <>
-      {/* The progress dialog */}
-      <AppDialog
-        visible={visible && !errorStr}
-        title={'Cloning repository'}
-        text={phase}
-        dismissable={false}
-        main={
-          <View style={styles.progressContainer}>
-            <ProgressBar
-              style={styles.progressBar}
-              progress={total > 0 ? loaded / total : 0}
-              indeterminate={!total}
-              color={accent}
-            />
-          </View>
-        }
-      />
-      {/* The error dialog */}
-      <AppDialog
-        visible={visible && !!errorStr}
-        onDismiss={() => onDismiss(false)}
-        title={'Clone repository'}
-        text={'There was an error cloning your repository.'}
-        main={<ErrorMessageBox message={errorStr} />}
-        actions={
-          <SharkButton
-            onPress={() => cloneRepoCB()}
-            type="primary"
-            text="Retry"
-          />
-        }
-      />
-    </>
+    <ProgressErrorDialog
+      headerStr={'Clone repository'}
+      errorBodyText={'There was an error cloning your repository.'}
+      onDismiss={onDismiss}
+      onRetry={() => cloneRepoCB()}
+      visible={visible}
+      progress={total > 0 ? loaded / total : 0}
+      indeterminate={!total}
+      bodyText={phase}
+      errorStr={errorStr}
+    />
   );
 };
-
-const styles = StyleSheet.create({
-  dialogContainer: {
-    margin: 0,
-    paddingHorizontal: theme.spacing.l,
-    paddingTop: 20,
-    paddingBottom: theme.spacing.m,
-  },
-  progressContainer: {
-    width: '100%',
-  },
-  progressBar: {},
-});
