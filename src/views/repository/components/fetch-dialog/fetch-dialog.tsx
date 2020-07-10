@@ -1,34 +1,50 @@
 import * as React from 'react';
-import {Alert, View, Text} from 'react-native';
-import {fs, theme} from '@constants';
+import {View, Text} from 'react-native';
+import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
-import git from 'isomorphic-git/index.umd.min.js';
-import {ErrorMessageBox} from '@components/error-message-box';
-import {FolderSelectButton} from '@components/folder-select-button';
-import {createNewRepo} from '@services';
 import {SharkButton} from '@components/shark-button';
-import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {Picker} from '@react-native-community/picker';
 import {SharkCheckbox} from '@components/shark-checkbox';
+import {Remotes} from '@types';
 
 interface FetchDialogProps {
-  onDismiss: (didUpdate: boolean) => void;
+  onDismiss: (
+    props: {
+      remote: Remotes;
+      fetchAll: boolean;
+      prune: boolean;
+    } | null,
+  ) => void;
   visible: boolean;
+  remotes: Remotes[];
 }
 
-export const FetchDialog = ({onDismiss, visible}: FetchDialogProps) => {
+export const FetchDialog = ({
+  onDismiss,
+  visible,
+  remotes,
+}: FetchDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
-  const [path, setPath] = React.useState('');
-  const [repoName, setRepoName] = React.useState('');
-  const [errorStr, setErrorStr] = React.useState('');
+  const [remote, setRemote] = React.useState(remotes[0]?.remote);
+  const [fetchAll, setFetchAll] = React.useState(false);
+  const [prune, setPrune] = React.useState(false);
 
   const parentOnDismiss = (bool: boolean) => {
-    setPath('');
-    setRepoName('');
-    setErrorStr('');
-    onDismiss(bool);
+    if (bool) {
+      const realRemote = remotes.find(r => r.remote === remote)!;
+      onDismiss({
+        remote: realRemote,
+        fetchAll,
+        prune,
+      });
+    } else {
+      onDismiss(null);
+    }
+    setRemote(remotes[0].remote);
+    setFetchAll(false);
+    setPrune(false);
   };
 
   return (
@@ -44,20 +60,28 @@ export const FetchDialog = ({onDismiss, visible}: FetchDialogProps) => {
           {/* TODO: REPLACE WITH REAL SEASIDE SELECT COMPONENT */}
           <View style={styles.pickerView}>
             <Picker
-              selectedValue={'origin'}
-              onValueChange={(itemValue, itemIndex) => {}}>
-              <Picker.Item label="origin" value="origin" />
-              <Picker.Item label="upstream" value="upstream" />
+              selectedValue={remote}
+              onValueChange={v => setRemote(v as string)}>
+              {remotes.map(remote => (
+                <Picker.Item
+                  key={remote.remote}
+                  label={remote.remote}
+                  value={remote.remote}
+                />
+              ))}
             </Picker>
           </View>
 
           <View style={styles.checkbox}>
-            <SharkCheckbox checked={false} />
+            <SharkCheckbox
+              checked={fetchAll}
+              onValueChange={v => setFetchAll(v)}
+            />
             <Text style={styles.checkboxText}>Fetch all remotes</Text>
           </View>
 
           <View style={styles.checkbox}>
-            <SharkCheckbox checked={false} />
+            <SharkCheckbox checked={prune} onValueChange={v => setPrune(v)} />
             <Text style={styles.checkboxText}>Exclude deleted branches</Text>
           </View>
         </>
@@ -70,7 +94,11 @@ export const FetchDialog = ({onDismiss, visible}: FetchDialogProps) => {
             style={styles.cancelBtn}
             text="Cancel"
           />
-          <SharkButton onPress={() => {}} type="primary" text="Fetch" />
+          <SharkButton
+            onPress={() => parentOnDismiss(true)}
+            type="primary"
+            text="Fetch"
+          />
         </>
       }
     />

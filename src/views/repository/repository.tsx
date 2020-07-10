@@ -25,6 +25,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 export const Repository = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
+  const {remotes} = useSelector((state: RootState) => state.branches);
   const dispatch = useThunkDispatch();
   const insets = useSafeAreaInsets();
 
@@ -92,7 +93,7 @@ export const Repository = () => {
         </Stack.Navigator>
       </SharkSafeTop>
       <PushDialog visible={false} onDismiss={() => {}} />
-      <FetchDialog visible={false} onDismiss={() => {}} />
+      <FetchDialog visible={false} onDismiss={() => {}} remotes={remotes} />
     </>
   );
 };
