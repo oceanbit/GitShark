@@ -12,12 +12,12 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {Picker} from '@react-native-community/picker';
 import {SharkCheckbox} from '@components/shark-checkbox';
 
-interface PushDialogProps {
+interface FetchDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
 }
 
-export const PushDialog = ({onDismiss, visible}: PushDialogProps) => {
+export const FetchDialog = ({onDismiss, visible}: FetchDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const [path, setPath] = React.useState('');
@@ -35,36 +35,30 @@ export const PushDialog = ({onDismiss, visible}: PushDialogProps) => {
     <AppDialog
       visible={visible}
       onDismiss={() => parentOnDismiss(false)}
-      title={'Push'}
-      text={'Push local changes to a remote repository.'}
+      title={'Fetch'}
+      text={'Fetch latest changes from a remote repository.'}
       main={
         <>
-          <Text style={styles.pickerLabel}>Branch</Text>
+          <Text style={styles.pickerLabel}>Remote</Text>
 
           {/* TODO: REPLACE WITH REAL SEASIDE SELECT COMPONENT */}
           <View style={styles.pickerView}>
             <Picker
-              selectedValue={'main'}
+              selectedValue={'origin'}
               onValueChange={(itemValue, itemIndex) => {}}>
-              <Picker.Item label="main" value="main" />
-              <Picker.Item label="javascript" value="js" />
-            </Picker>
-          </View>
-
-          <Text style={styles.pickerLabel}>Destination</Text>
-
-          <View style={styles.pickerView}>
-            <Picker
-              selectedValue={'main'}
-              onValueChange={(itemValue, itemIndex) => {}}>
-              <Picker.Item label="origin/main" value="main" />
-              <Picker.Item label="origin/develop" value="js" />
+              <Picker.Item label="origin" value="origin" />
+              <Picker.Item label="upstream" value="upstream" />
             </Picker>
           </View>
 
           <View style={styles.checkbox}>
             <SharkCheckbox checked={false} />
-            <Text style={styles.checkboxText}>Force Push</Text>
+            <Text style={styles.checkboxText}>Fetch all remotes</Text>
+          </View>
+
+          <View style={styles.checkbox}>
+            <SharkCheckbox checked={false} />
+            <Text style={styles.checkboxText}>Exclude deleted branches</Text>
           </View>
         </>
       }
@@ -76,7 +70,7 @@ export const PushDialog = ({onDismiss, visible}: PushDialogProps) => {
             style={styles.cancelBtn}
             text="Cancel"
           />
-          <SharkButton onPress={() => {}} type="primary" text="Go Do" />
+          <SharkButton onPress={() => {}} type="primary" text="Fetch" />
         </>
       }
     />

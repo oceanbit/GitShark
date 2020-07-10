@@ -19,6 +19,7 @@ import {useSelector} from 'react-redux';
 import {clearRepo, findRepo, RootState} from '@store';
 import {useThunkDispatch} from '@hooks';
 import {PushDialog} from './components/push-dialog';
+import {FetchDialog} from './components/fetch-dialog';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -90,7 +91,8 @@ export const Repository = () => {
           <Stack.Screen name="CommitDetails" component={CommitDetails} />
         </Stack.Navigator>
       </SharkSafeTop>
-      <PushDialog visible={false} />
+      <PushDialog visible={false} onDismiss={() => {}} />
+      <FetchDialog visible={false} onDismiss={() => {}} />
     </>
   );
 };
