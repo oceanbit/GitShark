@@ -108,6 +108,10 @@ const repositorySlice = createSlice({
   extraReducers: {
     [findRepo.fulfilled.toString()]: (state, action) => {
       state.repo = action.payload;
+      state.toPushPull = {
+        toPull: action.payload.commitsToPull,
+        toPush: action.payload.commitsToPush,
+      };
     },
     [getCommitRev.fulfilled.toString()]: (state, action) => {
       state.toPushPull = action.payload;
