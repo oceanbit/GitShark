@@ -106,13 +106,17 @@ export const RepositoryUI = ({
       </SharkSafeTop>
       <PushDialog
         visible={activeDialog === 'push'}
-        onDismiss={() => {}}
+        onDismiss={() => {
+          setActiveDialog('');
+        }}
         localBranches={localBranches}
         remoteBranches={remoteBranches}
       />
       <FetchDialog
         visible={activeDialog === 'fetch'}
-        onDismiss={() => {}}
+        onDismiss={() => {
+          setActiveDialog('');
+        }}
         remotes={remotes}
       />
     </RepoHeaderDialogContext.Provider>

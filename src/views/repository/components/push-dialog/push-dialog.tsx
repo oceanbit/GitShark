@@ -32,7 +32,7 @@ export const PushDialog = ({
 }: PushDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
-  const [branch, setBranch] = React.useState(localBranches[0]);
+  const [branch, setBranch] = React.useState(localBranches?.[0]);
   const [destination, setDestination] = React.useState(
     remoteBranchToString(remoteBranches[0]),
   );
@@ -52,7 +52,7 @@ export const PushDialog = ({
     } else {
       onDismiss(null);
     }
-    setBranch(localBranches[0]);
+    setBranch(localBranches?.[0]);
     setDestination(remoteBranchToString(remoteBranches[0]));
     setForcePush(false);
   };
@@ -72,7 +72,7 @@ export const PushDialog = ({
             <Picker
               selectedValue={branch}
               onValueChange={v => setBranch(v as string)}>
-              {localBranches.map(branch => (
+              {localBranches?.map(branch => (
                 <Picker.Item key={branch} label={branch} value={branch} />
               ))}
             </Picker>

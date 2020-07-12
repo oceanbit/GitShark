@@ -3,7 +3,7 @@ import {Divider, Menu} from 'react-native-paper';
 import {HeaderActionNumber} from './header-action-number/header-action-number';
 import {useNavigation} from '@react-navigation/native';
 import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '@constants';
+import {fs, RepoHeaderDialogContext} from '@constants';
 import http from 'isomorphic-git/http/web/index.js';
 import {SharkIconButton} from '../shark-icon-button';
 import {AppBar} from '../app-bar';
@@ -15,6 +15,8 @@ interface RepositoryHeaderProps {
 }
 
 export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
+  const {setActiveDialog} = React.useContext(RepoHeaderDialogContext);
+
   const history = useNavigation();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -28,7 +30,11 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
       caption="Last fetched: 5min ago"
       rightChild={
         <>
-          <HeaderActionNumber iconName="push" val={4} />
+          <HeaderActionNumber
+            iconName="push"
+            val={4}
+            onPress={() => setActiveDialog('push')}
+          />
           <HeaderActionNumber iconName="pull" val={0} />
           <SharkMenu
             visible={isMenuOpen}
@@ -42,22 +48,19 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
             <Menu.Item
               onPress={() => {
                 setIsMenuOpen(false);
-                git.fetch({
-                  fs,
-                  http,
-                  dir: repo.path,
-                  url:
-                    'https://github.com/unicorn-utterances/batteries-not-included.git',
-                  ref: repo.currentBranchName,
-                  depth: 1000,
-                  singleBranch: true,
-                });
+                setActiveDialog('fetch');
               }}
               title="Fetch"
             />
             <Divider />
-            <Menu.Item onPress={() => {}} title="Open Folder" />
-            <Menu.Item onPress={() => {}} title="Rename" />
+            {/* <Menu.Item onPress={() => {}} title="Open Folder" /> */}
+            <Menu.Item
+              onPress={() => {
+                setIsMenuOpen(false);
+                setActiveDialog('rename');
+              }}
+              title="Rename"
+            />
           </SharkMenu>
         </>
       }
