@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {Repo, getReduxRepo, ReduxRepo} from '@entities';
+import {Repo, getReduxRepo, ReduxRepo, PushPull} from '@entities';
 import {getRepository, getConnection} from 'typeorm';
 import {clearChanges} from './gitChangesSlice';
 import {clearLog} from './gitLogSlice';
@@ -9,6 +9,15 @@ import {
   getRemotesAndBranches,
 } from './gitBranchesSlice';
 import {findRepoList} from '@store/repoListSlice';
+import {getPushPull} from '@services';
+
+export const getCommitRev = createAsyncThunk(
+  'repository/getCommitRev',
+  async (path: string) => {
+    const payload = await getPushPull({path});
+    return payload;
+  },
+);
 
 export const findRepo = createAsyncThunk(
   'repository/findRepo',
@@ -22,6 +31,7 @@ export const findRepo = createAsyncThunk(
     if (!repo) return null;
     dispatch(getRemotesAndBranches(repo.path));
     dispatch(getLocalBranches(repo.path));
+    dispatch(getCommitRev(repo.path));
     return Promise.resolve(getReduxRepo(repo));
   },
 );
@@ -57,6 +67,7 @@ export const clearRepo = createAsyncThunk(
 
 const initialState = {
   repo: null as ReduxRepo | null,
+  toPushPull: null as PushPull | null,
 };
 const repositorySlice = createSlice({
   name: 'repository',
@@ -65,6 +76,9 @@ const repositorySlice = createSlice({
   extraReducers: {
     [findRepo.fulfilled.toString()]: (state, action) => {
       state.repo = action.payload;
+    },
+    [getCommitRev.fulfilled.toString()]: (state, action) => {
+      state.toPushPull = action.payload;
     },
     [clearRepo.fulfilled.toString()]: (_, __) => {
       return initialState;

@@ -6,7 +6,7 @@ interface GetPushPull {
   path: string;
 }
 
-const getPushPull = async ({path}: GetPushPull) => {
+export const getPushPull = async ({path}: GetPushPull) => {
   const currBranch: string = (await git.currentBranch({
     fs,
     dir: path,

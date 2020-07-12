@@ -2,9 +2,7 @@ import * as React from 'react';
 import {Divider, Menu} from 'react-native-paper';
 import {HeaderActionNumber} from './header-action-number/header-action-number';
 import {useNavigation} from '@react-navigation/native';
-import git from 'isomorphic-git/index.umd.min.js';
-import {fs, RepoHeaderDialogContext} from '@constants';
-import http from 'isomorphic-git/http/web/index.js';
+import {RepoHeaderContext} from '@constants';
 import {SharkIconButton} from '../shark-icon-button';
 import {AppBar} from '../app-bar';
 import {SharkMenu} from '../shark-menu';
@@ -15,7 +13,7 @@ interface RepositoryHeaderProps {
 }
 
 export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
-  const {setActiveDialog} = React.useContext(RepoHeaderDialogContext);
+  const {setActiveDialog, pushPull} = React.useContext(RepoHeaderContext);
 
   const history = useNavigation();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -32,10 +30,10 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
         <>
           <HeaderActionNumber
             iconName="push"
-            val={4}
+            val={pushPull?.toPush || 0}
             onPress={() => setActiveDialog('push')}
           />
-          <HeaderActionNumber iconName="pull" val={0} />
+          <HeaderActionNumber iconName="pull" val={pushPull?.toPull || 0} />
           <SharkMenu
             visible={isMenuOpen}
             onDismiss={() => setIsMenuOpen(false)}

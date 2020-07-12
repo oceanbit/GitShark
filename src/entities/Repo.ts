@@ -99,6 +99,11 @@ export type ReduxRepo = Pick<
   | 'branches'
 >;
 
+export interface PushPull {
+  toPush: number;
+  toPull: number;
+}
+
 export interface RepoMock {
   id: number;
   name: string;

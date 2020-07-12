@@ -13,7 +13,8 @@ import {SharkSafeTop} from '@components/shark-safe-top';
 import {PushDialog} from './components/push-dialog';
 import {FetchDialog} from './components/fetch-dialog';
 import {Remotes, RemoteBranch} from '@types';
-import {RepoHeaderDialogContext, RepoHeaderDialogType} from '@constants';
+import {RepoHeaderContext, RepoHeaderDialogType} from '@constants';
+import {PushPull} from '@entities';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -27,6 +28,7 @@ interface RepositoryUIProps {
   repoHistory: React.ComponentType<any>;
   commitActions: React.ComponentType<any>;
   commitDetails: React.ComponentType<any>;
+  pushPull: PushPull | null;
 }
 
 export const RepositoryUI = ({
@@ -37,6 +39,7 @@ export const RepositoryUI = ({
   repoHistory,
   commitActions,
   commitDetails,
+  pushPull,
 }: RepositoryUIProps) => {
   const [activeDialog, setActiveDialog] = React.useState<RepoHeaderDialogType>(
     '',
@@ -92,10 +95,11 @@ export const RepositoryUI = ({
   const Stack = createStackNavigator();
 
   return (
-    <RepoHeaderDialogContext.Provider
+    <RepoHeaderContext.Provider
       value={{
         setActiveDialog,
         activeDialog,
+        pushPull,
       }}>
       <SharkSafeTop isFloating={true}>
         <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
@@ -119,7 +123,7 @@ export const RepositoryUI = ({
         }}
         remotes={remotes}
       />
-    </RepoHeaderDialogContext.Provider>
+    </RepoHeaderContext.Provider>
   );
 };
 

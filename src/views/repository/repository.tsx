@@ -10,7 +10,9 @@ import {CommitAction} from '../commit-action/commit-action';
 import {CommitDetails} from '../commit-details/commit-details';
 
 export const Repository = () => {
-  const {repo} = useSelector((state: RootState) => state.repository);
+  const {repo, toPushPull} = useSelector(
+    (state: RootState) => state.repository,
+  );
   const {remotes, localBranches, remoteBranches} = useSelector(
     (state: RootState) => state.branches,
   );
@@ -39,6 +41,7 @@ export const Repository = () => {
       repoHistory={RepositoryHistory}
       commitActions={CommitAction}
       commitDetails={CommitDetails}
+      pushPull={toPushPull}
     />
   );
 };
