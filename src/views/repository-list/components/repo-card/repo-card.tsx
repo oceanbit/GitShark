@@ -7,7 +7,7 @@ import {Menu, TouchableRipple} from 'react-native-paper';
 import {ReduxRepo} from '@entities';
 import dayjs from 'dayjs';
 import {useNavigation} from '@react-navigation/native';
-import {RenameRepositoryDialog} from '../rename-repository-dialog';
+import {RenameRepositoryDialog} from '@components/rename-repository-dialog';
 import {DeleteRepositoryDialog} from '../delete-repository-dialog';
 import {dynamicStyles} from './repo-card.styles';
 import {useDynamicStyleSheet, useDynamicValue} from 'react-native-dark-mode';
@@ -18,9 +18,10 @@ type DialogActionsType = '' | 'rename' | 'delete';
 interface RepoCardProps {
   repo: ReduxRepo;
   onUpdate: () => void;
+  onRename: (name: string) => void;
 }
 
-export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
+export const RepoCard = ({repo, onUpdate, onRename}: RepoCardProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -92,12 +93,11 @@ export const RepoCard = ({repo, onUpdate}: RepoCardProps) => {
         </View>
       </TouchableRipple>
       <RenameRepositoryDialog
-        repo={repo}
         visible={openDialog === 'rename'}
-        onDismiss={didUpdate => {
+        onDismiss={newName => {
           setOpenDialog('');
-          if (didUpdate) {
-            onUpdate();
+          if (newName) {
+            onRename(newName);
           }
         }}
       />

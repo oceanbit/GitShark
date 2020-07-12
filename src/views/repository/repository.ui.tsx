@@ -10,6 +10,7 @@ import {
 } from 'react-native-dark-mode';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {SharkSafeTop} from '@components/shark-safe-top';
+import {RenameRepositoryDialog} from '@components/rename-repository-dialog';
 import {PushDialog} from './components/push-dialog';
 import {FetchDialog} from './components/fetch-dialog';
 import {Remotes, RemoteBranch} from '@types';
@@ -122,6 +123,10 @@ export const RepositoryUI = ({
           setActiveDialog('');
         }}
         remotes={remotes}
+      />
+      <RenameRepositoryDialog
+        visible={activeDialog === 'rename'}
+        onDismiss={() => {}}
       />
     </RepoHeaderContext.Provider>
   );

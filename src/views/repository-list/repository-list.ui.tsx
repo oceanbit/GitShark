@@ -15,6 +15,7 @@ interface RepositoryListUIProps {
   navigateToSettings: () => void;
   repos: ReduxRepo[] | null;
   findRepos: () => Promise<void>;
+  renameRepo: (repo: ReduxRepo, newName: string) => void;
 }
 
 export const RepositoryListUI = ({
@@ -23,6 +24,7 @@ export const RepositoryListUI = ({
   navigateToSettings,
   repos,
   findRepos,
+  renameRepo,
 }: RepositoryListUIProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -42,6 +44,7 @@ export const RepositoryListUI = ({
                   key={repo.id}
                   repo={repo}
                   onUpdate={() => findRepos()}
+                  onRename={newName => renameRepo(repo, newName)}
                 />
               );
             })}
