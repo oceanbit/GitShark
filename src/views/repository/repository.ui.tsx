@@ -1,0 +1,111 @@
+import * as React from 'react';
+import {theme} from '@constants';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {Icon} from '@components/shark-icon';
+import {createStackNavigator} from '@react-navigation/stack';
+import {CommitAction} from '../commit-action/commit-action';
+import {CommitDetails} from '../commit-details/commit-details';
+import {
+  DynamicStyleSheet,
+  useDynamicStyleSheet,
+  useDynamicValue,
+} from 'react-native-dark-mode';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {SharkSafeTop} from '@components/shark-safe-top';
+import {PushDialog} from './components/push-dialog';
+import {FetchDialog} from './components/fetch-dialog';
+import {Remotes, RemoteBranch} from '@types';
+
+const Tab = createMaterialBottomTabNavigator();
+
+interface RepositoryUIProps {
+  localBranches: string[];
+  remoteBranches: RemoteBranch[];
+  remotes: Remotes[];
+  repoChanges: React.ComponentType<any>;
+  repoHistory: React.ComponentType<any>;
+}
+
+export const RepositoryUI = ({
+  localBranches,
+  remoteBranches,
+  remotes,
+  repoChanges,
+  repoHistory,
+}: RepositoryUIProps) => {
+  const insets = useSafeAreaInsets();
+
+  const styles = useDynamicStyleSheet(dynamicStyles);
+  const accent = useDynamicValue(theme.colors.primary);
+  const on_surface_secondary = useDynamicValue(
+    theme.colors.on_surface_secondary,
+  );
+
+  const Tabs = React.useCallback(() => {
+    return (
+      <Tab.Navigator
+        labeled={true}
+        shifting={false}
+        barStyle={[styles.bottomNav, {paddingBottom: insets.bottom}]}
+        inactiveColor={on_surface_secondary}
+        activeColor={accent}>
+        <Tab.Screen
+          name="Changes"
+          component={repoChanges}
+          options={{
+            tabBarLabel: 'Changes',
+            tabBarIcon: ({color}) => (
+              <Icon name="changes" color={color} size={24} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="History"
+          component={repoHistory}
+          options={{
+            tabBarLabel: 'History',
+            tabBarIcon: ({color}) => (
+              <Icon name="history" color={color} size={24} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    );
+  }, [
+    styles.bottomNav,
+    repoHistory,
+    repoChanges,
+    accent,
+    on_surface_secondary,
+    insets.bottom,
+  ]);
+
+  const Stack = createStackNavigator();
+
+  return (
+    <>
+      <SharkSafeTop isFloating={true}>
+        <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
+          <Stack.Screen name="Repository" component={Tabs} />
+          <Stack.Screen name="CommitAction" component={CommitAction} />
+          <Stack.Screen name="CommitDetails" component={CommitDetails} />
+        </Stack.Navigator>
+      </SharkSafeTop>
+      <PushDialog
+        visible={false}
+        onDismiss={() => {}}
+        localBranches={localBranches}
+        remoteBranches={remoteBranches}
+      />
+      <FetchDialog visible={false} onDismiss={() => {}} remotes={remotes} />
+    </>
+  );
+};
+
+const dynamicStyles = new DynamicStyleSheet({
+  bottomNav: {
+    backgroundColor: theme.colors.floating_surface,
+    borderTopWidth: theme.borders.normal,
+    borderTopColor: theme.colors.tint_on_surface_16,
+  },
+});
