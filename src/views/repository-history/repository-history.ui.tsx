@@ -9,6 +9,7 @@ import {GitLogCommit} from '@services';
 
 interface RepositoryHistoryUIProps {
   commits: any[];
+  branchName: string;
   onCommitNavigate: (commit: GitLogCommit) => void;
   topLayer: React.ReactNode;
   repo: ReduxRepo | null;
@@ -19,6 +20,7 @@ export const RepositoryHistoryUI = ({
   onCommitNavigate,
   topLayer,
   repo,
+  branchName,
 }: RepositoryHistoryUIProps) => {
   const [showBranches, setShowBranches] = React.useState(false);
 
@@ -34,10 +36,10 @@ export const RepositoryHistoryUI = ({
         setExpanded={setShowBranches}
         expanded={showBranches}
         favorite={false}
-        branchName={'the_big_branch'}
+        branchName={branchName}
       />
     ),
-    [setShowBranches, showBranches],
+    [setShowBranches, showBranches, branchName],
   );
 
   return (

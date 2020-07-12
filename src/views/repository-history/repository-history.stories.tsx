@@ -28,6 +28,7 @@ const RepositoryListDemo = ({...props}: any) => {
         onCommitNavigate={() => {}}
         topLayer={topLayer}
         repo={{} as any}
+        branchName={'the_big_branch'}
       />
     </StorybookProvider>
   );

@@ -34,6 +34,7 @@ export const RepositoryHistory = () => {
       onCommitNavigate={onCommitNavigate}
       topLayer={topLayer}
       repo={repo}
+      branchName={repo?.currentBranchName || ''}
     />
   );
 };
