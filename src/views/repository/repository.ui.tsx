@@ -13,6 +13,7 @@ import {SharkSafeTop} from '@components/shark-safe-top';
 import {PushDialog} from './components/push-dialog';
 import {FetchDialog} from './components/fetch-dialog';
 import {Remotes, RemoteBranch} from '@types';
+import {RepoHeaderDialogContext, RepoHeaderDialogType} from '@constants';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -37,6 +38,10 @@ export const RepositoryUI = ({
   commitActions,
   commitDetails,
 }: RepositoryUIProps) => {
+  const [activeDialog, setActiveDialog] = React.useState<RepoHeaderDialogType>(
+    '',
+  );
+
   const insets = useSafeAreaInsets();
 
   const styles = useDynamicStyleSheet(dynamicStyles);
@@ -87,7 +92,11 @@ export const RepositoryUI = ({
   const Stack = createStackNavigator();
 
   return (
-    <>
+    <RepoHeaderDialogContext.Provider
+      value={{
+        setActiveDialog,
+        activeDialog,
+      }}>
       <SharkSafeTop isFloating={true}>
         <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
           <Stack.Screen name="Repository" component={Tabs} />
@@ -96,13 +105,17 @@ export const RepositoryUI = ({
         </Stack.Navigator>
       </SharkSafeTop>
       <PushDialog
-        visible={false}
+        visible={activeDialog === 'push'}
         onDismiss={() => {}}
         localBranches={localBranches}
         remoteBranches={remoteBranches}
       />
-      <FetchDialog visible={false} onDismiss={() => {}} remotes={remotes} />
-    </>
+      <FetchDialog
+        visible={activeDialog === 'fetch'}
+        onDismiss={() => {}}
+        remotes={remotes}
+      />
+    </RepoHeaderDialogContext.Provider>
   );
 };
 
