@@ -13,15 +13,27 @@ import {getPushPull} from '@services';
 
 export const getCommitRev = createAsyncThunk(
   'repository/getCommitRev',
-  async (path: string) => {
+  async (
+    {path, repoId}: {path: string; repoId: string | number},
+    {dispatch},
+  ) => {
     const payload = await getPushPull({path});
+    dispatch(
+      editRepo({
+        repoId,
+        repoData: {
+          commitsToPush: payload.toPush,
+          commitsToPull: payload.toPull,
+        },
+      }),
+    );
     return payload;
   },
 );
 
 export const findRepo = createAsyncThunk(
   'repository/findRepo',
-  async (repoId: string, {getState, dispatch}) => {
+  async (repoId: string | number, {getState, dispatch}) => {
     const {database} = getState() as any;
     if (!database.isLoaded) return;
     const repoRepository = getRepository(Repo);
@@ -31,8 +43,28 @@ export const findRepo = createAsyncThunk(
     if (!repo) return null;
     dispatch(getRemotesAndBranches(repo.path));
     dispatch(getLocalBranches(repo.path));
-    dispatch(getCommitRev(repo.path));
+    dispatch(getCommitRev({path: repo.path, repoId: repoId}));
     return Promise.resolve(getReduxRepo(repo));
+  },
+);
+
+export const editRepo = createAsyncThunk(
+  'repository/editRepo',
+  async (
+    {repoId, repoData}: {repoId: string | number; repoData: Partial<Repo>},
+    {getState, dispatch},
+  ) => {
+    const {database} = getState() as any;
+    if (!database.isLoaded) return;
+    await getConnection()
+      .createQueryBuilder()
+      .update(Repo)
+      .set(repoData)
+      .where('id = :id', {id: repoId})
+      .execute();
+    // If this is not updated, the repo list will not display the proper branch name
+    dispatch(findRepoList());
+    dispatch(findRepo(repoId));
   },
 );
 

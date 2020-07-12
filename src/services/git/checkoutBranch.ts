@@ -2,7 +2,7 @@ import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
-import {changeBranch, findRepoList} from '@store';
+import {changeBranch} from '@store';
 
 interface CheckoutBranchProps {
   repo: ReduxRepo;
