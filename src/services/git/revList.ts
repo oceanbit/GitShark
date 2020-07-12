@@ -76,7 +76,9 @@ export const revList = async ({
   ]);
 
   return {
+    // What was in "branch 2" but not in branch 1
     branch1Diff,
+    // What was in "branch 1" but not in branch 2
     branch2Diff,
   };
 };
