@@ -17,11 +17,11 @@ type DialogActionsType = '' | 'rename' | 'delete';
 
 interface RepoCardProps {
   repo: ReduxRepo;
-  onUpdate: () => void;
+  onDelete: () => void;
   onRename: (name: string) => void;
 }
 
-export const RepoCard = ({repo, onUpdate, onRename}: RepoCardProps) => {
+export const RepoCard = ({repo, onDelete, onRename}: RepoCardProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -102,12 +102,11 @@ export const RepoCard = ({repo, onUpdate, onRename}: RepoCardProps) => {
         }}
       />
       <DeleteRepositoryDialog
-        repo={repo}
         visible={openDialog === 'delete'}
-        onDismiss={didUpdate => {
+        onDismiss={didDelete => {
           setOpenDialog('');
-          if (didUpdate) {
-            onUpdate();
+          if (didDelete) {
+            onDelete();
           }
         }}
       />

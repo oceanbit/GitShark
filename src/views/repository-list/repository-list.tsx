@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {findRepoList, RootState} from '@store';
 import {RepositoryListUI} from './repository-list.ui';
-import {renameRepo} from '@services';
+import {renameRepo, deleteRepo} from '@services';
 
 export const RepositoryList = () => {
   const {isLoaded: isDBLoaded} = useSelector(
@@ -50,6 +50,7 @@ export const RepositoryList = () => {
       renameRepo={(repo, newName) => {
         renameRepo(repo.id, newName).then(() => findRepos());
       }}
+      deleteRepo={repo => deleteRepo(repo).then(() => findRepos())}
     />
   );
 };

@@ -2,9 +2,6 @@ import * as React from 'react';
 import {View} from 'react-native';
 import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
-import {ErrorMessageBox} from '@components/error-message-box';
-import {ReduxRepo} from '@entities';
-import {deleteRepo} from '@services';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -15,33 +12,17 @@ import {SharkButton} from '@components/shark-button';
 interface DeleteRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
-  repo: ReduxRepo;
 }
 
 export const DeleteRepositoryDialog = ({
   onDismiss,
   visible,
-  repo,
 }: DeleteRepositoryDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const change_removal = useDynamicValue(theme.colors.change_removal);
 
-  const [errorStr, setErrorStr] = React.useState('');
-
   const parentOnDismiss = (bool: boolean) => {
-    setErrorStr('');
     onDismiss(bool);
-  };
-
-  const deleteRepoLocal = () => {
-    deleteRepo(repo)
-      .then(() => {
-        setErrorStr('');
-        parentOnDismiss(true);
-      })
-      .catch(e => {
-        setErrorStr(e.message || e);
-      });
   };
 
   return (
@@ -52,15 +33,15 @@ export const DeleteRepositoryDialog = ({
       text={'Files will remain in your device.'}
       main={
         <>
-          {!!errorStr && (
+          {/* {!!errorStr && (
             <ErrorMessageBox style={styles.errorBox} message={errorStr} />
-          )}
+          )} */}
         </>
       }
       actions={
         <View style={styles.buttonContainer}>
           <SharkButton
-            onPress={() => deleteRepoLocal()}
+            onPress={() => parentOnDismiss(true)}
             type="primary"
             backgroundColor={change_removal}
             style={styles.fullWidthBtn}

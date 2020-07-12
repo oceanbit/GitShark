@@ -16,6 +16,7 @@ interface RepositoryListUIProps {
   repos: ReduxRepo[] | null;
   findRepos: () => Promise<void>;
   renameRepo: (repo: ReduxRepo, newName: string) => void;
+  deleteRepo: (repo: ReduxRepo) => void;
 }
 
 export const RepositoryListUI = ({
@@ -25,6 +26,7 @@ export const RepositoryListUI = ({
   repos,
   findRepos,
   renameRepo,
+  deleteRepo,
 }: RepositoryListUIProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -43,7 +45,7 @@ export const RepositoryListUI = ({
                 <RepoCard
                   key={repo.id}
                   repo={repo}
-                  onUpdate={() => findRepos()}
+                  onDelete={() => deleteRepo(repo)}
                   onRename={newName => renameRepo(repo, newName)}
                 />
               );
