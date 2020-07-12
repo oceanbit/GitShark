@@ -6,6 +6,8 @@ import {useThunkDispatch} from '@hooks';
 import {RepositoryUI} from './repository.ui';
 import {RepositoryChanges} from '../repository-changes/repository-changes';
 import {RepositoryHistory} from '../repository-history/repository-history';
+import {CommitAction} from '../commit-action/commit-action';
+import {CommitDetails} from '../commit-details/commit-details';
 
 export const Repository = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
@@ -35,6 +37,8 @@ export const Repository = () => {
       remoteBranches={remoteBranches}
       repoChanges={RepositoryChanges}
       repoHistory={RepositoryHistory}
+      commitActions={CommitAction}
+      commitDetails={CommitDetails}
     />
   );
 };

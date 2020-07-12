@@ -3,8 +3,6 @@ import {theme} from '@constants';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {Icon} from '@components/shark-icon';
 import {createStackNavigator} from '@react-navigation/stack';
-import {CommitAction} from '../commit-action/commit-action';
-import {CommitDetails} from '../commit-details/commit-details';
 import {
   DynamicStyleSheet,
   useDynamicStyleSheet,
@@ -22,8 +20,12 @@ interface RepositoryUIProps {
   localBranches: string[];
   remoteBranches: RemoteBranch[];
   remotes: Remotes[];
+  // Adding as props, since the components they reference
+  // Contain app logic, which we want to remove from .ui files
   repoChanges: React.ComponentType<any>;
   repoHistory: React.ComponentType<any>;
+  commitActions: React.ComponentType<any>;
+  commitDetails: React.ComponentType<any>;
 }
 
 export const RepositoryUI = ({
@@ -32,6 +34,8 @@ export const RepositoryUI = ({
   remotes,
   repoChanges,
   repoHistory,
+  commitActions,
+  commitDetails,
 }: RepositoryUIProps) => {
   const insets = useSafeAreaInsets();
 
@@ -87,8 +91,8 @@ export const RepositoryUI = ({
       <SharkSafeTop isFloating={true}>
         <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
           <Stack.Screen name="Repository" component={Tabs} />
-          <Stack.Screen name="CommitAction" component={CommitAction} />
-          <Stack.Screen name="CommitDetails" component={CommitDetails} />
+          <Stack.Screen name="CommitAction" component={commitActions} />
+          <Stack.Screen name="CommitDetails" component={commitDetails} />
         </Stack.Navigator>
       </SharkSafeTop>
       <PushDialog
