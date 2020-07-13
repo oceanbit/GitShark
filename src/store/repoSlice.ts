@@ -64,7 +64,13 @@ export const editRepo = createAsyncThunk(
       .execute();
     // If this is not updated, the repo list will not display the proper branch name
     dispatch(findRepoList());
-    dispatch(findRepo(repoId));
+
+    // Find repo to prevent "getCommitRev" loop
+    const repoRepository = getRepository(Repo);
+    const repo = await repoRepository.findOne(repoId, {
+      relations: ['commits'],
+    });
+    return Promise.resolve(getReduxRepo(repo!));
   },
 );
 
@@ -107,6 +113,13 @@ const repositorySlice = createSlice({
   reducers: {},
   extraReducers: {
     [findRepo.fulfilled.toString()]: (state, action) => {
+      state.repo = action.payload;
+      state.toPushPull = {
+        toPull: action.payload.commitsToPull,
+        toPush: action.payload.commitsToPush,
+      };
+    },
+    [editRepo.fulfilled.toString()]: (state, action) => {
       state.repo = action.payload;
       state.toPushPull = {
         toPull: action.payload.commitsToPull,
