@@ -52,7 +52,6 @@ export const revList = async ({
   branchName1,
   branchName2,
 }: RevListProps) => {
-  console.log('I AM RUNNING');
   const [branch1Log, branch2Log] = await Promise.all([
     git.log({
       fs,
@@ -66,8 +65,6 @@ export const revList = async ({
     }),
   ]);
 
-  console.log('LOGS', branch1Log, branch2Log);
-
   const [branch1Diff, branch2Diff] = await Promise.all([
     getDiffNumber({
       path: dir,
@@ -80,8 +77,6 @@ export const revList = async ({
       parentOid: branch2Log[0].oid,
     }),
   ]);
-
-  console.log('DIFFS', branch1Diff, branch2Diff);
 
   return {
     // What was in "branch 2" but not in branch 1
