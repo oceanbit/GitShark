@@ -68,7 +68,7 @@ export const BranchesUI = ({
               selected={isSelected}
               branch={{
                 name: branch,
-                up: 4,
+                up: 0, // TODO: Hook this up when our branch diff logic is faster
                 down: 0,
               }}
               onDeleteLocalBranch={onDeleteLocalBranch}
@@ -79,11 +79,12 @@ export const BranchesUI = ({
           );
         })}
       <SharkDivider style={styles.remoteDivider} />
-      <SharkSubheader
-        calloutText="Remotes"
-        buttonText="Add new"
-        onButtonClick={() => {}}
-      />
+      {/*<SharkSubheader*/}
+      {/*    calloutText="Remotes"*/}
+      {/*    buttonText="Add new"*/}
+      {/*    onButtonClick={() => {}}*/}
+      {/*/>*/}
+      <SharkSubheader calloutText="Remotes" />
       {remotes.map(remote => {
         return (
           <>
@@ -98,7 +99,7 @@ export const BranchesUI = ({
                 />
                 {/* This is a mock, we'll need to replace it with the list of real remotes soon */}
                 <Text style={styles.remoteHeader}>{remote.remote}</Text>
-                <SharkIconButton iconName="menu" onPress={() => {}} />
+                {/*<SharkIconButton iconName="menu" onPress={() => {}} />*/}
               </>
             </TouchableRipple>
             <DropdownContent expanded={expanded}>

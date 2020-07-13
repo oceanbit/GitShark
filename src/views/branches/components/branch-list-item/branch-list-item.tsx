@@ -61,7 +61,11 @@ export const BranchListItem = ({
 
   return (
     <>
-      <TouchableRipple style={[styles.container, bgColor]} onPress={() => {}}>
+      <TouchableRipple
+        style={[styles.container, bgColor]}
+        onPress={() => {
+          onCheckoutBranch(branch.name);
+        }}>
         <>
           <Text style={[styles.branchName, branchNameSelected]}>
             {branch.name}
@@ -72,16 +76,16 @@ export const BranchListItem = ({
             commitsToPush={branch.up}
             style={styles.arrowStyles}
           />
-          <SharkIconButton
-            iconName={isFavorite ? 'favorite_selected' : 'favorite'}
-            primaryColor={selected}
-            onPress={() => {}}
-          />
-          <SharkIconButton
-            iconName="history"
-            primaryColor={selected}
-            onPress={() => {}}
-          />
+          {/*<SharkIconButton*/}
+          {/*  iconName={isFavorite ? 'favorite_selected' : 'favorite'}*/}
+          {/*  primaryColor={selected}*/}
+          {/*  onPress={() => {}}*/}
+          {/*/>*/}
+          {/*<SharkIconButton*/}
+          {/*  iconName="history"*/}
+          {/*  primaryColor={selected}*/}
+          {/*  onPress={() => {}}*/}
+          {/*/>*/}
           <SharkMenu
             visible={isMenuOpen}
             onDismiss={() => setIsMenuOpen(false)}

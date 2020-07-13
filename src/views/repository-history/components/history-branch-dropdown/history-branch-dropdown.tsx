@@ -39,7 +39,7 @@ export const HistoryBranchDropdown = ({
     if (expanded) {
       Animated.parallel([
         Animated.timing(marginLeft, {
-          toValue: -40,
+          toValue: 0, // -40 when we have the favorite icon enabled
           duration: animDuration,
           useNativeDriver: false,
         }),
@@ -82,10 +82,10 @@ export const HistoryBranchDropdown = ({
         onPress={() => setExpanded(!expanded)}
         rippleColor={rippleColor}>
         <Animated.View style={[styles.dropdownView, {marginLeft}]}>
-          <SharkIconButton
-            onPress={onFavorite}
-            iconName={favorite ? 'favorite_selected' : 'favorite'}
-          />
+          {/*<SharkIconButton*/}
+          {/*  onPress={onFavorite}*/}
+          {/*  iconName={favorite ? 'favorite_selected' : 'favorite'}*/}
+          {/*/>*/}
           <View style={styles.textContainer}>
             <Animated.Text
               style={[styles.selectBranches, {opacity: selectBranchesOpacity}]}>

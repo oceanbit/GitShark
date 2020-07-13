@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleProp, Text, ViewStyle} from 'react-native';
+import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkIconButton} from '@components/shark-icon-button';
@@ -24,16 +24,17 @@ export const RemoteBranchListItem = ({
     <TouchableRipple style={[styles.container, style]} onPress={() => {}}>
       <>
         <Text style={styles.branchName}>{branch.name}</Text>
-        <SharkIconButton
-          iconName="history"
-          primaryColor={false}
-          onPress={() => {}}
-        />
-        <SharkIconButton
-          iconName="menu"
-          primaryColor={false}
-          onPress={() => {}}
-        />
+        {/*<SharkIconButton*/}
+        {/*  iconName="history"*/}
+        {/*  primaryColor={false}*/}
+        {/*  onPress={() => {}}*/}
+        {/*/>*/}
+        {/*<SharkIconButton*/}
+        {/*  iconName="menu"*/}
+        {/*  primaryColor={false}*/}
+        {/*  onPress={() => {}}*/}
+        {/*/>*/}
+        <View style={{height: 40}} />
       </>
     </TouchableRipple>
   );
