@@ -38,7 +38,7 @@ export const findRepo = createAsyncThunk(
     if (!database.isLoaded) return;
     const repoRepository = getRepository(Repo);
     const repo = await repoRepository.findOne(repoId, {
-      relations: ['branches', 'commits'],
+      relations: ['commits'],
     });
     if (!repo) return null;
     dispatch(getRemotesAndBranches(repo.path));

@@ -6,8 +6,6 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import {Remote} from './Remote';
-import {Branch} from './Branch';
 import {Commit} from './Commit';
 
 @Entity({name: 'repo'})
@@ -49,14 +47,6 @@ export class Repo extends BaseEntity {
   @ManyToMany(() => Commit, {cascade: ['insert', 'remove']})
   @JoinTable({name: 'repo__commits'})
   commits: Commit[];
-
-  @ManyToMany(() => Remote, {cascade: ['insert', 'remove']})
-  @JoinTable({name: 'repo__remotes'})
-  remotes: Remote[];
-
-  @ManyToMany(() => Branch, {cascade: ['insert', 'remove']})
-  @JoinTable({name: 'repo__branches'})
-  branches: Branch[];
 }
 
 export const getReduxRepo = (repo: Repo) => {
@@ -68,8 +58,6 @@ export const getReduxRepo = (repo: Repo) => {
     commitsToPush,
     path,
     commits,
-    remotes,
-    branches,
   } = repo;
   return {
     id,
@@ -80,8 +68,6 @@ export const getReduxRepo = (repo: Repo) => {
     path,
     // lastUpdated,
     commits,
-    remotes,
-    branches,
   };
 };
 
@@ -95,21 +81,9 @@ export type ReduxRepo = Pick<
   | 'path'
   | 'lastUpdated'
   | 'commits'
-  | 'remotes'
-  | 'branches'
 >;
 
 export interface PushPull {
   toPush: number;
   toPull: number;
-}
-
-export interface RepoMock {
-  id: number;
-  name: string;
-  currentBranchName: string;
-  commitsToPull: number;
-  commitsToPush: number;
-  path: string;
-  lastUpdated: Date;
 }
