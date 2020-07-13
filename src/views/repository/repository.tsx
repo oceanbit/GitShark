@@ -9,14 +9,35 @@ import {RepositoryHistory} from '../repository-history/repository-history';
 import {CommitAction} from '../commit-action/commit-action';
 import {CommitDetails} from '../commit-details/commit-details';
 import {renameRepo} from '@services';
+import {Remotes} from '@types';
+import {OnFetchActionsDialog} from './components/on-fetch-action-dialog/on-fetch-action-dialog';
+
+interface FetchDialogType {
+  action: 'fetch';
+  data: {
+    remote: Remotes;
+    fetchAll: boolean;
+    prune: boolean;
+  };
+}
+
+interface PullDialogType {
+  action: 'pull';
+  data: any;
+}
+
+type DialogType = FetchDialogType | PullDialogType | null;
 
 export const Repository = () => {
+  const [dialogType, setDialogType] = React.useState<DialogType>();
+
   const {repo, toPushPull} = useSelector(
     (state: RootState) => state.repository,
   );
   const {remotes, localBranches, remoteBranches} = useSelector(
     (state: RootState) => state.branches,
   );
+
   const dispatch = useThunkDispatch();
 
   const {params} = useRoute();
@@ -34,20 +55,37 @@ export const Repository = () => {
   if (!repo) return null;
 
   return (
-    <RepositoryUI
-      remotes={remotes}
-      localBranches={localBranches}
-      remoteBranches={remoteBranches}
-      repoChanges={RepositoryChanges}
-      repoHistory={RepositoryHistory}
-      commitActions={CommitAction}
-      commitDetails={CommitDetails}
-      pushPull={toPushPull}
-      onRename={newName =>
-        renameRepo({repoId: repo.id, name: newName, dispatch}).then(() =>
-          findRepo(repoId),
-        )
-      }
-    />
+    <>
+      <RepositoryUI
+        remotes={remotes}
+        localBranches={localBranches}
+        remoteBranches={remoteBranches}
+        repoChanges={RepositoryChanges}
+        repoHistory={RepositoryHistory}
+        commitActions={CommitAction}
+        commitDetails={CommitDetails}
+        pushPull={toPushPull}
+        onRename={newName =>
+          renameRepo({repoId: repo.id, name: newName, dispatch}).then(() =>
+            findRepo(repoId),
+          )
+        }
+        onFetch={data =>
+          setDialogType({
+            action: 'fetch',
+            data,
+          })
+        }
+      />
+      <OnFetchActionsDialog
+        visible={dialogType?.action === 'fetch'}
+        data={dialogType?.data}
+        dispatch={dispatch}
+        repo={repo}
+        onDismiss={() => {
+          setDialogType(null);
+        }}
+      />
+    </>
   );
 };

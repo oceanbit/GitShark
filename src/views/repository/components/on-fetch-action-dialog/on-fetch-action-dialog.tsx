@@ -1,25 +1,32 @@
 import * as React from 'react';
-import {cloneRepo} from '@services';
+import {fetch} from '@services';
 import {ProgressErrorDialog} from '@components/progress-error-dialog';
+import {ReduxRepo} from '@entities';
+import {Remotes} from '@types';
+import {ThunkDispatchType} from '@hooks';
 import {phases} from '@constants/hacks';
 
 const pauseToRender = () => new Promise(resolve => setTimeout(resolve, 0));
 
-interface CloneRepositoryProgressDialogProps {
+interface OnFetchActionsDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
-  uri: string;
-  path: string;
-  name?: string;
+  repo: ReduxRepo;
+  data: {
+    remote: Remotes;
+    fetchAll: boolean;
+    prune: boolean;
+  };
+  dispatch: ThunkDispatchType;
 }
 
-export const CloneRepositoryProgressDialog = ({
+export const OnFetchActionsDialog = ({
   onDismiss,
   visible,
-  path,
-  name,
-  uri,
-}: CloneRepositoryProgressDialogProps) => {
+  repo,
+  data,
+  dispatch,
+}: OnFetchActionsDialogProps) => {
   const [errorStr, setErrorStr] = React.useState('');
 
   /**
@@ -29,12 +36,14 @@ export const CloneRepositoryProgressDialog = ({
   const [total, setTotal] = React.useState(-1);
   const [phase, setPhase] = React.useState('');
 
-  const cloneRepoCB = React.useCallback(() => {
+  const fetchCB = React.useCallback(() => {
     setErrorStr('');
-    cloneRepo({
-      path,
-      name,
-      uri,
+    fetch({
+      ...data,
+      remote: data.remote.remote,
+      dir: repo.path,
+      dispatch,
+      repo,
       async onProgress({
         phase: progressPhase,
         loaded: progressLoaded,
@@ -54,21 +63,21 @@ export const CloneRepositoryProgressDialog = ({
       .catch((e: Error | string) => {
         setErrorStr((e as Error).message || (e as string));
       });
-  }, [path, name, uri, onDismiss]);
+  }, [data, repo, dispatch, onDismiss]);
 
   React.useEffect(() => {
     if (!visible) {
       return;
     }
-    cloneRepoCB();
-  }, [cloneRepoCB, visible]);
+    fetchCB();
+  }, [fetchCB, visible]);
 
   return (
     <ProgressErrorDialog
-      headerStr={'Clone repository'}
-      errorBodyText={'There was an error cloning your repository.'}
+      headerStr={'Fetch remote'}
+      errorBodyText={'There was an error fetching your remote.'}
       onDismiss={onDismiss}
-      onRetry={() => cloneRepoCB()}
+      onRetry={() => fetchCB()}
       visible={visible}
       progress={total > 0 ? loaded / total : 0}
       indeterminate={!total}

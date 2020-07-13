@@ -27,9 +27,14 @@ export const FetchDialog = ({
 }: FetchDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
-  const [remote, setRemote] = React.useState(remotes[0]?.remote);
+  const [remote, setRemote] = React.useState<string>('');
   const [fetchAll, setFetchAll] = React.useState(false);
   const [prune, setPrune] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!remotes || !remotes.length) return;
+    setRemote(remotes[0].remote);
+  }, [remotes]);
 
   const parentOnDismiss = (bool: boolean) => {
     if (bool) {
@@ -42,7 +47,7 @@ export const FetchDialog = ({
     } else {
       onDismiss(null);
     }
-    setRemote(remotes[0]?.remote);
+    setRemote('');
     setFetchAll(false);
     setPrune(false);
   };

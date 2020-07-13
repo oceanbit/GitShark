@@ -31,6 +31,11 @@ interface RepositoryUIProps {
   commitDetails: React.ComponentType<any>;
   pushPull: PushPull | null;
   onRename: (newName: string) => void;
+  onFetch: (props: {
+    remote: Remotes;
+    fetchAll: boolean;
+    prune: boolean;
+  }) => void;
 }
 
 export const RepositoryUI = ({
@@ -43,6 +48,7 @@ export const RepositoryUI = ({
   commitDetails,
   pushPull,
   onRename,
+  onFetch,
 }: RepositoryUIProps) => {
   const [activeDialog, setActiveDialog] = React.useState<RepoHeaderDialogType>(
     '',
@@ -121,8 +127,11 @@ export const RepositoryUI = ({
       />
       <FetchDialog
         visible={activeDialog === 'fetch'}
-        onDismiss={() => {
+        onDismiss={props => {
           setActiveDialog('');
+          if (props) {
+            onFetch(props);
+          }
         }}
         remotes={remotes}
       />
