@@ -27,7 +27,7 @@ export const CommitCard = ({commit, onPress}: CommitCardProps) => {
   const needsPulling = !!(Math.floor(Math.random() * 10) < 5);
   const needsPushing = !!(Math.floor(Math.random() * 10) < 7);
   const {dateStr, timeStr} = React.useMemo(() => {
-    const dayjsTimestampe = dayjs(commit.author.timestamp);
+    const dayjsTimestampe = dayjs.unix(commit.author.timestamp);
     return {
       dateStr: dayjsTimestampe.format('D MMM YYYY'),
       timeStr: dayjsTimestampe.format('h:mm A'),
