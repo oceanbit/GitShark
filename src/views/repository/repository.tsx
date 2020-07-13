@@ -8,6 +8,7 @@ import {RepositoryChanges} from '../repository-changes/repository-changes';
 import {RepositoryHistory} from '../repository-history/repository-history';
 import {CommitAction} from '../commit-action/commit-action';
 import {CommitDetails} from '../commit-details/commit-details';
+import {renameRepo} from '@services';
 
 export const Repository = () => {
   const {repo, toPushPull} = useSelector(
@@ -42,6 +43,11 @@ export const Repository = () => {
       commitActions={CommitAction}
       commitDetails={CommitDetails}
       pushPull={toPushPull}
+      onRename={newName =>
+        renameRepo({repoId: repo.id, name: newName, dispatch}).then(() =>
+          findRepo(repoId),
+        )
+      }
     />
   );
 };

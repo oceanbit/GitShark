@@ -1,7 +1,15 @@
 import {Repo} from '@entities';
 import {getConnection} from 'typeorm';
+import {ThunkDispatchType} from '@hooks';
+import {findRepoList} from '@store';
 
-export const renameRepo = async (repoId: string | number, name: string) => {
+interface RenameRepoProps {
+  repoId: string | number;
+  name: string;
+  dispatch: ThunkDispatchType;
+}
+
+export const renameRepo = async ({repoId, name, dispatch}: RenameRepoProps) => {
   await getConnection()
     .createQueryBuilder()
     .update(Repo)
@@ -10,4 +18,6 @@ export const renameRepo = async (repoId: string | number, name: string) => {
     })
     .where('id = :id', {id: repoId})
     .execute();
+
+  dispatch(findRepoList());
 };

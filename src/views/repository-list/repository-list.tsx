@@ -48,7 +48,7 @@ export const RepositoryList = () => {
       repos={repoList}
       findRepos={findRepos}
       renameRepo={(repo, newName) => {
-        renameRepo(repo.id, newName).then(() => findRepos());
+        renameRepo({repoId: repo.id, name: newName, dispatch});
       }}
       deleteRepo={repo => deleteRepo(repo).then(() => findRepos())}
     />

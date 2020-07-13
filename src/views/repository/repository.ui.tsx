@@ -30,6 +30,7 @@ interface RepositoryUIProps {
   commitActions: React.ComponentType<any>;
   commitDetails: React.ComponentType<any>;
   pushPull: PushPull | null;
+  onRename: (newName: string) => void;
 }
 
 export const RepositoryUI = ({
@@ -41,6 +42,7 @@ export const RepositoryUI = ({
   commitActions,
   commitDetails,
   pushPull,
+  onRename,
 }: RepositoryUIProps) => {
   const [activeDialog, setActiveDialog] = React.useState<RepoHeaderDialogType>(
     '',
@@ -126,7 +128,12 @@ export const RepositoryUI = ({
       />
       <RenameRepositoryDialog
         visible={activeDialog === 'rename'}
-        onDismiss={() => {}}
+        onDismiss={newName => {
+          setActiveDialog('');
+          if (newName) {
+            onRename(newName);
+          }
+        }}
       />
     </RepoHeaderContext.Provider>
   );
