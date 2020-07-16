@@ -24,6 +24,10 @@ const getDiffNumber = async ({
 }: GetDiffNumberProps) => {
   const diffArr = [] as string[];
   for (const commit of logList) {
+    if (parentOid === commit.oid) {
+      // Don't go further down the log tree
+      break;
+    }
     const isDec = await git.isDescendent({
       fs,
       dir: path,
