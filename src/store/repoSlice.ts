@@ -115,15 +115,15 @@ const repositorySlice = createSlice({
     [findRepo.fulfilled.toString()]: (state, action) => {
       state.repo = action.payload;
       state.toPushPull = {
-        toPull: action.payload.commitsToPull,
-        toPush: action.payload.commitsToPush,
+        toPull: action.payload?.commitsToPull || 0,
+        toPush: action.payload?.commitsToPush || 0,
       };
     },
     [editRepo.fulfilled.toString()]: (state, action) => {
       state.repo = action.payload;
       state.toPushPull = {
-        toPull: action.payload.commitsToPull,
-        toPush: action.payload.commitsToPush,
+        toPull: action.payload?.commitsToPull || 0,
+        toPush: action.payload?.commitsToPush || 0,
       };
     },
     [getCommitRev.fulfilled.toString()]: (state, action) => {

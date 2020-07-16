@@ -22,7 +22,7 @@ const getDiffNumber = async ({
   path,
   parentOid,
 }: GetDiffNumberProps) => {
-  let diffNum = 0;
+  const diffArr = [] as string[];
   for (const commit of logList) {
     const isDec = await git.isDescendent({
       fs,
@@ -35,10 +35,10 @@ const getDiffNumber = async ({
       // Don't go further down the log tree
       break;
     }
-    diffNum++;
+    diffArr.push(commit.oid);
   }
 
-  return diffNum;
+  return diffArr;
 };
 
 interface RevListProps {

@@ -72,8 +72,8 @@ export const BranchListItem = ({
           </Text>
           <PushPullArrows
             primaryText={selected}
-            commitsToPull={branch.down}
-            commitsToPush={branch.up}
+            commitsToPull={[]}
+            commitsToPush={[]}
             style={styles.arrowStyles}
           />
           {/*<SharkIconButton*/}

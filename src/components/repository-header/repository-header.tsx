@@ -30,10 +30,13 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
         <>
           <HeaderActionNumber
             iconName="push"
-            val={pushPull?.toPush || 0}
+            val={pushPull?.toPush?.length || 0}
             onPress={() => setActiveDialog('push')}
           />
-          <HeaderActionNumber iconName="pull" val={pushPull?.toPull || 0} />
+          <HeaderActionNumber
+            iconName="pull"
+            val={pushPull?.toPull?.length || 0}
+          />
           <SharkMenu
             visible={isMenuOpen}
             onDismiss={() => setIsMenuOpen(false)}

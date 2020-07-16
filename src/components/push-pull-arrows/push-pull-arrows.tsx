@@ -9,8 +9,8 @@ import {
 } from 'react-native-dark-mode';
 
 interface PushPullArrowsProps {
-  commitsToPull: number;
-  commitsToPush: number;
+  commitsToPull: string[];
+  commitsToPush: string[];
   style?: StyleProp<ViewStyle>;
   primaryText?: boolean;
 }
@@ -24,26 +24,28 @@ export const PushPullArrows = ({
   const styles = useDynamicStyleSheet(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
   const on_surface = useDynamicValue(theme.colors.on_surface);
-  if (!commitsToPull && !commitsToPush) {
+  if (!commitsToPull?.length && !commitsToPush?.length) {
     return null;
   }
   const color = primaryText ? accent : on_surface;
   return (
     <View style={[styles.arrowContainer, style]}>
-      {!!commitsToPush && (
+      {!!commitsToPush?.length && (
         <View style={styles.commitNumberView}>
           <Icon name="arrow_up" size={10} color={color} />
           <Text style={[styles.commitNumberText, {color}]}>
-            {commitsToPush}
+            {commitsToPush.length}
           </Text>
         </View>
       )}
-      {!!commitsToPush && !!commitsToPull && <View style={styles.middleLine} />}
-      {!!commitsToPull && (
+      {!!commitsToPush?.length && !!commitsToPull?.length && (
+        <View style={styles.middleLine} />
+      )}
+      {!!commitsToPull?.length && (
         <View style={styles.commitNumberView}>
           <Icon name="arrow_down" size={10} color={color} />
           <Text style={[styles.commitNumberText, {color}]}>
-            {commitsToPull}
+            {commitsToPull.length}
           </Text>
         </View>
       )}

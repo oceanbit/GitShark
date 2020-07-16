@@ -21,13 +21,13 @@ export class Repo extends BaseEntity {
   @Column('text', {default: 'master', name: 'currentbranchname'})
   currentBranchName: string;
 
-  // This should be updated and stored when doing a repo `fetch`
-  @Column('int', {nullable: true, name: 'commitstopull'})
-  commitsToPull: number;
+  // The array of OIDs
+  @Column('simple-array', {nullable: true, name: 'commitstopull'})
+  commitsToPull: string[];
 
   // This should be updated and stored when doing a repo `fetch`
-  @Column('int', {nullable: true, name: 'commitstopush'})
-  commitsToPush: number;
+  @Column('simple-array', {nullable: true, name: 'commitstopush'})
+  commitsToPush: string[];
 
   // The device FS path of where the repo is located
   @Column('text', {nullable: false, name: 'path'})
@@ -84,6 +84,6 @@ export type ReduxRepo = Pick<
 >;
 
 export interface PushPull {
-  toPush: number;
-  toPull: number;
+  toPush: string[];
+  toPull: string[];
 }
