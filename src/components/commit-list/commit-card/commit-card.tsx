@@ -15,17 +15,24 @@ import {
 interface CommitCardProps {
   commit: GitLogCommit;
   onPress: (commit: GitLogCommit) => void;
+  commitsToPush: string[];
+  commitsToPull: string[];
 }
 
-export const CommitCard = ({commit, onPress}: CommitCardProps) => {
+export const CommitCard = ({
+  commit,
+  onPress,
+  commitsToPush,
+  commitsToPull,
+}: CommitCardProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const rippleColor = useDynamicValue(theme.colors.ripple_surface);
 
   const {title, message} = getCommitHeaderBody({commit});
 
-  const needsPulling = !!(Math.floor(Math.random() * 10) < 5);
-  const needsPushing = !!(Math.floor(Math.random() * 10) < 7);
+  const needsPulling = commitsToPull.includes(commit.oid);
+  const needsPushing = commitsToPush.includes(commit.oid);
   const {dateStr, timeStr} = React.useMemo(() => {
     const dayjsTimestampe = dayjs.unix(commit.author.timestamp);
     return {

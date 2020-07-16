@@ -25,8 +25,10 @@ export const RepositoryHistoryUI = ({
   const [showBranches, setShowBranches] = React.useState(false);
 
   const bottomLayer = React.useMemo(
-    () => <CommitList commits={commits} onPress={onCommitNavigate} />,
-    [commits, onCommitNavigate],
+    () => (
+      <CommitList commits={commits} onPress={onCommitNavigate} repo={repo!} />
+    ),
+    [commits, onCommitNavigate, repo],
   );
 
   const header = React.useMemo(
