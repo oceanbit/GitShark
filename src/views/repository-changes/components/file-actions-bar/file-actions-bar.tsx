@@ -36,6 +36,10 @@ export const FileActionsBar = ({
 }: FileActionsBarProps) => {
   const [showMore, setShowMore] = React.useState(false);
 
+  React.useEffect(() => {
+    if (!isItemSelected) setShowMore(false);
+  }, [isItemSelected]);
+
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   const [textLeft] = React.useState(new Animated.Value(0));

@@ -9,8 +9,8 @@ import {FileActionsBar} from '../../file-actions-bar';
 interface UnstagedChangesProps {
   addToStaged: (changes: ChangesArrayItem[]) => Promise<void>;
   unstagedChanges: ChangesArrayItem[];
-  onDiscard: (selectedChanges: ChangesArrayItem[]) => Promise<void>;
-  onIgnore: (selectedChanges: ChangesArrayItem[]) => Promise<void>;
+  onDiscard: (selectedChanges: ChangesArrayItem[]) => void;
+  onIgnore: (selectedChanges: ChangesArrayItem[]) => void;
 }
 
 export const UnstagedChanges = ({
@@ -20,7 +20,6 @@ export const UnstagedChanges = ({
   onIgnore,
 }: UnstagedChangesProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
-
   const [selectedUnstagedChanges, setSelectedUnstagedChanges] = React.useState<
     ChangesArrayItem[]
   >([]);
@@ -44,6 +43,10 @@ export const UnstagedChanges = ({
     }
     setSelectedUnstagedChanges([...selectedUnstagedChanges, change]);
   };
+
+  React.useEffect(() => {
+    setSelectedUnstagedChanges([]);
+  }, [unstagedChanges]);
 
   return (
     <>
