@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleOfStagingContext} from '@constants';
-import {ChangesArrayItem} from '@services';
+import {ChangesArrayItem, resetFiles} from '@services';
 import {useNavigation} from '@react-navigation/native';
 import {
   StageSheetView,
@@ -57,7 +57,10 @@ export const RepositoryChanges = () => {
     setSnackVisible(true);
   };
 
-  const onDiscard = () => {};
+  const onDiscard = async (changes: ChangesArrayItem[]) => {
+    const fileNames = changes.map(change => change.fileName);
+    await resetFiles({path: repo!.path, dispatch, files: fileNames});
+  };
 
   return (
     <>

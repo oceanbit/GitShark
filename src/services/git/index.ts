@@ -14,5 +14,6 @@ export * from './gitCommitToDBMapper';
 export * from './gitLog';
 export * from './renameBranch';
 export * from './renameRepo';
+export * from './resetFiles';
 export * from './revList';
 export * from './status';
