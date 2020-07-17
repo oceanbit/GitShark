@@ -113,7 +113,7 @@ export const BranchesUI = ({
                         name: branch.name,
                       }}
                       style={styles.remoteBranch}
-                      onSelect={() => onCheckoutBranch('')}
+                      onSelect={() => onCheckoutBranch(branch.name)}
                     />
                   );
                 })}

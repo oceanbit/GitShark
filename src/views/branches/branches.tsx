@@ -11,6 +11,7 @@ import {
   createBranch,
   deleteLocalBranch,
   renameBranch,
+  resetFiles,
 } from '@services';
 import {BranchesUI} from './branches.ui';
 import {CreateBranchDialog} from './components/create-branch-dialog';
@@ -66,13 +67,23 @@ export const Branches = () => {
     [dispatch, repo],
   );
 
-  const [showConfirmCheckout, setConfirmCheckout] = React.useState(false);
+  const resetAndCheckout = async (branchName: string) => {
+    await resetFiles({
+      path: repo!.path,
+      dispatch,
+      files: [...unstaged.map(f => f.fileName), ...staged.map(f => f.fileName)],
+    });
+    await doCheckoutBranch(branchName);
+  };
+
+  // The branch name of which to "confirm" the checkout
+  const [showConfirmCheckout, setConfirmCheckout] = React.useState('');
 
   const onCheckoutBranch = React.useCallback(
     async (branchName: string) => {
       if (staged.length || unstaged.length) {
         // Warn the user that their files will be reset before checkout
-        setConfirmCheckout(true);
+        setConfirmCheckout(branchName);
         return;
       }
       await doCheckoutBranch(branchName);
@@ -126,9 +137,12 @@ export const Branches = () => {
         errorStr={errorStr}
       />
       <ConfirmCheckoutDialog
-        visible={showConfirmCheckout}
-        onDismiss={() => {
-          setConfirmCheckout(false);
+        visible={!!showConfirmCheckout}
+        onDismiss={async doCheckout => {
+          setConfirmCheckout('');
+          if (doCheckout) {
+            resetAndCheckout(showConfirmCheckout);
+          }
         }}
       />
     </>
