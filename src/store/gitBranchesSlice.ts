@@ -10,15 +10,17 @@ const getRemotesAndBranchesFn = async (path: string) => {
 
   const remoteBranchesArr = await Promise.all(
     remotes.map(async remote => {
-      const name = await git.listBranches({
+      const branches = await git.listBranches({
         fs,
         dir: path,
         remote: remote.remote,
       });
-      return {
-        name: name[name.length - 1],
+      const remoteBranchesNames = branches.filter(branch => branch !== 'HEAD');
+
+      return remoteBranchesNames.map(name => ({
+        name: name,
         remote: remote.remote,
-      };
+      }));
     }),
   );
 

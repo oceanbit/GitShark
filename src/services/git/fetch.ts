@@ -1,7 +1,7 @@
 import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import http from 'isomorphic-git/http/web/index.js';
-import {getCommitRev} from '@store';
+import {getCommitRev, getRemotesAndBranches} from '@store';
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
 
@@ -35,4 +35,5 @@ export const fetch = async ({
   });
 
   dispatch(getCommitRev({path: repo.path, repoId: repo.id}));
+  dispatch(getRemotesAndBranches(repo.path));
 };
