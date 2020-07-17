@@ -9,11 +9,15 @@ import {FileActionsBar} from '../../file-actions-bar';
 interface UnstagedChangesProps {
   addToStaged: (changes: ChangesArrayItem[]) => Promise<void>;
   unstagedChanges: ChangesArrayItem[];
+  onDiscard: (selectedChanges: ChangesArrayItem[]) => Promise<void>;
+  onIgnore: (selectedChanges: ChangesArrayItem[]) => Promise<void>;
 }
 
 export const UnstagedChanges = ({
   addToStaged,
   unstagedChanges,
+  onDiscard,
+  onIgnore,
 }: UnstagedChangesProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -47,6 +51,8 @@ export const UnstagedChanges = ({
         isItemSelected={!!selectedUnstagedChanges.length}
         onStage={onStage}
         onStageAll={onStageAll}
+        onDiscard={() => onDiscard(selectedUnstagedChanges)}
+        onIgnore={() => onIgnore(selectedUnstagedChanges)}
         unstagedChanges={unstagedChanges}
         selectedUnstagedChanges={selectedUnstagedChanges}
         setSelectedUnstagedChanges={setSelectedUnstagedChanges}

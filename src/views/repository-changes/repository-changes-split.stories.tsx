@@ -16,6 +16,8 @@ const RepositoryChangesSplitDemo = () => {
         removeFromStaged={() => Promise.resolve()}
         stagedChanges={[]}
         onCommit={() => {}}
+        onDiscard={() => Promise.resolve()}
+        onIgnore={() => Promise.resolve()}
       />
     </StorybookProvider>
   );

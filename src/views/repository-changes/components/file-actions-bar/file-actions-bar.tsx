@@ -16,6 +16,8 @@ interface FileActionsBarProps {
   isItemSelected: boolean;
   onStageAll: () => void;
   onStage: () => void;
+  onDiscard: () => void;
+  onIgnore: () => void;
   selectedUnstagedChanges: ChangesArrayItem[];
   unstagedChanges: ChangesArrayItem[];
   setSelectedUnstagedChanges: (changes: ChangesArrayItem[]) => void;
@@ -26,6 +28,8 @@ export const FileActionsBar = ({
   isItemSelected,
   onStageAll,
   onStage,
+  onDiscard,
+  onIgnore,
   selectedUnstagedChanges,
   unstagedChanges,
   setSelectedUnstagedChanges,
@@ -86,14 +90,14 @@ export const FileActionsBar = ({
         <GrowWidthContent expanded={showMore}>
           <View style={styles.moreViewButtons}>
             <SharkButton
-              onPress={() => {}}
+              onPress={onDiscard}
               text={'Discard'}
               style={[styles.calloutButton, styles.dividerLeft]}
               // This prevents text breaking from animating incorrectly
               textProps={{numberOfLines: 1}}
             />
             <SharkButton
-              onPress={() => {}}
+              onPress={onIgnore}
               text={'Ignore'}
               style={[styles.calloutButton, styles.dividerLeft]}
               textProps={{numberOfLines: 1}}

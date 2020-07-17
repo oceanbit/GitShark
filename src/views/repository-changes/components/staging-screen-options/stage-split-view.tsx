@@ -12,6 +12,8 @@ interface StageSplitViewProps {
   addToStaged: (changes: ChangesArrayItem[]) => Promise<void>;
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
   onCommit: () => void;
+  onDiscard: (selectedChanges: ChangesArrayItem[]) => void;
+  onIgnore: (selectedChanges: ChangesArrayItem[]) => void;
 }
 
 export const StageSplitView = ({
@@ -20,6 +22,8 @@ export const StageSplitView = ({
   removeFromStaged,
   stagedChanges,
   onCommit,
+  onDiscard,
+  onIgnore,
 }: StageSplitViewProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -30,6 +34,8 @@ export const StageSplitView = ({
           <UnstagedChanges
             addToStaged={addToStaged}
             unstagedChanges={unstagedChanges}
+            onDiscard={onDiscard}
+            onIgnore={onIgnore}
           />
         </View>
         <SharkDivider />

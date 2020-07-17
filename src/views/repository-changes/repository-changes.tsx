@@ -11,6 +11,7 @@ import {addToStaged, getGitStatus, removeFromStaged, RootState} from '@store';
 import {useThunkDispatch} from '@hooks';
 import {RepositoryHeader} from '@components/repository-header';
 import {StyleSheet, View} from 'react-native';
+import {Snackbar} from 'react-native-paper';
 
 export const RepositoryChanges = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
@@ -31,6 +32,8 @@ export const RepositoryChanges = () => {
     getUpdate();
   }, [getUpdate]);
 
+  const [snackVisible, setSnackVisible] = React.useState(false);
+
   const addToStagedLocal = async (changes: ChangesArrayItem[]) => {
     dispatch(addToStaged(changes)).then(({error}: any) => {
       if (error) console.error(error);
@@ -50,27 +53,45 @@ export const RepositoryChanges = () => {
     });
   }, [history, staged, getUpdate]);
 
+  const onIgnore = () => {
+    setSnackVisible(true);
+  };
+
+  const onDiscard = () => {};
+
   return (
-    <View style={styles.container}>
-      <RepositoryHeader repo={repo} />
-      {useSplitView ? (
-        <StageSplitView
-          addToStaged={addToStagedLocal}
-          unstagedChanges={unstaged}
-          removeFromStaged={removeFromStagedLocal}
-          stagedChanges={staged}
-          onCommit={onCommit}
-        />
-      ) : (
-        <StageSheetView
-          addToStaged={addToStagedLocal}
-          unstagedChanges={unstaged}
-          removeFromStaged={removeFromStagedLocal}
-          stagedChanges={staged}
-          onCommit={onCommit}
-        />
-      )}
-    </View>
+    <>
+      <View style={styles.container}>
+        <RepositoryHeader repo={repo} />
+        {useSplitView ? (
+          <StageSplitView
+            addToStaged={addToStagedLocal}
+            unstagedChanges={unstaged}
+            removeFromStaged={removeFromStagedLocal}
+            stagedChanges={staged}
+            onCommit={onCommit}
+            onIgnore={onIgnore}
+            onDiscard={onDiscard}
+          />
+        ) : (
+          <StageSheetView
+            addToStaged={addToStagedLocal}
+            unstagedChanges={unstaged}
+            removeFromStaged={removeFromStagedLocal}
+            stagedChanges={staged}
+            onCommit={onCommit}
+            onIgnore={onIgnore}
+            onDiscard={onDiscard}
+          />
+        )}
+      </View>
+      <Snackbar
+        duration={Snackbar.DURATION_MEDIUM}
+        visible={snackVisible}
+        onDismiss={() => setSnackVisible(false)}>
+        "Ignore" feature is not yet implemented, but will be shortly
+      </Snackbar>
+    </>
   );
 };
 

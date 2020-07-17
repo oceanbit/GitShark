@@ -18,6 +18,8 @@ interface StageSheetViewProps {
   stagedChanges: ChangesArrayItem[];
   addToStaged: (changes: ChangesArrayItem[]) => Promise<void>;
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
+  onDiscard: (selectedChanges: ChangesArrayItem[]) => void;
+  onIgnore: (selectedChanges: ChangesArrayItem[]) => void;
   onCommit: () => void;
 }
 
@@ -27,6 +29,8 @@ export const StageSheetView = ({
   addToStaged,
   removeFromStaged,
   onCommit,
+  onDiscard,
+  onIgnore,
 }: StageSheetViewProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -135,6 +139,8 @@ export const StageSheetView = ({
         <UnstagedChanges
           addToStaged={addToStaged}
           unstagedChanges={unstagedChanges}
+          onDiscard={onDiscard}
+          onIgnore={onIgnore}
         />
       </View>
     </View>
