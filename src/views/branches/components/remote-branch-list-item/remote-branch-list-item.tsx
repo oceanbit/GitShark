@@ -12,16 +12,18 @@ interface BranchMock {
 interface RemoteBranchListItemProps {
   branch: BranchMock;
   style?: StyleProp<ViewStyle>;
+  onSelect: () => void;
 }
 
 export const RemoteBranchListItem = ({
   branch,
   style = {},
+  onSelect,
 }: RemoteBranchListItemProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   return (
-    <TouchableRipple style={[styles.container, style]} onPress={() => {}}>
+    <TouchableRipple style={[styles.container, style]} onPress={onSelect}>
       <>
         <Text style={styles.branchName}>{branch.name}</Text>
         {/*<SharkIconButton*/}

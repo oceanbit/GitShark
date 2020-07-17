@@ -14,6 +14,7 @@ import {
 } from '@services';
 import {BranchesUI} from './branches.ui';
 import {CreateBranchDialog} from './components/create-branch-dialog';
+import {ConfirmCheckoutDialog} from './components/confirm-checkout-dialog';
 
 export const Branches = () => {
   const [createBranchDialog, setCreateBranchDialog] = React.useState(false);
@@ -22,6 +23,7 @@ export const Branches = () => {
   const {localBranches, remoteBranches, remotes} = useSelector(
     (state: RootState) => state.branches,
   );
+  const {unstaged, staged} = useSelector((state: RootState) => state.changes);
   const dispatch = useThunkDispatch();
 
   const {repo} = useSelector((state: RootState) => state.repository);
@@ -57,11 +59,25 @@ export const Branches = () => {
     [dispatch, repo],
   );
 
-  const onCheckoutBranch = React.useCallback(
+  const doCheckoutBranch = React.useCallback(
     async (branchName: string) => {
       await checkoutBranch({branchName, dispatch, repo: repo!});
     },
     [dispatch, repo],
+  );
+
+  const [showConfirmCheckout, setConfirmCheckout] = React.useState(false);
+
+  const onCheckoutBranch = React.useCallback(
+    async (branchName: string) => {
+      if (staged.length || unstaged.length) {
+        // Warn the user that their files will be reset before checkout
+        setConfirmCheckout(true);
+        return;
+      }
+      await doCheckoutBranch(branchName);
+    },
+    [doCheckoutBranch, staged, unstaged],
   );
 
   const onBranchRename = React.useCallback(
@@ -108,6 +124,12 @@ export const Branches = () => {
         onBranchCreate={onBranchCreate}
         branches={localBranches || []}
         errorStr={errorStr}
+      />
+      <ConfirmCheckoutDialog
+        visible={showConfirmCheckout}
+        onDismiss={() => {
+          setConfirmCheckout(false);
+        }}
       />
     </>
   );
