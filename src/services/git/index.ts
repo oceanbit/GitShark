@@ -12,6 +12,7 @@ export * from './getPushPull';
 export * from './getRepoData';
 export * from './gitCommitToDBMapper';
 export * from './gitLog';
+export * from './push';
 export * from './renameBranch';
 export * from './renameRepo';
 export * from './resetFiles';

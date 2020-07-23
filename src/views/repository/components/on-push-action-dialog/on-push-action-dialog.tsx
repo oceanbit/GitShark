@@ -1,24 +1,32 @@
 import * as React from 'react';
-import {cloneRepo} from '@services';
+import {push} from '@services';
 import {ProgressErrorDialog} from '@components/progress-error-dialog';
+import {ReduxRepo} from '@entities';
+import {RemoteBranch} from '@types';
+import {ThunkDispatchType} from '@hooks';
+import {phases} from '@constants/hacks';
 
 const pauseToRender = () => new Promise(resolve => setTimeout(resolve, 0));
 
-interface CloneRepositoryProgressDialogProps {
+interface OnPushActionsDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
-  uri: string;
-  path: string;
-  name?: string;
+  repo: ReduxRepo;
+  data: {
+    destination: RemoteBranch;
+    forcePush: boolean;
+    branch: string;
+  };
+  dispatch: ThunkDispatchType;
 }
 
-export const CloneRepositoryProgressDialog = ({
+export const OnPushActionsDialog = ({
   onDismiss,
   visible,
-  path,
-  name,
-  uri,
-}: CloneRepositoryProgressDialogProps) => {
+  repo,
+  data,
+  dispatch,
+}: OnPushActionsDialogProps) => {
   const [errorStr, setErrorStr] = React.useState('');
 
   /**
@@ -28,21 +36,23 @@ export const CloneRepositoryProgressDialog = ({
   const [total, setTotal] = React.useState(-1);
   const [phase, setPhase] = React.useState('');
 
-  const cloneRepoCB = React.useCallback(() => {
+  const fetchCB = React.useCallback(() => {
     setErrorStr('');
-    cloneRepo({
-      path,
-      name,
-      uri,
+    push({
+      ...data,
+      dispatch,
+      repo,
       async onProgress({
         phase: progressPhase,
         loaded: progressLoaded,
         total: progressTotal,
       }) {
-        setPhase(progressPhase);
-        setLoaded(progressLoaded);
-        setTotal(progressTotal || 0);
-        await pauseToRender();
+        if (phases[progressPhase]) {
+          setPhase(progressPhase);
+          setLoaded(progressLoaded);
+          setTotal(progressTotal || 0);
+          await pauseToRender();
+        }
       },
     })
       .then(() => {
@@ -51,21 +61,21 @@ export const CloneRepositoryProgressDialog = ({
       .catch((e: Error | string) => {
         setErrorStr((e as Error).message || (e as string));
       });
-  }, [path, name, uri, onDismiss]);
+  }, [data, repo, dispatch, onDismiss]);
 
   React.useEffect(() => {
     if (!visible) {
       return;
     }
-    cloneRepoCB();
-  }, [cloneRepoCB, visible]);
+    fetchCB();
+  }, [fetchCB, visible]);
 
   return (
     <ProgressErrorDialog
-      headerStr={'Clone repository'}
-      errorBodyText={'There was an error cloning your repository.'}
+      headerStr={'Push branch'}
+      errorBodyText={'There was an error pushing your branch.'}
       onDismiss={onDismiss}
-      onRetry={() => cloneRepoCB()}
+      onRetry={() => fetchCB()}
       visible={visible}
       progress={total > 0 ? loaded / total : 0}
       indeterminate={!total}

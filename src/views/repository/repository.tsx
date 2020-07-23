@@ -11,6 +11,7 @@ import {CommitDetails} from '../commit-details/commit-details';
 import {renameRepo} from '@services';
 import {Remotes} from '@types';
 import {OnFetchActionsDialog} from './components/on-fetch-action-dialog/on-fetch-action-dialog';
+import {RemoteBranch} from '@types';
 
 interface FetchDialogType {
   action: 'fetch';
@@ -21,12 +22,16 @@ interface FetchDialogType {
   };
 }
 
-interface PullDialogType {
-  action: 'pull';
-  data: any;
+interface PushDialogType {
+  action: 'push';
+  data: {
+    destination: RemoteBranch;
+    forcePush: boolean;
+    branch: string;
+  };
 }
 
-type DialogType = FetchDialogType | PullDialogType | null;
+type DialogType = FetchDialogType | PushDialogType | null;
 
 export const Repository = () => {
   const [dialogType, setDialogType] = React.useState<DialogType>();
@@ -79,7 +84,7 @@ export const Repository = () => {
       />
       <OnFetchActionsDialog
         visible={dialogType?.action === 'fetch'}
-        data={dialogType?.data}
+        data={dialogType?.data as FetchDialogType['data']}
         dispatch={dispatch}
         repo={repo}
         onDismiss={() => {

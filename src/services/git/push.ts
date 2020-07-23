@@ -1,27 +1,43 @@
 import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
-import {fs} from '@constants';
+import {fs, GITHUB_TOKEN_STORAGE_KEY} from '@constants';
 import http from 'isomorphic-git/http/web/index.js';
-import {createNewRepo} from './createRepo';
-import {getRepoNameFromUri} from '@utils';
+import {getCommitRev} from '@store';
+import RNSecureKeyStore from 'react-native-secure-key-store';
+
+import {ReduxRepo} from '@entities';
+import {ThunkDispatchType} from '@hooks';
+import {RemoteBranch} from '@types';
 
 interface PushProps {
-  path: string;
-  name?: string;
-  uri: string;
+  destination: RemoteBranch;
+  forcePush: boolean;
+  branch: string;
   onProgress: ProgressCallback;
+  repo: ReduxRepo;
+  dispatch: ThunkDispatchType;
 }
 
-export const push = async ({path, name, uri, onProgress}: PushProps) => {
-  const newFolderName = getRepoNameFromUri(uri);
-  const repoName = name || newFolderName;
-  const repoDir = `${path}/${repoName}`;
-  await git.clone({
+export const push = async ({
+  destination,
+  forcePush,
+  branch,
+  repo,
+  dispatch,
+  onProgress,
+}: PushProps) => {
+  const GH_TOKEN = await RNSecureKeyStore.get(GITHUB_TOKEN_STORAGE_KEY);
+
+  await git.push({
+    force: forcePush,
     fs,
-    dir: repoDir,
-    url: uri,
+    dir: repo.path,
+    ref: branch,
     http,
-    singleBranch: true,
+    remote: destination.remote,
+    remoteRef: `refs/remotes/${destination.remote}/${destination.name}`,
     onProgress,
+    onAuth: () => ({username: GH_TOKEN}),
   });
-  return await createNewRepo(repoDir, repoName);
+
+  dispatch(getCommitRev({path: repo.path, repoId: repo.id}));
 };
