@@ -10,7 +10,8 @@ import {CommitAction} from '../commit-action/commit-action';
 import {CommitDetails} from '../commit-details/commit-details';
 import {renameRepo} from '@services';
 import {Remotes} from '@types';
-import {OnFetchActionsDialog} from './components/on-fetch-action-dialog/on-fetch-action-dialog';
+import {OnFetchActionsDialog} from './components/on-fetch-action-dialog';
+import {OnPushActionsDialog} from './components/on-push-action-dialog';
 import {RemoteBranch} from '@types';
 
 interface FetchDialogType {
@@ -75,6 +76,12 @@ export const Repository = () => {
             findRepo(repoId),
           )
         }
+        onPush={data =>
+          setDialogType({
+            action: 'push',
+            data,
+          })
+        }
         onFetch={data =>
           setDialogType({
             action: 'fetch',
@@ -85,6 +92,15 @@ export const Repository = () => {
       <OnFetchActionsDialog
         visible={dialogType?.action === 'fetch'}
         data={dialogType?.data as FetchDialogType['data']}
+        dispatch={dispatch}
+        repo={repo}
+        onDismiss={() => {
+          setDialogType(null);
+        }}
+      />
+      <OnPushActionsDialog
+        visible={dialogType?.action === 'push'}
+        data={dialogType?.data as PushDialogType['data']}
         dispatch={dispatch}
         repo={repo}
         onDismiss={() => {

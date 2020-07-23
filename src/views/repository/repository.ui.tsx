@@ -36,6 +36,11 @@ interface RepositoryUIProps {
     fetchAll: boolean;
     prune: boolean;
   }) => void;
+  onPush: (props: {
+    destination: RemoteBranch;
+    forcePush: boolean;
+    branch: string;
+  }) => void;
 }
 
 export const RepositoryUI = ({
@@ -49,6 +54,7 @@ export const RepositoryUI = ({
   pushPull,
   onRename,
   onFetch,
+  onPush,
 }: RepositoryUIProps) => {
   const [activeDialog, setActiveDialog] = React.useState<RepoHeaderDialogType>(
     '',
@@ -119,8 +125,11 @@ export const RepositoryUI = ({
       </SharkSafeTop>
       <PushDialog
         visible={activeDialog === 'push'}
-        onDismiss={() => {
+        onDismiss={props => {
           setActiveDialog('');
+          if (props) {
+            onPush(props);
+          }
         }}
         localBranches={localBranches}
         remoteBranches={remoteBranches}
