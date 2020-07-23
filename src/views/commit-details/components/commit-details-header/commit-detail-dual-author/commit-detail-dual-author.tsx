@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Animated, StyleProp, Text, View, ViewStyle} from 'react-native';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {DropdownContent} from '@components/dropdown-content';
 import {theme} from '@constants';
 import {SharkProfilePic} from '@components/shark-profile-pic';
@@ -33,7 +33,7 @@ export const CommitDetailsDualAuthor = ({
   author,
   committer,
 }: CommitDetailsDualAuthorProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [bottomImageLeft] = React.useState(new Animated.Value(0));
   const [bottomImageTop] = React.useState(new Animated.Value(0));

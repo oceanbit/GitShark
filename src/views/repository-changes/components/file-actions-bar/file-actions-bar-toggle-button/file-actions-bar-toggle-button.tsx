@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Animated, StyleProp, View, ViewStyle} from 'react-native';
 import {theme} from '@constants';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkIconButton} from '@components/shark-icon-button';
 
 interface FileActionsBarToggleButtonProps {
@@ -17,7 +17,7 @@ export const FileActionsBarToggleButton = ({
   animDuration = 150,
   setShowMore,
 }: FileActionsBarToggleButtonProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [rotatevalue] = React.useState(new Animated.Value(0));
   const [closeOpacity] = React.useState(new Animated.Value(0));

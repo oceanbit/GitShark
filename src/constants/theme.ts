@@ -1,15 +1,12 @@
-import {
-  configureFonts,
-  DefaultTheme,
-  Theme as PaperTheme,
-} from 'react-native-paper';
+import {configureFonts, DefaultTheme} from 'react-native-paper';
+import {Theme as PaperTheme} from 'react-native-paper/src/types';
 import {
   lightTheme as lightSeaside,
   darkTheme as darkSeaside,
   fullTheme,
 } from 'seaside/theme';
 import {Theme as NavTheme} from '@react-navigation/native/src/types';
-import {DynamicValue} from 'react-native-dark-mode';
+import {DynamicValue} from 'react-native-dynamic';
 import {rubikLight, rubikMedium, rubikRegular, textStyles} from './text-styles';
 
 // Taken from: https://github.com/regexhq/hsla-regex
@@ -69,6 +66,7 @@ export const darkNavTheme: NavTheme = {
   dark: false,
   colors: {
     primary: fullTheme.colors.primary_dark,
+    notification: fullTheme.colors.surface_dark,
     card: fullTheme.colors.surface_dark,
     background: fullTheme.colors.surface_dark,
     text: fullTheme.colors.on_surface_dark,
@@ -80,6 +78,7 @@ export const lightNavTheme: NavTheme = {
   dark: false,
   colors: {
     primary: fullTheme.colors.primary_light,
+    notification: fullTheme.colors.surface_light,
     card: fullTheme.colors.surface_light,
     background: fullTheme.colors.surface_light,
     text: fullTheme.colors.on_surface_light,

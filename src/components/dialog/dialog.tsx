@@ -2,7 +2,7 @@ import * as React from 'react';
 import {KeyboardAvoidingView, Text, View} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
 import {theme} from '@constants';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 interface AppDialogProps {
   title: string;
@@ -29,7 +29,7 @@ export const AppDialog = ({
   actions,
   main,
 }: AppDialogProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   return (
     <Portal>

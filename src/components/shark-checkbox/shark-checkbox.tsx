@@ -1,11 +1,7 @@
 import * as React from 'react';
 import {View} from 'react-native';
 import {CheckmarkBase} from '../checkmark-base';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 
 interface SharkCheckboxProps {
@@ -22,7 +18,7 @@ export const SharkCheckbox = ({
   onValueChange,
   disabled,
 }: SharkCheckboxProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const accent = useDynamicValue(theme.colors.primary);
   const on_surface_secondary = useDynamicValue(

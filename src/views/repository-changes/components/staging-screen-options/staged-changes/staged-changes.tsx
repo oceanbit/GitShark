@@ -3,7 +3,7 @@ import {ScrollView, Text, View} from 'react-native';
 import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
 import {ChangesArrayItem} from '@services';
 import {theme} from '@constants';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkDivider} from '@components/shark-divider';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {SharkButton} from '@components/shark-button';
@@ -21,7 +21,7 @@ export const StagedChanges = ({
   onCommit,
   inSheet,
 }: StagedChangesProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [selectedStagedChanges, setSelectedStagedChanges] = React.useState<
     ChangesArrayItem[]
@@ -89,7 +89,7 @@ export const StagedChanges = ({
           );
           return (
             <React.Fragment key={props.fileName}>
-              <View style={styles.changeItem}>
+              <View>
                 <FileChangeListItemWithCheckbox
                   isChecked={isChecked}
                   key={props.fileName}
@@ -107,7 +107,6 @@ export const StagedChanges = ({
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  changeItem: {},
   subheaderFloating: {
     backgroundColor: theme.colors.floating_surface,
   },

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {theme} from '@constants';
 import {SharkButton, SharkButtonProps} from '../shark-button';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 interface SharkSubheaderProps {
   calloutText: string;
@@ -23,7 +23,7 @@ export const SharkSubheader = ({
   buttonDisabled = false,
   leftChild = null,
 }: SharkSubheaderProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   return (
     <View style={[styles.subheaderContainer, style]}>

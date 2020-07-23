@@ -2,7 +2,7 @@ import * as React from 'react';
 import 'reflect-metadata';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-import {Platform, StatusBar, YellowBox} from 'react-native';
+import {Platform, StatusBar, useColorScheme, YellowBox} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {Repository} from './views/repository/repository';
 import {Account} from './views/account/account';
@@ -17,26 +17,23 @@ import {
   StagingTypes,
   StyleOfStagingContext,
   UserContext,
-} from './constants';
-import {DarkModeProvider} from 'react-native-dark-mode';
-import DefaultPreference from 'react-native-default-preference';
-import {
-  useGetAndroidPermissions,
-  useGitHubUserData,
-  useSystemDarkMode,
-} from './hooks';
-import {
   DARK_MODE_STORAGE_KEY,
   DarkModeOptionTypes,
   SetDarkModeContext,
   STAGING_STYLE_STORAGE_KEY,
-} from './constants';
+} from '@constants';
+import {ColorSchemeProvider} from 'react-native-dynamic';
+import DefaultPreference from 'react-native-default-preference';
+import {
+  useGetAndroidPermissions,
+  useGitHubUserData,
+  useManualUserData,
+  useThunkDispatch,
+} from '@hooks';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {changeBarColors} from 'react-native-immersive-bars';
-import {useManualUserData} from './hooks/use-manual-user-data';
 import {Provider} from 'react-redux';
-import {store, setupDatabase} from './store';
-import {useThunkDispatch} from './hooks';
+import {store, setupDatabase} from '@store';
 
 // TODO: Remove once https://github.com/isomorphic-git/isomorphic-git/pull/1156
 // eslint-disable-next-line no-undef
@@ -94,7 +91,9 @@ const AppBase = () => {
   const [localDarkMode, setLocalDarkMode] = React.useState<DarkModeOptionTypes>(
     'auto',
   );
-  const isSystemDarkMode = useSystemDarkMode();
+
+  const systemColorTheme = useColorScheme();
+  const isSystemDarkMode = systemColorTheme === 'dark';
 
   const isDarkMode =
     localDarkMode === 'auto' ? isSystemDarkMode : localDarkMode === 'dark';
@@ -159,14 +158,14 @@ const AppBase = () => {
                   setManualUser,
                   logoutGitHub,
                 }}>
-                <DarkModeProvider mode={isDarkMode ? 'dark' : 'light'}>
+                <ColorSchemeProvider mode={isDarkMode ? 'dark' : 'light'}>
                   <Stack.Navigator headerMode={'none'}>
                     <Stack.Screen name="RepoList" component={RepositoryList} />
                     <Stack.Screen name="Settings" component={Settings} />
                     <Stack.Screen name="Account" component={Account} />
                     <Stack.Screen name="RepoDetails" component={Repository} />
                   </Stack.Navigator>
-                </DarkModeProvider>
+                </ColorSchemeProvider>
               </UserContext.Provider>
             </SetDarkModeContext.Provider>
           </StyleOfStagingContext.Provider>

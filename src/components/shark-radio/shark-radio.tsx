@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {CheckmarkBase} from '../checkmark-base';
-import {useDynamicValue} from 'react-native-dark-mode';
+import {useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 
 interface SharkRadioProps {

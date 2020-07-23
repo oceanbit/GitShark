@@ -2,7 +2,7 @@ import {View} from 'react-native';
 import {UnstagedChanges} from './unstaged-changes';
 import {StagedChanges} from './staged-changes';
 import * as React from 'react';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {ChangesArrayItem} from '@services';
 import {SharkDivider} from '@components/shark-divider';
 
@@ -25,7 +25,7 @@ export const StageSplitView = ({
   onDiscard,
   onIgnore,
 }: StageSplitViewProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   return (
     <>

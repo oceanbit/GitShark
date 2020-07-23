@@ -6,7 +6,7 @@ import {theme} from '@constants';
 import {RepoListLoading} from './components/repo-list-loading';
 import {DialogsAndFab} from './components/dialogs-and-fab';
 import {SharkIconButton} from '@components/shark-icon-button';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {BottomSpacerView, SharkSafeTop} from '../../components/shark-safe-top';
 
 interface RepositoryListUIProps {
@@ -28,7 +28,7 @@ export const RepositoryListUI = ({
   renameRepo,
   deleteRepo,
 }: RepositoryListUIProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   return (
     <SharkSafeTop>

@@ -7,7 +7,7 @@ import {theme} from '@constants';
 import {StagedChanges} from './staged-changes';
 import {ChangesArrayItem} from '@services';
 import {UnstagedChanges} from './unstaged-changes';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 const AnimatedView = Animated.View;
 
@@ -32,7 +32,7 @@ export const StageSheetView = ({
   onDiscard,
   onIgnore,
 }: StageSheetViewProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [parentHeight, setParentHeight] = React.useState(0);
 

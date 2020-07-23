@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 import {GitLogCommit} from '@services';
@@ -26,7 +26,7 @@ export const CommitDetailsSingleAuthor = ({
   const showAuthoredTimestamp =
     author && author.timestamp !== committer.timestamp;
 
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const commitedTimestamp = dayjs.unix(committer?.timestamp || 0);
   const commitTimeStr = commitedTimestamp.format('D MMM YYYY H:mm');

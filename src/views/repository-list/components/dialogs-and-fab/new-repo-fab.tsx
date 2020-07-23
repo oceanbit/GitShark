@@ -3,10 +3,10 @@ import {Text} from 'react-native';
 import * as React from 'react';
 import {ExtendedFabBase} from './types';
 import {theme} from '@constants';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 export const NewRepoFab = ({toggleAnimation}: ExtendedFabBase) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   return (
     <TouchableRipple
       style={styles.fab}

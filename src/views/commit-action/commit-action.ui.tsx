@@ -6,7 +6,7 @@ import {FileChangeListItem} from '@components/file-change-list-item';
 import {SharkTextInput} from '@components/shark-text-input';
 import {SharkButton} from '@components/shark-button';
 import {ChangesArrayItem} from '@services';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkDivider} from '@components/shark-divider';
 import {BottomSpacerView} from '@components/shark-safe-top';
 
@@ -21,7 +21,7 @@ export const CommitActionUI = ({
   files,
   onClose,
 }: CommitActionUIProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [commitTitle, setCommitTitle] = React.useState('');
   const [commitBody, setCommitBody] = React.useState('');

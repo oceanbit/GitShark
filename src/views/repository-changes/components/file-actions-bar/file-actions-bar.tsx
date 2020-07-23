@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Animated, StyleProp, View, ViewStyle} from 'react-native';
 import {theme} from '@constants';
 import {SharkButton} from '@components/shark-button';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {FileActionsBarToggleButton} from './file-actions-bar-toggle-button';
 import {GrowWidthContent} from '@components/grow-width-content';
 import {StageButtonToggle} from './stage-button-toggle';
@@ -40,7 +40,7 @@ export const FileActionsBar = ({
     if (!isItemSelected) setShowMore(false);
   }, [isItemSelected]);
 
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [textLeft] = React.useState(new Animated.Value(0));
 

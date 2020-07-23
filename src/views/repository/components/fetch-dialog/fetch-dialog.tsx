@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {SharkButton} from '@components/shark-button';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {Picker} from '@react-native-community/picker';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {Remotes} from '@types';
@@ -25,7 +25,7 @@ export const FetchDialog = ({
   visible,
   remotes,
 }: FetchDialogProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [remote, setRemote] = React.useState<string>('');
   const [fetchAll, setFetchAll] = React.useState(false);

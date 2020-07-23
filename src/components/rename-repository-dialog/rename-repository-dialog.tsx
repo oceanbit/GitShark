@@ -2,7 +2,7 @@ import * as React from 'react';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {SharkTextInput} from '@components/shark-text-input';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkButton} from '@components/shark-button';
 import {theme} from '@constants';
 
@@ -15,7 +15,7 @@ export const RenameRepositoryDialog = ({
   onDismiss,
   visible,
 }: RenameRepositoryDialogProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [repoName, setRepoName] = React.useState('');
   const [errorStr, setErrorStr] = React.useState('');

@@ -2,11 +2,7 @@ import * as React from 'react';
 import {View} from 'react-native';
 import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkButton} from '@components/shark-button';
 
 interface DeleteRepositoryDialogProps {
@@ -18,7 +14,7 @@ export const DeleteRepositoryDialog = ({
   onDismiss,
   visible,
 }: DeleteRepositoryDialogProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const change_removal = useDynamicValue(theme.colors.change_removal);
 
   const parentOnDismiss = (bool: boolean) => {

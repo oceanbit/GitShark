@@ -4,11 +4,7 @@ import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
 import {ChangesArrayItem} from '@services';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 interface FileChangeListItemProps {
   fileName: string;
@@ -23,7 +19,7 @@ export const FileChangeListItem = ({
   fileStatus,
   style = {},
 }: FileChangeListItemProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const change_addition = useDynamicValue(theme.colors.change_addition);
   const change_removal = useDynamicValue(theme.colors.change_removal);
   const change_mixed = useDynamicValue(theme.colors.change_mixed);

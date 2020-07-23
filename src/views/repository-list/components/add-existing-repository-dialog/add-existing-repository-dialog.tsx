@@ -8,7 +8,7 @@ import {FolderSelectButton} from '@components/folder-select-button';
 import {createNewRepo} from '@services';
 import {SharkButton} from '@components/shark-button';
 import {SharkTextInput} from '@components/shark-text-input';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 interface CreateRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -19,7 +19,7 @@ export const AddExistingRepositoryDialog = ({
   onDismiss,
   visible,
 }: CreateRepositoryDialogProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [path, setPath] = React.useState('');
   const [repoName, setRepoName] = React.useState('');

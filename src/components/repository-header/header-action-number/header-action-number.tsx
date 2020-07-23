@@ -3,11 +3,7 @@ import {TouchableRipple} from 'react-native-paper';
 import {Text, View} from 'react-native';
 import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 export const HeaderActionNumber = ({
   iconName,
@@ -18,7 +14,7 @@ export const HeaderActionNumber = ({
   val?: number;
   onPress?: () => void;
 }) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const accent = useDynamicValue(theme.colors.primary);
 

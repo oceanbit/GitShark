@@ -2,11 +2,7 @@ import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 interface PushPullArrowsProps {
   commitsToPull: string[];
@@ -21,7 +17,7 @@ export const PushPullArrows = ({
   style = {},
   primaryText = true,
 }: PushPullArrowsProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
   const on_surface = useDynamicValue(theme.colors.on_surface);
   if (!commitsToPull?.length && !commitsToPush?.length) {

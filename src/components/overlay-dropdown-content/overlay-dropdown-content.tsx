@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Animated, View} from 'react-native';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 
 const animTiming = 150;
@@ -18,7 +18,7 @@ export const OverlayDropdownContent = ({
   header,
   expanded,
 }: OverlayDropdownContentProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   /**
    * To make sure the top layer does not appear to shrink visually

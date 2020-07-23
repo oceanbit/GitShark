@@ -6,7 +6,7 @@ import {NewRepoFab} from './new-repo-fab';
 import {FabActions} from './fab-actions';
 import {theme} from '@constants';
 import {ExtendedActionFab} from '@components/extended-action-fab';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export interface RepoListExtendedFabProps {
@@ -24,7 +24,7 @@ export const RepoListExtendedFab = ({
 }: RepoListExtendedFabProps) => {
   const insets = useSafeAreaInsets();
 
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const fabBottom = React.useRef(new Animated.Value(16));
   const scale = React.useRef(new Animated.Value(0));
   const windowHeight = Dimensions.get('window').height;

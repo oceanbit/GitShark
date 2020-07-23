@@ -3,7 +3,7 @@ import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import * as React from 'react';
 import {Animated, StyleProp, StyleSheet, ViewStyle} from 'react-native';
-import {useDynamicValue} from 'react-native-dark-mode';
+import {useDynamicValue} from 'react-native-dynamic';
 
 interface SharkIconButtonProps {
   iconName: string;

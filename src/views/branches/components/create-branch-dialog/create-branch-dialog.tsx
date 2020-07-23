@@ -4,7 +4,7 @@ import {AppDialog} from '@components/dialog';
 import {SharkTextInput} from '@components/shark-text-input';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {SharkButton} from '@components/shark-button';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {theme} from '@constants';
 
@@ -27,7 +27,7 @@ export const CreateBranchDialog = ({
   branches,
   errorStr,
 }: CreateBranchDialogProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [branchName, setBranchName] = React.useState('');
   const [checkAfterCreate, setCheckAfterCreate] = React.useState(false);

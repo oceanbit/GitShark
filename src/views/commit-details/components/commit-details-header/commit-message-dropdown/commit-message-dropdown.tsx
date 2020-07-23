@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Animated, Text, View} from 'react-native';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
@@ -20,7 +20,7 @@ export const CommitMessageDropdown = ({
 }: CommitMessageDropdownProps) => {
   const [smallTextHeight, setSmallTextHeight] = React.useState(0);
   const [bigTextHeight, setBigTextHeight] = React.useState(0);
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const smallText = (
     <Text style={styles.text} numberOfLines={3} ellipsizeMode={'tail'}>

@@ -3,11 +3,7 @@ import {StyleProp, Text, TextProps, View, ViewStyle} from 'react-native';
 import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 export interface SharkButtonProps {
   onPress: () => void;
@@ -31,7 +27,7 @@ export const SharkButton = ({
   backgroundColor,
   textProps = {},
 }: SharkButtonProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
   const on_primary = useDynamicValue(theme.colors.on_primary);
 

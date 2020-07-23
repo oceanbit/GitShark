@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Animated, View} from 'react-native';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 const animTiming = 150;
 
@@ -11,7 +11,7 @@ interface GrowWidthContentProps {
 
 export const GrowWidthContent = React.forwardRef(
   ({children, expanded}: GrowWidthContentProps, ref) => {
-    const styles = useDynamicStyleSheet(dynamicStyles);
+    const styles = useDynamicValue(dynamicStyles);
 
     /**
      * To make sure the content does not appear to shrink visually
@@ -79,10 +79,7 @@ export const GrowWidthContent = React.forwardRef(
           <View
             style={styles.offscreenView}
             onLayout={event => {
-              const {
-                width: eventWidth,
-                height: eventHeight,
-              } = event.nativeEvent.layout;
+              const {width: eventWidth} = event.nativeEvent.layout;
               setWidth(eventWidth);
             }}>
             {children}
