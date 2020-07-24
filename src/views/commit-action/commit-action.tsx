@@ -18,10 +18,6 @@ export const CommitAction = () => {
 
   const history = useNavigation();
 
-  const getUpdate = () => {
-    dispatch(getGitStatus());
-  };
-
   const [noUserWarn, setNoUser] = React.useState(false);
 
   const onSubmit = async ({
@@ -41,8 +37,8 @@ export const CommitAction = () => {
       title: commitTitle,
       email,
       name,
+      dispatch,
     });
-    getUpdate();
     history.navigate('Repository');
   };
 
