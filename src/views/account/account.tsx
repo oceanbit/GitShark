@@ -21,6 +21,8 @@ import {githubOauthLink} from '@constants/oauth';
 import {validateEmail} from '@utils';
 import {GitHubLogout} from './github-logout/github-logout';
 import {SharkDivider} from '@components/shark-divider';
+import {CommitActionUI} from '../commit-action/commit-action.ui';
+import {SharkSnackbar} from '@components/shack-snackbar';
 
 export const Account = () => {
   const {
@@ -57,6 +59,8 @@ export const Account = () => {
     ? manualEmail
     : 'Email';
 
+  const [savedShow, setSaved] = React.useState(false);
+
   const saveChanges = () => {
     let hasError = false;
     const noEmptyStr = 'Field cannot be empty.';
@@ -82,97 +86,106 @@ export const Account = () => {
       email: manualEmail,
       name: manualName,
     });
+    setSaved(true);
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{flex: 1, flexDirection: 'column'}}
-      behavior="height"
-      enabled>
-      <ScrollView style={styles.container}>
-        <TopSpacerView isFloating={true} />
-        <AppBar
-          leftIcon="back"
-          onLeftSelect={() => history.goBack()}
-          headline="Accounts"
-        />
-        <SharkSubheader calloutText="GitHub integration" />
-        {!!gitHubUser ? (
-          <GitHubLogout />
-        ) : (
-          <SharkButton
-            style={styles.signinGithubButton}
-            text="Sign in with GitHub"
-            type="primary"
-            icon={'github'}
-            onPress={() => {
-              Linking.openURL(githubOauthLink);
-            }}
+    <>
+      <KeyboardAvoidingView
+        style={{flex: 1, flexDirection: 'column'}}
+        behavior="height"
+        enabled>
+        <ScrollView style={styles.container}>
+          <TopSpacerView isFloating={true} />
+          <AppBar
+            leftIcon="back"
+            onLeftSelect={() => history.goBack()}
+            headline="Accounts"
           />
-        )}
-        <SharkDivider />
-        <SharkSubheader calloutText="Commit authoring" />
-        <View style={styles.commitAuthorContainer}>
-          <View style={styles.authorPreview}>
-            <SharkProfilePic source={authorImage} showGHLogo={isGitHub} />
-            <View style={styles.authorPreviewText}>
-              <Text style={styles.authorName}>{personName}</Text>
-              <Text style={styles.authorEmail}>{personEmail}</Text>
-            </View>
-          </View>
-          <TouchableRipple
-            style={[
-              styles.useGHCredsContainer,
-              !gitHubUser ? styles.disabledStyling : {},
-            ]}
-            onPress={() => {
-              setUseGithub(!useGitHub);
-              setManualName('');
-              setManualEmail('');
-            }}
-            disabled={!gitHubUser}>
-            <>
-              <View style={styles.checkboxContainer}>
-                {/* Not setting disabled since valuechange is noop and we set styling above */}
-                <SharkCheckbox checked={useGitHub} onValueChange={() => {}} />
+          <SharkSubheader calloutText="GitHub integration" />
+          {!!gitHubUser ? (
+            <GitHubLogout />
+          ) : (
+            <SharkButton
+              style={styles.signinGithubButton}
+              text="Sign in with GitHub"
+              type="primary"
+              icon={'github'}
+              onPress={() => {
+                Linking.openURL(githubOauthLink);
+              }}
+            />
+          )}
+          <SharkDivider />
+          <SharkSubheader calloutText="Commit authoring" />
+          <View style={styles.commitAuthorContainer}>
+            <View style={styles.authorPreview}>
+              <SharkProfilePic source={authorImage} showGHLogo={isGitHub} />
+              <View style={styles.authorPreviewText}>
+                <Text style={styles.authorName}>{personName}</Text>
+                <Text style={styles.authorEmail}>{personEmail}</Text>
               </View>
-              <Text style={styles.useGHText}>Use GitHub credentials</Text>
-            </>
-          </TouchableRipple>
-          <SharkTextInput
-            style={styles.textInput}
-            placeholder={personName}
-            value={manualName}
-            disabled={useGitHub}
-            errorStr={manualNameError}
-            onChangeText={val => {
-              setManualName(val);
-              setManualNameError('');
-            }}
-          />
-          <SharkTextInput
-            style={styles.textInput}
-            placeholder={personEmail}
-            value={manualEmail}
-            disabled={useGitHub}
-            errorStr={manualEmailError}
-            onChangeText={val => {
-              setManualEmail(val);
-              setManualEmailError('');
-            }}
-            keyboardType={'email-address'}
-          />
-          <SharkButton
-            style={styles.saveButton}
-            text="Save changes"
-            onPress={() => saveChanges()}
-            type="primary"
-            disabled={useGitHub}
-          />
-        </View>
-        <BottomSpacerView />
-      </ScrollView>
-    </KeyboardAvoidingView>
+            </View>
+            <TouchableRipple
+              style={[
+                styles.useGHCredsContainer,
+                !gitHubUser ? styles.disabledStyling : {},
+              ]}
+              onPress={() => {
+                setUseGithub(!useGitHub);
+                setManualName('');
+                setManualEmail('');
+              }}
+              disabled={!gitHubUser}>
+              <>
+                <View style={styles.checkboxContainer}>
+                  {/* Not setting disabled since valuechange is noop and we set styling above */}
+                  <SharkCheckbox checked={useGitHub} onValueChange={() => {}} />
+                </View>
+                <Text style={styles.useGHText}>Use GitHub credentials</Text>
+              </>
+            </TouchableRipple>
+            <SharkTextInput
+              style={styles.textInput}
+              placeholder={personName}
+              value={manualName}
+              disabled={useGitHub}
+              errorStr={manualNameError}
+              onChangeText={val => {
+                setManualName(val);
+                setManualNameError('');
+              }}
+            />
+            <SharkTextInput
+              style={styles.textInput}
+              placeholder={personEmail}
+              value={manualEmail}
+              disabled={useGitHub}
+              errorStr={manualEmailError}
+              onChangeText={val => {
+                setManualEmail(val);
+                setManualEmailError('');
+              }}
+              keyboardType={'email-address'}
+            />
+            <SharkButton
+              style={styles.saveButton}
+              text="Save changes"
+              onPress={() => saveChanges()}
+              type="primary"
+              disabled={useGitHub}
+            />
+          </View>
+          <BottomSpacerView />
+        </ScrollView>
+      </KeyboardAvoidingView>
+
+      <SharkSnackbar
+        visible={savedShow}
+        onDismiss={() => setSaved(false)}
+        message={'Your commit author details have been saved'}
+      />
+    </>
   );
 };
 

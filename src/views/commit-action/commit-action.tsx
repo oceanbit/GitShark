@@ -6,8 +6,7 @@ import {RootState, getGitStatus} from '@store';
 import {CommitActionUI} from './commit-action.ui';
 import {useThunkDispatch} from '@hooks';
 import {useUserData} from '@hooks/use-user';
-import {Snackbar} from 'react-native-paper';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {SharkSnackbar} from '@components/shack-snackbar';
 
 export const CommitAction = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
@@ -24,8 +23,6 @@ export const CommitAction = () => {
   };
 
   const [noUserWarn, setNoUser] = React.useState(false);
-
-  const insets = useSafeAreaInsets();
 
   const onSubmit = async ({
     commitBody,
@@ -56,19 +53,17 @@ export const CommitAction = () => {
         files={staged}
         onClose={() => history.goBack()}
       />
-      <Snackbar
+      <SharkSnackbar
         visible={noUserWarn}
-        duration={Snackbar.DURATION_MEDIUM}
         onDismiss={() => setNoUser(false)}
-        style={{marginBottom: insets.bottom}}
         action={{
           label: 'Fix',
           onPress: () => {
             history.navigate('Account');
           },
-        }}>
-        You don't have commit author data set
-      </Snackbar>
+        }}
+        message={"You don't have commit author data set"}
+      />
     </>
   );
 };
