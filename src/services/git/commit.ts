@@ -6,16 +6,25 @@ interface commitProps {
   title?: string;
   description?: string;
   repo: ReduxRepo;
+  name: string;
+  email: string;
 }
 
-export const commit = async ({title, description, repo}: commitProps) => {
+export const commit = async ({
+  title,
+  description,
+  repo,
+  email,
+  name,
+}: commitProps) => {
   const message = `${title}\n${description}`;
+
   await git.commit({
     fs,
     dir: repo.path,
     author: {
-      name: 'Corbin Crutchley',
-      email: 'crutchcorn@gmail.com',
+      name,
+      email,
     },
     message,
   });
