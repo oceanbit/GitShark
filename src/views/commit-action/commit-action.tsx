@@ -7,6 +7,8 @@ import {CommitActionUI} from './commit-action.ui';
 import {useThunkDispatch} from '@hooks';
 import {useUserData} from '@hooks/use-user';
 import {SharkSnackbar} from '@components/shack-snackbar';
+import {OnCommitActionsDialog} from './on-commit-action-dialog';
+import {Keyboard} from 'react-native';
 
 export const CommitAction = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
@@ -20,6 +22,8 @@ export const CommitAction = () => {
 
   const [noUserWarn, setNoUser] = React.useState(false);
 
+  const [showCommit, setShowCommit] = React.useState(false);
+
   const onSubmit = async ({
     commitBody,
     commitTitle,
@@ -31,6 +35,8 @@ export const CommitAction = () => {
       setNoUser(true);
       return;
     }
+    setShowCommit(true);
+    Keyboard.dismiss();
     await commit({
       repo: repo!,
       description: commitBody,
@@ -39,6 +45,7 @@ export const CommitAction = () => {
       name,
       dispatch,
     });
+    setShowCommit(false);
     history.navigate('Repository');
   };
 
@@ -60,6 +67,7 @@ export const CommitAction = () => {
         }}
         message={"You don't have commit author data set"}
       />
+      <OnCommitActionsDialog visible={showCommit} />
     </>
   );
 };
