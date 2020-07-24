@@ -63,6 +63,7 @@ export const CommitActionUI = ({
         />
         <View>
           <SharkButton
+            disabled={!files.length}
             onPress={() => onSubmit({commitBody, commitTitle})}
             text={'Commit change'}
             type={'primary'}

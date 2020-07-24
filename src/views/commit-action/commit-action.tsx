@@ -6,6 +6,8 @@ import {RootState, getGitStatus} from '@store';
 import {CommitActionUI} from './commit-action.ui';
 import {useThunkDispatch} from '@hooks';
 import {useUserData} from '@hooks/use-user';
+import {Snackbar} from 'react-native-paper';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export const CommitAction = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
@@ -21,6 +23,10 @@ export const CommitAction = () => {
     dispatch(getGitStatus());
   };
 
+  const [noUserWarn, setNoUser] = React.useState(false);
+
+  const insets = useSafeAreaInsets();
+
   const onSubmit = async ({
     commitBody,
     commitTitle,
@@ -28,7 +34,10 @@ export const CommitAction = () => {
     commitTitle: string;
     commitBody: string;
   }) => {
-    if (!email || !name) return;
+    if (!email || !name) {
+      setNoUser(true);
+      return;
+    }
     await commit({
       repo: repo!,
       description: commitBody,
@@ -41,10 +50,25 @@ export const CommitAction = () => {
   };
 
   return (
-    <CommitActionUI
-      onSubmit={onSubmit}
-      files={staged}
-      onClose={() => history.goBack()}
-    />
+    <>
+      <CommitActionUI
+        onSubmit={onSubmit}
+        files={staged}
+        onClose={() => history.goBack()}
+      />
+      <Snackbar
+        visible={noUserWarn}
+        duration={Snackbar.DURATION_MEDIUM}
+        onDismiss={() => setNoUser(false)}
+        style={{marginBottom: insets.bottom}}
+        action={{
+          label: 'Fix',
+          onPress: () => {
+            history.navigate('Account');
+          },
+        }}>
+        You don't have commit author data set
+      </Snackbar>
+    </>
   );
 };
