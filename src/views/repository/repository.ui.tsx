@@ -41,6 +41,8 @@ interface RepositoryUIProps {
     forcePush: boolean;
     branch: string;
   }) => void;
+  currentBranch: string;
+  trackedBranch: RemoteBranch | null;
 }
 
 export const RepositoryUI = ({
@@ -55,6 +57,8 @@ export const RepositoryUI = ({
   onRename,
   onFetch,
   onPush,
+  currentBranch,
+  trackedBranch,
 }: RepositoryUIProps) => {
   const [activeDialog, setActiveDialog] = React.useState<RepoHeaderDialogType>(
     '',
@@ -124,6 +128,8 @@ export const RepositoryUI = ({
         </Stack.Navigator>
       </SharkSafeTop>
       <PushDialog
+        currentBranch={currentBranch}
+        trackedBranch={trackedBranch}
         visible={activeDialog === 'push'}
         onDismiss={props => {
           setActiveDialog('');

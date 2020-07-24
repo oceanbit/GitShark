@@ -6,6 +6,7 @@ export * from './createRepo';
 export * from './deleteLocalBranch';
 export * from './deleteRepo';
 export * from './fetch';
+export * from './findTrackedRemoteBranch';
 export * from './getCommitHeaderBody';
 export * from './getFileStateChanges';
 export * from './getPushPull';

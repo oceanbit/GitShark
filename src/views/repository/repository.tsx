@@ -8,7 +8,7 @@ import {RepositoryChanges} from '../repository-changes/repository-changes';
 import {RepositoryHistory} from '../repository-history/repository-history';
 import {CommitAction} from '../commit-action/commit-action';
 import {CommitDetails} from '../commit-details/commit-details';
-import {renameRepo} from '@services';
+import {renameRepo, findTrackedRemoteBranch} from '@services';
 import {Remotes} from '@types';
 import {OnFetchActionsDialog} from './components/on-fetch-action-dialog';
 import {OnPushActionsDialog} from './components/on-push-action-dialog';
@@ -35,7 +35,7 @@ interface PushDialogType {
 type DialogType = FetchDialogType | PushDialogType | null;
 
 export const Repository = () => {
-  const [dialogType, setDialogType] = React.useState<DialogType>();
+  const dispatch = useThunkDispatch();
 
   const {repo, toPushPull} = useSelector(
     (state: RootState) => state.repository,
@@ -44,7 +44,20 @@ export const Repository = () => {
     (state: RootState) => state.branches,
   );
 
-  const dispatch = useThunkDispatch();
+  const [trackedBranch, setTrackedBranch] = React.useState<RemoteBranch | null>(
+    null,
+  );
+
+  React.useEffect(() => {
+    if (!repo) return;
+    findTrackedRemoteBranch({
+      branchName: repo!.currentBranchName,
+      path: repo!.path,
+      remoteBranches,
+    }).then(v => setTrackedBranch(v));
+  }, [remoteBranches, repo]);
+
+  const [dialogType, setDialogType] = React.useState<DialogType>();
 
   const {params} = useRoute();
   const {repoId} = params! as Record<string, string>;
@@ -63,6 +76,8 @@ export const Repository = () => {
   return (
     <>
       <RepositoryUI
+        currentBranch={repo?.currentBranchName || ''}
+        trackedBranch={trackedBranch}
         remotes={remotes}
         localBranches={localBranches}
         remoteBranches={remoteBranches}

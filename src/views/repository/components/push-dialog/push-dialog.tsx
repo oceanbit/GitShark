@@ -8,7 +8,7 @@ import {Picker} from '@react-native-community/picker';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {RemoteBranch} from '@types';
 
-const remoteBranchToString = (branch: RemoteBranch) =>
+const remoteBranchToString = (branch: RemoteBranch | null) =>
   `${branch?.remote}/${branch?.name}`;
 
 interface PushDialogProps {
@@ -21,7 +21,9 @@ interface PushDialogProps {
   ) => void;
   visible: boolean;
   localBranches: string[];
+  currentBranch: string;
   remoteBranches: RemoteBranch[];
+  trackedBranch: RemoteBranch | null;
 }
 
 export const PushDialog = ({
@@ -29,13 +31,20 @@ export const PushDialog = ({
   visible,
   localBranches,
   remoteBranches,
+  currentBranch,
+  trackedBranch,
 }: PushDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
-  const [branch, setBranch] = React.useState(localBranches?.[0]);
+  const [branch, setBranch] = React.useState(currentBranch);
   const [destination, setDestination] = React.useState(
-    remoteBranchToString(remoteBranches[0]),
+    remoteBranchToString(trackedBranch),
   );
+
+  // There's a timing issue where `trackedBranch` is undefined, this fixes that issue
+  React.useEffect(() => {
+    setDestination(remoteBranchToString(trackedBranch));
+  }, [trackedBranch]);
 
   const [forcePush, setForcePush] = React.useState(false);
 
@@ -52,8 +61,8 @@ export const PushDialog = ({
     } else {
       onDismiss(null);
     }
-    setBranch(localBranches?.[0]);
-    setDestination(remoteBranchToString(remoteBranches[0]));
+    setBranch(currentBranch);
+    setDestination(remoteBranchToString(trackedBranch));
     setForcePush(false);
   };
 
