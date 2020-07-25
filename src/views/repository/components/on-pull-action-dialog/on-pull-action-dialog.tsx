@@ -3,7 +3,7 @@ import {pull} from '@services';
 import {ProgressErrorDialog} from '@components/progress-error-dialog';
 import {ReduxRepo} from '@entities';
 import {RemoteBranch} from '@types';
-import {ThunkDispatchType} from '@hooks';
+import {ThunkDispatchType, useUserData} from '@hooks';
 import {phases} from '@constants/hacks';
 
 const pauseToRender = () => new Promise(resolve => setTimeout(resolve, 0));
@@ -32,6 +32,8 @@ export const OnPullActionsDialog = ({
   const [total, setTotal] = React.useState(-1);
   const [phase, setPhase] = React.useState('');
 
+  const {email, name} = useUserData();
+
   const fetchCB = React.useCallback(() => {
     setErrorStr('');
     pull({
@@ -39,6 +41,8 @@ export const OnPullActionsDialog = ({
       dispatch,
       destination: trackedBranch,
       repo,
+      email: email!,
+      name: name!,
       async onProgress({
         phase: progressPhase,
         loaded: progressLoaded,
@@ -58,7 +62,7 @@ export const OnPullActionsDialog = ({
       .catch((e: Error | string) => {
         setErrorStr((e as Error).message || (e as string));
       });
-  }, [repo, dispatch, trackedBranch, onDismiss]);
+  }, [repo, dispatch, trackedBranch, email, name, onDismiss]);
 
   React.useEffect(() => {
     if (!visible) {

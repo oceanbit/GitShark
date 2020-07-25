@@ -14,6 +14,8 @@ interface PushProps {
   onProgress: ProgressCallback;
   repo: ReduxRepo;
   dispatch: ThunkDispatchType;
+  email: string;
+  name: string;
 }
 
 export const pull = async ({
@@ -22,6 +24,8 @@ export const pull = async ({
   repo,
   dispatch,
   onProgress,
+  email,
+  name,
 }: PushProps) => {
   const GH_TOKEN = await RNSecureKeyStore.get(GITHUB_TOKEN_STORAGE_KEY);
 
@@ -37,6 +41,10 @@ export const pull = async ({
       username: GH_TOKEN,
       password: 'x-oauth-basic',
     }),
+    author: {
+      email,
+      name,
+    },
   });
 
   dispatch(getCommitRev({path: repo.path, repoId: repo.id}));
