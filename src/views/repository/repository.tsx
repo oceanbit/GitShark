@@ -13,6 +13,7 @@ import {Remotes} from '@types';
 import {OnFetchActionsDialog} from './components/on-fetch-action-dialog';
 import {OnPushActionsDialog} from './components/on-push-action-dialog';
 import {RemoteBranch} from '@types';
+import {OnPullActionsDialog} from './components/on-pull-action-dialog';
 
 interface FetchDialogType {
   action: 'fetch';
@@ -32,7 +33,12 @@ interface PushDialogType {
   };
 }
 
-type DialogType = FetchDialogType | PushDialogType | null;
+interface PullDialogType {
+  action: 'pull';
+  data: null;
+}
+
+type DialogType = FetchDialogType | PushDialogType | PullDialogType | null;
 
 export const Repository = () => {
   const dispatch = useThunkDispatch();
@@ -91,6 +97,12 @@ export const Repository = () => {
             findRepo(repoId),
           )
         }
+        onPull={() => {
+          setDialogType({
+            action: 'pull',
+            data: null,
+          });
+        }}
         onPush={data =>
           setDialogType({
             action: 'push',
@@ -118,6 +130,15 @@ export const Repository = () => {
         data={dialogType?.data as PushDialogType['data']}
         dispatch={dispatch}
         repo={repo}
+        onDismiss={() => {
+          setDialogType(null);
+        }}
+      />
+      <OnPullActionsDialog
+        visible={dialogType?.action === 'pull'}
+        dispatch={dispatch}
+        repo={repo}
+        trackedBranch={trackedBranch!}
         onDismiss={() => {
           setDialogType(null);
         }}

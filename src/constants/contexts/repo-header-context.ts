@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {PushPull} from '@entities';
 
-export type RepoHeaderDialogType = 'rename' | 'fetch' | 'push' | '';
+export type RepoHeaderDialogType = 'rename' | 'fetch' | 'push' | 'pull' | '';
 
 interface RepoHeaderContextType {
   activeDialog: RepoHeaderDialogType | null;

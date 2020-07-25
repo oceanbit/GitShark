@@ -41,6 +41,7 @@ interface RepositoryUIProps {
     forcePush: boolean;
     branch: string;
   }) => void;
+  onPull: () => void;
   currentBranch: string;
   trackedBranch: RemoteBranch | null;
 }
@@ -57,12 +58,21 @@ export const RepositoryUI = ({
   onRename,
   onFetch,
   onPush,
+  onPull,
   currentBranch,
   trackedBranch,
 }: RepositoryUIProps) => {
   const [activeDialog, setActiveDialog] = React.useState<RepoHeaderDialogType>(
     '',
   );
+
+  React.useEffect(() => {
+    // This is a shortcut to have the `onPull` action togged without having to trigger it with another UI-only dialog
+    if (activeDialog === 'pull') {
+      onPull();
+      setActiveDialog('');
+    }
+  }, [activeDialog, onPull]);
 
   const insets = useSafeAreaInsets();
 

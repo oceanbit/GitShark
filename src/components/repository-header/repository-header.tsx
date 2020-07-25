@@ -36,6 +36,7 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
           <HeaderActionNumber
             iconName="pull"
             val={pushPull?.toPull?.length || 0}
+            onPress={() => setActiveDialog('pull')}
           />
           <SharkMenu
             visible={isMenuOpen}
