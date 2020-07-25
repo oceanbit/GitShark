@@ -28,5 +28,19 @@ export const cloneRepo = async ({
     singleBranch: true,
     onProgress,
   });
+  /**
+   * Isomorphic git doesn't fetch as we might expect it to after a clone
+   * @see https://github.com/crutchcorn/GitShark/issues/33
+   */
+  await git.fetch({
+    fs,
+    http,
+    dir: repoDir,
+    url: uri,
+    singleBranch: false,
+    prune: false,
+    onProgress,
+  });
+
   return await createNewRepo(repoDir, repoName);
 };
