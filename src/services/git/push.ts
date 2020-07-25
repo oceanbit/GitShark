@@ -39,9 +39,6 @@ export const push = async ({
     onAuth: () => ({
       username: GH_TOKEN,
       password: 'x-oauth-basic',
-      headers: {
-        Authentication: `Bearer ${GH_TOKEN}`,
-      },
     }),
   });
 
