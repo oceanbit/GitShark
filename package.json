@@ -71,6 +71,8 @@
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-decorators": "^7.8.3",
     "@babel/runtime": "^7.9.2",
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
     "@react-native-community/eslint-config": "^2.0.0",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-knobs": "^5.3.19",
@@ -93,13 +95,14 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.4",
     "hoist-non-react-statics": "^3.3.2",
-    "husky": "^4.2.3",
+    "husky": "^4.2.5",
     "jest": "^26.0.1",
     "lint-staged": "^10.2.11",
     "metro-react-native-babel-preset": "^0.59.0",
     "prettier": "^2.0.5",
     "react-native-clean-project": "^3.3.0",
     "react-test-renderer": "^16.9.0",
+    "standard-version": "^8.0.2",
     "typescript": "^3.8.3"
   },
   "resolutions": {
@@ -118,7 +121,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
