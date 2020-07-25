@@ -123,7 +123,11 @@ export const PushDialog = ({
             style={styles.cancelBtn}
             text="Cancel"
           />
-          <SharkButton onPress={() => {}} type="primary" text="Go Do" />
+          <SharkButton
+            onPress={() => parentOnDismiss(true)}
+            type="primary"
+            text="Push"
+          />
         </>
       }
     />

@@ -34,9 +34,15 @@ export const push = async ({
     ref: branch,
     http,
     remote: destination.remote,
-    remoteRef: `refs/remotes/${destination.remote}/${destination.name}`,
+    remoteRef: destination.name,
     onProgress,
-    onAuth: () => ({username: GH_TOKEN}),
+    onAuth: () => ({
+      username: GH_TOKEN,
+      password: 'x-oauth-basic',
+      headers: {
+        Authentication: `Bearer ${GH_TOKEN}`,
+      },
+    }),
   });
 
   dispatch(getCommitRev({path: repo.path, repoId: repo.id}));
