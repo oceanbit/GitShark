@@ -16,6 +16,7 @@ import {
 import {BranchesUI} from './branches.ui';
 import {CreateBranchDialog} from './components/create-branch-dialog';
 import {ConfirmCheckoutDialog} from './components/confirm-checkout-dialog';
+import {OnCheckoutActionsDialog} from './components/on-checkout-action-dialog';
 
 export const Branches = () => {
   const [createBranchDialog, setCreateBranchDialog] = React.useState(false);
@@ -60,12 +61,7 @@ export const Branches = () => {
     [dispatch, repo],
   );
 
-  const doCheckoutBranch = React.useCallback(
-    async (branchName: string) => {
-      await checkoutBranch({branchName, dispatch, repo: repo!});
-    },
-    [dispatch, repo],
-  );
+  const [branchToCheckout, setBranchCheckout] = React.useState('');
 
   const resetAndCheckout = async (branchName: string) => {
     await resetFiles({
@@ -73,7 +69,7 @@ export const Branches = () => {
       dispatch,
       files: [...unstaged.map(f => f.fileName), ...staged.map(f => f.fileName)],
     });
-    await doCheckoutBranch(branchName);
+    setBranchCheckout(branchName);
   };
 
   // The branch name of which to "confirm" the checkout
@@ -86,9 +82,9 @@ export const Branches = () => {
         setConfirmCheckout(branchName);
         return;
       }
-      await doCheckoutBranch(branchName);
+      setBranchCheckout(branchName);
     },
-    [doCheckoutBranch, staged, unstaged],
+    [staged, unstaged],
   );
 
   const onBranchRename = React.useCallback(
@@ -144,6 +140,13 @@ export const Branches = () => {
             resetAndCheckout(showConfirmCheckout);
           }
         }}
+      />
+      <OnCheckoutActionsDialog
+        onDismiss={() => setBranchCheckout('')}
+        visible={!!branchToCheckout}
+        repo={repo}
+        branchName={branchToCheckout}
+        dispatch={dispatch}
       />
     </>
   );
