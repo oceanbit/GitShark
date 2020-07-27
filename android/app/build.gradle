@@ -135,7 +135,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.gitshark"
+        applicationId "dev.oceanbit.gitshark"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true

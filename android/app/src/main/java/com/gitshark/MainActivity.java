@@ -1,4 +1,4 @@
-package com.gitshark;
+package dev.oceanbit.gitshark;
 
 import com.facebook.react.ReactActivity;
 
