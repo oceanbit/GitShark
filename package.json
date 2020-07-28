@@ -1,6 +1,6 @@
 {
   "name": "GitShark",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -17,7 +17,8 @@
     "clean": "react-native-clean-project",
     "clear-xcode-cache": "cd ios && bash ../resetXcode.sh && cd ../",
     "pod-install": "cd ios/ && pod install && cd ..",
-    "jetify": "jetify"
+    "jetify": "jetify",
+    "release": "standard-version"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.1",
