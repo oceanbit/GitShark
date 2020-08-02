@@ -15,8 +15,8 @@ import {
 interface CommitCardProps {
   commit: GitLogCommit;
   onPress: (commit: GitLogCommit) => void;
-  commitsToPush: string[];
-  commitsToPull: string[];
+  commitsToPush?: string[];
+  commitsToPull?: string[];
 }
 
 export const CommitCard = ({
@@ -31,8 +31,8 @@ export const CommitCard = ({
 
   const {title, message} = getCommitHeaderBody({commit});
 
-  const needsPulling = commitsToPull.includes(commit.oid);
-  const needsPushing = commitsToPush.includes(commit.oid);
+  const needsPulling = commitsToPull?.includes(commit.oid) || false;
+  const needsPushing = commitsToPush?.includes(commit.oid) || false;
   const {dateStr, timeStr} = React.useMemo(() => {
     const dayjsTimestampe = dayjs.unix(commit.author.timestamp);
     return {
