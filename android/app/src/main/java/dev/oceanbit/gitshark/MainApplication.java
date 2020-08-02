@@ -8,6 +8,8 @@ import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import dev.oceanbit.gitshark.GitPackage;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -26,7 +28,8 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
-          return packages;
+            packages.add(new GitPackage()); // <-- Add this line with your package name.
+            return packages;
         }
 
         @Override

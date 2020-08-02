@@ -1,8 +1,7 @@
-import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
-import {fs} from '@constants';
-import http from 'isomorphic-git/http/web/index.js';
+import {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
 import {createNewRepo} from './createRepo';
 import {getRepoNameFromUri} from '@utils';
+import {NativeEventEmitter, NativeModules} from 'react-native';
 
 interface CloneRepoProps {
   path: string;
@@ -11,36 +10,28 @@ interface CloneRepoProps {
   onProgress: ProgressCallback;
 }
 
-export const cloneRepo = async ({
-  path,
-  name,
-  uri,
-  onProgress,
-}: CloneRepoProps) => {
-  const newFolderName = getRepoNameFromUri(uri);
-  const repoName = name || newFolderName;
-  const repoDir = `${path}/${repoName}`;
-  await git.clone({
-    fs,
-    dir: repoDir,
-    url: uri,
-    http,
-    singleBranch: true,
-    onProgress,
-  });
-  /**
-   * Isomorphic git doesn't fetch as we might expect it to after a clone
-   * @see https://github.com/crutchcorn/GitShark/issues/33
-   */
-  await git.fetch({
-    fs,
-    http,
-    dir: repoDir,
-    url: uri,
-    singleBranch: false,
-    prune: false,
-    onProgress,
-  });
+export const cloneRepo = ({path, name, uri, onProgress}: CloneRepoProps) => {
+  const eventEmitter = new NativeEventEmitter(NativeModules.GitModule);
 
-  return await createNewRepo(repoDir, repoName);
+  const eventListener = eventEmitter.addListener(
+    'CloneProgress',
+    (event: {phase: string; loaded: number; total: number}) => {
+      const {phase, loaded, total} = event;
+      onProgress({phase, loaded, total});
+    },
+  );
+
+  return new Promise((resolve, reject) => {
+    const newFolderName = getRepoNameFromUri(uri);
+    const repoName = name || newFolderName;
+    const repoDir = `${path}/${repoName}`;
+
+    NativeModules.GitModule.clone(uri, repoDir)
+      .then(() => {
+        eventListener.remove();
+      })
+      .then(() => createNewRepo(repoDir, repoName))
+      .then(() => resolve())
+      .catch((e: Error) => reject(e));
+  });
 };

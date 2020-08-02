@@ -1,9 +1,6 @@
 import * as React from 'react';
 import {cloneRepo} from '@services';
 import {ProgressErrorDialog} from '@components/progress-error-dialog';
-import {phases} from '@constants/hacks';
-
-const pauseToRender = () => new Promise(resolve => setTimeout(resolve, 0));
 
 interface CloneRepositoryProgressDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -35,17 +32,14 @@ export const CloneRepositoryProgressDialog = ({
       path,
       name,
       uri,
-      async onProgress({
+      onProgress({
         phase: progressPhase,
         loaded: progressLoaded,
         total: progressTotal,
       }) {
-        if (phases[progressPhase]) {
-          setPhase(progressPhase);
-          setLoaded(progressLoaded);
-          setTotal(progressTotal || 0);
-          await pauseToRender();
-        }
+        setPhase(progressPhase);
+        setLoaded(progressLoaded);
+        setTotal(progressTotal || 0);
       },
     })
       .then(() => {

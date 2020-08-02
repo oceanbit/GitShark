@@ -198,6 +198,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'org.eclipse.jgit:org.eclipse.jgit:3.7.1.201504261725-r'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
