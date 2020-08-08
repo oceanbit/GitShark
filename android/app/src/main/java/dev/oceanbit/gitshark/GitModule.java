@@ -82,11 +82,27 @@ public class GitModule extends ReactContextBaseJavaModule {
             @Override
             public void run() {
 
+                RNSecureKeyStoreModule keyStoreModule = new RNSecureKeyStoreModule(reactContext);
+
+                String ghToken = "";
+                try {
+                    ghToken = keyStoreModule.getPlainText("ghToken");
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                    promise.reject(e);
+                }
+
                 CloneCommand cloneCommand = Git.cloneRepository()
                         .setURI(uri)
                         .setCloneAllBranches(true)
                         .setProgressMonitor(new RepoCloneMonitor())
                         .setDirectory(new File(path));
+
+                if (!ghToken.isEmpty()) {
+                    UsernamePasswordCredentialsProvider auth = new UsernamePasswordCredentialsProvider(
+                            ghToken, "x-oauth-basic");
+                    cloneCommand.setCredentialsProvider(auth);
+                }
 
                 try {
                     cloneCommand.call();
