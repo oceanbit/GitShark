@@ -54,7 +54,7 @@
     "react-native-reanimated": "^1.9.0",
     "react-native-safe-area-context": "^3.0.5",
     "react-native-screens": "^2.4.0",
-    "react-native-secure-key-store": "^2.0.5",
+    "react-native-secure-key-store": "https://github.com/oceanbit-dev/react-native-secure-key-store.git",
     "react-native-sqlite-storage": "^5.0.0",
     "react-native-svg": "^12.0.3",
     "react-native-svg-web": "^1.0.8",
