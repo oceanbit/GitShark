@@ -11706,9 +11706,10 @@ react-native-screens@^2.4.0:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.8.0.tgz#9f989096fc5ccf248e0dfa93a74f1a64057e15f1"
   integrity sha512-fUCIQLZX+5XB0ypWX038P3zso54IFFjTsQUZJWEsjC3pp5rPItAt5SzqtJn+uVjcJaczZ+dpIuvj6IFLqkWLZQ==
 
-"react-native-secure-key-store@https://github.com/oceanbit-dev/react-native-secure-key-store.git":
-  version "2.0.8"
-  resolved "https://github.com/oceanbit-dev/react-native-secure-key-store.git#08285e25bcaadbd53daeb8f006a7f1bbb90ce6ea"
+react-native-secure-key-store@^2.0.9:
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-secure-key-store/-/react-native-secure-key-store-2.0.9.tgz#9094d4d914145a301864b941c6289f57058780a5"
+  integrity sha512-9qi1rOlv4qNSpJIjqcIB7d0EQSwo2Yho8NVBT/Jc9NeYibDLHdArLXl8jn8H6nlf+8alk/bXqr4rPINrCTtmog==
 
 react-native-sqlite-storage@^5.0.0:
   version "5.0.0"
