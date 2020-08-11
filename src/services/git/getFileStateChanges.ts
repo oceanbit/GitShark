@@ -14,6 +14,8 @@ export const getFileStateChanges = async (
     map: async function (filepath, walked) {
       const [A, B] = walked || [];
 
+      if (!A || !B) return;
+
       // ignore directories
       if (filepath === '.') {
         return;
