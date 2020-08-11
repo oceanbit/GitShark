@@ -43,23 +43,23 @@ export const CommitDetailsMoreInfo = ({
 
   return (
     <View style={styles.container}>
-      <View style={styles.sectionContainer}>
-        <View style={styles.sectionTitle}>
-          <Text style={styles.sectionTitleText}>REF</Text>
-        </View>
-        {/* We want to support when there are so many tags that they overflow. Keep this a ScrollView */}
-        <ScrollView
-          horizontal={true}
-          style={[styles.sectionBody, styles.tagsContainer]}>
-          <CommitPill
-            name="origin/master"
-            isGitHub={true}
-            color={orng}
-            style={styles.tag}
-          />
-          <CommitPill name="master" color={prpl} style={styles.tag} />
-        </ScrollView>
-      </View>
+      {/*<View style={styles.sectionContainer}>*/}
+      {/*  <View style={styles.sectionTitle}>*/}
+      {/*    <Text style={styles.sectionTitleText}>REF</Text>*/}
+      {/*  </View>*/}
+      {/*  /!* We want to support when there are so many tags that they overflow. Keep this a ScrollView *!/*/}
+      {/*  <ScrollView*/}
+      {/*    horizontal={true}*/}
+      {/*    style={[styles.sectionBody, styles.tagsContainer]}>*/}
+      {/*    <CommitPill*/}
+      {/*      name="origin/master"*/}
+      {/*      isGitHub={true}*/}
+      {/*      color={orng}*/}
+      {/*      style={styles.tag}*/}
+      {/*    />*/}
+      {/*    <CommitPill name="master" color={prpl} style={styles.tag} />*/}
+      {/*  </ScrollView>*/}
+      {/*</View>*/}
 
       <TouchableRipple
         style={[styles.sectionContainer, styles.shaSectionContainer]}
