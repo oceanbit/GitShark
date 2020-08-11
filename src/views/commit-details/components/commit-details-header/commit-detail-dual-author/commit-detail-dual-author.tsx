@@ -4,6 +4,8 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {DropdownContent} from '@components/dropdown-content';
 import {theme} from '@constants';
 import {SharkProfilePic} from '@components/shark-profile-pic';
+import {GitLogCommit} from '@services';
+import dayjs from 'dayjs';
 
 const authorImageSize = 40;
 
@@ -21,11 +23,15 @@ const animDuration = 150;
 interface CommitDetailsDualAuthorProps {
   expanded: boolean;
   style?: StyleProp<ViewStyle>;
+  committer: GitLogCommit['committer'];
+  author?: GitLogCommit['author'];
 }
 
 export const CommitDetailsDualAuthor = ({
   expanded,
   style,
+  author,
+  committer,
 }: CommitDetailsDualAuthorProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
@@ -131,6 +137,12 @@ export const CommitDetailsDualAuthor = ({
     top: bottomImageTop,
   };
 
+  const commitedTimestamp = dayjs.unix(committer?.timestamp || 0);
+  const commitTimeStr = commitedTimestamp.format('D MMM YYYY H:mm');
+
+  const authoredTimestamp = dayjs.unix(author?.timestamp || 0);
+  const authorTimeStr = authoredTimestamp.format('D MMM YYYY H:mm');
+
   return (
     <View style={[styles.container, style]}>
       <View style={styles.imageContainer}>
@@ -150,11 +162,11 @@ export const CommitDetailsDualAuthor = ({
             // initial render, we can ignore susequent updates that `onLayout` runs
             if (!nameHeight) setNameHeight(eventHeight);
           }}>
-          <Text style={styles.personName}>Corbin Crutchley</Text>
+          <Text style={styles.personName}>{author?.name}</Text>
           <DropdownContent expanded={expanded} ref={emailRef}>
-            <Text style={styles.personEmail}>crutchcorn@gmail.com</Text>
+            <Text style={styles.personEmail}>{author?.email}</Text>
           </DropdownContent>
-          <Text style={styles.personDate}>Authored on 12 Feb 2020 12:00</Text>
+          <Text style={styles.personDate}>Authored on {authorTimeStr}</Text>
         </View>
         {/*
         We want margins to disappear when not expanded. This is a quick-n-dirty solution to that
@@ -164,11 +176,11 @@ export const CommitDetailsDualAuthor = ({
           <View style={styles.peopleMargin} />
         </DropdownContent>
         <View style={styles.personContainer}>
-          <Text style={styles.personName}>Eduardo Pratti</Text>
+          <Text style={styles.personName}>{committer?.name}</Text>
           <DropdownContent expanded={expanded}>
-            <Text style={styles.personEmail}>edismeme@gmail.com</Text>
+            <Text style={styles.personEmail}>{committer?.email}</Text>
           </DropdownContent>
-          <Text style={styles.personDate}>Commited on 14 Feb 2020 12:00</Text>
+          <Text style={styles.personDate}>Commited on {commitTimeStr}</Text>
         </View>
       </View>
     </View>

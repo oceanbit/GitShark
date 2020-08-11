@@ -95,6 +95,8 @@ export const CommitDetailsHeader = ({
         <CommitDetailsDualAuthor
           expanded={expanded}
           style={styles.authorBlock}
+          committer={committer}
+          author={author}
         />
       )}
       <DropdownContent expanded={expanded}>

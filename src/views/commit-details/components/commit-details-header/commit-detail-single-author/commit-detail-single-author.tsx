@@ -4,6 +4,7 @@ import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {theme} from '@constants';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 import {GitLogCommit} from '@services';
+import dayjs from 'dayjs';
 
 const authorImageSize = 40;
 
@@ -27,18 +28,24 @@ export const CommitDetailsSingleAuthor = ({
 
   const styles = useDynamicStyleSheet(dynamicStyles);
 
+  const commitedTimestamp = dayjs.unix(committer?.timestamp || 0);
+  const commitTimeStr = commitedTimestamp.format('D MMM YYYY H:mm');
+
+  const authoredTimestamp = dayjs.unix(author?.timestamp || 0);
+  const authorTimeStr = authoredTimestamp.format('D MMM YYYY H:mm');
+
   return (
     <View style={[styles.container, style]}>
       <View style={styles.imageContainer}>
         <SharkProfilePic size={authorImageSize} />
       </View>
       <View style={styles.personContainer}>
-        <Text style={styles.personName}>Corbin Crutchley</Text>
-        <Text style={styles.personEmail}>crutchcorn@gmail.com</Text>
+        <Text style={styles.personName}>{author?.name}</Text>
+        <Text style={styles.personEmail}>{author?.email}</Text>
         {showAuthoredTimestamp && (
-          <Text style={styles.personDate}>Authored on 12 Feb 2020 12:00</Text>
+          <Text style={styles.personDate}>Authored on {authorTimeStr}</Text>
         )}
-        <Text style={styles.personDate}>Committed on 12 Feb 2020 12:00</Text>
+        <Text style={styles.personDate}>Committed on {commitTimeStr}</Text>
       </View>
     </View>
   );
