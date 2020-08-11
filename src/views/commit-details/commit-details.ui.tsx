@@ -25,6 +25,7 @@ interface CommitDetailsUIProps {
   parents: string[];
   onNavToPar: (val: string) => void;
   files: ChangesArrayItem[];
+  onBack: () => void;
 }
 
 export const CommitDetailsUI = ({
@@ -36,6 +37,7 @@ export const CommitDetailsUI = ({
   parents,
   onNavToPar,
   files,
+  onBack,
 }: CommitDetailsUIProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
   const change_addition = useDynamicValue(theme.colors.change_addition);
@@ -57,7 +59,7 @@ export const CommitDetailsUI = ({
     <>
       <AppBar
         leftIcon="back"
-        onLeftSelect={() => {}}
+        onLeftSelect={onBack}
         hasBottomBorder={false}
         rightChild={
           <SharkMenu

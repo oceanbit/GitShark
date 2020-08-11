@@ -53,6 +53,7 @@ export const CommitDetails = () => {
       message={message}
       committer={commit.committer}
       author={commit.author}
+      onBack={() => navigation.goBack()}
       parents={commit.parent}
       sha={commit.oid}
       files={files}
