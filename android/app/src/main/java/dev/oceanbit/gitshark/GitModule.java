@@ -29,6 +29,7 @@ import org.eclipse.jgit.lib.ProgressMonitor;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Locale;
@@ -87,6 +88,9 @@ public class GitModule extends ReactContextBaseJavaModule {
                 String ghToken = "";
                 try {
                     ghToken = keyStoreModule.getPlainText("ghToken");
+                // User is not logged into GH
+                } catch (FileNotFoundException e) {
+                    ;
                 } catch (Throwable e) {
                     e.printStackTrace();
                     promise.reject(e);
