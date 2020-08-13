@@ -1,37 +1,31 @@
 package dev.oceanbit.gitshark;
 
-import android.util.Log;
 import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.reactlibrary.securekeystore.RNSecureKeyStoreModule;
 
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.InvalidRemoteException;
-import org.eclipse.jgit.api.errors.JGitInternalException;
-import org.eclipse.jgit.api.errors.TransportException;
-import org.eclipse.jgit.errors.NotSupportedException;
+import org.eclipse.jgit.api.LogCommand;
+import org.eclipse.jgit.lib.PersonIdent;
 import org.eclipse.jgit.lib.ProgressMonitor;
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.Locale;
 
 /**
@@ -171,6 +165,63 @@ public class GitModule extends ReactContextBaseJavaModule {
         }
     }
 
+    @ReactMethod
+    public void gitLog(String path, Promise promise) {
+        Git git;
+        try {
+            git = Git.open(new File(path));
+        } catch (Throwable e) {
+            promise.reject(e);
+            return;
+        }
+        WritableArray result;
+        LogCommand cmd = git.log();
+        try {
+            Iterable<RevCommit> commits = cmd.call();
+            result = new WritableNativeArray();
+            for (RevCommit commit : commits) {
+                // Prepare data for storage later
+                String oid = commit.toObjectId().toString();
+                String message = commit.getFullMessage();
+                RevCommit[] parents = commit.getParents();
+                PersonIdent authorIdent = commit.getAuthorIdent();
+                PersonIdent committerIdent = commit.getCommitterIdent();
+
+                // Convert parents to id strings
+                WritableArray parentIds = new WritableNativeArray();
+
+                for (RevCommit parent: parents) {
+                    parentIds.pushString(parent.toObjectId().toString());
+                }
+
+                // Convert author to writable map
+                WritableMap author = Arguments.createMap();
+                author.putString("name", authorIdent.getName());
+                author.putString("email", authorIdent.getEmailAddress());
+                author.putInt("timestamp", (int)(authorIdent.getWhen().getTime() / 1000));
+
+                // Convert commiter to writable map
+                WritableMap committer = Arguments.createMap();
+                committer.putString("name", committerIdent.getName());
+                committer.putString("email", committerIdent.getEmailAddress());
+                committer.putInt("timestamp", (int)(committerIdent.getWhen().getTime() / 1000));
+
+                // Write everything to map
+                WritableMap commitMap = Arguments.createMap();
+                commitMap.putString("oid", oid);
+                commitMap.putArray("parent", parentIds);
+                commitMap.putString("message", message);
+                commitMap.putMap("author", author);
+                commitMap.putMap("committer", committer);
+
+                result.pushMap(commitMap);
+            }
+            promise.resolve(result);
+        } catch (Throwable e) {
+            promise.reject(e);
+            return;
+        }
+    }
 
     @NonNull
     public String getName() {
