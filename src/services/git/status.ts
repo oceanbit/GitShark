@@ -1,3 +1,4 @@
+import {NativeModules, Platform} from 'react-native';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 
@@ -5,10 +6,14 @@ export interface ChangesArrayItem {
   fileName: string;
   staged: boolean;
   unstagedChanges: boolean;
-  fileStatus: 'unmodified' | 'added' | 'deleted' | 'modified';
+  fileStatus: 'unmodified' | 'added' | 'deleted' | 'modified' | 'conflicted';
 }
 
 export const getRepoStatus = async (path: string) => {
+  if (Platform.OS === 'android') {
+    return (await NativeModules.GitModule.status(path)) as ChangesArrayItem[];
+  }
+
   const statusArrArr = await git.statusMatrix({
     fs,
     dir: `${path}`,
