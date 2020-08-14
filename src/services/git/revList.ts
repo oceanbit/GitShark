@@ -10,6 +10,7 @@
  */
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
+import {gitLog} from './gitLog';
 
 interface GetDiffNumberProps {
   logList: any[];
@@ -57,14 +58,16 @@ export const revList = async ({
   branchName2,
 }: RevListProps) => {
   const [branch1Log, branch2Log] = await Promise.all([
-    git.log({
-      fs,
-      dir,
+    gitLog({
+      repo: {
+        path: dir,
+      },
       ref: branchName1,
     }),
-    git.log({
-      fs,
-      dir,
+    gitLog({
+      repo: {
+        path: dir,
+      },
       ref: branchName2,
     }),
   ]);

@@ -19,8 +19,11 @@ import com.reactlibrary.securekeystore.RNSecureKeyStoreModule;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.LogCommand;
+import org.eclipse.jgit.lib.Constants;
+import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.PersonIdent;
 import org.eclipse.jgit.lib.ProgressMonitor;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
@@ -168,16 +171,31 @@ public class GitModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void gitLog(String path, Promise promise) {
+        gitLog(path, "", promise);
+    }
+
+    @ReactMethod
+    public void gitLog(String path, String oidRef, Promise promise) {
         Git git;
+        Repository repo;
         try {
             git = Git.open(new File(path));
+            repo = git.getRepository();
         } catch (Throwable e) {
             promise.reject(e);
             return;
         }
         WritableArray result;
-        LogCommand cmd = git.log();
+        ObjectId ref;
         try {
+            if (oidRef.isEmpty()) {
+                ref = repo.resolve(Constants.HEAD);
+            } else {
+                ref = repo.resolve(oidRef);
+            }
+
+            LogCommand cmd = git.log().add(ref);
+
             Iterable<RevCommit> commits = cmd.call();
             result = new WritableNativeArray();
             for (RevCommit commit : commits) {
@@ -191,7 +209,7 @@ public class GitModule extends ReactContextBaseJavaModule {
                 // Convert parents to id strings
                 WritableArray parentIds = new WritableNativeArray();
 
-                for (RevCommit parent: parents) {
+                for (RevCommit parent : parents) {
                     parentIds.pushString(parent.toObjectId().toString());
                 }
 
@@ -199,13 +217,13 @@ public class GitModule extends ReactContextBaseJavaModule {
                 WritableMap author = Arguments.createMap();
                 author.putString("name", authorIdent.getName());
                 author.putString("email", authorIdent.getEmailAddress());
-                author.putInt("timestamp", (int)(authorIdent.getWhen().getTime() / 1000));
+                author.putInt("timestamp", (int) (authorIdent.getWhen().getTime() / 1000));
 
                 // Convert commiter to writable map
                 WritableMap committer = Arguments.createMap();
                 committer.putString("name", committerIdent.getName());
                 committer.putString("email", committerIdent.getEmailAddress());
-                committer.putInt("timestamp", (int)(committerIdent.getWhen().getTime() / 1000));
+                committer.putInt("timestamp", (int) (committerIdent.getWhen().getTime() / 1000));
 
                 // Write everything to map
                 WritableMap commitMap = Arguments.createMap();
@@ -244,7 +262,7 @@ public class GitModule extends ReactContextBaseJavaModule {
 
             // Staged, new file
             Set<String> added = status.getAdded();
-            for (String addFile: added) {
+            for (String addFile : added) {
                 WritableMap fileMap = Arguments.createMap();
                 fileMap.putString("fileName", addFile);
                 fileMap.putBoolean("staged", true);
@@ -259,7 +277,7 @@ public class GitModule extends ReactContextBaseJavaModule {
             // Staged, removed
             Set<String> removed = status.getRemoved();
 
-            for (String untrackFile: untracked) {
+            for (String untrackFile : untracked) {
                 WritableMap fileMap = Arguments.createMap();
                 fileMap.putString("fileName", untrackFile);
                 fileMap.putBoolean("staged", false);
@@ -276,7 +294,7 @@ public class GitModule extends ReactContextBaseJavaModule {
 
             // Staged, modified
             Set<String> changed = status.getChanged();
-            for (String changeFile: changed) {
+            for (String changeFile : changed) {
                 WritableMap fileMap = Arguments.createMap();
                 fileMap.putString("fileName", changeFile);
                 fileMap.putBoolean("staged", true);
@@ -287,7 +305,7 @@ public class GitModule extends ReactContextBaseJavaModule {
 
             // Unstaged, modified
             Set<String> modified = status.getModified();
-            for (String modFile: modified) {
+            for (String modFile : modified) {
                 WritableMap fileMap = Arguments.createMap();
                 fileMap.putString("fileName", modFile);
                 fileMap.putBoolean("staged", false);
@@ -296,7 +314,7 @@ public class GitModule extends ReactContextBaseJavaModule {
                 result.pushMap(fileMap);
             }
 
-            for (String rmFile: removed) {
+            for (String rmFile : removed) {
                 if (untracked.contains(rmFile)) {
                     continue;
                 }
@@ -310,7 +328,7 @@ public class GitModule extends ReactContextBaseJavaModule {
 
             // Unstaged, removed
             Set<String> missing = status.getMissing();
-            for (String missFile: missing) {
+            for (String missFile : missing) {
                 WritableMap fileMap = Arguments.createMap();
                 fileMap.putString("fileName", missFile);
                 fileMap.putBoolean("staged", false);
@@ -321,7 +339,7 @@ public class GitModule extends ReactContextBaseJavaModule {
 
             // Uh oh
             Set<String> conflicting = status.getConflicting();
-            for (String conflictFile: conflicting) {
+            for (String conflictFile : conflicting) {
                 WritableMap fileMap = Arguments.createMap();
                 fileMap.putString("fileName", conflictFile);
                 fileMap.putBoolean("staged", false);
