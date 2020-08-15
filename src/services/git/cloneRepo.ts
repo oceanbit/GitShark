@@ -55,7 +55,7 @@ export const cloneRepo = ({path, name, uri, onProgress}: CloneRepoProps) => {
     .then(() =>
       /**
        * Isomorphic git doesn't fetch as we might expect it to after a clone
-       * @see https://github.com/crutchcorn/GitShark/issues/33
+       * @see https://github.com/oceanbit-dev/GitShark/issues/33
        */
       git.fetch({
         fs,
