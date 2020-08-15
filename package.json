@@ -1,6 +1,6 @@
 {
   "name": "GitShark",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "private": true,
   "scripts": {
     "android": "react-native run-android",

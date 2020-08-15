@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.4](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.3...v0.0.1-alpha.4) (2020-08-15)
+
+
+### Bug Fixes
+
+* "New repository" FAB now displays correct color values ([aeaacbd](https://github.com/crutchcorn/GitShark/commit/aeaacbd86d90f968b8d6c2516bbe53c9e3cdf135)), closes [#42](https://github.com/crutchcorn/GitShark/issues/42)
+* clone works on public repos without logging into GitHub now ([9ac88db](https://github.com/crutchcorn/GitShark/commit/9ac88db657a05dffb4ff30be298abe9a64863eca))
+* user's GitHub name now shows proper color in dark mode ([558f044](https://github.com/crutchcorn/GitShark/commit/558f044ec95982ac9ff18e030f0ddbb9a0188d29))
+
 ### [0.0.1-alpha.3](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.2...v0.0.1-alpha.3) (2020-08-11)
 
 
