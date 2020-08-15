@@ -24,6 +24,9 @@ export const getPushPull = async ({path}: GetPushPullProps) => {
     branchName2: trackedBranch,
   });
 
+  console.log('toPull', toPull.length);
+  console.log('toPush', toPush.length);
+
   return {
     toPush,
     toPull,
