@@ -3,9 +3,10 @@ import {fs} from '@constants';
 import http from 'isomorphic-git/http/web/index.js';
 import {createNewRepo} from './createRepo';
 import {getRepoNameFromUri} from '@utils';
-import {NativeEventEmitter, NativeModules, Platform} from 'react-native';
+import {Platform} from 'react-native';
+import {cloneRepoAndroid} from '@services/git/cloneRepo-android';
 
-interface CloneRepoProps {
+export interface CloneRepoProps {
   path: string;
   name?: string;
   uri: string;
@@ -18,25 +19,7 @@ export const cloneRepo = ({path, name, uri, onProgress}: CloneRepoProps) => {
   const repoDir = `${path}/${repoName}`;
 
   if (Platform.OS === 'android') {
-    const eventEmitter = new NativeEventEmitter(NativeModules.GitModule);
-
-    const eventListener = eventEmitter.addListener(
-      'CloneProgress',
-      (event: {phase: string; loaded: number; total: number}) => {
-        const {phase, loaded, total} = event;
-        onProgress({phase, loaded, total});
-      },
-    );
-
-    return new Promise((resolve, reject) => {
-      NativeModules.GitModule.clone(uri, repoDir)
-        .then(() => {
-          eventListener.remove();
-        })
-        .then(() => createNewRepo(repoDir, repoName))
-        .then(() => resolve())
-        .catch((e: Error) => reject(e));
-    });
+    return cloneRepoAndroid({path, name, uri, onProgress});
   }
 
   /**

@@ -1,6 +1,7 @@
-import {NativeModules, Platform} from 'react-native';
+import {Platform} from 'react-native';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
+import {getRepoStatusAndroid} from './status-android';
 
 export interface ChangesArrayItem {
   fileName: string;
@@ -11,7 +12,7 @@ export interface ChangesArrayItem {
 
 export const getRepoStatus = async (path: string) => {
   if (Platform.OS === 'android') {
-    return (await NativeModules.GitModule.status(path)) as ChangesArrayItem[];
+    return getRepoStatusAndroid(path);
   }
 
   const statusArrArr = await git.statusMatrix({

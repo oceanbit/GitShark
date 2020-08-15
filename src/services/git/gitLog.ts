@@ -1,7 +1,8 @@
 import {fs} from '@constants';
 import {ReduxRepo} from '@entities';
 import git, {ReadCommitResult} from 'isomorphic-git/index.umd.min.js';
-import {NativeModules, Platform} from 'react-native';
+import {Platform} from 'react-native';
+import {gitLogAndroid} from './gitLog-android';
 
 export type GitLogCommit = ReadCommitResult['commit'] & {
   oid: ReadCommitResult['oid'];
@@ -14,23 +15,7 @@ interface GitLogProps {
 
 export const gitLog = async ({repo, ref}: GitLogProps) => {
   if (Platform.OS === 'android') {
-    const res = (await NativeModules.GitModule.gitLog(
-      repo!.path,
-      ref || '',
-    )) as GitLogCommit[];
-
-    const commitRegex = /commit\s*(.*?)\s/;
-
-    return res.map(c => {
-      const [_, oid] = commitRegex.exec(c.oid) || [];
-
-      c.oid = oid;
-      c.parent = c.parent.map(p => {
-        const [_, pOid] = commitRegex.exec(p) || [];
-        return pOid;
-      });
-      return c;
-    });
+    return gitLogAndroid({repo, ref});
   }
 
   const commits = await git.log({
