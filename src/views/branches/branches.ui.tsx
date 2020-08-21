@@ -23,6 +23,7 @@ interface BranchesUIProps {
   remotes: Remotes[];
   remoteBranches: RemoteBranch[];
   onCreateBranch: () => void;
+  onCreateRemote: () => void;
   onDeleteLocalBranch: (branchName: string) => Promise<void>;
   onCheckoutBranch: (branchName: string) => Promise<void>;
   onBranchRename: (props: {
@@ -38,6 +39,7 @@ export const BranchesUI = ({
   remotes,
   remoteBranches,
   onCreateBranch,
+  onCreateRemote,
   onDeleteLocalBranch,
   onCheckoutBranch,
   onBranchRename,
@@ -82,7 +84,7 @@ export const BranchesUI = ({
       <SharkSubheader
         calloutText="Remotes"
         buttonText="Add new"
-        onButtonClick={() => {}}
+        onButtonClick={onCreateRemote}
       />
       {remotes.map(remote => {
         return (

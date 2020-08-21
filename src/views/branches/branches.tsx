@@ -17,14 +17,17 @@ import {BranchesUI} from './branches.ui';
 import {CreateBranchDialog} from './components/create-branch-dialog';
 import {ConfirmCheckoutDialog} from './components/confirm-checkout-dialog';
 import {OnCheckoutActionsDialog} from './components/on-checkout-action-dialog';
+import {AddRemoteDialog} from './components/add-remote-dialog';
 
 export const Branches = () => {
   const [createBranchDialog, setCreateBranchDialog] = React.useState(false);
   // For the branch dialog
+  const [createRemoteDialog, setCreateRemoteDialog] = React.useState(false);
   const [errorStr, setErrorStr] = React.useState('');
   const {localBranches, remoteBranches, remotes} = useSelector(
     (state: RootState) => state.branches,
   );
+  const remoteNames = remotes.map(remote => remote.remote);
   const {unstaged, staged} = useSelector((state: RootState) => state.changes);
   const dispatch = useThunkDispatch();
 
@@ -118,6 +121,7 @@ export const Branches = () => {
         remotes={remotes}
         remoteBranches={remoteBranches}
         onCreateBranch={() => setCreateBranchDialog(true)}
+        onCreateRemote={() => setCreateRemoteDialog(true)}
         onDeleteLocalBranch={onLocalBranchDelete}
         onCheckoutBranch={onCheckoutBranch}
         onBranchRename={onBranchRename}
@@ -131,6 +135,15 @@ export const Branches = () => {
         onBranchCreate={onBranchCreate}
         branches={localBranches || []}
         errorStr={errorStr}
+      />
+      <AddRemoteDialog
+        visible={createRemoteDialog}
+        onDismiss={() => {
+          setCreateRemoteDialog(false);
+        }}
+        onRemoteCreate={() => {}}
+        remotes={remoteNames}
+        errorStr={''}
       />
       <ConfirmCheckoutDialog
         visible={!!showConfirmCheckout}
