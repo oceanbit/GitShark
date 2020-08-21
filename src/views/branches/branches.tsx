@@ -18,6 +18,7 @@ import {CreateBranchDialog} from './components/create-branch-dialog';
 import {ConfirmCheckoutDialog} from './components/confirm-checkout-dialog';
 import {OnCheckoutActionsDialog} from './components/on-checkout-action-dialog';
 import {AddRemoteDialog} from './components/add-remote-dialog';
+import {OnCreateRemoteActionDialog} from './components/on-create-remote-action-dialog';
 
 export const Branches = () => {
   const [createBranchDialog, setCreateBranchDialog] = React.useState(false);
@@ -77,6 +78,10 @@ export const Branches = () => {
 
   // The branch name of which to "confirm" the checkout
   const [showConfirmCheckout, setConfirmCheckout] = React.useState('');
+  const [addRemoteMeta, setAddRemoteMeta] = React.useState<{
+    remoteName?: string;
+    remoteURL?: string;
+  }>({});
 
   const onCheckoutBranch = React.useCallback(
     async (branchName: string) => {
@@ -141,9 +146,16 @@ export const Branches = () => {
         onDismiss={() => {
           setCreateRemoteDialog(false);
         }}
-        onRemoteCreate={() => {}}
+        onRemoteCreate={props => setAddRemoteMeta(props)}
         remotes={remoteNames}
         errorStr={''}
+      />
+      <OnCreateRemoteActionDialog
+        onDismiss={() => setAddRemoteMeta({})}
+        visible={!!addRemoteMeta.remoteName && !!addRemoteMeta.remoteURL}
+        repo={repo}
+        dispatch={dispatch}
+        {...addRemoteMeta}
       />
       <ConfirmCheckoutDialog
         visible={!!showConfirmCheckout}
