@@ -79,12 +79,11 @@ export const BranchesUI = ({
           );
         })}
       <SharkDivider style={styles.remoteDivider} />
-      {/*<SharkSubheader*/}
-      {/*    calloutText="Remotes"*/}
-      {/*    buttonText="Add new"*/}
-      {/*    onButtonClick={() => {}}*/}
-      {/*/>*/}
-      <SharkSubheader calloutText="Remotes" />
+      <SharkSubheader
+        calloutText="Remotes"
+        buttonText="Add new"
+        onButtonClick={() => {}}
+      />
       {remotes.map(remote => {
         return (
           <>
