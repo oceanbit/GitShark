@@ -1,14 +1,12 @@
 import * as React from 'react';
-import {Text, TouchableWithoutFeedback, View} from 'react-native';
 import {AppDialog} from '@components/dialog';
 import {SharkTextInput} from '@components/shark-text-input';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkCheckbox} from '@components/shark-checkbox';
 import {theme} from '@constants';
 
-interface AddRemoteDialogProps {
+interface CreateRemoteDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
   onRemoteCreate: (props: {remoteName: string; remoteURL: string}) => void;
@@ -17,13 +15,13 @@ interface AddRemoteDialogProps {
   errorStr: string;
 }
 
-export const AddRemoteDialog = ({
+export const CreateRemoteDialog = ({
   onDismiss,
   visible,
   onRemoteCreate,
   remotes,
   errorStr,
-}: AddRemoteDialogProps) => {
+}: CreateRemoteDialogProps) => {
   const styles = useDynamicStyleSheet(dynamicStyles);
 
   // const [branchName, setBranchName] = React.useState('');
@@ -65,6 +63,7 @@ export const AddRemoteDialog = ({
             placeholder={'Remote Name'}
             value={remoteName}
             onChangeText={val => setRemoteName(val)}
+            style={styles.secondInput}
             errorStr={isNameTaken ? 'Remote name is already taken' : ''}
           />
           {!!errorStr && (
@@ -101,16 +100,7 @@ const dynamicStyles = new DynamicStyleSheet({
     borderWidth: theme.borders.thick,
     marginRight: theme.spacing.m,
   },
-  checkboxView: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  checkboxContainer: {
+  secondInput: {
     marginTop: theme.spacing.xs,
-  },
-  checkoutText: {
-    color: theme.colors.on_surface,
-    ...theme.textStyles.body_01,
   },
 });

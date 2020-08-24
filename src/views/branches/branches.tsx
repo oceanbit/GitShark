@@ -7,7 +7,6 @@ import {useSelector} from 'react-redux';
 import {getBranchData, getLocalBranches, RootState} from '@store';
 import {useThunkDispatch} from '@hooks';
 import {
-  checkoutBranch,
   createBranch,
   deleteLocalBranch,
   renameBranch,
@@ -17,7 +16,7 @@ import {BranchesUI} from './branches.ui';
 import {CreateBranchDialog} from './components/create-branch-dialog';
 import {ConfirmCheckoutDialog} from './components/confirm-checkout-dialog';
 import {OnCheckoutActionsDialog} from './components/on-checkout-action-dialog';
-import {AddRemoteDialog} from './components/add-remote-dialog';
+import {CreateRemoteDialog} from './components/create-remote-dialog';
 import {OnCreateRemoteActionDialog} from './components/on-create-remote-action-dialog';
 
 export const Branches = () => {
@@ -141,7 +140,7 @@ export const Branches = () => {
         branches={localBranches || []}
         errorStr={errorStr}
       />
-      <AddRemoteDialog
+      <CreateRemoteDialog
         visible={createRemoteDialog}
         onDismiss={() => {
           setCreateRemoteDialog(false);

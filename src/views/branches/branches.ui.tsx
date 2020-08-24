@@ -93,7 +93,11 @@ export const BranchesUI = ({
             <TouchableRipple
               key={remote.remote}
               style={styles.dropDownHeader}
-              onPress={() => setRemoteExpanded(remote.remote)}>
+              onPress={() =>
+                setRemoteExpanded(v =>
+                  v === remote.remote ? '' : remote.remote,
+                )
+              }>
               <>
                 <AnimatedDropdownArrow
                   setExpanded={val =>
