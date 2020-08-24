@@ -23,6 +23,7 @@ interface BranchesUIProps {
   remotes: Remotes[];
   remoteBranches: RemoteBranch[];
   onCreateBranch: () => void;
+  onCreateRemote: () => void;
   onDeleteLocalBranch: (branchName: string) => Promise<void>;
   onCheckoutBranch: (branchName: string) => Promise<void>;
   onBranchRename: (props: {
@@ -38,6 +39,7 @@ export const BranchesUI = ({
   remotes,
   remoteBranches,
   onCreateBranch,
+  onCreateRemote,
   onDeleteLocalBranch,
   onCheckoutBranch,
   onBranchRename,
@@ -49,7 +51,7 @@ export const BranchesUI = ({
    * This should be refactored into their own components so that each can be expanded and
    * shrunk on their own
    */
-  const [expanded, setExpanded] = React.useState(false);
+  const [remoteExpanded, setRemoteExpanded] = React.useState('');
 
   return (
     <ScrollView style={styles.container}>
@@ -79,22 +81,28 @@ export const BranchesUI = ({
           );
         })}
       <SharkDivider style={styles.remoteDivider} />
-      {/*<SharkSubheader*/}
-      {/*    calloutText="Remotes"*/}
-      {/*    buttonText="Add new"*/}
-      {/*    onButtonClick={() => {}}*/}
-      {/*/>*/}
-      <SharkSubheader calloutText="Remotes" />
+      <SharkSubheader
+        calloutText="Remotes"
+        buttonText="Add new"
+        onButtonClick={onCreateRemote}
+      />
       {remotes.map(remote => {
+        const expanded = remoteExpanded === remote.remote;
         return (
           <>
             <TouchableRipple
               key={remote.remote}
               style={styles.dropDownHeader}
-              onPress={() => setExpanded(v => !v)}>
+              onPress={() =>
+                setRemoteExpanded(v =>
+                  v === remote.remote ? '' : remote.remote,
+                )
+              }>
               <>
                 <AnimatedDropdownArrow
-                  setExpanded={setExpanded}
+                  setExpanded={val =>
+                    setRemoteExpanded(val ? remote.remote : '')
+                  }
                   expanded={expanded}
                 />
                 {/* This is a mock, we'll need to replace it with the list of real remotes soon */}

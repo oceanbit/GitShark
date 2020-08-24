@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {createConnection, getConnectionManager} from 'typeorm';
-import {Branch, Commit, Remote, Repo} from '@entities';
+import {Commit, Repo} from '@entities';
 
 export const setupDatabase = createAsyncThunk(
   'database/setupDatabase',
@@ -12,7 +12,7 @@ export const setupDatabase = createAsyncThunk(
         location: 'default',
         logging: ['error', 'query', 'schema'],
         synchronize: true,
-        entities: [Branch, Commit, Remote, Repo],
+        entities: [Commit, Repo],
       });
     } catch (err) {
       if (err.name === 'AlreadyHasActiveConnectionError') {

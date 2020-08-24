@@ -1,8 +1,9 @@
 import * as React from 'react';
-import {KeyboardAvoidingView, Text, View} from 'react-native';
+import {Dimensions, KeyboardAvoidingView, Text, View} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
 import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {useKeyboard} from '@react-native-community/hooks';
 
 interface AppDialogProps {
   title: string;
@@ -29,7 +30,15 @@ export const AppDialog = ({
   actions,
   main,
 }: AppDialogProps) => {
+  const {height} = Dimensions.get('window');
+
+  const keyboard = useKeyboard();
+
   const styles = useDynamicStyleSheet(dynamicStyles);
+
+  const additionalTop = keyboard.keyboardShown
+    ? height / 4 - keyboard.keyboardHeight - 10
+    : undefined;
 
   return (
     <Portal>
@@ -37,13 +46,11 @@ export const AppDialog = ({
         visible={visible}
         dismissable={dismissable}
         onDismiss={onDismiss}
-        style={styles.dialogContainer}>
-        <KeyboardAvoidingView behavior="position" enabled>
-          <Text style={styles.dialogTitle}>{title}</Text>
-          <Text style={styles.mainText}>{text}</Text>
-          {main}
-          <View style={styles.dialogActions}>{actions}</View>
-        </KeyboardAvoidingView>
+        style={[styles.dialogContainer, {top: additionalTop}]}>
+        <Text style={styles.dialogTitle}>{title}</Text>
+        <Text style={styles.mainText}>{text}</Text>
+        {main}
+        <View style={styles.dialogActions}>{actions}</View>
       </Dialog>
     </Portal>
   );

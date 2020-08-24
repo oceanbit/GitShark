@@ -7,7 +7,6 @@ import {useSelector} from 'react-redux';
 import {getBranchData, getLocalBranches, RootState} from '@store';
 import {useThunkDispatch} from '@hooks';
 import {
-  checkoutBranch,
   createBranch,
   deleteLocalBranch,
   renameBranch,
@@ -17,14 +16,18 @@ import {BranchesUI} from './branches.ui';
 import {CreateBranchDialog} from './components/create-branch-dialog';
 import {ConfirmCheckoutDialog} from './components/confirm-checkout-dialog';
 import {OnCheckoutActionsDialog} from './components/on-checkout-action-dialog';
+import {CreateRemoteDialog} from './components/create-remote-dialog';
+import {OnCreateRemoteActionDialog} from './components/on-create-remote-action-dialog';
 
 export const Branches = () => {
   const [createBranchDialog, setCreateBranchDialog] = React.useState(false);
   // For the branch dialog
+  const [createRemoteDialog, setCreateRemoteDialog] = React.useState(false);
   const [errorStr, setErrorStr] = React.useState('');
   const {localBranches, remoteBranches, remotes} = useSelector(
     (state: RootState) => state.branches,
   );
+  const remoteNames = remotes.map(remote => remote.remote);
   const {unstaged, staged} = useSelector((state: RootState) => state.changes);
   const dispatch = useThunkDispatch();
 
@@ -74,6 +77,10 @@ export const Branches = () => {
 
   // The branch name of which to "confirm" the checkout
   const [showConfirmCheckout, setConfirmCheckout] = React.useState('');
+  const [addRemoteMeta, setAddRemoteMeta] = React.useState<{
+    remoteName?: string;
+    remoteURL?: string;
+  }>({});
 
   const onCheckoutBranch = React.useCallback(
     async (branchName: string) => {
@@ -118,6 +125,7 @@ export const Branches = () => {
         remotes={remotes}
         remoteBranches={remoteBranches}
         onCreateBranch={() => setCreateBranchDialog(true)}
+        onCreateRemote={() => setCreateRemoteDialog(true)}
         onDeleteLocalBranch={onLocalBranchDelete}
         onCheckoutBranch={onCheckoutBranch}
         onBranchRename={onBranchRename}
@@ -131,6 +139,22 @@ export const Branches = () => {
         onBranchCreate={onBranchCreate}
         branches={localBranches || []}
         errorStr={errorStr}
+      />
+      <CreateRemoteDialog
+        visible={createRemoteDialog}
+        onDismiss={() => {
+          setCreateRemoteDialog(false);
+        }}
+        onRemoteCreate={props => setAddRemoteMeta(props)}
+        remotes={remoteNames}
+        errorStr={''}
+      />
+      <OnCreateRemoteActionDialog
+        onDismiss={() => setAddRemoteMeta({})}
+        visible={!!addRemoteMeta.remoteName && !!addRemoteMeta.remoteURL}
+        repo={repo}
+        dispatch={dispatch}
+        {...addRemoteMeta}
       />
       <ConfirmCheckoutDialog
         visible={!!showConfirmCheckout}

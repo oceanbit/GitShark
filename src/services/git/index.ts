@@ -2,6 +2,7 @@ export * from './checkoutBranch';
 export * from './cloneRepo';
 export * from './commit';
 export * from './createBranch';
+export * from './createRemote';
 export * from './createRepo';
 export * from './deleteLocalBranch';
 export * from './deleteRepo';
