@@ -51,7 +51,7 @@ export const BranchesUI = ({
    * This should be refactored into their own components so that each can be expanded and
    * shrunk on their own
    */
-  const [expanded, setExpanded] = React.useState(false);
+  const [remoteExpanded, setRemoteExpanded] = React.useState('');
 
   return (
     <ScrollView style={styles.container}>
@@ -87,15 +87,18 @@ export const BranchesUI = ({
         onButtonClick={onCreateRemote}
       />
       {remotes.map(remote => {
+        const expanded = remoteExpanded === remote.remote;
         return (
           <>
             <TouchableRipple
               key={remote.remote}
               style={styles.dropDownHeader}
-              onPress={() => setExpanded(v => !v)}>
+              onPress={() => setRemoteExpanded(remote.remote)}>
               <>
                 <AnimatedDropdownArrow
-                  setExpanded={setExpanded}
+                  setExpanded={val =>
+                    setRemoteExpanded(val ? remote.remote : '')
+                  }
                   expanded={expanded}
                 />
                 {/* This is a mock, we'll need to replace it with the list of real remotes soon */}
