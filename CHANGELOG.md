@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.5](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.4...v0.0.1-alpha.5) (2020-08-24)
+
+
+### Features
+
+* add Remote functionality ([f287955](https://github.com/crutchcorn/GitShark/commit/f287955c4906b0c21be1289a83304813c09670cc))
+
+
+### Bug Fixes
+
+* remotes don't all expand when one does now ([164fa52](https://github.com/crutchcorn/GitShark/commit/164fa522baa21a8f23f15140fdd9d311525e7e24))
+
 ### [0.0.1-alpha.4](https://github.com/oceanbit-dev/GitShark/compare/v0.0.1-alpha.3...v0.0.1-alpha.4) (2020-08-15)
 
 
