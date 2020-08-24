@@ -40,6 +40,9 @@ export const AddRemoteDialog = ({
     setRemoteName('');
     setRemoteURL('');
     onDismiss(bool);
+    if (bool) {
+      onRemoteCreate({remoteName, remoteURL});
+    }
   };
 
   const isNameTaken = remotes.includes(remoteName);
@@ -78,7 +81,7 @@ export const AddRemoteDialog = ({
             text={'Cancel'}
           />
           <SharkButton
-            onPress={() => onRemoteCreate({remoteName, remoteURL})}
+            onPress={() => parentOnDismiss(true)}
             type="primary"
             disabled={isNameTaken}
             text={'Create'}
