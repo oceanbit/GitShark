@@ -30,7 +30,7 @@ export const createRemote = async ({
   await fetch({
     dir: repo.path,
     remote: remoteName,
-    fetchAll: false,
+    fetchAll: true,
     prune: false,
     onProgress,
     repo,
