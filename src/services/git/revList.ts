@@ -10,6 +10,9 @@
  */
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
+import {gitLog} from './gitLog';
+import {Platform} from 'react-native';
+import {revListAndroid} from './revList-android';
 
 interface GetDiffNumberProps {
   logList: any[];
@@ -45,7 +48,7 @@ const getDiffNumber = async ({
   return diffArr;
 };
 
-interface RevListProps {
+export interface RevListProps {
   dir: string;
   branchName1: string;
   branchName2: string;
@@ -56,15 +59,22 @@ export const revList = async ({
   branchName1,
   branchName2,
 }: RevListProps) => {
+  if (Platform.OS === 'android') {
+    console.log('DOING REVLIST ON ANDROID');
+    return await revListAndroid({dir, branchName1, branchName2});
+  }
+
   const [branch1Log, branch2Log] = await Promise.all([
-    git.log({
-      fs,
-      dir,
+    gitLog({
+      repo: {
+        path: dir,
+      },
       ref: branchName1,
     }),
-    git.log({
-      fs,
-      dir,
+    gitLog({
+      repo: {
+        path: dir,
+      },
       ref: branchName2,
     }),
   ]);

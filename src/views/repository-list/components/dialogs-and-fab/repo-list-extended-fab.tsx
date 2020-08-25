@@ -6,7 +6,13 @@ import {NewRepoFab} from './new-repo-fab';
 import {FabActions} from './fab-actions';
 import {theme} from '@constants';
 import {ExtendedActionFab} from '@components/extended-action-fab';
-import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
+import {
+  DynamicStyleSheet,
+  useDynamicValue,
+  ColorSchemeContext,
+  useDarkMode,
+} from 'react-native-dynamic';
+
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export interface RepoListExtendedFabProps {
@@ -23,6 +29,7 @@ export const RepoListExtendedFab = ({
   isLoading,
 }: RepoListExtendedFabProps) => {
   const insets = useSafeAreaInsets();
+  const isDark = useDarkMode();
 
   const styles = useDynamicValue(dynamicStyles);
   const fabBottom = React.useRef(new Animated.Value(16));
@@ -31,19 +38,26 @@ export const RepoListExtendedFab = ({
 
   const newRepoFabCB = React.useCallback(
     (toggleAnimation: ExtendedFabBase['toggleAnimation']) => (
-      <NewRepoFab toggleAnimation={toggleAnimation} />
+      // I have no idea why this is happening, but without this provider, the `theme` is always set to the system value
+      // and will not change when the user toggles in settings. If you're reading this and can figure out why this is,
+      // please open a GitHub issue and teach us! <3 :)
+      <ColorSchemeContext.Provider value={isDark ? 'dark' : 'light'}>
+        <NewRepoFab toggleAnimation={toggleAnimation} />
+      </ColorSchemeContext.Provider>
     ),
-    [],
+    [isDark],
   );
 
   const actionFabCB = React.useCallback(
     (toggleAnimation: ExtendedFabBase['toggleAnimation']) => (
-      <FabActions
-        toggleAnimation={toggleAnimation}
-        onSelect={val => setSelectedAction(val)}
-      />
+      <ColorSchemeContext.Provider value={isDark ? 'dark' : 'light'}>
+        <FabActions
+          toggleAnimation={toggleAnimation}
+          onSelect={val => setSelectedAction(val)}
+        />
+      </ColorSchemeContext.Provider>
     ),
-    [setSelectedAction],
+    [isDark, setSelectedAction],
   );
 
   React.useEffect(() => {

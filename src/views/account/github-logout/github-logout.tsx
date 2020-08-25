@@ -33,6 +33,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   callout: {
     ...theme.textStyles.callout,
+    color: theme.colors.on_surface,
   },
   body2: {
     ...theme.textStyles.body_02,
