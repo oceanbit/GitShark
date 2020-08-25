@@ -2,7 +2,7 @@ import * as React from 'react';
 import {AppDialog} from '@components/dialog';
 import {SharkTextInput} from '@components/shark-text-input';
 import {SharkButton} from '@components/shark-button';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 
 interface RenameBranchDialogProps {
@@ -19,7 +19,7 @@ export const RenameBranchDialog = ({
   onBranchRename,
   branches,
 }: RenameBranchDialogProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [branchName, setBranchName] = React.useState('');
 

@@ -1,5 +1,5 @@
 import {theme} from '@constants';
-import {DynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet} from 'react-native-dynamic';
 
 export const dynamicStyles = new DynamicStyleSheet({
   cardContainer: {

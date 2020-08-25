@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {View} from 'react-native';
-import {useDynamicValue} from 'react-native-dark-mode';
+import {useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 
 interface SharkSafeTopProps {

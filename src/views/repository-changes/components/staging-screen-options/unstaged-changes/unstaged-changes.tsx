@@ -2,7 +2,6 @@ import * as React from 'react';
 import {ScrollView, View} from 'react-native';
 import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
 import {ChangesArrayItem} from '@services';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {SharkDivider} from '@components/shark-divider';
 import {FileActionsBar} from '../../file-actions-bar';
 
@@ -19,7 +18,6 @@ export const UnstagedChanges = ({
   onDiscard,
   onIgnore,
 }: UnstagedChangesProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
   const [selectedUnstagedChanges, setSelectedUnstagedChanges] = React.useState<
     ChangesArrayItem[]
   >([]);
@@ -68,7 +66,7 @@ export const UnstagedChanges = ({
           );
           return (
             <React.Fragment key={props.fileName}>
-              <View style={styles.changeItem}>
+              <View>
                 <FileChangeListItemWithCheckbox
                   isChecked={isChecked}
                   onToggle={() => toggleSelected(props)}
@@ -83,7 +81,3 @@ export const UnstagedChanges = ({
     </>
   );
 };
-
-const dynamicStyles = new DynamicStyleSheet({
-  changeItem: {},
-});

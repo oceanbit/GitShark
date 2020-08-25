@@ -12,10 +12,10 @@ import {
   SetDarkModeContext,
   StyleOfStagingContext,
   theme,
-} from '../../constants';
-import {SharkButtonToggleGroup} from '../../components/shark-button-toggle-group';
-import {AppBar} from '../../components/app-bar';
-import {SharkSubheader} from '../../components/shark-subheader';
+} from '@constants';
+import {SharkButtonToggleGroup} from '@components/shark-button-toggle-group';
+import {AppBar} from '@components/app-bar';
+import {SharkSubheader} from '@components/shark-subheader';
 import {useNavigation} from '@react-navigation/native';
 import {SlideUpDownSettingsAnimation} from './components/slide-up-down-settings-animation';
 import SplitLight from '@assets/images/split.png';
@@ -23,16 +23,15 @@ import SplitDark from '@assets/images/split_dark.png';
 import {
   DynamicStyleSheet,
   useDarkMode,
-  useDynamicStyleSheet,
   useDynamicValue,
-} from 'react-native-dark-mode';
-import {SharkRadio} from '../../components/shark-radio';
+} from 'react-native-dynamic';
+import {SharkRadio} from '@components/shark-radio';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {AccountButton} from './account-button/account-button';
 
 export const Settings = () => {
   const isDark = useDarkMode();
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
 
   const history = useNavigation();

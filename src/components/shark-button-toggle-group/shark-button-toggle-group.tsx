@@ -1,10 +1,6 @@
 import * as React from 'react';
 import {StyleProp, ViewStyle} from 'react-native';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 import ButtonToggleGroup from 'react-native-button-toggle-group';
 
@@ -21,7 +17,7 @@ export const SharkButtonToggleGroup = ({
   onSelect,
   style = {},
 }: SharkButtonToggleGroupProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const primary = useDynamicValue(theme.colors.primary);
   const on_primary = useDynamicValue(theme.colors.on_primary);

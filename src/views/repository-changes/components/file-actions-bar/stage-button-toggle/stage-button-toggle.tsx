@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Animated, StyleProp, View, ViewStyle} from 'react-native';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkButton} from '@components/shark-button';
 
 interface StageButtonToggleProps {
@@ -20,7 +20,7 @@ export const StageButtonToggle = ({
   onStage,
   disabled,
 }: StageButtonToggleProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   /**
    * To make sure the content does not appear to shrink visually

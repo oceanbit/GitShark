@@ -12,7 +12,8 @@ const RepositoryListDemo = ({...props}: any) => {
         navigateToSettings={() => {}}
         repos={[]}
         findRepos={() => Promise.resolve()}
-        renameRepo={() => Promise.resolve()}
+        renameRepo={() => {}}
+        deleteRepo={() => {}}
       />
     </StorybookProvider>
   );

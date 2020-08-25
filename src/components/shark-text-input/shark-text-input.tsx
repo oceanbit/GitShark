@@ -9,11 +9,7 @@ import {
 } from 'react-native';
 import {theme} from '@constants';
 import {Icon} from '@components/shark-icon';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {ErrorMessageBox} from '../error-message-box';
 
 interface SharkTextInputProps {
@@ -43,7 +39,7 @@ export const SharkTextInput = ({
   keyboardType,
 }: SharkTextInputProps) => {
   const [isFocused, setIsFocused] = React.useState(false);
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const surfaceSecondary = useDynamicValue(theme.colors.on_surface_secondary);
   const accent = useDynamicValue(theme.colors.primary);
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {SharkIconButton} from '../shark-icon-button';
 import {theme} from '@constants';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkDivider} from '../shark-divider';
 
 interface AppBarProps {
@@ -24,7 +24,7 @@ export const AppBar = ({
   style = {},
   hasBottomBorder = true,
 }: AppBarProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   return (
     <>

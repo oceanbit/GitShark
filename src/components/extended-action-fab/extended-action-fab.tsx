@@ -4,7 +4,7 @@ import {MutableRefObject} from 'react';
 import {theme} from '@constants';
 import {Surface} from 'react-native-paper';
 import {NavigationAwarePortal} from '../navigation-aware-portal';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 type ActionFabReactNode = (toggleAnimation: () => void) => React.ReactNode;
 
@@ -21,7 +21,7 @@ export const ExtendedActionFab = ({
   fabBottom: fabBottomProps,
   scale: scaleProps,
 }: ExtendedActionFabProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const [extended, setExtended] = React.useState(false);
   const [fabSize, setFabSize] = React.useState({height: 0, width: 0});
   const [fabActionSize, setFabActionSize] = React.useState({

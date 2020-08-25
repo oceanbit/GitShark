@@ -5,7 +5,7 @@ import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {SharkButton} from '@components/shark-button';
-import {useDynamicValue} from 'react-native-dark-mode';
+import {useDynamicValue} from 'react-native-dynamic';
 
 interface ProgressErrorDialogProps {
   onDismiss: (didUpdate: boolean) => void;

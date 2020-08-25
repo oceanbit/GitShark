@@ -2,11 +2,7 @@ import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import * as React from 'react';
 import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 interface ErrorMessageBoxProps {
   message: string;
@@ -17,7 +13,7 @@ export const ErrorMessageBox = ({
   message,
   style = {},
 }: ErrorMessageBoxProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const error = useDynamicValue(theme.colors.error);
 
   return (

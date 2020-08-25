@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {AppDialog} from '@components/dialog';
 import {SharkButton} from '@components/shark-button';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 
 interface ConfirmCheckoutDialogProps {
@@ -13,7 +13,7 @@ export const ConfirmCheckoutDialog = ({
   onDismiss,
   visible,
 }: ConfirmCheckoutDialogProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const parentOnDismiss = (bool: boolean) => {
     onDismiss(bool);

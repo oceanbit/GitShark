@@ -3,7 +3,7 @@ import {AppDialog} from '@components/dialog';
 import {SharkTextInput} from '@components/shark-text-input';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {SharkButton} from '@components/shark-button';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 
 interface CreateRemoteDialogProps {
@@ -22,7 +22,7 @@ export const CreateRemoteDialog = ({
   remotes,
   errorStr,
 }: CreateRemoteDialogProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   // const [branchName, setBranchName] = React.useState('');
   const [remoteName, setRemoteName] = React.useState('');

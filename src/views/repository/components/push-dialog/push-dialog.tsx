@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {SharkButton} from '@components/shark-button';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {Picker} from '@react-native-community/picker';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {RemoteBranch} from '@types';
@@ -34,7 +34,7 @@ export const PushDialog = ({
   currentBranch,
   trackedBranch,
 }: PushDialogProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [branch, setBranch] = React.useState(currentBranch);
   const [destination, setDestination] = React.useState(

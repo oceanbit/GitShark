@@ -1,10 +1,6 @@
 import * as React from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {CommitDetailsHeader} from './components/commit-details-header';
 import {AppBar} from '@components/app-bar';
 import {SharkMenu} from '@components/shark-menu';
@@ -39,7 +35,7 @@ export const CommitDetailsUI = ({
   files,
   onBack,
 }: CommitDetailsUIProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const change_addition = useDynamicValue(theme.colors.change_addition);
   const change_removal = useDynamicValue(theme.colors.change_removal);
   const change_mixed = useDynamicValue(theme.colors.change_mixed);
@@ -77,7 +73,7 @@ export const CommitDetailsUI = ({
         }
       />
 
-      <ScrollView style={styles.container}>
+      <ScrollView>
         <CommitDetailsHeader
           expanded={headerExpanded}
           setExpanded={setHeaderExpanded}
@@ -138,7 +134,6 @@ export const CommitDetailsUI = ({
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  container: {},
   changesHeader: {
     padding: theme.spacing.m,
     flexDirection: 'row',

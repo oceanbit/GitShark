@@ -3,11 +3,7 @@ import {theme} from '@constants';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {Icon} from '@components/shark-icon';
 import {createStackNavigator} from '@react-navigation/stack';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {SharkSafeTop} from '@components/shark-safe-top';
 import {RenameRepositoryDialog} from '@components/rename-repository-dialog';
@@ -76,7 +72,7 @@ export const RepositoryUI = ({
 
   const insets = useSafeAreaInsets();
 
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
   const on_surface_secondary = useDynamicValue(
     theme.colors.on_surface_secondary,

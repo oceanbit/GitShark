@@ -1,10 +1,6 @@
 import * as React from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {CommitPill} from '@components/commit-pill';
 import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
@@ -20,7 +16,7 @@ export const CommitDetailsMoreInfo = ({
   parents,
   onNavToPar,
 }: CommitDetailsMoreInfoProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const surfaceSecondary = useDynamicValue(theme.colors.on_surface_secondary);
 
   const [showCopied, setShowCopied] = React.useState(false);

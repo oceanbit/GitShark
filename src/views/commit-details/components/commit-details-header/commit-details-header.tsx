@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Animated, Text, View} from 'react-native';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {CommitDetailsDualAuthor} from './commit-detail-dual-author';
 import {CommitDetailsSingleAuthor} from './commit-detail-single-author';
 import {theme} from '@constants';
@@ -38,7 +38,7 @@ export const CommitDetailsHeader = ({
   parents,
   onNavToPar,
 }: CommitDetailsHeaderProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const [showMoreInfoOpacity] = React.useState(new Animated.Value(0));
   const [showLessInfoOpacity] = React.useState(new Animated.Value(0));
 
@@ -75,7 +75,7 @@ export const CommitDetailsHeader = ({
   }, [expanded, showMoreInfoOpacity, showLessInfoOpacity]);
 
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.commitStyle}>{title}</Text>
       {!!message && (
         <CommitMessageDropdown
@@ -135,7 +135,6 @@ export const CommitDetailsHeader = ({
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  container: {},
   commitStyle: {
     ...theme.textStyles.callout,
     marginHorizontal: theme.spacing.m,

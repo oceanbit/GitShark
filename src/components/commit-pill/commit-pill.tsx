@@ -1,10 +1,6 @@
 import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 import {Icon} from '@components/shark-icon';
 
@@ -16,7 +12,7 @@ interface CommitPillProps {
 }
 
 export const CommitPill = ({isGitHub, name, color, style}: CommitPillProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const on_surface = useDynamicValue(theme.colors.on_surface);
 
   return (

@@ -4,14 +4,13 @@
  */
 import * as React from 'react';
 import {ScrollView, Text} from 'react-native';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkSubheader} from '@components/shark-subheader';
 import {SharkDivider} from '@components/shark-divider';
 import {BranchListItem} from './components/branch-list-item';
 import {RemoteBranchListItem} from './components/remote-branch-list-item';
 import {DropdownContent} from '@components/dropdown-content';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
-import {SharkIconButton} from '@components/shark-icon-button';
 import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {RemoteBranch, Remotes} from '@types';
@@ -44,7 +43,7 @@ export const BranchesUI = ({
   onCheckoutBranch,
   onBranchRename,
 }: BranchesUIProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   /**
    * This currently is the "expanded" prop for ALL branches and remotes and everything else
@@ -54,7 +53,7 @@ export const BranchesUI = ({
   const [remoteExpanded, setRemoteExpanded] = React.useState('');
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView>
       <SharkSubheader
         calloutText="Local"
         buttonText="Add new"
@@ -134,7 +133,6 @@ export const BranchesUI = ({
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  container: {},
   remoteBranch: {
     paddingLeft: 56,
   },

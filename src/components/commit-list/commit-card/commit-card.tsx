@@ -6,11 +6,7 @@ import {CommitCardPushPull} from './commit-card-push-pull';
 import dayjs from 'dayjs';
 import {getCommitHeaderBody, GitLogCommit} from '@services';
 import {SharkProfilePic} from '../../shark-profile-pic';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 interface CommitCardProps {
   commit: GitLogCommit;
@@ -25,7 +21,7 @@ export const CommitCard = ({
   commitsToPush,
   commitsToPull,
 }: CommitCardProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const rippleColor = useDynamicValue(theme.colors.ripple_surface);
 

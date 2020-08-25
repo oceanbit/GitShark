@@ -2,11 +2,7 @@ import {View} from 'react-native';
 import * as React from 'react';
 import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 interface CommitCardPushPullProps {
   needsPushing?: boolean;
@@ -18,7 +14,7 @@ export const CommitCardPushPull = ({
   needsPulling,
 }: CommitCardPushPullProps) => {
   const accent = useDynamicValue(theme.colors.primary);
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   if (!needsPushing && !needsPulling) {
     return null;

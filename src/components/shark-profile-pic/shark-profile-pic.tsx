@@ -1,14 +1,11 @@
 import * as React from 'react';
 import {Image, ImagePropsBase, ImageStyle, StyleProp, View} from 'react-native';
 import {theme} from '@constants';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {Icon} from '@components/shark-icon';
 
-import defaultProfPic from '@assets/images/default-profile-pic.png';
+// Cannot use `import` as it breaks in storybook
+const defaultProfPic = require('../../../assets/images/default-profile-pic.png');
 
 interface SharkProfilePicProps {
   source?: ImagePropsBase['source'] | null;
@@ -23,7 +20,7 @@ export const SharkProfilePic = ({
   style = {},
   showGHLogo,
 }: SharkProfilePicProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const on_surface = useDynamicValue(theme.colors.on_surface);
 
   const sizeStyle = {

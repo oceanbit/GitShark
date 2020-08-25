@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {Text, View} from 'react-native';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkButton} from '@components/shark-button';
 import {theme, UserContext} from '@constants';
 
 export const GitHubLogout = () => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const {gitHubUser, logoutGitHub} = React.useContext(UserContext);
 

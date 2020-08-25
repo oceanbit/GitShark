@@ -2,12 +2,7 @@ import {Animated, View} from 'react-native';
 import * as React from 'react';
 import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
-import {SharkIconButton} from '@components/shark-icon-button';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 import {SharkDivider} from '@components/shark-divider';
 
@@ -28,7 +23,7 @@ export const HistoryBranchDropdown = ({
   expanded,
   setExpanded,
 }: HistoryBranchDropdownProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const rippleColor = useDynamicValue(theme.colors.ripple_surface);
 
   const [marginLeft] = React.useState(new Animated.Value(0));

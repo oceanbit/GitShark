@@ -6,17 +6,13 @@ import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 export const AccountButton = () => {
   const {useGitHub, gitHubUser, manualUser} = React.useContext(UserContext);
   const history = useNavigation();
 
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
 
   const isGitHub = useGitHub && !!gitHubUser;

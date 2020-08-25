@@ -14,14 +14,13 @@ import {TouchableRipple} from 'react-native-paper';
 import {SharkButton} from '@components/shark-button';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 import {SharkTextInput} from '@components/shark-text-input';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {BottomSpacerView, TopSpacerView} from '@components/shark-safe-top';
 import {githubOauthLink} from '@constants/oauth';
 import {validateEmail} from '@utils';
 import {GitHubLogout} from './github-logout/github-logout';
 import {SharkDivider} from '@components/shark-divider';
-import {CommitActionUI} from '../commit-action/commit-action.ui';
 import {SharkSnackbar} from '@components/shack-snackbar';
 
 export const Account = () => {
@@ -39,7 +38,7 @@ export const Account = () => {
   const [manualNameError, setManualNameError] = React.useState('');
   const [manualEmailError, setManualEmailError] = React.useState('');
 
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const history = useNavigation();
 
@@ -95,7 +94,7 @@ export const Account = () => {
         style={{flex: 1, flexDirection: 'column'}}
         behavior="height"
         enabled>
-        <ScrollView style={styles.container}>
+        <ScrollView>
           <TopSpacerView isFloating={true} />
           <AppBar
             leftIcon="back"
@@ -190,7 +189,6 @@ export const Account = () => {
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  container: {},
   signinGithubButton: {
     marginBottom: theme.spacing.l,
     marginTop: theme.spacing.xs,

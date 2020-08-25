@@ -10,11 +10,7 @@ import {
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 interface FolderSelectButtonProps {
   onFolderSelect: (path: string) => void;
@@ -27,7 +23,7 @@ export const FolderSelectButton = ({
   path,
   style,
 }: FolderSelectButtonProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
 
   const selectDirectory = () => {

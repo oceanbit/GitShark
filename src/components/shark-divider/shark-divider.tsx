@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 
 interface SharkDividerProps {
@@ -8,7 +8,7 @@ interface SharkDividerProps {
 }
 
 export const SharkDivider = ({style = {}}: SharkDividerProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   return <View style={[styles.divider, style]} />;
 };
 

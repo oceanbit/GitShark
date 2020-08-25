@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Dimensions, KeyboardAvoidingView, Text, View} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
 import {theme} from '@constants';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {useKeyboard} from '@react-native-community/hooks';
 
 interface AppDialogProps {
@@ -34,7 +34,7 @@ export const AppDialog = ({
 
   const keyboard = useKeyboard();
 
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const additionalTop = keyboard.keyboardShown
     ? height / 4 - keyboard.keyboardHeight - 10

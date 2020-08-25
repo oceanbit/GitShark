@@ -7,7 +7,7 @@ import {ErrorMessageBox} from '@components/error-message-box';
 import {FolderSelectButton} from '@components/folder-select-button';
 import {CloneRepositoryProgressDialog} from '../clone-repository-progress-dialog';
 import {SharkButton} from '@components/shark-button';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 interface CloneRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -18,7 +18,7 @@ export const CloneRepositoryDialog = ({
   onDismiss,
   visible,
 }: CloneRepositoryDialogProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [path, setPath] = React.useState('');
   const [repoUrl, setRepoUrl] = React.useState('');

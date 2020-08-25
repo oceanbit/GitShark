@@ -8,10 +8,11 @@ import {theme} from '@constants';
 import {ExtendedActionFab} from '@components/extended-action-fab';
 import {
   DynamicStyleSheet,
+  useDynamicValue,
+  ColorSchemeContext,
   useDarkMode,
-  useDynamicStyleSheet,
-  DarkModeContext,
-} from 'react-native-dark-mode';
+} from 'react-native-dynamic';
+
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export interface RepoListExtendedFabProps {
@@ -30,7 +31,7 @@ export const RepoListExtendedFab = ({
   const insets = useSafeAreaInsets();
   const isDark = useDarkMode();
 
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
   const fabBottom = React.useRef(new Animated.Value(16));
   const scale = React.useRef(new Animated.Value(0));
   const windowHeight = Dimensions.get('window').height;
@@ -40,21 +41,21 @@ export const RepoListExtendedFab = ({
       // I have no idea why this is happening, but without this provider, the `theme` is always set to the system value
       // and will not change when the user toggles in settings. If you're reading this and can figure out why this is,
       // please open a GitHub issue and teach us! <3 :)
-      <DarkModeContext.Provider value={isDark ? 'dark' : 'light'}>
+      <ColorSchemeContext.Provider value={isDark ? 'dark' : 'light'}>
         <NewRepoFab toggleAnimation={toggleAnimation} />
-      </DarkModeContext.Provider>
+      </ColorSchemeContext.Provider>
     ),
     [isDark],
   );
 
   const actionFabCB = React.useCallback(
     (toggleAnimation: ExtendedFabBase['toggleAnimation']) => (
-      <DarkModeContext.Provider value={isDark ? 'dark' : 'light'}>
+      <ColorSchemeContext.Provider value={isDark ? 'dark' : 'light'}>
         <FabActions
           toggleAnimation={toggleAnimation}
           onSelect={val => setSelectedAction(val)}
         />
-      </DarkModeContext.Provider>
+      </ColorSchemeContext.Provider>
     ),
     [isDark, setSelectedAction],
   );

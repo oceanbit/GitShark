@@ -1,11 +1,7 @@
 import * as React from 'react';
 import {Text} from 'react-native';
 import {theme} from '@constants';
-import {
-  DynamicStyleSheet,
-  useDynamicStyleSheet,
-  useDynamicValue,
-} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {PushPullArrows} from '@components/push-pull-arrows';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {Divider, Menu, TouchableRipple} from 'react-native-paper';
@@ -49,7 +45,7 @@ export const BranchListItem = ({
     '',
   );
 
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const tint_primary_10 = useDynamicValue(theme.colors.tint_primary_10);
 

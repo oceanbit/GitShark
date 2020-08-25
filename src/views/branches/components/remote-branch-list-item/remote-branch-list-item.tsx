@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import {theme} from '@constants';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {SharkIconButton} from '@components/shark-icon-button';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {TouchableRipple} from 'react-native-paper';
 
 interface BranchMock {
@@ -20,7 +19,7 @@ export const RemoteBranchListItem = ({
   style = {},
   onSelect,
 }: RemoteBranchListItemProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   return (
     <TouchableRipple style={[styles.container, style]} onPress={onSelect}>

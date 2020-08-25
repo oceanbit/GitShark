@@ -10,7 +10,7 @@ import {useNavigation} from '@react-navigation/native';
 import {RenameRepositoryDialog} from '@components/rename-repository-dialog';
 import {DeleteRepositoryDialog} from '../delete-repository-dialog';
 import {dynamicStyles} from './repo-card.styles';
-import {useDynamicStyleSheet, useDynamicValue} from 'react-native-dark-mode';
+import {useDynamicValue} from 'react-native-dynamic';
 import {SharkMenu} from '@components/shark-menu';
 
 type DialogActionsType = '' | 'rename' | 'delete';
@@ -22,7 +22,7 @@ interface RepoCardProps {
 }
 
 export const RepoCard = ({repo, onDelete, onRename}: RepoCardProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyles);
+  const styles = useDynamicValue(dynamicStyles);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState<DialogActionsType>('');
