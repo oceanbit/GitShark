@@ -8,29 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* GitSharkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GitSharkTests.m */; };
-		0F6965498C9946CBBF478136 /* rubik_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCD7C3C43F0947F1B754B279 /* rubik_light.ttf */; };
+		0B0848753E8B5B010B3BF4AB /* libPods-GitShark-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5A79E35C1492A9A158A13B /* libPods-GitShark-tvOSTests.a */; };
+		13A59F4BC840447F85AA5BB6 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9235ADAE6AB94442B52FA208 /* icomoon.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2BCFE23C5619C6E6833E2F38 /* libPods-GitShark-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A24EB3ABD4E39ED035739DA /* libPods-GitShark-tvOS.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* GitSharkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GitSharkTests.m */; };
-		4DB8AC0905644225A483C915 /* rubik_medium_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5971DB1D9A2A48E8AE718A46 /* rubik_medium_italic.ttf */; };
-		596DD79CEB174ED19FF98C01 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 729A8D37AF37424393FE8FBA /* icomoon.ttf */; };
-		91BAFB0AA9752C850A64AF61 /* libPods-GitShark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF2861835EAE37C3BDFDFF2 /* libPods-GitShark.a */; };
-		A75EE32465294E18AB284E65 /* rubik_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E522E02AA4E54CC29C5A766D /* rubik_Italic.ttf */; };
-		B67A25259ED14732AAE439DD /* rubik_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F359DD37D474083AEC52717 /* rubik_medium.ttf */; };
-		CDC44B1CD35B4614B94A6AD5 /* rubik_boldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F497ECA6659541D590CED245 /* rubik_boldItalic.ttf */; };
-		D2DEDEA341C847238167521F /* rubik_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98600476F6E142A2A23BD7A0 /* rubik_regular.ttf */; };
-		D580C195A8334203B80F251F /* rubik_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 418693F7AAF849F8929A0F58 /* rubik_bold.ttf */; };
-		DE2B63500F11429C167AE8B9 /* libPods-GitSharkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F1BA33DAB0E30E286E5324 /* libPods-GitSharkTests.a */; };
-		E6213BA90C1C4C3CB798311F /* rubik_lightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 70A1D36EF7BC4EB0A8C0A24C /* rubik_lightItalic.ttf */; };
-		E97539B138E4BF1DB64BDC9F /* libPods-GitShark-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C3251FEC5E3189C8D87FBC /* libPods-GitShark-tvOSTests.a */; };
-		F4EF59553BFC412F9927DB8A /* rubik_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71EBFF9618F548158D9D23E8 /* rubik_black.ttf */; };
-		FF6C8553EE454977B3AEF0A9 /* rubik_blackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C36C545EEDEE4011B6060716 /* rubik_blackItalic.ttf */; };
+		2DD39622110E4FCF852C0191 /* rubik_lightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFFCF0C468ED4D02926FB0DF /* rubik_lightItalic.ttf */; };
+		4F7B8A784D6344ACBE8D3D6D /* rubik_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F3CEBC241424AD2A92263B1 /* rubik_medium.ttf */; };
+		5732AFAE59F044C4A2281909 /* rubik_boldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 625434794BC34A8782AAC584 /* rubik_boldItalic.ttf */; };
+		58AB9F5E2E7F4F9FA00C1F50 /* rubik_blackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 179C5E3409F84C28913D6078 /* rubik_blackItalic.ttf */; };
+		6B337A7078A8490EADA5F880 /* rubik_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CE5748F7A5B430F878B29A3 /* rubik_regular.ttf */; };
+		808296DF43044A16914B4B64 /* rubik_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD30B863569F4050ABE32A71 /* rubik_light.ttf */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		870AE351588D4955C30D8291 /* libPods-GitShark-GitSharkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB842756C37218730CE5612 /* libPods-GitShark-GitSharkTests.a */; };
+		94A96F4438F9429B91A0E201 /* rubik_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13D132E93FCA446B80385162 /* rubik_Italic.ttf */; };
+		9BE52BD40C8B45E8B686E4FC /* rubik_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3F8E024C2C54B0BA6D5C74B /* rubik_bold.ttf */; };
+		A98D1159022F404480E0B1B7 /* rubik_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5DF0C8A328940B98E0EB267 /* rubik_black.ttf */; };
+		CFA973993CAE40D0B5268D2F /* rubik_medium_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCFD6C2E58874BA580819C37 /* rubik_medium_italic.ttf */; };
+		DC9493AD88C262F3E2A2A07C /* libPods-GitShark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6929335E059DA2613C2942 /* libPods-GitShark.a */; };
+		F3ECDC5136AA1C5C82C061C7 /* libPods-GitShark-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19D27EEE3D8CD0C769FC4F3E /* libPods-GitShark-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,50 +55,40 @@
 		00E356EE1AD99517003FC87E /* GitSharkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitSharkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* GitSharkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GitSharkTests.m; sourceTree = "<group>"; };
-		0B03B1A173AE4421B2348B4F /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-BoldItalic.ttf"; path = "../assets/fonts/Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
+		06304944B389E94699CE4FFA /* Pods-GitShark-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOS/Pods-GitShark-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		0CE5748F7A5B430F878B29A3 /* rubik_regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_regular.ttf; path = ../assets/fonts/rubik_regular.ttf; sourceTree = "<group>"; };
+		0E5A79E35C1492A9A158A13B /* libPods-GitShark-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F3CEBC241424AD2A92263B1 /* rubik_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_medium.ttf; path = ../assets/fonts/rubik_medium.ttf; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* GitShark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitShark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = GitShark/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = GitShark/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GitShark/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GitShark/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GitShark/main.m; sourceTree = "<group>"; };
-		14E47D939E4044B990FFCA6E /* Rubik-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Medium.ttf"; path = "../assets/fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; };
-		29F093D4DE2544AEB8AFC567 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Italic.ttf"; path = "../assets/fonts/Rubik-Italic.ttf"; sourceTree = "<group>"; };
+		13D132E93FCA446B80385162 /* rubik_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_Italic.ttf; path = ../assets/fonts/rubik_Italic.ttf; sourceTree = "<group>"; };
+		179C5E3409F84C28913D6078 /* rubik_blackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_blackItalic.ttf; path = ../assets/fonts/rubik_blackItalic.ttf; sourceTree = "<group>"; };
+		19D27EEE3D8CD0C769FC4F3E /* libPods-GitShark-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* GitShark-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GitShark-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* GitShark-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GitShark-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F359DD37D474083AEC52717 /* rubik_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_medium.ttf; path = ../assets/fonts/rubik_medium.ttf; sourceTree = "<group>"; };
-		3A24EB3ABD4E39ED035739DA /* libPods-GitShark-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E9FD1141DA1BEE58607EAC8 /* Pods-GitSharkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitSharkTests.release.xcconfig"; path = "Target Support Files/Pods-GitSharkTests/Pods-GitSharkTests.release.xcconfig"; sourceTree = "<group>"; };
-		418693F7AAF849F8929A0F58 /* rubik_bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_bold.ttf; path = ../assets/fonts/rubik_bold.ttf; sourceTree = "<group>"; };
-		55F1BA33DAB0E30E286E5324 /* libPods-GitSharkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitSharkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5885004FBB8148D0BFA49367 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Bold.ttf"; path = "../assets/fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; };
-		5971DB1D9A2A48E8AE718A46 /* rubik_medium_italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_medium_italic.ttf; path = ../assets/fonts/rubik_medium_italic.ttf; sourceTree = "<group>"; };
-		70A1D36EF7BC4EB0A8C0A24C /* rubik_lightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_lightItalic.ttf; path = ../assets/fonts/rubik_lightItalic.ttf; sourceTree = "<group>"; };
-		70C3251FEC5E3189C8D87FBC /* libPods-GitShark-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		71EBFF9618F548158D9D23E8 /* rubik_black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_black.ttf; path = ../assets/fonts/rubik_black.ttf; sourceTree = "<group>"; };
-		729A8D37AF37424393FE8FBA /* icomoon.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = icomoon.ttf; path = ../assets/fonts/icomoon.ttf; sourceTree = "<group>"; };
-		747B5A4B0CF50F231A7A6D82 /* Pods-GitShark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark.release.xcconfig"; path = "Target Support Files/Pods-GitShark/Pods-GitShark.release.xcconfig"; sourceTree = "<group>"; };
-		747FD97B973F40A095FD885C /* Rubik-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Light.ttf"; path = "../assets/fonts/Rubik-Light.ttf"; sourceTree = "<group>"; };
-		8AE84DC76F9B4D998E051CCC /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-LightItalic.ttf"; path = "../assets/fonts/Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
-		98600476F6E142A2A23BD7A0 /* rubik_regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_regular.ttf; path = ../assets/fonts/rubik_regular.ttf; sourceTree = "<group>"; };
-		99B17CCE4987457AB782BD7A /* Rubik-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Regular.ttf"; path = "../assets/fonts/Rubik-Regular.ttf"; sourceTree = "<group>"; };
-		9C6A9CE37C4EED6230BA1914 /* Pods-GitShark-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOSTests/Pods-GitShark-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		ADAAC27A5FFFB4C5965E718A /* Pods-GitShark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark.debug.xcconfig"; path = "Target Support Files/Pods-GitShark/Pods-GitShark.debug.xcconfig"; sourceTree = "<group>"; };
-		B8612453D4E1443392F94964 /* Rubik-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Black.ttf"; path = "../assets/fonts/Rubik-Black.ttf"; sourceTree = "<group>"; };
-		BCD7C3C43F0947F1B754B279 /* rubik_light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_light.ttf; path = ../assets/fonts/rubik_light.ttf; sourceTree = "<group>"; };
-		C36C545EEDEE4011B6060716 /* rubik_blackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_blackItalic.ttf; path = ../assets/fonts/rubik_blackItalic.ttf; sourceTree = "<group>"; };
-		C9E2D98AC67DEBDC88910B0B /* Pods-GitShark-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOS.release.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOS/Pods-GitShark-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		CB1C5652417446AEA92D6C8F /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-BlackItalic.ttf"; path = "../assets/fonts/Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
-		E522E02AA4E54CC29C5A766D /* rubik_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_Italic.ttf; path = ../assets/fonts/rubik_Italic.ttf; sourceTree = "<group>"; };
-		E75C8608C5434677AD1AE644 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-MediumItalic.ttf"; path = "../assets/fonts/Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
-		E9C471DEACF1876F2703804D /* Pods-GitShark-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOSTests/Pods-GitShark-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		ECF2861835EAE37C3BDFDFF2 /* libPods-GitShark.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BD3B71F990C6ED2AC12AB34 /* Pods-GitShark-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOS.release.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOS/Pods-GitShark-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		42F6DEA5AB659E23AAB69A7A /* Pods-GitShark-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOSTests/Pods-GitShark-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		56CA33BF35529875615D2206 /* Pods-GitShark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark.release.xcconfig"; path = "Target Support Files/Pods-GitShark/Pods-GitShark.release.xcconfig"; sourceTree = "<group>"; };
+		625434794BC34A8782AAC584 /* rubik_boldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_boldItalic.ttf; path = ../assets/fonts/rubik_boldItalic.ttf; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = GitShark/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		83097BFC7A2442051CCEC2B0 /* Pods-GitShark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark.debug.xcconfig"; path = "Target Support Files/Pods-GitShark/Pods-GitShark.debug.xcconfig"; sourceTree = "<group>"; };
+		90EA01E8E2848EE23DD2A91E /* Pods-GitShark-GitSharkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-GitSharkTests.debug.xcconfig"; path = "Target Support Files/Pods-GitShark-GitSharkTests/Pods-GitShark-GitSharkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9235ADAE6AB94442B52FA208 /* icomoon.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = icomoon.ttf; path = ../assets/fonts/icomoon.ttf; sourceTree = "<group>"; };
+		9FB842756C37218730CE5612 /* libPods-GitShark-GitSharkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark-GitSharkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A951485B5032FB0CAC210BAF /* Pods-GitShark-GitSharkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-GitSharkTests.release.xcconfig"; path = "Target Support Files/Pods-GitShark-GitSharkTests/Pods-GitShark-GitSharkTests.release.xcconfig"; sourceTree = "<group>"; };
+		AFFCF0C468ED4D02926FB0DF /* rubik_lightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_lightItalic.ttf; path = ../assets/fonts/rubik_lightItalic.ttf; sourceTree = "<group>"; };
+		B3F8E024C2C54B0BA6D5C74B /* rubik_bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_bold.ttf; path = ../assets/fonts/rubik_bold.ttf; sourceTree = "<group>"; };
+		BD30B863569F4050ABE32A71 /* rubik_light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_light.ttf; path = ../assets/fonts/rubik_light.ttf; sourceTree = "<group>"; };
+		CCFD6C2E58874BA580819C37 /* rubik_medium_italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_medium_italic.ttf; path = ../assets/fonts/rubik_medium_italic.ttf; sourceTree = "<group>"; };
+		DA4CFD497FE93EF207711110 /* Pods-GitShark-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOSTests/Pods-GitShark-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		E5DF0C8A328940B98E0EB267 /* rubik_black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_black.ttf; path = ../assets/fonts/rubik_black.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F01696402F6678590DDDA6A3 /* Pods-GitSharkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitSharkTests.debug.xcconfig"; path = "Target Support Files/Pods-GitSharkTests/Pods-GitSharkTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F497ECA6659541D590CED245 /* rubik_boldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_boldItalic.ttf; path = ../assets/fonts/rubik_boldItalic.ttf; sourceTree = "<group>"; };
-		F5CF411A2F76909FFA40C145 /* Pods-GitShark-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-GitShark-tvOS/Pods-GitShark-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		EE6929335E059DA2613C2942 /* libPods-GitShark.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE2B63500F11429C167AE8B9 /* libPods-GitSharkTests.a in Frameworks */,
+				870AE351588D4955C30D8291 /* libPods-GitShark-GitSharkTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91BAFB0AA9752C850A64AF61 /* libPods-GitShark.a in Frameworks */,
+				DC9493AD88C262F3E2A2A07C /* libPods-GitShark.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BCFE23C5619C6E6833E2F38 /* libPods-GitShark-tvOS.a in Frameworks */,
+				F3ECDC5136AA1C5C82C061C7 /* libPods-GitShark-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E97539B138E4BF1DB64BDC9F /* libPods-GitShark-tvOSTests.a in Frameworks */,
+				0B0848753E8B5B010B3BF4AB /* libPods-GitShark-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,10 +152,28 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
+				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = GitShark;
+			sourceTree = "<group>";
+		};
+		1EA1600D4FF74851B7544C52 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9235ADAE6AB94442B52FA208 /* icomoon.ttf */,
+				E5DF0C8A328940B98E0EB267 /* rubik_black.ttf */,
+				179C5E3409F84C28913D6078 /* rubik_blackItalic.ttf */,
+				B3F8E024C2C54B0BA6D5C74B /* rubik_bold.ttf */,
+				625434794BC34A8782AAC584 /* rubik_boldItalic.ttf */,
+				13D132E93FCA446B80385162 /* rubik_Italic.ttf */,
+				BD30B863569F4050ABE32A71 /* rubik_light.ttf */,
+				AFFCF0C468ED4D02926FB0DF /* rubik_lightItalic.ttf */,
+				CCFD6C2E58874BA580819C37 /* rubik_medium_italic.ttf */,
+				0F3CEBC241424AD2A92263B1 /* rubik_medium.ttf */,
+				0CE5748F7A5B430F878B29A3 /* rubik_regular.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -173,12 +181,27 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				55F1BA33DAB0E30E286E5324 /* libPods-GitSharkTests.a */,
-				ECF2861835EAE37C3BDFDFF2 /* libPods-GitShark.a */,
-				3A24EB3ABD4E39ED035739DA /* libPods-GitShark-tvOS.a */,
-				70C3251FEC5E3189C8D87FBC /* libPods-GitShark-tvOSTests.a */,
+				EE6929335E059DA2613C2942 /* libPods-GitShark.a */,
+				9FB842756C37218730CE5612 /* libPods-GitShark-GitSharkTests.a */,
+				19D27EEE3D8CD0C769FC4F3E /* libPods-GitShark-tvOS.a */,
+				0E5A79E35C1492A9A158A13B /* libPods-GitShark-tvOSTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		67997F6E0296535A6969C7AE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				83097BFC7A2442051CCEC2B0 /* Pods-GitShark.debug.xcconfig */,
+				56CA33BF35529875615D2206 /* Pods-GitShark.release.xcconfig */,
+				90EA01E8E2848EE23DD2A91E /* Pods-GitShark-GitSharkTests.debug.xcconfig */,
+				A951485B5032FB0CAC210BAF /* Pods-GitShark-GitSharkTests.release.xcconfig */,
+				06304944B389E94699CE4FFA /* Pods-GitShark-tvOS.debug.xcconfig */,
+				3BD3B71F990C6ED2AC12AB34 /* Pods-GitShark-tvOS.release.xcconfig */,
+				42F6DEA5AB659E23AAB69A7A /* Pods-GitShark-tvOSTests.debug.xcconfig */,
+				DA4CFD497FE93EF207711110 /* Pods-GitShark-tvOSTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -196,8 +219,8 @@
 				00E356EF1AD99517003FC87E /* GitSharkTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				FC3FA7F49FD046F18011EA2B /* Resources */,
-				F8160F33A947174099C9502C /* Pods */,
+				67997F6E0296535A6969C7AE /* Pods */,
+				1EA1600D4FF74851B7544C52 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -215,49 +238,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F8160F33A947174099C9502C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F01696402F6678590DDDA6A3 /* Pods-GitSharkTests.debug.xcconfig */,
-				3E9FD1141DA1BEE58607EAC8 /* Pods-GitSharkTests.release.xcconfig */,
-				ADAAC27A5FFFB4C5965E718A /* Pods-GitShark.debug.xcconfig */,
-				747B5A4B0CF50F231A7A6D82 /* Pods-GitShark.release.xcconfig */,
-				F5CF411A2F76909FFA40C145 /* Pods-GitShark-tvOS.debug.xcconfig */,
-				C9E2D98AC67DEBDC88910B0B /* Pods-GitShark-tvOS.release.xcconfig */,
-				E9C471DEACF1876F2703804D /* Pods-GitShark-tvOSTests.debug.xcconfig */,
-				9C6A9CE37C4EED6230BA1914 /* Pods-GitShark-tvOSTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		FC3FA7F49FD046F18011EA2B /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				B8612453D4E1443392F94964 /* Rubik-Black.ttf */,
-				CB1C5652417446AEA92D6C8F /* Rubik-BlackItalic.ttf */,
-				5885004FBB8148D0BFA49367 /* Rubik-Bold.ttf */,
-				0B03B1A173AE4421B2348B4F /* Rubik-BoldItalic.ttf */,
-				29F093D4DE2544AEB8AFC567 /* Rubik-Italic.ttf */,
-				747FD97B973F40A095FD885C /* Rubik-Light.ttf */,
-				8AE84DC76F9B4D998E051CCC /* Rubik-LightItalic.ttf */,
-				14E47D939E4044B990FFCA6E /* Rubik-Medium.ttf */,
-				E75C8608C5434677AD1AE644 /* Rubik-MediumItalic.ttf */,
-				99B17CCE4987457AB782BD7A /* Rubik-Regular.ttf */,
-				71EBFF9618F548158D9D23E8 /* rubik_black.ttf */,
-				C36C545EEDEE4011B6060716 /* rubik_blackItalic.ttf */,
-				418693F7AAF849F8929A0F58 /* rubik_bold.ttf */,
-				F497ECA6659541D590CED245 /* rubik_boldItalic.ttf */,
-				E522E02AA4E54CC29C5A766D /* rubik_Italic.ttf */,
-				BCD7C3C43F0947F1B754B279 /* rubik_light.ttf */,
-				70A1D36EF7BC4EB0A8C0A24C /* rubik_lightItalic.ttf */,
-				5971DB1D9A2A48E8AE718A46 /* rubik_medium_italic.ttf */,
-				2F359DD37D474083AEC52717 /* rubik_medium.ttf */,
-				98600476F6E142A2A23BD7A0 /* rubik_regular.ttf */,
-				729A8D37AF37424393FE8FBA /* icomoon.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -265,10 +245,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "GitSharkTests" */;
 			buildPhases = (
-				A8AAF55ABCFEB19A12BFA718 /* [CP] Check Pods Manifest.lock */,
+				888284E868D17592F34E50FB /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				DFF697C18F6D179A550A551C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -284,13 +265,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "GitShark" */;
 			buildPhases = (
-				15EA52D123D52BFEB4A189EA /* [CP] Check Pods Manifest.lock */,
+				135B0546B8A714B2A6A784BC /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				25FE8FB51169D5D86FE1FDD8 /* [CP] Copy Pods Resources */,
+				81D08AFD2F5524D587C09577 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -305,7 +286,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "GitShark-tvOS" */;
 			buildPhases = (
-				46E9395FB765785EA9867AFE /* [CP] Check Pods Manifest.lock */,
+				BE66C76089F544F867FEFA97 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -325,7 +306,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "GitShark-tvOSTests" */;
 			buildPhases = (
-				94BACC623D82D0950A69D7E5 /* [CP] Check Pods Manifest.lock */,
+				C20049002044C924ABBB1159 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -346,25 +327,26 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 940;
-				ORGANIZATIONNAME = Facebook;
+				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 73UF4KLZM8;
+						DevelopmentTeam = 93732A337Z;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 73UF4KLZM8;
+						DevelopmentTeam = 93732A337Z;
+						LastSwiftMigration = 1120;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 73UF4KLZM8;
+						DevelopmentTeam = 93732A337Z;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 73UF4KLZM8;
+						DevelopmentTeam = 93732A337Z;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
@@ -372,10 +354,9 @@
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "GitShark" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -404,19 +385,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				F4EF59553BFC412F9927DB8A /* rubik_black.ttf in Resources */,
-				FF6C8553EE454977B3AEF0A9 /* rubik_blackItalic.ttf in Resources */,
-				D580C195A8334203B80F251F /* rubik_bold.ttf in Resources */,
-				CDC44B1CD35B4614B94A6AD5 /* rubik_boldItalic.ttf in Resources */,
-				A75EE32465294E18AB284E65 /* rubik_Italic.ttf in Resources */,
-				0F6965498C9946CBBF478136 /* rubik_light.ttf in Resources */,
-				E6213BA90C1C4C3CB798311F /* rubik_lightItalic.ttf in Resources */,
-				4DB8AC0905644225A483C915 /* rubik_medium_italic.ttf in Resources */,
-				B67A25259ED14732AAE439DD /* rubik_medium.ttf in Resources */,
-				D2DEDEA341C847238167521F /* rubik_regular.ttf in Resources */,
-				596DD79CEB174ED19FF98C01 /* icomoon.ttf in Resources */,
+				13A59F4BC840447F85AA5BB6 /* icomoon.ttf in Resources */,
+				A98D1159022F404480E0B1B7 /* rubik_black.ttf in Resources */,
+				58AB9F5E2E7F4F9FA00C1F50 /* rubik_blackItalic.ttf in Resources */,
+				9BE52BD40C8B45E8B686E4FC /* rubik_bold.ttf in Resources */,
+				5732AFAE59F044C4A2281909 /* rubik_boldItalic.ttf in Resources */,
+				94A96F4438F9429B91A0E201 /* rubik_Italic.ttf in Resources */,
+				808296DF43044A16914B4B64 /* rubik_light.ttf in Resources */,
+				2DD39622110E4FCF852C0191 /* rubik_lightItalic.ttf in Resources */,
+				CFA973993CAE40D0B5268D2F /* rubik_medium_italic.ttf in Resources */,
+				4F7B8A784D6344ACBE8D3D6D /* rubik_medium.ttf in Resources */,
+				6B337A7078A8490EADA5F880 /* rubik_regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +433,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		15EA52D123D52BFEB4A189EA /* [CP] Check Pods Manifest.lock */ = {
+		135B0546B8A714B2A6A784BC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -474,54 +455,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		25FE8FB51169D5D86FE1FDD8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GitShark/Pods-GitShark-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GitShark/Pods-GitShark-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -536,7 +469,47 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		46E9395FB765785EA9867AFE /* [CP] Check Pods Manifest.lock */ = {
+		81D08AFD2F5524D587C09577 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GitShark/Pods-GitShark-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GitShark/Pods-GitShark-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		888284E868D17592F34E50FB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GitShark-GitSharkTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE66C76089F544F867FEFA97 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -558,7 +531,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94BACC623D82D0950A69D7E5 /* [CP] Check Pods Manifest.lock */ = {
+		C20049002044C924ABBB1159 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -580,26 +553,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A8AAF55ABCFEB19A12BFA718 /* [CP] Check Pods Manifest.lock */ = {
+		DFF697C18F6D179A550A551C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+				"${PODS_ROOT}/Target Support Files/Pods-GitShark-GitSharkTests/Pods-GitShark-GitSharkTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GitSharkTests-checkManifestLockResult.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GitShark-GitSharkTests/Pods-GitShark-GitSharkTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -692,31 +661,18 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = GitShark;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F01696402F6678590DDDA6A3 /* Pods-GitSharkTests.debug.xcconfig */;
+			baseConfigurationReference = 90EA01E8E2848EE23DD2A91E /* Pods-GitShark-GitSharkTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 73UF4KLZM8;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = GitSharkTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -731,13 +687,12 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E9FD1141DA1BEE58607EAC8 /* Pods-GitSharkTests.release.xcconfig */;
+			baseConfigurationReference = A951485B5032FB0CAC210BAF /* Pods-GitShark-GitSharkTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 73UF4KLZM8;
 				INFOPLIST_FILE = GitSharkTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -752,12 +707,15 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ADAAC27A5FFFB4C5965E718A /* Pods-GitShark.debug.xcconfig */;
+			baseConfigurationReference = 83097BFC7A2442051CCEC2B0 /* Pods-GitShark.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 73UF4KLZM8;
+				DEVELOPMENT_TEAM = 93732A337Z;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = GitShark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -765,20 +723,25 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.OceanBit.GitShark;
 				PRODUCT_NAME = GitShark;
-				SWIFT_VERSION = 4.2;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 747B5A4B0CF50F231A7A6D82 /* Pods-GitShark.release.xcconfig */;
+			baseConfigurationReference = 56CA33BF35529875615D2206 /* Pods-GitShark.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 73UF4KLZM8;
+				DEVELOPMENT_TEAM = 93732A337Z;
 				INFOPLIST_FILE = GitShark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -786,16 +749,17 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.OceanBit.GitShark;
 				PRODUCT_NAME = GitShark;
-				SWIFT_VERSION = 4.2;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5CF411A2F76909FFA40C145 /* Pods-GitShark-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 06304944B389E94699CE4FFA /* Pods-GitShark-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -804,7 +768,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 73UF4KLZM8;
+				DEVELOPMENT_TEAM = 93732A337Z;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "GitShark-tvOS/Info.plist";
@@ -814,17 +778,17 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.GitShark-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.OceanBit.GitShark-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.2;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9E2D98AC67DEBDC88910B0B /* Pods-GitShark-tvOS.release.xcconfig */;
+			baseConfigurationReference = 3BD3B71F990C6ED2AC12AB34 /* Pods-GitShark-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -834,7 +798,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 73UF4KLZM8;
+				DEVELOPMENT_TEAM = 93732A337Z;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "GitShark-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -843,17 +807,17 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.GitShark-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.OceanBit.GitShark-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.2;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9C471DEACF1876F2703804D /* Pods-GitShark-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 42F6DEA5AB659E23AAB69A7A /* Pods-GitShark-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -861,7 +825,6 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 73UF4KLZM8;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "GitShark-tvOSTests/Info.plist";
@@ -871,7 +834,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.GitShark-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.GitShark-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitShark-tvOS.app/GitShark-tvOS";
@@ -881,7 +844,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C6A9CE37C4EED6230BA1914 /* Pods-GitShark-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = DA4CFD497FE93EF207711110 /* Pods-GitShark-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -890,7 +853,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 73UF4KLZM8;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "GitShark-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -899,7 +861,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.GitShark-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.GitShark-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitShark-tvOS.app/GitShark-tvOS";
@@ -911,6 +873,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -936,6 +899,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 93732A337Z;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -953,9 +917,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -964,6 +935,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -989,6 +961,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 93732A337Z;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -999,8 +972,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
