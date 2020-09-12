@@ -2,7 +2,7 @@ import * as React from 'react';
 import 'reflect-metadata';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-import {Platform, StatusBar, useColorScheme, YellowBox} from 'react-native';
+import {LogBox, Platform, StatusBar, useColorScheme} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {Repository} from './views/repository/repository';
 import {Account} from './views/account/account';
@@ -39,7 +39,7 @@ import {store, setupDatabase} from '@store';
 // eslint-disable-next-line no-undef
 CompressionStream = null;
 
-YellowBox.ignoreWarnings([
+LogBox.ignoreLogs([
   /**
    * This is in place due to dependencies. Remove this once dep updates
    * https://github.com/react-navigation/react-navigation/issues/7933#issuecomment-608283552
@@ -52,6 +52,7 @@ YellowBox.ignoreWarnings([
    * https://reactnavigation.org/docs/troubleshooting/#i-get-the-warning-non-serializable-values-were-found-in-the-navigation-state
    */
   'Non-serializable values were found in the navigation state',
+  'A DynamicStyleSheet was used without any DynamicValues. Consider replacing with a regular StyleSheet.',
 ]);
 
 const AppBase = () => {
