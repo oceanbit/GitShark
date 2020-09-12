@@ -10,6 +10,7 @@ import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {Platform} from 'react-native';
 import {DocumentDirectoryPath} from 'react-native-fs';
+import {getRepoStatus} from '@services';
 
 const iOS = Platform.OS === 'ios';
 const iOSPath = DocumentDirectoryPath;
@@ -45,6 +46,7 @@ export const CloneRepositoryDialog = ({
 
   const getGitBranchName = async () => {
     try {
+      // TODO: Don't check the parent path, check the child path
       const branchName = await git.currentBranch({
         fs,
         dir: path,
@@ -58,6 +60,10 @@ export const CloneRepositoryDialog = ({
   };
 
   const checkAndClone = async () => {
+    if (!repoUrl) {
+      setErrorStr('There is no URI set for the clone, please input one');
+      return;
+    }
     const gitBranchName = await getGitBranchName();
     if (gitBranchName) {
       setErrorStr('The folder selected is already a git repository.');
