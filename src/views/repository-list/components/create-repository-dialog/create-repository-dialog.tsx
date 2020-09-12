@@ -9,6 +9,11 @@ import {createNewRepo} from '@services';
 import {SharkButton} from '@components/shark-button';
 import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
+import {Platform} from 'react-native';
+import {DocumentDirectoryPath} from 'react-native-fs';
+
+const iOS = Platform.OS === 'ios';
+const iOSPath = DocumentDirectoryPath;
 
 interface CreateRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -21,12 +26,15 @@ export const CreateRepositoryDialog = ({
 }: CreateRepositoryDialogProps) => {
   const styles = useDynamicValue(dynamicStyles);
 
-  const [path, setPath] = React.useState('');
   const [repoName, setRepoName] = React.useState('');
+
+  const [nonIOSpath, setNonIOSPath] = React.useState('');
+  const path = iOS ? iOSPath : nonIOSpath;
+
   const [errorStr, setErrorStr] = React.useState('');
 
   const parentOnDismiss = (bool: boolean) => {
-    setPath('');
+    setNonIOSPath('');
     setRepoName('');
     setErrorStr('');
     onDismiss(bool);
@@ -87,13 +95,15 @@ export const CreateRepositoryDialog = ({
       text={'The repository will be created from a local folder.'}
       main={
         <>
-          <FolderSelectButton
-            path={path}
-            onFolderSelect={folderPath => {
-              setPath(folderPath);
-              setErrorStr('');
-            }}
-          />
+          {!iOS && (
+            <FolderSelectButton
+              path={nonIOSpath}
+              onFolderSelect={folderPath => {
+                setNonIOSPath(folderPath);
+                setErrorStr('');
+              }}
+            />
+          )}
           {!!errorStr && (
             <ErrorMessageBox style={styles.errorBox} message={errorStr} />
           )}
