@@ -2,8 +2,11 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '../constants';
 import {RemoteBranch, Remotes} from '@types';
+import {logStore} from './debug';
 
 const getRemotesAndBranchesFn = async (path: string) => {
+  logStore && console.log('store - getRemotesAndBranchesFn');
+
   const remotes = await git.listRemotes({fs, dir: path});
 
   if (!remotes) return;
@@ -37,6 +40,7 @@ export const getRemotesAndBranches = createAsyncThunk(
 export const getLocalBranches = createAsyncThunk(
   'commits/getLocalBranches',
   async (path: string) => {
+    logStore && console.log('store - listBranches');
     return git.listBranches({fs, dir: path});
   },
 );
@@ -44,6 +48,8 @@ export const getLocalBranches = createAsyncThunk(
 export const getBranchData = createAsyncThunk(
   'commits/getLocalBranches',
   async (path: string, {dispatch}) => {
+    logStore && console.log('store - getBranchData');
+
     dispatch(getLocalBranches(path));
     dispatch(getRemotesAndBranches(path));
   },

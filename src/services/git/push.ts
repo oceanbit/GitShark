@@ -7,6 +7,7 @@ import RNSecureKeyStore from 'react-native-secure-key-store';
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
 import {RemoteBranch} from '@types';
+import {logService} from '../debug';
 
 interface PushProps {
   destination: RemoteBranch;
@@ -25,6 +26,8 @@ export const push = async ({
   dispatch,
   onProgress,
 }: PushProps) => {
+  logService && console.log('service - push');
+
   const GH_TOKEN = await RNSecureKeyStore.get(GITHUB_TOKEN_STORAGE_KEY);
 
   await git.push({

@@ -3,6 +3,7 @@ import {ReduxRepo} from '@entities';
 import git, {ReadCommitResult} from 'isomorphic-git/index.umd.min.js';
 import {Platform} from 'react-native';
 import {gitLogAndroid} from './gitLog-android';
+import {logService} from '../debug';
 
 export type GitLogCommit = ReadCommitResult['commit'] & {
   oid: ReadCommitResult['oid'];
@@ -14,6 +15,8 @@ interface GitLogProps {
 }
 
 export const gitLog = async ({repo, ref}: GitLogProps) => {
+  logService && console.log('service - gitLog');
+
   if (Platform.OS === 'android') {
     return gitLogAndroid({repo, ref});
   }

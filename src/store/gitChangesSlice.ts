@@ -2,10 +2,13 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {getRepoStatus, ChangesArrayItem} from '@services';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
+import {logStore} from './debug';
 
 export const getGitStatus = createAsyncThunk(
   'commits/getGitStatus',
   async (_, {getState}) => {
+    logStore && console.log('store - getGitStatus');
+
     const {database, repository} = getState() as any;
     if (!database.isLoaded) return;
     const repo = repository.repo;
@@ -32,6 +35,8 @@ export const getGitStatus = createAsyncThunk(
 export const addToStaged = createAsyncThunk(
   'commits/addToStaged',
   async (changes: ChangesArrayItem[], {getState}) => {
+    logStore && console.log('store - addToStaged');
+
     const {repository} = getState() as any;
     const repo = repository.repo;
     if (!repo) return;
@@ -52,6 +57,8 @@ export const addToStaged = createAsyncThunk(
 export const removeFromStaged = createAsyncThunk(
   'commits/removeFromStaged',
   async (changes: ChangesArrayItem[], {getState}) => {
+    logStore && console.log('store - removeFromStaged');
+
     const {repository} = getState() as any;
     const repo = repository.repo;
     if (!repo) return;

@@ -4,6 +4,7 @@ import http from 'isomorphic-git/http/web/index.js';
 import {getCommitRev, getRemotesAndBranches} from '@store';
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
+import {logService} from '../debug';
 
 interface FetchProps {
   dir: string;
@@ -24,6 +25,8 @@ export const fetch = async ({
   repo,
   dispatch,
 }: FetchProps) => {
+  logService && console.log('service - fetch');
+
   await git.fetch({
     fs,
     http,

@@ -1,11 +1,13 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {createConnection, getConnectionManager} from 'typeorm';
 import {Commit, Repo} from '@entities';
+import {logStore} from './debug';
 
 export const setupDatabase = createAsyncThunk(
   'database/setupDatabase',
   async (_, {rejectWithValue}) => {
     try {
+      logStore && console.log('store - SETUP DB');
       await createConnection({
         type: 'react-native',
         database: 'gitshark',

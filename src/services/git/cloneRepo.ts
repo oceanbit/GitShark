@@ -5,6 +5,7 @@ import {createNewRepo} from './createRepo';
 import {getRepoNameFromUri} from '@utils';
 import {Platform} from 'react-native';
 import {cloneRepoAndroid} from '@services/git/cloneRepo-android';
+import {logService} from '../debug';
 
 export interface CloneRepoProps {
   path: string;
@@ -14,6 +15,7 @@ export interface CloneRepoProps {
 }
 
 export const cloneRepo = ({path, name, uri, onProgress}: CloneRepoProps) => {
+  logService && console.log('service - cloneRepo');
   const newFolderName = getRepoNameFromUri(uri);
   const repoName = name || newFolderName;
   const repoDir = `${path}/${repoName}`;

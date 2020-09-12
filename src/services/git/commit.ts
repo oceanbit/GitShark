@@ -3,6 +3,7 @@ import {ReduxRepo} from '@entities';
 import {fs} from '@constants';
 import {getCommitRev, getGitStatus} from '@store';
 import {ThunkDispatchType} from '@hooks';
+import {logService} from '../debug';
 
 interface commitProps {
   title?: string;
@@ -21,6 +22,8 @@ export const commit = async ({
   name,
   dispatch,
 }: commitProps) => {
+  logService && console.log('service - commit');
+
   const message = `${title}\n${description}`;
 
   await git.commit({

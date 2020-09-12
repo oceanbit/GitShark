@@ -1,7 +1,10 @@
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
+import {logService} from '../debug';
 
 export const getRepoData = async (path: string) => {
+  logService && console.log('service - getRepoData');
+
   const currentBranchNamePromise = await git.currentBranch({fs, dir: path});
 
   const gitLogPromise = await git.log({

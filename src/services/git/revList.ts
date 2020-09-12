@@ -13,6 +13,7 @@ import {fs} from '@constants';
 import {gitLog} from './gitLog';
 import {Platform} from 'react-native';
 import {revListAndroid} from './revList-android';
+import {logService} from '../debug';
 
 interface GetDiffNumberProps {
   logList: any[];
@@ -59,6 +60,8 @@ export const revList = async ({
   branchName1,
   branchName2,
 }: RevListProps) => {
+  logService && console.log('service - revList');
+
   if (Platform.OS === 'android') {
     console.log('DOING REVLIST ON ANDROID');
     return await revListAndroid({dir, branchName1, branchName2});

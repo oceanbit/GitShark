@@ -10,6 +10,7 @@ import {
 } from './gitBranchesSlice';
 import {findRepoList} from '@store/repoListSlice';
 import {getPushPull} from '@services';
+import {logStore} from './debug';
 
 export const getCommitRev = createAsyncThunk(
   'repository/getCommitRev',
@@ -17,6 +18,8 @@ export const getCommitRev = createAsyncThunk(
     {path, repoId}: {path: string; repoId: string | number},
     {dispatch},
   ) => {
+    logStore && console.log('store - getCommitRev');
+
     const payload = await getPushPull({path});
     dispatch(
       editRepo({
@@ -34,6 +37,8 @@ export const getCommitRev = createAsyncThunk(
 export const findRepo = createAsyncThunk(
   'repository/findRepo',
   async (repoId: string | number, {getState, dispatch}) => {
+    logStore && console.log('store - findRepo');
+
     const {database} = getState() as any;
     if (!database.isLoaded) return;
     const repoRepository = getRepository(Repo);
@@ -54,6 +59,8 @@ export const editRepo = createAsyncThunk(
     {repoId, repoData}: {repoId: string | number; repoData: Partial<Repo>},
     {getState, dispatch},
   ) => {
+    logStore && console.log('store - editRepo');
+
     const {database} = getState() as any;
     if (!database.isLoaded) return;
     await getConnection()
@@ -80,6 +87,8 @@ export const changeBranch = createAsyncThunk(
     {repoId, branchName}: {repoId: string | number; branchName: string},
     {getState, dispatch},
   ) => {
+    logStore && console.log('store - changeBranch');
+
     const {database} = getState() as any;
     if (!database.isLoaded) return;
     await getConnection()
@@ -97,6 +106,8 @@ export const changeBranch = createAsyncThunk(
 export const clearRepo = createAsyncThunk(
   'repository/clearRepo',
   async (_, {dispatch}) => {
+    logStore && console.log('store - clearRepo');
+
     dispatch(clearChanges());
     dispatch(clearLog());
     dispatch(clearBranches());

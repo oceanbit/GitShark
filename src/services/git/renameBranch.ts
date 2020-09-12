@@ -3,6 +3,7 @@ import {fs} from '@constants';
 import {ThunkDispatchType} from '@hooks';
 import {changeBranch, getLocalBranches} from '@store';
 import {ReduxRepo} from '@entities';
+import {logService} from '../debug';
 
 interface RenameBranchProps {
   branchName: string;
@@ -18,6 +19,8 @@ export const renameBranch = async ({
   repo,
   dispatch,
 }: RenameBranchProps) => {
+  logService && console.log('service - renameBranch');
+
   await git.renameBranch({
     fs,
     checkout,

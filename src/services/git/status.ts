@@ -2,6 +2,7 @@ import {Platform} from 'react-native';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {getRepoStatusAndroid} from './status-android';
+import {logService} from '../debug';
 
 export interface ChangesArrayItem {
   fileName: string;
@@ -11,6 +12,8 @@ export interface ChangesArrayItem {
 }
 
 export const getRepoStatus = async (path: string) => {
+  logService && console.log('service - getRepoStatus');
+
   if (Platform.OS === 'android') {
     return getRepoStatusAndroid(path);
   }

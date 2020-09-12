@@ -1,12 +1,15 @@
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {revList} from './revList';
+import {logService} from '../debug';
 
 interface GetPushPullProps {
   path: string;
 }
 
 export const getPushPull = async ({path}: GetPushPullProps) => {
+  logService && console.log('service - getPushPull');
+
   const currBranch = (await git.currentBranch({
     fs,
     dir: path,

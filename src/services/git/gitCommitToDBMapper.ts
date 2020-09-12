@@ -1,7 +1,10 @@
 import {ReadCommitResult} from 'isomorphic-git/index.umd.min';
 import {Commit} from '@entities';
+import {logService} from '../debug';
 
 export const gitCommitToDBMapper = (_gitCommit: ReadCommitResult) => {
+  logService && console.log('service - gitCommitToDBMapper');
+
   const gitCommit = new Commit();
   gitCommit.oid = _gitCommit.oid;
   gitCommit.payload = _gitCommit.payload;

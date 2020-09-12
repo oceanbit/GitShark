@@ -1,4 +1,5 @@
 import {GitLogCommit} from './gitLog';
+import {logService} from '../debug';
 
 /**
  * Either grab until the first newline if shorter than 55 chars
@@ -11,6 +12,8 @@ interface GetCommitHeaderBody {
 }
 
 export const getCommitHeaderBody = ({commit}: GetCommitHeaderBody) => {
+  logService && console.log('service - getCommitHeaderBody');
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, title = '', message = ''] =
     headerBodyRegex.exec(commit.message) || [];

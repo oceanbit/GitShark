@@ -26,16 +26,16 @@ const ENOTDIR = Err('ENOTDIR');
 // const ENOTEMPTY = Err('ENOTEMPTY'); // <-- Unused because RNFS's unlink is recursive by default
 
 const readdir = async (path: string) => {
-  log && console.log('readdir', path);
+  log && console.log('fs - readdir', path);
   try {
     return await RNFS.readdir(path);
   } catch (err) {
     if (/(?:Folder does not exist|ENOENT)/.exec(err.message)) {
-      log && console.log('Folder does not exist');
+      log && console.log('fs - Folder does not exist');
       throw new ENOENT(path);
     }
     if (/(?:Attempt to get length of null array|ENOTDIR)/.exec(err.message)) {
-      log && console.log('ENOTDIR');
+      log && console.log('fs - ENOTDIR');
       throw new ENOTDIR(path);
     }
     throw err;
@@ -43,7 +43,7 @@ const readdir = async (path: string) => {
 };
 
 const mkdir = async (path: string) => {
-  log && console.log('mkdir', path);
+  log && console.log('fs - mkdir', path);
   return RNFS.mkdir(path);
 };
 
@@ -51,7 +51,7 @@ const readFile = async (
   path: string,
   opts?: string | {[key: string]: string},
 ) => {
-  log && console.log('readFile', path);
+  log && console.log('fs - readFile', path);
 
   let encoding;
 
@@ -78,7 +78,7 @@ const writeFile = async (
   content: string | Uint8Array,
   opts?: string | {[key: string]: string},
 ) => {
-  log && console.log('writeFile', path);
+  log && console.log('fs - writeFile', path);
 
   let encoding;
 
@@ -106,7 +106,7 @@ const writeFile = async (
 };
 
 const stat = async (path: string) => {
-  log && console.log('stat', path);
+  log && console.log('fs - stat', path);
   try {
     const r = await RNFS.stat(path);
     // we monkeypatch the result with a `isSymbolicLink` method because isomorphic-git needs it.
@@ -115,8 +115,8 @@ const stat = async (path: string) => {
     r.isSymbolicLink = () => false;
     return r;
   } catch (err) {
-    if (/(?:File does not exist|ENOENT)/.exec(err.message)) {
-      log && console.log('File does not exist');
+    if (/(?:File does not exist|ENOENT|no such file)/.exec(err.message)) {
+      log && console.log('fs - File does not exist');
       throw new ENOENT(path);
     }
     throw err;
@@ -124,7 +124,7 @@ const stat = async (path: string) => {
 };
 
 const lstat = async (path: string) => {
-  log && console.log('lstat', path);
+  log && console.log('fs - lstat', path);
   try {
     const r = await RNFS.lstat(path);
     // we monkeypatch the result with a `isSymbolicLink` method because isomorphic-git needs it.
@@ -133,8 +133,8 @@ const lstat = async (path: string) => {
     r.isSymbolicLink = () => false;
     return r;
   } catch (err) {
-    if (/(?:File does not exist|ENOENT)/.exec(err.message)) {
-      log && console.log('lstat File does not exist');
+    if (/(?:File does not exist|ENOENT|no such file)/.exec(err.message)) {
+      log && console.log('fs - lstat File does not exist');
       throw new ENOENT(path);
     }
     throw err;
@@ -142,12 +142,12 @@ const lstat = async (path: string) => {
 };
 
 const unlink = async (path: string) => {
-  log && console.log('path', path);
+  log && console.log('fs - path', path);
   try {
     await RNFS.unlink(path);
   } catch (err) {
-    if (/(?:File does not exist|ENOENT)/.exec(err.message)) {
-      log && console.log('File does not exist');
+    if (/(?:File does not exist|ENOENT|no such file)/.exec(err.message)) {
+      log && console.log('fs - File does not exist');
       throw new ENOENT(path);
     }
     throw err;
@@ -159,12 +159,12 @@ const rmdir = unlink;
 
 // These are optional, which is good because there is no equivalent in RNFS
 const readlink = async (path: string) => {
-  log && console.log('readlink', path);
+  log && console.log('fs - readlink', path);
   const readlinkData = await RNFS.readlink(path);
   return readlinkData;
 };
 const symlink = async (target: string, path: string) => {
-  log && console.log('symlink', target, path);
+  log && console.log('fs - symlink', target, path);
   const readlinkData = await RNFS.symlink(target, path);
   return readlinkData;
 };
@@ -172,7 +172,7 @@ const symlink = async (target: string, path: string) => {
 // Technically we could pull this off by using `readFile` + `writeFile` with the `mode` option
 // However, it's optional, because isomorphic-git will do exactly that (a readFile and a writeFile with the new mode)
 const chmod = async () => {
-  log && console.log('chmod');
+  log && console.log('fs - chmod');
   throw new Error('not implemented');
 };
 

@@ -1,10 +1,13 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {Repo, getReduxRepo, ReduxRepo} from '@entities';
 import {getRepository} from 'typeorm';
+import {logStore} from './debug';
 
 export const findRepoList = createAsyncThunk(
   'repository/findRepoList',
   async (_, {getState}) => {
+    logStore && console.log('store - findRepoList');
+
     const {database} = getState() as any;
     if (!database.isLoaded) return;
     const repoRepository = getRepository(Repo);

@@ -1,12 +1,15 @@
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {ChangesArrayItem} from '@services/git/status';
+import {logService} from '../debug';
 
 export const getFileStateChanges = async (
   commitHash1: string,
   commitHash2: string,
   dir: string,
 ): Promise<ChangesArrayItem[]> => {
+  logService && console.log('service - getFileStateChanges');
+
   return git.walk({
     fs,
     dir,

@@ -4,6 +4,7 @@ import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
 import {ThunkDispatchType} from '@hooks';
 import {checkoutBranch} from './checkoutBranch';
 import {fetch} from './fetch';
+import {logService} from '../debug';
 
 interface CreateRemoteProps {
   repo: ReduxRepo;
@@ -20,6 +21,8 @@ export const createRemote = async ({
   onProgress,
   dispatch,
 }: CreateRemoteProps) => {
+  logService && console.log('service - createRemote');
+
   await git.addRemote({
     fs,
     dir: repo.path,
