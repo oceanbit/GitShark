@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-undef
-FileReader.prototype.readAsArrayBuffer = function(blob) {
+FileReader.prototype.readAsArrayBuffer = function (blob) {
   if (this.readyState === this.LOADING) {
     throw new Error('InvalidStateError');
   }
@@ -9,9 +9,11 @@ FileReader.prototype.readAsArrayBuffer = function(blob) {
   // eslint-disable-next-line no-undef
   const fr = new FileReader();
   fr.onloadend = () => {
-    const content = atob(
-      fr.result.substr('data:application/octet-stream;base64,'.length),
-    );
+    const res = fr.result;
+    const base64HeadRegex = /^data:application.*;base64,/;
+    const resMatches = res.match(base64HeadRegex);
+
+    const content = atob(fr.result.substr(resMatches[0].length));
     const buffer = new ArrayBuffer(content.length);
     const view = new Uint8Array(buffer);
     view.set(Array.from(content).map(c => c.charCodeAt(0)));
