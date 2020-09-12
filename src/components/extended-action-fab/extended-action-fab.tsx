@@ -169,12 +169,12 @@ const dynamicStyles = new DynamicStyleSheet({
     alignItems: 'center',
     padding: theme.spacing.s,
     width: '100%',
+    zIndex: 10,
     position: 'absolute',
   },
   fabSurface: {
     position: 'absolute',
     bottom: 0,
-    zIndex: 10,
     borderRadius: theme.borderRadius.regular,
     backgroundColor: theme.colors.primary,
     elevation: 6,
@@ -190,5 +190,6 @@ const dynamicStyles = new DynamicStyleSheet({
     left: 0,
     height: '100%',
     width: '100%',
+    zIndex: 1,
   },
 });
