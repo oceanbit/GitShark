@@ -5,22 +5,40 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
 interface SeaSwitchProps {
   enabled: boolean;
+  disabled?: boolean;
   setEnabled: (val: boolean) => void;
 }
 
 const animTiming = 150;
 
-export const SeaSwitch = ({enabled, setEnabled}: SeaSwitchProps) => {
+export const SeaSwitch = ({enabled, setEnabled, disabled}: SeaSwitchProps) => {
   const styles = useDynamicValue(dynamicStyles);
 
   const primary = useDynamicValue(theme.colors.primary);
   const tint_on_surface_16 = useDynamicValue(theme.colors.tint_on_surface_16);
+  const tint_on_surface_08 = useDynamicValue(theme.colors.tint_on_surface_08);
+  const ripple_surface = useDynamicValue(theme.colors.ripple_surface);
 
   const [switchLeft] = React.useState(new Animated.Value(0));
+  const [thumbDisabled] = React.useState(new Animated.Value(0));
 
   const [switchPrimaryBG] = React.useState(new Animated.Value(0));
 
   React.useEffect(() => {
+    if (disabled) {
+      Animated.timing(thumbDisabled, {
+        toValue: 1,
+        duration: animTiming,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(thumbDisabled, {
+        toValue: 0,
+        duration: animTiming,
+        useNativeDriver: true,
+      }).start();
+    }
+
     if (enabled) {
       Animated.parallel([
         Animated.timing(switchLeft, {
@@ -29,7 +47,7 @@ export const SeaSwitch = ({enabled, setEnabled}: SeaSwitchProps) => {
           useNativeDriver: true,
         }),
         Animated.timing(switchPrimaryBG, {
-          toValue: 1, // Width of switch
+          toValue: disabled ? 0 : 2,
           duration: animTiming,
           useNativeDriver: true,
         }),
@@ -42,32 +60,40 @@ export const SeaSwitch = ({enabled, setEnabled}: SeaSwitchProps) => {
           useNativeDriver: true,
         }),
         Animated.timing(switchPrimaryBG, {
-          toValue: 0, // Width of switch
+          toValue: disabled ? 0 : 1,
           duration: animTiming,
           useNativeDriver: true,
         }),
       ]).start();
     }
-  }, [switchLeft, enabled, switchPrimaryBG]);
+  }, [switchLeft, enabled, switchPrimaryBG, thumbDisabled, disabled]);
 
-  const switchTrackBGColor = switchPrimaryBG.interpolate({
-    inputRange: [0, 1],
-    outputRange: [tint_on_surface_16, primary],
+  const trackBGColor = switchPrimaryBG.interpolate({
+    // These interpolated values must be in this order, otherwise, when transitioning from "enabled" to "disabled",
+    // the colors will flash in a weird/bad order
+    inputRange: [0, 1, 2],
+    outputRange: [tint_on_surface_08, tint_on_surface_16, primary],
   });
 
-  const thumbLeft = {
+  const thumbBGColor = thumbDisabled.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['white', ripple_surface],
+  });
+
+  const thumbAnim = {
     left: switchLeft,
+    backgroundColor: thumbBGColor,
   };
 
   const switchTrackBG = {
-    backgroundColor: switchTrackBGColor,
+    backgroundColor: trackBGColor,
   };
 
   return (
-    <TouchableWithoutFeedback onPress={() => setEnabled(!enabled)}>
+    <TouchableWithoutFeedback onPress={() => !disabled && setEnabled(!enabled)}>
       <View style={styles.switchBox}>
         <Animated.View style={[styles.switchTrack, switchTrackBG]}>
-          <Animated.View style={[styles.switchThumb, thumbLeft]} />
+          <Animated.View style={[styles.switchThumb, thumbAnim]} />
         </Animated.View>
       </View>
     </TouchableWithoutFeedback>
@@ -95,7 +121,6 @@ const dynamicStyles = new DynamicStyleSheet({
     height: theme.spacing.m,
     left: theme.spacing.xxs,
     top: theme.spacing.xxs,
-    backgroundColor: theme.colors.white,
     borderRadius: theme.spacing.m,
   },
 });
