@@ -41,7 +41,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   outlineContainer: {
     borderWidth: theme.borders.thick,
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     borderRadius: theme.borderRadius.regular,
     marginRight: theme.spacing.xs,
   },
@@ -50,7 +50,7 @@ const dynamicStyles = new DynamicStyleSheet({
     borderRadius: 50,
   },
   valText: {
-    ...theme.textStyles.callout,
+    ...theme.textStyles.callout_01,
     marginLeft: theme.spacing.xs,
     marginRight: 2,
     color: theme.colors.primary,

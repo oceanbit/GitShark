@@ -143,8 +143,8 @@ const dynamicStyles = new DynamicStyleSheet({
   container: {
     borderRadius: theme.borderRadius.regular,
     borderWidth: theme.borders.normal,
-    borderColor: theme.colors.tint_on_surface_16,
-    backgroundColor: theme.colors.tint_on_surface_04,
+    borderColor: theme.colors.tint_on_surface_01,
+    backgroundColor: theme.colors.tint_on_surface_03,
     paddingLeft: theme.spacing.s,
     paddingVertical: theme.spacing.s,
     paddingRight: theme.spacing.xs,
@@ -167,7 +167,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   text: {
     ...theme.textStyles.caption_02,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
   fakeIcon: {
     width: 40,

@@ -23,7 +23,7 @@ export const CommitCard = ({
 }: CommitCardProps) => {
   const styles = useDynamicValue(dynamicStyles);
 
-  const rippleColor = useDynamicValue(theme.colors.ripple_surface);
+  const rippleColor = useDynamicValue(theme.colors.ripple_neutral);
 
   const {title, message} = getCommitHeaderBody({commit});
 
@@ -82,27 +82,27 @@ const dynamicStyles = new DynamicStyleSheet({
     paddingVertical: theme.spacing.xxs,
     paddingHorizontal: theme.spacing.xs,
     borderWidth: theme.borders.normal,
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     borderRadius: theme.borderRadius.small,
     marginHorizontal: theme.spacing.xs,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     ...theme.textStyles.caption_01,
   },
   timeStr: {
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     ...theme.textStyles.caption_02,
     opacity: theme.opacity.secondary,
   },
   commitHeaderTxt: {
-    color: theme.colors.on_surface,
-    ...theme.textStyles.callout,
+    color: theme.colors.label_high_emphasis,
+    ...theme.textStyles.callout_01,
     fontWeight: 'bold',
   },
   accentText: {
     color: theme.colors.primary,
   },
   commitBody: {
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     ...theme.textStyles.body_02,
     opacity: theme.opacity.secondary,
   },

@@ -9,7 +9,7 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 module.exports = ({config, mode}) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
-    exclude: /node_modules\/(?!(seaside)\/).*/,
+    exclude: /node_modules/,
     loader: require.resolve('babel-loader'),
     options: {
       babelrc: false,

@@ -13,7 +13,7 @@ interface CommitPillProps {
 
 export const CommitPill = ({isGitHub, name, color, style}: CommitPillProps) => {
   const styles = useDynamicValue(dynamicStyles);
-  const on_surface = useDynamicValue(theme.colors.on_surface);
+  const label_high_emphasis = useDynamicValue(theme.colors.label_high_emphasis);
 
   return (
     <View style={[styles.container, {borderColor: color}, style]}>
@@ -22,7 +22,7 @@ export const CommitPill = ({isGitHub, name, color, style}: CommitPillProps) => {
           <Icon
             size={16}
             name={'github'}
-            color={on_surface}
+            color={label_high_emphasis}
             style={{textAlign: 'center'}}
           />
         )}
@@ -56,7 +56,7 @@ const dynamicStyles = new DynamicStyleSheet({
   tagName: {
     marginLeft: theme.spacing.xxs,
     ...theme.textStyles.caption_02,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
   background: {
     opacity: 0.2,

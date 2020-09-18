@@ -191,7 +191,7 @@ const dynamicStyles = new DynamicStyleSheet({
     marginVertical: theme.spacing.m,
     marginHorizontal: theme.spacing.m,
     ...theme.textStyles.caption_02,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     opacity: theme.opacity.secondary,
   },
   stagingVideoContainer: {
@@ -208,7 +208,7 @@ const dynamicStyles = new DynamicStyleSheet({
     marginLeft: theme.spacing.xs,
     flexShrink: 0,
     ...theme.textStyles.body_01,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     opacity: theme.opacity.secondary,
   },
 });

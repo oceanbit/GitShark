@@ -85,7 +85,7 @@ const dynamicStyles = new DynamicStyleSheet({
     paddingVertical: theme.spacing.xs,
   },
   outlineButton: {
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     borderWidth: theme.borders.thick,
     backgroundColor: 'transparent',
   },
@@ -102,7 +102,7 @@ const dynamicStyles = new DynamicStyleSheet({
     textAlign: 'center',
     // IDK why this works, but it sure does
     textAlignVertical: 'center',
-    ...theme.textStyles.callout,
+    ...theme.textStyles.callout_01,
   },
   disabled: {
     opacity: theme.opacity.disabled,

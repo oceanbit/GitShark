@@ -78,12 +78,12 @@ const dynamicStyles = new DynamicStyleSheet({
     marginTop: theme.spacing.xs,
   },
   cancelBtn: {
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     borderWidth: theme.borders.thick,
     marginRight: theme.spacing.m,
   },
   checkoutText: {
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     ...theme.textStyles.body_01,
   },
 });

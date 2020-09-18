@@ -4,31 +4,22 @@ import {
   lightTheme as lightSeaside,
   darkTheme as darkSeaside,
   fullTheme,
-} from 'seaside/theme';
+} from '@oceanbit/styles';
 import {Theme as NavTheme} from '@react-navigation/native/src/types';
 import {DynamicValue} from 'react-native-dynamic';
-import {rubikLight, rubikMedium, rubikRegular, textStyles} from './text-styles';
-
-// Taken from: https://github.com/regexhq/hsla-regex
-// Don't add a `/g` flag it breaks JavaScereipt
-// // // Have a problem with how I spelt JS right then? Well I have a problem with how JS treats the g flag
-// https://stackoverflow.com/questions/18462784/why-is-javascript-regex-matching-every-second-time
-const hslaRegex = /hsla\((\d+),\s*([\d.]+)%,\s*([\d.]+)%,\s*(\d*(?:\.\d+)?)\)/i;
-
-const getSecondaryStatic = (color: string) => {
-  const hsla = hslaRegex.exec(color) || [];
-  const newVal = `hsla(${hsla[1]},${hsla[2]}%,${
-    hsla[3]
-  }%,${fullTheme.opacity.secondary.toFixed(1)})`;
-  return newVal;
-};
+import {
+  epilogueLight,
+  epilogueSemiBold,
+  epilogueRegular,
+  textStyles,
+} from './text-styles';
 
 const fontConfig: Parameters<typeof configureFonts>[0] = {
   default: {
-    regular: rubikRegular,
-    medium: rubikMedium,
-    light: rubikLight,
-    thin: rubikLight,
+    regular: epilogueRegular,
+    medium: epilogueSemiBold,
+    light: epilogueLight,
+    thin: epilogueLight,
   },
 };
 
@@ -43,7 +34,7 @@ export const darkPaperTheme: PaperTheme = {
     background: fullTheme.colors.surface_dark,
     error: fullTheme.colors.error_dark,
     surface: fullTheme.colors.surface_dark,
-    text: fullTheme.colors.on_surface_dark,
+    text: fullTheme.colors.label_high_emphasis_dark,
   },
 };
 
@@ -58,7 +49,7 @@ export const lightPaperTheme: PaperTheme = {
     background: fullTheme.colors.surface_light,
     error: fullTheme.colors.error_light,
     surface: fullTheme.colors.surface_light,
-    text: fullTheme.colors.on_surface_light,
+    text: fullTheme.colors.label_high_emphasis_light,
   },
 };
 
@@ -69,8 +60,8 @@ export const darkNavTheme: NavTheme = {
     notification: fullTheme.colors.surface_dark,
     card: fullTheme.colors.surface_dark,
     background: fullTheme.colors.surface_dark,
-    text: fullTheme.colors.on_surface_dark,
-    border: fullTheme.colors.tint_on_surface_16_dark,
+    text: fullTheme.colors.label_high_emphasis_dark,
+    border: fullTheme.colors.tint_on_surface_01_dark,
   },
 };
 
@@ -81,8 +72,8 @@ export const lightNavTheme: NavTheme = {
     notification: fullTheme.colors.surface_light,
     card: fullTheme.colors.surface_light,
     background: fullTheme.colors.surface_light,
-    text: fullTheme.colors.on_surface_light,
-    border: fullTheme.colors.tint_on_surface_16_light,
+    text: fullTheme.colors.label_high_emphasis_light,
+    border: fullTheme.colors.tint_on_surface_01_light,
   },
 };
 
@@ -102,14 +93,10 @@ const colors = Object.keys(lightSeaside.colors).reduce(
     return prev;
   },
   {
-    on_surface_secondary: new DynamicValue(
-      getSecondaryStatic(fullTheme.colors.on_surface_light),
-      getSecondaryStatic(fullTheme.colors.on_surface_dark),
-    ),
-    on_surface_secondary_no_opacity: new DynamicValue('#717f9b', '#8f97a8'),
+    label_medium_emphasis_no_opacity: new DynamicValue('#717f9b', '#8f97a8'),
+    // Temporary, as this should be moved into @oceanbit/styles
   } as Record<keyof typeof lightSeaside.colors, DynamicValue<string>> & {
-    on_surface_secondary: DynamicValue<string>;
-    on_surface_secondary_no_opacity: DynamicValue<string>;
+    label_medium_emphasis_no_opacity: DynamicValue<string>;
   },
 );
 

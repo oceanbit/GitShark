@@ -100,6 +100,6 @@ const dynamicStyles = new DynamicStyleSheet({
     width: 1,
     marginRight: theme.spacing.xs,
     ...theme.textStyles.body_01,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
 });

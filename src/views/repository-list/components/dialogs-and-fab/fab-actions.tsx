@@ -53,7 +53,7 @@ const dynamicStyles = new DynamicStyleSheet({
     width: '100%',
   },
   fabActionText: {
-    ...theme.textStyles.callout,
+    ...theme.textStyles.callout_01,
     color: theme.colors.on_primary,
     textAlign: 'center',
   },

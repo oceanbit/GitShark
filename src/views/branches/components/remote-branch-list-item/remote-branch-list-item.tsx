@@ -59,6 +59,6 @@ const dynamicStyles = new DynamicStyleSheet({
     flexGrow: 1,
     width: 1,
     ...theme.textStyles.body_01,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
 });

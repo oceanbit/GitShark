@@ -163,12 +163,12 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   trueHeader: {
     backgroundColor: theme.colors.floating_surface,
-    borderTopColor: theme.colors.tint_on_surface_16,
+    borderTopColor: theme.colors.tint_on_surface_01,
     borderTopWidth: theme.borders.thick,
   },
   handlerBar: {
     position: 'absolute',
-    backgroundColor: theme.colors.on_surface_secondary_no_opacity,
+    backgroundColor: theme.colors.label_medium_emphasis_no_opacity,
     top: 5,
     borderRadius: 3,
     height: 4,

@@ -61,11 +61,11 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   headline: {
     ...theme.textStyles.headline_03,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
   caption: {
     ...theme.textStyles.caption_02,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     opacity: theme.opacity.secondary,
   },
 });

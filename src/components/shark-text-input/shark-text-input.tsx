@@ -40,7 +40,7 @@ export const SharkTextInput = ({
 }: SharkTextInputProps) => {
   const [isFocused, setIsFocused] = React.useState(false);
   const styles = useDynamicValue(dynamicStyles);
-  const surfaceSecondary = useDynamicValue(theme.colors.on_surface_secondary);
+  const surfaceSecondary = useDynamicValue(theme.colors.label_medium_emphasis);
   const accent = useDynamicValue(theme.colors.primary);
 
   const paddingLeft = !!prefixIcon ? 0 : 12;
@@ -120,7 +120,7 @@ const dynamicStyles = new DynamicStyleSheet({
   textInputContainer: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     borderWidth: theme.borders.normal,
     borderRadius: theme.borderRadius.regular,
     alignContent: 'center',
@@ -140,11 +140,11 @@ const dynamicStyles = new DynamicStyleSheet({
   textInput: {
     flexGrow: 1,
     flexShrink: 1,
-    margin: 0,
     backgroundColor: 'transparent',
     padding: 0,
     ...theme.textStyles.body_01,
-    color: theme.colors.on_surface,
+    margin: 0,
+    color: theme.colors.label_high_emphasis,
   },
   disableStyle: {
     opacity: theme.opacity.disabled,

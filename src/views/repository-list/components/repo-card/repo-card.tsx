@@ -31,7 +31,7 @@ export const RepoCard = ({repo, onDelete, onRename}: RepoCardProps) => {
   const updatedFromNow = dayjs(repo.lastUpdated).fromNow(true);
 
   const accent = useDynamicValue(theme.colors.primary);
-  const ripplePrimary = useDynamicValue(theme.colors.ripple_surface);
+  const ripplePrimary = useDynamicValue(theme.colors.ripple_neutral);
 
   return (
     <>

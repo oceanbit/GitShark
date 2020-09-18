@@ -123,9 +123,9 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   subheaderText: {
     marginLeft: theme.spacing.xs,
-    ...theme.textStyles.callout,
+    ...theme.textStyles.callout_01,
     flexGrow: 1,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
   calloutButton: {
     marginLeft: theme.spacing.m,

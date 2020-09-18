@@ -14,6 +14,7 @@ const RepositoryListDemo = ({...props}: any) => {
         remoteBranches={[]}
         onBranchRename={() => Promise.resolve()}
         onCheckoutBranch={() => Promise.resolve()}
+        onCreateRemote={() => {}}
         onCreateBranch={() => Promise.resolve()}
         onDeleteLocalBranch={() => Promise.resolve()}
       />

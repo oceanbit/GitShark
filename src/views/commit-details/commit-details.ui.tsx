@@ -144,8 +144,8 @@ const dynamicStyles = new DynamicStyleSheet({
     flexGrow: 1,
   },
   changesHeaderText: {
-    ...theme.textStyles.callout,
-    color: theme.colors.on_surface,
+    ...theme.textStyles.callout_01,
+    color: theme.colors.label_high_emphasis,
   },
   infoBlock: {
     marginLeft: theme.spacing.xs,
