@@ -6,7 +6,7 @@ import {
   View,
   Animated,
 } from 'react-native';
-import {theme, rubikRegular} from '@constants';
+import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkIconButton} from '../shark-icon-button';
 
@@ -34,11 +34,11 @@ export const SeaTextInput = ({
   const styles = useDynamicValue(dynamicStyles);
 
   const primary = useDynamicValue(theme.colors.primary);
-  const on_surface = useDynamicValue(theme.colors.on_surface);
+  const label_high_emphasis = useDynamicValue(theme.colors.label_high_emphasis);
 
-  const tint_on_surface_08 = useDynamicValue(theme.colors.tint_on_surface_08);
-  const tint_on_surface_16 = useDynamicValue(theme.colors.tint_on_surface_16);
-  const tint_on_surface_32 = useDynamicValue(theme.colors.label_low_emphasis);
+  const tint_on_surface_02 = useDynamicValue(theme.colors.tint_on_surface_02);
+  const tint_on_surface_01 = useDynamicValue(theme.colors.tint_on_surface_01);
+  const label_low_emphasis = useDynamicValue(theme.colors.label_low_emphasis);
 
   const [coloredBgOpacity] = React.useState(new Animated.Value(0));
   const [labelTextToken] = React.useState(new Animated.Value(1));
@@ -169,7 +169,7 @@ export const SeaTextInput = ({
 
   const grayBorderColor = disabledToken.interpolate({
     inputRange: [0, 1],
-    outputRange: [on_surface, tint_on_surface_16],
+    outputRange: [label_high_emphasis, tint_on_surface_01],
   });
 
   const greyBorderStyle = {
@@ -185,12 +185,12 @@ export const SeaTextInput = ({
   // We need to add a disabled state
   const labelTextColor = labelTextToken.interpolate({
     inputRange: [0, 1, 2],
-    outputRange: [tint_on_surface_32, on_surface, primary],
+    outputRange: [label_low_emphasis, label_high_emphasis, primary],
   });
 
   const disabledBG = disabledToken.interpolate({
     inputRange: [0, 1],
-    outputRange: ['transparent', tint_on_surface_08],
+    outputRange: ['transparent', tint_on_surface_02],
   });
 
   const labelTextStyles = {
@@ -246,7 +246,7 @@ export const SeaTextInput = ({
             <SharkIconButton
               onPress={() => {}}
               iconName={postfixIcon}
-              color={disabled ? tint_on_surface_32 : undefined}
+              color={disabled ? label_low_emphasis : undefined}
             />
           )}
           {/* TODO: ICON HERE */}
@@ -276,10 +276,8 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   label: {
     // Overline 2
+    ...theme.textStyles.overline_02,
     textTransform: 'uppercase',
-    ...rubikRegular,
-    fontSize: 10,
-    lineHeight: 16,
   },
   textInpContainer: {
     padding: theme.spacing.xxs,
@@ -291,14 +289,14 @@ const dynamicStyles = new DynamicStyleSheet({
     flexGrow: 1,
     padding: theme.spacing.xs,
     ...theme.textStyles.body_01,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
   blueBackground: {
     position: 'absolute',
     bottom: 0,
     width: '100%',
     left: 0,
-    backgroundColor: theme.colors.tint_primary_10,
+    backgroundColor: theme.colors.tint_primary_02,
     borderRadius: theme.borderRadius.regular,
   },
   greyBorderContainer: {

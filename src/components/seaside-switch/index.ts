@@ -1,1 +1,1 @@
-export * from './shark-switch';
+export * from './seaside-switch';

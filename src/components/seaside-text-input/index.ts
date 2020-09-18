@@ -1,1 +1,1 @@
-export * from './shark-text-input';
+export * from './seaside-text-input';

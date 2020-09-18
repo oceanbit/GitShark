@@ -15,9 +15,9 @@ export const SeaSwitch = ({enabled, setEnabled, disabled}: SeaSwitchProps) => {
   const styles = useDynamicValue(dynamicStyles);
 
   const primary = useDynamicValue(theme.colors.primary);
-  const tint_on_surface_16 = useDynamicValue(theme.colors.tint_on_surface_16);
-  const tint_on_surface_08 = useDynamicValue(theme.colors.tint_on_surface_08);
-  const ripple_surface = useDynamicValue(theme.colors.ripple_surface);
+  const tint_on_surface_16 = useDynamicValue(theme.colors.tint_on_surface_01);
+  const tint_on_surface_08 = useDynamicValue(theme.colors.tint_on_surface_02);
+  const ripple_surface = useDynamicValue(theme.colors.ripple_neutral);
 
   const [switchLeft] = React.useState(new Animated.Value(0));
   const [thumbDisabled] = React.useState(new Animated.Value(0));
@@ -111,7 +111,7 @@ const dynamicStyles = new DynamicStyleSheet({
     width: theme.spacing.m * 2,
     height: theme.spacing.m,
     position: 'relative',
-    backgroundColor: theme.colors.tint_on_surface_16,
+    backgroundColor: theme.colors.tint_on_surface_01,
     boxSizing: 'content-box',
     borderRadius: theme.spacing.m,
   },
