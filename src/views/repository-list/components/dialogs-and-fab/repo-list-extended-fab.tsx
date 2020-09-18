@@ -120,7 +120,7 @@ export const RepoListExtendedFab = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   noRepos: {
-    ...theme.textStyles.headline_01,
+    ...theme.textStyles.headline_04,
     color: theme.colors.label_high_emphasis,
     opacity: 0.4,
     position: 'absolute',

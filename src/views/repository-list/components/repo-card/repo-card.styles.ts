@@ -37,7 +37,7 @@ export const dynamicStyles = new DynamicStyleSheet({
     flexGrow: 1,
     flexShrink: 1,
     marginRight: 8,
-    ...theme.textStyles.headline_03,
+    ...theme.textStyles.headline_06,
     color: theme.colors.label_high_emphasis,
   },
   lastUpdated: {

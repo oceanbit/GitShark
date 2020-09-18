@@ -60,7 +60,7 @@ const dynamicStyles = new DynamicStyleSheet({
     marginLeft: theme.spacing.xs,
   },
   headline: {
-    ...theme.textStyles.headline_03,
+    ...theme.textStyles.headline_06,
     color: theme.colors.label_high_emphasis,
   },
   caption: {

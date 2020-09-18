@@ -86,7 +86,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   commitHeader: {
     marginLeft: theme.spacing.xs,
-    ...theme.textStyles.headline_03,
+    ...theme.textStyles.headline_06,
     color: theme.colors.label_high_emphasis,
   },
   commitData: {

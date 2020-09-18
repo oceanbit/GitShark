@@ -66,7 +66,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   dialogTitle: {
     marginBottom: 4,
-    ...theme.textStyles.headline_03,
+    ...theme.textStyles.headline_06,
     color: theme.colors.label_high_emphasis,
   },
   mainText: {

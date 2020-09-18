@@ -23,7 +23,7 @@ export const SharkIconButton = ({
   primaryColor = true,
 }: SharkIconButtonProps) => {
   const accentColor = useDynamicValue(theme.colors.primary);
-  const onSurfaceColor = useDynamicValue(theme.colors.on_surface);
+  const onSurfaceColor = useDynamicValue(theme.colors.label_high_emphasis);
 
   const iconColor = primaryColor ? accentColor : onSurfaceColor;
 
