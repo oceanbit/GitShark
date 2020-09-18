@@ -11,7 +11,7 @@ interface SharkIconButtonProps {
   style?: StyleProp<ViewStyle>;
   iconStyle?: any;
   disabled?: boolean;
-  primaryColor?: boolean;
+  color?: string;
 }
 
 export const SharkIconButton = ({
@@ -20,12 +20,12 @@ export const SharkIconButton = ({
   style = {},
   iconStyle = {},
   disabled = false,
-  primaryColor = true,
+  color,
 }: SharkIconButtonProps) => {
   const accentColor = useDynamicValue(theme.colors.primary);
   const onSurfaceColor = useDynamicValue(theme.colors.label_high_emphasis);
 
-  const iconColor = primaryColor ? accentColor : onSurfaceColor;
+  const iconColor = !color ? accentColor : color;
 
   return (
     <TouchableRipple

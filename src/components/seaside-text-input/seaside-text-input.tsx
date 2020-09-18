@@ -1,12 +1,9 @@
 import * as React from 'react';
 import {
-  StyleProp,
   TextInput,
   TextInputProps,
   TextProps,
   View,
-  ViewStyle,
-  Text,
   Animated,
 } from 'react-native';
 import {theme, rubikRegular} from '@constants';
@@ -17,7 +14,6 @@ interface SeaTextInputProps {
   ellipsizeMode?: TextProps['ellipsizeMode'];
   value: TextInputProps['value'];
   onChangeText: TextInputProps['onChangeText'];
-  style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   errorStr?: string;
   keyboardType?: TextInputProps['keyboardType'];
@@ -29,7 +25,6 @@ const animTiming = 150;
 export const SeaTextInput = ({
   value,
   onChangeText,
-  style = {},
   disabled,
   errorStr,
   keyboardType,
@@ -41,19 +36,44 @@ export const SeaTextInput = ({
   const primary = useDynamicValue(theme.colors.primary);
   const on_surface = useDynamicValue(theme.colors.on_surface);
 
-  const [blueBgOpacity] = React.useState(new Animated.Value(0));
+  const tint_on_surface_08 = useDynamicValue(theme.colors.tint_on_surface_08);
+  const tint_on_surface_16 = useDynamicValue(theme.colors.tint_on_surface_16);
+  const tint_on_surface_32 = useDynamicValue(theme.colors.label_low_emphasis);
+
+  const [coloredBgOpacity] = React.useState(new Animated.Value(0));
+  const [labelTextToken] = React.useState(new Animated.Value(1));
   const [grayBorderOpacity] = React.useState(new Animated.Value(1));
-  const [blueBgHeight] = React.useState(new Animated.Value(0));
+  const [coloredBgHeight] = React.useState(new Animated.Value(0));
   const [textInputHeight, setInputHeight] = React.useState(0);
   const [labelInputContHeight, setLabelInputContHeight] = React.useState(0);
   const [labelLeft] = React.useState(new Animated.Value(theme.spacing.xxs));
   const [labelBottom] = React.useState(new Animated.Value(theme.spacing.xxs));
+  const [labelTop] = React.useState(new Animated.Value(theme.spacing.xxs));
+  const [disabledToken] = React.useState(new Animated.Value(0));
 
   React.useEffect(() => {
-    if (isFocused) {
+    if (disabled) {
+      Animated.timing(disabledToken, {
+        toValue: 1,
+        duration: animTiming,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(disabledToken, {
+        toValue: 0,
+        duration: animTiming,
+        useNativeDriver: true,
+      }).start();
+    }
+    if (isFocused && !disabled) {
       Animated.parallel([
-        Animated.timing(blueBgOpacity, {
+        Animated.timing(coloredBgOpacity, {
           toValue: 1,
+          duration: animTiming,
+          useNativeDriver: true,
+        }),
+        Animated.timing(labelTextToken, {
+          toValue: 2,
           duration: animTiming,
           useNativeDriver: true,
         }),
@@ -62,12 +82,18 @@ export const SeaTextInput = ({
           duration: animTiming,
           useNativeDriver: true,
         }),
-        Animated.timing(blueBgHeight, {
+        Animated.timing(coloredBgHeight, {
           toValue: labelInputContHeight,
           duration: animTiming,
           useNativeDriver: true,
         }),
         Animated.timing(labelLeft, {
+          toValue: theme.spacing.s,
+          duration: animTiming,
+          useNativeDriver: true,
+        }),
+
+        Animated.timing(labelTop, {
           toValue: theme.spacing.xs,
           duration: animTiming,
           useNativeDriver: true,
@@ -80,22 +106,36 @@ export const SeaTextInput = ({
       ]).start();
     } else {
       Animated.parallel([
-        Animated.timing(blueBgOpacity, {
+        Animated.timing(coloredBgOpacity, {
           toValue: 0,
           duration: animTiming,
           useNativeDriver: true,
         }),
-        Animated.timing(grayBorderOpacity, {
-          toValue: theme.opacity.disabled,
+        Animated.timing(labelTextToken, {
+          toValue: disabled ? 0 : 1,
           duration: animTiming,
           useNativeDriver: true,
         }),
-        Animated.timing(blueBgHeight, {
+        Animated.timing(grayBorderOpacity, {
+          /**
+           * We're doing some weird things with the gray border.
+           * What we should do is migrate to tint_32 and not change opacity to disabled
+           */
+          toValue: disabled ? 1 : theme.opacity.disabled,
+          duration: animTiming,
+          useNativeDriver: true,
+        }),
+        Animated.timing(coloredBgHeight, {
           toValue: textInputHeight,
           duration: animTiming,
           useNativeDriver: true,
         }),
         Animated.timing(labelLeft, {
+          toValue: theme.spacing.xxs,
+          duration: animTiming,
+          useNativeDriver: true,
+        }),
+        Animated.timing(labelTop, {
           toValue: theme.spacing.xxs,
           duration: animTiming,
           useNativeDriver: true,
@@ -110,31 +150,47 @@ export const SeaTextInput = ({
   }, [
     isFocused,
     grayBorderOpacity,
-    blueBgOpacity,
-    blueBgHeight,
+    coloredBgOpacity,
+    coloredBgHeight,
     textInputHeight,
     labelInputContHeight,
     labelLeft,
+    labelTop,
     labelBottom,
+    disabledToken,
+    disabled,
+    labelTextToken,
   ]);
 
-  const blueBackgroundStyle = {
-    opacity: blueBgOpacity,
-    height: blueBgHeight,
+  const coloredBackgroundStyle = {
+    opacity: coloredBgOpacity,
+    height: coloredBgHeight,
   };
+
+  const grayBorderColor = disabledToken.interpolate({
+    inputRange: [0, 1],
+    outputRange: [on_surface, tint_on_surface_16],
+  });
 
   const greyBorderStyle = {
     opacity: grayBorderOpacity,
-    height: blueBgHeight,
+    height: coloredBgHeight,
+    borderColor: grayBorderColor,
   };
 
-  const blueBorderStyle = {
-    opacity: blueBgOpacity,
+  const coloredBorderStyle = {
+    opacity: coloredBgOpacity,
   };
 
-  const labelTextColor = blueBgOpacity.interpolate({
+  // We need to add a disabled state
+  const labelTextColor = labelTextToken.interpolate({
+    inputRange: [0, 1, 2],
+    outputRange: [tint_on_surface_32, on_surface, primary],
+  });
+
+  const disabledBG = disabledToken.interpolate({
     inputRange: [0, 1],
-    outputRange: [on_surface, primary],
+    outputRange: ['transparent', tint_on_surface_08],
   });
 
   const labelTextStyles = {
@@ -143,13 +199,17 @@ export const SeaTextInput = ({
 
   const labelContainer = {
     paddingHorizontal: labelLeft,
-    paddingTop: labelLeft,
+    paddingTop: labelTop,
     paddingBottom: labelBottom,
   };
 
   const inputStylingWithIcon = !!postfixIcon
     ? {paddingRight: theme.spacing.xxs}
     : {};
+
+  const disabledBackground = {
+    backgroundColor: disabledBG,
+  };
 
   return (
     <>
@@ -164,8 +224,8 @@ export const SeaTextInput = ({
             Label
           </Animated.Text>
         </Animated.View>
-        <View
-          style={styles.textInpContainer}
+        <Animated.View
+          style={[styles.textInpContainer, disabledBackground]}
           onLayout={event => {
             const {height: eventHeight} = event.nativeEvent.layout;
             setInputHeight(eventHeight);
@@ -183,13 +243,17 @@ export const SeaTextInput = ({
             onBlur={() => setIsFocused(false)}
           />
           {!!postfixIcon && (
-            <SharkIconButton onPress={() => {}} iconName={postfixIcon} />
+            <SharkIconButton
+              onPress={() => {}}
+              iconName={postfixIcon}
+              color={disabled ? tint_on_surface_32 : undefined}
+            />
           )}
           {/* TODO: ICON HERE */}
-        </View>
+        </Animated.View>
         <Animated.View
           pointerEvents="none"
-          style={[styles.blueBackground, blueBackgroundStyle]}
+          style={[styles.blueBackground, coloredBackgroundStyle]}
         />
         <Animated.View
           pointerEvents="none"
@@ -197,7 +261,7 @@ export const SeaTextInput = ({
         />
         <Animated.View
           pointerEvents="none"
-          style={[styles.blueBorder, blueBorderStyle]}
+          style={[styles.blueBorder, coloredBorderStyle]}
         />
       </View>
     </>
@@ -221,6 +285,7 @@ const dynamicStyles = new DynamicStyleSheet({
     padding: theme.spacing.xxs,
     display: 'flex',
     flexDirection: 'row',
+    borderRadius: theme.borderRadius.regular,
   },
   textInput: {
     flexGrow: 1,
@@ -238,12 +303,12 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   greyBorderContainer: {
     position: 'absolute',
-    borderColor: theme.colors.on_surface,
     borderWidth: theme.borders.normal,
     width: '100%',
     bottom: 0,
     left: 0,
     borderRadius: theme.borderRadius.regular,
+    zIndex: 1,
   },
   blueBorder: {
     position: 'absolute',

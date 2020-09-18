@@ -89,7 +89,7 @@ export const BranchListItem = ({
             anchor={
               <SharkIconButton
                 iconName="menu"
-                primaryColor={selected}
+                color={selected ? undefined : onSurfaceColor}
                 onPress={() => setIsMenuOpen(true)}
               />
             }>
