@@ -24,7 +24,7 @@ const dynamicStyles = new DynamicStyleSheet({
     paddingHorizontal: 28,
   },
   fabActionText: {
-    ...theme.textStyles.callout,
+    ...theme.textStyles.callout_01,
     color: theme.colors.on_primary,
     textAlign: 'center',
   },

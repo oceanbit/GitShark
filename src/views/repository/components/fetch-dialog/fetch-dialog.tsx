@@ -116,7 +116,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   pickerView: {
     borderWidth: theme.borders.normal,
-    borderColor: theme.colors.on_surface_secondary,
+    borderColor: theme.colors.label_medium_emphasis,
     borderRadius: theme.borderRadius.regular,
     marginBottom: theme.spacing.m,
   },
@@ -125,7 +125,7 @@ const dynamicStyles = new DynamicStyleSheet({
     alignItems: 'center',
   },
   checkboxText: {
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     ...theme.textStyles.body_02,
   },
   cancelBtn: {

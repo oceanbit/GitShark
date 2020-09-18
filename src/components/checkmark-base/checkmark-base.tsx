@@ -45,8 +45,8 @@ export class CheckmarkBase extends React.PureComponent<
   };
 
   state = {
-    scaleAndOpacityOfCheckbox: null,
-    scaleAndOpacityOfIndeterminate: null,
+    scaleAndOpacityOfCheckbox: null as Animated.Value | null,
+    scaleAndOpacityOfIndeterminate: null as Animated.Value | null,
   };
 
   componentDidMount() {
@@ -121,22 +121,22 @@ export class CheckmarkBase extends React.PureComponent<
     };
 
     const checkedStyles = {
-      opacity: this.state.scaleAndOpacityOfCheckbox,
-      scaleX: this.state.scaleAndOpacityOfCheckbox,
-      scaleY: this.state.scaleAndOpacityOfCheckbox,
+      opacity: this.state.scaleAndOpacityOfCheckbox!,
+      scaleX: this.state.scaleAndOpacityOfCheckbox!,
+      scaleY: this.state.scaleAndOpacityOfCheckbox!,
       position: 'absolute',
       top: 0,
       left: 0,
-    };
+    } as any;
 
     const indeterminateStyles = {
-      opacity: this.state.scaleAndOpacityOfIndeterminate,
-      scaleX: this.state.scaleAndOpacityOfIndeterminate,
-      scaleY: this.state.scaleAndOpacityOfIndeterminate,
+      opacity: this.state.scaleAndOpacityOfIndeterminate!,
+      scaleX: this.state.scaleAndOpacityOfIndeterminate!,
+      scaleY: this.state.scaleAndOpacityOfIndeterminate!,
       position: 'absolute',
       top: 0,
       left: 0,
-    };
+    } as any;
 
     return (
       <TouchableWithoutFeedback hitSlop={hitSlop} onPress={this._onPress}>

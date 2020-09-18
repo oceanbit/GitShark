@@ -136,7 +136,7 @@ export const CommitDetailsHeader = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   commitStyle: {
-    ...theme.textStyles.callout,
+    ...theme.textStyles.callout_01,
     marginHorizontal: theme.spacing.m,
     marginBottom: theme.spacing.xs,
   },

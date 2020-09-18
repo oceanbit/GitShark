@@ -17,7 +17,7 @@ export const CommitDetailsMoreInfo = ({
   onNavToPar,
 }: CommitDetailsMoreInfoProps) => {
   const styles = useDynamicValue(dynamicStyles);
-  const surfaceSecondary = useDynamicValue(theme.colors.on_surface_secondary);
+  const surfaceSecondary = useDynamicValue(theme.colors.label_medium_emphasis);
 
   const [showCopied, setShowCopied] = React.useState(false);
 
@@ -127,7 +127,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   shaText: {
     ...theme.textStyles.caption_02,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     opacity: theme.opacity.secondary,
     width: 1,
     flexGrow: 1,
@@ -142,7 +142,7 @@ const dynamicStyles = new DynamicStyleSheet({
     paddingHorizontal: theme.spacing.xs,
     paddingVertical: theme.spacing.xxs,
     borderWidth: theme.borders.normal,
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     borderRadius: theme.borderRadius.small,
   },
   parText: {

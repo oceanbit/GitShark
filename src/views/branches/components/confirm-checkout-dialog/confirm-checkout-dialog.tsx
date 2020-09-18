@@ -48,7 +48,7 @@ export const ConfirmCheckoutDialog = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   cancelBtn: {
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     borderWidth: theme.borders.thick,
     marginRight: theme.spacing.m,
   },

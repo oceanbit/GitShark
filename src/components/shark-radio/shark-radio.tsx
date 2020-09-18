@@ -10,8 +10,8 @@ interface SharkRadioProps {
 
 export const SharkRadio = ({checked, onValueChange}: SharkRadioProps) => {
   const accent = useDynamicValue(theme.colors.primary);
-  const on_surface_secondary = useDynamicValue(
-    theme.colors.on_surface_secondary,
+  const label_medium_emphasis = useDynamicValue(
+    theme.colors.label_medium_emphasis,
   );
 
   return (
@@ -21,7 +21,7 @@ export const SharkRadio = ({checked, onValueChange}: SharkRadioProps) => {
       unselectedIcon={'radio_unselected'}
       selectedIcon={'radio_selected'}
       size={24}
-      unselectedColor={on_surface_secondary}
+      unselectedColor={label_medium_emphasis}
       selectedColor={accent}
     />
   );

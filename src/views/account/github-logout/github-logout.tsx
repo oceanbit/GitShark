@@ -32,12 +32,12 @@ const dynamicStyles = new DynamicStyleSheet({
     marginRight: theme.spacing.m,
   },
   callout: {
-    ...theme.textStyles.callout,
-    color: theme.colors.on_surface,
+    ...theme.textStyles.callout_01,
+    color: theme.colors.label_high_emphasis,
   },
   body2: {
     ...theme.textStyles.body_02,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     opacity: theme.opacity.secondary,
   },
 });

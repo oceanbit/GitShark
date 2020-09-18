@@ -21,7 +21,7 @@ export const SharkProfilePic = ({
   showGHLogo,
 }: SharkProfilePicProps) => {
   const styles = useDynamicValue(dynamicStyles);
-  const on_surface = useDynamicValue(theme.colors.on_surface);
+  const label_high_emphasis = useDynamicValue(theme.colors.label_high_emphasis);
 
   const sizeStyle = {
     height: size,
@@ -36,7 +36,7 @@ export const SharkProfilePic = ({
       />
       {showGHLogo && (
         <View style={styles.gitHubLogo}>
-          <Icon size={16} name={'github'} color={on_surface} />
+          <Icon size={16} name={'github'} color={label_high_emphasis} />
         </View>
       )}
     </View>
@@ -50,7 +50,7 @@ const dynamicStyles = new DynamicStyleSheet({
   profPic: {
     borderRadius: 50,
     borderWidth: theme.borders.normal,
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
   },
   gitHubLogo: {
     position: 'absolute',

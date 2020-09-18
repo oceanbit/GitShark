@@ -82,12 +82,12 @@ const dynamicStyles = new DynamicStyleSheet({
   headingText: {
     flexGrow: 1,
     width: 1,
-    ...theme.textStyles.headline_01,
-    color: theme.colors.on_surface,
+    ...theme.textStyles.headline_04,
+    color: theme.colors.label_high_emphasis,
   },
   noRepos: {
-    ...theme.textStyles.headline_01,
-    color: theme.colors.on_surface,
+    ...theme.textStyles.headline_04,
+    color: theme.colors.label_high_emphasis,
     opacity: theme.opacity.disabled,
     position: 'absolute',
     textAlign: 'center',

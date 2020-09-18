@@ -68,16 +68,16 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'column',
   },
   personName: {
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     ...theme.textStyles.caption_01,
   },
   personDate: {
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     opacity: theme.opacity.secondary,
     ...theme.textStyles.caption_02,
   },
   personEmail: {
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     ...theme.textStyles.caption_02,
   },
 });

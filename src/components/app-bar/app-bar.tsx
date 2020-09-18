@@ -60,12 +60,12 @@ const dynamicStyles = new DynamicStyleSheet({
     marginLeft: theme.spacing.xs,
   },
   headline: {
-    ...theme.textStyles.headline_03,
-    color: theme.colors.on_surface,
+    ...theme.textStyles.headline_06,
+    color: theme.colors.label_high_emphasis,
   },
   caption: {
     ...theme.textStyles.caption_02,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     opacity: theme.opacity.secondary,
   },
 });

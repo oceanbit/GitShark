@@ -2543,6 +2543,11 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@oceanbit/styles@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@oceanbit/styles/-/styles-0.1.3.tgz#7980cbebf6503de0041fb9cc7f8382c3edf2d73c"
+  integrity sha512-5yPWHgEelU2YVGALP6V9z+hXnlAfS0clCC+i0BgW+LiD+vNKOTQ+hvB3tx91plfzYhOvzIdH194xBeKPGTOojw==
+
 "@reach/router@^1.2.1":
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.3.3.tgz#58162860dce6c9449d49be86b0561b5ef46d80db"
@@ -13334,11 +13339,6 @@ schema-utils@^2.0.1, schema-utils@^2.5.0, schema-utils@^2.6.5, schema-utils@^2.6
     "@types/json-schema" "^7.0.4"
     ajv "^6.12.2"
     ajv-keywords "^3.4.1"
-
-seaside@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/seaside/-/seaside-0.1.1.tgz#76e22998eeb70cbba19329d5bca5933aca8d93b1"
-  integrity sha512-skAOOKE9OwDNJRjrLKS9Nx3ZfEq5y4wtyJdjxd/u+0Pd8uAlYeTnCRPUeHCqsG6A8cjisvx68m4/T8qFl9v4aA==
 
 select@^1.1.2:
   version "1.1.2"

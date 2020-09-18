@@ -208,11 +208,11 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   authorName: {
     ...theme.textStyles.caption_01,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
   authorEmail: {
     ...theme.textStyles.caption_02,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
   useGHCredsContainer: {
     flexDirection: 'row',
@@ -229,7 +229,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   useGHText: {
     ...theme.textStyles.body_01,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
   textInput: {
     marginTop: theme.spacing.m,

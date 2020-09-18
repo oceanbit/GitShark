@@ -39,14 +39,14 @@ export const CommitCardPushPull = ({
 const dynamicStyles = new DynamicStyleSheet({
   arrowContainer: {
     borderStyle: 'solid',
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     borderRadius: theme.borderRadius.small,
     borderWidth: theme.borders.normal,
     flexDirection: 'row',
   },
   middleLine: {
     width: 1,
-    backgroundColor: theme.colors.tint_on_surface_16,
+    backgroundColor: theme.colors.tint_on_surface_01,
   },
   commitNumberView: {
     padding: 6,

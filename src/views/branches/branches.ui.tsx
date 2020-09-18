@@ -146,9 +146,9 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   remoteHeader: {
     marginHorizontal: theme.spacing.xs,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     width: 1,
     flexGrow: 1,
-    ...theme.textStyles.callout,
+    ...theme.textStyles.callout_01,
   },
 });

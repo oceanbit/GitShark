@@ -1,31 +1,31 @@
-import {getTextStyles} from 'seaside/text_styles';
+import {getTextStyles} from '@oceanbit/styles';
 import {Platform} from 'react-native';
 
 const iOS = Platform.OS === 'ios';
 
-export const rubikLight = {
+export const epilogueLight = {
   fontFamily: iOS ? 'Rubik' : 'rubik_light',
   fontWeight: iOS ? ('300' as const) : ('normal' as const),
 };
 
-export const rubikRegular = {
+export const epilogueRegular = {
   fontFamily: iOS ? 'Rubik' : 'rubik_regular',
   fontWeight: 'normal' as const,
 };
 
-export const rubikMedium = {
+export const epilogueSemiBold = {
   fontFamily: iOS ? 'Rubik' : 'rubik_medium',
   fontWeight: iOS ? ('500' as const) : ('normal' as const),
 };
 
-export const rubikBold = {
+export const epilogueBold = {
   fontFamily: iOS ? 'Rubik' : 'rubik_bold',
   fontWeight: iOS ? ('bold' as const) : ('normal' as const),
 };
 
 export const textStyles = getTextStyles({
-  rubikBold,
-  rubikLight,
-  rubikMedium,
-  rubikRegular,
+  epilogueBold,
+  epilogueSemiBold,
+  epilogueRegular,
+  robotoCode: epilogueRegular,
 });

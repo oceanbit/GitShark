@@ -74,8 +74,8 @@ export const RepositoryUI = ({
 
   const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
-  const on_surface_secondary = useDynamicValue(
-    theme.colors.on_surface_secondary,
+  const label_medium_emphasis = useDynamicValue(
+    theme.colors.label_medium_emphasis,
   );
 
   const Tabs = React.useCallback(() => {
@@ -84,7 +84,7 @@ export const RepositoryUI = ({
         labeled={true}
         shifting={false}
         barStyle={[styles.bottomNav, {paddingBottom: insets.bottom}]}
-        inactiveColor={on_surface_secondary}
+        inactiveColor={label_medium_emphasis}
         activeColor={accent}>
         <Tab.Screen
           name="Changes"
@@ -113,7 +113,7 @@ export const RepositoryUI = ({
     repoHistory,
     repoChanges,
     accent,
-    on_surface_secondary,
+    label_medium_emphasis,
     insets.bottom,
   ]);
 
@@ -173,6 +173,6 @@ const dynamicStyles = new DynamicStyleSheet({
   bottomNav: {
     backgroundColor: theme.colors.floating_surface,
     borderTopWidth: theme.borders.normal,
-    borderTopColor: theme.colors.tint_on_surface_16,
+    borderTopColor: theme.colors.tint_on_surface_01,
   },
 });

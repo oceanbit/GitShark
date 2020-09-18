@@ -47,9 +47,10 @@ export const BranchListItem = ({
 
   const styles = useDynamicValue(dynamicStyles);
 
-  const tint_primary_10 = useDynamicValue(theme.colors.tint_primary_10);
+  const onSurfaceColor = useDynamicValue(theme.colors.label_high_emphasis);
+  const tint_primary_02 = useDynamicValue(theme.colors.tint_primary_02);
 
-  const bgColor = selected ? {backgroundColor: tint_primary_10} : {};
+  const bgColor = selected ? {backgroundColor: tint_primary_02} : {};
 
   const branchNameSelected = selected
     ? styles.branchSelected
@@ -158,11 +159,11 @@ const dynamicStyles = new DynamicStyleSheet({
     width: 1,
   },
   branchSelected: {
-    ...theme.textStyles.callout,
+    ...theme.textStyles.callout_01,
     color: theme.colors.primary,
   },
   branchNameNormal: {
     ...theme.textStyles.body_01,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
 });

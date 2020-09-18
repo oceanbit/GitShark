@@ -69,19 +69,19 @@ const dynamicStyles = new DynamicStyleSheet({
     marginRight: theme.spacing.m,
   },
   accountCallout: {
-    ...theme.textStyles.callout,
-    color: theme.colors.on_surface,
+    ...theme.textStyles.callout_01,
+    color: theme.colors.label_high_emphasis,
   },
   accountText: {
     display: 'flex',
     flexDirection: 'column',
     marginRight: theme.spacing.m,
     flexGrow: 1,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
   accountBody: {
     ...theme.textStyles.body_02,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
     opacity: theme.opacity.secondary,
   },
   arrowIcon: {

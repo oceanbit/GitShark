@@ -21,8 +21,8 @@ export const SharkCheckbox = ({
   const styles = useDynamicValue(dynamicStyles);
 
   const accent = useDynamicValue(theme.colors.primary);
-  const on_surface_secondary = useDynamicValue(
-    theme.colors.on_surface_secondary,
+  const label_medium_emphasis = useDynamicValue(
+    theme.colors.label_medium_emphasis,
   );
 
   const disabledStyles = disabled ? styles.disabledStyling : {};
@@ -38,7 +38,7 @@ export const SharkCheckbox = ({
         selectedIcon={'checkbox_selected'}
         indetermindateIcon={'checkbox_intermediate'}
         size={24}
-        unselectedColor={on_surface_secondary}
+        unselectedColor={label_medium_emphasis}
         selectedColor={accent}
       />
     </View>

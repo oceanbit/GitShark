@@ -147,8 +147,8 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   subheaderText: {
     marginLeft: theme.spacing.xs,
-    ...theme.textStyles.callout,
-    color: theme.colors.on_surface,
+    ...theme.textStyles.callout_01,
+    color: theme.colors.label_high_emphasis,
   },
   calloutButton: {
     borderWidth: 0,
@@ -161,14 +161,14 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'row',
     flexWrap: 'nowrap',
     borderWidth: theme.borders.thick,
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     borderRadius: theme.borderRadius.regular,
     overflow: 'hidden',
   },
   iconButton: {},
   dotsIcon: {},
   dividerLeft: {
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     borderLeftWidth: theme.borders.thick,
   },
   disabledStyling: {

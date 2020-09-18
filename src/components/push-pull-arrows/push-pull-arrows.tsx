@@ -19,11 +19,11 @@ export const PushPullArrows = ({
 }: PushPullArrowsProps) => {
   const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
-  const on_surface = useDynamicValue(theme.colors.on_surface);
+  const label_high_emphasis = useDynamicValue(theme.colors.label_high_emphasis);
   if (!commitsToPull?.length && !commitsToPush?.length) {
     return null;
   }
-  const color = primaryText ? accent : on_surface;
+  const color = primaryText ? accent : label_high_emphasis;
   return (
     <View style={[styles.arrowContainer, style]}>
       {!!commitsToPush?.length && (
@@ -52,14 +52,14 @@ export const PushPullArrows = ({
 export const dynamicStyles = new DynamicStyleSheet({
   arrowContainer: {
     borderStyle: 'solid',
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     borderRadius: theme.borderRadius.small,
     borderWidth: theme.borders.normal,
     flexDirection: 'row',
   },
   middleLine: {
     width: 1,
-    backgroundColor: theme.colors.tint_on_surface_16,
+    backgroundColor: theme.colors.tint_on_surface_01,
   },
   commitNumberView: {
     padding: theme.spacing.xs,
@@ -68,7 +68,7 @@ export const dynamicStyles = new DynamicStyleSheet({
   },
   commitNumberText: {
     marginLeft: 2,
-    ...theme.textStyles.overline,
+    ...theme.textStyles.overline_01,
   },
   primaryText: {
     color: theme.colors.primary,

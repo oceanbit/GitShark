@@ -24,7 +24,7 @@ export const HistoryBranchDropdown = ({
   setExpanded,
 }: HistoryBranchDropdownProps) => {
   const styles = useDynamicValue(dynamicStyles);
-  const rippleColor = useDynamicValue(theme.colors.ripple_surface);
+  const rippleColor = useDynamicValue(theme.colors.ripple_neutral);
 
   const [marginLeft] = React.useState(new Animated.Value(0));
   const [branchNameOpacity] = React.useState(new Animated.Value(0));
@@ -124,8 +124,8 @@ const dynamicStyles = new DynamicStyleSheet({
     width: '100%',
     height: '100%',
     textAlignVertical: 'center',
-    ...theme.textStyles.callout,
-    color: theme.colors.on_surface,
+    ...theme.textStyles.callout_01,
+    color: theme.colors.label_high_emphasis,
   },
   branchName: {
     width: '100%',
@@ -133,6 +133,6 @@ const dynamicStyles = new DynamicStyleSheet({
     textAlignVertical: 'center',
     left: 0,
     ...theme.textStyles.body_01,
-    color: theme.colors.on_surface,
+    color: theme.colors.label_high_emphasis,
   },
 });

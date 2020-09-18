@@ -21,8 +21,8 @@ export const SharkButtonToggleGroup = ({
 
   const primary = useDynamicValue(theme.colors.primary);
   const on_primary = useDynamicValue(theme.colors.on_primary);
-  const on_surface_secondary = useDynamicValue(
-    theme.colors.on_surface_secondary,
+  const label_medium_emphasis = useDynamicValue(
+    theme.colors.label_medium_emphasis,
   );
 
   return (
@@ -30,7 +30,7 @@ export const SharkButtonToggleGroup = ({
       highlightBackgroundColor={primary}
       highlightTextColor={on_primary}
       inactiveBackgroundColor={'transparent'}
-      inactiveTextColor={on_surface_secondary}
+      inactiveTextColor={label_medium_emphasis}
       values={values}
       value={value}
       onSelect={onSelect}
@@ -42,13 +42,13 @@ export const SharkButtonToggleGroup = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   container: {
-    borderColor: theme.colors.tint_on_surface_16,
+    borderColor: theme.colors.tint_on_surface_01,
     padding: theme.spacing.xxs,
     borderWidth: theme.borders.normal,
     borderRadius: theme.borderRadius.regular,
     overflow: 'hidden',
   },
   buttonText: {
-    ...theme.textStyles.callout,
+    ...theme.textStyles.callout_01,
   },
 });
