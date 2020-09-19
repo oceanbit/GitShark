@@ -26,6 +26,8 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		870AE351588D4955C30D8291 /* libPods-GitShark-GitSharkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB842756C37218730CE5612 /* libPods-GitShark-GitSharkTests.a */; };
 		94A96F4438F9429B91A0E201 /* rubik_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13D132E93FCA446B80385162 /* rubik_Italic.ttf */; };
+		9745CCAE251570A3003FB607 /* ObjectiveGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9745CCAD251570A3003FB607 /* ObjectiveGit.framework */; };
+		9745CCAF251570A3003FB607 /* ObjectiveGit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9745CCAD251570A3003FB607 /* ObjectiveGit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9BE52BD40C8B45E8B686E4FC /* rubik_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3F8E024C2C54B0BA6D5C74B /* rubik_bold.ttf */; };
 		A98D1159022F404480E0B1B7 /* rubik_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5DF0C8A328940B98E0EB267 /* rubik_black.ttf */; };
 		CFA973993CAE40D0B5268D2F /* rubik_medium_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCFD6C2E58874BA580819C37 /* rubik_medium_italic.ttf */; };
@@ -49,6 +51,20 @@
 			remoteInfo = "GitShark-tvOS";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9745CCB0251570A3003FB607 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9745CCAF251570A3003FB607 /* ObjectiveGit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
@@ -78,6 +94,7 @@
 		83097BFC7A2442051CCEC2B0 /* Pods-GitShark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark.debug.xcconfig"; path = "Target Support Files/Pods-GitShark/Pods-GitShark.debug.xcconfig"; sourceTree = "<group>"; };
 		90EA01E8E2848EE23DD2A91E /* Pods-GitShark-GitSharkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-GitSharkTests.debug.xcconfig"; path = "Target Support Files/Pods-GitShark-GitSharkTests/Pods-GitShark-GitSharkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9235ADAE6AB94442B52FA208 /* icomoon.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = icomoon.ttf; path = ../assets/fonts/icomoon.ttf; sourceTree = "<group>"; };
+		9745CCAD251570A3003FB607 /* ObjectiveGit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectiveGit.framework; path = Carthage/Build/iOS/ObjectiveGit.framework; sourceTree = "<group>"; };
 		9FB842756C37218730CE5612 /* libPods-GitShark-GitSharkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark-GitSharkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A951485B5032FB0CAC210BAF /* Pods-GitShark-GitSharkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-GitSharkTests.release.xcconfig"; path = "Target Support Files/Pods-GitShark-GitSharkTests/Pods-GitShark-GitSharkTests.release.xcconfig"; sourceTree = "<group>"; };
 		AFFCF0C468ED4D02926FB0DF /* rubik_lightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_lightItalic.ttf; path = ../assets/fonts/rubik_lightItalic.ttf; sourceTree = "<group>"; };
@@ -105,6 +122,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC9493AD88C262F3E2A2A07C /* libPods-GitShark.a in Frameworks */,
+				9745CCAE251570A3003FB607 /* ObjectiveGit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +197,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9745CCAD251570A3003FB607 /* ObjectiveGit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				EE6929335E059DA2613C2942 /* libPods-GitShark.a */,
@@ -272,6 +291,8 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				81D08AFD2F5524D587C09577 /* [CP] Copy Pods Resources */,
+				9745CCB0251570A3003FB607 /* Embed Frameworks */,
+				9745CCB1251570E2003FB607 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -509,6 +530,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9745CCB1251570E2003FB607 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/ObjectiveGit.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
 		BE66C76089F544F867FEFA97 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -716,6 +755,56 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 93732A337Z;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/BVLinearGradient\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaAsyncSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaLibEvent\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
+					"\"${PODS_ROOT}/Headers/Public/FBReactNativeSpec\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Glog\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-PeerTalk\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-RSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/FlipperKit\"",
+					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
+					"\"${PODS_ROOT}/Headers/Public/RNCMaskedView\"",
+					"\"${PODS_ROOT}/Headers/Public/RNCPicker\"",
+					"\"${PODS_ROOT}/Headers/Public/RNDefaultPreference\"",
+					"\"${PODS_ROOT}/Headers/Public/RNFS\"",
+					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
+					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
+					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
+					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
+					"\"${PODS_ROOT}/Headers/Public/RNSecureKeyStore\"",
+					"\"${PODS_ROOT}/Headers/Public/RNVectorIcons\"",
+					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
+					"\"${PODS_ROOT}/Headers/Public/React-callinvoker\"",
+					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
+					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
+					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
+					"\"${PODS_ROOT}/Headers/Public/YogaKit\"",
+					"\"${PODS_ROOT}/Headers/Public/glog\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-sqlite-storage\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-video\"",
+					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
+					"$(SRCROOT)/Carthage/Build/iOS/ObjectiveGit.framework/Headers/",
+				);
 				INFOPLIST_FILE = GitShark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -742,6 +831,56 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 93732A337Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/BVLinearGradient\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaAsyncSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaLibEvent\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
+					"\"${PODS_ROOT}/Headers/Public/FBReactNativeSpec\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Glog\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-PeerTalk\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-RSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/FlipperKit\"",
+					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
+					"\"${PODS_ROOT}/Headers/Public/RNCMaskedView\"",
+					"\"${PODS_ROOT}/Headers/Public/RNCPicker\"",
+					"\"${PODS_ROOT}/Headers/Public/RNDefaultPreference\"",
+					"\"${PODS_ROOT}/Headers/Public/RNFS\"",
+					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
+					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
+					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
+					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
+					"\"${PODS_ROOT}/Headers/Public/RNSecureKeyStore\"",
+					"\"${PODS_ROOT}/Headers/Public/RNVectorIcons\"",
+					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
+					"\"${PODS_ROOT}/Headers/Public/React-callinvoker\"",
+					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
+					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
+					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
+					"\"${PODS_ROOT}/Headers/Public/YogaKit\"",
+					"\"${PODS_ROOT}/Headers/Public/glog\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-sqlite-storage\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-video\"",
+					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
+					"\"$(SRCROOT)/Carthage/Build/iOS/ObjectiveGit.framework/Headers/\"",
+				);
 				INFOPLIST_FILE = GitShark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
