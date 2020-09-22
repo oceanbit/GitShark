@@ -5,6 +5,7 @@ import {createNewRepo} from './createRepo';
 import {getRepoNameFromUri} from '@utils';
 import {Platform} from 'react-native';
 import {cloneRepoAndroid} from '@services/git/cloneRepo-android';
+import {cloneRepoIOS} from '@services/git/cloneRepo-ios';
 import {logService} from '../debug';
 
 export interface CloneRepoProps {
@@ -22,6 +23,10 @@ export const cloneRepo = ({path, name, uri, onProgress}: CloneRepoProps) => {
 
   if (Platform.OS === 'android') {
     return cloneRepoAndroid({path, name, uri, onProgress});
+  }
+
+  if (Platform.OS === 'ios') {
+    return cloneRepoIOS({path, name, uri, onProgress});
   }
 
   /**

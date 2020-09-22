@@ -28,6 +28,7 @@
 		94A96F4438F9429B91A0E201 /* rubik_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13D132E93FCA446B80385162 /* rubik_Italic.ttf */; };
 		9745CCAE251570A3003FB607 /* ObjectiveGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9745CCAD251570A3003FB607 /* ObjectiveGit.framework */; };
 		9745CCAF251570A3003FB607 /* ObjectiveGit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9745CCAD251570A3003FB607 /* ObjectiveGit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9766597825198801003C521E /* GitModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9766597725198801003C521E /* GitModule.m */; };
 		9BE52BD40C8B45E8B686E4FC /* rubik_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3F8E024C2C54B0BA6D5C74B /* rubik_bold.ttf */; };
 		A98D1159022F404480E0B1B7 /* rubik_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5DF0C8A328940B98E0EB267 /* rubik_black.ttf */; };
 		CFA973993CAE40D0B5268D2F /* rubik_medium_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCFD6C2E58874BA580819C37 /* rubik_medium_italic.ttf */; };
@@ -95,6 +96,8 @@
 		90EA01E8E2848EE23DD2A91E /* Pods-GitShark-GitSharkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-GitSharkTests.debug.xcconfig"; path = "Target Support Files/Pods-GitShark-GitSharkTests/Pods-GitShark-GitSharkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9235ADAE6AB94442B52FA208 /* icomoon.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = icomoon.ttf; path = ../assets/fonts/icomoon.ttf; sourceTree = "<group>"; };
 		9745CCAD251570A3003FB607 /* ObjectiveGit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectiveGit.framework; path = Carthage/Build/iOS/ObjectiveGit.framework; sourceTree = "<group>"; };
+		9766597725198801003C521E /* GitModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GitModule.m; sourceTree = "<group>"; };
+		9766597C25198821003C521E /* GitModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GitModule.h; sourceTree = "<group>"; };
 		9FB842756C37218730CE5612 /* libPods-GitShark-GitSharkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitShark-GitSharkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A951485B5032FB0CAC210BAF /* Pods-GitShark-GitSharkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitShark-GitSharkTests.release.xcconfig"; path = "Target Support Files/Pods-GitShark-GitSharkTests/Pods-GitShark-GitSharkTests.release.xcconfig"; sourceTree = "<group>"; };
 		AFFCF0C468ED4D02926FB0DF /* rubik_lightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rubik_lightItalic.ttf; path = ../assets/fonts/rubik_lightItalic.ttf; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				9766597725198801003C521E /* GitModule.m */,
+				9766597C25198821003C521E /* GitModule.h */,
 			);
 			name = GitShark;
 			sourceTree = "<group>";
@@ -665,6 +670,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				9766597825198801003C521E /* GitModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
