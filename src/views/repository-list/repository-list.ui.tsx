@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, Text, View, FlatList} from 'react-native';
 import {ReduxRepo} from '@entities';
 import {RepoCard} from './components/repo-card';
 import {theme} from '@constants';
@@ -41,32 +41,59 @@ export const RepositoryListUI = ({
     height,
   );
 
-  const maxWidth = isTablet
-    ? {maxWidth: theme.breakpoints.singlePanelMaxWidth}
-    : {};
+  const numTabs = isTablet ? 2 : 1;
+
+  const cardClass = isTablet ? {flex: 1} : {};
+
+  const renderItem = ({
+    item: repo,
+    index,
+  }: {
+    item: ReduxRepo;
+    index: number;
+  }) => {
+    const addSpacer = isTablet && !!(index % numTabs);
+    const lastItem = index === repos!.length - 1;
+
+    return (
+      <>
+        {addSpacer && <View style={{width: theme.spacing.m}} />}
+        <View style={cardClass}>
+          <RepoCard
+            repo={repo}
+            onDelete={() => deleteRepo(repo)}
+            onRename={newName => renameRepo(repo, newName)}
+          />
+        </View>
+        {lastItem && <BottomSpacerView additionalSpacing={30} />}
+      </>
+    );
+  };
 
   return (
     <SharkSafeTop>
-      <View style={[styles.container, maxWidth]}>
+      <View style={styles.container}>
         <View style={styles.headingContainer}>
           <Text style={styles.headingText}>{t('repoListTitle')}</Text>
           <SharkIconButton onPress={navigateToSettings} iconName={'settings'} />
         </View>
         {isLoading && <RepoListLoading />}
         {!isLoading && !!repos?.length && (
-          <ScrollView>
-            {repos!.map(repo => {
-              return (
-                <RepoCard
-                  key={repo.id}
-                  repo={repo}
-                  onDelete={() => deleteRepo(repo)}
-                  onRename={newName => renameRepo(repo, newName)}
-                />
-              );
-            })}
-            <BottomSpacerView additionalSpacing={30} />
-          </ScrollView>
+          <FlatList
+            key={`${isTablet}`}
+            data={repos!}
+            columnWrapperStyle={
+              isTablet
+                ? {
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                  }
+                : undefined
+            }
+            numColumns={numTabs}
+            renderItem={renderItem}
+            keyExtractor={item => `${item.id}`}
+          />
         )}
       </View>
       <DialogsAndFab
