@@ -58,6 +58,7 @@
     "react-native-localize": "^2.0.1",
     "react-native-paper": "^4.0.1",
     "react-native-reanimated": "^1.11.0",
+    "react-native-responsive-ui": "https://github.com/oceanbit-dev/react-native-responsive-ui.git#build",
     "react-native-safe-area-context": "^3.1.4",
     "react-native-screens": "^2.10.1",
     "react-native-secure-key-store": "^2.0.9",

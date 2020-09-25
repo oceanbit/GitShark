@@ -9,6 +9,7 @@ import {SharkIconButton} from '@components/shark-icon-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {BottomSpacerView, SharkSafeTop} from '../../components/shark-safe-top';
 import {useTranslation} from 'react-i18next';
+import {mediaQuery, useDimensions} from 'react-native-responsive-ui';
 
 interface RepositoryListUIProps {
   isLoading: boolean;
@@ -32,9 +33,21 @@ export const RepositoryListUI = ({
   const styles = useDynamicValue(dynamicStyles);
   const {t} = useTranslation();
 
+  const {width, height} = useDimensions();
+
+  const isTablet = mediaQuery(
+    {minWidth: theme.breakpoints.tablet},
+    width,
+    height,
+  );
+
+  const maxWidth = isTablet
+    ? {maxWidth: theme.breakpoints.singlePanelMaxWidth}
+    : {};
+
   return (
     <SharkSafeTop>
-      <View style={styles.container}>
+      <View style={[styles.container, maxWidth]}>
         <View style={styles.headingContainer}>
           <Text style={styles.headingText}>{t('repoListTitle')}</Text>
           <SharkIconButton onPress={navigateToSettings} iconName={'settings'} />

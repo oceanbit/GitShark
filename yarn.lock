@@ -12613,6 +12613,12 @@ react-native-reanimated@^1.11.0:
   dependencies:
     fbjs "^1.0.0"
 
+"react-native-responsive-ui@https://github.com/oceanbit-dev/react-native-responsive-ui.git#build":
+  version "2.1.1"
+  resolved "https://github.com/oceanbit-dev/react-native-responsive-ui.git#2424ffe5690d67c13ac0e58e3ed2072653ffdee0"
+  dependencies:
+    lodash "^4.17.11"
+
 react-native-safe-area-context@^3.1.4:
   version "3.1.7"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.7.tgz#fc9e636dfb168f992a2172d363509ce0611a8403"

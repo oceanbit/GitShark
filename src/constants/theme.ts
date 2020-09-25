@@ -104,4 +104,8 @@ export const theme = {
   ...fullTheme,
   colors,
   textStyles: textStyles,
+  breakpoints: {
+    tablet: 768,
+    singlePanelMaxWidth: 576,
+  },
 };
