@@ -49,7 +49,7 @@ export const StageSplitView = ({
     : {};
 
   return (
-    <>
+    <View style={styles.parentContainer}>
       <View style={[styles.container, containerTablet]}>
         <View style={styles.halfSection}>
           <UnstagedChanges
@@ -68,14 +68,21 @@ export const StageSplitView = ({
           />
         </View>
       </View>
-    </>
+    </View>
   );
 };
 
 const dynamicStyles = new DynamicStyleSheet({
-  container: {
+  parentContainer: {
     height: '100%',
     flex: 1,
+    display: 'flex',
+    alignItems: 'center',
+  },
+  container: {
+    flexShrink: 0,
+    width: '100%',
+    height: '100%',
   },
   halfSection: {
     height: '50%',
