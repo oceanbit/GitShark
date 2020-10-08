@@ -52,12 +52,15 @@ export const RepositoryListUI = ({
     item: ReduxRepo;
     index: number;
   }) => {
-    const addSpacer = isTablet && !!(index % numTabs);
+    const addSpacer = isTablet && !(index % numTabs);
     const lastItem = index === repos!.length - 1;
+
+    // Because "flex" is set to "1", it will attempt to fill the entire row. However, if we add a non-existant second "card"
+    // It will space out the card as if there were two columns
+    const renderFakeSecondView = addSpacer && lastItem;
 
     return (
       <>
-        {addSpacer && <View style={{width: theme.spacing.m}} />}
         <View style={cardClass}>
           <RepoCard
             repo={repo}
@@ -65,6 +68,8 @@ export const RepositoryListUI = ({
             onRename={newName => renameRepo(repo, newName)}
           />
         </View>
+        {addSpacer && <View style={{width: theme.spacing.m}} />}
+        {renderFakeSecondView && <View style={cardClass} />}
         {lastItem && <BottomSpacerView additionalSpacing={30} />}
       </>
     );
