@@ -5,6 +5,8 @@ import * as React from 'react';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {ChangesArrayItem} from '@services';
 import {SharkDivider} from '@components/shark-divider';
+import {mediaQuery, useDimensions} from 'react-native-responsive-ui';
+import {theme} from '@constants';
 
 interface StageSplitViewProps {
   unstagedChanges: ChangesArrayItem[];
@@ -26,10 +28,29 @@ export const StageSplitView = ({
   onIgnore,
 }: StageSplitViewProps) => {
   const styles = useDynamicValue(dynamicStyles);
+  const tint_on_surface_01 = useDynamicValue(theme.colors.tint_on_surface_01);
+
+  const {width, height} = useDimensions();
+
+  const isTablet = mediaQuery(
+    {minWidth: theme.breakpoints.tablet},
+    width,
+    height,
+  );
+
+  const containerTablet = isTablet
+    ? {
+        maxWidth: theme.breakpoints.singlePanelMaxWidth,
+        marginHorizontal: 'auto',
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderColor: tint_on_surface_01,
+      }
+    : {};
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={[styles.container, containerTablet]}>
         <View style={styles.halfSection}>
           <UnstagedChanges
             addToStaged={addToStaged}
