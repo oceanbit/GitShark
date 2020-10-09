@@ -90,7 +90,6 @@ export const Repository = () => {
         repoChanges={RepositoryChanges}
         repoHistory={RepositoryHistory}
         commitActions={CommitAction}
-        commitDetails={CommitDetails}
         pushPull={toPushPull}
         onRename={newName =>
           renameRepo({repoId: repo.id, name: newName, dispatch}).then(() =>

@@ -25,7 +25,6 @@ interface RepositoryUIProps {
   repoChanges: React.ComponentType<any>;
   repoHistory: React.ComponentType<any>;
   commitActions: React.ComponentType<any>;
-  commitDetails: React.ComponentType<any>;
   pushPull: PushPull | null;
   onRename: (newName: string) => void;
   onFetch: (props: {
@@ -50,7 +49,6 @@ export const RepositoryUI = ({
   repoChanges,
   repoHistory,
   commitActions,
-  commitDetails,
   pushPull,
   onRename,
   onFetch,
@@ -134,7 +132,6 @@ export const RepositoryUI = ({
         <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
           <Stack.Screen name="Repository" component={Tabs} />
           <Stack.Screen name="CommitAction" component={commitActions} />
-          <Stack.Screen name="CommitDetails" component={commitDetails} />
         </Stack.Navigator>
       </SharkSafeTop>
       <PushDialog

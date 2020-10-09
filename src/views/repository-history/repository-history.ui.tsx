@@ -8,13 +8,14 @@ import {ReduxRepo} from '@entities';
 import {GitLogCommit} from '@services';
 import {useTranslation} from 'react-i18next';
 
-interface RepositoryHistoryUIProps {
+export interface RepositoryHistoryUIProps {
   commits: any[];
   branchName: string;
   onCommitNavigate: (commit: GitLogCommit) => void;
   topLayer: React.ReactNode;
   repo: ReduxRepo | null;
   error: string;
+  sideElement: React.ReactNode;
 }
 
 export const RepositoryHistoryUI = ({
@@ -24,6 +25,7 @@ export const RepositoryHistoryUI = ({
   repo,
   branchName,
   error,
+  sideElement,
 }: RepositoryHistoryUIProps) => {
   const {t} = useTranslation();
 
@@ -57,16 +59,21 @@ export const RepositoryHistoryUI = ({
     [setShowBranches, showBranches, branchName],
   );
 
+  // console.log(stackElement);
+
   return (
     <>
       <RepositoryHeader repo={repo} />
       <View style={styles.container}>
-        <OverlayDropdownContent
-          header={header}
-          expanded={showBranches}
-          topLayer={topLayer}
-          bottomLayer={bottomLayer}
-        />
+        <View style={styles.historyUIContainer}>
+          <OverlayDropdownContent
+            header={header}
+            expanded={showBranches}
+            topLayer={topLayer}
+            bottomLayer={bottomLayer}
+          />
+        </View>
+        {sideElement}
       </View>
     </>
   );
@@ -76,5 +83,10 @@ const styles = StyleSheet.create({
   container: {
     height: 1,
     flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  historyUIContainer: {
+    flex: 1,
   },
 });

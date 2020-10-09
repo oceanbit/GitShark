@@ -23,6 +23,7 @@ interface CommitDetailsUIProps {
   onNavToPar: (val: string) => void;
   files: ChangesArrayItem[];
   onBack: () => void;
+  isMobile: boolean;
 }
 
 export const CommitDetailsUI = ({
@@ -35,6 +36,7 @@ export const CommitDetailsUI = ({
   onNavToPar,
   files,
   onBack,
+  isMobile,
 }: CommitDetailsUIProps) => {
   const {t} = useTranslation();
 
@@ -56,25 +58,27 @@ export const CommitDetailsUI = ({
 
   return (
     <>
-      <AppBar
-        leftIcon="back"
-        onLeftSelect={onBack}
-        hasBottomBorder={false}
-        rightChild={
-          <SharkMenu
-            visible={isMenuOpen}
-            onDismiss={() => setIsMenuOpen(false)}
-            anchor={
-              <SharkIconButton
-                iconName="menu"
-                onPress={() => setIsMenuOpen(true)}
-              />
-            }>
-            <Menu.Item onPress={() => {}} title={t('openFolderAction')} />
-            <Menu.Item onPress={() => {}} title={t('renameAction')} />
-          </SharkMenu>
-        }
-      />
+      {isMobile && (
+        <AppBar
+          leftIcon="back"
+          onLeftSelect={onBack}
+          hasBottomBorder={false}
+          rightChild={
+            <SharkMenu
+              visible={isMenuOpen}
+              onDismiss={() => setIsMenuOpen(false)}
+              anchor={
+                <SharkIconButton
+                  iconName="menu"
+                  onPress={() => setIsMenuOpen(true)}
+                />
+              }>
+              <Menu.Item onPress={() => {}} title={t('openFolderAction')} />
+              <Menu.Item onPress={() => {}} title={t('renameAction')} />
+            </SharkMenu>
+          }
+        />
+      )}
 
       <ScrollView>
         <CommitDetailsHeader

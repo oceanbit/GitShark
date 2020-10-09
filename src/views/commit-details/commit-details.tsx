@@ -9,18 +9,23 @@ import {
 } from '@services';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
-import {useNavigation, useRoute} from '@react-navigation/native';
 
-export const CommitDetails = () => {
+interface CommitDetailsProps {
+  commitId: string;
+  goBack: () => void;
+  navigateToParent: (parentOid: string) => void;
+  isMobile: boolean;
+}
+export const CommitDetails = ({
+  commitId,
+  goBack,
+  navigateToParent,
+  isMobile,
+}: CommitDetailsProps) => {
   const {repo} = useSelector((state: RootState) => state.repository);
-  const {
-    params: {commitId},
-  } = (useRoute() as any) as {params: {commitId: string}};
   const [commit, setCommit] = React.useState<GitLogCommit | null>(null);
 
   const [files, setFiles] = React.useState<any[]>([]);
-
-  const navigation = useNavigation<any>();
 
   React.useEffect(() => {
     if (!repo || !commitId) return;
@@ -53,14 +58,13 @@ export const CommitDetails = () => {
       message={message}
       committer={commit.committer}
       author={commit.author}
-      onBack={() => navigation.goBack()}
+      onBack={() => goBack()}
       parents={commit.parent}
       sha={commit.oid}
       files={files}
+      isMobile={isMobile}
       onNavToPar={parentOid => {
-        navigation.push('CommitDetails', {
-          commitId: parentOid,
-        });
+        navigateToParent(parentOid);
       }}
     />
   );
