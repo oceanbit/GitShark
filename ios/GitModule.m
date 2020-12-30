@@ -31,14 +31,15 @@ RCT_EXPORT_METHOD(clone:(NSString *)uri
   transferProgressBlock = ^(const git_transfer_progress *progress, BOOL *stop) {
     // TODO: Make this function properly, please :(
     //    [self sendEventWithName:@"CloneProgress" body:@{
-    //      @"phase": "Transfer",
+    //      @"phase": @"Transfer",
     //      @"total": @(progress),
     //      @"loaded": @(totalSteps)
     //    }];
   };
   checkoutProgressBlock = ^(NSString *path, NSUInteger completedSteps, NSUInteger totalSteps) {
     [self sendEventWithName:@"CloneProgress" body:@{
-      @"phase": path,
+      // `path` can be `nil`, which will cause RN to crash
+      @"phase": path ? : @"",
       @"total": @(completedSteps),
       @"loaded": @(totalSteps)
     }];
