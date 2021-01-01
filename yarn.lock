@@ -12487,7 +12487,7 @@ react-native-dynamic@^1.0.0:
 
 "react-native-fs@https://github.com/oceanbit-dev/react-native-fs.git#all-commands":
   version "2.16.4"
-  resolved "https://github.com/oceanbit-dev/react-native-fs.git#11f131f0e90f100f94b3e1daa86cf7a3479b973c"
+  resolved "https://github.com/oceanbit-dev/react-native-fs.git#cd4784f414c5b0b07de108001ae359a1cdd64028"
   dependencies:
     base-64 "^0.1.0"
     utf8 "^3.0.0"

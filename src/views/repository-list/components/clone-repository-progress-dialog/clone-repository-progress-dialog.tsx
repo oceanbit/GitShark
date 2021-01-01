@@ -27,6 +27,11 @@ export const CloneRepositoryProgressDialog = ({
   const [phase, setPhase] = React.useState('');
 
   const cloneRepoCB = React.useCallback(() => {
+    // If URI is "''", it should only be because THIS dialog has closed,
+    // but the PARENT dialog has reset the URI to "''" for revalidation
+    // Without this in place, we end up running a "clone" in the parent directory
+    // That has a URI of "". Very annoying bug to track down
+    if (!uri) return;
     setErrorStr('');
     cloneRepo({
       path,

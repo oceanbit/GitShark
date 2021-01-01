@@ -8,6 +8,12 @@ import {FolderSelectButton} from '@components/folder-select-button';
 import {CloneRepositoryProgressDialog} from '../clone-repository-progress-dialog';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
+import {Platform} from 'react-native';
+import {DocumentDirectoryPath} from 'react-native-fs';
+import {getRepoStatus} from '@services';
+
+const iOS = Platform.OS === 'ios';
+const iOSPath = DocumentDirectoryPath;
 
 interface CloneRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -20,14 +26,17 @@ export const CloneRepositoryDialog = ({
 }: CloneRepositoryDialogProps) => {
   const styles = useDynamicValue(dynamicStyles);
 
-  const [path, setPath] = React.useState('');
   const [repoUrl, setRepoUrl] = React.useState('');
   const [repoName, setRepoName] = React.useState('');
+
+  const [nonIOSpath, setNonIOSPath] = React.useState('');
+  const path = iOS ? iOSPath : nonIOSpath;
+
   const [errorStr, setErrorStr] = React.useState('');
   const [isCloning, setIsCloning] = React.useState(false);
 
   const parentOnDismiss = (bool: boolean) => {
-    setPath('');
+    setNonIOSPath('');
     setRepoUrl('');
     setRepoName('');
     setErrorStr('');
@@ -37,6 +46,7 @@ export const CloneRepositoryDialog = ({
 
   const getGitBranchName = async () => {
     try {
+      // TODO: Don't check the parent path, check the child path
       const branchName = await git.currentBranch({
         fs,
         dir: path,
@@ -50,6 +60,10 @@ export const CloneRepositoryDialog = ({
   };
 
   const checkAndClone = async () => {
+    if (!repoUrl) {
+      setErrorStr('There is no URI set for the clone, please input one');
+      return;
+    }
     const gitBranchName = await getGitBranchName();
     if (gitBranchName) {
       setErrorStr('The folder selected is already a git repository.');
@@ -74,14 +88,16 @@ export const CloneRepositoryDialog = ({
               prefixIcon={'link'}
               postfixIcon={'copy'}
             />
-            <FolderSelectButton
-              path={path}
-              onFolderSelect={folderPath => {
-                setPath(folderPath);
-                setErrorStr('');
-              }}
-              style={styles.folderSelect}
-            />
+            {!iOS && (
+              <FolderSelectButton
+                path={nonIOSpath}
+                onFolderSelect={folderPath => {
+                  setNonIOSPath(folderPath);
+                  setErrorStr('');
+                }}
+                style={styles.folderSelect}
+              />
+            )}
             {!!errorStr && (
               <ErrorMessageBox style={styles.errorBox} message={errorStr} />
             )}

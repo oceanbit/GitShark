@@ -15,7 +15,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "clean": "react-native-clean-project",
-    "clear-xcode-cache": "cd ios && bash ../resetXcode.sh && cd ../",
+    "clear-xcode-cache": "cd ios && bash ./resetXcode.sh && cd ../",
     "pod-install": "cd ios/ && pod install && cd ..",
     "jetify": "jetify",
     "release": "standard-version"

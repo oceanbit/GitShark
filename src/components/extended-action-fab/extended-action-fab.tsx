@@ -1,4 +1,4 @@
-import {Animated, TouchableWithoutFeedback, View} from 'react-native';
+import {Animated, Platform, TouchableWithoutFeedback, View} from 'react-native';
 import * as React from 'react';
 import {MutableRefObject} from 'react';
 import {theme} from '@constants';
@@ -163,18 +163,21 @@ export const ExtendedActionFab = ({
   );
 };
 
+const iOS = Platform.OS === 'ios';
+
 const dynamicStyles = new DynamicStyleSheet({
   mainContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: theme.spacing.s,
     width: '100%',
+    ...(iOS ? {zIndex: 10} : {}),
     position: 'absolute',
   },
   fabSurface: {
     position: 'absolute',
     bottom: 0,
-    zIndex: 10,
+    ...(iOS ? {} : {zIndex: 10}),
     borderRadius: theme.borderRadius.regular,
     backgroundColor: theme.colors.primary,
     elevation: 6,
@@ -190,5 +193,6 @@ const dynamicStyles = new DynamicStyleSheet({
     left: 0,
     height: '100%',
     width: '100%',
+    ...(iOS ? {zIndex: 1} : {}),
   },
 });

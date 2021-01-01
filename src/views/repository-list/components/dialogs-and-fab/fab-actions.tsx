@@ -1,9 +1,11 @@
 import * as React from 'react';
-import {Text, View} from 'react-native';
+import {Platform, Text, View} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import {DialogSelection, ExtendedFabBase} from './types';
 import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
+
+const iOS = Platform.OS === 'ios';
 
 interface FabActionsProps extends ExtendedFabBase {
   onSelect: (selection: DialogSelection) => void;
@@ -29,14 +31,16 @@ export const FabActions = ({toggleAnimation, onSelect}: FabActionsProps) => {
         }}>
         <Text style={styles.fabActionText}>Create</Text>
       </TouchableRipple>
-      <TouchableRipple
-        style={styles.fabActionBtn}
-        onPress={() => {
-          toggleAnimation();
-          onSelect('existing');
-        }}>
-        <Text style={styles.fabActionText}>Add existing</Text>
-      </TouchableRipple>
+      {!iOS && (
+        <TouchableRipple
+          style={styles.fabActionBtn}
+          onPress={() => {
+            toggleAnimation();
+            onSelect('existing');
+          }}>
+          <Text style={styles.fabActionText}>Add existing</Text>
+        </TouchableRipple>
+      )}
     </View>
   );
 };

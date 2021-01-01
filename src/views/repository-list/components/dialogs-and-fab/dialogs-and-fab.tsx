@@ -7,6 +7,9 @@ import {
   RepoListExtendedFab,
   RepoListExtendedFabProps,
 } from './repo-list-extended-fab';
+import {View, Platform} from 'react-native';
+
+const iOS = Platform.OS === 'ios';
 
 interface DialogsProps
   extends Omit<RepoListExtendedFabProps, 'setSelectedAction'> {
@@ -28,10 +31,8 @@ export const DialogsAndFab = ({findRepos, ...props}: DialogsProps) => {
     [findRepos],
   );
 
-  return (
-    // The dialogs must come AFTER the FAB otherwise there will be a z-index problem when the dialogs are open
+  const dialogElsBase = (
     <>
-      <RepoListExtendedFab {...props} setSelectedAction={setSelectedAction} />
       <CreateRepositoryDialog
         visible={selectedAction === 'create'}
         onDismiss={onDismiss}
@@ -44,6 +45,21 @@ export const DialogsAndFab = ({findRepos, ...props}: DialogsProps) => {
         visible={selectedAction === 'clone'}
         onDismiss={onDismiss}
       />
+    </>
+  );
+
+  // iOS handles zIndex differently, and if this "hack" is not applied, the dialongs
+  // won't render properly. Android, however, doesn't support this and it breaks the UI
+  const iOSDialogs = <View style={{zIndex: 100}}>{dialogElsBase}</View>;
+
+  const dialogEls = iOS ? iOSDialogs : dialogElsBase;
+
+  return (
+    // The dialogs must come AFTER the FAB otherwise there will be a z-index problem when the dialogs are open
+    <>
+      <RepoListExtendedFab {...props} setSelectedAction={setSelectedAction} />
+      {/* Prevent iOS from rendering FAB above dialogs */}
+      {dialogEls}
     </>
   );
 };

@@ -1,6 +1,7 @@
 import {PromiseFsClient} from 'isomorphic-git/index.umd.min.js';
 import * as RNFS from 'react-native-fs';
 import {Buffer} from 'buffer';
+import {Platform} from 'react-native';
 
 function Err(name: string) {
   return class extends Error {
@@ -126,7 +127,14 @@ const stat = async (path: string) => {
 const lstat = async (path: string) => {
   log && console.log('fs - lstat', path);
   try {
-    const r = await RNFS.lstat(path);
+    const android = Platform.OS === 'android';
+    let r;
+    if (!android) {
+      // The rn-fs API for stat is the same as what lstat would be
+      r = await RNFS.stat(path);
+    } else {
+      r = await RNFS.lstat(path);
+    }
     // we monkeypatch the result with a `isSymbolicLink` method because isomorphic-git needs it.
     // Since RNFS doesn't appear to support symlinks at all, we'll just always return false.
     // @ts-ignore
