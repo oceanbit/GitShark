@@ -3,6 +3,9 @@ import {getRepoNameFromPath} from '@utils';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {logService} from '../debug';
+import {Platform} from 'react-native';
+
+const iOS = Platform.OS === 'ios';
 
 export const createNewRepo = async (path: string, name?: string) => {
   logService && console.log('service - createNewRepo');
@@ -14,8 +17,11 @@ export const createNewRepo = async (path: string, name?: string) => {
   }
   newRepo.currentBranchName = currentBranchName;
 
-  newRepo.name = name || getRepoNameFromPath(path);
-  newRepo.path = path;
+  const repoName = name || getRepoNameFromPath(path);
+
+  newRepo.name = repoName;
+  // iOS needs this workaround - see also the
+  newRepo.path = iOS ? repoName : path;
   newRepo.lastUpdated = new Date(Date.now());
   await newRepo.save();
   return newRepo;

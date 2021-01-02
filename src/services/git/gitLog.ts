@@ -4,6 +4,7 @@ import git, {ReadCommitResult} from 'isomorphic-git/index.umd.min.js';
 import {Platform} from 'react-native';
 import {gitLogAndroid} from './gitLog-android';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 export type GitLogCommit = ReadCommitResult['commit'] & {
   oid: ReadCommitResult['oid'];
@@ -21,9 +22,11 @@ export const gitLog = async ({repo, ref}: GitLogProps) => {
     return gitLogAndroid({repo, ref});
   }
 
+  const repoPath = getRepoPath(repo!.path!);
+
   const commits = await git.log({
     fs,
-    dir: repo!.path,
+    dir: repoPath,
     ref: ref || repo?.currentBranchName || '',
   });
 

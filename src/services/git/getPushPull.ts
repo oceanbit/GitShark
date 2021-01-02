@@ -2,6 +2,7 @@ import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {revList} from './revList';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 interface GetPushPullProps {
   path: string;
@@ -10,19 +11,21 @@ interface GetPushPullProps {
 export const getPushPull = async ({path}: GetPushPullProps) => {
   logService && console.log('service - getPushPull');
 
+  const repoPath = getRepoPath(path);
+
   const currBranch = (await git.currentBranch({
     fs,
-    dir: path,
+    dir: repoPath,
   })) as string;
 
   const trackedBranch = await git.getRemoteTrackingBranch({
     fs,
-    dir: path,
+    dir: repoPath,
     ref: currBranch,
   });
 
   const {branch1Diff: toPull, branch2Diff: toPush} = await revList({
-    dir: path,
+    dir: repoPath,
     branchName1: currBranch,
     branchName2: trackedBranch,
   });

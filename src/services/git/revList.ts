@@ -14,6 +14,7 @@ import {gitLog} from './gitLog';
 import {Platform} from 'react-native';
 import {revListAndroid} from './revList-android';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 interface GetDiffNumberProps {
   logList: any[];
@@ -63,20 +64,21 @@ export const revList = async ({
   logService && console.log('service - revList');
 
   if (Platform.OS === 'android') {
-    console.log('DOING REVLIST ON ANDROID');
     return await revListAndroid({dir, branchName1, branchName2});
   }
+
+  const repoPath = getRepoPath(dir);
 
   const [branch1Log, branch2Log] = await Promise.all([
     gitLog({
       repo: {
-        path: dir,
+        path: repoPath,
       },
       ref: branchName1,
     }),
     gitLog({
       repo: {
-        path: dir,
+        path: repoPath,
       },
       ref: branchName2,
     }),
@@ -84,12 +86,12 @@ export const revList = async ({
 
   const [branch1Diff, branch2Diff] = await Promise.all([
     getDiffNumber({
-      path: dir,
+      path: repoPath,
       logList: branch2Log,
       parentOid: branch1Log[0].oid,
     }),
     getDiffNumber({
-      path: dir,
+      path: repoPath,
       logList: branch1Log,
       parentOid: branch2Log[0].oid,
     }),

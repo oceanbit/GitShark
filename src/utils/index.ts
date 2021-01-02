@@ -1,3 +1,6 @@
+import {Platform} from 'react-native';
+import {DocumentDirectoryPath} from 'react-native-fs';
+
 export const getRepoNameFromPath = (path: string) => {
   /**
    * This regex is overkill but should get `test` in all of these examples:
@@ -35,4 +38,13 @@ export const jgitToIsoCommit = (commitId: string) => {
   const commitRegex = /commit\s*(.*?)\s/;
   const [_, oid] = commitRegex.exec(commitId) || [];
   return oid;
+};
+
+const iOS = Platform.OS === 'ios';
+const iOSPath = DocumentDirectoryPath;
+
+export const getRepoPath = (path: string) => {
+  if (!iOS) return path;
+  if (path.includes('/') || path.includes('\\')) return path;
+  return `${iOSPath}/${path}`;
 };

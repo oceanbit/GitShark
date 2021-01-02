@@ -8,6 +8,7 @@ import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
 import {RemoteBranch} from '@types';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 interface PushProps {
   destination: RemoteBranch;
@@ -30,10 +31,12 @@ export const push = async ({
 
   const GH_TOKEN = await RNSecureKeyStore.get(GITHUB_TOKEN_STORAGE_KEY);
 
+  const repoPath = getRepoPath(repo.path);
+
   await git.push({
     force: forcePush,
     fs,
-    dir: repo.path,
+    dir: repoPath,
     ref: branch,
     http,
     remote: destination.remote,
@@ -45,5 +48,5 @@ export const push = async ({
     }),
   });
 
-  dispatch(getCommitRev({path: repo.path, repoId: repo.id}));
+  dispatch(getCommitRev({path: repoPath, repoId: repo.id}));
 };

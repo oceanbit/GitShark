@@ -6,6 +6,7 @@ import {changeBranch} from '@store';
 import {logService} from '../debug';
 import {Platform} from 'react-native';
 import {checkoutBranchAndroid} from '@services/git/checkoutBranch-android';
+import {getRepoPath} from "@utils";
 
 export interface CheckoutBranchProps {
   repo: ReduxRepo;
@@ -36,7 +37,7 @@ export const checkoutBranch = async ({
   await git.checkout({
     fs,
     ref: branchName,
-    dir: repo.path,
+    dir: getRepoPath(repo.path),
     onProgress,
     remote: remote ? remote : undefined,
   });

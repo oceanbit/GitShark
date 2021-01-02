@@ -4,6 +4,7 @@ import {ThunkDispatchType} from '@hooks';
 import {changeBranch, getLocalBranches} from '@store';
 import {ReduxRepo} from '@entities';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 interface RenameBranchProps {
   branchName: string;
@@ -21,15 +22,17 @@ export const renameBranch = async ({
 }: RenameBranchProps) => {
   logService && console.log('service - renameBranch');
 
+  const repoPath = getRepoPath(repo.path);
+
   await git.renameBranch({
     fs,
     checkout,
-    dir: repo.path,
+    dir: repoPath,
     ref: branchName,
     oldref: oldBranchName,
   });
 
-  dispatch(getLocalBranches(repo.path));
+  dispatch(getLocalBranches(repoPath));
 
   if (checkout) {
     dispatch(changeBranch({repoId: repo.id, branchName}));

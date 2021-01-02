@@ -11,7 +11,6 @@ export * from './findTrackedRemoteBranch';
 export * from './getCommitHeaderBody';
 export * from './getFileStateChanges';
 export * from './getPushPull';
-export * from './getRepoData';
 export * from './gitCommitToDBMapper';
 export * from './gitLog';
 export * from './pull';

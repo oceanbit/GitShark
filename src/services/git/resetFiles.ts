@@ -5,6 +5,7 @@ import {ThunkDispatchType} from '@hooks';
 import {getGitStatus} from '@store';
 import {logService} from '../debug';
 import {resetFilesAndroid} from './resetFiles-android';
+import {getRepoPath} from '@utils';
 
 export interface ResetFilesProps {
   path: string;
@@ -20,9 +21,11 @@ export const resetFiles = async ({path, files, dispatch}: ResetFilesProps) => {
     return await resetFilesAndroid({path, files, dispatch});
   }
 
+  const repoPath = getRepoPath(path);
+
   await git.checkout({
     fs,
-    dir: path,
+    dir: repoPath,
     filepaths: files,
     force: true,
   });

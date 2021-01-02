@@ -5,6 +5,7 @@ import {getCommitRev, getRemotesAndBranches} from '@store';
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 interface FetchProps {
   dir: string;
@@ -27,16 +28,18 @@ export const fetch = async ({
 }: FetchProps) => {
   logService && console.log('service - fetch');
 
+  const repoPath = getRepoPath(repo.path);
+
   await git.fetch({
     fs,
     http,
-    dir,
+    dir: getRepoPath(dir),
     remote,
     singleBranch: !fetchAll,
     prune,
     onProgress,
   });
 
-  dispatch(getCommitRev({path: repo.path, repoId: repo.id}));
-  dispatch(getRemotesAndBranches(repo.path));
+  dispatch(getCommitRev({path: repoPath, repoId: repo.id}));
+  dispatch(getRemotesAndBranches(repoPath));
 };

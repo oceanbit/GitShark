@@ -4,6 +4,7 @@ import git from 'isomorphic-git/index.umd.min.js';
 import {ThunkDispatchType} from '@hooks';
 import {checkoutBranch} from './checkoutBranch';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 interface CreateBranchProps {
   repo: ReduxRepo;
@@ -21,7 +22,7 @@ export const createBranch = async ({
 
   await git.branch({
     fs,
-    dir: repo.path,
+    dir: getRepoPath(repo.path),
     ref: branchName,
     checkout: checkAfterCreate,
   });

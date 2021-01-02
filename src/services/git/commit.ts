@@ -4,6 +4,7 @@ import {fs} from '@constants';
 import {getCommitRev, getGitStatus} from '@store';
 import {ThunkDispatchType} from '@hooks';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 interface commitProps {
   title?: string;
@@ -26,9 +27,10 @@ export const commit = async ({
 
   const message = `${title}\n${description}`;
 
+  const repoPath = getRepoPath(repo.path);
   await git.commit({
     fs,
-    dir: repo.path,
+    dir: repoPath,
     author: {
       name,
       email,
@@ -46,7 +48,7 @@ export const commit = async ({
   });
 
   const gitRevProm = new Promise(resolve => {
-    dispatch(getCommitRev({path: repo.path, repoId: repo.id})).then(() => {
+    dispatch(getCommitRev({path: repoPath, repoId: repo.id})).then(() => {
       resolve();
     });
   });

@@ -3,6 +3,7 @@ import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {getRepoStatusAndroid} from './status-android';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 export interface ChangesArrayItem {
   fileName: string;
@@ -18,9 +19,11 @@ export const getRepoStatus = async (path: string) => {
     return getRepoStatusAndroid(path);
   }
 
+  const repoPath = getRepoPath(path);
+
   const statusArrArr = await git.statusMatrix({
     fs,
-    dir: `${path}`,
+    dir: repoPath,
   });
 
   const changesArray: ChangesArrayItem[] = statusArrArr.map(statusArr => {

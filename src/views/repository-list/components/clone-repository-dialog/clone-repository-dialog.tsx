@@ -10,7 +10,6 @@ import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {Platform} from 'react-native';
 import {DocumentDirectoryPath} from 'react-native-fs';
-import {getRepoStatus} from '@services';
 import {useTranslation} from 'react-i18next';
 
 const iOS = Platform.OS === 'ios';
@@ -50,6 +49,7 @@ export const CloneRepositoryDialog = ({
   const getGitBranchName = async () => {
     try {
       // TODO: Don't check the parent path, check the child path
+      // EG: Check `path/name`, not just `path`
       const branchName = await git.currentBranch({
         fs,
         dir: path,
@@ -104,6 +104,7 @@ export const CloneRepositoryDialog = ({
             {!!errorStr && (
               <ErrorMessageBox style={styles.errorBox} message={errorStr} />
             )}
+            {/*TODO: Add input validation to disallow `/` and `\`*/}
             <SharkTextInput
               value={repoName}
               onChangeText={setRepoName}

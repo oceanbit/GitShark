@@ -2,6 +2,7 @@ import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {ChangesArrayItem} from '@services/git/status';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 export const getFileStateChanges = async (
   commitHash1: string,
@@ -10,9 +11,11 @@ export const getFileStateChanges = async (
 ): Promise<ChangesArrayItem[]> => {
   logService && console.log('service - getFileStateChanges');
 
+  const repoPath = getRepoPath(dir);
+
   return git.walk({
     fs,
-    dir,
+    dir: repoPath,
     trees: [git.TREE({ref: commitHash1}), git.TREE({ref: commitHash2})],
     map: async function (filepath, walked) {
       const [A, B] = walked || [];

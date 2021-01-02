@@ -2,6 +2,7 @@ import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {RemoteBranch} from '@types';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 interface FindTrackedRemoteBranchProps {
   branchName: string;
@@ -15,10 +16,12 @@ export const findTrackedRemoteBranch = async ({
 }: FindTrackedRemoteBranchProps) => {
   logService && console.log('service - findTrackedRemoteBranch');
 
+  const repoPath = getRepoPath(path);
+
   // Returns 'refs/remotes/bar/test'
   const trackingBranch = await git.getRemoteTrackingBranch({
     fs,
-    dir: path,
+    dir: repoPath,
     ref: branchName,
   });
 

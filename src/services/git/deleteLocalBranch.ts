@@ -4,6 +4,7 @@ import git from 'isomorphic-git/index.umd.min.js';
 import {ThunkDispatchType} from '@hooks';
 import {getLocalBranches} from '@store';
 import {logService} from '../debug';
+import {getRepoPath} from '@utils';
 
 interface DeleteLocalBranchProps {
   repo: ReduxRepo;
@@ -17,11 +18,13 @@ export const deleteLocalBranch = async ({
 }: DeleteLocalBranchProps) => {
   logService && console.log('service - deleteLocalBranch');
 
+  const repoPath = getRepoPath(repo.path);
+
   await git.deleteBranch({
     fs,
-    dir: repo.path,
+    dir: repoPath,
     ref: branchName,
   });
 
-  dispatch(getLocalBranches(repo.path));
+  dispatch(getLocalBranches(repoPath));
 };
