@@ -12517,6 +12517,11 @@ react-native-dynamic@^1.0.0:
     "@types/react-native" ">=0.62.0"
     toolkit.ts "^0.0.2"
 
+react-native-error-boundary@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/react-native-error-boundary/-/react-native-error-boundary-1.1.6.tgz#5e649d4bfebab48b7789824141d26b7ac393ea69"
+  integrity sha512-IqNcD0Qigx2Dk4fP+OcTYLH8XjbijPEmLZqCh2flLijUkEo8G/D151tRcUV6DHU0IL0ZHOB+/wF2kEUT+liPdg==
+
 "react-native-fs@https://github.com/oceanbit-dev/react-native-fs.git#all-commands":
   version "2.16.4"
   resolved "https://github.com/oceanbit-dev/react-native-fs.git#cd4784f414c5b0b07de108001ae359a1cdd64028"

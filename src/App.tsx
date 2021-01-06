@@ -2,7 +2,15 @@ import * as React from 'react';
 import 'reflect-metadata';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-import {LogBox, Platform, StatusBar, useColorScheme} from 'react-native';
+import {
+  Button,
+  LogBox,
+  Platform,
+  StatusBar,
+  useColorScheme,
+  View,
+  Text,
+} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {Repository} from './views/repository/repository';
 import {Account} from './views/account/account';
@@ -34,6 +42,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {changeBarColors} from 'react-native-immersive-bars';
 import {Provider} from 'react-redux';
 import {store, setupDatabase} from '@store';
+import ErrorBoundary from 'react-native-error-boundary';
 
 // TODO: Remove once https://github.com/isomorphic-git/isomorphic-git/pull/1156
 // eslint-disable-next-line no-undef
@@ -176,11 +185,21 @@ const AppBase = () => {
   );
 };
 
+const CustomFallback = (props: {error: Error; resetError: () => void}) => (
+  <View>
+    <Text>Something happened!</Text>
+    <Text>{props.error.toString()}</Text>
+    <Button onPress={props.resetError} title={'Try again'} />
+  </View>
+);
+
 const App = () => {
   return (
-    <Provider store={store}>
-      <AppBase />
-    </Provider>
+    <ErrorBoundary FallbackComponent={CustomFallback}>
+      <Provider store={store}>
+        <AppBase />
+      </Provider>
+    </ErrorBoundary>
   );
 };
 

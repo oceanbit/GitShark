@@ -1,7 +1,12 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '../constants';
-import {RemoteBranch, Remotes} from '@types';
+import {
+  RemoteBranch,
+  Remotes,
+  getSerializedErrorStr,
+  PayloadSerializedError,
+} from '@types';
 import {logStore} from './debug';
 
 const getRemotesAndBranchesFn = async (path: string) => {
@@ -64,6 +69,7 @@ const initialState = {
   remoteBranches: [] as RemoteBranch[],
   remotes: [] as Remotes[],
   loading: 'idle',
+  error: '' as string,
 };
 
 const branchesSlice = createSlice({
@@ -88,6 +94,18 @@ const branchesSlice = createSlice({
       action: PayloadAction<string[]>,
     ) => {
       state.localBranches = action.payload;
+    },
+    [getRemotesAndBranches.rejected.toString()]: (
+      state,
+      action: PayloadSerializedError,
+    ) => {
+      state.error = getSerializedErrorStr(action.error);
+    },
+    [getLocalBranches.rejected.toString()]: (
+      state,
+      action: PayloadSerializedError,
+    ) => {
+      state.error = getSerializedErrorStr(action.error);
     },
   },
 });

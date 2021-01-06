@@ -18,6 +18,7 @@ import {ConfirmCheckoutDialog} from './components/confirm-checkout-dialog';
 import {OnCheckoutActionsDialog} from './components/on-checkout-action-dialog';
 import {CreateRemoteDialog} from './components/create-remote-dialog';
 import {OnCreateRemoteActionDialog} from './components/on-create-remote-action-dialog';
+import {View, Text} from 'react-native';
 
 interface InitBranchCheckoutType {
   branchName: string;
@@ -39,9 +40,12 @@ export const Branches = () => {
   // For the branch dialog
   const [createRemoteDialog, setCreateRemoteDialog] = React.useState(false);
   const [errorStr, setErrorStr] = React.useState('');
-  const {localBranches, remoteBranches, remotes} = useSelector(
-    (state: RootState) => state.branches,
-  );
+  const {
+    localBranches,
+    remoteBranches,
+    remotes,
+    error: branchError,
+  } = useSelector((state: RootState) => state.branches);
   const remoteNames = remotes.map(remote => remote.remote);
   const {unstaged, staged} = useSelector((state: RootState) => state.changes);
   const dispatch = useThunkDispatch();
@@ -139,6 +143,14 @@ export const Branches = () => {
   );
 
   if (!repo) return null;
+
+  if (branchError)
+    return (
+      <View>
+        <Text>There was an error that occurred while loading branches:</Text>
+        <Text>{branchError}</Text>
+      </View>
+    );
 
   return (
     <>
