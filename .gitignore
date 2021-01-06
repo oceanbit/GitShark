@@ -67,3 +67,6 @@ buck-out/
 # Carthage
 /ios/Carthage/Checkouts/
 /ios/Carthage/Build/
+
+# Java Heapmap
+*.hprof
