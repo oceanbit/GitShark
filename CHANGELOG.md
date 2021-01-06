@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.7](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.6...v0.0.1-alpha.7) (2021-01-06)
+
+
+### Bug Fixes
+
+* navigation bar not being transparent on new versions of Android ([b3c9401](https://github.com/crutchcorn/GitShark/commit/b3c940169bd34823cb5381806b32ae5a63ea28ed))
+
 ### [0.0.1-alpha.6](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.5...v0.0.1-alpha.6) (2021-01-06)
 
 ### Bug Fixes
