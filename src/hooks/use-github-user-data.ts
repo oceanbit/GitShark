@@ -85,17 +85,15 @@ export const useGitHubUserData = () => {
           );
       }
     };
-    if (Platform.OS === 'android') {
-      Linking.getInitialURL().then(url => {
-        handleOpenURL({url: url!});
-      });
-    } else {
-      Linking.addEventListener('url', handleOpenURL);
-    }
+    // If app closes on it's own, then on first load, we need to make sure we weren't receiving a callback
+    Linking.getInitialURL().then(url => {
+      handleOpenURL({url: url!});
+    });
+    // This is seemingly un-needed when device has low RAM requirements, but if app persists without closing,
+    // this is needed on Android
+    Linking.addEventListener('url', handleOpenURL);
     return () => {
-      if (Platform.OS !== 'android') {
-        Linking.removeEventListener('url', handleOpenURL);
-      }
+      Linking.removeEventListener('url', handleOpenURL);
     };
   }, []);
 
