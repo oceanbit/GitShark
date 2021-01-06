@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {Repo, getReduxRepo, ReduxRepo, PushPull} from '@entities';
 import {getRepository, getConnection} from 'typeorm';
 import {clearChanges} from './gitChangesSlice';
-import {clearLog} from './gitLogSlice';
+import {clearLog, getGitLog} from './gitLogSlice';
 import {
   clearBranches,
   getLocalBranches,
@@ -99,6 +99,7 @@ export const changeBranch = createAsyncThunk(
       .execute();
     // If this is not updated, the repo list will not display the proper branch name
     dispatch(findRepoList());
+    dispatch(getGitLog());
     return branchName;
   },
 );
