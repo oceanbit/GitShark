@@ -14,12 +14,14 @@ interface CommitActionUIProps {
   onSubmit: (props: {commitTitle: string; commitBody: string}) => Promise<void>;
   files: ChangesArrayItem[];
   onClose: () => void;
+  error: string;
 }
 
 export const CommitActionUI = ({
   onSubmit,
   files,
   onClose,
+  error,
 }: CommitActionUIProps) => {
   const styles = useDynamicValue(dynamicStyles);
 
@@ -36,40 +38,53 @@ export const CommitActionUI = ({
         <Text style={styles.commitHeader}>Commit changes</Text>
       </View>
       <SharkDivider />
-      <ScrollView>
-        {files.map(file => (
-          <React.Fragment key={file.fileName}>
-            <FileChangeListItem
-              fileName={file.fileName}
-              fileStatus={file.fileStatus}
-            />
-            <SharkDivider />
-          </React.Fragment>
-        ))}
-      </ScrollView>
-      <SharkDivider />
-      <View style={styles.commitData}>
-        <SharkTextInput
-          placeholder={'Commit title'}
-          value={commitTitle}
-          onChangeText={setCommitTitle}
-        />
-        <SharkTextInput
-          placeholder={'Commit description'}
-          value={commitBody}
-          onChangeText={setCommitBody}
-          numberOfLines={4}
-          style={styles.textarea}
-        />
+      {!!error && (
         <View>
-          <SharkButton
-            disabled={!files.length}
-            onPress={() => onSubmit({commitBody, commitTitle})}
-            text={'Commit change'}
-            type={'primary'}
-          />
+          <Text>
+            There was an error that occurred while loading staged and unstaged
+            files:
+          </Text>
+          <Text>{error}</Text>
         </View>
-      </View>
+      )}
+      {!error && (
+        <>
+          <ScrollView>
+            {files.map(file => (
+              <React.Fragment key={file.fileName}>
+                <FileChangeListItem
+                  fileName={file.fileName}
+                  fileStatus={file.fileStatus}
+                />
+                <SharkDivider />
+              </React.Fragment>
+            ))}
+          </ScrollView>
+          <SharkDivider />
+          <View style={styles.commitData}>
+            <SharkTextInput
+              placeholder={'Commit title'}
+              value={commitTitle}
+              onChangeText={setCommitTitle}
+            />
+            <SharkTextInput
+              placeholder={'Commit description'}
+              value={commitBody}
+              onChangeText={setCommitBody}
+              numberOfLines={4}
+              style={styles.textarea}
+            />
+            <View>
+              <SharkButton
+                disabled={!files.length}
+                onPress={() => onSubmit({commitBody, commitTitle})}
+                text={'Commit change'}
+                type={'primary'}
+              />
+            </View>
+          </View>
+        </>
+      )}
       <BottomSpacerView />
     </KeyboardAvoidingView>
   );

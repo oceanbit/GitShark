@@ -10,12 +10,14 @@ import {useSelector} from 'react-redux';
 import {addToStaged, getGitStatus, removeFromStaged, RootState} from '@store';
 import {useThunkDispatch} from '@hooks';
 import {RepositoryHeader} from '@components/repository-header';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {Snackbar} from 'react-native-paper';
 
 export const RepositoryChanges = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
-  const {staged, unstaged} = useSelector((state: RootState) => state.changes);
+  const {staged, unstaged, error: changesError} = useSelector(
+    (state: RootState) => state.changes,
+  );
   const dispatch = useThunkDispatch();
 
   const history = useNavigation();
@@ -66,26 +68,39 @@ export const RepositoryChanges = () => {
     <>
       <View style={styles.container}>
         <RepositoryHeader repo={repo} />
-        {useSplitView ? (
-          <StageSplitView
-            addToStaged={addToStagedLocal}
-            unstagedChanges={unstaged}
-            removeFromStaged={removeFromStagedLocal}
-            stagedChanges={staged}
-            onCommit={onCommit}
-            onIgnore={onIgnore}
-            onDiscard={onDiscard}
-          />
-        ) : (
-          <StageSheetView
-            addToStaged={addToStagedLocal}
-            unstagedChanges={unstaged}
-            removeFromStaged={removeFromStagedLocal}
-            stagedChanges={staged}
-            onCommit={onCommit}
-            onIgnore={onIgnore}
-            onDiscard={onDiscard}
-          />
+        {!!changesError && (
+          <View>
+            <Text>
+              There was an error that occurred while loading staged and unstaged
+              files:
+            </Text>
+            <Text>{changesError}</Text>
+          </View>
+        )}
+        {!changesError && (
+          <>
+            {useSplitView ? (
+              <StageSplitView
+                addToStaged={addToStagedLocal}
+                unstagedChanges={unstaged}
+                removeFromStaged={removeFromStagedLocal}
+                stagedChanges={staged}
+                onCommit={onCommit}
+                onIgnore={onIgnore}
+                onDiscard={onDiscard}
+              />
+            ) : (
+              <StageSheetView
+                addToStaged={addToStagedLocal}
+                unstagedChanges={unstaged}
+                removeFromStaged={removeFromStagedLocal}
+                stagedChanges={staged}
+                onCommit={onCommit}
+                onIgnore={onIgnore}
+                onDiscard={onDiscard}
+              />
+            )}
+          </>
         )}
       </View>
       <Snackbar

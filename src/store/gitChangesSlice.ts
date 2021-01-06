@@ -3,6 +3,8 @@ import {getRepoStatus, ChangesArrayItem} from '@services';
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {logStore} from './debug';
+import {getSerializedErrorStr, PayloadSerializedError} from '@types';
+import {getLocalBranches} from '@store/gitBranchesSlice';
 
 export const getGitStatus = createAsyncThunk(
   'commits/getGitStatus',
@@ -83,7 +85,9 @@ export const removeFromStaged = createAsyncThunk(
 const initialState = {
   staged: [] as ChangesArrayItem[],
   unstaged: [] as ChangesArrayItem[],
+  // Unused AFAIK
   loading: 'idle',
+  error: '' as string,
 };
 
 const changesSlice = createSlice({
@@ -125,6 +129,27 @@ const changesSlice = createSlice({
       const newUnstaged = [...state.unstaged, ...changes];
       state.staged = newStaged;
       state.unstaged = newUnstaged;
+    },
+
+    [getGitStatus.rejected.toString()]: (
+      state,
+      action: PayloadSerializedError,
+    ) => {
+      state.error = getSerializedErrorStr(action.error);
+    },
+
+    [addToStaged.rejected.toString()]: (
+      state,
+      action: PayloadSerializedError,
+    ) => {
+      state.error = getSerializedErrorStr(action.error);
+    },
+
+    [removeFromStaged.rejected.toString()]: (
+      state,
+      action: PayloadSerializedError,
+    ) => {
+      state.error = getSerializedErrorStr(action.error);
     },
   },
 });

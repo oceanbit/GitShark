@@ -2,17 +2,19 @@ import * as React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {commit} from '@services';
 import {useSelector} from 'react-redux';
-import {RootState, getGitStatus} from '@store';
+import {RootState} from '@store';
 import {CommitActionUI} from './commit-action.ui';
 import {useThunkDispatch} from '@hooks';
 import {useUserData} from '@hooks/use-user';
 import {SharkSnackbar} from '@components/shack-snackbar';
 import {OnCommitActionsDialog} from './on-commit-action-dialog';
-import {Keyboard} from 'react-native';
+import {Keyboard, Text, View} from 'react-native';
 
 export const CommitAction = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
-  const {staged} = useSelector((state: RootState) => state.changes);
+  const {staged, error: changesError} = useSelector(
+    (state: RootState) => state.changes,
+  );
 
   const {email, name} = useUserData();
 
@@ -54,6 +56,7 @@ export const CommitAction = () => {
       <CommitActionUI
         onSubmit={onSubmit}
         files={staged}
+        error={changesError}
         onClose={() => history.goBack()}
       />
       <SharkSnackbar

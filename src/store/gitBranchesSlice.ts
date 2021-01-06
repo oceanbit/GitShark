@@ -68,6 +68,7 @@ const initialState = {
   localBranches: [] as string[],
   remoteBranches: [] as RemoteBranch[],
   remotes: [] as Remotes[],
+  // Unused AFAIK
   loading: 'idle',
   error: '' as string,
 };
