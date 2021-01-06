@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.6](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.5...v0.0.1-alpha.6) (2021-01-06)
+
+### Bug Fixes
+
+* fab rendering issues on iOS ([07523d9](https://github.com/crutchcorn/GitShark/commit/07523d9403003b005a03530fc34ab9b30855582b))
+* fixed checking out branch on large repos ([51d2eee](https://github.com/crutchcorn/GitShark/commit/51d2eeed0aa30f74f88b60c4531be16eb73e94e1))
+* github login works on higher end devices ([fcd9431](https://github.com/crutchcorn/GitShark/commit/fcd943164aa4e7f54dc3eb54351468fdde5c03e0))
+* iOS clone bug ([18543d8](https://github.com/crutchcorn/GitShark/commit/18543d87339269997ff4d663d6a96028a27c0a4f))
+* parent directory of cloned repo is no longer modified ([61f15a1](https://github.com/crutchcorn/GitShark/commit/61f15a1c5ba207045ed76ef5735f7cff7ca91a33))
+* prevent crashing when discarding file changes in large repos ([089fa2e](https://github.com/crutchcorn/GitShark/commit/089fa2e68d160de7400fa46f92749ed050f04969))
+* update git log once branch changes ([bf90bf4](https://github.com/crutchcorn/GitShark/commit/bf90bf4df1e56904b0ccf3a68a1d0fc7057b1c2d))
+
 ### [0.0.1-alpha.5](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.4...v0.0.1-alpha.5) (2020-08-24)
 
 
