@@ -144,6 +144,11 @@ android {
         versionCode 7
         versionName "0.0.1"
     }
+
+    dexOptions {
+       javaMaxHeapSize "3g"
+    }
+
     splits {
         abi {
             reset()
