@@ -13,6 +13,7 @@ interface OnCheckoutActionsDialogProps {
   repo: ReduxRepo;
   branchName: string;
   dispatch: ThunkDispatchType;
+  remote: false | string;
 }
 
 export const OnCheckoutActionsDialog = ({
@@ -21,6 +22,7 @@ export const OnCheckoutActionsDialog = ({
   repo,
   branchName,
   dispatch,
+  remote,
 }: OnCheckoutActionsDialogProps) => {
   const [errorStr, setErrorStr] = React.useState('');
 
@@ -37,6 +39,7 @@ export const OnCheckoutActionsDialog = ({
       branchName,
       dispatch,
       repo,
+      remote,
       async onProgress({
         phase: progressPhase,
         loaded: progressLoaded,
@@ -56,7 +59,7 @@ export const OnCheckoutActionsDialog = ({
       .catch((e: Error | string) => {
         setErrorStr((e as Error).message || (e as string));
       });
-  }, [branchName, repo, dispatch, onDismiss]);
+  }, [remote, branchName, repo, dispatch, onDismiss]);
 
   React.useEffect(() => {
     if (!visible) {

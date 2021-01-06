@@ -30,6 +30,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
             packages.add(new GitPackage()); // <-- Add this line with your package name.
+            packages.add(new GitCheckoutPackage()); // <-- Add this line with your package name.
             packages.add(new DirectoryPickerPackage()); // <-- Add this line with your package name.
             return packages;
         }

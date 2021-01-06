@@ -19,6 +19,21 @@ import {OnCheckoutActionsDialog} from './components/on-checkout-action-dialog';
 import {CreateRemoteDialog} from './components/create-remote-dialog';
 import {OnCreateRemoteActionDialog} from './components/on-create-remote-action-dialog';
 
+interface InitBranchCheckoutType {
+  branchName: string;
+  remote: false | string;
+  // If `false`, show the `confirm checkout` dialog
+  // If `true`, start the `checkout` dialog and start checkout
+  // If `null`, don't show any dialog
+  confirmed: boolean | null;
+}
+
+const initialBranchCheckout: InitBranchCheckoutType = {
+  branchName: '',
+  remote: false,
+  confirmed: null,
+};
+
 export const Branches = () => {
   const [createBranchDialog, setCreateBranchDialog] = React.useState(false);
   // For the branch dialog
@@ -64,32 +79,40 @@ export const Branches = () => {
     [dispatch, repo],
   );
 
-  const [branchToCheckout, setBranchCheckout] = React.useState('');
+  const [branchToCheckout, setBranchCheckout] = React.useState<
+    InitBranchCheckoutType
+  >(initialBranchCheckout);
 
-  const resetAndCheckout = async (branchName: string) => {
+  const resetAndCheckout = async () => {
     await resetFiles({
       path: repo!.path,
       dispatch,
       files: [...unstaged.map(f => f.fileName), ...staged.map(f => f.fileName)],
     });
-    setBranchCheckout(branchName);
+    setBranchCheckout(v => ({...v, confirmed: true}));
   };
 
-  // The branch name of which to "confirm" the checkout
-  const [showConfirmCheckout, setConfirmCheckout] = React.useState('');
   const [addRemoteMeta, setAddRemoteMeta] = React.useState<{
     remoteName?: string;
     remoteURL?: string;
   }>({});
 
   const onCheckoutBranch = React.useCallback(
-    async (branchName: string) => {
+    async (branchName: string, remote: string | false = false) => {
       if (staged.length || unstaged.length) {
         // Warn the user that their files will be reset before checkout
-        setConfirmCheckout(branchName);
+        setBranchCheckout({
+          branchName,
+          confirmed: false,
+          remote: remote,
+        });
         return;
       }
-      setBranchCheckout(branchName);
+      setBranchCheckout({
+        branchName,
+        confirmed: true,
+        remote: remote,
+      });
     },
     [staged, unstaged],
   );
@@ -128,6 +151,7 @@ export const Branches = () => {
         onCreateRemote={() => setCreateRemoteDialog(true)}
         onDeleteLocalBranch={onLocalBranchDelete}
         onCheckoutBranch={onCheckoutBranch}
+        onCheckoutRemoteBranch={onCheckoutBranch}
         onBranchRename={onBranchRename}
       />
       <CreateBranchDialog
@@ -157,19 +181,22 @@ export const Branches = () => {
         {...addRemoteMeta}
       />
       <ConfirmCheckoutDialog
-        visible={!!showConfirmCheckout}
+        visible={branchToCheckout.confirmed === false}
         onDismiss={async doCheckout => {
-          setConfirmCheckout('');
+          // Close the dialog
+          setBranchCheckout(v => ({...v, confirmed: null}));
+          // Do the reset and enable work to open actual dialog
           if (doCheckout) {
-            resetAndCheckout(showConfirmCheckout);
+            resetAndCheckout();
           }
         }}
       />
       <OnCheckoutActionsDialog
-        onDismiss={() => setBranchCheckout('')}
-        visible={!!branchToCheckout}
+        onDismiss={() => setBranchCheckout(initialBranchCheckout)}
+        visible={branchToCheckout.confirmed === true}
         repo={repo}
-        branchName={branchToCheckout}
+        remote={branchToCheckout.remote}
+        branchName={branchToCheckout.branchName}
         dispatch={dispatch}
       />
     </>
