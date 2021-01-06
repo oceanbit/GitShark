@@ -9,7 +9,9 @@ import {Branches} from '../branches';
 
 export const RepositoryHistory = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
-  const {commits} = useSelector((state: RootState) => state.commits);
+  const {commits, error: commitsError} = useSelector(
+    (state: RootState) => state.commits,
+  );
   const dispatch = useThunkDispatch();
 
   React.useEffect(() => {
@@ -31,6 +33,7 @@ export const RepositoryHistory = () => {
   return (
     <RepositoryHistoryUI
       commits={commits}
+      error={commitsError}
       onCommitNavigate={onCommitNavigate}
       topLayer={topLayer}
       repo={repo}

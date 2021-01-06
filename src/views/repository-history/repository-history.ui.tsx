@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {CommitList} from '@components/commit-list';
 import {HistoryBranchDropdown} from './components/history-branch-dropdown';
 import {OverlayDropdownContent} from '@components/overlay-dropdown-content';
@@ -13,6 +13,7 @@ interface RepositoryHistoryUIProps {
   onCommitNavigate: (commit: GitLogCommit) => void;
   topLayer: React.ReactNode;
   repo: ReduxRepo | null;
+  error: string;
 }
 
 export const RepositoryHistoryUI = ({
@@ -21,15 +22,26 @@ export const RepositoryHistoryUI = ({
   topLayer,
   repo,
   branchName,
+  error,
 }: RepositoryHistoryUIProps) => {
   const [showBranches, setShowBranches] = React.useState(false);
 
-  const bottomLayer = React.useMemo(
-    () => (
+  const bottomLayer = React.useMemo(() => {
+    if (error) {
+      return (
+        <View>
+          <Text>
+            There was an error that occurred while loading commit log:
+          </Text>
+          <Text>{error}</Text>
+        </View>
+      );
+    }
+
+    return (
       <CommitList commits={commits} onPress={onCommitNavigate} repo={repo!} />
-    ),
-    [commits, onCommitNavigate, repo],
-  );
+    );
+  }, [commits, onCommitNavigate, repo, error]);
 
   const header = React.useMemo(
     () => (

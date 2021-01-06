@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {gitLog, GitLogCommit, gitCommitToDBMapper} from '@services';
 import {Repo} from '@entities';
 import {logStore} from './debug';
+import {getSerializedErrorStr, PayloadSerializedError} from '@types';
 
 interface StoreGitLogPayload {
   repo: Repo;
@@ -37,7 +38,9 @@ export const getGitLog = createAsyncThunk(
 
 const initialState = {
   commits: [] as GitLogCommit[],
+  // Unused AFAIK
   loading: 'idle',
+  error: '' as string,
 };
 
 const commitsSlice = createSlice({
@@ -54,6 +57,13 @@ const commitsSlice = createSlice({
       action: PayloadAction<GitLogCommit[]>,
     ) => {
       state.commits = action.payload;
+    },
+
+    [getGitLog.rejected.toString()]: (
+      state,
+      action: PayloadSerializedError,
+    ) => {
+      state.error = getSerializedErrorStr(action.error);
     },
   },
 });
