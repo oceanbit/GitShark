@@ -10,12 +10,14 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.reactlibrary.securekeystore.RNSecureKeyStoreModule;
 
+import org.eclipse.jgit.api.CheckoutCommand;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.LogCommand;
@@ -242,6 +244,34 @@ public class GitModule extends ReactContextBaseJavaModule {
         }
     }
 
+
+    @ReactMethod
+    public void resetPaths(String path, ReadableArray files, Promise promise) {
+        Git git;
+        Repository repo;
+        try {
+            git = Git.open(new File(path));
+            repo = git.getRepository();
+        } catch (Throwable e) {
+            promise.reject(e);
+            return;
+        }
+
+        CheckoutCommand gitCheckout = git.checkout().setForce(true);
+
+        for (int i = 0; i < files.size(); i++) {
+            gitCheckout.addPath(files.getString(i));
+        }
+
+        try {
+            gitCheckout.call();
+        } catch (Throwable e) {
+            promise.reject(e);
+            return;
+        }
+
+        promise.resolve(true);
+    }
 
     @ReactMethod
     public void revList(String path, String branch1Ref, String branch2Ref, Promise promise) {
