@@ -88,9 +88,8 @@ export const BranchesUI = ({
       {remotes.map(remote => {
         const expanded = remoteExpanded === remote.remote;
         return (
-          <>
+          <React.Fragment key={remote.remote}>
             <TouchableRipple
-              key={remote.remote}
               style={styles.dropDownHeader}
               onPress={() =>
                 setRemoteExpanded(v =>
@@ -125,7 +124,7 @@ export const BranchesUI = ({
                   );
                 })}
             </DropdownContent>
-          </>
+          </React.Fragment>
         );
       })}
     </ScrollView>
