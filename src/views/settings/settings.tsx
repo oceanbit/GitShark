@@ -28,8 +28,11 @@ import {
 import {SharkRadio} from '@components/shark-radio';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {AccountButton} from './account-button/account-button';
+import {useTranslation} from 'react-i18next';
 
 export const Settings = () => {
+  const {t} = useTranslation();
+
   const isDark = useDarkMode();
   const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
@@ -42,14 +45,43 @@ export const Settings = () => {
 
   const {setDarkMode, localDarkMode} = React.useContext(SetDarkModeContext);
 
-  // This is fragile and bad. Oh well
-  const matchingLocalMode = `${localDarkMode[0].toUpperCase()}${localDarkMode.slice(
-    1,
-    localDarkMode.length,
-  )}`;
-
   const videoWidth = (Dimensions.get('window').width - 24 * 3) / 2;
   const videoHeight = videoWidth * 2;
+
+  const themeValues = [t('autoDarkTheme'), t('lightTheme'), t('darkTheme')];
+
+  const matchingLocalMode = React.useMemo(() => {
+    switch (localDarkMode) {
+      case 'light':
+        return themeValues[1];
+      case 'dark':
+        return themeValues[2];
+      case 'auto':
+      default:
+        return themeValues[0];
+    }
+  }, [themeValues, localDarkMode]);
+
+  const onThemeSelect = (val: string) => {
+    switch (val) {
+      case themeValues[0]:
+      case 'auto':
+      case 'Auto': {
+        setDarkMode('auto');
+        break;
+      }
+      case themeValues[1]:
+      case 'light':
+      case 'Light': {
+        setDarkMode('light');
+        break;
+      }
+      default: {
+        setDarkMode('dark');
+        break;
+      }
+    }
+  };
 
   return (
     <ScrollView>
@@ -57,22 +89,19 @@ export const Settings = () => {
       <AppBar
         leftIcon="back"
         onLeftSelect={() => history.goBack()}
-        headline="Settings"
+        headline={t('settingsHeadline')}
       />
-      <SharkSubheader calloutText="Account" />
+      <SharkSubheader calloutText={t('accountHeadline')} />
       <AccountButton />
-      <SharkSubheader calloutText="Theme" />
+      <SharkSubheader calloutText={t('themeHeadline')} />
       <SharkButtonToggleGroup
-        values={['Auto', 'Light', 'Dark']}
+        values={themeValues}
         value={matchingLocalMode}
-        onSelect={val => setDarkMode(val.toLowerCase() as DarkModeOptionTypes)}
+        onSelect={onThemeSelect}
         style={styles.themeToggle}
       />
-      <Text style={styles.themeText}>
-        ‘Auto’ will switch between ‘Light’ and ‘Dark’ alongside your system
-        theme.
-      </Text>
-      <SharkSubheader calloutText="Staging layout" />
+      <Text style={styles.themeText}>{t('themeExplain')}</Text>
+      <SharkSubheader calloutText={t('stagingLayoutHeadline')} />
       <View
         style={{
           display: 'flex',
@@ -125,7 +154,7 @@ export const Settings = () => {
                   styles.checkboxText,
                   styleOfStaging === 'split' ? {color: accent} : {},
                 ]}>
-                Split
+                {t('splitLayout')}
               </Text>
             </View>
           </View>
@@ -171,7 +200,7 @@ export const Settings = () => {
                   styles.checkboxText,
                   styleOfStaging === 'sheet' ? {color: accent} : {},
                 ]}>
-                Sheet
+                {t('sheetLayout')}
               </Text>
             </View>
           </View>

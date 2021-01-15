@@ -32,5 +32,15 @@
   "repoURLInput": "Repository URL",
   "repoNameInput": "Repository name",
   "cloneProgressDialogTitle": "Clone repository",
-  "cloneProgressDialogText": "There was an error cloning your repository."
+  "cloneProgressDialogText": "There was an error cloning your repository.",
+  "settingsHeadline": "Settings",
+  "accountHeadline": "Account",
+  "themeHeadline": "Theme",
+  "autoDarkTheme": "Auto",
+  "lightTheme": "Light",
+  "darkTheme": "Dark",
+  "themeExplain": "‘Auto’ will switch between ‘Light’ and ‘Dark’ alongside your system theme.",
+  "stagingLayoutHeadline": "Staging layout",
+  "splitLayout": "Split",
+  "sheetLayout": "Sheet"
 }
