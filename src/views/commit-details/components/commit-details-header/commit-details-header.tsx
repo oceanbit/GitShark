@@ -10,6 +10,7 @@ import {TouchableRipple} from 'react-native-paper';
 import {CommitDetailsMoreInfo} from './commit-details-more-info';
 import {CommitMessageDropdown} from './commit-message-dropdown';
 import {GitLogCommit} from '@services';
+import {useTranslation} from 'react-i18next';
 
 interface CommitDetailsHeaderProps {
   expanded: boolean;
@@ -38,6 +39,8 @@ export const CommitDetailsHeader = ({
   parents,
   onNavToPar,
 }: CommitDetailsHeaderProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
   const [showMoreInfoOpacity] = React.useState(new Animated.Value(0));
   const [showLessInfoOpacity] = React.useState(new Animated.Value(0));
@@ -117,7 +120,7 @@ export const CommitDetailsHeader = ({
           <View style={styles.dropdropTextContainer}>
             <Animated.Text
               style={[styles.dropdownText, {opacity: showMoreInfoOpacity}]}>
-              More info
+              {t('moreInfo')}
             </Animated.Text>
             <Animated.Text
               style={[
@@ -125,7 +128,7 @@ export const CommitDetailsHeader = ({
                 styles.showLess,
                 {opacity: showLessInfoOpacity},
               ]}>
-              Less info
+              {t('lessInfo')}
             </Animated.Text>
           </View>
         </>

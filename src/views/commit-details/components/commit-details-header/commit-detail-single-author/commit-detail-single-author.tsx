@@ -5,6 +5,7 @@ import {theme} from '@constants';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 import {GitLogCommit} from '@services';
 import dayjs from 'dayjs';
+import {useTranslation} from 'react-i18next';
 
 const authorImageSize = 40;
 
@@ -23,6 +24,8 @@ export const CommitDetailsSingleAuthor = ({
   committer,
   style,
 }: CommitDetailsSingleAuthorProps) => {
+  const {t} = useTranslation();
+
   const showAuthoredTimestamp =
     author && author.timestamp !== committer.timestamp;
 
@@ -43,9 +46,13 @@ export const CommitDetailsSingleAuthor = ({
         <Text style={styles.personName}>{author?.name}</Text>
         <Text style={styles.personEmail}>{author?.email}</Text>
         {showAuthoredTimestamp && (
-          <Text style={styles.personDate}>Authored on {authorTimeStr}</Text>
+          <Text style={styles.personDate}>
+            {t('authoredOn', {time: authorTimeStr})}
+          </Text>
         )}
-        <Text style={styles.personDate}>Committed on {commitTimeStr}</Text>
+        <Text style={styles.personDate}>
+          {t('committedOn', {time: commitTimeStr})}
+        </Text>
       </View>
     </View>
   );

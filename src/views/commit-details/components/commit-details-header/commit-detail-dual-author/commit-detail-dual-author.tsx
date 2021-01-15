@@ -6,6 +6,7 @@ import {theme} from '@constants';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 import {GitLogCommit} from '@services';
 import dayjs from 'dayjs';
+import {useTranslation} from 'react-i18next';
 
 const authorImageSize = 40;
 
@@ -33,6 +34,8 @@ export const CommitDetailsDualAuthor = ({
   author,
   committer,
 }: CommitDetailsDualAuthorProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const [bottomImageLeft] = React.useState(new Animated.Value(0));
@@ -166,7 +169,9 @@ export const CommitDetailsDualAuthor = ({
           <DropdownContent expanded={expanded} ref={emailRef}>
             <Text style={styles.personEmail}>{author?.email}</Text>
           </DropdownContent>
-          <Text style={styles.personDate}>Authored on {authorTimeStr}</Text>
+          <Text style={styles.personDate}>
+            {t('authoredOn', {time: authorTimeStr})}
+          </Text>
         </View>
         {/*
         We want margins to disappear when not expanded. This is a quick-n-dirty solution to that
@@ -180,7 +185,9 @@ export const CommitDetailsDualAuthor = ({
           <DropdownContent expanded={expanded}>
             <Text style={styles.personEmail}>{committer?.email}</Text>
           </DropdownContent>
-          <Text style={styles.personDate}>Commited on {commitTimeStr}</Text>
+          <Text style={styles.personDate}>
+            {t('committedOn', {time: commitTimeStr})}
+          </Text>
         </View>
       </View>
     </View>

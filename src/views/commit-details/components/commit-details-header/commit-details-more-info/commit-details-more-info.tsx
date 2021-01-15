@@ -4,6 +4,7 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {CommitPill} from '@components/commit-pill';
 import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
 
 interface CommitDetailsMoreInfoProps {
   sha: string;
@@ -16,6 +17,8 @@ export const CommitDetailsMoreInfo = ({
   parents,
   onNavToPar,
 }: CommitDetailsMoreInfoProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
   const surfaceSecondary = useDynamicValue(theme.colors.label_medium_emphasis);
 
@@ -62,14 +65,14 @@ export const CommitDetailsMoreInfo = ({
         onPress={copyText}>
         <>
           <View style={styles.sectionTitle}>
-            <Text style={styles.sectionTitleText}>SHA</Text>
+            <Text style={styles.sectionTitleText}>{t('shaAbreviation')}</Text>
           </View>
           <View style={styles.sectionBody}>
             <Text style={styles.shaText} ellipsizeMode="tail" numberOfLines={1}>
               {sha}
             </Text>
             <Text style={[styles.copyText, copyTextColor]}>
-              {!showCopied ? 'Copy' : 'Copied'}
+              {!showCopied ? t('copyAction') : t('copiedAction')}
             </Text>
           </View>
         </>
@@ -77,7 +80,7 @@ export const CommitDetailsMoreInfo = ({
 
       <View style={styles.sectionContainer}>
         <View style={styles.sectionTitle}>
-          <Text style={styles.sectionTitleText}>PAR</Text>
+          <Text style={styles.sectionTitleText}>{t('parentAbreviation')}</Text>
         </View>
         <ScrollView horizontal={true} style={styles.sectionBody}>
           {parents.map(parent => (

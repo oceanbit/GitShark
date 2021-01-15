@@ -11,6 +11,7 @@ import {theme} from '@constants';
 import {Icon} from '@components/shark-icon';
 import {ChangesArrayItem, GitLogCommit} from '@services';
 import {FileChangeListItem} from '@components/file-change-list-item';
+import {useTranslation} from 'react-i18next';
 
 interface CommitDetailsUIProps {
   committer: GitLogCommit['committer'];
@@ -35,6 +36,8 @@ export const CommitDetailsUI = ({
   files,
   onBack,
 }: CommitDetailsUIProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
   const change_addition = useDynamicValue(theme.colors.change_addition);
   const change_removal = useDynamicValue(theme.colors.change_removal);
@@ -67,8 +70,8 @@ export const CommitDetailsUI = ({
                 onPress={() => setIsMenuOpen(true)}
               />
             }>
-            <Menu.Item onPress={() => {}} title="Open Folder" />
-            <Menu.Item onPress={() => {}} title="Rename" />
+            <Menu.Item onPress={() => {}} title={t('openFolderAction')} />
+            <Menu.Item onPress={() => {}} title={t('renameAction')} />
           </SharkMenu>
         }
       />
@@ -89,7 +92,7 @@ export const CommitDetailsUI = ({
         />
         <SharkDivider />
         <View style={styles.changesHeader}>
-          <Text style={styles.changesHeaderText}>Changes</Text>
+          <Text style={styles.changesHeaderText}>{t('changesHeader')}</Text>
           <View style={styles.growContainer} />
           {!!added && (
             <View style={styles.infoBlock}>
