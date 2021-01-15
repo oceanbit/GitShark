@@ -3,6 +3,7 @@ import {AppDialog} from '@components/dialog';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
+import {useTranslation} from 'react-i18next';
 
 interface ConfirmCheckoutDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -13,6 +14,8 @@ export const ConfirmCheckoutDialog = ({
   onDismiss,
   visible,
 }: ConfirmCheckoutDialogProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const parentOnDismiss = (bool: boolean) => {
@@ -23,22 +26,20 @@ export const ConfirmCheckoutDialog = ({
     <AppDialog
       visible={visible}
       onDismiss={() => parentOnDismiss(false)}
-      title={'Checkout branch'}
-      text={
-        "Are you sure you'd like to checkout a new branch? Your changes (staged and unstaged) will be lost."
-      }
+      title={t('confirmCheckoutDialogTitle')}
+      text={t('confirmCheckoutDialogText')}
       actions={
         <>
           <SharkButton
             onPress={() => parentOnDismiss(false)}
             type="outline"
             style={styles.cancelBtn}
-            text={'Cancel'}
+            text={t('cancelAction')}
           />
           <SharkButton
             onPress={() => parentOnDismiss(true)}
             type="primary"
-            text={'Discard & Checkout'}
+            text={t('discardCheckoutAction')}
           />
         </>
       }

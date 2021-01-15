@@ -6,6 +6,7 @@ import {OverlayDropdownContent} from '@components/overlay-dropdown-content';
 import {RepositoryHeader} from '@components/repository-header';
 import {ReduxRepo} from '@entities';
 import {GitLogCommit} from '@services';
+import {useTranslation} from 'react-i18next';
 
 interface RepositoryHistoryUIProps {
   commits: any[];
@@ -24,15 +25,15 @@ export const RepositoryHistoryUI = ({
   branchName,
   error,
 }: RepositoryHistoryUIProps) => {
+  const {t} = useTranslation();
+
   const [showBranches, setShowBranches] = React.useState(false);
 
   const bottomLayer = React.useMemo(() => {
     if (error) {
       return (
         <View>
-          <Text>
-            There was an error that occurred while loading commit log:
-          </Text>
+          <Text>{t('commitLogErrStr')}</Text>
           <Text>{error}</Text>
         </View>
       );
@@ -41,7 +42,7 @@ export const RepositoryHistoryUI = ({
     return (
       <CommitList commits={commits} onPress={onCommitNavigate} repo={repo!} />
     );
-  }, [commits, onCommitNavigate, repo, error]);
+  }, [error, commits, onCommitNavigate, repo, t]);
 
   const header = React.useMemo(
     () => (

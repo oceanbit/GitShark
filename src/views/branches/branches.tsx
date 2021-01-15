@@ -19,6 +19,7 @@ import {OnCheckoutActionsDialog} from './components/on-checkout-action-dialog';
 import {CreateRemoteDialog} from './components/create-remote-dialog';
 import {OnCreateRemoteActionDialog} from './components/on-create-remote-action-dialog';
 import {View, Text} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 interface InitBranchCheckoutType {
   branchName: string;
@@ -36,6 +37,8 @@ const initialBranchCheckout: InitBranchCheckoutType = {
 };
 
 export const Branches = () => {
+  const {t} = useTranslation();
+
   const [createBranchDialog, setCreateBranchDialog] = React.useState(false);
   // For the branch dialog
   const [createRemoteDialog, setCreateRemoteDialog] = React.useState(false);
@@ -147,7 +150,7 @@ export const Branches = () => {
   if (branchError)
     return (
       <View>
-        <Text>There was an error that occurred while loading branches:</Text>
+        <Text>{t('branchesErrStr')}</Text>
         <Text>{branchError}</Text>
       </View>
     );

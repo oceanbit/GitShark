@@ -15,6 +15,7 @@ import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {RemoteBranch, Remotes} from '@types';
 import {ReduxRepo} from '@entities';
+import {useTranslation} from 'react-i18next';
 
 interface BranchesUIProps {
   localBranches: string[];
@@ -45,6 +46,8 @@ export const BranchesUI = ({
   onCheckoutRemoteBranch,
   onBranchRename,
 }: BranchesUIProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   /**
@@ -57,8 +60,8 @@ export const BranchesUI = ({
   return (
     <ScrollView>
       <SharkSubheader
-        calloutText="Local"
-        buttonText="Add new"
+        calloutText={t('localBranchesLabel')}
+        buttonText={t('addNewAction')}
         onButtonClick={onCreateBranch}
       />
       {!!localBranches &&
@@ -83,8 +86,8 @@ export const BranchesUI = ({
         })}
       <SharkDivider style={styles.remoteDivider} />
       <SharkSubheader
-        calloutText="Remotes"
-        buttonText="Add new"
+        calloutText={t('remoteBranchesLabel')}
+        buttonText={t('addNewAction')}
         onButtonClick={onCreateRemote}
       />
       {remotes.map(remote => {

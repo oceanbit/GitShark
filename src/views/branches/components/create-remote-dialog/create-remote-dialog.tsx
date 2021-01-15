@@ -5,6 +5,7 @@ import {ErrorMessageBox} from '@components/error-message-box';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
+import {useTranslation} from 'react-i18next';
 
 interface CreateRemoteDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -22,6 +23,8 @@ export const CreateRemoteDialog = ({
   remotes,
   errorStr,
 }: CreateRemoteDialogProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   // const [branchName, setBranchName] = React.useState('');
@@ -49,22 +52,22 @@ export const CreateRemoteDialog = ({
     <AppDialog
       visible={visible}
       onDismiss={() => parentOnDismiss(false)}
-      title={'Add remote'}
-      text={'Add a remote to your repository'}
+      title={t('createRemoteDialogTitle')}
+      text={t('createRemoteDialogText')}
       main={
         <>
           <SharkTextInput
-            placeholder={'Remote URL'}
+            placeholder={t('remoteUrlInput')}
             value={remoteURL}
             onChangeText={val => setRemoteURL(val)}
             postfixIcon={'paste'}
           />
           <SharkTextInput
-            placeholder={'Remote Name'}
+            placeholder={t('remoteNameInput')}
             value={remoteName}
             onChangeText={val => setRemoteName(val)}
             style={styles.secondInput}
-            errorStr={isNameTaken ? 'Remote name is already taken' : ''}
+            errorStr={isNameTaken ? t('remoteNameTaken') : ''}
           />
           {!!errorStr && (
             <ErrorMessageBox style={styles.errorBox} message={errorStr} />
@@ -77,13 +80,13 @@ export const CreateRemoteDialog = ({
             onPress={() => parentOnDismiss(false)}
             type="outline"
             style={styles.cancelBtn}
-            text={'Cancel'}
+            text={t('cancelAction')}
           />
           <SharkButton
             onPress={() => parentOnDismiss(true)}
             type="primary"
             disabled={isNameTaken}
-            text={'Create'}
+            text={t('createAction')}
           />
         </>
       }

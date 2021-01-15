@@ -5,6 +5,7 @@ import {TouchableRipple} from 'react-native-paper';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 import {SharkDivider} from '@components/shark-divider';
+import {useTranslation} from 'react-i18next';
 
 interface HistoryBranchDropdownProps {
   branchName: string;
@@ -23,6 +24,8 @@ export const HistoryBranchDropdown = ({
   expanded,
   setExpanded,
 }: HistoryBranchDropdownProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
   const rippleColor = useDynamicValue(theme.colors.ripple_neutral);
 
@@ -84,7 +87,7 @@ export const HistoryBranchDropdown = ({
           <View style={styles.textContainer}>
             <Animated.Text
               style={[styles.selectBranches, {opacity: selectBranchesOpacity}]}>
-              Select branches
+              {t('selectBranches')}
             </Animated.Text>
             <Animated.Text
               numberOfLines={1}

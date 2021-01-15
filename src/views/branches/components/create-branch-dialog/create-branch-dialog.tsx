@@ -7,6 +7,7 @@ import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {theme} from '@constants';
+import {useTranslation} from 'react-i18next';
 
 interface CreateBranchDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -27,6 +28,8 @@ export const CreateBranchDialog = ({
   branches,
   errorStr,
 }: CreateBranchDialogProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const [branchName, setBranchName] = React.useState('');
@@ -51,16 +54,16 @@ export const CreateBranchDialog = ({
     <AppDialog
       visible={visible}
       onDismiss={() => parentOnDismiss(false)}
-      title={'Create branch'}
-      text={'Uncommitted changes will be moved to the new branch.'}
+      title={t('createBranchDialogTitle')}
+      text={t('createBranchDialogText')}
       main={
         <>
           <SharkTextInput
-            placeholder={'Branch name'}
+            placeholder={t('branchNameInput')}
             value={branchName}
             onChangeText={val => setBranchName(val)}
             prefixIcon={'branch'}
-            errorStr={isNameTaken ? 'Branch name is already taken' : ''}
+            errorStr={isNameTaken ? t('branchNameTaken') : ''}
           />
           {!!errorStr && (
             <ErrorMessageBox style={styles.errorBox} message={errorStr} />
@@ -73,7 +76,9 @@ export const CreateBranchDialog = ({
                 checked={checkAfterCreate}
                 onValueChange={setCheckAfterCreate}
               />
-              <Text style={styles.checkoutText}>Checkout after creation</Text>
+              <Text style={styles.checkoutText}>
+                {t('checkoutAfterCreate')}
+              </Text>
             </View>
           </TouchableWithoutFeedback>
         </>
@@ -84,13 +89,13 @@ export const CreateBranchDialog = ({
             onPress={() => parentOnDismiss(false)}
             type="outline"
             style={styles.cancelBtn}
-            text={'Cancel'}
+            text={t('cancelAction')}
           />
           <SharkButton
             onPress={() => onBranchCreate({branchName, checkAfterCreate})}
             type="primary"
             disabled={isNameTaken}
-            text={'Create'}
+            text={t('createAction')}
           />
         </>
       }

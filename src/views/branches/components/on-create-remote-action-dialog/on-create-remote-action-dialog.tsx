@@ -4,6 +4,7 @@ import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
 import {phases} from '@constants/hacks';
 import {createRemote} from '@services';
+import {useTranslation} from 'react-i18next';
 
 const pauseToRender = () => new Promise(resolve => setTimeout(resolve, 0));
 
@@ -24,6 +25,8 @@ export const OnCreateRemoteActionDialog = ({
   remoteURL,
   dispatch,
 }: OnCreateRemoteActionDialogProps) => {
+  const {t} = useTranslation();
+
   const [errorStr, setErrorStr] = React.useState('');
 
   /**
@@ -74,8 +77,8 @@ export const OnCreateRemoteActionDialog = ({
 
   return (
     <ProgressErrorDialog
-      headerStr={'Add remote'}
-      errorBodyText={'There was an error adding your remote.'}
+      headerStr={t('onCreateRemoteDialogTitle')}
+      errorBodyText={t('onCreateRemoteDialogText')}
       onDismiss={onDismiss}
       onRetry={() => fetchCB()}
       visible={visible}

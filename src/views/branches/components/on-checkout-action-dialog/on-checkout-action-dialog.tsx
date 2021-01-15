@@ -4,6 +4,7 @@ import {ProgressErrorDialog} from '@components/progress-error-dialog';
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
 import {phases} from '@constants/hacks';
+import {useTranslation} from 'react-i18next';
 
 const pauseToRender = () => new Promise(resolve => setTimeout(resolve, 0));
 
@@ -24,6 +25,8 @@ export const OnCheckoutActionsDialog = ({
   dispatch,
   remote,
 }: OnCheckoutActionsDialogProps) => {
+  const {t} = useTranslation();
+
   const [errorStr, setErrorStr] = React.useState('');
 
   /**
@@ -70,8 +73,8 @@ export const OnCheckoutActionsDialog = ({
 
   return (
     <ProgressErrorDialog
-      headerStr={'Checkout branch'}
-      errorBodyText={'There was an error checking out your branch.'}
+      headerStr={t('onCheckoutDialogTitle')}
+      errorBodyText={t('onCheckoutDialogText')}
       onDismiss={onDismiss}
       onRetry={() => fetchCB()}
       visible={visible}
