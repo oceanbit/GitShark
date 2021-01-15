@@ -8,9 +8,12 @@ import {useThunkDispatch} from '@hooks';
 import {useUserData} from '@hooks/use-user';
 import {SharkSnackbar} from '@components/shack-snackbar';
 import {OnCommitActionsDialog} from './on-commit-action-dialog';
-import {Keyboard, Text, View} from 'react-native';
+import {Keyboard} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 export const CommitAction = () => {
+  const {t} = useTranslation();
+
   const {repo} = useSelector((state: RootState) => state.repository);
   const {staged, error: changesError} = useSelector(
     (state: RootState) => state.changes,
@@ -63,12 +66,12 @@ export const CommitAction = () => {
         visible={noUserWarn}
         onDismiss={() => setNoUser(false)}
         action={{
-          label: 'Fix',
+          label: t('fixAction'),
           onPress: () => {
             history.navigate('Account');
           },
         }}
-        message={"You don't have commit author data set"}
+        message={t('noAuthorDataSet')}
       />
       <OnCommitActionsDialog visible={showCommit} />
     </>

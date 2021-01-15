@@ -109,5 +109,13 @@
   "confirmCheckoutDialogText": "Are you sure you'd like to checkout a new branch? Your changes (staged and unstaged) will be lost.",
   "discardCheckoutAction": "Discard & Checkout",
   "onCheckoutDialogTitle": "Checkout branch",
-  "onCheckoutDialogText": "There was an error checking out your branch."
+  "onCheckoutDialogText": "There was an error checking out your branch.",
+  "fixAction": "Fix",
+  "noAuthorDataSet": "You don't have commit author data set",
+  "committingAction": "Committing...",
+  "commitChangesHeader": "Commit changes",
+  "commitActionErrStr": "There was an error that occurred while loading staged and unstaged files:",
+  "commitTitleInput": "Commit title",
+  "commitDescInput": "Commit description",
+  "commitChangeAction": "Commit change"
 }

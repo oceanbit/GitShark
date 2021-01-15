@@ -9,6 +9,7 @@ import {ChangesArrayItem} from '@services';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkDivider} from '@components/shark-divider';
 import {BottomSpacerView} from '@components/shark-safe-top';
+import {useTranslation} from 'react-i18next';
 
 interface CommitActionUIProps {
   onSubmit: (props: {commitTitle: string; commitBody: string}) => Promise<void>;
@@ -23,6 +24,8 @@ export const CommitActionUI = ({
   onClose,
   error,
 }: CommitActionUIProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const [commitTitle, setCommitTitle] = React.useState('');
@@ -35,15 +38,12 @@ export const CommitActionUI = ({
       enabled>
       <View style={[styles.commitHeaderContainer]}>
         <SharkIconButton onPress={onClose} iconName="close" />
-        <Text style={styles.commitHeader}>Commit changes</Text>
+        <Text style={styles.commitHeader}>{t('commitChangesHeader')}</Text>
       </View>
       <SharkDivider />
       {!!error && (
         <View>
-          <Text>
-            There was an error that occurred while loading staged and unstaged
-            files:
-          </Text>
+          <Text>{t('commitActionErrStr')}</Text>
           <Text>{error}</Text>
         </View>
       )}
@@ -63,12 +63,12 @@ export const CommitActionUI = ({
           <SharkDivider />
           <View style={styles.commitData}>
             <SharkTextInput
-              placeholder={'Commit title'}
+              placeholder={t('commitTitleInput')}
               value={commitTitle}
               onChangeText={setCommitTitle}
             />
             <SharkTextInput
-              placeholder={'Commit description'}
+              placeholder={t('commitDescInput')}
               value={commitBody}
               onChangeText={setCommitBody}
               numberOfLines={4}
@@ -78,7 +78,7 @@ export const CommitActionUI = ({
               <SharkButton
                 disabled={!files.length}
                 onPress={() => onSubmit({commitBody, commitTitle})}
-                text={'Commit change'}
+                text={t('commitChangeAction')}
                 type={'primary'}
               />
             </View>
