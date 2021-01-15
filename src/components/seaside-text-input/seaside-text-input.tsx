@@ -17,7 +17,7 @@ interface SeaTextInputProps {
   disabled?: boolean;
   errorStr?: string;
   keyboardType?: TextInputProps['keyboardType'];
-  postfixIcon?: string;
+  endIcon?: string;
 }
 
 const animTiming = 150;
@@ -28,7 +28,7 @@ export const SeaTextInput = ({
   disabled,
   errorStr,
   keyboardType,
-  postfixIcon,
+  endIcon,
 }: SeaTextInputProps) => {
   const [isFocused, setIsFocused] = React.useState(false);
   const styles = useDynamicValue(dynamicStyles);
@@ -203,7 +203,7 @@ export const SeaTextInput = ({
     paddingBottom: labelBottom,
   };
 
-  const inputStylingWithIcon = !!postfixIcon
+  const inputStylingWithIcon = !!endIcon
     ? {paddingRight: theme.spacing.xxs}
     : {};
 
@@ -242,10 +242,10 @@ export const SeaTextInput = ({
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
-          {!!postfixIcon && (
+          {!!endIcon && (
             <SharkIconButton
               onPress={() => {}}
-              iconName={postfixIcon}
+              iconName={endIcon}
               color={disabled ? label_low_emphasis : undefined}
             />
           )}

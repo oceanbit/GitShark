@@ -9,7 +9,7 @@ const SeaInputDemo = ({...props}: any) => {
     <SeaTextInput
       value={value}
       onChangeText={setValue}
-      postfixIcon={'copy'}
+      endIcon={'copy'}
       {...props}
     />
   );
