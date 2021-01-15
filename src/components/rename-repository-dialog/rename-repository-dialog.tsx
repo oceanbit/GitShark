@@ -5,6 +5,7 @@ import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkButton} from '@components/shark-button';
 import {theme} from '@constants';
+import {useTranslation} from 'react-i18next';
 
 interface RenameRepositoryDialogProps {
   onDismiss: (newName: null | string) => void;
@@ -15,6 +16,8 @@ export const RenameRepositoryDialog = ({
   onDismiss,
   visible,
 }: RenameRepositoryDialogProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const [repoName, setRepoName] = React.useState('');
@@ -22,7 +25,7 @@ export const RenameRepositoryDialog = ({
 
   const renameRepoLocal = async () => {
     if (!repoName) {
-      setErrorStr('You must input a value for the repository name');
+      setErrorStr(t('noRepoNameErr'));
     }
     onDismiss(repoName);
     setRepoName('');
@@ -33,14 +36,14 @@ export const RenameRepositoryDialog = ({
     <AppDialog
       visible={visible}
       onDismiss={() => onDismiss(null)}
-      title={'Rename repository'}
-      text={'Enter the new name for the repository.'}
+      title={t('renameRepoDialogTitle')}
+      text={t('renameRepoDialogText')}
       main={
         <>
           <SharkTextInput
             value={repoName}
             onChangeText={setRepoName}
-            placeholder={'Repository name'}
+            placeholder={t('renameRepoDialogInput')}
             style={styles.textInput}
           />
           {!!errorStr && (
@@ -54,12 +57,12 @@ export const RenameRepositoryDialog = ({
             onPress={() => onDismiss(null)}
             type="outline"
             style={styles.cancelBtn}
-            text={'Cancel'}
+            text={t('cancelAction')}
           />
           <SharkButton
             onPress={() => renameRepoLocal()}
             type="primary"
-            text={'Rename'}
+            text={t('renameAction')}
           />
         </>
       }

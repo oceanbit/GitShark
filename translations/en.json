@@ -6,5 +6,12 @@
   "existFABAction": "Add existing",
   "updatedAgo": "Updated {{time}} ago",
   "renameAction": "Rename",
-  "deleteAction": "Delete"
+  "deleteAction": "Delete",
+  "noRepoNameErr": "You must input a value for the repository name",
+  "renameRepoDialogTitle": "Rename repository",
+  "renameRepoDialogText": "Enter the new name for the repository.",
+  "renameRepoDialogInput": "Repository name",
+  "deleteRepoDialogTitle": "Delete repository?",
+  "deleteRepoDialogText": "Files will remain in your device.'",
+  "cancelAction": "Cancel"
 }
