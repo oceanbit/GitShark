@@ -12,6 +12,7 @@ import {FetchDialog} from './components/fetch-dialog';
 import {Remotes, RemoteBranch} from '@types';
 import {RepoHeaderContext, RepoHeaderDialogType} from '@constants';
 import {PushPull} from '@entities';
+import {useTranslation} from 'react-i18next';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -58,6 +59,8 @@ export const RepositoryUI = ({
   currentBranch,
   trackedBranch,
 }: RepositoryUIProps) => {
+  const {t} = useTranslation();
+
   const [activeDialog, setActiveDialog] = React.useState<RepoHeaderDialogType>(
     '',
   );
@@ -87,20 +90,20 @@ export const RepositoryUI = ({
         inactiveColor={label_medium_emphasis}
         activeColor={accent}>
         <Tab.Screen
-          name="Changes"
+          name={t('changesTab')}
           component={repoChanges}
           options={{
-            tabBarLabel: 'Changes',
+            tabBarLabel: t('changesTab'),
             tabBarIcon: ({color}) => (
               <Icon name="changes" color={color} size={24} />
             ),
           }}
         />
         <Tab.Screen
-          name="History"
+          name={t('historyTab')}
           component={repoHistory}
           options={{
-            tabBarLabel: 'History',
+            tabBarLabel: t('historyTab'),
             tabBarIcon: ({color}) => (
               <Icon name="history" color={color} size={24} />
             ),
@@ -110,11 +113,12 @@ export const RepositoryUI = ({
     );
   }, [
     styles.bottomNav,
-    repoHistory,
-    repoChanges,
-    accent,
-    label_medium_emphasis,
     insets.bottom,
+    label_medium_emphasis,
+    accent,
+    t,
+    repoChanges,
+    repoHistory,
   ]);
 
   const Stack = createStackNavigator();

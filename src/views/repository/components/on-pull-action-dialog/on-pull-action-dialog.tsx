@@ -5,6 +5,7 @@ import {ReduxRepo} from '@entities';
 import {RemoteBranch} from '@types';
 import {ThunkDispatchType, useUserData} from '@hooks';
 import {phases} from '@constants/hacks';
+import {useTranslation} from 'react-i18next';
 
 const pauseToRender = () => new Promise(resolve => setTimeout(resolve, 0));
 
@@ -23,6 +24,8 @@ export const OnPullActionsDialog = ({
   trackedBranch,
   dispatch,
 }: OnPullActionsDialogProps) => {
+  const {t} = useTranslation();
+
   const [errorStr, setErrorStr] = React.useState('');
 
   /**
@@ -73,8 +76,8 @@ export const OnPullActionsDialog = ({
 
   return (
     <ProgressErrorDialog
-      headerStr={'Pulling...'}
-      errorBodyText={'There was an error pulling from remote.'}
+      headerStr={t('onPullDialogTitle')}
+      errorBodyText={t('onPullDialogText')}
       onDismiss={onDismiss}
       onRetry={() => fetchCB()}
       visible={visible}

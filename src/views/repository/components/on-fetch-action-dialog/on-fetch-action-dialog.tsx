@@ -5,6 +5,7 @@ import {ReduxRepo} from '@entities';
 import {Remotes} from '@types';
 import {ThunkDispatchType} from '@hooks';
 import {phases} from '@constants/hacks';
+import {useTranslation} from 'react-i18next';
 
 const pauseToRender = () => new Promise(resolve => setTimeout(resolve, 0));
 
@@ -27,6 +28,8 @@ export const OnFetchActionsDialog = ({
   data,
   dispatch,
 }: OnFetchActionsDialogProps) => {
+  const {t} = useTranslation();
+
   const [errorStr, setErrorStr] = React.useState('');
 
   /**
@@ -74,8 +77,8 @@ export const OnFetchActionsDialog = ({
 
   return (
     <ProgressErrorDialog
-      headerStr={'Fetch remote'}
-      errorBodyText={'There was an error fetching your remote.'}
+      headerStr={t('onFetchDialogTitle')}
+      errorBodyText={t('onFetchDialogText')}
       onDismiss={onDismiss}
       onRetry={() => fetchCB()}
       visible={visible}

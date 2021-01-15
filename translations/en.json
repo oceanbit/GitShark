@@ -56,5 +56,13 @@
   "commitAuthoring": "Commit authoring",
   "useGHCreds": "Use GitHub credentials",
   "saveChanges": "Save changes",
-  "authorDetailsSaved": "Your commit author details have been saved"
+  "authorDetailsSaved": "Your commit author details have been saved",
+  "changesTab": "Changes",
+  "historyTab": "History",
+  "onFetchDialogTitle": "Fetch remote",
+  "onFetchDialogText": "There was an error fetching your remote.",
+  "onPushDialogTitle": "Push branch",
+  "onPushDialogText": "There was an error pushing your branch.",
+  "onPullDialogTitle": "Pulling...",
+  "onPullDialogText": "There was an error pulling from remote."
 }

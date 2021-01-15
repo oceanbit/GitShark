@@ -5,6 +5,7 @@ import {ReduxRepo} from '@entities';
 import {RemoteBranch} from '@types';
 import {ThunkDispatchType} from '@hooks';
 import {phases} from '@constants/hacks';
+import {useTranslation} from 'react-i18next';
 
 const pauseToRender = () => new Promise(resolve => setTimeout(resolve, 0));
 
@@ -27,6 +28,8 @@ export const OnPushActionsDialog = ({
   data,
   dispatch,
 }: OnPushActionsDialogProps) => {
+  const {t} = useTranslation();
+
   const [errorStr, setErrorStr] = React.useState('');
 
   /**
@@ -72,8 +75,8 @@ export const OnPushActionsDialog = ({
 
   return (
     <ProgressErrorDialog
-      headerStr={'Push branch'}
-      errorBodyText={'There was an error pushing your branch.'}
+      headerStr={t('onPushDialogTitle')}
+      errorBodyText={t('onPushDialogText')}
       onDismiss={onDismiss}
       onRetry={() => fetchCB()}
       visible={visible}
