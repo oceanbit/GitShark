@@ -8,6 +8,7 @@ import {DialogsAndFab} from './components/dialogs-and-fab';
 import {SharkIconButton} from '@components/shark-icon-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {BottomSpacerView, SharkSafeTop} from '../../components/shark-safe-top';
+import {useTranslation} from 'react-i18next';
 
 interface RepositoryListUIProps {
   isLoading: boolean;
@@ -29,12 +30,13 @@ export const RepositoryListUI = ({
   deleteRepo,
 }: RepositoryListUIProps) => {
   const styles = useDynamicValue(dynamicStyles);
+  const {t} = useTranslation();
 
   return (
     <SharkSafeTop>
       <View style={styles.container}>
         <View style={styles.headingContainer}>
-          <Text style={styles.headingText}>Repositories</Text>
+          <Text style={styles.headingText}>{t('repoListTitle')}</Text>
           <SharkIconButton onPress={navigateToSettings} iconName={'settings'} />
         </View>
         {isLoading && <RepoListLoading />}

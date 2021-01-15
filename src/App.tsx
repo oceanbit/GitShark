@@ -44,6 +44,8 @@ import {Provider} from 'react-redux';
 import {store, setupDatabase} from '@store';
 import ErrorBoundary from 'react-native-error-boundary';
 
+import './services/translations';
+
 // TODO: Remove once https://github.com/isomorphic-git/isomorphic-git/pull/1156
 // eslint-disable-next-line no-undef
 CompressionStream = null;
