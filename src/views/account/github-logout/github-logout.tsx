@@ -3,8 +3,11 @@ import {Text, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkButton} from '@components/shark-button';
 import {theme, UserContext} from '@constants';
+import {useTranslation} from 'react-i18next';
 
 export const GitHubLogout = () => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const {gitHubUser, logoutGitHub} = React.useContext(UserContext);
@@ -15,7 +18,7 @@ export const GitHubLogout = () => {
         <Text style={styles.callout}>{gitHubUser?.name}</Text>
         <Text style={styles.body2}>{gitHubUser?.email}</Text>
       </View>
-      <SharkButton onPress={() => logoutGitHub()} text={'Sign out'} />
+      <SharkButton onPress={() => logoutGitHub()} text={t('signOut')} />
     </View>
   );
 };

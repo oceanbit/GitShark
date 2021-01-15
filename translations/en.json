@@ -42,5 +42,19 @@
   "themeExplain": "‘Auto’ will switch between ‘Light’ and ‘Dark’ alongside your system theme.",
   "stagingLayoutHeadline": "Staging layout",
   "splitLayout": "Split",
-  "sheetLayout": "Sheet"
+  "sheetLayout": "Sheet",
+  "addAccountDefaults": "Add account details",
+  "nameEmailGH": "Name, email, GitHub integration",
+  "personNameDefault": "Name",
+  "personEmailDefault": "Email",
+  "fieldNoEmpty": "Field cannot be empty.",
+  "inputValidEmail": "Please input a valid email address",
+  "accountsHeadline": "Accounts",
+  "ghIntegrationHeadline": "GitHub integration",
+  "signInWGH": "Sign in with GitHub",
+  "signOut": "Sign out",
+  "commitAuthoring": "Commit authoring",
+  "useGHCreds": "Use GitHub credentials",
+  "saveChanges": "Save changes",
+  "authorDetailsSaved": "Your commit author details have been saved"
 }

@@ -7,8 +7,11 @@ import {Icon} from '@components/shark-icon';
 import {SharkProfilePic} from '@components/shark-profile-pic';
 
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
+import {useTranslation} from 'react-i18next';
 
 export const AccountButton = () => {
+  const {t} = useTranslation();
+
   const {useGitHub, gitHubUser, manualUser} = React.useContext(UserContext);
   const history = useNavigation();
 
@@ -23,13 +26,13 @@ export const AccountButton = () => {
     ? gitHubUser!.name
     : !!manualUser
     ? manualUser.name
-    : 'Add account details';
+    : t('addAccountDefaults');
 
   const personEmail = isGitHub
     ? gitHubUser!.email
     : !!manualUser
     ? manualUser.email
-    : 'Name, email, GitHub integration';
+    : t('nameEmailGH');
 
   return (
     <TouchableRipple

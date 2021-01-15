@@ -22,8 +22,11 @@ import {validateEmail} from '@utils';
 import {GitHubLogout} from './github-logout/github-logout';
 import {SharkDivider} from '@components/shark-divider';
 import {SharkSnackbar} from '@components/shack-snackbar';
+import {useTranslation} from 'react-i18next';
 
 export const Account = () => {
+  const {t} = useTranslation();
+
   const {
     useGitHub,
     setUseGithub,
@@ -50,19 +53,19 @@ export const Account = () => {
     ? gitHubUser!.name
     : !!manualName
     ? manualName
-    : 'Name';
+    : t('personNameDefault');
 
   const personEmail = isGitHub
     ? gitHubUser!.email
     : !!manualEmail
     ? manualEmail
-    : 'Email';
+    : t('personEmailDefault');
 
   const [savedShow, setSaved] = React.useState(false);
 
   const saveChanges = () => {
     let hasError = false;
-    const noEmptyStr = 'Field cannot be empty.';
+    const noEmptyStr = t('fieldNoEmpty');
     if (!manualName) {
       setManualNameError(noEmptyStr);
       hasError = true;
@@ -73,7 +76,7 @@ export const Account = () => {
     } else {
       const isValid = validateEmail(manualEmail);
       if (!isValid) {
-        setManualEmailError('Please input a valid email address');
+        setManualEmailError(t('inputValidEmail'));
         hasError = true;
       }
     }
@@ -99,15 +102,15 @@ export const Account = () => {
           <AppBar
             leftIcon="back"
             onLeftSelect={() => history.goBack()}
-            headline="Accounts"
+            headline={t('accountsHeadline')}
           />
-          <SharkSubheader calloutText="GitHub integration" />
+          <SharkSubheader calloutText={t('ghIntegrationHeadline')} />
           {!!gitHubUser ? (
             <GitHubLogout />
           ) : (
             <SharkButton
               style={styles.signinGithubButton}
-              text="Sign in with GitHub"
+              text={t('signInWGH')}
               type="primary"
               icon={'github'}
               onPress={() => {
@@ -116,7 +119,7 @@ export const Account = () => {
             />
           )}
           <SharkDivider />
-          <SharkSubheader calloutText="Commit authoring" />
+          <SharkSubheader calloutText={t('commitAuthoring')} />
           <View style={styles.commitAuthorContainer}>
             <View style={styles.authorPreview}>
               <SharkProfilePic source={authorImage} showGHLogo={isGitHub} />
@@ -141,7 +144,7 @@ export const Account = () => {
                   {/* Not setting disabled since valuechange is noop and we set styling above */}
                   <SharkCheckbox checked={useGitHub} onValueChange={() => {}} />
                 </View>
-                <Text style={styles.useGHText}>Use GitHub credentials</Text>
+                <Text style={styles.useGHText}>{t('useGHCreds')}</Text>
               </>
             </TouchableRipple>
             <SharkTextInput
@@ -169,7 +172,7 @@ export const Account = () => {
             />
             <SharkButton
               style={styles.saveButton}
-              text="Save changes"
+              text={t('saveChanges')}
               onPress={() => saveChanges()}
               type="primary"
               disabled={useGitHub}
@@ -182,7 +185,7 @@ export const Account = () => {
       <SharkSnackbar
         visible={savedShow}
         onDismiss={() => setSaved(false)}
-        message={'Your commit author details have been saved'}
+        message={t('authorDetailsSaved')}
       />
     </>
   );
