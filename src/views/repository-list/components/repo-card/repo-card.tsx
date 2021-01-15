@@ -12,6 +12,7 @@ import {DeleteRepositoryDialog} from '../delete-repository-dialog';
 import {dynamicStyles} from './repo-card.styles';
 import {useDynamicValue} from 'react-native-dynamic';
 import {SharkMenu} from '@components/shark-menu';
+import {useTranslation} from 'react-i18next';
 
 type DialogActionsType = '' | 'rename' | 'delete';
 
@@ -22,6 +23,8 @@ interface RepoCardProps {
 }
 
 export const RepoCard = ({repo, onDelete, onRename}: RepoCardProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -50,7 +53,7 @@ export const RepoCard = ({repo, onDelete, onRename}: RepoCardProps) => {
                 {repo.name}
               </Text>
               <Text style={styles.lastUpdated}>
-                Updated {updatedFromNow} ago
+                {t('updatedAgo', {time: updatedFromNow})}
               </Text>
             </View>
             <SharkMenu
@@ -68,14 +71,14 @@ export const RepoCard = ({repo, onDelete, onRename}: RepoCardProps) => {
                   setOpenDialog('rename');
                   setIsMenuOpen(false);
                 }}
-                title="Rename"
+                title={t('renameAction')}
               />
               <Menu.Item
                 onPress={() => {
                   setOpenDialog('delete');
                   setIsMenuOpen(false);
                 }}
-                title="Delete"
+                title={t('deleteAction')}
               />
             </SharkMenu>
           </View>

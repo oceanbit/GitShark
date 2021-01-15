@@ -1,6 +1,12 @@
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import * as RNLocalize from 'react-native-localize';
+import dayjs from 'dayjs';
+
+// DayJS
+require('dayjs/locale/en');
+require('dayjs/locale/es');
+require('dayjs/locale/pt');
 
 type StringRec = {
   [key: string]: string | StringRec;
@@ -19,6 +25,8 @@ const translations: Record<string, () => StringRec> = {
 const fallback = {languageTag: 'en', isRTL: false};
 const {languageTag, isRTL} =
   RNLocalize.findBestAvailableLanguage(Object.keys(translations)) || fallback;
+
+dayjs.locale(languageTag);
 
 i18n
   .use(initReactI18next)

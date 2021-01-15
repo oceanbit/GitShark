@@ -3,5 +3,8 @@
   "noRepos": "No repositories",
   "cloneFABAction": "Clone",
   "createFABAction": "Create",
-  "existFABAction": "Add existing"
+  "existFABAction": "Add existing",
+  "updatedAgo": "Updated {{time}} ago",
+  "renameAction": "Rename",
+  "deleteAction": "Delete"
 }
