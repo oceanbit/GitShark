@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {cloneRepo} from '@services';
 import {ProgressErrorDialog} from '@components/progress-error-dialog';
+import {useTranslation} from 'react-i18next';
 
 interface CloneRepositoryProgressDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -17,6 +18,8 @@ export const CloneRepositoryProgressDialog = ({
   name,
   uri,
 }: CloneRepositoryProgressDialogProps) => {
+  const {t} = useTranslation();
+
   const [errorStr, setErrorStr] = React.useState('');
 
   /**
@@ -64,8 +67,8 @@ export const CloneRepositoryProgressDialog = ({
 
   return (
     <ProgressErrorDialog
-      headerStr={'Clone repository'}
-      errorBodyText={'There was an error cloning your repository.'}
+      headerStr={t('cloneProgressDialogTitle')}
+      errorBodyText={t('cloneProgressDialogText')}
       onDismiss={onDismiss}
       onRetry={() => cloneRepoCB()}
       visible={visible}

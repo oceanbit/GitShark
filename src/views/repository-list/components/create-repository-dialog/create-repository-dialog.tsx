@@ -11,6 +11,7 @@ import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {Platform} from 'react-native';
 import {DocumentDirectoryPath} from 'react-native-fs';
+import {useTranslation} from 'react-i18next';
 
 const iOS = Platform.OS === 'ios';
 const iOSPath = DocumentDirectoryPath;
@@ -24,6 +25,8 @@ export const CreateRepositoryDialog = ({
   onDismiss,
   visible,
 }: CreateRepositoryDialogProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const [repoName, setRepoName] = React.useState('');
@@ -44,10 +47,7 @@ export const CreateRepositoryDialog = ({
     try {
       await createNewRepo(path, repoName);
     } catch (e) {
-      console.error("There was an error creating a repo in the app's cache", e);
-      Alert.alert(
-        "There was an error creating a repo in the app's cache. Please restart the app and try again",
-      );
+      Alert.alert(t('errorCreateRepoCache'));
     }
   };
 
@@ -68,7 +68,7 @@ export const CreateRepositoryDialog = ({
   const checkAndCreateGitDirectory = async () => {
     const isGitRepo = await getGitBranchName();
     if (isGitRepo) {
-      setErrorStr('The folder selected is already a git repository.');
+      setErrorStr(t('alreadyGitRepo'));
       return;
     }
     try {
@@ -79,10 +79,7 @@ export const CreateRepositoryDialog = ({
       await createNewRepoLocal();
       parentOnDismiss(true);
     } catch (e) {
-      console.error('There was an error initializing the git repo', e);
-      Alert.alert(
-        'There was an error initlizing a git repo at this path. Please restart the app and try again',
-      );
+      Alert.alert(t('errorInitGit'));
       parentOnDismiss(false);
     }
   };
@@ -91,8 +88,8 @@ export const CreateRepositoryDialog = ({
     <AppDialog
       visible={visible}
       onDismiss={() => parentOnDismiss(false)}
-      title={'Create repository'}
-      text={'The repository will be created from a local folder.'}
+      title={t('createRepoDialogTitle')}
+      text={t('createRepoDialogText')}
       main={
         <>
           {!iOS && (
@@ -110,7 +107,7 @@ export const CreateRepositoryDialog = ({
           <SharkTextInput
             value={repoName}
             onChangeText={setRepoName}
-            placeholder={'Repository name'}
+            placeholder={t('createRepoDialogInput')}
             style={styles.textInput}
           />
         </>
@@ -121,12 +118,12 @@ export const CreateRepositoryDialog = ({
             onPress={() => parentOnDismiss(false)}
             type="outline"
             style={styles.cancelBtn}
-            text="Cancel"
+            text={t('cancelAction')}
           />
           <SharkButton
             onPress={() => checkAndCreateGitDirectory()}
             type="primary"
-            text="Create"
+            text={t('createAction')}
           />
         </>
       }

@@ -32,7 +32,7 @@ export const FabActions = ({toggleAnimation, onSelect}: FabActionsProps) => {
           toggleAnimation();
           onSelect('create');
         }}>
-        <Text style={styles.fabActionText}>{t('createFABAction')}</Text>
+        <Text style={styles.fabActionText}>{t('createAction')}</Text>
       </TouchableRipple>
       {!iOS && (
         <TouchableRipple

@@ -11,6 +11,7 @@ import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
+import {useTranslation} from 'react-i18next';
 
 interface FolderSelectButtonProps {
   onFolderSelect: (path: string) => void;
@@ -23,6 +24,8 @@ export const FolderSelectButton = ({
   path,
   style,
 }: FolderSelectButtonProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
 
@@ -30,7 +33,7 @@ export const FolderSelectButton = ({
     if (Platform.OS === 'android') {
       NativeModules.DirectoryPickerModule.Show(
         {
-          title: 'Select File',
+          title: t('selectFolderTitle'),
           closeMenu: true,
           path: '',
         },
@@ -53,7 +56,7 @@ export const FolderSelectButton = ({
         <TouchableRipple onPress={() => selectDirectory()} style={style}>
           <View style={styles.selectFolderBtn}>
             <Icon size={24} name="folder" color={accent} />
-            <Text style={styles.selectFolderText}>Select folder...</Text>
+            <Text style={styles.selectFolderText}>{t('selectFolder')}</Text>
           </View>
         </TouchableRipple>
       )}

@@ -9,6 +9,7 @@ import {createNewRepo} from '@services';
 import {SharkButton} from '@components/shark-button';
 import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
+import {useTranslation} from 'react-i18next';
 
 interface CreateRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -19,6 +20,8 @@ export const AddExistingRepositoryDialog = ({
   onDismiss,
   visible,
 }: CreateRepositoryDialogProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const [path, setPath] = React.useState('');
@@ -36,10 +39,7 @@ export const AddExistingRepositoryDialog = ({
     try {
       await createNewRepo(path, repoName);
     } catch (e) {
-      console.error("There was an error creating a repo in the app's cache", e);
-      Alert.alert(
-        "There was an error creating a repo in the app's cache. Please restart the app and try again",
-      );
+      Alert.alert(t('errorCreateRepoCache'));
     }
   };
 
@@ -64,17 +64,15 @@ export const AddExistingRepositoryDialog = ({
       parentOnDismiss(true);
       return;
     }
-    setErrorStr('The folder selected is not a git repository.');
+    setErrorStr(t('folderNotGit'));
   };
 
   return (
     <AppDialog
       visible={visible}
       onDismiss={() => parentOnDismiss(false)}
-      title={'Add existing repository'}
-      text={
-        "Select a local folder that contains a repository. We'll keep track of it from there."
-      }
+      title={t('addExistRepoDialogTitle')}
+      text={t('addExistRepoDialogText')}
       main={
         <>
           <FolderSelectButton
@@ -90,7 +88,7 @@ export const AddExistingRepositoryDialog = ({
           <SharkTextInput
             value={repoName}
             onChangeText={setRepoName}
-            placeholder={'Repository name'}
+            placeholder={t('addExistRepoDialogInput')}
             style={styles.textInput}
           />
         </>
@@ -101,12 +99,12 @@ export const AddExistingRepositoryDialog = ({
             onPress={() => parentOnDismiss(false)}
             type="outline"
             style={styles.cancelBtn}
-            text="Cancel"
+            text={t('cancelAction')}
           />
           <SharkButton
             onPress={() => checkAndCreateGitDirectory()}
             type="primary"
-            text="Create"
+            text={t('createAction')}
           />
         </>
       }

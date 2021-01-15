@@ -11,6 +11,7 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {Platform} from 'react-native';
 import {DocumentDirectoryPath} from 'react-native-fs';
 import {getRepoStatus} from '@services';
+import {useTranslation} from 'react-i18next';
 
 const iOS = Platform.OS === 'ios';
 const iOSPath = DocumentDirectoryPath;
@@ -24,6 +25,8 @@ export const CloneRepositoryDialog = ({
   onDismiss,
   visible,
 }: CloneRepositoryDialogProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const [repoUrl, setRepoUrl] = React.useState('');
@@ -61,12 +64,12 @@ export const CloneRepositoryDialog = ({
 
   const checkAndClone = async () => {
     if (!repoUrl) {
-      setErrorStr('There is no URI set for the clone, please input one');
+      setErrorStr(t('noURIClone'));
       return;
     }
     const gitBranchName = await getGitBranchName();
     if (gitBranchName) {
-      setErrorStr('The folder selected is already a git repository.');
+      setErrorStr(t('alreadyGitRepo'));
       return;
     }
     setIsCloning(true);
@@ -77,12 +80,12 @@ export const CloneRepositoryDialog = ({
       <AppDialog
         visible={visible && !isCloning}
         onDismiss={() => parentOnDismiss(false)}
-        title={'Clone'}
-        text={'Clone remote repository into a local folder.'}
+        title={t('cloneRepoDialogTitle')}
+        text={t('cloneRepoDialogText')}
         main={
           <>
             <SharkTextInput
-              placeholder={'Repository URL'}
+              placeholder={t('repoURLInput')}
               value={repoUrl}
               onChangeText={val => setRepoUrl(val)}
               prefixIcon={'link'}
@@ -104,7 +107,7 @@ export const CloneRepositoryDialog = ({
             <SharkTextInput
               value={repoName}
               onChangeText={setRepoName}
-              placeholder={'Repository name'}
+              placeholder={t('repoNameInput')}
               style={styles.textInput}
             />
           </>
@@ -115,12 +118,12 @@ export const CloneRepositoryDialog = ({
               onPress={() => parentOnDismiss(false)}
               type="outline"
               style={styles.cancelBtn}
-              text={'Cancel'}
+              text={t('cancelAction')}
             />
             <SharkButton
               onPress={() => checkAndClone()}
               type="primary"
-              text={'Create'}
+              text={t('createAction')}
             />
           </>
         }
