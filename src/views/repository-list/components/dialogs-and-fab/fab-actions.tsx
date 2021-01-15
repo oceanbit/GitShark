@@ -4,6 +4,7 @@ import {TouchableRipple} from 'react-native-paper';
 import {DialogSelection, ExtendedFabBase} from './types';
 import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
+import {useTranslation} from 'react-i18next';
 
 const iOS = Platform.OS === 'ios';
 
@@ -12,6 +13,8 @@ interface FabActionsProps extends ExtendedFabBase {
 }
 
 export const FabActions = ({toggleAnimation, onSelect}: FabActionsProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
   return (
     <View style={styles.fabActions}>
@@ -21,7 +24,7 @@ export const FabActions = ({toggleAnimation, onSelect}: FabActionsProps) => {
           toggleAnimation();
           onSelect('clone');
         }}>
-        <Text style={styles.fabActionText}>Clone</Text>
+        <Text style={styles.fabActionText}>{t('cloneFABAction')}</Text>
       </TouchableRipple>
       <TouchableRipple
         style={styles.fabActionBtn}
@@ -29,7 +32,7 @@ export const FabActions = ({toggleAnimation, onSelect}: FabActionsProps) => {
           toggleAnimation();
           onSelect('create');
         }}>
-        <Text style={styles.fabActionText}>Create</Text>
+        <Text style={styles.fabActionText}>{t('createFABAction')}</Text>
       </TouchableRipple>
       {!iOS && (
         <TouchableRipple
@@ -38,7 +41,7 @@ export const FabActions = ({toggleAnimation, onSelect}: FabActionsProps) => {
             toggleAnimation();
             onSelect('existing');
           }}>
-          <Text style={styles.fabActionText}>Add existing</Text>
+          <Text style={styles.fabActionText}>{t('existFABAction')}</Text>
         </TouchableRipple>
       )}
     </View>

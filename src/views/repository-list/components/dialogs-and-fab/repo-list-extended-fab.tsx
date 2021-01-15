@@ -14,6 +14,7 @@ import {
 } from 'react-native-dynamic';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useTranslation} from 'react-i18next';
 
 export interface RepoListExtendedFabProps {
   repos: ReduxRepo[] | null;
@@ -28,6 +29,8 @@ export const RepoListExtendedFab = ({
   setSelectedAction,
   isLoading,
 }: RepoListExtendedFabProps) => {
+  const {t} = useTranslation();
+
   const insets = useSafeAreaInsets();
   const isDark = useDarkMode();
 
@@ -103,7 +106,7 @@ export const RepoListExtendedFab = ({
     <>
       {!isLoading && !repos?.length && (
         <Text style={[styles.noRepos, {bottom: noReposBotttom}]}>
-          No repositories
+          {t('noRepos')}
         </Text>
       )}
       <View style={styles.fabview}>
