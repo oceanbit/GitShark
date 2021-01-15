@@ -7,6 +7,7 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {Picker} from '@react-native-community/picker';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {RemoteBranch} from '@types';
+import {useTranslation} from 'react-i18next';
 
 const remoteBranchToString = (branch: RemoteBranch | null) =>
   `${branch?.remote}/${branch?.name}`;
@@ -34,6 +35,8 @@ export const PushDialog = ({
   currentBranch,
   trackedBranch,
 }: PushDialogProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const [branch, setBranch] = React.useState(currentBranch);
@@ -70,11 +73,11 @@ export const PushDialog = ({
     <AppDialog
       visible={visible}
       onDismiss={() => parentOnDismiss(false)}
-      title={'Push'}
-      text={'Push local changes to a remote repository.'}
+      title={t('pushDialogTitle')}
+      text={t('pushDialogText')}
       main={
         <>
-          <Text style={styles.pickerLabel}>Branch</Text>
+          <Text style={styles.pickerLabel}>{t('branchPickerLabel')}</Text>
 
           {/* TODO: REPLACE WITH REAL SEASIDE SELECT COMPONENT */}
           <View style={styles.pickerView}>
@@ -87,7 +90,7 @@ export const PushDialog = ({
             </Picker>
           </View>
 
-          <Text style={styles.pickerLabel}>Destination</Text>
+          <Text style={styles.pickerLabel}>{t('pushDestinationLabel')}</Text>
 
           <View style={styles.pickerView}>
             <Picker
@@ -111,7 +114,7 @@ export const PushDialog = ({
               checked={forcePush}
               onValueChange={v => setForcePush(v)}
             />
-            <Text style={styles.checkboxText}>Force Push</Text>
+            <Text style={styles.checkboxText}>{t('forcePushLabel')}</Text>
           </View>
         </>
       }
@@ -121,12 +124,12 @@ export const PushDialog = ({
             onPress={() => parentOnDismiss(false)}
             type="outline"
             style={styles.cancelBtn}
-            text="Cancel"
+            text={t('cancelAction')}
           />
           <SharkButton
             onPress={() => parentOnDismiss(true)}
             type="primary"
-            text="Push"
+            text={t('pushAction')}
           />
         </>
       }

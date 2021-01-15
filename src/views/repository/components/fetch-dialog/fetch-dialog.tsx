@@ -7,6 +7,7 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {Picker} from '@react-native-community/picker';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {Remotes} from '@types';
+import {useTranslation} from 'react-i18next';
 
 interface FetchDialogProps {
   onDismiss: (
@@ -25,6 +26,8 @@ export const FetchDialog = ({
   visible,
   remotes,
 }: FetchDialogProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const [remote, setRemote] = React.useState<string>('');
@@ -56,11 +59,11 @@ export const FetchDialog = ({
     <AppDialog
       visible={visible}
       onDismiss={() => parentOnDismiss(false)}
-      title={'Fetch'}
-      text={'Fetch latest changes from a remote repository.'}
+      title={t('fetchDialogTitle')}
+      text={t('fetchDialogText')}
       main={
         <>
-          <Text style={styles.pickerLabel}>Remote</Text>
+          <Text style={styles.pickerLabel}>{t('remoteLabel')}</Text>
 
           {/* TODO: REPLACE WITH REAL SEASIDE SELECT COMPONENT */}
           <View style={styles.pickerView}>
@@ -82,12 +85,12 @@ export const FetchDialog = ({
               checked={fetchAll}
               onValueChange={v => setFetchAll(v)}
             />
-            <Text style={styles.checkboxText}>Fetch all remotes</Text>
+            <Text style={styles.checkboxText}>{t('fetchAllRemotes')}</Text>
           </View>
 
           <View style={styles.checkbox}>
             <SharkCheckbox checked={prune} onValueChange={v => setPrune(v)} />
-            <Text style={styles.checkboxText}>Exclude deleted branches</Text>
+            <Text style={styles.checkboxText}>{t('excludeDeleted')}</Text>
           </View>
         </>
       }
@@ -97,12 +100,12 @@ export const FetchDialog = ({
             onPress={() => parentOnDismiss(false)}
             type="outline"
             style={styles.cancelBtn}
-            text="Cancel"
+            text={t('cancelAction')}
           />
           <SharkButton
             onPress={() => parentOnDismiss(true)}
             type="primary"
-            text="Fetch"
+            text={t('fetchAction')}
           />
         </>
       }
