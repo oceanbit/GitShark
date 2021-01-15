@@ -12,8 +12,11 @@ import {useThunkDispatch} from '@hooks';
 import {RepositoryHeader} from '@components/repository-header';
 import {StyleSheet, Text, View} from 'react-native';
 import {Snackbar} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
 
 export const RepositoryChanges = () => {
+  const {t} = useTranslation();
+
   const {repo} = useSelector((state: RootState) => state.repository);
   const {staged, unstaged, error: changesError} = useSelector(
     (state: RootState) => state.changes,
@@ -70,10 +73,7 @@ export const RepositoryChanges = () => {
         <RepositoryHeader repo={repo} />
         {!!changesError && (
           <View>
-            <Text>
-              There was an error that occurred while loading staged and unstaged
-              files:
-            </Text>
+            <Text>{t('changesErrStr')}</Text>
             <Text>{changesError}</Text>
           </View>
         )}
@@ -107,7 +107,7 @@ export const RepositoryChanges = () => {
         duration={Snackbar.DURATION_MEDIUM}
         visible={snackVisible}
         onDismiss={() => setSnackVisible(false)}>
-        "Ignore" feature is not yet implemented, but will be shortly
+        {t('ignoreNotImplemented')}
       </Snackbar>
     </>
   );

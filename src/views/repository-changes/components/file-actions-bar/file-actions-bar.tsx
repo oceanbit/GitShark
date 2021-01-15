@@ -8,6 +8,7 @@ import {GrowWidthContent} from '@components/grow-width-content';
 import {StageButtonToggle} from './stage-button-toggle';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {ChangesArrayItem} from '@services';
+import {useTranslation} from 'react-i18next';
 
 const animTiming = 150;
 
@@ -34,6 +35,8 @@ export const FileActionsBar = ({
   unstagedChanges,
   setSelectedUnstagedChanges,
 }: FileActionsBarProps) => {
+  const {t} = useTranslation();
+
   const [showMore, setShowMore] = React.useState(false);
 
   React.useEffect(() => {
@@ -79,7 +82,7 @@ export const FileActionsBar = ({
           disabled={disabled}
         />
         <Animated.Text style={[styles.subheaderText, disabledStyles]}>
-          Unstaged
+          {t('unstagedHeading')}
         </Animated.Text>
       </Animated.View>
       <View />
@@ -95,14 +98,14 @@ export const FileActionsBar = ({
           <View style={styles.moreViewButtons}>
             <SharkButton
               onPress={onDiscard}
-              text={'Discard'}
+              text={t('discardAction')}
               style={[styles.calloutButton, styles.dividerLeft]}
               // This prevents text breaking from animating incorrectly
               textProps={{numberOfLines: 1}}
             />
             <SharkButton
               onPress={onIgnore}
-              text={'Ignore'}
+              text={t('ignoreAction')}
               style={[styles.calloutButton, styles.dividerLeft]}
               textProps={{numberOfLines: 1}}
             />

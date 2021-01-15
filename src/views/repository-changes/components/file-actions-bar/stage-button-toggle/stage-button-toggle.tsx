@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Animated, StyleProp, View, ViewStyle} from 'react-native';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkButton} from '@components/shark-button';
+import {useTranslation} from 'react-i18next';
 
 interface StageButtonToggleProps {
   isStage: boolean;
@@ -20,6 +21,8 @@ export const StageButtonToggle = ({
   onStage,
   disabled,
 }: StageButtonToggleProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   /**
@@ -96,7 +99,7 @@ export const StageButtonToggle = ({
           ]}>
           <SharkButton
             onPress={onStageAll}
-            text={'Stage all'}
+            text={t('stageAllAction')}
             textProps={{numberOfLines: 1}}
             style={buttonStyle}
             disabled={disabled}
@@ -114,7 +117,7 @@ export const StageButtonToggle = ({
           ]}>
           <SharkButton
             onPress={onStage}
-            text={'Stage'}
+            text={t('stageAction')}
             textProps={{numberOfLines: 1}}
             style={buttonStyle}
           />
@@ -133,7 +136,7 @@ export const StageButtonToggle = ({
           }}>
           <SharkButton
             onPress={() => {}}
-            text={'Stage'}
+            text={t('stageAction')}
             textProps={{numberOfLines: 1}}
             style={buttonStyle}
           />
@@ -148,7 +151,7 @@ export const StageButtonToggle = ({
           }}>
           <SharkButton
             onPress={() => {}}
-            text={'Stage All'}
+            text={t('stageAllAction')}
             textProps={{numberOfLines: 1}}
             style={buttonStyle}
           />

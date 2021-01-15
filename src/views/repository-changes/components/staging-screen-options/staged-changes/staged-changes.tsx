@@ -7,6 +7,7 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkDivider} from '@components/shark-divider';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {SharkButton} from '@components/shark-button';
+import {useTranslation} from 'react-i18next';
 
 interface StagedChangesProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
@@ -21,13 +22,17 @@ export const StagedChanges = ({
   onCommit,
   inSheet,
 }: StagedChangesProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const [selectedStagedChanges, setSelectedStagedChanges] = React.useState<
     ChangesArrayItem[]
   >([]);
 
-  const stagedBtnText = selectedStagedChanges.length ? 'Unstage' : 'Commit all';
+  const stagedBtnText = selectedStagedChanges.length
+    ? t('unstageAction')
+    : t('commitAllAction');
   const buttonType = selectedStagedChanges.length ? 'outline' : 'primary';
 
   const stagedBtnAction = React.useMemo(() => {
@@ -72,7 +77,9 @@ export const StagedChanges = ({
           }}
           disabled={disabled}
         />
-        <Text style={[styles.subheaderText, disabledStyles]}>{'Staged'}</Text>
+        <Text style={[styles.subheaderText, disabledStyles]}>
+          {t('stagedHeading')}
+        </Text>
         <SharkButton
           onPress={stagedBtnAction}
           text={stagedBtnText}

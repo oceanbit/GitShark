@@ -76,5 +76,15 @@
   "pushDestinationLabel": "Destination",
   "forcePushLabel": "Force Push",
   "onPullDialogTitle": "Pulling...",
-  "onPullDialogText": "There was an error pulling from remote."
+  "onPullDialogText": "There was an error pulling from remote.",
+  "changesErrStr": "There was an error that occurred while loading staged and unstaged files:",
+  "ignoreNotImplemented": "\"Ignore\" feature is not yet implemented, but will be shortly",
+  "unstagedHeading": "Unstaged",
+  "stageAllAction": "Stage all",
+  "stageAction": "Stage",
+  "discardAction": "Discard",
+  "ignoreAction": "Ignore",
+  "unstageAction": "Unstage",
+  "commitAllAction": "Commit all",
+  "stagedHeading": "Staged"
 }
