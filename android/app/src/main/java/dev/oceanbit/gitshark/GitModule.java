@@ -75,6 +75,44 @@ public class GitModule extends ReactContextBaseJavaModule {
         reactContext = context;
     }
 
+    private WritableMap revCommitToMap(RevCommit revCommit) {
+        // Prepare data for storage later
+        String oid = revCommit.toObjectId().toString();
+        String message = revCommit.getFullMessage();
+        RevCommit[] parents = revCommit.getParents();
+        PersonIdent authorIdent = revCommit.getAuthorIdent();
+        PersonIdent committerIdent = revCommit.getCommitterIdent();
+
+        // Convert parents to id strings
+        WritableArray parentIds = new WritableNativeArray();
+
+        for (RevCommit parent : parents) {
+            parentIds.pushString(parent.toObjectId().toString());
+        }
+
+        // Convert author to writable map
+        WritableMap author = Arguments.createMap();
+        author.putString("name", authorIdent.getName());
+        author.putString("email", authorIdent.getEmailAddress());
+        author.putInt("timestamp", (int) (authorIdent.getWhen().getTime() / 1000));
+
+        // Convert commiter to writable map
+        WritableMap committer = Arguments.createMap();
+        committer.putString("name", committerIdent.getName());
+        committer.putString("email", committerIdent.getEmailAddress());
+        committer.putInt("timestamp", (int) (committerIdent.getWhen().getTime() / 1000));
+
+        // Write everything to map
+        WritableMap commitMap = Arguments.createMap();
+        commitMap.putString("oid", oid);
+        commitMap.putArray("parent", parentIds);
+        commitMap.putString("message", message);
+        commitMap.putMap("author", author);
+        commitMap.putMap("committer", committer);
+
+        return commitMap;
+    }
+
     @ReactMethod
     public void clone(String uri, String path,
                       Promise promise) {
@@ -201,41 +239,7 @@ public class GitModule extends ReactContextBaseJavaModule {
             Iterable<RevCommit> commits = cmd.call();
             result = new WritableNativeArray();
             for (RevCommit commit : commits) {
-                // Prepare data for storage later
-                String oid = commit.toObjectId().toString();
-                String message = commit.getFullMessage();
-                RevCommit[] parents = commit.getParents();
-                PersonIdent authorIdent = commit.getAuthorIdent();
-                PersonIdent committerIdent = commit.getCommitterIdent();
-
-                // Convert parents to id strings
-                WritableArray parentIds = new WritableNativeArray();
-
-                for (RevCommit parent : parents) {
-                    parentIds.pushString(parent.toObjectId().toString());
-                }
-
-                // Convert author to writable map
-                WritableMap author = Arguments.createMap();
-                author.putString("name", authorIdent.getName());
-                author.putString("email", authorIdent.getEmailAddress());
-                author.putInt("timestamp", (int) (authorIdent.getWhen().getTime() / 1000));
-
-                // Convert commiter to writable map
-                WritableMap committer = Arguments.createMap();
-                committer.putString("name", committerIdent.getName());
-                committer.putString("email", committerIdent.getEmailAddress());
-                committer.putInt("timestamp", (int) (committerIdent.getWhen().getTime() / 1000));
-
-                // Write everything to map
-                WritableMap commitMap = Arguments.createMap();
-                commitMap.putString("oid", oid);
-                commitMap.putArray("parent", parentIds);
-                commitMap.putString("message", message);
-                commitMap.putMap("author", author);
-                commitMap.putMap("committer", committer);
-
-                result.pushMap(commitMap);
+                result.pushMap(revCommitToMap(commit));
             }
             promise.resolve(result);
         } catch (Throwable e) {
