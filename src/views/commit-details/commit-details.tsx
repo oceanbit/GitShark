@@ -5,12 +5,11 @@ import {CommitDetailsUI} from './commit-details.ui';
 import {
   getCommitHeaderBody,
   getFileStateChanges,
+  readCommit,
   GitLogCommit,
 } from '@services';
-import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '@constants';
+
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {readCommit} from '@services/git/readCommit';
 
 export const CommitDetails = () => {
   const {repo} = useSelector((state: RootState) => state.repository);

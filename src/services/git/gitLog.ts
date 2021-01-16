@@ -10,7 +10,7 @@ export type GitLogCommit = ReadCommitResult['commit'] & {
   oid: ReadCommitResult['oid'];
 };
 
-interface GitLogProps {
+export interface GitLogProps {
   repo: Partial<ReduxRepo>;
   ref?: string;
 }

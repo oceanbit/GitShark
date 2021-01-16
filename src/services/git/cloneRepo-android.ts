@@ -1,7 +1,7 @@
 import {createNewRepo} from './createRepo';
 import {getRepoNameFromUri} from '@utils';
 import {NativeEventEmitter, NativeModules} from 'react-native';
-import {CloneRepoProps} from './cloneRepo';
+import type {CloneRepoProps} from './cloneRepo';
 
 export const cloneRepoAndroid = ({
   path,

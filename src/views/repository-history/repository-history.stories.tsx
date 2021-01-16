@@ -31,6 +31,7 @@ const RepositoryListDemo = ({...props}: any) => {
         topLayer={topLayer}
         repo={{} as any}
         branchName={'the_big_branch'}
+        error={''}
       />
     </StorybookProvider>
   );

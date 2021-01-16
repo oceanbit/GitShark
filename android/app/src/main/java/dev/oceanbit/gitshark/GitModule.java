@@ -248,6 +248,30 @@ public class GitModule extends ReactContextBaseJavaModule {
         }
     }
 
+    @ReactMethod
+    public void readCommit(String path, String oid, Promise promise) {
+        Git git;
+        Repository repo;
+        try {
+            git = Git.open(new File(path));
+            repo = git.getRepository();
+        } catch (Throwable e) {
+            promise.reject(e);
+            return;
+        }
+        try {
+            ObjectId newCommitId = repo.resolve(oid);
+            Iterable<RevCommit> mCommits = git.log().add(newCommitId).setMaxCount(1).call();
+            RevCommit revCommit = mCommits.iterator().next();
+            WritableMap commit = revCommitToMap(revCommit);
+            promise.resolve(commit);
+            return;
+        } catch (Throwable e) {
+            promise.reject(e);
+            return;
+        }
+    }
+
 
     @ReactMethod
     public void resetPaths(String path, ReadableArray files, Promise promise) {
