@@ -3,6 +3,8 @@ import {fs} from '@constants';
 import {ChangesArrayItem} from '@services/git/status';
 import {logService} from '../debug';
 import {getRepoPath} from '@utils';
+import {Platform} from 'react-native';
+import {getFileStateChangesAndroid} from './getFileStateChanges.android';
 
 export const getFileStateChanges = async (
   commitHash1: string,
@@ -11,8 +13,13 @@ export const getFileStateChanges = async (
 ): Promise<ChangesArrayItem[]> => {
   logService && console.log('service - getFileStateChanges');
 
+  if (Platform.OS === 'android') {
+    return await getFileStateChangesAndroid(commitHash1, commitHash2, dir);
+  }
+
   const repoPath = getRepoPath(dir);
 
+  // TODO: Replace this with functioning code. This is horribly slow and horribly buggy
   return git.walk({
     fs,
     dir: repoPath,

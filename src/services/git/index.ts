@@ -9,7 +9,7 @@ export * from './deleteRepo';
 export * from './fetch';
 export * from './findTrackedRemoteBranch';
 export * from './getCommitHeaderBody';
-export * from './getFileStateChanges';
+export * from './get-file-state-changes';
 export * from './getPushPull';
 export * from './gitCommitToDBMapper';
 export * from './gitLog';
