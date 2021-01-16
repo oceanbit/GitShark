@@ -10,6 +10,7 @@ import {
 import git from 'isomorphic-git/index.umd.min.js';
 import {fs} from '@constants';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {readCommit} from '@services/git/readCommit';
 
 export const CommitDetails = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
@@ -24,13 +25,12 @@ export const CommitDetails = () => {
 
   React.useEffect(() => {
     if (!repo || !commitId) return;
-    git
-      .readCommit({dir: repo.path, fs: fs, oid: commitId})
+    readCommit({
+      path: repo.path,
+      oid: commitId,
+    })
       .then(ccommit => {
-        setCommit({
-          ...ccommit.commit,
-          oid: ccommit.oid,
-        });
+        setCommit(ccommit);
       })
       .catch(err => console.log(err));
   }, [commitId, repo]);
