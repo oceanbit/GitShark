@@ -66,7 +66,7 @@ module.exports = ({config, mode}) => {
 
   config.module.rules.push({
     test: /\.(js|jsx|mjs)$/,
-    exclude: /node_modules\/(?!(@react-native-community\/hooks|@react-native-community\/masked-view|@react-native-community\/picker|@react-navigation\/material-bottom-tabs|@react-navigation\/native|@react-navigation\/stack|react-native-button-toggle-group|react-native-default-preference|react-native-dynamic|react-native-elements|react-native-error-boundary|react-native-fs|react-native-gesture-handler|react-native-immersive-bars|react-native-linear-gradient|react-native-localize|react-native-paper|react-native-reanimated|react-native-responsive-ui|react-native-safe-area-context|react-native-safe-area-view|react-native-screens|react-native-secure-key-store|react-native-sqlite-storage|react-native-svg|react-native-svg-web|react-native-vector-icons|react-native-video|react-native-web|react-native-web-linear-gradient)\/).*/,
+    exclude: /node_modules\/(?!@react-native|react-native-(?!web)|@react-navigation\/material-bottom-tabs|@react-navigation\/native|@react-navigation\/stack).*/,
     loader: require.resolve('babel-loader'),
     options: {
       babelrc: false,
