@@ -66,7 +66,7 @@ module.exports = ({config, mode}) => {
 
   config.module.rules.push({
     test: /\.(js|jsx|mjs)$/,
-    exclude: /node_modules\/(?!@react-native|react-native-(?!web)|@react-navigation\/material-bottom-tabs|@react-navigation\/native|@react-navigation\/stack).*/,
+    exclude: /node_modules\/(?!@react-native|react-native-(?!web(?:\/|$))|@react-navigation\/material-bottom-tabs|@react-navigation\/native|@react-navigation\/stack).*/,
     loader: require.resolve('babel-loader'),
     options: {
       babelrc: false,
