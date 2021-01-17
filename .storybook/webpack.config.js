@@ -1,10 +1,24 @@
 const path = require('path');
-const fs = require('fs');
-const appDirectory = fs.realpathSync(process.cwd());
+const ModuleDependencyWarning = require("webpack/lib/ModuleDependencyWarning")
 
-const webpack = require('webpack');
-
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+class IgnoreNotFoundExportPlugin {
+  apply(compiler) {
+    const messageRegExp = /export '.*'( \(reexported as '.*'\))? was not found in/
+    function doneHook(stats) {
+      stats.compilation.warnings = stats.compilation.warnings.filter(function(warn) {
+        if (warn instanceof ModuleDependencyWarning && messageRegExp.test(warn.message)) {
+          return false
+        }
+        return true;
+      })
+    }
+    if (compiler.hooks) {
+      compiler.hooks.done.tap("IgnoreNotFoundExportPlugin", doneHook)
+    } else {
+      compiler.plugin("done", doneHook)
+    }
+  }
+}
 
 module.exports = ({config, mode}) => {
   config.module.rules.push({
@@ -50,11 +64,9 @@ module.exports = ({config, mode}) => {
     },
   });
 
-  console.log(resolveApp('../node_modules/react-native-vector-icons'));
-
   config.module.rules.push({
     test: /\.(js|jsx|mjs)$/,
-    exclude: /node_modules\/(?!(react-native-elements|react-native-vector-icons)\/).*/,
+    exclude: /node_modules\/(?!(react-native-elements|react-native-vector-icons|react-native-safe-area-view|react-native-dynamic)\/).*/,
     loader: require.resolve('babel-loader'),
     options: {
       babelrc: false,
@@ -112,6 +124,9 @@ module.exports = ({config, mode}) => {
   };
 
   config.resolve.extensions.push('.ts', '.tsx', '.js');
+
+  // Silence an error in CI Storybook build
+  config.plugins.push(new IgnoreNotFoundExportPlugin(['AuroraDataApiPostgresDriver']));
 
   return config;
 };
