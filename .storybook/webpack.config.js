@@ -66,7 +66,7 @@ module.exports = ({config, mode}) => {
 
   config.module.rules.push({
     test: /\.(js|jsx|mjs)$/,
-    exclude: /node_modules\/(?!(react-native-elements|react-native-vector-icons|react-native-safe-area-view|react-native-dynamic|react-native-responsive-ui|react-native-paper)\/).*/,
+    exclude: /node_modules\/(?!(react-native-elements|react-native-vector-icons|react-native-safe-area-view|react-native-dynamic|react-native-responsive-ui|react-native-paper|@react-navigation\/native|)\/).*/,
     loader: require.resolve('babel-loader'),
     options: {
       babelrc: false,
