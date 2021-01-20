@@ -21,6 +21,7 @@ import org.eclipse.jgit.api.CheckoutCommand;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.LogCommand;
+import org.eclipse.jgit.api.PullCommand;
 import org.eclipse.jgit.api.ResetCommand;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;
@@ -381,6 +382,99 @@ public class GitModule extends ReactContextBaseJavaModule {
 
         promise.resolve(true);
     }
+
+    @ReactMethod
+    public void pull(
+            String path,
+            String remote,
+            String remoteRef,
+            String authToken,
+            Promise promise
+    ) {
+        Git git;
+        Repository repo;
+        try {
+            git = Git.open(new File(path));
+            repo = git.getRepository();
+        } catch (Throwable e) {
+            promise.reject(e);
+            return;
+        }
+
+        PullCommand gitPull = git.pull()
+                .setRemote(remote)
+                .setRemoteBranchName(remoteRef)
+                .setProgressMonitor(new PullMonitor());
+
+        if (!authToken.isEmpty()) {
+            // @see https://www.codeaffine.com/2014/12/09/jgit-authentication/
+            gitPull.setCredentialsProvider(
+                    new UsernamePasswordCredentialsProvider( "token", authToken )
+            );
+        }
+
+        try {
+            gitPull.call();
+        } catch (Throwable e) {
+            promise.reject(e);
+            return;
+        }
+
+        promise.resolve(true);
+    }
+
+
+    public class PullMonitor implements ProgressMonitor {
+        private int mFinishedTasks;
+        private int mTotalWork;
+        private int mWorkDone;
+        private String mTitle;
+
+        private void publishProgressInner() {
+            String status = "";
+            if (mTitle != null) {
+                status = String.format(Locale.getDefault(), "%s ... ", mTitle);
+            }
+            WritableMap returnMap = Arguments.createMap();
+
+            returnMap.putString("phase", status);
+            returnMap.putInt("loaded", mWorkDone);
+            returnMap.putInt("total", mTotalWork);
+
+            mThrottle.attempt(() -> reactContext
+                    .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                    .emit("PullProgress", returnMap));
+        }
+
+        @Override
+        public void start(int totalTasks) {
+            publishProgressInner();
+        }
+
+        @Override
+        public void beginTask(String title, int totalWork) {
+            mTotalWork = totalWork;
+            mWorkDone = 0;
+            mTitle = title;
+            publishProgressInner();
+        }
+
+        @Override
+        public void update(int i) {
+            mWorkDone += i;
+            publishProgressInner();
+        }
+
+        @Override
+        public void endTask() {
+        }
+
+        @Override
+        public boolean isCancelled() {
+            return false;
+        }
+    }
+
 
     @ReactMethod
     public void revList(String path, String branch1Ref, String branch2Ref, Promise promise) {

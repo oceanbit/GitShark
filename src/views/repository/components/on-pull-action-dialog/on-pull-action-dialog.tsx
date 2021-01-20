@@ -44,19 +44,16 @@ export const OnPullActionsDialog = ({
       dispatch,
       destination: trackedBranch,
       repo,
-      email: email!,
-      name: name!,
+      email: email || 'pull@gitshark.dev',
+      name: name || 'GitShark Pull',
       async onProgress({
         phase: progressPhase,
         loaded: progressLoaded,
         total: progressTotal,
       }) {
-        if (phases[progressPhase]) {
-          setPhase(progressPhase);
-          setLoaded(progressLoaded);
-          setTotal(progressTotal || 0);
-          await pauseToRender();
-        }
+        setPhase(progressPhase);
+        setLoaded(progressLoaded);
+        setTotal(progressTotal || 0);
       },
     })
       .then(() => {

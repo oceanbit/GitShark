@@ -9,6 +9,8 @@ import {ThunkDispatchType} from '@hooks';
 import {RemoteBranch} from '@types';
 import {logService} from '../debug';
 import {getRepoPath} from '@utils';
+import {pullAndroid} from './pull-android';
+import {Platform} from 'react-native';
 
 interface PushProps {
   destination: RemoteBranch;
@@ -31,7 +33,25 @@ export const pull = async ({
 }: PushProps) => {
   logService && console.log('service - pull');
 
-  const GH_TOKEN = await RNSecureKeyStore.get(GITHUB_TOKEN_STORAGE_KEY);
+  let GH_TOKEN = '';
+
+  try {
+    GH_TOKEN = await RNSecureKeyStore.get(GITHUB_TOKEN_STORAGE_KEY);
+  } catch (e) {}
+
+  if (Platform.OS === 'android') {
+    await pullAndroid({
+      path: repo.path,
+      remote: destination.remote,
+      remoteRef: destination.name,
+      authToken: GH_TOKEN,
+      onProgress,
+    });
+
+    dispatch(getCommitRev({path: repo.path, repoId: repo.id}));
+
+    return;
+  }
 
   const repoPath = getRepoPath(repo.path);
 
@@ -43,10 +63,13 @@ export const pull = async ({
     remote: destination.remote,
     remoteRef: destination.name,
     onProgress,
-    onAuth: () => ({
-      username: GH_TOKEN,
-      password: 'x-oauth-basic',
-    }),
+    onAuth: () =>
+      GH_TOKEN
+        ? {
+            username: GH_TOKEN,
+            password: 'x-oauth-basic',
+          }
+        : {},
     author: {
       email,
       name,

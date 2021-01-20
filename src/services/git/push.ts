@@ -29,7 +29,13 @@ export const push = async ({
 }: PushProps) => {
   logService && console.log('service - push');
 
-  const GH_TOKEN = await RNSecureKeyStore.get(GITHUB_TOKEN_STORAGE_KEY);
+  let GH_TOKEN = '';
+
+  try {
+    GH_TOKEN = await RNSecureKeyStore.get(GITHUB_TOKEN_STORAGE_KEY);
+  } catch (e) {}
+
+  // if (!GH_TOKEN) throw new Error('You are not logged in');
 
   const repoPath = getRepoPath(repo.path);
 
