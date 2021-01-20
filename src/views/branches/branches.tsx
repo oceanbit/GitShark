@@ -91,10 +91,15 @@ export const Branches = () => {
   >(initialBranchCheckout);
 
   const resetAndCheckout = async () => {
+    const files = [
+      ...unstaged.map(f => f.fileName),
+      ...staged.map(f => f.fileName),
+    ];
+
     await resetFiles({
       path: repo!.path,
       dispatch,
-      files: [...unstaged.map(f => f.fileName), ...staged.map(f => f.fileName)],
+      files,
     });
     setBranchCheckout(v => ({...v, confirmed: true}));
   };

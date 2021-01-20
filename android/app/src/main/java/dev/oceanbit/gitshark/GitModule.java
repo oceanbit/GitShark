@@ -21,6 +21,7 @@ import org.eclipse.jgit.api.CheckoutCommand;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.LogCommand;
+import org.eclipse.jgit.api.ResetCommand;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;
 import org.eclipse.jgit.lib.Constants;
@@ -39,6 +40,7 @@ import org.eclipse.jgit.util.io.DisabledOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -362,11 +364,13 @@ public class GitModule extends ReactContextBaseJavaModule {
             return;
         }
 
-        CheckoutCommand gitCheckout = git.checkout().setForce(true);
+        ArrayList<String> gitPaths = new ArrayList<String>();
 
         for (int i = 0; i < files.size(); i++) {
-            gitCheckout.addPath(files.getString(i));
+            gitPaths.add(files.getString(i));
         }
+
+        CheckoutCommand gitCheckout = git.checkout().setStartPoint("HEAD").addPaths(gitPaths);
 
         try {
             gitCheckout.call();
