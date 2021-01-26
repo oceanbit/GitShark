@@ -14,6 +14,7 @@ import dev.oceanbit.gitshark.Git.GitGetFileStateChanges;
 import dev.oceanbit.gitshark.Git.GitGetTrackedBranch;
 import dev.oceanbit.gitshark.Git.GitLog;
 import dev.oceanbit.gitshark.Git.GitPull;
+import dev.oceanbit.gitshark.Git.GitPush;
 import dev.oceanbit.gitshark.Git.GitReadCommit;
 import dev.oceanbit.gitshark.Git.GitResetPaths;
 import dev.oceanbit.gitshark.Git.GitRevList;
@@ -83,6 +84,21 @@ public class GitModule extends ReactContextBaseJavaModule {
         GitPull gitPull = new GitPull(reactContext);
         gitPull.pull(path, remote, remoteRef, authToken, promise);
     }
+
+
+    @ReactMethod
+    public void push(
+            String path,
+            String remote,
+            String remoteRef,
+            String authToken,
+            Boolean forcePush,
+            Promise promise
+    ) {
+        GitPush gitPush = new GitPush(reactContext);
+        gitPush.push(path, remote, remoteRef, authToken, forcePush, promise);
+    }
+
 
     @ReactMethod
     public void revList(String path, String branch1Ref, String branch2Ref, Promise promise) {

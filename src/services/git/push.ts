@@ -9,6 +9,8 @@ import {ThunkDispatchType} from '@hooks';
 import {RemoteBranch} from '@types';
 import {logService} from '../debug';
 import {getRepoPath} from '@utils';
+import {Platform} from 'react-native';
+import {pushAndroid} from './push-android';
 
 interface PushProps {
   destination: RemoteBranch;
@@ -34,6 +36,21 @@ export const push = async ({
   try {
     GH_TOKEN = await RNSecureKeyStore.get(GITHUB_TOKEN_STORAGE_KEY);
   } catch (e) {}
+
+  if (Platform.OS === 'android') {
+    await pushAndroid({
+      path: repo.path,
+      remote: destination.remote,
+      remoteRef: destination.name,
+      authToken: GH_TOKEN,
+      forcePush: forcePush,
+      onProgress,
+    });
+
+    dispatch(getCommitRev({path: repo.path, repoId: repo.id}));
+
+    return;
+  }
 
   // if (!GH_TOKEN) throw new Error('You are not logged in');
 
