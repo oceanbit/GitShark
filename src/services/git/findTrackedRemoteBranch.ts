@@ -3,6 +3,8 @@ import {fs} from '@constants';
 import {RemoteBranch} from '@types';
 import {logService} from '../debug';
 import {getRepoPath} from '@utils';
+import {Platform} from 'react-native';
+import {findTrackedRemoteBranchAndroid} from '@services/git/findTrackedRemoteBranch.android';
 
 interface FindTrackedRemoteBranchProps {
   branchName: string;
@@ -15,6 +17,14 @@ export const findTrackedRemoteBranch = async ({
   path,
 }: FindTrackedRemoteBranchProps) => {
   logService && console.log('service - findTrackedRemoteBranch');
+
+  if (Platform.OS === 'android') {
+    return await findTrackedRemoteBranchAndroid({
+      branchName,
+      remoteBranches,
+      path,
+    });
+  }
 
   const repoPath = getRepoPath(path);
 

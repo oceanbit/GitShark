@@ -11,6 +11,7 @@ import com.facebook.react.bridge.ReadableArray;
 import dev.oceanbit.gitshark.Git.GitCheckout;
 import dev.oceanbit.gitshark.Git.GitClone;
 import dev.oceanbit.gitshark.Git.GitGetFileStateChanges;
+import dev.oceanbit.gitshark.Git.GitGetTrackedBranch;
 import dev.oceanbit.gitshark.Git.GitLog;
 import dev.oceanbit.gitshark.Git.GitPull;
 import dev.oceanbit.gitshark.Git.GitReadCommit;
@@ -92,6 +93,15 @@ public class GitModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void status(String path, Promise promise) {
         GitStatus.status(path, promise);
+    }
+
+    @ReactMethod
+    public void getTrackedBranch(
+            String path,
+            String branchName,
+            Promise promise
+    ) {
+        GitGetTrackedBranch.getTrackedBranch(path, branchName, promise);
     }
 
     @NonNull
