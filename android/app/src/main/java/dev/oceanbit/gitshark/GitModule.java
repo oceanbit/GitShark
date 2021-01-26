@@ -10,6 +10,7 @@ import com.facebook.react.bridge.ReadableArray;
 
 import dev.oceanbit.gitshark.Git.GitCheckout;
 import dev.oceanbit.gitshark.Git.GitClone;
+import dev.oceanbit.gitshark.Git.GitFetch;
 import dev.oceanbit.gitshark.Git.GitGetFileStateChanges;
 import dev.oceanbit.gitshark.Git.GitGetTrackedBranch;
 import dev.oceanbit.gitshark.Git.GitLog;
@@ -71,6 +72,18 @@ public class GitModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void resetPaths(String path, ReadableArray files, Promise promise) {
         GitResetPaths.restPaths(path, files, promise);
+    }
+    
+    @ReactMethod
+    public void fetch(
+            String path,
+            String remote,
+            Boolean singleBranch,
+            Boolean prune,
+            Promise promise
+    ) {
+        GitFetch gitFetch = new GitFetch(reactContext);
+        gitFetch.fetch(path, remote, singleBranch, prune, promise);
     }
 
     @ReactMethod

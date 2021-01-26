@@ -40,6 +40,7 @@ export const OnFetchActionsDialog = ({
   const [phase, setPhase] = React.useState('');
 
   const fetchCB = React.useCallback(() => {
+    if (!data.remote?.remote) return;
     setErrorStr('');
     fetch({
       ...data,

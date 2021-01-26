@@ -6,9 +6,12 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
-import org.eclipse.jgit.api.CloneCommand;
+import org.eclipse.jgit.api.FetchCommand;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.lib.BranchConfig;
 import org.eclipse.jgit.lib.ProgressMonitor;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.transport.RefSpec;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
 import java.io.File;
@@ -16,41 +19,67 @@ import java.util.Locale;
 
 import dev.oceanbit.gitshark.Throttle;
 
-public class GitClone {
+public class GitFetch {
     private static ReactApplicationContext reactContext;
 
-    public GitClone(ReactApplicationContext context) {
+    public GitFetch(ReactApplicationContext context) {
         reactContext = context;
     }
 
     private Throttle mThrottle = new Throttle(250);
 
-    public void clone(String uri, String path, Promise promise) {
-        CloneCommand cloneCommand = Git.cloneRepository()
-                .setURI(uri)
-                .setCloneAllBranches(true)
-                .setProgressMonitor(new RepoCloneMonitor())
-                .setDirectory(new File(path));
+    public void fetch(
+            String path,
+            String remote,
+            Boolean singleBranch,
+            Boolean prune,
+            Promise promise
+    ) {
+        Git git;
+        Repository repo;
+        String localBranch;
+        String trackedBranch;
+        try {
+            git = Git.open(new File(path));
+            repo = git.getRepository();
+            localBranch = repo.getBranch();
+            trackedBranch = new BranchConfig(repo.getConfig(), localBranch).getTrackingBranch();
+        } catch (Throwable e) {
+            promise.reject(e);
+            return;
+        }
+
+        FetchCommand gitFetch = git.fetch()
+                .setRemoveDeletedRefs(prune)
+                .setRemote(remote)
+                .setProgressMonitor(new FetchMonitor());
+
+        if (singleBranch) {
+            gitFetch
+                    .setRefSpecs(new RefSpec("refs/heads/" + localBranch + ":refs/remotes/" + remote + "/" + trackedBranch));
+        }
 
         String ghToken = GhTokenUtils.getGitHubToken(reactContext);
 
         if (!ghToken.isEmpty()) {
-            UsernamePasswordCredentialsProvider auth = new UsernamePasswordCredentialsProvider(
-                    ghToken, "x-oauth-basic");
-            cloneCommand.setCredentialsProvider(auth);
+            // @see https://www.codeaffine.com/2014/12/09/jgit-authentication/
+            gitFetch.setCredentialsProvider(
+                    new UsernamePasswordCredentialsProvider("token", ghToken)
+            );
         }
 
         try {
-            cloneCommand.call();
-            // This calls after the `call` is finished (puh-raise)
-            promise.resolve(true);
-        } catch (
-                Throwable e) {
+            gitFetch.call();
+        } catch (Throwable e) {
             promise.reject(e);
+            return;
         }
+
+        promise.resolve(true);
     }
 
-    public class RepoCloneMonitor implements ProgressMonitor {
+
+    public class FetchMonitor implements ProgressMonitor {
         private int mFinishedTasks;
         private int mTotalWork;
         private int mWorkDone;
@@ -69,7 +98,7 @@ public class GitClone {
 
             mThrottle.attempt(() -> reactContext
                     .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                    .emit("CloneProgress", returnMap));
+                    .emit("FetchProgress", returnMap));
         }
 
         @Override
