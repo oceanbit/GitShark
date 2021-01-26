@@ -17,7 +17,7 @@ export const checkoutBranchAndroid = async ({
     fullBranchPath = `refs/remotes/${remote}/${branchName}`;
   }
 
-  await NativeModules.GitCheckoutModule.checkout(repo.path, fullBranchPath, '');
+  await NativeModules.GitModule.checkout(repo.path, fullBranchPath, '');
 
   dispatch(changeBranch({repoId: repo.id, branchName}));
 };

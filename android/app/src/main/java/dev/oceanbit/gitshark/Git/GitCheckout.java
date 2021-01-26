@@ -1,11 +1,7 @@
-package dev.oceanbit.gitshark;
-
-import androidx.annotation.NonNull;
+package dev.oceanbit.gitshark.Git;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
 
 import org.eclipse.jgit.api.CreateBranchCommand;
 import org.eclipse.jgit.api.Git;
@@ -14,15 +10,13 @@ import org.eclipse.jgit.api.errors.JGitInternalException;
 
 import java.io.File;
 
-public class GitCheckoutModule extends ReactContextBaseJavaModule {
+public class GitCheckout {
     private static ReactApplicationContext reactContext;
 
-    GitCheckoutModule(ReactApplicationContext context) {
-        super(context);
+    public GitCheckout(ReactApplicationContext context) {
         reactContext = context;
     }
 
-    @ReactMethod
     public void checkout(String path, String name, String newBranch, Promise promise) {
         Git git;
         try {
@@ -81,10 +75,5 @@ public class GitCheckoutModule extends ReactContextBaseJavaModule {
                         CreateBranchCommand.SetupUpstreamMode.SET_UPSTREAM)
                 .setStartPoint(remoteBranchName).setName(branchName)
                 .setForce(true).call();
-    }
-
-    @NonNull
-    public String getName() {
-        return "GitCheckoutModule";
     }
 }

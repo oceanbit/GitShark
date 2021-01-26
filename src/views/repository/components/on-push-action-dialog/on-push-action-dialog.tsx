@@ -41,6 +41,7 @@ export const OnPushActionsDialog = ({
 
   const fetchCB = React.useCallback(() => {
     setErrorStr('');
+    // Add error handling if there is no git credentials
     push({
       ...data,
       dispatch,

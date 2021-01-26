@@ -1,9 +1,9 @@
-package dev.oceanbit.gitshark;
-
-import com.facebook.react.bridge.ReactApplicationContext;
+package dev.oceanbit.gitshark.Git;
 
 import org.eclipse.jgit.lib.Repository;
 
+// A lot of this code is donated from MGit, which is another fantastic Android Git Client
+// @see https://github.com/maks/MGit/blob/master/app/src/main/java/me/sheimi/sgit/database/models/Repo.java
 public class GitRepo {
     public static final int COMMIT_TYPE_HEAD = 0;
     public static final int COMMIT_TYPE_TAG = 1;

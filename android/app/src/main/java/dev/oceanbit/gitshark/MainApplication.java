@@ -1,7 +1,7 @@
 package dev.oceanbit.gitshark;
 
 import androidx.multidex.MultiDexApplication;
-import android.app.Application;
+
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -9,7 +9,6 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
-import dev.oceanbit.gitshark.GitPackage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -30,7 +29,6 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
             packages.add(new GitPackage()); // <-- Add this line with your package name.
-            packages.add(new GitCheckoutPackage()); // <-- Add this line with your package name.
             packages.add(new DirectoryPickerPackage()); // <-- Add this line with your package name.
             return packages;
         }
