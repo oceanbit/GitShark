@@ -68,6 +68,7 @@ export const FetchDialog = ({
           {/* TODO: REPLACE WITH REAL SEASIDE SELECT COMPONENT */}
           <View style={styles.pickerView}>
             <Picker
+              style={styles.pickerStyle}
               selectedValue={remote}
               onValueChange={v => setRemote(v as string)}>
               {remotes.map(remote => (
@@ -116,6 +117,10 @@ export const FetchDialog = ({
 const dynamicStyles = new DynamicStyleSheet({
   pickerLabel: {
     marginBottom: theme.spacing.xs,
+    color: theme.colors.label_high_emphasis,
+  },
+  pickerStyle: {
+    color: theme.colors.label_high_emphasis,
   },
   pickerView: {
     borderWidth: theme.borders.normal,

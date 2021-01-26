@@ -83,6 +83,7 @@ export const PushDialog = ({
           <View style={styles.pickerView}>
             <Picker
               selectedValue={branch}
+              style={styles.pickerStyle}
               onValueChange={v => setBranch(v as string)}>
               {localBranches?.map(branch => (
                 <Picker.Item key={branch} label={branch} value={branch} />
@@ -95,6 +96,7 @@ export const PushDialog = ({
           <View style={styles.pickerView}>
             <Picker
               selectedValue={destination}
+              style={styles.pickerStyle}
               onValueChange={v => setDestination(v as string)}>
               {remoteBranches.map(rBranch => {
                 const branchDisplay = remoteBranchToString(rBranch);
@@ -139,7 +141,11 @@ export const PushDialog = ({
 
 const dynamicStyles = new DynamicStyleSheet({
   pickerLabel: {
+    color: theme.colors.label_high_emphasis,
     marginBottom: theme.spacing.xs,
+  },
+  pickerStyle: {
+    color: theme.colors.label_high_emphasis,
   },
   pickerView: {
     borderWidth: theme.borders.normal,

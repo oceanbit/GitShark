@@ -2,7 +2,12 @@ import * as React from 'react';
 import {Dimensions, KeyboardAvoidingView, Text, View} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
 import {theme} from '@constants';
-import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
+import {
+  ColorSchemeContext,
+  DynamicStyleSheet,
+  useDarkMode,
+  useDynamicValue,
+} from 'react-native-dynamic';
 import {useKeyboard} from '@react-native-community/hooks';
 
 interface AppDialogProps {
@@ -40,6 +45,8 @@ export const AppDialog = ({
     ? height / 4 - keyboard.keyboardHeight - 10
     : undefined;
 
+  const isDark = useDarkMode();
+
   return (
     <Portal>
       <Dialog
@@ -47,10 +54,12 @@ export const AppDialog = ({
         dismissable={dismissable}
         onDismiss={onDismiss}
         style={[styles.dialogContainer, {top: additionalTop}]}>
-        <Text style={styles.dialogTitle}>{title}</Text>
-        <Text style={styles.mainText}>{text}</Text>
-        {main}
-        <View style={styles.dialogActions}>{actions}</View>
+        <ColorSchemeContext.Provider value={isDark ? 'dark' : 'light'}>
+          <Text style={styles.dialogTitle}>{title}</Text>
+          <Text style={styles.mainText}>{text}</Text>
+          {main}
+          <View style={styles.dialogActions}>{actions}</View>
+        </ColorSchemeContext.Provider>
       </Dialog>
     </Portal>
   );
