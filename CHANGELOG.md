@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.8](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.7...v0.0.1-alpha.8) (2021-01-26)
+
+### Features
+
+* added early error boundaries for file change errors ([e635be9](https://github.com/crutchcorn/GitShark/commit/e635be9b766db91df91250b1e406177cc8cb41ea))
+* added early error boundaries for git log errors ([b44fef7](https://github.com/crutchcorn/GitShark/commit/b44fef7c86d4b5f3570548c0243a96e0e1c9a1a3))
+* added early error boundaries for unknown errors and branch errors ([6cf859c](https://github.com/crutchcorn/GitShark/commit/6cf859c7b05883076c98a24f1b942fa3bda3ec18))
+* initial work to enable translations in the app ([ae8011e](https://github.com/crutchcorn/GitShark/commit/ae8011ef3e3b04fe08092dd93784c2988da55e13))
+* made repo list dual column ([6e465a5](https://github.com/crutchcorn/GitShark/commit/6e465a5ebaceab876924ec7c7f89bb68da93acc5))
+
+
+### Bug Fixes
+
+* change branch with staged items now functions as-expected ([a165e8f](https://github.com/crutchcorn/GitShark/commit/a165e8fddb0dad0ecdff97fd217c3cdb81d540b7)), closes [#67](https://github.com/crutchcorn/GitShark/issues/67)
+* commit details page now shows full list of changed items ([a15a0f0](https://github.com/crutchcorn/GitShark/commit/a15a0f09aaecf9ee821acea5326afdc3f149d01b)), closes [#45](https://github.com/crutchcorn/GitShark/issues/45)
+* crash no longer occurs when user fetches twice in a row ([0a2e996](https://github.com/crutchcorn/GitShark/commit/0a2e99610118d740352f3dfbe848f6d8a6783b78)), closes [#51](https://github.com/crutchcorn/GitShark/issues/51)
+* dark mode now applies properly to dialog text ([6afc221](https://github.com/crutchcorn/GitShark/commit/6afc221956abe23befaa61d2c8f78ee83d352a11))
+* fixed bug in opening git details on large projects ([b8129d6](https://github.com/crutchcorn/GitShark/commit/b8129d67d233ea6d3c7392710806131a86cf8b90))
+* fixed OOM errors when trying to run push ([4f38e67](https://github.com/crutchcorn/GitShark/commit/4f38e671bd94cd55ebc6b2573eff9fbb791c95e4))
+* pull no longer crashes app on large repos, no more 404s on pull ([c889703](https://github.com/crutchcorn/GitShark/commit/c88970359f42206e81abc5c9856fdcfaee6003a6))
+* stage split view now centers properly on tablets ([09de9b1](https://github.com/crutchcorn/GitShark/commit/09de9b14aa9bfea1c90217ec0931f3661880b385))
+
 ### [0.0.1-alpha.7](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.6...v0.0.1-alpha.7) (2021-01-06)
 
 
