@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.9](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.8...v0.0.1-alpha.9) (2021-01-26)
+
+
+### Bug Fixes
+
+* commiting no longer throws errors ([135c729](https://github.com/crutchcorn/GitShark/commit/135c7298df7a2ea615529717ea176aa1c7040bdd))
+* discard newly created file now deletes it ([18134d1](https://github.com/crutchcorn/GitShark/commit/18134d193313ab3df5aba4318672437474fa1603))
+* fixed fetch not behaving as-expected ([a76abfc](https://github.com/crutchcorn/GitShark/commit/a76abfc39cd916e3526f74a185e78902f6680e0d))
+* run git log once a project is pulled ([5aaf0cf](https://github.com/crutchcorn/GitShark/commit/5aaf0cfae80a1e23a8d617a9e93b20c8bb0e3d7b))
+* set last updated property properly ([93a7565](https://github.com/crutchcorn/GitShark/commit/93a75656f3d5b71dfe87862999a29cd63d1fd010))
+* staging files no longer throws errors ([edcdb33](https://github.com/crutchcorn/GitShark/commit/edcdb33c2f3c46310ea7167b4203d45849da01c8))
+
 ### [0.0.1-alpha.8](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.7...v0.0.1-alpha.8) (2021-01-26)
 
 ### Features
