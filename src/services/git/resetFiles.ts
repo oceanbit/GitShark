@@ -18,17 +18,17 @@ export const resetFiles = async ({path, files, dispatch}: ResetFilesProps) => {
   logService && console.log('service - resetFiles');
 
   if (Platform.OS === 'android') {
-    return await resetFilesAndroid({path, files, dispatch});
+    await resetFilesAndroid({path, files, dispatch});
+  } else {
+    const repoPath = getRepoPath(path);
+
+    await git.checkout({
+      fs,
+      dir: repoPath,
+      filepaths: files,
+      force: true,
+    });
   }
-
-  const repoPath = getRepoPath(path);
-
-  await git.checkout({
-    fs,
-    dir: repoPath,
-    filepaths: files,
-    force: true,
-  });
 
   dispatch(getGitStatus());
 };

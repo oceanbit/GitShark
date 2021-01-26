@@ -7,6 +7,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeArray;
 
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.Status;
 
 import java.io.File;
 import java.util.Set;
@@ -23,7 +24,7 @@ public class GitStatus {
         WritableArray result;
         try {
             result = new WritableNativeArray();
-            org.eclipse.jgit.api.Status status = git.status().call();
+            Status status = git.status().call();
             if (!status.hasUncommittedChanges() && status.isClean()) {
                 promise.resolve(result);
             }
