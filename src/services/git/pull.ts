@@ -1,7 +1,7 @@
 import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
 import {fs, GITHUB_TOKEN_STORAGE_KEY} from '@constants';
 import http from 'isomorphic-git/http/web/index.js';
-import {getCommitRev} from '@store';
+import {getCommitRev, getGitLog} from '@store';
 import RNSecureKeyStore from 'react-native-secure-key-store';
 
 import {ReduxRepo} from '@entities';
@@ -39,6 +39,8 @@ export const pull = async ({
     GH_TOKEN = await RNSecureKeyStore.get(GITHUB_TOKEN_STORAGE_KEY);
   } catch (e) {}
 
+  const repoPath = getRepoPath(repo.path);
+
   if (Platform.OS === 'android') {
     await pullAndroid({
       path: repo.path,
@@ -47,34 +49,29 @@ export const pull = async ({
       authToken: GH_TOKEN,
       onProgress,
     });
-
-    dispatch(getCommitRev({path: repo.path, repoId: repo.id}));
-
-    return;
+  } else {
+    await git.pull({
+      fs,
+      dir: repoPath,
+      ref: branch,
+      http,
+      remote: destination.remote,
+      remoteRef: destination.name,
+      onProgress,
+      onAuth: () =>
+        GH_TOKEN
+          ? {
+              username: GH_TOKEN,
+              password: 'x-oauth-basic',
+            }
+          : {},
+      author: {
+        email,
+        name,
+      },
+    });
   }
 
-  const repoPath = getRepoPath(repo.path);
-
-  await git.pull({
-    fs,
-    dir: repoPath,
-    ref: branch,
-    http,
-    remote: destination.remote,
-    remoteRef: destination.name,
-    onProgress,
-    onAuth: () =>
-      GH_TOKEN
-        ? {
-            username: GH_TOKEN,
-            password: 'x-oauth-basic',
-          }
-        : {},
-    author: {
-      email,
-      name,
-    },
-  });
-
   dispatch(getCommitRev({path: repoPath, repoId: repo.id}));
+  dispatch(getGitLog());
 };
