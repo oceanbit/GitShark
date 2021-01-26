@@ -1,5 +1,7 @@
 package dev.oceanbit.gitshark.Git;
 
+import android.util.Log;
+
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -54,10 +56,14 @@ public class GitFetch {
                 .setRemote(remote)
                 .setProgressMonitor(new FetchMonitor());
 
-        if (singleBranch) {
-            gitFetch
-                    .setRefSpecs(new RefSpec("refs/heads/" + localBranch + ":refs/remotes/" + remote + "/" + trackedBranch));
-        }
+        // TODO: Singlebranch behavior is not implemented and is disabled in the UI
+//        if (singleBranch) {
+//            String remoteRef = trackedBranch.replace("refs/remotes/" + remote + "/", "");
+//            RefSpec ref = new RefSpec(remoteRef + ":" + localBranch);
+//
+//            gitFetch
+//                    .setRefSpecs(ref);
+//        }
 
         String ghToken = GhTokenUtils.getGitHubToken(reactContext);
 

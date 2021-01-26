@@ -31,7 +31,7 @@ export const FetchDialog = ({
   const styles = useDynamicValue(dynamicStyles);
 
   const [remote, setRemote] = React.useState<string>('');
-  const [fetchAll, setFetchAll] = React.useState(false);
+  const [fetchAll, setFetchAll] = React.useState(true);
   const [prune, setPrune] = React.useState(false);
 
   React.useEffect(() => {
@@ -81,13 +81,13 @@ export const FetchDialog = ({
             </Picker>
           </View>
 
-          <View style={styles.checkbox}>
-            <SharkCheckbox
-              checked={fetchAll}
-              onValueChange={v => setFetchAll(v)}
-            />
-            <Text style={styles.checkboxText}>{t('fetchAllRemotes')}</Text>
-          </View>
+          {/*<View style={styles.checkbox}>*/}
+          {/*  <SharkCheckbox*/}
+          {/*    checked={fetchAll}*/}
+          {/*    onValueChange={v => setFetchAll(v)}*/}
+          {/*  />*/}
+          {/*  <Text style={styles.checkboxText}>{t('fetchAllRemotes')}</Text>*/}
+          {/*</View>*/}
 
           <View style={styles.checkbox}>
             <SharkCheckbox checked={prune} onValueChange={v => setPrune(v)} />
