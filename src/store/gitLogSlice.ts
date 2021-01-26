@@ -18,6 +18,8 @@ export const storeGitLog = createAsyncThunk(
       .map(commit =>
         gitCommitToDBMapper({commit, oid: commit.oid, payload: ''}),
       );
+
+    repo.lastUpdated = new Date(Date.now());
     await repo.save();
   },
 );

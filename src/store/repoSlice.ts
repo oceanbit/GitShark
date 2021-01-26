@@ -66,7 +66,7 @@ export const editRepo = createAsyncThunk(
     await getConnection()
       .createQueryBuilder()
       .update(Repo)
-      .set(repoData)
+      .set({...repoData, lastUpdated: new Date(Date.now())})
       .where('id = :id', {id: repoId})
       .execute();
     // If this is not updated, the repo list will not display the proper branch name
