@@ -5,6 +5,8 @@ import {getCommitRev, getGitStatus} from '@store';
 import {ThunkDispatchType} from '@hooks';
 import {logService} from '../debug';
 import {getRepoPath} from '@utils';
+import {commitAndroid} from '@services/git/commit-android';
+import {Platform} from 'react-native';
 
 interface commitProps {
   title?: string;
@@ -28,15 +30,20 @@ export const commit = async ({
   const message = `${title}\n${description}`;
 
   const repoPath = getRepoPath(repo.path);
-  await git.commit({
-    fs,
-    dir: repoPath,
-    author: {
-      name,
-      email,
-    },
-    message,
-  });
+
+  if (Platform.OS === 'android') {
+    await commitAndroid({message, email, name, repo});
+  } else {
+    await git.commit({
+      fs,
+      dir: repoPath,
+      author: {
+        name,
+        email,
+      },
+      message,
+    });
+  }
 
   /**
    * While these may have `.then`, they're not promises in themselves. As such, we cannot use `await`. This should fix that

@@ -1,6 +1,9 @@
 package dev.oceanbit.gitshark;
 
+import android.os.Build;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -11,6 +14,7 @@ import com.facebook.react.bridge.ReadableArray;
 import dev.oceanbit.gitshark.Git.GitAddToStaged;
 import dev.oceanbit.gitshark.Git.GitCheckout;
 import dev.oceanbit.gitshark.Git.GitClone;
+import dev.oceanbit.gitshark.Git.GitCommit;
 import dev.oceanbit.gitshark.Git.GitFetch;
 import dev.oceanbit.gitshark.Git.GitGetFileStateChanges;
 import dev.oceanbit.gitshark.Git.GitGetTrackedBranch;
@@ -77,6 +81,7 @@ public class GitModule extends ReactContextBaseJavaModule {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @ReactMethod
     public void addToStage(String path, ReadableArray changes, Promise promise) {
         GitAddToStaged.add(path, changes, promise);
@@ -125,6 +130,13 @@ public class GitModule extends ReactContextBaseJavaModule {
         gitPush.push(path, remote, remoteRef, authToken, forcePush, promise);
     }
 
+    @ReactMethod
+    public void commit(
+            String path, String authorEmail, String authorName, String message, Promise promise
+    ) {
+        GitCommit gitCommit = new GitCommit(reactContext);
+        gitCommit.commit(path, authorEmail, authorName, message, promise);
+    }
 
     @ReactMethod
     public void revList(String path, String branch1Ref, String branch2Ref, Promise promise) {
