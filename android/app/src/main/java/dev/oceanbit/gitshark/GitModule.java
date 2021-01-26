@@ -8,6 +8,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 
+import dev.oceanbit.gitshark.Git.GitAddToStaged;
 import dev.oceanbit.gitshark.Git.GitCheckout;
 import dev.oceanbit.gitshark.Git.GitClone;
 import dev.oceanbit.gitshark.Git.GitFetch;
@@ -17,6 +18,7 @@ import dev.oceanbit.gitshark.Git.GitLog;
 import dev.oceanbit.gitshark.Git.GitPull;
 import dev.oceanbit.gitshark.Git.GitPush;
 import dev.oceanbit.gitshark.Git.GitReadCommit;
+import dev.oceanbit.gitshark.Git.GitRemoveFromStaged;
 import dev.oceanbit.gitshark.Git.GitResetPaths;
 import dev.oceanbit.gitshark.Git.GitRevList;
 import dev.oceanbit.gitshark.Git.GitStatus;
@@ -73,7 +75,18 @@ public class GitModule extends ReactContextBaseJavaModule {
     public void resetPaths(String path, ReadableArray files, Promise promise) {
         GitResetPaths.restPaths(path, files, promise);
     }
-    
+
+
+    @ReactMethod
+    public void addToStage(String path, ReadableArray changes, Promise promise) {
+        GitAddToStaged.add(path, changes, promise);
+    }
+
+    @ReactMethod
+    public void removeFromStage(String path, ReadableArray changes, Promise promise) {
+        GitRemoveFromStaged.remove(path, changes, promise);
+    }
+
     @ReactMethod
     public void fetch(
             String path,

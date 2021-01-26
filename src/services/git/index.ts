@@ -1,3 +1,4 @@
+export * from './add-to-staged';
 export * from './checkoutBranch';
 export * from './cloneRepo';
 export * from './commit';
@@ -16,6 +17,7 @@ export * from './gitLog';
 export * from './pull';
 export * from './push';
 export * from './read-commit';
+export * from './remove-from-staged';
 export * from './renameBranch';
 export * from './renameRepo';
 export * from './resetFiles';
