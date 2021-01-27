@@ -81,7 +81,7 @@
   "ignoreNotImplemented": "La funcionalidad de \"Ignorar\" aún no se encuentra implementada, pero lo estará pronto",
   "unstagedHeading": "Fuera del Stage",
   "stageAllAction": "Pasar todo a Stage",
-  "stageAction": "Stage",
+  "stageAction": "Pasar al Stage",
   "discardAction": "Descartar",
   "ignoreAction": "Ignorar",
   "unstageAction": "Sacar del stage",
