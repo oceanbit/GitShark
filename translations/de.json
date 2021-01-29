@@ -69,7 +69,7 @@
   "fetchAllRemotes": "Alle Ferne herholen",
   "excludeDeleted": "Gelöschte Äste aussschließen",
   "onPushDialogTitle": "Ast schieben",
-  "onPushDialogText": "Ast schieben ist fehlgeschlagen.".,
+  "onPushDialogText": "Ast schieben ist fehlgeschlagen.",
   "pushDialogTitle": "Schieben",
   "pushDialogText": "Lokale veränderungen auf ferne Repository schieben",
   "branchPickerLabel": "Ast",
