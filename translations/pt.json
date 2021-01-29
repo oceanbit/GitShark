@@ -1,6 +1,7 @@
 {
   "repoListTitle": "Repositórios",
   "noRepos": "Nenhum repositório",
+  "newFABAction": "New Repository",
   "cloneFABAction": "Clonar",
   "existFABAction": "Adicionar existente",
   "updatedAgo": "Atualizado há {{time}} atrás",
@@ -12,6 +13,7 @@
   "fetchAction": "Fetch",
   "noRepoNameErr": "É preciso um nome válido para o repositório.",
   "renameRepoDialogTitle": "Renomear repositório",
+  "retry": "Retry",
   "renameRepoDialogText": "Entre o novo nome do repositório.",
   "renameRepoDialogInput": "Nome do repositório",
   "deleteRepoDialogTitle": "Deletar repositório?",

@@ -4,9 +4,9 @@ import * as RNLocalize from 'react-native-localize';
 import dayjs from 'dayjs';
 
 // DayJS
-require('dayjs/locale/de');
 require('dayjs/locale/en');
 require('dayjs/locale/es');
+require('dayjs/locale/de');
 require('dayjs/locale/pt');
 
 type StringRec = {
@@ -14,9 +14,9 @@ type StringRec = {
 };
 
 const translations: Record<string, () => StringRec> = {
-  de: () => require('../../translations/de.json'),
   en: () => require('../../translations/en.json'),
   es: () => require('../../translations/es.json'),
+  de: () => require('../../translations/de.json'),
   pt: () => require('../../translations/pt.json'),
 };
 
@@ -42,6 +42,6 @@ i18n
     lng: languageTag,
   })
   .catch(e => {
-    console.error('There was an error initalizing translations');
+    console.error('There was an error initializing translations');
     console.error(e);
   });

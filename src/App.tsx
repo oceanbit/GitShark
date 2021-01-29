@@ -47,6 +47,7 @@ import ErrorBoundary from 'react-native-error-boundary';
 import './services/translations';
 
 // TODO: Remove once https://github.com/isomorphic-git/isomorphic-git/pull/1156
+// @ts-ignore
 // eslint-disable-next-line no-undef
 CompressionStream = null;
 
