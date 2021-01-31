@@ -3,7 +3,7 @@ import App from './src/App';
 import {name as appName} from './app.json';
 import 'react-native-gesture-handler';
 
-import './patch-FileReader';
+import './polyfills';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);

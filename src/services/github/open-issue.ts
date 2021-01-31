@@ -1,7 +1,7 @@
 import newGithubIssueUrl from 'new-github-issue-url';
 import {Linking} from 'react-native';
 import {RepoConfig} from '@constants/repo-config';
-const bugReport = require('githubIssues/bug_report.md');
+import {getFileContents} from './get-file-contents';
 
 export interface ErrorPromptProps {
   // EG: "An error occured while loading staged files."
@@ -12,7 +12,11 @@ export interface ErrorPromptProps {
   callStack: string;
 }
 
-export function openGitHubIssue(err: ErrorPromptProps) {
+export async function openGitHubIssue(err: ErrorPromptProps) {
+  const bugReport = await getFileContents(
+    '.github/ISSUE_TEMPLATE/bug_report.md',
+  );
+
   const body = bugReport
     .replace(
       '{{Put the simple error code here}}',
@@ -26,5 +30,5 @@ export function openGitHubIssue(err: ErrorPromptProps) {
     body,
   });
 
-  return Linking.openURL(url);
+  return await Linking.openURL(url);
 }
