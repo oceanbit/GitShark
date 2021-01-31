@@ -1,7 +1,6 @@
-import newGithubIssueUrl from 'new-github-issue-url';
 import {Linking} from 'react-native';
-import {RepoConfig} from '@constants/repo-config';
 import {getFileContents} from './get-file-contents';
+import {createIssueWithAPI} from '@services/github/create-issue-with-api';
 
 export interface ErrorPromptProps {
   // EG: "An error occured while loading staged files."
@@ -24,11 +23,7 @@ export async function openGitHubIssue(err: ErrorPromptProps) {
     )
     .replace('{{Put the stack trace here}}', err.callStack);
 
-  const url = newGithubIssueUrl({
-    user: RepoConfig.owner,
-    repo: RepoConfig.name,
-    body,
-  });
+  const issueEditURL = await createIssueWithAPI(body);
 
-  return await Linking.openURL(url);
+  return await Linking.openURL(issueEditURL);
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Linking, Platform} from 'react-native';
+import {Linking} from 'react-native';
 import * as queryString from 'query-string';
 import RNSecureKeyStore, {ACCESSIBLE} from 'react-native-secure-key-store';
 import {getCurrentUser, getCurrentUserEmails} from '@services';
