@@ -59,6 +59,7 @@
     "react-native-paper": "^4.7.1",
     "react-native-reanimated": "^1.13.2",
     "react-native-responsive-ui": "https://github.com/oceanbit-dev/react-native-responsive-ui.git#build",
+    "react-native-restart": "^0.0.20",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.17.1",
     "react-native-secure-key-store": "^2.0.9",

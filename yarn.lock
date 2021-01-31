@@ -12844,6 +12844,11 @@ react-native-reanimated@^1.13.2:
   dependencies:
     lodash "^4.17.11"
 
+react-native-restart@^0.0.20:
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/react-native-restart/-/react-native-restart-0.0.20.tgz#6ed0244eb1e9a8d81cf7cadfb1f90dd4bb0754ec"
+  integrity sha512-lpWqKvfKaCfolosRHHH9+hDdjqMntEedRiLdVqmwNJejjfA4gUH+VEn0uhSaVueBgQJl5525X6B/0bSP55g+iQ==
+
 react-native-safe-area-context@^3.1.9:
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.9.tgz#48864ea976b0fa57142a2cc523e1fd3314e7247e"

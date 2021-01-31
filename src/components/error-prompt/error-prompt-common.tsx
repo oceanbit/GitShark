@@ -1,11 +1,12 @@
 import * as React from 'react';
-import {View, Text, StyleProp, ViewStyle} from 'react-native';
+import {View, Text, StyleProp, ViewStyle, NativeModules} from 'react-native';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 import {openGitHubIssue} from '@services';
 import {Icon} from '@components/shark-icon';
 import {FullError} from '@types';
+import RNRestart from 'react-native-restart';
 
 interface CommonButtonProps {
   style?: StyleProp<ViewStyle>;
@@ -36,7 +37,9 @@ export const TryAgainButton = ({style}: CommonButtonProps) => (
   <SharkButton
     style={style}
     type={'primary'}
-    onPress={() => {}}
+    onPress={() => {
+      RNRestart.Restart();
+    }}
     icon={'refresh'}
     text={'Try again'}
   />
