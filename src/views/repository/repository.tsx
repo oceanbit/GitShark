@@ -14,6 +14,7 @@ import {OnFetchActionsDialog} from './components/on-fetch-action-dialog';
 import {OnPushActionsDialog} from './components/on-push-action-dialog';
 import {RemoteBranch} from '@types';
 import {OnPullActionsDialog} from './components/on-pull-action-dialog';
+import {Portal} from 'react-native-paper';
 
 interface FetchDialogType {
   action: 'fetch';
@@ -80,7 +81,7 @@ export const Repository = () => {
   if (!repo) return null;
 
   return (
-    <>
+    <Portal.Host>
       <RepositoryUI
         currentBranch={repo?.currentBranchName || ''}
         trackedBranch={trackedBranch}
@@ -143,6 +144,6 @@ export const Repository = () => {
           setDialogType(null);
         }}
       />
-    </>
+    </Portal.Host>
   );
 };
