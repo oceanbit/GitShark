@@ -57,9 +57,7 @@ export const BaseDialog: React.FC<BaseDialogProps> = ({
         dismissable={dismissable}
         onDismiss={onDismiss}
         style={[styles.dialogContainer, style, {top: additionalTop}]}>
-        <ColorSchemeContext.Provider value={isDark ? 'dark' : 'light'}>
-          {children}
-        </ColorSchemeContext.Provider>
+        {children}
       </Dialog>
     </Portal>
   );

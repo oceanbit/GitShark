@@ -1,6 +1,6 @@
 import * as React from 'react';
 import 'reflect-metadata';
-import {Provider as PaperProvider} from 'react-native-paper';
+import {Provider as PaperProvider, Portal} from 'react-native-paper';
 
 import {
   Button,
@@ -172,12 +172,17 @@ const AppBase = () => {
                   logoutGitHub,
                 }}>
                 <ColorSchemeProvider mode={isDarkMode ? 'dark' : 'light'}>
-                  <Stack.Navigator headerMode={'none'}>
-                    <Stack.Screen name="RepoList" component={RepositoryList} />
-                    <Stack.Screen name="Settings" component={Settings} />
-                    <Stack.Screen name="Account" component={Account} />
-                    <Stack.Screen name="RepoDetails" component={Repository} />
-                  </Stack.Navigator>
+                  <Portal.Host>
+                    <Stack.Navigator headerMode={'none'}>
+                      <Stack.Screen
+                        name="RepoList"
+                        component={RepositoryList}
+                      />
+                      <Stack.Screen name="Settings" component={Settings} />
+                      <Stack.Screen name="Account" component={Account} />
+                      <Stack.Screen name="RepoDetails" component={Repository} />
+                    </Stack.Navigator>
+                  </Portal.Host>
                 </ColorSchemeProvider>
               </UserContext.Provider>
             </SetDarkModeContext.Provider>
