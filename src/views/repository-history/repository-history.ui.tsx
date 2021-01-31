@@ -33,9 +33,10 @@ export const RepositoryHistoryUI = ({
   const bottomLayer = React.useMemo(() => {
     if (error) {
       return (
+        // TODO: MIGRATE FROM STRING TO OBJECT
         <ErrorPrompt
           explainMessage={t('commitLogErrStr')}
-          errorMessage={error}
+          errorMessage={error.split(/\n/)[1]}
           callStack={error}
         />
       );

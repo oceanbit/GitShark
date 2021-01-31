@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Dimensions, KeyboardAvoidingView, Text, View} from 'react-native';
+import {Dimensions, StyleProp, Text, View, ViewStyle} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
 import {theme} from '@constants';
 import {
@@ -24,17 +24,20 @@ interface AppDialogProps {
    */
   onDismiss?: () => void;
   visible: boolean;
+  style?: StyleProp<ViewStyle>;
 }
 
-export const AppDialog = ({
+type BaseDialogProps = Partial<
+  Pick<AppDialogProps, 'visible' | 'dismissable' | 'onDismiss' | 'style'>
+>;
+
+export const BaseDialog: React.FC<BaseDialogProps> = ({
+  children,
   visible,
   dismissable,
   onDismiss,
-  title,
-  text,
-  actions,
-  main,
-}: AppDialogProps) => {
+  style = {},
+}) => {
   const {height} = Dimensions.get('window');
 
   const keyboard = useKeyboard();
@@ -50,24 +53,52 @@ export const AppDialog = ({
   return (
     <Portal>
       <Dialog
-        visible={visible}
+        visible={visible ?? true}
         dismissable={dismissable}
         onDismiss={onDismiss}
-        style={[styles.dialogContainer, {top: additionalTop}]}>
+        style={[styles.dialogContainer, style, {top: additionalTop}]}>
         <ColorSchemeContext.Provider value={isDark ? 'dark' : 'light'}>
-          <Text style={styles.dialogTitle}>{title}</Text>
-          <Text style={styles.mainText}>{text}</Text>
-          {main}
-          <View style={styles.dialogActions}>{actions}</View>
+          {children}
         </ColorSchemeContext.Provider>
       </Dialog>
     </Portal>
   );
 };
 
+export const AppDialog = ({
+  visible,
+  dismissable,
+  onDismiss,
+  title,
+  text,
+  actions,
+  main,
+  style,
+}: AppDialogProps) => {
+  const styles = useDynamicValue(dynamicStyles);
+
+  return (
+    <BaseDialog
+      visible={visible}
+      dismissable={dismissable}
+      onDismiss={onDismiss}
+      style={style}>
+      <Text style={styles.dialogTitle}>{title}</Text>
+      <Text style={styles.mainText}>{text}</Text>
+      {main}
+      <View style={styles.dialogActions}>{actions}</View>
+    </BaseDialog>
+  );
+};
+
 const dynamicStyles = new DynamicStyleSheet({
   dialogContainer: {
     margin: 0,
+    // Set max width for tablet
+    maxWidth: theme.breakpoints.singlePanelMaxWidth,
+    // Provide horizontal spacing on mobile
+    width: '90%',
+    alignSelf: 'center',
     paddingHorizontal: theme.spacing.l,
     paddingTop: 20,
     paddingBottom: theme.spacing.m,
