@@ -1,7 +1,7 @@
 {
   "repoListTitle": "Repositories",
   "noRepos": "No repositories",
-  "newFABAction": "New Repository",
+  "newFABAction": "New repository",
   "cloneFABAction": "Clone",
   "existFABAction": "Add existing",
   "updatedAgo": "Updated {{time}} ago",
