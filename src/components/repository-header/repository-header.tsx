@@ -7,6 +7,7 @@ import {SharkIconButton} from '../shark-icon-button';
 import {AppBar} from '../app-bar';
 import {SharkMenu} from '../shark-menu';
 import {ReduxRepo} from '@entities';
+import {useTranslation} from 'react-i18next';
 
 interface RepositoryHeaderProps {
   repo: ReduxRepo | null;
@@ -17,6 +18,8 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
 
   const history = useNavigation();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const {t} = useTranslation();
 
   if (!repo) return null;
 
@@ -52,7 +55,7 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
                 setIsMenuOpen(false);
                 setActiveDialog('fetch');
               }}
-              title="Fetch"
+              title={t('fetchAction')}
             />
             <Divider />
             {/* <Menu.Item onPress={() => {}} title="Open Folder" /> */}
@@ -61,7 +64,7 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
                 setIsMenuOpen(false);
                 setActiveDialog('rename');
               }}
-              title="Rename"
+              title={t('renameAction')}
             />
           </SharkMenu>
         </>

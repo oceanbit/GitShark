@@ -4,16 +4,20 @@ import * as React from 'react';
 import {ExtendedFabBase} from './types';
 import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
+import {useTranslation} from 'react-i18next';
 
 export const NewRepoFab = ({toggleAnimation}: ExtendedFabBase) => {
   const styles = useDynamicValue(dynamicStyles);
+
+  const {t} = useTranslation();
+
   return (
     <TouchableRipple
       style={styles.fab}
       onPress={() => {
         toggleAnimation();
       }}>
-      <Text style={styles.fabActionText}>New repository</Text>
+      <Text style={styles.fabActionText}>{t('newFABAction')}</Text>
     </TouchableRipple>
   );
 };

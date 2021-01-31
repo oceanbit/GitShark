@@ -6,6 +6,7 @@ import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {SharkButton} from '@components/shark-button';
 import {useDynamicValue} from 'react-native-dynamic';
+import {useTranslation} from 'react-i18next';
 
 interface ProgressErrorDialogProps {
   onDismiss: (didUpdate: boolean) => void;
@@ -31,6 +32,8 @@ export const ProgressErrorDialog = ({
   progress,
 }: ProgressErrorDialogProps) => {
   const accent = useDynamicValue(theme.colors.primary);
+
+  const {t} = useTranslation();
 
   return (
     <>
@@ -58,7 +61,9 @@ export const ProgressErrorDialog = ({
         title={headerStr}
         text={errorBodyText}
         main={<ErrorMessageBox message={errorStr || ''} />}
-        actions={<SharkButton onPress={onRetry} type="primary" text="Retry" />}
+        actions={
+          <SharkButton onPress={onRetry} type="primary" text={t('retry')} />
+        }
       />
     </>
   );
