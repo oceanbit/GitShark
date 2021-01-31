@@ -6,6 +6,7 @@ import {
   Remotes,
   getSerializedErrorStr,
   PayloadSerializedError,
+  StoreError,
 } from '@types';
 import {logStore} from './debug';
 
@@ -70,7 +71,7 @@ const initialState = {
   remotes: [] as Remotes[],
   // Unused AFAIK
   loading: 'idle',
-  error: '' as string,
+  error: null as null | StoreError,
 };
 
 const branchesSlice = createSlice({

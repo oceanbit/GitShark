@@ -6,7 +6,11 @@ import {
   removeFromStaged as removeFromStagedService,
 } from '@services';
 import {logStore} from './debug';
-import {getSerializedErrorStr, PayloadSerializedError} from '@types';
+import {
+  getSerializedErrorStr,
+  PayloadSerializedError,
+  StoreError,
+} from '@types';
 
 export const getGitStatus = createAsyncThunk(
   'commits/getGitStatus',
@@ -65,7 +69,7 @@ const initialState = {
   unstaged: [] as ChangesArrayItem[],
   // Unused AFAIK
   loading: 'idle',
-  error: '' as string,
+  error: null as null | StoreError,
 };
 
 const changesSlice = createSlice({

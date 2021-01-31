@@ -8,6 +8,7 @@ import {ReduxRepo} from '@entities';
 import {GitLogCommit} from '@services';
 import {useTranslation} from 'react-i18next';
 import {ErrorPrompt} from '@components/error-prompt';
+import {StoreError} from '@types';
 
 interface RepositoryHistoryUIProps {
   commits: any[];
@@ -15,7 +16,7 @@ interface RepositoryHistoryUIProps {
   onCommitNavigate: (commit: GitLogCommit) => void;
   topLayer: React.ReactNode;
   repo: ReduxRepo | null;
-  error: string;
+  error: StoreError | null;
 }
 
 export const RepositoryHistoryUI = ({
@@ -32,14 +33,7 @@ export const RepositoryHistoryUI = ({
 
   const bottomLayer = React.useMemo(() => {
     if (error) {
-      return (
-        // TODO: MIGRATE FROM STRING TO OBJECT
-        <ErrorPrompt
-          explainMessage={t('commitLogErrStr')}
-          errorMessage={error.split(/\n/)[1]}
-          callStack={error}
-        />
-      );
+      return <ErrorPrompt explainMessage={t('commitLogErrStr')} {...error} />;
     }
 
     return (

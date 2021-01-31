@@ -3,12 +3,13 @@ import {View, Text, StyleProp, ViewStyle} from 'react-native';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
-import {ErrorPromptProps, openGitHubIssue} from '@services';
+import {openGitHubIssue} from '@services';
 import {Icon} from '@components/shark-icon';
+import {FullError} from '@types';
 
 interface CommonButtonProps {
   style?: StyleProp<ViewStyle>;
-  props: ErrorPromptProps;
+  props: FullError;
 }
 
 export const GitHubButton = ({style, props}: CommonButtonProps) => {
@@ -41,7 +42,7 @@ export const TryAgainButton = ({style}: CommonButtonProps) => (
   />
 );
 
-export const RedContainer = (props: ErrorPromptProps) => {
+export const RedContainer = (props: FullError) => {
   const {explainMessage, errorMessage} = props;
 
   const error = useDynamicValue(theme.colors.error);

@@ -2,7 +2,6 @@ import * as React from 'react';
 import {View, Text} from 'react-native';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
-import {ErrorPromptProps} from '@services';
 import {Portal, TouchableRipple} from 'react-native-paper';
 import {SharkBottomSheet, SharkSheetRef} from '@components/shark-bottom-sheet';
 import {
@@ -13,8 +12,9 @@ import {
 import {SharkDivider} from '@components/shark-divider';
 import {ScrollView} from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
+import {FullError} from '@types';
 
-export const ErrorPromptMobile = (props: ErrorPromptProps) => {
+export const ErrorPromptMobile = (props: FullError) => {
   const {callStack} = props;
   const styles = useDynamicValue(dynamicStyles);
 

@@ -1,4 +1,5 @@
 import {PayloadAction, SerializedError} from '@reduxjs/toolkit';
+import {StoreError} from '@types';
 
 export type PayloadSerializedError = PayloadAction<
   void,
@@ -9,7 +10,15 @@ export type PayloadSerializedError = PayloadAction<
 
 export const getSerializedErrorStr = (e: SerializedError | string) => {
   if (typeof e === 'string') {
-    return e;
+    const [msg, ...stack] = e.split('\n');
+    return {
+      errorMessage: msg,
+      callStack: stack.join('\n'),
+    };
   }
-  return `${e.name}\n${e.message}\n${e.stack}`;
+
+  return {
+    errorMessage: `${e.name} - ${e.message}`,
+    callStack: e.stack,
+  } as StoreError;
 };

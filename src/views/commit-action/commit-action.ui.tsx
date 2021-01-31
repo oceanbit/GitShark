@@ -10,12 +10,14 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkDivider} from '@components/shark-divider';
 import {BottomSpacerView} from '@components/shark-safe-top';
 import {useTranslation} from 'react-i18next';
+import {StoreError} from '@types';
+import {ErrorPrompt} from '@components/error-prompt';
 
 interface CommitActionUIProps {
   onSubmit: (props: {commitTitle: string; commitBody: string}) => Promise<void>;
   files: ChangesArrayItem[];
   onClose: () => void;
-  error: string;
+  error: StoreError | null;
 }
 
 export const CommitActionUI = ({
@@ -42,10 +44,7 @@ export const CommitActionUI = ({
       </View>
       <SharkDivider />
       {!!error && (
-        <View>
-          <Text>{t('commitActionErrStr')}</Text>
-          <Text>{error}</Text>
-        </View>
+        <ErrorPrompt explainMessage={t('commitActionErrStr')} {...error} />
       )}
       {!error && (
         <>

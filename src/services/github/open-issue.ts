@@ -1,17 +1,9 @@
 import {Linking} from 'react-native';
 import {getFileContents} from './get-file-contents';
 import {createIssueWithAPI} from '@services/github/create-issue-with-api';
+import {FullError} from '@types';
 
-export interface ErrorPromptProps {
-  // EG: "An error occured while loading staged files."
-  explainMessage: string;
-  // EG: undefined is not a function
-  errorMessage: string;
-  // EG: "_callee2$@http://localhost:8081/ind..."
-  callStack: string;
-}
-
-export async function openGitHubIssue(err: ErrorPromptProps) {
+export async function openGitHubIssue(err: FullError) {
   const bugReport = await getFileContents(
     '.github/ISSUE_TEMPLATE/bug_report.md',
   );

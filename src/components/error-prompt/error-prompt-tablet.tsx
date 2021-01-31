@@ -2,7 +2,6 @@ import * as React from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
-import {ErrorPromptProps} from '@services';
 import {useDimensions} from 'react-native-responsive-ui';
 import {BaseDialog} from '@components/dialog';
 import {SharkDivider} from '@components/shark-divider';
@@ -12,8 +11,9 @@ import {
   RedContainer,
   TryAgainButton,
 } from '@components/error-prompt/error-prompt-common';
+import {FullError} from '@types';
 
-export const ErrorPromptTablet = (props: ErrorPromptProps) => {
+export const ErrorPromptTablet = (props: FullError) => {
   const {callStack} = props;
   const styles = useDynamicValue(dynamicStyles);
 

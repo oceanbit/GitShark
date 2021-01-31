@@ -13,6 +13,7 @@ import {RepositoryHeader} from '@components/repository-header';
 import {StyleSheet, Text, View} from 'react-native';
 import {Snackbar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
+import {ErrorPrompt} from '@components/error-prompt';
 
 export const RepositoryChanges = () => {
   const {t} = useTranslation();
@@ -72,10 +73,7 @@ export const RepositoryChanges = () => {
       <View style={styles.container}>
         <RepositoryHeader repo={repo} />
         {!!changesError && (
-          <View>
-            <Text>{t('changesErrStr')}</Text>
-            <Text>{changesError}</Text>
-          </View>
+          <ErrorPrompt explainMessage={t('changesErrStr')} {...changesError} />
         )}
         {!changesError && (
           <>
