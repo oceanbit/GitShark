@@ -14,21 +14,22 @@ interface StagedChangesProps {
   stagedChanges: ChangesArrayItem[];
   onCommit: () => void;
   inSheet?: boolean;
+  selectedStagedChanges: ChangesArrayItem[];
+  setSelectedStagedChanges: (v: ChangesArrayItem[]) => void;
+  hideHeader?: boolean;
 }
 
-export const StagedChanges = ({
+export const StagedChangesHeader = ({
   removeFromStaged,
   stagedChanges,
   onCommit,
   inSheet,
+  selectedStagedChanges,
+  setSelectedStagedChanges,
 }: StagedChangesProps) => {
   const {t} = useTranslation();
 
   const styles = useDynamicValue(dynamicStyles);
-
-  const [selectedStagedChanges, setSelectedStagedChanges] = React.useState<
-    ChangesArrayItem[]
-  >([]);
 
   const stagedBtnText = selectedStagedChanges.length
     ? t('unstageAction')
@@ -43,19 +44,12 @@ export const StagedChanges = ({
       };
     }
     return onCommit;
-  }, [onCommit, removeFromStaged, selectedStagedChanges]);
-
-  const toggleSelected = (change: ChangesArrayItem) => {
-    const filteredUnstaged = selectedStagedChanges.filter(
-      isChange => isChange.fileName !== change.fileName,
-    );
-    // The array does not contain the item
-    if (filteredUnstaged.length !== selectedStagedChanges.length) {
-      setSelectedStagedChanges(filteredUnstaged);
-      return;
-    }
-    setSelectedStagedChanges([...selectedStagedChanges, change]);
-  };
+  }, [
+    onCommit,
+    removeFromStaged,
+    selectedStagedChanges,
+    setSelectedStagedChanges,
+  ]);
 
   const floatingStyle = inSheet ? styles.subheaderFloating : {};
 
@@ -89,26 +83,55 @@ export const StagedChanges = ({
         />
       </View>
       {!!stagedChanges.length && <SharkDivider />}
-      <ScrollView>
-        {stagedChanges.map(props => {
-          const isChecked = !!selectedStagedChanges.find(
-            change => change.fileName === props.fileName,
-          );
-          return (
-            <React.Fragment key={props.fileName}>
-              <View>
-                <FileChangeListItemWithCheckbox
-                  isChecked={isChecked}
-                  key={props.fileName}
-                  onToggle={() => toggleSelected(props)}
-                  {...props}
-                />
-              </View>
-              <SharkDivider />
-            </React.Fragment>
-          );
-        })}
-      </ScrollView>
+    </>
+  );
+};
+
+export const StagedChanges = (props: StagedChangesProps) => {
+  const {
+    stagedChanges,
+    selectedStagedChanges,
+    setSelectedStagedChanges,
+    hideHeader,
+    inSheet,
+  } = props;
+  const toggleSelected = (change: ChangesArrayItem) => {
+    const filteredUnstaged = selectedStagedChanges.filter(
+      isChange => isChange.fileName !== change.fileName,
+    );
+    // The array does not contain the item
+    if (filteredUnstaged.length !== selectedStagedChanges.length) {
+      setSelectedStagedChanges(filteredUnstaged);
+      return;
+    }
+    setSelectedStagedChanges([...selectedStagedChanges, change]);
+  };
+
+  const itemList = stagedChanges.map(props => {
+    const isChecked = !!selectedStagedChanges.find(
+      change => change.fileName === props.fileName,
+    );
+    return (
+      <React.Fragment key={props.fileName}>
+        <View>
+          <FileChangeListItemWithCheckbox
+            isChecked={isChecked}
+            key={props.fileName}
+            onToggle={() => toggleSelected(props)}
+            {...props}
+          />
+        </View>
+        <SharkDivider />
+      </React.Fragment>
+    );
+  });
+
+  return (
+    <>
+      {!hideHeader && <StagedChangesHeader {...props} />}
+      {null /* Nested scrollview in sheet does not allow scrolling */}
+      {!inSheet && <ScrollView>{itemList}</ScrollView>}
+      {!!inSheet && <View>{itemList}</View>}
     </>
   );
 };

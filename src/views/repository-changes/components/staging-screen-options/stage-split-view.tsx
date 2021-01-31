@@ -48,6 +48,10 @@ export const StageSplitView = ({
       }
     : {};
 
+  const [selectedStagedChanges, setSelectedStagedChanges] = React.useState<
+    ChangesArrayItem[]
+  >([]);
+
   return (
     <View style={styles.parentContainer}>
       <View style={[styles.container, containerTablet]}>
@@ -65,6 +69,8 @@ export const StageSplitView = ({
             removeFromStaged={removeFromStaged}
             stagedChanges={stagedChanges}
             onCommit={onCommit}
+            selectedStagedChanges={selectedStagedChanges}
+            setSelectedStagedChanges={setSelectedStagedChanges}
           />
         </View>
       </View>

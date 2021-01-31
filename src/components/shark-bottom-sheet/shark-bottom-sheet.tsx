@@ -11,13 +11,15 @@ const AnimatedView = Animated.View;
 interface SharkBottomSheetProps {
   maxSheetHeight: number;
   minSheetHeight: number;
-  children: (fall: Animated.Value<number>) => React.ReactNode;
+  renderContent: (fall: Animated.Value<number>) => React.ReactNode;
+  renderHeader?: (fall: Animated.Value<number>) => React.ReactNode;
 }
 
 export const SharkBottomSheet = ({
   maxSheetHeight,
   minSheetHeight,
-  children,
+  renderContent,
+  renderHeader = () => null,
 }: SharkBottomSheetProps) => {
   const styles = useDynamicValue(dynamicStyles);
 
@@ -75,18 +77,21 @@ export const SharkBottomSheet = ({
     );
   };
 
-  const renderHeader = () => {
+  const renderHeaderCB = () => {
     return (
-      <TouchableWithoutFeedback
-        key={'header-container'}
-        onPress={onHeaderPress}>
-        <View style={styles.trueHeader}>{renderHandler()}</View>
-      </TouchableWithoutFeedback>
+      <View>
+        <TouchableWithoutFeedback
+          key={'header-container'}
+          onPress={onHeaderPress}>
+          <View style={styles.trueHeader}>{renderHandler()}</View>
+        </TouchableWithoutFeedback>
+        {renderHeader(fall)}
+      </View>
     );
   };
 
-  const renderContent = React.useCallback(() => children(fall), [
-    children,
+  const renderContentCB = React.useCallback(() => renderContent(fall), [
+    renderContent,
     fall,
   ]);
 
@@ -96,8 +101,8 @@ export const SharkBottomSheet = ({
       initialSnap={0}
       snapPoints={[maxSheetHeight, minSheetHeight]}
       callbackNode={fall}
-      renderHeader={renderHeader}
-      renderContent={renderContent}
+      renderHeader={renderHeaderCB}
+      renderContent={renderContentCB}
     />
   );
 };

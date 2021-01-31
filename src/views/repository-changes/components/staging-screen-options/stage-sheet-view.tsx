@@ -1,16 +1,12 @@
 import * as React from 'react';
 // TODO: This WAS importing from `react-native-gesture-handler`. Still may be needed, double check
-import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
-import Animated from 'react-native-reanimated';
-import BottomSheet from 'reanimated-bottom-sheet';
+import {View} from 'react-native';
 import {theme} from '@constants';
-import {StagedChanges} from './staged-changes';
+import {StagedChanges, StagedChangesHeader} from './staged-changes';
 import {ChangesArrayItem} from '@services';
 import {UnstagedChanges} from './unstaged-changes';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkBottomSheet} from '@components/shark-bottom-sheet';
-
-const AnimatedView = Animated.View;
 
 const minSheetHeight = 100;
 
@@ -42,6 +38,20 @@ export const StageSheetView = ({
 
   const maxUnstagedHeight = parentHeight - minSheetHeight;
 
+  const [selectedStagedChanges, setSelectedStagedChanges] = React.useState<
+    ChangesArrayItem[]
+  >([]);
+
+  const stagedProps = {
+    onCommit: onCommit,
+    removeFromStaged: removeFromStaged,
+    stagedChanges: stagedChanges,
+    inSheet: true,
+    selectedStagedChanges: selectedStagedChanges,
+    setSelectedStagedChanges: setSelectedStagedChanges,
+    hideHeader: true,
+  };
+
   return (
     <View
       style={styles.container}
@@ -51,20 +61,18 @@ export const StageSheetView = ({
       }}>
       <SharkBottomSheet
         minSheetHeight={minSheetHeight}
-        maxSheetHeight={maxSheetHeight}>
-        {() => {
+        maxSheetHeight={maxSheetHeight}
+        renderHeader={() => {
+          return <StagedChangesHeader {...stagedProps} />;
+        }}
+        renderContent={() => {
           return (
             <View style={styles.contentContainer}>
-              <StagedChanges
-                onCommit={onCommit}
-                removeFromStaged={removeFromStaged}
-                stagedChanges={stagedChanges}
-                inSheet={true}
-              />
+              <StagedChanges {...stagedProps} />
             </View>
           );
         }}
-      </SharkBottomSheet>
+      />
       <View style={{maxHeight: maxUnstagedHeight}}>
         <UnstagedChanges
           addToStaged={addToStaged}
@@ -85,35 +93,7 @@ const dynamicStyles = new DynamicStyleSheet({
     position: 'relative',
     overflow: 'hidden',
   },
-  handlerContainer: {
-    alignSelf: 'center',
-    top: 10,
-    height: 24,
-    width: 30,
-  },
-  trueHeader: {
-    backgroundColor: theme.colors.floating_surface,
-    borderTopColor: theme.colors.tint_on_surface_01,
-    borderTopWidth: theme.borders.thick,
-  },
-  handlerBar: {
-    position: 'absolute',
-    backgroundColor: theme.colors.label_medium_emphasis_no_opacity,
-    top: 5,
-    borderRadius: 3,
-    height: 4,
-    width: 24,
-  },
-  headerContentContainer: {
-    ...StyleSheet.absoluteFillObject,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 10,
-    paddingRight: 20,
-    paddingLeft: 20 + 20,
-  },
   contentContainer: {
     backgroundColor: theme.colors.floating_surface,
-    height: '100%',
   },
 });
