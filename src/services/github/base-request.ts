@@ -16,7 +16,8 @@ export const baseRequest = <T = any>({
   return (fetch(`${GHBase}${path}`, {
     method,
     headers: {
-      Authorization: `token ${gh_token}`,
+      ...(gh_token ? {Authorization: `token ${gh_token}`} : {}),
+      Accept: 'application/vnd.github.v3+json',
     },
   }) as any) as ResponseType<T>;
 };

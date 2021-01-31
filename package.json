@@ -41,6 +41,7 @@
     "dayjs": "^1.8.33",
     "i18next": "^19.8.4",
     "isomorphic-git": "https://github.com/crutchcorn/isomorphic-git#build",
+    "new-github-issue-url": "^0.2.1",
     "query-string": "^6.13.1",
     "react": "16.13.1",
     "react-content-loader": "^5.1.0",

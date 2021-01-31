@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {CommitList} from '@components/commit-list';
 import {HistoryBranchDropdown} from './components/history-branch-dropdown';
 import {OverlayDropdownContent} from '@components/overlay-dropdown-content';
@@ -7,6 +7,7 @@ import {RepositoryHeader} from '@components/repository-header';
 import {ReduxRepo} from '@entities';
 import {GitLogCommit} from '@services';
 import {useTranslation} from 'react-i18next';
+import {ErrorPrompt} from '@components/error-prompt';
 
 interface RepositoryHistoryUIProps {
   commits: any[];
@@ -32,10 +33,11 @@ export const RepositoryHistoryUI = ({
   const bottomLayer = React.useMemo(() => {
     if (error) {
       return (
-        <View>
-          <Text>{t('commitLogErrStr')}</Text>
-          <Text>{error}</Text>
-        </View>
+        <ErrorPrompt
+          explainMessage={t('commitLogErrStr')}
+          errorMessage={error}
+          callStack={error}
+        />
       );
     }
 

@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {gitLog, GitLogCommit, gitCommitToDBMapper} from '@services';
 import {Repo} from '@entities';
-import {logStore} from './debug';
+import {logStore, throwError} from './debug';
 import {getSerializedErrorStr, PayloadSerializedError} from '@types';
 
 interface StoreGitLogPayload {
@@ -28,6 +28,7 @@ export const getGitLog = createAsyncThunk(
   'commits/getGitLog',
   async (_, {dispatch, getState}) => {
     logStore && console.log('store - getGitLog');
+    if (throwError) throw Error('This is a test error code');
 
     const {repository} = getState() as any;
     const repo = repository.repo;
