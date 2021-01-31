@@ -9,8 +9,8 @@ import {theme} from '@constants';
 const AnimatedView = Animated.View;
 
 interface SharkBottomSheetProps {
-  maxSheetHeight: number;
-  minSheetHeight: number;
+  maxSheetHeight: number | string;
+  minSheetHeight: number | string;
   renderContent: (fall: Animated.Value<number>) => React.ReactNode;
   renderHeader?: (fall: Animated.Value<number>) => React.ReactNode;
 }

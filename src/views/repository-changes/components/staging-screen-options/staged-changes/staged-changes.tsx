@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {ScrollView, Text, View} from 'react-native';
+import {ScrollView as GestureScrollView} from 'react-native-gesture-handler';
 import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
 import {ChangesArrayItem} from '@services';
 import {theme} from '@constants';
@@ -129,9 +130,8 @@ export const StagedChanges = (props: StagedChangesProps) => {
   return (
     <>
       {!hideHeader && <StagedChangesHeader {...props} />}
-      {null /* Nested scrollview in sheet does not allow scrolling */}
       {!inSheet && <ScrollView>{itemList}</ScrollView>}
-      {!!inSheet && <View>{itemList}</View>}
+      {!!inSheet && <GestureScrollView>{itemList}</GestureScrollView>}
     </>
   );
 };
