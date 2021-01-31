@@ -7,9 +7,9 @@ interface StyleOfStagingContextType {
   setStyleOfStaging: (val: StagingTypes) => void;
 }
 
-export const StyleOfStagingContext = React.createContext<
-  StyleOfStagingContextType
->({
-  styleOfStaging: null,
-  setStyleOfStaging: () => {},
-});
+export const StyleOfStagingContext = React.createContext<StyleOfStagingContextType>(
+  {
+    styleOfStaging: null,
+    setStyleOfStaging: () => {},
+  },
+);

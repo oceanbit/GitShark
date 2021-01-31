@@ -86,9 +86,10 @@ export const Branches = () => {
     [dispatch, repo],
   );
 
-  const [branchToCheckout, setBranchCheckout] = React.useState<
-    InitBranchCheckoutType
-  >(initialBranchCheckout);
+  const [
+    branchToCheckout,
+    setBranchCheckout,
+  ] = React.useState<InitBranchCheckoutType>(initialBranchCheckout);
 
   const resetAndCheckout = async () => {
     const files = [

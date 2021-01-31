@@ -67,13 +67,12 @@ export const StageSheetView = ({
               transform: [
                 {
                   rotate: Animated.concat(
-                    // @ts-ignore
                     animatedBar1Rotation([0.3, 0]),
                     'rad',
                   ),
                 },
               ],
-            } as any,
+            },
           ]}
         />
         <AnimatedView
@@ -84,13 +83,12 @@ export const StageSheetView = ({
               transform: [
                 {
                   rotate: Animated.concat(
-                    // @ts-ignore
                     animatedBar1Rotation([-0.3, 0]),
                     'rad',
                   ),
                 },
               ],
-            } as any,
+            },
           ]}
         />
       </View>

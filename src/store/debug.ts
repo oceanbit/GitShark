@@ -1,2 +1,2 @@
 export const logStore = false;
-export const throwError = true;
+export const throwError = false;
