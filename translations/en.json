@@ -129,5 +129,8 @@
   "shaAbreviation": "SHA",
   "parentAbreviation": "PAR",
   "authoredOn": "Authored on {{time}}",
-  "committedOn": "Committed on {{time}}"
+  "committedOn": "Committed on {{time}}",
+  "createIssue": "Create issue",
+  "tryAgain": "Try again",
+  "viewLog": "View full log"
 }

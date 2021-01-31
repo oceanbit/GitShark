@@ -13,10 +13,13 @@ import {SharkDivider} from '@components/shark-divider';
 import {ScrollView} from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 import {FullError} from '@types';
+import {useTranslation} from 'react-i18next';
 
 export const ErrorPromptMobile = (props: FullError) => {
   const {callStack} = props;
   const styles = useDynamicValue(dynamicStyles);
+
+  const {t} = useTranslation();
 
   const sheetRef = React.useRef<SharkSheetRef>();
 
@@ -87,7 +90,7 @@ export const ErrorPromptMobile = (props: FullError) => {
                 <TouchableRipple
                   onPress={() => sheetRef.current?.snapTo(0)}
                   style={styles.fullLogContainer}>
-                  <Text style={styles.fullLogText}>View full log</Text>
+                  <Text style={styles.fullLogText}>{t('viewLog')}</Text>
                 </TouchableRipple>
               </Animated.View>
               <ScrollView

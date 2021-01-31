@@ -129,5 +129,8 @@
   "shaAbreviation": "SHA",
   "parentAbreviation": "PAR",
   "authoredOn": "Verfassung um {{time}}",
-  "committedOn": "Übergeben um {{time}}"
+  "committedOn": "Übergeben um {{time}}",
+  "createIssue": "Create issue",
+  "tryAgain": "Try again",
+  "viewLog": "View full log"
 }

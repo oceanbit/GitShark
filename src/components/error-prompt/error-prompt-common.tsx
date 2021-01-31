@@ -7,6 +7,7 @@ import {openGitHubIssue} from '@services';
 import {Icon} from '@components/shark-icon';
 import {FullError} from '@types';
 import RNRestart from 'react-native-restart';
+import {useTranslation} from 'react-i18next';
 
 interface CommonButtonProps {
   style?: StyleProp<ViewStyle>;
@@ -15,6 +16,7 @@ interface CommonButtonProps {
 
 export const GitHubButton = ({style, props}: CommonButtonProps) => {
   const styles = useDynamicValue(ghButtonStyles);
+  const {t} = useTranslation();
 
   return (
     <SharkButton
@@ -22,7 +24,7 @@ export const GitHubButton = ({style, props}: CommonButtonProps) => {
       type={'primary'}
       onPress={() => openGitHubIssue(props)}
       icon={'github'}
-      text={'Create issue'}
+      text={t('createIssue')}
     />
   );
 };
@@ -33,17 +35,21 @@ const ghButtonStyles = new DynamicStyleSheet({
   },
 });
 
-export const TryAgainButton = ({style}: CommonButtonProps) => (
-  <SharkButton
-    style={style}
-    type={'primary'}
-    onPress={() => {
-      RNRestart.Restart();
-    }}
-    icon={'refresh'}
-    text={'Try again'}
-  />
-);
+export const TryAgainButton = ({style}: CommonButtonProps) => {
+  const {t} = useTranslation();
+
+  return (
+    <SharkButton
+      style={style}
+      type={'primary'}
+      onPress={() => {
+        RNRestart.Restart();
+      }}
+      icon={'refresh'}
+      text={t('tryAgain')}
+    />
+  );
+};
 
 export const RedContainer = (props: FullError) => {
   const {explainMessage, errorMessage} = props;
