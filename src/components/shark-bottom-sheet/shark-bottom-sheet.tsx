@@ -14,6 +14,11 @@ interface SharkBottomSheetProps {
   renderContent: (fall: Animated.Value<number>) => React.ReactNode;
   renderHeader?: (fall: Animated.Value<number>) => React.ReactNode;
   startExpanded: boolean;
+  sheetRef: any;
+}
+
+export interface SharkSheetRef {
+  snapTo: (v: number) => void;
 }
 
 export const SharkBottomSheet = ({
@@ -22,6 +27,7 @@ export const SharkBottomSheet = ({
   renderContent,
   renderHeader = () => null,
   startExpanded = true,
+  sheetRef,
 }: SharkBottomSheetProps) => {
   const initialSnap = startExpanded ? 0 : 1;
 
@@ -34,6 +40,10 @@ export const SharkBottomSheet = ({
   const onHeaderPress = () => {
     bottomSheetRef.current!.snapTo(1);
   };
+
+  React.useImperativeHandle(sheetRef, () => ({
+    snapTo: (idx: number) => bottomSheetRef.current!.snapTo(idx),
+  }));
 
   const renderHandler = () => {
     const animatedBar1Rotation = (outputRange: number[]) =>

@@ -4,7 +4,7 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 import {ErrorPromptProps} from '@services';
 import {Portal, TouchableRipple} from 'react-native-paper';
-import {SharkBottomSheet} from '@components/shark-bottom-sheet';
+import {SharkBottomSheet, SharkSheetRef} from '@components/shark-bottom-sheet';
 import {
   GitHubButton,
   RedContainer,
@@ -17,6 +17,8 @@ import Animated from 'react-native-reanimated';
 export const ErrorPromptMobile = (props: ErrorPromptProps) => {
   const {callStack} = props;
   const styles = useDynamicValue(dynamicStyles);
+
+  const sheetRef = React.useRef<SharkSheetRef>();
 
   const gitHubButton = <GitHubButton props={props} style={styles.ghButton} />;
 
@@ -44,6 +46,7 @@ export const ErrorPromptMobile = (props: ErrorPromptProps) => {
         maxSheetHeight={'100%'}
         minSheetHeight={minSheetHeight}
         startExpanded={false}
+        sheetRef={sheetRef}
         renderHeader={() => (
           <View
             style={styles.headerContainer}
@@ -82,7 +85,7 @@ export const ErrorPromptMobile = (props: ErrorPromptProps) => {
                   setExpandBtnHeight(eventHeight);
                 }}>
                 <TouchableRipple
-                  onPress={() => {}}
+                  onPress={() => sheetRef.current?.snapTo(0)}
                   style={styles.fullLogContainer}>
                   <Text style={styles.fullLogText}>View full log</Text>
                 </TouchableRipple>
