@@ -13,13 +13,13 @@ interface RepositoryHeaderProps {
   repo: ReduxRepo | null;
 }
 
-const {t} = (() => useTranslation())(); // Can't use RN hooks on top levelear
-
 export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
   const {setActiveDialog, pushPull} = React.useContext(RepoHeaderContext);
 
   const history = useNavigation();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const {t} = useTranslation();
 
   if (!repo) return null;
 

@@ -8,15 +8,16 @@ import {useTranslation} from 'react-i18next';
 
 export const NewRepoFab = ({toggleAnimation}: ExtendedFabBase) => {
   const styles = useDynamicValue(dynamicStyles);
+
+  const {t} = useTranslation();
+
   return (
     <TouchableRipple
       style={styles.fab}
       onPress={() => {
         toggleAnimation();
       }}>
-      <Text style={styles.fabActionText}>
-        {useTranslation().t('newFABAction')}
-      </Text>
+      <Text style={styles.fabActionText}>{t('newFABAction')}</Text>
     </TouchableRipple>
   );
 };

@@ -33,6 +33,8 @@ export const ProgressErrorDialog = ({
 }: ProgressErrorDialogProps) => {
   const accent = useDynamicValue(theme.colors.primary);
 
+  const {t} = useTranslation();
+
   return (
     <>
       {/* The progress dialog */}
@@ -60,11 +62,7 @@ export const ProgressErrorDialog = ({
         text={errorBodyText}
         main={<ErrorMessageBox message={errorStr || ''} />}
         actions={
-          <SharkButton
-            onPress={onRetry}
-            type="primary"
-            text={useTranslation().t('retry')}
-          />
+          <SharkButton onPress={onRetry} type="primary" text={t('retry')} />
         }
       />
     </>
