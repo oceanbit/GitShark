@@ -51,10 +51,6 @@ export const PushPullArrows = ({
 
 export const dynamicStyles = new DynamicStyleSheet({
   arrowContainer: {
-    borderStyle: 'solid',
-    borderColor: theme.colors.tint_on_surface_01,
-    borderRadius: theme.borderRadius.small,
-    borderWidth: theme.borders.normal,
     flexDirection: 'row',
   },
   middleLine: {
@@ -62,7 +58,7 @@ export const dynamicStyles = new DynamicStyleSheet({
     backgroundColor: theme.colors.tint_on_surface_01,
   },
   commitNumberView: {
-    padding: theme.spacing.xs,
+    paddingHorizontal: theme.spacing.xs,
     flexDirection: 'row',
     alignItems: 'center',
   },
