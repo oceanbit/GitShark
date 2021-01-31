@@ -13,6 +13,7 @@ interface SharkBottomSheetProps {
   minSheetHeight: number | string;
   renderContent: (fall: Animated.Value<number>) => React.ReactNode;
   renderHeader?: (fall: Animated.Value<number>) => React.ReactNode;
+  startExpanded: boolean;
 }
 
 export const SharkBottomSheet = ({
@@ -20,12 +21,15 @@ export const SharkBottomSheet = ({
   minSheetHeight,
   renderContent,
   renderHeader = () => null,
+  startExpanded = true,
 }: SharkBottomSheetProps) => {
+  const initialSnap = startExpanded ? 0 : 1;
+
   const styles = useDynamicValue(dynamicStyles);
 
   const bottomSheetRef = React.createRef<BottomSheet>();
 
-  const fall = new Animated.Value(1);
+  const fall = new Animated.Value(initialSnap);
 
   const onHeaderPress = () => {
     bottomSheetRef.current!.snapTo(1);
@@ -98,7 +102,7 @@ export const SharkBottomSheet = ({
   return (
     <BottomSheet
       ref={bottomSheetRef}
-      initialSnap={0}
+      initialSnap={initialSnap}
       snapPoints={[maxSheetHeight, minSheetHeight]}
       callbackNode={fall}
       renderHeader={renderHeaderCB}

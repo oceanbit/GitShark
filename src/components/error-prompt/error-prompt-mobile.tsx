@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 import {ErrorPromptProps} from '@services';
-import {Portal} from 'react-native-paper';
+import {Portal, TouchableRipple} from 'react-native-paper';
 import {SharkBottomSheet} from '@components/shark-bottom-sheet';
 import {
   GitHubButton,
@@ -12,6 +12,7 @@ import {
 } from './error-prompt-common';
 import {SharkDivider} from '@components/shark-divider';
 import {ScrollView} from 'react-native-gesture-handler';
+import Animated from 'react-native-reanimated';
 
 export const ErrorPromptMobile = (props: ErrorPromptProps) => {
   const {callStack} = props;
@@ -23,16 +24,26 @@ export const ErrorPromptMobile = (props: ErrorPromptProps) => {
 
   const [buttonHeight, setButtonHeight] = React.useState(0);
   const [headerHeight, setHeaderHeight] = React.useState(0);
+  const [expandBtnHeight, setExpandBtnHeight] = React.useState(0);
 
   const minSheetHeight =
-    buttonHeight + headerHeight + theme.spacing.m + theme.spacing.xs;
+    buttonHeight +
+    headerHeight +
+    expandBtnHeight +
+    theme.spacing.m +
+    theme.spacing.xs;
 
   // Mobile view
   return (
     <Portal>
+      {
+        null /* Key is required in order to get re-render once min-sheet is properly defined  */
+      }
       <SharkBottomSheet
+        key={minSheetHeight}
         maxSheetHeight={'100%'}
         minSheetHeight={minSheetHeight}
+        startExpanded={false}
         renderHeader={() => (
           <View
             style={styles.headerContainer}
@@ -46,18 +57,51 @@ export const ErrorPromptMobile = (props: ErrorPromptProps) => {
             <SharkDivider />
           </View>
         )}
-        renderContent={() => (
-          <ScrollView style={styles.sheetContainer}>
-            <View style={styles.stackContainer}>
-              <Text style={styles.callstack}>{callStack}</Text>
+        renderContent={fall => {
+          const buttonOpacity = Animated.interpolate(fall, {
+            inputRange: [0, 1],
+            outputRange: [0, 1],
+            extrapolate: Animated.Extrapolate.CLAMP,
+          });
+
+          const codeOpacity = Animated.interpolate(fall, {
+            inputRange: [0, 1],
+            outputRange: [1, 0],
+            extrapolate: Animated.Extrapolate.CLAMP,
+          });
+
+          return (
+            <View>
+              <Animated.View
+                style={{
+                  opacity: buttonOpacity,
+                  zIndex: 1,
+                }}
+                onLayout={event => {
+                  const {height: eventHeight} = event.nativeEvent.layout;
+                  setExpandBtnHeight(eventHeight);
+                }}>
+                <TouchableRipple
+                  onPress={() => {}}
+                  style={styles.fullLogContainer}>
+                  <Text style={styles.fullLogText}>View full log</Text>
+                </TouchableRipple>
+              </Animated.View>
+              <ScrollView
+                style={[styles.sheetContainer, {marginTop: -expandBtnHeight}]}>
+                <Animated.View
+                  style={[styles.stackContainer, {opacity: codeOpacity}]}>
+                  <Text style={styles.callstack}>{callStack}</Text>
+                </Animated.View>
+                <SharkDivider />
+                <View style={styles.buttonContainer}>
+                  {gitHubButton}
+                  {tryAgainButton}
+                </View>
+              </ScrollView>
             </View>
-            <SharkDivider />
-            <View style={styles.buttonContainer}>
-              {gitHubButton}
-              {tryAgainButton}
-            </View>
-          </ScrollView>
-        )}
+          );
+        }}
       />
       <View
         style={styles.buttonOverlay}
@@ -82,6 +126,7 @@ const dynamicStyles = new DynamicStyleSheet({
   sheetContainer: {
     height: '100%',
     backgroundColor: theme.colors.surface,
+    position: 'relative',
   },
   redContainer: {
     paddingHorizontal: theme.spacing.m,
@@ -99,6 +144,14 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   ghButton: {
     marginBottom: theme.spacing.xs,
+  },
+  fullLogContainer: {
+    padding: theme.spacing.m,
+  },
+  fullLogText: {
+    color: theme.colors.primary,
+    ...theme.textStyles.callout_01,
+    textAlign: 'center',
   },
   buttonOverlay: {
     position: 'absolute',
