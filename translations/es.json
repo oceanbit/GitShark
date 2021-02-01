@@ -1,7 +1,7 @@
 {
   "repoListTitle": "Repositorios",
   "noRepos": "No hay repositorios",
-  "newFABAction": "New repository",
+  "newFABAction": "Nuevo repositorio",
   "cloneFABAction": "Clonar",
   "existFABAction": "Añadir existente",
   "updatedAgo": "Actualizado hace {{time}}",
@@ -12,7 +12,7 @@
   "pushAction": "Push",
   "fetchAction": "Fetch",
   "noRepoNameErr": "Debes ingresar un valor para el nombre del repositorio",
-  "retry": "Retry",
+  "retry": "Reintentar",
   "renameRepoDialogTitle": "Renombrar repositorio",
   "renameRepoDialogText": "Ingresa el nuevo nombre para el repositorio.",
   "renameRepoDialogInput": "Nombre del repositorio",
@@ -130,7 +130,7 @@
   "parentAbreviation": "PAR",
   "authoredOn": "Creado por {{time}}",
   "committedOn": "Realizado en {{time}}",
-  "createIssue": "Create issue",
-  "tryAgain": "Try again",
-  "viewLog": "View full log"
+  "createIssue": "Crear issue",
+  "tryAgain": "Intentar de nuevo",
+  "viewLog": "Ver registro completo"
 }
