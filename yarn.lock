@@ -12743,10 +12743,10 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-native-button-toggle-group@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-button-toggle-group/-/react-native-button-toggle-group-1.1.0.tgz#c2ab88fcc92045fe3c9d11e7cf7ad6d59085b5f8"
-  integrity sha512-69VVku1Bn0WiVNq7niNc394+syop4vt3Qunps4TP1qboZlW8X4cpcqaJ6vlGtIdwMyTX+6jrIU1knXQDP564jQ==
+react-native-button-toggle-group@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-button-toggle-group/-/react-native-button-toggle-group-1.1.1.tgz#cc792dfb59f042e5f3a8afe6990c7da00abb103b"
+  integrity sha512-aiLjfAMGMq2RJOFMtuwJK1opXAUEPgvfCrDmnLuUm/ez3Zsz/Lo4xVr3bXUz6WTuU2to0pEtao8+BOrzq1OPUw==
   dependencies:
     "@react-native-community/masked-view" "^0.1.8"
     react-native-paper "^3.8.0"
