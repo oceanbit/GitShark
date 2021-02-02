@@ -40,6 +40,7 @@ module.exports = ({config, mode}) => {
               'reanimated-bottom-sheet': './.storybook/default-noop',
               // Right now, MaskedView does not have web support. This should be fixed
               '@react-native-community/masked-view': './.storybook/masked-view',
+              'react-native-gesture-handler': './.storybook/gesture-handler',
               'react-i18next': './.storybook/react-i18next',
               // https://github.com/bakerface/react-native-svg-web#readme
               'react-native-svg': 'react-native-svg-web',

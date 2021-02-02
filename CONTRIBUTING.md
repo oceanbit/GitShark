@@ -21,6 +21,7 @@ We use a custom font for our icons in the app. Some resources for that include:
 
 Once the files are exported from Figma and downloaded from Icomoon, a few files need to be replaced:
 
-- `assets\fonts\icomoon.ttf`
-- `android\app\src\main\assets\fonts\icomoon.ttf`
+- `assets\fonts\icomoon.ttf` - iOS Font file
+- `android\app\src\main\assets\fonts\icomoon.ttf` - Android Font File
+- `public\fonts\icomoon.ttf` - Storybook Font File
 - `src\components\shark-icon\selection.json` - Icon shortname mapping
