@@ -3,7 +3,6 @@ import {Dimensions, StyleProp, Text, View, ViewStyle} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
 import {theme} from '@constants';
 import {
-  ColorSchemeContext,
   DynamicStyleSheet,
   useDarkMode,
   useDynamicValue,
@@ -47,8 +46,6 @@ export const BaseDialog: React.FC<BaseDialogProps> = ({
   const additionalTop = keyboard.keyboardShown
     ? height / 4 - keyboard.keyboardHeight - 10
     : undefined;
-
-  const isDark = useDarkMode();
 
   return (
     <Portal>

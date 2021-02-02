@@ -21,9 +21,13 @@ export const ErrorPromptTablet = (props: FullError) => {
 
   const maxHeight = height / 3;
 
-  const gitHubButton = <GitHubButton props={props} />;
+  const gitHubButton = (
+    <GitHubButton props={props} style={styles.tabletButton} />
+  );
 
-  const tryAgainButton = <TryAgainButton props={props} />;
+  const tryAgainButton = (
+    <TryAgainButton props={props} style={styles.tabletButton} />
+  );
 
   return (
     <BaseDialog visible={true} dismissable={false} style={styles.dialog}>
