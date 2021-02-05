@@ -49,8 +49,9 @@ export const Scrim: React.FC<ScrimProps> = ({
   }, [visible, rendered]);
 
   // Must be done like this in order to handle cyclical function reference
-  const [handleBack, setHandleBack] = React.useState<() => boolean>(
-    () => false,
+  // Must be () => () => due to functional API
+  const [handleBack, setHandleBack] = React.useState<() => boolean>(() => () =>
+    false,
   );
 
   const showModal = React.useCallback(() => {
@@ -68,6 +69,10 @@ export const Scrim: React.FC<ScrimProps> = ({
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', handleBack);
   }, [animation, handleBack, opacity]);
+
+  // Cyclical dep requires me to lazily initialize/call this otherwise we get stuck
+  // in infinate loop
+  const hideModalRef = React.useRef(() => () => {});
 
   const hideModal = React.useCallback(() => {
     const {scale} = animation;
@@ -97,15 +102,18 @@ export const Scrim: React.FC<ScrimProps> = ({
       BackHandler.removeEventListener('hardwareBackPress', handleBack);
   }, [animation, visible, handleBack, onDismiss, opacity, showModal]);
 
+  hideModalRef.current = hideModal;
+
   // Handle before initial render to avoid re-rendering issues
   React.useLayoutEffect(() => {
-    setHandleBack(() => {
+    // Must be () => () => due to functional API
+    setHandleBack(() => () => {
       if (dismissable) {
-        hideModal();
+        hideModalRef.current();
       }
       return true;
     });
-  }, [handleBack, dismissable, hideModal]);
+  }, [dismissable, hideModalRef]);
 
   const prevVisible = React.useRef<boolean | null>(null);
 
