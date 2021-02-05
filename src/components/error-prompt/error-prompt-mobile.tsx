@@ -14,6 +14,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 import {FullError} from '@types';
 import {useTranslation} from 'react-i18next';
+import {Scrim} from '@components/scrim';
 
 export const ErrorPromptMobile = (props: FullError) => {
   const {callStack} = props;
@@ -41,86 +42,91 @@ export const ErrorPromptMobile = (props: FullError) => {
   // Mobile view
   return (
     <Portal>
-      {
-        null /* Key is required in order to get re-render once min-sheet is properly defined  */
-      }
-      <SharkBottomSheet
-        key={minSheetHeight}
-        maxSheetHeight={'100%'}
-        minSheetHeight={minSheetHeight}
-        startExpanded={false}
-        sheetRef={sheetRef}
-        renderHeader={() => (
-          <View
-            style={styles.headerContainer}
-            onLayout={event => {
-              const {height: eventHeight} = event.nativeEvent.layout;
-              setHeaderHeight(eventHeight);
-            }}>
-            <View style={styles.redContainer}>
-              <RedContainer {...props} />
+      <Scrim visible={true} dismissable={false}>
+        {
+          null /* Key is required in order to get re-render once min-sheet is properly defined  */
+        }
+        <SharkBottomSheet
+          key={minSheetHeight}
+          maxSheetHeight={'100%'}
+          minSheetHeight={minSheetHeight}
+          startExpanded={false}
+          sheetRef={sheetRef}
+          renderHeader={() => (
+            <View
+              style={styles.headerContainer}
+              onLayout={event => {
+                const {height: eventHeight} = event.nativeEvent.layout;
+                setHeaderHeight(eventHeight);
+              }}>
+              <View style={styles.redContainer}>
+                <RedContainer {...props} />
+              </View>
+              <SharkDivider />
             </View>
-            <SharkDivider />
-          </View>
-        )}
-        renderContent={fall => {
-          const buttonOpacity = Animated.interpolate(fall, {
-            inputRange: [0, 1],
-            outputRange: [0, 1],
-            extrapolate: Animated.Extrapolate.CLAMP,
-          });
+          )}
+          renderContent={fall => {
+            const buttonOpacity = Animated.interpolate(fall, {
+              inputRange: [0, 1],
+              outputRange: [0, 1],
+              extrapolate: Animated.Extrapolate.CLAMP,
+            });
 
-          const codeOpacity = Animated.interpolate(fall, {
-            inputRange: [0, 1],
-            outputRange: [1, 0],
-            extrapolate: Animated.Extrapolate.CLAMP,
-          });
+            const codeOpacity = Animated.interpolate(fall, {
+              inputRange: [0, 1],
+              outputRange: [1, 0],
+              extrapolate: Animated.Extrapolate.CLAMP,
+            });
 
-          return (
-            <View>
-              <Animated.View
-                style={{
-                  opacity: buttonOpacity,
-                  zIndex: 1,
-                }}
-                onLayout={event => {
-                  const {height: eventHeight} = event.nativeEvent.layout;
-                  setExpandBtnHeight(eventHeight);
-                }}>
-                <TouchableRipple
-                  onPress={() => sheetRef.current?.snapTo(0)}
-                  style={styles.fullLogContainer}>
-                  <Text style={styles.fullLogText}>{t('viewLog')}</Text>
-                </TouchableRipple>
-              </Animated.View>
-              <ScrollView
-                style={[styles.sheetContainer, {marginTop: -expandBtnHeight}]}>
+            return (
+              <View>
                 <Animated.View
-                  style={[styles.stackContainer, {opacity: codeOpacity}]}>
-                  <Text style={styles.callstack}>{callStack}</Text>
+                  style={{
+                    opacity: buttonOpacity,
+                    zIndex: 1,
+                  }}
+                  onLayout={event => {
+                    const {height: eventHeight} = event.nativeEvent.layout;
+                    setExpandBtnHeight(eventHeight);
+                  }}>
+                  <TouchableRipple
+                    onPress={() => sheetRef.current?.snapTo(0)}
+                    style={styles.fullLogContainer}>
+                    <Text style={styles.fullLogText}>{t('viewLog')}</Text>
+                  </TouchableRipple>
                 </Animated.View>
-                <SharkDivider />
-                <View style={styles.buttonContainer}>
-                  {gitHubButton}
-                  {tryAgainButton}
-                </View>
-              </ScrollView>
-            </View>
-          );
-        }}
-      />
-      <View
-        style={styles.buttonOverlay}
-        onLayout={event => {
-          const {height: eventHeight} = event.nativeEvent.layout;
-          setButtonHeight(eventHeight);
-        }}>
-        <SharkDivider />
-        <View style={styles.buttonContainer}>
-          {gitHubButton}
-          {tryAgainButton}
+                <ScrollView
+                  style={[
+                    styles.sheetContainer,
+                    {marginTop: -expandBtnHeight},
+                  ]}>
+                  <Animated.View
+                    style={[styles.stackContainer, {opacity: codeOpacity}]}>
+                    <Text style={styles.callstack}>{callStack}</Text>
+                  </Animated.View>
+                  <SharkDivider />
+                  <View style={styles.buttonContainer}>
+                    {gitHubButton}
+                    {tryAgainButton}
+                  </View>
+                </ScrollView>
+              </View>
+            );
+          }}
+        />
+        <View
+          style={styles.buttonOverlay}
+          onLayout={event => {
+            const {height: eventHeight} = event.nativeEvent.layout;
+            setButtonHeight(eventHeight);
+          }}>
+          <SharkDivider />
+          <View style={styles.buttonContainer}>
+            {gitHubButton}
+            {tryAgainButton}
+          </View>
         </View>
-      </View>
+      </Scrim>
     </Portal>
   );
 };
