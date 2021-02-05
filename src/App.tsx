@@ -2,7 +2,7 @@ import * as React from 'react';
 import 'reflect-metadata';
 import {Portal, Provider as PaperProvider} from 'react-native-paper';
 
-import {Button, LogBox, StatusBar, Text, View} from 'react-native';
+import {LogBox, StatusBar} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {Repository} from './views/repository/repository';
 import {Account} from './views/account/account';
@@ -23,9 +23,9 @@ import DefaultPreference from 'react-native-default-preference';
 import {
   useGetAndroidPermissions,
   useGitHubUserData,
+  useLocalDarkMode,
   useManualUserData,
   useThunkDispatch,
-  useLocalDarkMode,
 } from '@hooks';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
@@ -33,6 +33,9 @@ import {setupDatabase, store} from '@store';
 import ErrorBoundary from 'react-native-error-boundary';
 
 import './services/translations';
+import {getSerializedErrorStr} from '@types';
+import {ErrorPrompt} from '@components/error-prompt';
+import {useTranslation} from 'react-i18next';
 
 // TODO: Remove once https://github.com/isomorphic-git/isomorphic-git/pull/1156
 // @ts-ignore
@@ -85,13 +88,6 @@ const AppBase = () => {
   /**
    * User settings
    */
-  const {
-    isDarkMode,
-    paperTheme,
-    updateLocalDarkMode,
-    localDarkMode,
-  } = useLocalDarkMode();
-
   const [styleOfStaging, setStyleOfStaging] = React.useState<StagingTypes>(
     'split',
   );
@@ -113,68 +109,78 @@ const AppBase = () => {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer theme={isDarkMode ? darkNavTheme : lightNavTheme}>
-        <PaperProvider theme={paperTheme}>
-          <StatusBar
-            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-            backgroundColor={'transparent'}
-          />
-          <StyleOfStagingContext.Provider
-            value={{
-              styleOfStaging,
-              setStyleOfStaging: updateStagingStyle,
-            }}>
-            <SetDarkModeContext.Provider
-              value={{
-                setDarkMode: updateLocalDarkMode,
-                localDarkMode,
-              }}>
-              <UserContext.Provider
-                value={{
-                  gitHubUser,
-                  setUseGithub,
-                  useGitHub,
-                  manualUser,
-                  setManualUser,
-                  logoutGitHub,
-                }}>
-                <ColorSchemeProvider mode={isDarkMode ? 'dark' : 'light'}>
-                  <Portal.Host>
-                    <Stack.Navigator headerMode={'none'}>
-                      <Stack.Screen
-                        name="RepoList"
-                        component={RepositoryList}
-                      />
-                      <Stack.Screen name="Settings" component={Settings} />
-                      <Stack.Screen name="Account" component={Account} />
-                      <Stack.Screen name="RepoDetails" component={Repository} />
-                    </Stack.Navigator>
-                  </Portal.Host>
-                </ColorSchemeProvider>
-              </UserContext.Provider>
-            </SetDarkModeContext.Provider>
-          </StyleOfStagingContext.Provider>
-        </PaperProvider>
-      </NavigationContainer>
+      <StyleOfStagingContext.Provider
+        value={{
+          styleOfStaging,
+          setStyleOfStaging: updateStagingStyle,
+        }}>
+        <UserContext.Provider
+          value={{
+            gitHubUser,
+            setUseGithub,
+            useGitHub,
+            manualUser,
+            setManualUser,
+            logoutGitHub,
+          }}>
+          <Portal.Host>
+            <Stack.Navigator headerMode={'none'}>
+              <Stack.Screen name="RepoList" component={RepositoryList} />
+              <Stack.Screen name="Settings" component={Settings} />
+              <Stack.Screen name="Account" component={Account} />
+              <Stack.Screen name="RepoDetails" component={Repository} />
+            </Stack.Navigator>
+          </Portal.Host>
+        </UserContext.Provider>
+      </StyleOfStagingContext.Provider>
     </SafeAreaProvider>
   );
 };
 
-const CustomFallback = (props: {error: Error; resetError: () => void}) => (
-  <View>
-    <Text>Something happened!</Text>
-    <Text>{props.error.toString()}</Text>
-    <Button onPress={props.resetError} title={'Try again'} />
-  </View>
-);
+const CustomFallback = ({error}: {error: Error}) => {
+  const {t} = useTranslation();
+
+  const {errorMessage, callStack} = getSerializedErrorStr(error);
+
+  return (
+    <ErrorPrompt
+      explainMessage={t('unknownError')}
+      errorMessage={errorMessage}
+      callStack={callStack}
+    />
+  );
+};
 
 const App = () => {
+  const {
+    isDarkMode,
+    paperTheme,
+    updateLocalDarkMode,
+    localDarkMode,
+  } = useLocalDarkMode();
+
   return (
-    <ErrorBoundary FallbackComponent={CustomFallback}>
-      <Provider store={store}>
-        <AppBase />
-      </Provider>
-    </ErrorBoundary>
+    <NavigationContainer theme={isDarkMode ? darkNavTheme : lightNavTheme}>
+      <PaperProvider theme={paperTheme}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={'transparent'}
+        />
+        <SetDarkModeContext.Provider
+          value={{
+            setDarkMode: updateLocalDarkMode,
+            localDarkMode,
+          }}>
+          <ColorSchemeProvider mode={isDarkMode ? 'dark' : 'light'}>
+            <ErrorBoundary FallbackComponent={CustomFallback}>
+              <Provider store={store}>
+                <AppBase />
+              </Provider>
+            </ErrorBoundary>
+          </ColorSchemeProvider>
+        </SetDarkModeContext.Provider>
+      </PaperProvider>
+    </NavigationContainer>
   );
 };
 

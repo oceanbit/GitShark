@@ -11,6 +11,7 @@ import {
 import {findRepoList} from '@store/repoListSlice';
 import {getPushPull} from '@services';
 import {logStore} from './debug';
+import {PayloadSerializedError} from '@types';
 
 export const getCommitRev = createAsyncThunk(
   'repository/getCommitRev',
@@ -146,6 +147,30 @@ const repositorySlice = createSlice({
     },
     [changeBranch.fulfilled.toString()]: (state, action) => {
       state.repo!.currentBranchName = action.payload;
+    },
+    [findRepo.rejected.toString()]: (state, action: PayloadSerializedError) => {
+      throw action.error;
+    },
+    [editRepo.rejected.toString()]: (state, action: PayloadSerializedError) => {
+      throw action.error;
+    },
+    [getCommitRev.rejected.toString()]: (
+      state,
+      action: PayloadSerializedError,
+    ) => {
+      throw action.error;
+    },
+    [clearRepo.rejected.toString()]: (
+      state,
+      action: PayloadSerializedError,
+    ) => {
+      throw action.error;
+    },
+    [changeBranch.rejected.toString()]: (
+      state,
+      action: PayloadSerializedError,
+    ) => {
+      throw action.error;
     },
   },
 });

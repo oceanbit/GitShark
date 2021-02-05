@@ -8,7 +8,7 @@ export type PayloadSerializedError = PayloadAction<
   SerializedError | string
 >;
 
-export const getSerializedErrorStr = (e: SerializedError | string) => {
+export const getSerializedErrorStr = (e: SerializedError | Error | string) => {
   if (typeof e === 'string') {
     const [msg, ...stack] = e.split('\n');
     return {

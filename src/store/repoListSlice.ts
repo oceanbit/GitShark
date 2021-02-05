@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {Repo, getReduxRepo, ReduxRepo} from '@entities';
 import {getRepository} from 'typeorm';
 import {logStore} from './debug';
+import {PayloadSerializedError} from '@types';
 
 export const findRepoList = createAsyncThunk(
   'repository/findRepoList',
@@ -27,6 +28,12 @@ const repoListSlice = createSlice({
   extraReducers: {
     [findRepoList.fulfilled.toString()]: (state, action) => {
       state.repoList = action.payload;
+    },
+    [findRepoList.rejected.toString()]: (
+      state,
+      action: PayloadSerializedError,
+    ) => {
+      throw action.error;
     },
   },
 });
