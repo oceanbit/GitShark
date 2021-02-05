@@ -1,16 +1,8 @@
 import * as React from 'react';
 import 'reflect-metadata';
-import {Provider as PaperProvider, Portal} from 'react-native-paper';
+import {Portal, Provider as PaperProvider} from 'react-native-paper';
 
-import {
-  Button,
-  LogBox,
-  Platform,
-  StatusBar,
-  useColorScheme,
-  View,
-  Text,
-} from 'react-native';
+import {Button, LogBox, StatusBar, Text, View} from 'react-native';
 import {RepositoryList} from './views/repository-list/repository-list';
 import {Repository} from './views/repository/repository';
 import {Account} from './views/account/account';
@@ -19,16 +11,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {
   darkNavTheme,
-  darkPaperTheme,
   lightNavTheme,
-  lightPaperTheme,
+  SetDarkModeContext,
+  STAGING_STYLE_STORAGE_KEY,
   StagingTypes,
   StyleOfStagingContext,
   UserContext,
-  DARK_MODE_STORAGE_KEY,
-  DarkModeOptionTypes,
-  SetDarkModeContext,
-  STAGING_STYLE_STORAGE_KEY,
 } from '@constants';
 import {ColorSchemeProvider} from 'react-native-dynamic';
 import DefaultPreference from 'react-native-default-preference';
@@ -37,11 +25,11 @@ import {
   useGitHubUserData,
   useManualUserData,
   useThunkDispatch,
+  useLocalDarkMode,
 } from '@hooks';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {changeBarColors} from 'react-native-immersive-bars';
 import {Provider} from 'react-redux';
-import {store, setupDatabase} from '@store';
+import {setupDatabase, store} from '@store';
 import ErrorBoundary from 'react-native-error-boundary';
 
 import './services/translations';
@@ -97,35 +85,21 @@ const AppBase = () => {
   /**
    * User settings
    */
+  const {
+    isDarkMode,
+    paperTheme,
+    updateLocalDarkMode,
+    localDarkMode,
+  } = useLocalDarkMode();
+
   const [styleOfStaging, setStyleOfStaging] = React.useState<StagingTypes>(
     'split',
   );
-
-  const [localDarkMode, setLocalDarkMode] = React.useState<DarkModeOptionTypes>(
-    'auto',
-  );
-
-  const systemColorTheme = useColorScheme();
-  const isSystemDarkMode = systemColorTheme === 'dark';
-
-  const isDarkMode =
-    localDarkMode === 'auto' ? isSystemDarkMode : localDarkMode === 'dark';
-
-  React.useEffect(() => {
-    if (Platform.OS === 'android') {
-      changeBarColors(isDarkMode);
-    }
-  }, [isDarkMode]);
 
   React.useEffect(() => {
     DefaultPreference.get(STAGING_STYLE_STORAGE_KEY).then(val => {
       if (val) {
         setStyleOfStaging(val as StagingTypes);
-      }
-    });
-    DefaultPreference.get(DARK_MODE_STORAGE_KEY).then(val => {
-      if (val) {
-        setLocalDarkMode(val as DarkModeOptionTypes);
       }
     });
   }, []);
@@ -135,14 +109,7 @@ const AppBase = () => {
     setStyleOfStaging(val);
   };
 
-  const updateLocalDarkMode = (val: DarkModeOptionTypes) => {
-    DefaultPreference.set(DARK_MODE_STORAGE_KEY, val);
-    setLocalDarkMode(val);
-  };
-
   const Stack = createStackNavigator();
-
-  const paperTheme = isDarkMode ? darkPaperTheme : lightPaperTheme;
 
   return (
     <SafeAreaProvider>
