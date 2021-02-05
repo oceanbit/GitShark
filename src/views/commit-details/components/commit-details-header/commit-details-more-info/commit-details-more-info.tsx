@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
-import {CommitPill} from '@components/commit-pill';
 import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
+import Clipboard from '@react-native-community/clipboard';
 
 interface CommitDetailsMoreInfoProps {
   sha: string;
@@ -24,10 +24,8 @@ export const CommitDetailsMoreInfo = ({
 
   const [showCopied, setShowCopied] = React.useState(false);
 
-  const orng = useDynamicValue(theme.colors.change_mixed);
-  const prpl = useDynamicValue(theme.colors.change_refactored);
-
   const copyText = () => {
+    Clipboard.setString(sha);
     setShowCopied(true);
     setTimeout(() => {
       setShowCopied(false);
