@@ -43,7 +43,7 @@ export const TopSpacerView = ({
   );
 };
 
-export const BottomSpacerView = ({additionalSpacing = 0}) => {
+export const BottomSpacerView = ({additionalSpacing = 0}: SpacerViewProps) => {
   const insets = useSafeAreaInsets();
 
   return <View style={{height: insets.bottom + additionalSpacing}} />;

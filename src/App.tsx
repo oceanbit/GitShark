@@ -32,6 +32,8 @@ import {Provider} from 'react-redux';
 import {setupDatabase, store} from '@store';
 import ErrorBoundary from 'react-native-error-boundary';
 
+import 'react-native-get-random-values';
+
 import './services/translations';
 import {getSerializedErrorStr} from '@types';
 import {ErrorPrompt} from '@components/error-prompt';

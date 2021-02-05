@@ -133,5 +133,6 @@
   "createIssue": "Create issue",
   "tryAgain": "Try again",
   "viewLog": "View full log",
-  "unknownError": "An unknown error occurred"
+  "unknownError": "An unknown error occurred",
+  "weSavedImgAndroid": "GitShark saved an image of the error screen to your device's Downloads folder and copied the error to your clipboard"
 }

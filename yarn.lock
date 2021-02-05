@@ -2678,6 +2678,11 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
+"@react-native-community/clipboard@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/clipboard/-/clipboard-1.5.1.tgz#32abb3ea2eb91ee3f9c5fb1d32d5783253c9fabe"
+  integrity sha512-AHAmrkLEH5UtPaDiRqoULERHh3oNv7Dgs0bTC0hO5Z2GdNokAMPT5w8ci8aMcRemcwbtdHjxChgtjbeA38GBdA==
+
 "@react-native-community/eslint-config@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-config/-/eslint-config-2.0.0.tgz#35dcc529a274803fc4e0a6b3d6c274551fb91774"
@@ -3571,6 +3576,11 @@
   integrity sha512-d6dIfpPbF+8B7WiCi2ELY7m0w1joD8cRW4ms88Emdb2w062NeEpbNCeWwVCgzLRpVG+5e74VFSg4rgJ2xXjEiQ==
   dependencies:
     source-map "^0.6.1"
+
+"@types/uuid@^8.3.0":
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.0.tgz#215c231dff736d5ba92410e6d602050cce7e273f"
+  integrity sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==
 
 "@types/webpack-env@^1.15.0":
   version "1.15.2"
@@ -7521,6 +7531,11 @@ fancy-log@^1.3.2:
     color-support "^1.1.3"
     parse-node-version "^1.0.0"
     time-stamp "^1.0.0"
+
+fast-base64-decode@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/fast-base64-decode/-/fast-base64-decode-1.0.0.tgz#b434a0dd7d92b12b43f26819300d2dafb83ee418"
+  integrity sha512-qwaScUgUGBYeDNRnbc/KyllVU88Jk1pRHPStuF/lO7B0/RTRLj7U0lkdTAutlBblY08rwZDff6tNU9cjv6j//Q==
 
 fast-deep-equal@^2.0.1:
   version "2.0.1"
@@ -12776,8 +12791,8 @@ react-native-error-boundary@^1.1.6:
   integrity sha512-IqNcD0Qigx2Dk4fP+OcTYLH8XjbijPEmLZqCh2flLijUkEo8G/D151tRcUV6DHU0IL0ZHOB+/wF2kEUT+liPdg==
 
 "react-native-fs@https://github.com/oceanbit-dev/react-native-fs.git#all-commands":
-  version "2.16.4"
-  resolved "https://github.com/oceanbit-dev/react-native-fs.git#cd4784f414c5b0b07de108001ae359a1cdd64028"
+  version "2.16.6"
+  resolved "https://github.com/oceanbit-dev/react-native-fs.git#2ca91d6ad9e7428a7963cd9f535e9c66466a64cc"
   dependencies:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
@@ -12792,6 +12807,13 @@ react-native-gesture-handler@^1.9.0:
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
     prop-types "^15.7.2"
+
+react-native-get-random-values@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-get-random-values/-/react-native-get-random-values-1.5.1.tgz#f335a37c09a4892deaf40187e73a888e14e82d60"
+  integrity sha512-L76sTcz3jdFmc7Gn41SHOxCioYY3m4rtuWEUI6X8IeWVmkflHXrSyAObOW4eNTM5qytH+45pgMCVKJzfB/Ik4A==
+  dependencies:
+    fast-base64-decode "^1.0.0"
 
 react-native-immersive-bars@^1.0.0:
   version "1.0.1"
@@ -12918,6 +12940,11 @@ react-native-video@^5.1.1:
     keymirror "^0.1.1"
     prop-types "^15.7.2"
     shaka-player "^2.5.9"
+
+react-native-view-shot@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-3.1.2.tgz#8c8e84c67a4bc8b603e697dbbd59dbc9b4f84825"
+  integrity sha512-9u9fPtp6a52UMoZ/UCPrCjKZk8tnkI9To0Eh6yYnLKFEGkRZ7Chm6DqwDJbYJHeZrheCCopaD5oEOnRqhF4L2Q==
 
 react-native-web-linear-gradient@^1.1.1:
   version "1.1.1"
@@ -15262,7 +15289,7 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
-uuid@^8.3.0:
+uuid@^8.3.0, uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==

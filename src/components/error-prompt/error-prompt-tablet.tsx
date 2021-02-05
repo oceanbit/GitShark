@@ -21,12 +21,22 @@ export const ErrorPromptTablet = (props: FullError) => {
 
   const maxHeight = height / 3;
 
+  const callstackRef = React.useRef();
+
   const gitHubButton = (
-    <GitHubButton props={props} style={styles.tabletButton} />
+    <GitHubButton
+      props={props}
+      style={styles.tabletButton}
+      stacktraceRef={callstackRef}
+    />
   );
 
   const tryAgainButton = (
-    <TryAgainButton props={props} style={styles.tabletButton} />
+    <TryAgainButton
+      props={props}
+      style={styles.tabletButton}
+      stacktraceRef={callstackRef}
+    />
   );
 
   return (
@@ -36,7 +46,9 @@ export const ErrorPromptTablet = (props: FullError) => {
       </View>
       <SharkDivider />
       <ScrollView style={{maxHeight}}>
-        <Text style={[styles.tabletCallstack, styles.callstack]}>
+        <Text
+          style={[styles.tabletCallstack, styles.callstack]}
+          ref={callstackRef as any}>
           {callStack}
         </Text>
       </ScrollView>
@@ -68,6 +80,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   callstack: {
     ...theme.textStyles.code,
+    backgroundColor: theme.colors.surface,
   },
   tabletButtons: {
     display: 'flex',

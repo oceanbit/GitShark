@@ -15,6 +15,8 @@ import Animated from 'react-native-reanimated';
 import {FullError} from '@types';
 import {useTranslation} from 'react-i18next';
 import {Scrim} from '@components/scrim';
+import ViewShot from 'react-native-view-shot';
+import {BottomSpacerView} from '@components/shark-safe-top';
 
 export const ErrorPromptMobile = (props: FullError) => {
   const {callStack} = props;
@@ -24,9 +26,19 @@ export const ErrorPromptMobile = (props: FullError) => {
 
   const sheetRef = React.useRef<SharkSheetRef>();
 
-  const gitHubButton = <GitHubButton props={props} style={styles.ghButton} />;
+  const callstackRef = React.useRef();
 
-  const tryAgainButton = <TryAgainButton props={props} />;
+  const gitHubButton = (
+    <GitHubButton
+      props={props}
+      style={styles.ghButton}
+      stacktraceRef={callstackRef}
+    />
+  );
+
+  const tryAgainButton = (
+    <TryAgainButton props={props} stacktraceRef={callstackRef} />
+  );
 
   const [buttonHeight, setButtonHeight] = React.useState(0);
   const [headerHeight, setHeaderHeight] = React.useState(0);
@@ -102,13 +114,16 @@ export const ErrorPromptMobile = (props: FullError) => {
                   ]}>
                   <Animated.View
                     style={[styles.stackContainer, {opacity: codeOpacity}]}>
-                    <Text style={styles.callstack}>{callStack}</Text>
+                    <Text style={styles.callstack} ref={callstackRef as any}>
+                      {callStack}
+                    </Text>
                   </Animated.View>
                   <SharkDivider />
                   <View style={styles.buttonContainer}>
                     {gitHubButton}
                     {tryAgainButton}
                   </View>
+                  <BottomSpacerView />
                 </ScrollView>
               </View>
             );
@@ -125,6 +140,7 @@ export const ErrorPromptMobile = (props: FullError) => {
             {gitHubButton}
             {tryAgainButton}
           </View>
+          <BottomSpacerView />
         </View>
       </Scrim>
     </Portal>
@@ -150,6 +166,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   callstack: {
     ...theme.textStyles.code,
+    backgroundColor: theme.colors.surface,
   },
   buttonContainer: {
     padding: theme.spacing.m,
