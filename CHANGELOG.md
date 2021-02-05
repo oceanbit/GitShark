@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-alpha.10](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.9...v0.0.1-alpha.10) (2021-02-05)
+
+
+### Features
+
+* add german translation to app ([0d6932a](https://github.com/crutchcorn/GitShark/commit/0d6932ad3530f8bef49c2fb84cf8faeb0d4724e7))
+* enhanced error handling UI and reporting experience ([ed9303e](https://github.com/crutchcorn/GitShark/commit/ed9303e65f0920baeac1c9506e59df3654683ed8))
+
+
+### Bug Fixes
+
+* cards with arrows are no longer a different height from cards without ([013ec14](https://github.com/crutchcorn/GitShark/commit/013ec1430cf13ac769380e85d39e93452bc55fc3))
+* copy commit sha now works as-expected ([cfc4b38](https://github.com/crutchcorn/GitShark/commit/cfc4b384026167a75fe978e32b9621f65fb5fc66))
+* sheet view can now properly scroll ([7d07358](https://github.com/crutchcorn/GitShark/commit/7d07358a2f3bcd87b36dd2e74cb89cedb859e557))
+
 ### [0.0.1-alpha.9](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.8...v0.0.1-alpha.9) (2021-01-26)
 
 
