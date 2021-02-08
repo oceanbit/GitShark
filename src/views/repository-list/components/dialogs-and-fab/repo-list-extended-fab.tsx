@@ -40,27 +40,20 @@ export const RepoListExtendedFab = ({
   const windowHeight = Dimensions.get('window').height;
 
   const newRepoFabCB = React.useCallback(
-    (toggleAnimation: ExtendedFabBase['toggleAnimation']) => (
-      // I have no idea why this is happening, but without this provider, the `theme` is always set to the system value
-      // and will not change when the user toggles in settings. If you're reading this and can figure out why this is,
-      // please open a GitHub issue and teach us! <3 :)
-      <ColorSchemeContext.Provider value={isDark ? 'dark' : 'light'}>
-        <NewRepoFab toggleAnimation={toggleAnimation} />
-      </ColorSchemeContext.Provider>
+    (toggleAnimation: ExtendedFabBase['toggleAnimation'], props: ViewProps) => (
+      <NewRepoFab toggleAnimation={toggleAnimation} props={props} />
     ),
-    [isDark],
+    [],
   );
 
   const actionFabCB = React.useCallback(
     (toggleAnimation: ExtendedFabBase['toggleAnimation']) => (
-      <ColorSchemeContext.Provider value={isDark ? 'dark' : 'light'}>
-        <FabActions
-          toggleAnimation={toggleAnimation}
-          onSelect={val => setSelectedAction(val)}
-        />
-      </ColorSchemeContext.Provider>
+      <FabActions
+        toggleAnimation={toggleAnimation}
+        onSelect={val => setSelectedAction(val)}
+      />
     ),
-    [isDark, setSelectedAction],
+    [setSelectedAction],
   );
 
   React.useEffect(() => {
