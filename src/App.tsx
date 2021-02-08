@@ -7,6 +7,8 @@ import {RepositoryList} from './views/repository-list/repository-list';
 import {Repository} from './views/repository/repository';
 import {Account} from './views/account/account';
 import {Settings} from './views/settings/settings';
+import {StagingLayout} from './views/staging-layout/staging-layout';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {
@@ -130,6 +132,7 @@ const AppBase = () => {
               <Stack.Screen name="RepoList" component={RepositoryList} />
               <Stack.Screen name="Settings" component={Settings} />
               <Stack.Screen name="Account" component={Account} />
+              <Stack.Screen name="StagingLayout" component={StagingLayout} />
               <Stack.Screen name="RepoDetails" component={Repository} />
             </Stack.Navigator>
           </Portal.Host>
