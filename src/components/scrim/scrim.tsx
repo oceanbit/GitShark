@@ -8,10 +8,12 @@ import {
   Animated,
   BackHandler,
   Easing,
+  StyleProp,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View,
+  ViewStyle,
 } from 'react-native';
 
 const DEFAULT_DURATION = 220;
@@ -27,6 +29,7 @@ interface ScrimProps {
    * Callback that is called when the user dismisses the modal.
    */
   onDismiss?: () => void;
+  style?: StyleProp<ViewStyle>;
 }
 
 export const Scrim: React.FC<ScrimProps> = ({
@@ -35,6 +38,7 @@ export const Scrim: React.FC<ScrimProps> = ({
   dismissable = true,
   onDismiss,
   children,
+  style,
 }) => {
   const {colors, animation} = useTheme();
 
@@ -146,7 +150,7 @@ export const Scrim: React.FC<ScrimProps> = ({
           style={[styles.backdrop, {backgroundColor: colors.backdrop, opacity}]}
         />
       </TouchableWithoutFeedback>
-      <View style={[styles.wrapper]} pointerEvents="box-none">
+      <View style={[styles.wrapper, style]} pointerEvents="box-none">
         {children}
       </View>
     </Animated.View>

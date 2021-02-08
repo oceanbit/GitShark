@@ -1,13 +1,20 @@
 import * as React from 'react';
-import {Dimensions, StyleProp, Text, View, ViewStyle} from 'react-native';
-import {Dialog, Portal} from 'react-native-paper';
-import {DialogsContext, theme} from '@constants';
 import {
-  DynamicStyleSheet,
-  useDarkMode,
-  useDynamicValue,
-} from 'react-native-dynamic';
+  Animated,
+  Dimensions,
+  Platform,
+  StyleProp,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
+import {overlay, Portal, Surface, useTheme} from 'react-native-paper';
+import {DialogsContext, theme} from '@constants';
+import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {useKeyboard} from '@react-native-community/hooks';
+import {Scrim} from '@components/scrim';
+
+const DIALOG_ELEVATION = 24;
 
 interface AppDialogProps {
   title: string;
@@ -50,7 +57,7 @@ export const BaseDialog: React.FC<BaseDialogProps> = ({
 
   const keyboard = useKeyboard();
 
-  const styles = useDynamicValue(dynamicStyles);
+  const styles = useDynamicValue(baseDialogStyles);
 
   const additionalTop = keyboard.keyboardShown
     ? height / 4 - keyboard.keyboardHeight - 10
@@ -58,16 +65,47 @@ export const BaseDialog: React.FC<BaseDialogProps> = ({
 
   return (
     <Portal>
-      <Dialog
+      <Scrim
         visible={visible ?? true}
         dismissable={dismissable}
         onDismiss={onDismiss}
-        style={[styles.dialogContainer, style, {top: additionalTop}]}>
-        {children}
-      </Dialog>
+        style={{
+          justifyContent: 'center',
+        }}>
+        <Animated.View
+          style={[styles.dialogContainer, style, {top: additionalTop}]}>
+          {children}
+        </Animated.View>
+      </Scrim>
     </Portal>
   );
 };
+
+const baseDialogStyles = new DynamicStyleSheet({
+  dialogContainer: {
+    margin: 0,
+    // Set max width for tablet
+    maxWidth: theme.breakpoints.singlePanelMaxWidth,
+    // Provide horizontal spacing on mobile
+    width: '90%',
+    alignSelf: 'center',
+    paddingHorizontal: theme.spacing.l,
+    paddingTop: 20,
+    paddingBottom: theme.spacing.m,
+    backgroundColor: theme.colors.floating_surface,
+    borderRadius: theme.borderRadius.regular,
+    /**
+     * This prevents the shadow from being clipped on Android since Android
+     * doesn't support `overflow: visible`.
+     * One downside for this fix is that it will disable clicks on the area
+     * of the shadow around the dialog, consequently, if you click around the
+     * dialog (44 pixel from the top and bottom) it won't be dismissed.
+     */
+    marginVertical: Platform.OS === 'android' ? 44 : 0,
+    marginHorizontal: 26,
+    elevation: DIALOG_ELEVATION,
+  },
+});
 
 export const AppDialog = ({
   visible,
@@ -79,7 +117,7 @@ export const AppDialog = ({
   main,
   style,
 }: AppDialogProps) => {
-  const styles = useDynamicValue(dynamicStyles);
+  const styles = useDynamicValue(appDialogDynamicStyles);
 
   return (
     <BaseDialog
@@ -99,19 +137,7 @@ export const AppDialog = ({
   );
 };
 
-const dynamicStyles = new DynamicStyleSheet({
-  dialogContainer: {
-    margin: 0,
-    // Set max width for tablet
-    maxWidth: theme.breakpoints.singlePanelMaxWidth,
-    // Provide horizontal spacing on mobile
-    width: '90%',
-    alignSelf: 'center',
-    paddingHorizontal: theme.spacing.l,
-    paddingTop: 20,
-    paddingBottom: theme.spacing.m,
-    backgroundColor: theme.colors.floating_surface,
-  },
+const appDialogDynamicStyles = new DynamicStyleSheet({
   dialogTitle: {
     marginBottom: 4,
     ...theme.textStyles.headline_06,
