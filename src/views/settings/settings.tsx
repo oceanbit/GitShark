@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {ScrollView, Text} from 'react-native';
-import {SetDarkModeContext, theme} from '@constants';
+import {ScrollView, Text, View} from 'react-native';
+import {SetDarkModeContext, StyleOfStagingContext, theme} from '@constants';
 import {SharkButtonToggleGroup} from '@components/shark-button-toggle-group';
 import {AppBar} from '@components/app-bar';
 import {SharkSubheader} from '@components/shark-subheader';
@@ -10,9 +10,15 @@ import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {AccountButton} from './account-button/account-button';
 import {useTranslation} from 'react-i18next';
 import {SharkButton} from '@components/shark-button';
+import {TouchableRipple} from 'react-native-paper';
+import {Icon} from '@components/shark-icon';
+import {SharkDivider} from '@components/shark-divider';
 
 export const Settings = () => {
   const {t} = useTranslation();
+
+  const accent = useDynamicValue(theme.colors.primary);
+  const high_emphasis = useDynamicValue(theme.colors.label_high_emphasis);
 
   const styles = useDynamicValue(dynamicStyles);
 
@@ -55,6 +61,11 @@ export const Settings = () => {
     }
   };
 
+  const {styleOfStaging} = React.useContext(StyleOfStagingContext);
+
+  const stagingDisplayText =
+    styleOfStaging === 'split' ? t('splitLayout') : t('sheetLayout');
+
   return (
     <ScrollView>
       <TopSpacerView isFloating={true} />
@@ -73,11 +84,26 @@ export const Settings = () => {
         style={styles.themeToggle}
       />
       <Text style={styles.themeText}>{t('themeExplain')}</Text>
-      {/*TODO: Update this button*/}
-      <SharkButton
-        onPress={() => history.navigate('StagingLayout')}
-        text={'Staging layout'}
-      />
+      <SharkDivider />
+      <TouchableRipple onPress={() => history.navigate('StagingLayout')}>
+        <View style={styles.stagingBtnContainer}>
+          <Icon
+            name={
+              styleOfStaging === 'split' ? 'staging_split' : 'staging_sheet'
+            }
+            size={24}
+            color={high_emphasis}
+          />
+          <View style={styles.stagingBtnTextContainer}>
+            <Text style={styles.stagingCallout}>
+              {t('stagingLayoutHeadline')}
+            </Text>
+            <Text style={styles.stagingBody}>{stagingDisplayText}</Text>
+          </View>
+          <Icon name={'arrow_right'} size={24} color={accent} />
+        </View>
+      </TouchableRipple>
+      <SharkDivider />
       <BottomSpacerView />
     </ScrollView>
   );
@@ -94,5 +120,28 @@ const dynamicStyles = new DynamicStyleSheet({
     ...theme.textStyles.caption_02,
     color: theme.colors.label_high_emphasis,
     opacity: theme.opacity.secondary,
+  },
+  stagingBtnContainer: {
+    paddingVertical: theme.spacing.s,
+    paddingRight: theme.spacing.m,
+    paddingLeft: theme.spacing.l,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  stagingBtnTextContainer: {
+    paddingRight: theme.spacing.m,
+    paddingLeft: theme.spacing.l,
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+  },
+  stagingCallout: {
+    ...theme.textStyles.callout_01,
+    color: theme.colors.label_high_emphasis,
+  },
+  stagingBody: {
+    ...theme.textStyles.body_02,
+    color: theme.colors.label_medium_emphasis,
   },
 });
