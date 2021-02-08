@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {ScrollView, Text, View, FlatList} from 'react-native';
+import {Text, View, FlatList} from 'react-native';
 import {ReduxRepo} from '@entities';
 import {RepoCard} from './components/repo-card';
-import {theme} from '@constants';
+import {theme, useInDialogProps} from '@constants';
 import {RepoListLoading} from './components/repo-list-loading';
 import {DialogsAndFab} from './components/dialogs-and-fab';
 import {SharkIconButton} from '@components/shark-icon-button';
@@ -45,6 +45,8 @@ export const RepositoryListUI = ({
 
   const cardClass = isTablet ? {flex: 1} : {};
 
+  const inDialogProps = useInDialogProps();
+
   const renderItem = ({
     item: repo,
     index,
@@ -77,7 +79,7 @@ export const RepositoryListUI = ({
 
   return (
     <SharkSafeTop>
-      <View style={styles.container}>
+      <View style={styles.container} {...inDialogProps}>
         <View style={styles.headingContainer}>
           <Text
             style={styles.headingText}

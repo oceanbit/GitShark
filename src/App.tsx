@@ -13,6 +13,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {
   darkNavTheme,
+  DialogContextProvider,
   lightNavTheme,
   SetDarkModeContext,
   STAGING_STYLE_STORAGE_KEY,
@@ -118,25 +119,27 @@ const AppBase = () => {
           styleOfStaging,
           setStyleOfStaging: updateStagingStyle,
         }}>
-        <UserContext.Provider
-          value={{
-            gitHubUser,
-            setUseGithub,
-            useGitHub,
-            manualUser,
-            setManualUser,
-            logoutGitHub,
-          }}>
-          <Portal.Host>
-            <Stack.Navigator headerMode={'none'}>
-              <Stack.Screen name="RepoList" component={RepositoryList} />
-              <Stack.Screen name="Settings" component={Settings} />
-              <Stack.Screen name="Account" component={Account} />
-              <Stack.Screen name="StagingLayout" component={StagingLayout} />
-              <Stack.Screen name="RepoDetails" component={Repository} />
-            </Stack.Navigator>
-          </Portal.Host>
-        </UserContext.Provider>
+        <DialogContextProvider>
+          <UserContext.Provider
+            value={{
+              gitHubUser,
+              setUseGithub,
+              useGitHub,
+              manualUser,
+              setManualUser,
+              logoutGitHub,
+            }}>
+            <Portal.Host>
+              <Stack.Navigator headerMode={'none'}>
+                <Stack.Screen name="RepoList" component={RepositoryList} />
+                <Stack.Screen name="Settings" component={Settings} />
+                <Stack.Screen name="Account" component={Account} />
+                <Stack.Screen name="StagingLayout" component={StagingLayout} />
+                <Stack.Screen name="RepoDetails" component={Repository} />
+              </Stack.Navigator>
+            </Portal.Host>
+          </UserContext.Provider>
+        </DialogContextProvider>
       </StyleOfStagingContext.Provider>
     </SafeAreaProvider>
   );

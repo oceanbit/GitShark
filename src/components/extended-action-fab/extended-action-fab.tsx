@@ -1,12 +1,21 @@
-import {Animated, Platform, TouchableWithoutFeedback, View} from 'react-native';
+import {
+  Animated,
+  Platform,
+  TouchableWithoutFeedback,
+  View,
+  ViewProps,
+} from 'react-native';
 import * as React from 'react';
 import {MutableRefObject} from 'react';
-import {theme} from '@constants';
-import {Surface} from 'react-native-paper';
+import {theme, useInDialogProps} from '@constants';
+import {Surface, TouchableRipple} from 'react-native-paper';
 import {NavigationAwarePortal} from '../navigation-aware-portal';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
-type ActionFabReactNode = (toggleAnimation: () => void) => React.ReactNode;
+type ActionFabReactNode = (
+  toggleAnimation: () => void,
+  props: ViewProps,
+) => React.ReactNode;
 
 interface ExtendedActionFabProps {
   fab: ActionFabReactNode;
@@ -110,14 +119,18 @@ export const ExtendedActionFab = ({
     marginBottom: extended ? 0 : 1000,
   };
 
-  const fabDisplay = React.useMemo(() => fab(toggleAnimation), [
-    fab,
-    toggleAnimation,
-  ]);
-  const fabActionDisplay = React.useMemo(() => fabActions(toggleAnimation), [
-    fabActions,
-    toggleAnimation,
-  ]);
+  const fabDisplay = React.useMemo(
+    () =>
+      fab(toggleAnimation, {
+        accessibilityRole: 'spinbutton',
+        accessibilityState: {expanded: extended},
+      }),
+    [fab, toggleAnimation, extended],
+  );
+  const fabActionDisplay = React.useMemo(
+    () => fabActions(toggleAnimation, {}),
+    [fabActions, toggleAnimation],
+  );
 
   const fabBottomStyle = {
     bottom: fabBottom.current,
@@ -126,9 +139,13 @@ export const ExtendedActionFab = ({
     // scaleY: scale.current,
   };
 
+  const inDialogProps = useInDialogProps();
+
   return (
     <NavigationAwarePortal>
-      <Animated.View style={[styles.mainContainer, fabBottomStyle]}>
+      <Animated.View
+        style={[styles.mainContainer, fabBottomStyle]}
+        {...inDialogProps}>
         <Surface style={styles.fabSurface}>
           <Animated.View style={animatedHeight}>
             <Animated.View style={[styles.fabContents, animatedFab]}>
@@ -154,6 +171,7 @@ export const ExtendedActionFab = ({
       </Animated.View>
       {extended && (
         <TouchableWithoutFeedback
+          {...inDialogProps}
           style={styles.scrim}
           onPress={() => toggleAnimation()}>
           <View style={styles.scrim} />

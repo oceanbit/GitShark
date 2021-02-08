@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Dimensions, StyleProp, Text, View, ViewStyle} from 'react-native';
 import {Dialog, Portal} from 'react-native-paper';
-import {theme} from '@constants';
+import {DialogsContext, theme} from '@constants';
 import {
   DynamicStyleSheet,
   useDarkMode,
@@ -37,6 +37,15 @@ export const BaseDialog: React.FC<BaseDialogProps> = ({
   onDismiss,
   style = {},
 }) => {
+  const {setOpenDialogs} = React.useContext(DialogsContext);
+
+  React.useEffect(() => {
+    if (!visible) return;
+    setOpenDialogs(v => v + 1);
+
+    return () => setOpenDialogs(v => v - 1);
+  }, [setOpenDialogs, visible]);
+
   const {height} = Dimensions.get('window');
 
   const keyboard = useKeyboard();
@@ -78,8 +87,12 @@ export const AppDialog = ({
       dismissable={dismissable}
       onDismiss={onDismiss}
       style={style}>
-      <Text style={styles.dialogTitle}>{title}</Text>
-      <Text style={styles.mainText}>{text}</Text>
+      <Text accessibilityRole={'header'} style={styles.dialogTitle}>
+        {title}
+      </Text>
+      <Text accessibilityRole={'summary'} style={styles.mainText}>
+        {text}
+      </Text>
       {main}
       <View style={styles.dialogActions}>{actions}</View>
     </BaseDialog>
