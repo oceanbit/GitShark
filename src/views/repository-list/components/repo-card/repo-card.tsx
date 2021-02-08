@@ -36,6 +36,21 @@ export const RepoCard = ({repo, onDelete, onRename}: RepoCardProps) => {
   const accent = useDynamicValue(theme.colors.primary);
   const ripplePrimary = useDynamicValue(theme.colors.ripple_neutral);
 
+  const updatedStr = t('updatedAgo', {time: updatedFromNow});
+
+  let accessibilityLabel = t('repoCardLabel', {
+    repoName: repo.name,
+    updated: updatedStr,
+    branchName: repo.currentBranchName,
+  });
+
+  if (repo.commitsToPull?.length) {
+    accessibilityLabel += t('needsToPull', {num: repo.commitsToPull.length});
+  }
+  if (repo.commitsToPush?.length) {
+    accessibilityLabel += t('needsToPush', {num: repo.commitsToPush.length});
+  }
+
   return (
     <>
       <TouchableRipple
@@ -45,6 +60,9 @@ export const RepoCard = ({repo, onDelete, onRename}: RepoCardProps) => {
             repoId: repo.id,
           });
         }}
+        accessible={true}
+        accessibilityRole={'button'}
+        accessibilityLabel={accessibilityLabel}
         rippleColor={ripplePrimary}>
         <View>
           <View style={styles.topDisplayRow}>
@@ -52,15 +70,14 @@ export const RepoCard = ({repo, onDelete, onRename}: RepoCardProps) => {
               <Text numberOfLines={1} style={styles.cardName}>
                 {repo.name}
               </Text>
-              <Text style={styles.lastUpdated}>
-                {t('updatedAgo', {time: updatedFromNow})}
-              </Text>
+              <Text style={styles.lastUpdated}>{updatedStr}</Text>
             </View>
             <SharkMenu
               visible={isMenuOpen}
               onDismiss={() => setIsMenuOpen(false)}
               anchor={
                 <TouchableRipple
+                  accessibilityLabel={t('repoMenuLabel', {repoName: repo.name})}
                   style={styles.moreButtonContainer}
                   onPress={() => setIsMenuOpen(true)}>
                   <Icon name="menu" size={24} color={accent} />

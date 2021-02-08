@@ -1,5 +1,11 @@
 {
   "repoListTitle": "Repositories",
+  "repoListA11Y": "Repository list",
+  "settingsButtonLabel": "App settings",
+  "repoCardLabel": "{{repoName}}. {{updated}}. On branch {{branchName}}.",
+  "needsToPull": "Needs to pull {{num}} commits.",
+  "needsToPush": "Needs to push {{num}} commits.",
+  "repoMenuLabel": "Menu for {{repoName}}",
   "noRepos": "Keine Repositories",
   "newFABAction": "Neue Repository",
   "cloneFABAction": "Klonieren",

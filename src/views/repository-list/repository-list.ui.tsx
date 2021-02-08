@@ -79,8 +79,17 @@ export const RepositoryListUI = ({
     <SharkSafeTop>
       <View style={styles.container}>
         <View style={styles.headingContainer}>
-          <Text style={styles.headingText}>{t('repoListTitle')}</Text>
-          <SharkIconButton onPress={navigateToSettings} iconName={'settings'} />
+          <Text
+            style={styles.headingText}
+            accessibilityLabel={t('repoListA11Y')}
+            accessibilityRole={'header'}>
+            {t('repoListTitle')}
+          </Text>
+          <SharkIconButton
+            onPress={navigateToSettings}
+            iconName={'settings'}
+            label={t('settingsButtonLabel')}
+          />
         </View>
         {isLoading && <RepoListLoading />}
         {!isLoading && !!repos?.length && (

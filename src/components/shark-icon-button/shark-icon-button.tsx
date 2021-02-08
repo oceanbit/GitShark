@@ -12,6 +12,7 @@ interface SharkIconButtonProps {
   iconStyle?: any;
   disabled?: boolean;
   color?: string;
+  label: string;
 }
 
 export const SharkIconButton = ({
@@ -21,6 +22,7 @@ export const SharkIconButton = ({
   iconStyle = {},
   disabled = false,
   color,
+  label,
 }: SharkIconButtonProps) => {
   const accentColor = useDynamicValue(theme.colors.primary);
 
@@ -28,6 +30,8 @@ export const SharkIconButton = ({
 
   return (
     <TouchableRipple
+      accessibilityRole={'button'}
+      accessibilityLabel={label}
       style={[styles.iconPadding, style]}
       onPress={onPress}
       disabled={disabled}>
