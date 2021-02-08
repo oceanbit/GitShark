@@ -42,36 +42,37 @@ export const StagingLayout = () => {
     width: 0,
   });
 
-  const deviceWidth = Dimensions.get('window').width;
-  const deviceHeight = Dimensions.get('window').height;
+  const {width, height} = useDimensions();
 
   const maxWidth =
-    deviceWidth / 2 - theme.spacing.xl - theme.spacing.xl - theme.spacing.xl;
-  // 72 for "Close staging layout overlay"
+    imageContainerSize.width / 2 -
+    theme.spacing.xl -
+    theme.spacing.xl -
+    theme.spacing.xl;
+
   const maxHeight =
-    deviceHeight - theme.spacing.xl - theme.spacing.xl - 72 - 104;
+    imageContainerSize.height - theme.spacing.xl - theme.spacing.xl;
 
-  const singleContainerSizeWidth =
-    imageContainerSize.width / 2 - theme.spacing.xl;
-
-  const isMaxHeight = !!(imageContainerSize.height >= maxHeight);
-  const isMaxWidth = !!(singleContainerSizeWidth >= maxWidth);
-
-  console.log('container', imageContainerSize);
-  console.log('isMaxWidth', isMaxWidth, singleContainerSizeWidth, maxWidth);
+  const isMaxWidth = maxWidth * 2 >= maxHeight;
+  const isMaxHeight = maxHeight / 2 >= maxWidth;
 
   let videoWidth = maxWidth;
   let videoHeight = maxHeight;
 
-  if (isMaxHeight) {
+  if (isMaxWidth) {
     videoWidth = maxHeight / 2;
   }
-  if (isMaxWidth) {
+  if (isMaxHeight) {
     videoHeight = maxWidth * 2;
   }
 
   return (
-    <View>
+    <View
+      style={{
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+      }}>
       <TopSpacerView isFloating={true} />
       <AppBar
         leftIcon="back"
@@ -83,8 +84,7 @@ export const StagingLayout = () => {
           display: 'flex',
           justifyContent: 'center',
           flexDirection: 'row',
-          marginVertical: theme.spacing.xl,
-          paddingHorizontal: theme.spacing.xl,
+          flexGrow: 1,
         }}
         onLayout={event => {
           const {
