@@ -1,16 +1,13 @@
 import * as React from 'react';
 import {
-  Dimensions,
   Image,
-  ScrollView,
+  StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import {StyleOfStagingContext, theme} from '@constants';
-import {SharkButtonToggleGroup} from '@components/shark-button-toggle-group';
 import {AppBar} from '@components/app-bar';
-import {SharkSubheader} from '@components/shark-subheader';
 import {useNavigation} from '@react-navigation/native';
 import {SlideUpDownSettingsAnimation} from './components/slide-up-down-settings-animation';
 import SplitLight from '@assets/images/split.png';
@@ -23,7 +20,6 @@ import {
 import {SharkRadio} from '@components/shark-radio';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {useTranslation} from 'react-i18next';
-import {mediaQuery, useDimensions} from 'react-native-responsive-ui';
 
 export const StagingLayout = () => {
   const {t} = useTranslation();
@@ -42,16 +38,15 @@ export const StagingLayout = () => {
     width: 0,
   });
 
-  const {width, height} = useDimensions();
+  const [radioButtonSize, setRadioButtonSize] = React.useState(0);
 
-  const maxWidth =
-    imageContainerSize.width / 2 -
-    theme.spacing.xl -
-    theme.spacing.xl -
-    theme.spacing.xl;
+  const maxWidth = imageContainerSize.width / 2 - theme.spacing.xl;
 
   const maxHeight =
-    imageContainerSize.height - theme.spacing.xl - theme.spacing.xl;
+    imageContainerSize.height -
+    theme.spacing.xl -
+    theme.spacing.xl -
+    radioButtonSize;
 
   const isMaxWidth = maxWidth * 2 >= maxHeight;
   const isMaxHeight = maxHeight / 2 >= maxWidth;
@@ -85,6 +80,8 @@ export const StagingLayout = () => {
           justifyContent: 'center',
           flexDirection: 'row',
           flexGrow: 1,
+          height: 1,
+          padding: theme.spacing.xl,
         }}
         onLayout={event => {
           const {
@@ -110,30 +107,29 @@ export const StagingLayout = () => {
                 source={SplitLight}
                 resizeMode={'contain'}
                 style={{
+                  ...StyleSheet.absoluteFillObject,
                   height: videoHeight,
                   width: videoWidth,
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
                   zIndex: isDark ? -1 : 1,
-                  backgroundColor: 'blue',
                 }}
               />
               <Image
                 source={SplitDark}
                 resizeMode={'contain'}
                 style={{
+                  ...StyleSheet.absoluteFillObject,
                   height: videoHeight,
                   width: videoWidth,
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
                   zIndex: isDark ? 1 : -1,
-                  backgroundColor: 'blue',
                 }}
               />
             </View>
-            <View style={styles.checkboxContainer}>
+            <View
+              style={styles.checkboxContainer}
+              onLayout={event => {
+                const {height: eventHeight} = event.nativeEvent.layout;
+                setRadioButtonSize(eventHeight);
+              }}>
               <SharkRadio checked={styleOfStaging === 'split'} />
               <Text
                 style={[
@@ -160,9 +156,7 @@ export const StagingLayout = () => {
                 direction={styleOfStaging === 'sheet' ? 'down' : 'up'}
                 darkMode={false}
                 style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
+                  ...StyleSheet.absoluteFillObject,
                   zIndex: isDark ? -1 : 1,
                 }}
               />
@@ -172,9 +166,7 @@ export const StagingLayout = () => {
                 direction={styleOfStaging === 'sheet' ? 'down' : 'up'}
                 darkMode={true}
                 style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
+                  ...StyleSheet.absoluteFillObject,
                   zIndex: isDark ? 1 : -1,
                 }}
               />
@@ -202,7 +194,7 @@ const dynamicStyles = new DynamicStyleSheet({
     flexDirection: 'column',
   },
   checkboxContainer: {
-    marginTop: theme.spacing.m,
+    paddingTop: theme.spacing.m,
     alignItems: 'center',
     justifyContent: 'center',
     display: 'flex',
