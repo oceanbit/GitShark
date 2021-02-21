@@ -88,12 +88,12 @@ RCT_EXPORT_METHOD(addToStaged:
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
 
-    for(int i = 0; i < [changes count]; i = i + 1 ) {
+    for (int i = 0; i < [changes count]; i = i + 1) {
         NSString *relPath = [changes objectAtIndex:i];
 
         NSString *absolutePath = [pathUrl.path stringByAppendingPathComponent:relPath];
 
-        if ([fileManager fileExistsAtPath:absolutePath]){
+        if ([fileManager fileExistsAtPath:absolutePath]) {
             [index addFile:relPath error:&error];
         } else {
             [index removeFile:relPath error:&error];
@@ -102,6 +102,45 @@ RCT_EXPORT_METHOD(addToStaged:
         if (error) {
             return [self reject:reject withError:error];
         }
+    }
+
+    resolve(nil);
+}
+
+RCT_EXPORT_METHOD(removeFromStaged:
+    (NSString *) path
+            changes:
+            (NSArray<NSString *> *) changes
+            resolver:
+            (RCTPromiseResolveBlock) resolve
+            rejecter:
+            (RCTPromiseRejectBlock) reject)
+{
+
+    NSError *error = nil;
+    NSURL *pathUrl = [NSURL URLWithString:path];
+    GTRepository *repo = [GTRepository repositoryWithURL:pathUrl error:&error];
+
+    if (error) {
+        return [self reject:reject withError:error];
+    }
+
+    GTBranch *head = [repo currentBranchWithError:&error];
+
+    if (error) {
+        return [self reject:reject withError:error];
+    }
+
+    GTCommit *headCommit = [head targetCommitWithError:&error];
+    
+    if (error) {
+        return [self reject:reject withError:error];
+    }
+
+    [repo resetPathspecs:changes toCommit:headCommit error:&error];
+
+    if (error) {
+        return [self reject:reject withError:error];
     }
 
     resolve(nil);
