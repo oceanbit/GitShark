@@ -149,22 +149,10 @@ export const ExtendedActionFab = ({
         <Surface style={styles.fabSurface}>
           <Animated.View style={animatedHeight}>
             <Animated.View style={[styles.fabContents, animatedFab]}>
-              <View
-                onLayout={event => {
-                  const {height, width: eventWidth} = event.nativeEvent.layout;
-                  setFabSize({height, width: eventWidth});
-                }}>
-                {fabDisplay}
-              </View>
+              <View>{fabDisplay}</View>
             </Animated.View>
             <Animated.View style={[styles.fabContents, animatedFabActions]}>
-              <View
-                onLayout={event => {
-                  const {height, width: eventWidth} = event.nativeEvent.layout;
-                  setFabActionSize({height, width: eventWidth});
-                }}>
-                {fabActionDisplay}
-              </View>
+              <View>{fabActionDisplay}</View>
             </Animated.View>
           </Animated.View>
         </Surface>
@@ -176,6 +164,28 @@ export const ExtendedActionFab = ({
           onPress={() => toggleAnimation()}>
           <View style={styles.scrim} />
         </TouchableWithoutFeedback>
+      )}
+      {!fabActionSize.width && (
+        <View style={{position: 'absolute'}}>
+          <View
+            onLayout={event => {
+              const {height, width: eventWidth} = event.nativeEvent.layout;
+              setFabActionSize({height, width: eventWidth});
+            }}>
+            {fabActionDisplay}
+          </View>
+        </View>
+      )}
+      {!fabSize.height && (
+        <View style={{position: 'absolute'}}>
+          <View
+            onLayout={event => {
+              const {height, width: eventWidth} = event.nativeEvent.layout;
+              setFabSize({height, width: eventWidth});
+            }}>
+            {fabDisplay}
+          </View>
+        </View>
       )}
     </NavigationAwarePortal>
   );
