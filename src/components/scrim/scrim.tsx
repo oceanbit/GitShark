@@ -10,7 +10,6 @@ import {
   Easing,
   StyleProp,
   StyleSheet,
-  Text,
   TouchableWithoutFeedback,
   View,
   ViewStyle,
@@ -70,15 +69,18 @@ export const Scrim: React.FC<ScrimProps> = ({
       useNativeDriver: true,
     }).start();
 
-    return () =>
+    return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBack);
+    };
   }, [animation, handleBack, opacity]);
 
   // Cyclical dep requires me to lazily initialize/call this otherwise we get stuck
   // in infinate loop
-  const hideModalRef = React.useRef(() => () => {});
+  const hideModalRef = React.useRef<() => void>(() => () => {});
 
   const hideModal = React.useCallback(() => {
+    BackHandler.removeEventListener('hardwareBackPress', handleBack);
+
     const {scale} = animation;
 
     Animated.timing(opacity, {
@@ -101,9 +103,6 @@ export const Scrim: React.FC<ScrimProps> = ({
         setRendered(false);
       }
     });
-
-    return () =>
-      BackHandler.removeEventListener('hardwareBackPress', handleBack);
   }, [animation, visible, handleBack, onDismiss, opacity, showModal]);
 
   hideModalRef.current = hideModal;
