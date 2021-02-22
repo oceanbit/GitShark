@@ -29,16 +29,17 @@ interface ScrimProps {
    */
   onDismiss?: () => void;
   style?: StyleProp<ViewStyle>;
+  children: (opacity: Animated.Value) => React.ReactNode;
 }
 
-export const Scrim: React.FC<ScrimProps> = ({
+export const Scrim = ({
   visible,
   overlayAccessibilityLabel = 'Close bottom sheet',
   dismissable = true,
   onDismiss,
   children,
   style,
-}) => {
+}: ScrimProps) => {
   const visibleRef = React.useRef(visible);
 
   visibleRef.current = visible;
@@ -154,7 +155,7 @@ export const Scrim: React.FC<ScrimProps> = ({
         />
       </TouchableWithoutFeedback>
       <View style={[styles.wrapper, style]} pointerEvents="box-none">
-        {children}
+        {children(opacity)}
       </View>
     </Animated.View>
   );

@@ -55,93 +55,99 @@ export const ErrorPromptMobile = (props: FullError) => {
   return (
     <Portal>
       <Scrim visible={true} dismissable={false}>
-        {
-          null /* Key is required in order to get re-render once min-sheet is properly defined  */
-        }
-        <SharkBottomSheet
-          key={minSheetHeight}
-          maxSheetHeight={'100%'}
-          minSheetHeight={minSheetHeight}
-          startExpanded={false}
-          sheetRef={sheetRef}
-          renderHeader={() => (
-            <View
-              style={styles.headerContainer}
-              onLayout={event => {
-                const {height: eventHeight} = event.nativeEvent.layout;
-                setHeaderHeight(eventHeight);
-              }}>
-              <View style={styles.redContainer}>
-                <RedContainer {...props} />
-              </View>
-              <SharkDivider />
-            </View>
-          )}
-          renderContent={fall => {
-            const buttonOpacity = Animated.interpolate(fall, {
-              inputRange: [0, 1],
-              outputRange: [0, 1],
-              extrapolate: Animated.Extrapolate.CLAMP,
-            });
-
-            const codeOpacity = Animated.interpolate(fall, {
-              inputRange: [0, 1],
-              outputRange: [1, 0],
-              extrapolate: Animated.Extrapolate.CLAMP,
-            });
-
-            return (
-              <View>
-                <Animated.View
-                  style={{
-                    opacity: buttonOpacity,
-                    zIndex: 1,
-                  }}
+        {() => (
+          <>
+            {
+              null /* Key is required in order to get re-render once min-sheet is properly defined  */
+            }
+            <SharkBottomSheet
+              key={minSheetHeight}
+              maxSheetHeight={'100%'}
+              minSheetHeight={minSheetHeight}
+              startExpanded={false}
+              sheetRef={sheetRef}
+              renderHeader={() => (
+                <View
+                  style={styles.headerContainer}
                   onLayout={event => {
                     const {height: eventHeight} = event.nativeEvent.layout;
-                    setExpandBtnHeight(eventHeight);
+                    setHeaderHeight(eventHeight);
                   }}>
-                  <TouchableRipple
-                    onPress={() => sheetRef.current?.snapTo(0)}
-                    style={styles.fullLogContainer}>
-                    <Text style={styles.fullLogText}>{t('viewLog')}</Text>
-                  </TouchableRipple>
-                </Animated.View>
-                <ScrollView
-                  style={[
-                    styles.sheetContainer,
-                    {marginTop: -expandBtnHeight},
-                  ]}>
-                  <Animated.View
-                    style={[styles.stackContainer, {opacity: codeOpacity}]}>
-                    <Text style={styles.callstack} ref={callstackRef as any}>
-                      {callStack}
-                    </Text>
-                  </Animated.View>
-                  <SharkDivider />
-                  <View style={styles.buttonContainer}>
-                    {gitHubButton}
-                    {tryAgainButton}
+                  <View style={styles.redContainer}>
+                    <RedContainer {...props} />
                   </View>
-                  <BottomSpacerView />
-                </ScrollView>
+                  <SharkDivider />
+                </View>
+              )}
+              renderContent={fall => {
+                const buttonOpacity = Animated.interpolate(fall, {
+                  inputRange: [0, 1],
+                  outputRange: [0, 1],
+                  extrapolate: Animated.Extrapolate.CLAMP,
+                });
+
+                const codeOpacity = Animated.interpolate(fall, {
+                  inputRange: [0, 1],
+                  outputRange: [1, 0],
+                  extrapolate: Animated.Extrapolate.CLAMP,
+                });
+
+                return (
+                  <View>
+                    <Animated.View
+                      style={{
+                        opacity: buttonOpacity,
+                        zIndex: 1,
+                      }}
+                      onLayout={event => {
+                        const {height: eventHeight} = event.nativeEvent.layout;
+                        setExpandBtnHeight(eventHeight);
+                      }}>
+                      <TouchableRipple
+                        onPress={() => sheetRef.current?.snapTo(0)}
+                        style={styles.fullLogContainer}>
+                        <Text style={styles.fullLogText}>{t('viewLog')}</Text>
+                      </TouchableRipple>
+                    </Animated.View>
+                    <ScrollView
+                      style={[
+                        styles.sheetContainer,
+                        {marginTop: -expandBtnHeight},
+                      ]}>
+                      <Animated.View
+                        style={[styles.stackContainer, {opacity: codeOpacity}]}>
+                        <Text
+                          style={styles.callstack}
+                          ref={callstackRef as any}>
+                          {callStack}
+                        </Text>
+                      </Animated.View>
+                      <SharkDivider />
+                      <View style={styles.buttonContainer}>
+                        {gitHubButton}
+                        {tryAgainButton}
+                      </View>
+                      <BottomSpacerView />
+                    </ScrollView>
+                  </View>
+                );
+              }}
+            />
+            <View
+              style={styles.buttonOverlay}
+              onLayout={event => {
+                const {height: eventHeight} = event.nativeEvent.layout;
+                setButtonHeight(eventHeight);
+              }}>
+              <SharkDivider />
+              <View style={styles.buttonContainer}>
+                {gitHubButton}
+                {tryAgainButton}
               </View>
-            );
-          }}
-        />
-        <View
-          style={styles.buttonOverlay}
-          onLayout={event => {
-            const {height: eventHeight} = event.nativeEvent.layout;
-            setButtonHeight(eventHeight);
-          }}>
-          <SharkDivider />
-          <View style={styles.buttonContainer}>
-            {gitHubButton}
-            {tryAgainButton}
-          </View>
-          <BottomSpacerView />
-        </View>
+              <BottomSpacerView />
+            </View>
+          </>
+        )}
       </Scrim>
     </Portal>
   );

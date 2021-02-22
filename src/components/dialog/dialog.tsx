@@ -72,10 +72,17 @@ export const BaseDialog: React.FC<BaseDialogProps> = ({
         style={{
           justifyContent: 'center',
         }}>
-        <Animated.View
-          style={[styles.dialogContainer, style, {top: additionalTop}]}>
-          {children}
-        </Animated.View>
+        {opacity => (
+          <Animated.View
+            style={[
+              styles.dialogContainer,
+              style,
+              {top: additionalTop},
+              {opacity},
+            ]}>
+            {children}
+          </Animated.View>
+        )}
       </Scrim>
     </Portal>
   );
