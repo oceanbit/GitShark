@@ -39,6 +39,10 @@ export const Scrim: React.FC<ScrimProps> = ({
   children,
   style,
 }) => {
+  const visibleRef = React.useRef(visible);
+
+  visibleRef.current = visible;
+
   const {colors, animation} = useTheme();
 
   const [opacity] = React.useState(new Animated.Value(0));
@@ -75,7 +79,7 @@ export const Scrim: React.FC<ScrimProps> = ({
   }, [animation, handleBack, opacity]);
 
   // Cyclical dep requires me to lazily initialize/call this otherwise we get stuck
-  // in infinate loop
+  // in infinite loop
   const hideModalRef = React.useRef<() => void>(() => () => {});
 
   const hideModal = React.useCallback(() => {
@@ -97,7 +101,7 @@ export const Scrim: React.FC<ScrimProps> = ({
         onDismiss();
       }
 
-      if (visible) {
+      if (visibleRef.current) {
         showModal();
       } else {
         setRendered(false);
