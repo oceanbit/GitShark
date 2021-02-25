@@ -1,4 +1,4 @@
 export const RepoConfig = {
-  owner: 'oceanbit-dev',
+  owner: 'oceanbit',
   name: 'GitShark',
 };

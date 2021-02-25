@@ -97,7 +97,7 @@ const writeFile = async (
   }
 
   // DO NOT REMOVE THIS. WHILE THIS SEEMS UNCOMMON, IT"S A WORKAROUND FOR A BUG IN AOSP
-  // https://github.com/oceanbit-dev/GitShark/issues/17
+  // https://github.com/oceanbit/GitShark/issues/17
   // https://github.com/isomorphic-git/isomorphic-git/issues/1126
   try {
     await unlink(path);

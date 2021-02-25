@@ -12790,9 +12790,9 @@ react-native-error-boundary@^1.1.6:
   resolved "https://registry.yarnpkg.com/react-native-error-boundary/-/react-native-error-boundary-1.1.6.tgz#5e649d4bfebab48b7789824141d26b7ac393ea69"
   integrity sha512-IqNcD0Qigx2Dk4fP+OcTYLH8XjbijPEmLZqCh2flLijUkEo8G/D151tRcUV6DHU0IL0ZHOB+/wF2kEUT+liPdg==
 
-"react-native-fs@https://github.com/oceanbit-dev/react-native-fs.git#all-commands":
+"react-native-fs@https://github.com/oceanbit/react-native-fs.git#all-commands":
   version "2.16.6"
-  resolved "https://github.com/oceanbit-dev/react-native-fs.git#2ca91d6ad9e7428a7963cd9f535e9c66466a64cc"
+  resolved "https://github.com/oceanbit/react-native-fs.git#2ca91d6ad9e7428a7963cd9f535e9c66466a64cc"
   dependencies:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
@@ -12860,9 +12860,9 @@ react-native-reanimated@^1.13.2:
   dependencies:
     fbjs "^1.0.0"
 
-"react-native-responsive-ui@https://github.com/oceanbit-dev/react-native-responsive-ui.git#build":
+"react-native-responsive-ui@https://github.com/oceanbit/react-native-responsive-ui.git#build":
   version "2.1.1"
-  resolved "https://github.com/oceanbit-dev/react-native-responsive-ui.git#2424ffe5690d67c13ac0e58e3ed2072653ffdee0"
+  resolved "https://github.com/oceanbit/react-native-responsive-ui.git#2424ffe5690d67c13ac0e58e3ed2072653ffdee0"
   dependencies:
     lodash "^4.17.11"
 

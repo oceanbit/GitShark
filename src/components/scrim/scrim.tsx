@@ -8,6 +8,7 @@ import {
   Animated,
   BackHandler,
   Easing,
+  NativeEventSubscription,
   StyleProp,
   StyleSheet,
   TouchableWithoutFeedback,
@@ -42,7 +43,9 @@ export const Scrim = ({
 }: ScrimProps) => {
   const visibleRef = React.useRef(visible);
 
-  visibleRef.current = visible;
+  React.useEffect(() => {
+    visibleRef.current = visible;
+  });
 
   const {colors, animation} = useTheme();
 
@@ -54,31 +57,26 @@ export const Scrim = ({
     setRendered(true);
   }
 
-  /**
-   * Must use `function` instead of `const` to make cyclical handleBack/hideModal reference work.
-   * Utilizes function name hoisting
-   */
-  function handleBack() {
+  const handleBack = () => {
     if (dismissable) {
       hideModal();
     }
     return true;
-  }
+  };
 
   /**
    * If we don't use a "ref" to keep track of the exact version of the handleBack function we're removing from the event
    * listener, what will happen is that `handleBack`'s reference in memory will change between `showModal` and `hideModal`
    * being called, leaving the event in-tact and not removing properly
    */
-  const handleBackToRemove = React.useRef<() => boolean>(() => true);
+  const backHandlerSub = React.useRef<NativeEventSubscription | null>(null);
 
-  function showModal() {
-    BackHandler.removeEventListener(
+  const showModal = () => {
+    backHandlerSub.current?.remove();
+    backHandlerSub.current = BackHandler.addEventListener(
       'hardwareBackPress',
-      handleBackToRemove.current,
+      handleBack,
     );
-    BackHandler.addEventListener('hardwareBackPress', handleBack);
-    handleBackToRemove.current = handleBack;
 
     const {scale} = animation;
 
@@ -88,14 +86,10 @@ export const Scrim = ({
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start();
-  }
+  };
 
-  function hideModal() {
-    BackHandler.removeEventListener(
-      'hardwareBackPress',
-      handleBackToRemove.current,
-    );
-    handleBackToRemove.current = () => true;
+  const hideModal = () => {
+    backHandlerSub.current?.remove();
 
     const {scale} = animation;
 
@@ -119,7 +113,7 @@ export const Scrim = ({
         setRendered(false);
       }
     });
-  }
+  };
 
   const prevVisible = React.useRef<boolean | null>(null);
 
@@ -134,7 +128,7 @@ export const Scrim = ({
     prevVisible.current = visible;
   });
 
-  if (!rendered) return null;
+  if (!rendered && !visible) return null;
 
   return (
     <Animated.View
