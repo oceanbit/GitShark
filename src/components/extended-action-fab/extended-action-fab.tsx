@@ -43,8 +43,6 @@ export const ExtendedActionFab = ({
   const fabBottomLocal = React.useRef(new Animated.Value(16));
   const fabBottom = fabBottomProps || fabBottomLocal;
   const scaleLocal = React.useRef(new Animated.Value(1));
-  // This code did work previously, leaving it there so we can quickly enable it again when it works
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const scale = scaleProps || scaleLocal;
 
   React.useEffect(() => {
@@ -134,9 +132,8 @@ export const ExtendedActionFab = ({
 
   const fabBottomStyle = {
     bottom: fabBottom.current,
-    // TODO: FIXME // https://github.com/facebook/react-native/issues/19637
-    // scaleX: scale.current,
-    // scaleY: scale.current,
+    scaleX: scale.current,
+    scaleY: scale.current,
   };
 
   const inDialogProps = useInDialogProps();
@@ -144,15 +141,22 @@ export const ExtendedActionFab = ({
   return (
     <NavigationAwarePortal>
       <Animated.View
-        style={[styles.mainContainer, fabBottomStyle]}
+        style={[
+          styles.mainContainer,
+          fabBottomStyle,
+          {
+            height: fabPanelHeight.current,
+          },
+        ]}
+        pointerEvents="box-none"
         {...inDialogProps}>
-        <Surface style={styles.fabSurface}>
-          <Animated.View style={animatedHeight}>
+        <Surface style={[styles.fabSurface]}>
+          <Animated.View style={[animatedHeight]}>
             <Animated.View style={[styles.fabContents, animatedFab]}>
-              <View>{fabDisplay}</View>
+              {fabDisplay}
             </Animated.View>
             <Animated.View style={[styles.fabContents, animatedFabActions]}>
-              <View>{fabActionDisplay}</View>
+              {fabActionDisplay}
             </Animated.View>
           </Animated.View>
         </Surface>
@@ -191,21 +195,19 @@ export const ExtendedActionFab = ({
   );
 };
 
-const iOS = Platform.OS === 'ios';
-
 const dynamicStyles = new DynamicStyleSheet({
   mainContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: theme.spacing.s,
     width: '100%',
-    ...(iOS ? {zIndex: 10} : {}),
+    zIndex: 10,
     position: 'absolute',
   },
   fabSurface: {
     position: 'absolute',
     bottom: 0,
-    ...(iOS ? {} : {zIndex: 10}),
+    zIndex: 10,
     borderRadius: theme.borderRadius.regular,
     backgroundColor: theme.colors.primary,
     elevation: 6,
@@ -221,6 +223,6 @@ const dynamicStyles = new DynamicStyleSheet({
     left: 0,
     height: '100%',
     width: '100%',
-    ...(iOS ? {zIndex: 1} : {}),
+    zIndex: 1,
   },
 });
