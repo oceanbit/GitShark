@@ -77,7 +77,7 @@
     "react-redux": "^7.2.1",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "text-encoding": "^0.7.0",
-    "typeorm": "0.2.25",
+    "typeorm": "0.2.31",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
