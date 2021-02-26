@@ -23,6 +23,8 @@ export const useGitHubUserData = () => {
    * If the deep link is called by the GH callback, cache the user data
    */
   React.useEffect(() => {
+    // Storybook
+    if (!DefaultPreference) return;
     type URLEventFn = Parameters<typeof Linking.removeEventListener>[1];
     const handleOpenURL: URLEventFn = event => {
       if (!event.url) {
@@ -101,6 +103,8 @@ export const useGitHubUserData = () => {
    * If data is already cached, set the user on initial load
    */
   React.useEffect(() => {
+    // Storybook
+    if (!DefaultPreference) return;
     Promise.all([
       DefaultPreference.get(GITHUB_USER_STORAGE_KEY),
       DefaultPreference.get(SHOULD_USE_GITHUB_CREDS_KEY),
@@ -117,12 +121,16 @@ export const useGitHubUserData = () => {
   }, []);
 
   const setUseGithub = React.useCallback((val: boolean) => {
+    // Storybook
+    if (!DefaultPreference) return;
     DefaultPreference.set(SHOULD_USE_GITHUB_CREDS_KEY, JSON.stringify(val))
       .then(() => setUseGithubLocal(val))
       .catch(e => console.error(e));
   }, []);
 
   const logoutGitHub = React.useCallback(() => {
+    // Storybook
+    if (!DefaultPreference) return;
     Promise.all([
       DefaultPreference.set(SHOULD_USE_GITHUB_CREDS_KEY, JSON.stringify(false)),
       RNSecureKeyStore.remove(GITHUB_TOKEN_STORAGE_KEY),
