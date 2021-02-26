@@ -1,6 +1,4 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {boolean, withKnobs} from '@storybook/addon-knobs';
 import {CommitDetailsUI} from './commit-details.ui';
 import {StorybookProvider} from '@components/storybook-provider';
 import {GitLogCommit} from '@services';
@@ -34,20 +32,18 @@ const sha = '2d1c7df6cf06b54d982b1b5ffd0551f06b54d982b1b5ffd0551';
 
 const par = '8a26e06';
 
-const CommitDetailsDemo = ({...props}: any) => {
-  const twoAuthors = boolean('Two authors', true);
-  const diffTimeStamps = boolean('Different timestamps', false);
-
-  const longText = boolean('Long message', true);
-  const noText = boolean('No message', false);
-
-  const authorLocal = twoAuthors
+const CommitDetailsDemo = (args: DefaultArgs) => {
+  const authorLocal = args.twoAuthors
     ? author
-    : diffTimeStamps
+    : args.differentTimestamps
     ? {...committer, timestamp: 3}
     : committer;
 
-  const message = noText ? '' : longText ? longMessage : shortMessage;
+  const message = args.noMessage
+    ? ''
+    : args.longText
+    ? longMessage
+    : shortMessage;
 
   return (
     <StorybookProvider>
@@ -85,6 +81,22 @@ const CommitDetailsDemo = ({...props}: any) => {
   );
 };
 
-storiesOf('Screens/Commit Details', module)
-  .addDecorator(withKnobs)
-  .add('default styling', () => <CommitDetailsDemo />);
+export default {title: 'Screens/Commit Details'};
+
+interface DefaultArgs {
+  twoAuthors: boolean;
+  differentTimestamps: boolean;
+  longText: boolean;
+  noMessage: boolean;
+}
+
+export const DefaultStyling = (args: DefaultArgs) => (
+  <CommitDetailsDemo {...args} />
+);
+
+DefaultStyling.args = {
+  twoAuthors: true,
+  differentTimestamps: false,
+  longText: true,
+  noMessage: false,
+} as DefaultArgs;

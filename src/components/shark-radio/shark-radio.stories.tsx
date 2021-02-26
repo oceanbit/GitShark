@@ -1,6 +1,5 @@
 import React from 'react';
 import {View} from 'react-native';
-import {storiesOf} from '@storybook/react';
 import {SharkRadio} from './shark-radio';
 
 const SharkRadioDemo = () => {
@@ -20,6 +19,6 @@ const SharkRadioDemo = () => {
   );
 };
 
-storiesOf('Shark Components/Radio', module).add('default styling', () => (
-  <SharkRadioDemo />
-));
+export default {title: 'Shark Components/Radio'};
+
+export const DefaultStyling = () => <SharkRadioDemo />;

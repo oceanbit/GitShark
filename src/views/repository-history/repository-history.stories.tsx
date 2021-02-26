@@ -1,5 +1,4 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
 import {RepositoryHistoryUI} from './repository-history.ui';
 import {BranchesUI} from '../branches/branches.ui';
 import {StorybookProvider} from '@components/storybook-provider';
@@ -31,12 +30,12 @@ const RepositoryListDemo = ({...props}: any) => {
         topLayer={topLayer}
         repo={{} as any}
         branchName={'the_big_branch'}
-        error={''}
+        error={null}
       />
     </StorybookProvider>
   );
 };
 
-storiesOf('Screens/Repo History', module).add('default styling', () => (
-  <RepositoryListDemo />
-));
+export default {title: 'Screens/Repo History'};
+
+export const DefaultStyling = () => <RepositoryListDemo />;

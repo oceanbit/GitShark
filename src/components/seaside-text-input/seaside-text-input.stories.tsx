@@ -1,6 +1,4 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {boolean, withKnobs} from '@storybook/addon-knobs';
 import {SeaTextInput} from './seaside-text-input';
 
 const SeaInputDemo = ({...props}: any) => {
@@ -15,8 +13,10 @@ const SeaInputDemo = ({...props}: any) => {
   );
 };
 
-storiesOf('Seaside Components/Text Input', module)
-  .addDecorator(withKnobs)
-  .add('default styling', () => (
-    <SeaInputDemo disabled={boolean('Disabled', false)} />
-  ));
+export default {title: 'Seaside Components/Text Input'};
+
+export const DefaultStyling = (args: {disabled: boolean}) => (
+  <SeaInputDemo {...args} />
+);
+
+DefaultStyling.args = {disabled: false};

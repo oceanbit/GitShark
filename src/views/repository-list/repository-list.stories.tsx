@@ -1,8 +1,6 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
 import {RepositoryListUI} from './repository-list.ui';
 import {StorybookProvider} from '@components/storybook-provider';
-import {boolean, withKnobs} from '@storybook/addon-knobs';
 import {ReduxRepo} from '@entities';
 
 const mockRepos: ReduxRepo[] = [
@@ -48,7 +46,11 @@ const mockRepos: ReduxRepo[] = [
   },
 ];
 
-const RepositoryListDemo = ({showRepos}: any) => {
+interface DefaultArgs {
+  showRepos: boolean;
+}
+
+const RepositoryListDemo = ({showRepos}: DefaultArgs) => {
   return (
     <StorybookProvider>
       <RepositoryListUI
@@ -64,10 +66,10 @@ const RepositoryListDemo = ({showRepos}: any) => {
   );
 };
 
-storiesOf('Screens/Repo List', module)
-  .addDecorator(withKnobs)
-  .add('default styling', () => {
-    const showRepos = boolean('Show repos', true);
+export default {title: 'Screens/Repo List'};
 
-    return <RepositoryListDemo showRepos={showRepos} />;
-  });
+export const DefaultStyling = (args: DefaultArgs) => {
+  return <RepositoryListDemo {...args} />;
+};
+
+DefaultStyling.args = {showRepos: false};

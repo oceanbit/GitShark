@@ -1,5 +1,4 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
 import {StorybookProvider} from '@components/storybook-provider';
 import {StageSplitView} from './components/staging-screen-options';
 import {RepositoryHeader} from '@components/repository-header';
@@ -23,6 +22,6 @@ const RepositoryChangesSplitDemo = () => {
   );
 };
 
-storiesOf('Screens/Repo Changes', module).add('split view', () => (
-  <RepositoryChangesSplitDemo />
-));
+export default {title: 'Screens/Repo Changes'};
+
+export const SplitView = () => <RepositoryChangesSplitDemo />;

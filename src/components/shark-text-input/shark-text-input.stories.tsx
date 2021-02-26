@@ -1,5 +1,4 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
 import {SharkTextInput} from './shark-text-input';
 
 const SharkInputDemo = ({...props}: any) => {
@@ -15,6 +14,6 @@ const SharkInputDemo = ({...props}: any) => {
   );
 };
 
-storiesOf('Shark Components/Text Input', module).add('default styling', () => (
-  <SharkInputDemo />
-));
+export default {title: 'Shark Components/Text Input'};
+
+export const DefaultStyling = () => <SharkInputDemo />;

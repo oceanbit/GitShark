@@ -1,6 +1,4 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {boolean, withKnobs} from '@storybook/addon-knobs';
 import {SeaSwitch} from './seaside-switch';
 
 const SeaSwitchDemo = ({...props}: any) => {
@@ -8,8 +6,10 @@ const SeaSwitchDemo = ({...props}: any) => {
   return <SeaSwitch enabled={value} setEnabled={setValue} {...props} />;
 };
 
-storiesOf('Seaside Components/Switch', module)
-  .addDecorator(withKnobs)
-  .add('default styling', () => (
-    <SeaSwitchDemo disabled={boolean('Disabled', false)} />
-  ));
+export default {title: 'Seaside Components/Switch'};
+
+export const DefaultStyling = (args: {disabled: boolean}) => (
+  <SeaSwitchDemo {...args} />
+);
+
+DefaultStyling.args = {disabled: false};

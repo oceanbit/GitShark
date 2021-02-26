@@ -1,5 +1,4 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
 import {ErrorPromptTablet} from './error-prompt-tablet';
 import {StorybookProvider} from '@components/storybook-provider';
 
@@ -23,7 +22,9 @@ flushedQueue@[native code]
 invokeCallbackAndReturnFlushedQueue@[native code]
 `.trim();
 
-storiesOf('Shark Components/Error Prompt', module).add('tablet styling', () => (
+export default {title: 'Shark Components/Error Prompt'};
+
+export const TabletStyling = () => (
   <StorybookProvider>
     <ErrorPromptTablet
       errorMessage={`Undefined is not a function`}
@@ -31,4 +32,4 @@ storiesOf('Shark Components/Error Prompt', module).add('tablet styling', () => (
       callStack={callStack}
     />
   </StorybookProvider>
-));
+);

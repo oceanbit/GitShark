@@ -1,6 +1,5 @@
 import React from 'react';
 import {View} from 'react-native';
-import {storiesOf} from '@storybook/react';
 import {SharkCheckbox} from './shark-checkbox';
 
 const SharkCheckboxDemo = () => {
@@ -15,6 +14,6 @@ const SharkCheckboxDemo = () => {
   );
 };
 
-storiesOf('Shark Components/Checkbox', module).add('default styling', () => (
-  <SharkCheckboxDemo />
-));
+export default {title: 'Shark Components/Checkbox'};
+
+export const DefaultStyling = () => <SharkCheckboxDemo />;
