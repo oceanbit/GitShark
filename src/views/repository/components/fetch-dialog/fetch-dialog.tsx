@@ -4,10 +4,10 @@ import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
-import {Picker} from '@react-native-community/picker';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {Remotes} from '@types';
 import {useTranslation} from 'react-i18next';
+import {SharkPicker} from '@components/shark-picker';
 
 interface FetchDialogProps {
   onDismiss: (
@@ -67,18 +67,17 @@ export const FetchDialog = ({
 
           {/* TODO: REPLACE WITH REAL SEASIDE SELECT COMPONENT */}
           <View style={styles.pickerView}>
-            <Picker
-              style={styles.pickerStyle}
+            <SharkPicker
               selectedValue={remote}
               onValueChange={v => setRemote(v as string)}>
               {remotes.map(remote => (
-                <Picker.Item
+                <SharkPicker.Item
                   key={remote.remote}
                   label={remote.remote}
                   value={remote.remote}
                 />
               ))}
-            </Picker>
+            </SharkPicker>
           </View>
 
           {/*<View style={styles.checkbox}>*/}
@@ -117,9 +116,6 @@ export const FetchDialog = ({
 const dynamicStyles = new DynamicStyleSheet({
   pickerLabel: {
     marginBottom: theme.spacing.xs,
-    color: theme.colors.label_high_emphasis,
-  },
-  pickerStyle: {
     color: theme.colors.label_high_emphasis,
   },
   pickerView: {

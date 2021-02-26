@@ -4,7 +4,7 @@ import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
-import {Picker} from '@react-native-community/picker';
+import {SharkPicker} from '@components/shark-picker';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {RemoteBranch} from '@types';
 import {useTranslation} from 'react-i18next';
@@ -81,34 +81,32 @@ export const PushDialog = ({
 
           {/* TODO: REPLACE WITH REAL SEASIDE SELECT COMPONENT */}
           <View style={styles.pickerView}>
-            <Picker
+            <SharkPicker
               selectedValue={branch}
-              style={styles.pickerStyle}
               onValueChange={v => setBranch(v as string)}>
               {localBranches?.map(branch => (
-                <Picker.Item key={branch} label={branch} value={branch} />
+                <SharkPicker.Item key={branch} label={branch} value={branch} />
               ))}
-            </Picker>
+            </SharkPicker>
           </View>
 
           <Text style={styles.pickerLabel}>{t('pushDestinationLabel')}</Text>
 
           <View style={styles.pickerView}>
-            <Picker
+            <SharkPicker
               selectedValue={destination}
-              style={styles.pickerStyle}
               onValueChange={v => setDestination(v as string)}>
               {remoteBranches.map(rBranch => {
                 const branchDisplay = remoteBranchToString(rBranch);
                 return (
-                  <Picker.Item
+                  <SharkPicker.Item
                     key={branchDisplay}
                     label={branchDisplay}
                     value={branchDisplay}
                   />
                 );
               })}
-            </Picker>
+            </SharkPicker>
           </View>
 
           <View style={styles.checkbox}>
@@ -143,9 +141,6 @@ const dynamicStyles = new DynamicStyleSheet({
   pickerLabel: {
     color: theme.colors.label_high_emphasis,
     marginBottom: theme.spacing.xs,
-  },
-  pickerStyle: {
-    color: theme.colors.label_high_emphasis,
   },
   pickerView: {
     borderWidth: theme.borders.normal,
