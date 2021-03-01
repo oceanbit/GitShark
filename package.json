@@ -18,7 +18,8 @@
     "clear-xcode-cache": "cd ios && bash ./resetXcode.sh && cd ../",
     "pod-install": "cd ios/ && pod install && cd ..",
     "jetify": "jetify",
-    "release": "standard-version"
+    "release": "standard-version",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.4",
@@ -108,8 +109,8 @@
     "eslint": "^7.21.0",
     "eslint-plugin-prettier": "^3.3.1",
     "hoist-non-react-statics": "^3.3.2",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.5.3",
+    "husky": "^5.1.2",
+    "lint-staged": "^10.5.4",
     "metro-react-native-babel-preset": "^0.64.0",
     "prettier": "^2.2.1",
     "react-native-clean-project": "^3.4.0",
@@ -118,12 +119,6 @@
   },
   "resolutions": {
     "@react-native-community/masked-view": "0.1.10"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
