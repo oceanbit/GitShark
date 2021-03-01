@@ -20,6 +20,8 @@ class IgnoreNotFoundExportPlugin {
   }
 }
 
+const aliasPathJoin = (moduleFolders) => path.join(process.cwd(), 'node_modules', path.join(...moduleFolders));
+
 module.exports = ({config, mode}) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
@@ -43,7 +45,7 @@ module.exports = ({config, mode}) => {
               'react-native-gesture-handler': './.storybook/gesture-handler',
               'react-i18next': './.storybook/react-i18next',
               // https://github.com/bakerface/react-native-svg-web#readme
-              'react-native-svg': 'react-native-svg-web',
+              'react-native-svg':  aliasPathJoin(['react-native-svg', 'lib', 'module', 'ReactNativeSVG.web.js']),
               // https://github.com/react-native-web-community/react-native-web-linear-gradient#readme
               'react-native-linear-gradient':
                 'react-native-web-linear-gradient',
