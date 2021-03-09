@@ -56,7 +56,13 @@ export const SharkButton = ({
       <>
         {!!icon && (
           <View style={styles.iconView}>
-            <Icon size={24} name={icon} color={iconColor} />
+            <Icon
+              size={24}
+              name={icon}
+              color={iconColor}
+              accessibilityElementsHidden={true}
+              importantForAccessibility={'no'}
+            />
           </View>
         )}
         <Text style={[styles.btnText, buttonTextStyle]} {...textProps}>

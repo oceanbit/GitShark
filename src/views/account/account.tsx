@@ -53,13 +53,13 @@ export const Account = () => {
     ? gitHubUser!.name
     : !!manualName
     ? manualName
-    : t('personNameDefault');
+    : null;
 
   const personEmail = isGitHub
     ? gitHubUser!.email
     : !!manualEmail
     ? manualEmail
-    : t('personEmailDefault');
+    : null;
 
   const [savedShow, setSaved] = React.useState(false);
 
@@ -91,6 +91,20 @@ export const Account = () => {
     setSaved(true);
   };
 
+  let authorPreviewLabel = '';
+  /* TODO: Translate this*/
+  if (!personName && !personEmail) {
+    authorPreviewLabel = 'No commit author data currently set.';
+  } else {
+    const personNameLabel = personName || 'not set';
+    const personEmailLabel = personEmail || 'not set';
+    if (useGitHub) {
+      authorPreviewLabel = `Commit author data being pulled from GitHub: Name - ${personNameLabel}, email - ${personEmailLabel}`;
+    } else {
+      authorPreviewLabel = `Commit author data currently set: Name - ${personNameLabel}, email - ${personEmailLabel}`;
+    }
+  }
+
   return (
     <>
       <KeyboardAvoidingView
@@ -101,6 +115,10 @@ export const Account = () => {
           <TopSpacerView isFloating={true} />
           <AppBar
             leftIcon="back"
+            {
+              ...{} /* TODO: Translate this*/
+            }
+            leftIconLabel={'Go back'}
             onLeftSelect={() => history.goBack()}
             headline={t('accountsHeadline')}
           />
@@ -121,11 +139,18 @@ export const Account = () => {
           <SharkDivider />
           <SharkSubheader calloutText={t('commitAuthoring')} />
           <View style={styles.commitAuthorContainer}>
-            <View style={styles.authorPreview}>
+            <View
+              style={styles.authorPreview}
+              accessible={true}
+              accessibilityLabel={authorPreviewLabel}>
               <SharkProfilePic source={authorImage} showGHLogo={isGitHub} />
               <View style={styles.authorPreviewText}>
-                <Text style={styles.authorName}>{personName}</Text>
-                <Text style={styles.authorEmail}>{personEmail}</Text>
+                <Text style={styles.authorName}>
+                  {personName || t('personNameDefault')}
+                </Text>
+                <Text style={styles.authorEmail}>
+                  {personEmail || t('personEmailDefault')}
+                </Text>
               </View>
             </View>
             <TouchableRipple
@@ -138,6 +163,8 @@ export const Account = () => {
                 setManualName('');
                 setManualEmail('');
               }}
+              accessibilityRole={'checkbox'}
+              accessibilityState={{disabled: !gitHubUser}}
               disabled={!gitHubUser}>
               <>
                 <View style={styles.checkboxContainer}>
@@ -149,7 +176,7 @@ export const Account = () => {
             </TouchableRipple>
             <SharkTextInput
               style={styles.textInput}
-              placeholder={personName}
+              placeholder={t('personNameDefault')}
               value={manualName}
               disabled={useGitHub}
               errorStr={manualNameError}
@@ -160,7 +187,7 @@ export const Account = () => {
             />
             <SharkTextInput
               style={styles.textInput}
-              placeholder={personEmail}
+              placeholder={t('personEmailDefault')}
               value={manualEmail}
               disabled={useGitHub}
               errorStr={manualEmailError}

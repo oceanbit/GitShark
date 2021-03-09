@@ -14,7 +14,13 @@ export const GitHubLogout = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.ghUserContainer}>
+      <View
+        style={styles.ghUserContainer}
+        accessible={true}
+        {
+          ...{} /* TODO: Translate this*/
+        }
+        accessibilityLabel={`GitHub user info. Name: ${gitHubUser?.name}, email: ${gitHubUser?.email}`}>
         <Text style={styles.callout}>{gitHubUser?.name}</Text>
         <Text style={styles.body2}>{gitHubUser?.email}</Text>
       </View>
