@@ -68,19 +68,15 @@ export const CreateBranchDialog = ({
           {!!errorStr && (
             <ErrorMessageBox style={styles.errorBox} message={errorStr} />
           )}
-          <TouchableWithoutFeedback
-            style={styles.checkboxContainer}
-            onPress={() => setCheckAfterCreate(v => !v)}>
-            <View style={styles.checkboxView}>
-              <SharkCheckbox
-                checked={checkAfterCreate}
-                onValueChange={setCheckAfterCreate}
-              />
+          <View style={styles.checkboxContainer}>
+            <SharkCheckbox
+              checked={checkAfterCreate}
+              onValueChange={setCheckAfterCreate}>
               <Text style={styles.checkoutText}>
                 {t('checkoutAfterCreate')}
               </Text>
-            </View>
-          </TouchableWithoutFeedback>
+            </SharkCheckbox>
+          </View>
         </>
       }
       actions={
@@ -111,11 +107,6 @@ const dynamicStyles = new DynamicStyleSheet({
     borderColor: theme.colors.tint_on_surface_01,
     borderWidth: theme.borders.thick,
     marginRight: theme.spacing.m,
-  },
-  checkboxView: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   checkboxContainer: {
     marginTop: theme.spacing.xs,

@@ -109,13 +109,11 @@ export const PushDialog = ({
             </SharkPicker>
           </View>
 
-          <View style={styles.checkbox}>
-            <SharkCheckbox
-              checked={forcePush}
-              onValueChange={v => setForcePush(v)}
-            />
+          <SharkCheckbox
+            checked={forcePush}
+            onValueChange={v => setForcePush(v)}>
             <Text style={styles.checkboxText}>{t('forcePushLabel')}</Text>
-          </View>
+          </SharkCheckbox>
         </>
       }
       actions={
@@ -147,10 +145,6 @@ const dynamicStyles = new DynamicStyleSheet({
     borderColor: theme.colors.label_medium_emphasis,
     borderRadius: theme.borderRadius.regular,
     marginBottom: theme.spacing.m,
-  },
-  checkbox: {
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   checkboxText: {
     color: theme.colors.label_high_emphasis,

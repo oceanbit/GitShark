@@ -20,6 +20,7 @@ import {
 import {SharkRadio} from '@components/shark-radio';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {useTranslation} from 'react-i18next';
+import {Icon} from '@components/shark-icon';
 
 export const StagingLayout = () => {
   const {t} = useTranslation();
@@ -89,8 +90,14 @@ export const StagingLayout = () => {
             width: eventWidth,
           } = event.nativeEvent.layout;
           setImageContainerSize({height: eventHeight, width: eventWidth});
-        }}>
-        <TouchableWithoutFeedback onPress={() => setStyleOfStaging('split')}>
+        }}
+        accessible
+        accessibilityRole="radiogroup">
+        <TouchableWithoutFeedback
+          onPress={() => setStyleOfStaging('split')}
+          accessibilityRole="radio"
+          accessibilityState={{checked: styleOfStaging === 'split'}}
+          accessibilityLiveRegion="polite">
           <View style={styles.stagingVideoContainer}>
             {/*
               We have to set the dark mode and light mode and stack them in order for the Video component
@@ -130,7 +137,11 @@ export const StagingLayout = () => {
                 const {height: eventHeight} = event.nativeEvent.layout;
                 setRadioButtonSize(eventHeight);
               }}>
-              <SharkRadio checked={styleOfStaging === 'split'} />
+              <View
+                importantForAccessibility={'no'}
+                accessibilityElementsHidden={true}>
+                <SharkRadio checked={styleOfStaging === 'split'} />
+              </View>
               <Text
                 style={[
                   styles.checkboxText,
@@ -142,7 +153,11 @@ export const StagingLayout = () => {
           </View>
         </TouchableWithoutFeedback>
         <View style={{width: theme.spacing.xl}} />
-        <TouchableWithoutFeedback onPress={() => setStyleOfStaging('sheet')}>
+        <TouchableWithoutFeedback
+          onPress={() => setStyleOfStaging('sheet')}
+          accessibilityRole="radio"
+          accessibilityState={{checked: styleOfStaging === 'sheet'}}
+          accessibilityLiveRegion="polite">
           <View style={styles.stagingVideoContainer}>
             <View
               style={{
@@ -172,7 +187,11 @@ export const StagingLayout = () => {
               />
             </View>
             <View style={styles.checkboxContainer}>
-              <SharkRadio checked={styleOfStaging === 'sheet'} />
+              <View
+                importantForAccessibility={'no'}
+                accessibilityElementsHidden={true}>
+                <SharkRadio checked={styleOfStaging === 'sheet'} />
+              </View>
               <Text
                 style={[
                   styles.checkboxText,

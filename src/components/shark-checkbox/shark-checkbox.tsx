@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View} from 'react-native';
+import {TouchableWithoutFeedback, View} from 'react-native';
 import {CheckmarkBase} from '../checkmark-base';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
@@ -12,12 +12,13 @@ interface SharkCheckboxProps {
   disabled?: boolean;
 }
 
-export const SharkCheckbox = ({
+export const SharkCheckbox: React.FC<SharkCheckboxProps> = ({
   checked,
   indeterminate,
   onValueChange,
   disabled,
-}: SharkCheckboxProps) => {
+  children,
+}) => {
   const styles = useDynamicValue(dynamicStyles);
 
   const accent = useDynamicValue(theme.colors.primary);
@@ -27,13 +28,34 @@ export const SharkCheckbox = ({
 
   const disabledStyles = disabled ? styles.disabledStyling : {};
 
-  return (
+  const state = checked
+    ? 'checked'
+    : indeterminate
+    ? 'indeterminate'
+    : 'unchecked';
+
+  const onValueChangeLocal = (val: boolean) => {
+    if (disabled) return;
+    if (onValueChange) onValueChange(val);
+  };
+
+  const _onPress = () => {
+    switch (state) {
+      case 'checked':
+        onValueChangeLocal(false);
+        break;
+      case 'indeterminate':
+      case 'unchecked':
+      default:
+        onValueChangeLocal(true);
+        break;
+    }
+  };
+
+  const checkboxBase = (
     <View style={[styles.checkboxContainer, disabledStyles]}>
       <CheckmarkBase
-        state={
-          checked ? 'checked' : indeterminate ? 'indeterminate' : 'unchecked'
-        }
-        onValueChange={!disabled ? onValueChange : () => {}}
+        state={state}
         unselectedIcon={'checkbox_unselected'}
         selectedIcon={'checkbox_selected'}
         indetermindateIcon={'checkbox_intermediate'}
@@ -43,9 +65,26 @@ export const SharkCheckbox = ({
       />
     </View>
   );
+
+  if (!onValueChange) {
+    return <>{checkboxBase}</>;
+  }
+
+  return (
+    <TouchableWithoutFeedback onPress={_onPress} disabled={disabled}>
+      <View style={styles.checkboxFlex}>
+        {checkboxBase}
+        {children}
+      </View>
+    </TouchableWithoutFeedback>
+  );
 };
 
 const dynamicStyles = new DynamicStyleSheet({
+  checkboxFlex: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   checkboxContainer: {
     padding: theme.spacing.xs,
   },

@@ -14,8 +14,6 @@ const hitSlop = {top: 8, bottom: 8, left: 8, right: 8};
 type BaseState = 'checked' | 'unchecked' | 'indeterminate';
 
 interface CheckmarkBaseProps {
-  // `false` = 'unchecked', `true` = `checked`
-  onValueChange?: (val: boolean) => void;
   size?: number;
   state?: BaseState;
   unselectedIcon: string;
@@ -37,7 +35,6 @@ export class CheckmarkBase extends React.PureComponent<
   static defaultProps = {
     size: 18,
     state: 'unchecked',
-    onValueChange: () => {},
     // These icons should never actually be used. They're simply here to shut up the warning of invalid icon name
     unselectedIcon: 'menu',
     indetermindateIcon: 'menu',
@@ -139,7 +136,7 @@ export class CheckmarkBase extends React.PureComponent<
     } as any;
 
     return (
-      <TouchableWithoutFeedback hitSlop={hitSlop} onPress={this._onPress}>
+      <View hitSlop={hitSlop}>
         <View style={[styles.parentWrapper]}>
           <View
             shouldRasterizeIOS={true}
@@ -153,6 +150,8 @@ export class CheckmarkBase extends React.PureComponent<
                 width: this.props.size,
                 fontSize: this.props.size,
               }}
+              importantForAccessibility={'no'}
+              accessibilityElementsHidden={true}
             />
           </View>
           <Animated.View
@@ -171,6 +170,8 @@ export class CheckmarkBase extends React.PureComponent<
                 width: this.props.size,
                 fontSize: this.props.size,
               }}
+              importantForAccessibility={'no'}
+              accessibilityElementsHidden={true}
             />
           </Animated.View>
           <Animated.View
@@ -185,25 +186,14 @@ export class CheckmarkBase extends React.PureComponent<
                 width: this.props.size,
                 fontSize: this.props.size,
               }}
+              importantForAccessibility={'no'}
+              accessibilityElementsHidden={true}
             />
           </Animated.View>
         </View>
-      </TouchableWithoutFeedback>
+      </View>
     );
   }
-
-  _onPress = () => {
-    switch (this.props.state) {
-      case 'checked':
-        this.props.onValueChange!(false);
-        break;
-      case 'indeterminate':
-      case 'unchecked':
-      default:
-        this.props.onValueChange!(true);
-        break;
-    }
-  };
 }
 
 const styles = StyleSheet.create({
