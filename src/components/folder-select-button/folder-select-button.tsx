@@ -55,7 +55,13 @@ export const FolderSelectButton = ({
       {!path && (
         <TouchableRipple onPress={() => selectDirectory()} style={style}>
           <View style={styles.selectFolderBtn}>
-            <Icon size={24} name="folder" color={accent} />
+            <Icon
+              size={24}
+              name="folder"
+              color={accent}
+              importantForAccessibility={'no'}
+              accessibilityElementsHidden={true}
+            />
             <Text style={styles.selectFolderText}>{t('selectFolder')}</Text>
           </View>
         </TouchableRipple>
@@ -66,10 +72,20 @@ export const FolderSelectButton = ({
             <Text
               ellipsizeMode="head"
               numberOfLines={1}
+              {
+                ...{} /*TODO: Translate this*/
+              }
+              accessibilityLabel={`Selected folder path is "${path}"`}
               style={[styles.selectFolderText, styles.selectFolderBtnWithPath]}>
               {path}
             </Text>
-            <Icon size={24} name="folder" color={accent} />
+            <Icon
+              size={24}
+              name="folder"
+              color={accent}
+              importantForAccessibility={'no'}
+              accessibilityElementsHidden={true}
+            />
           </View>
         </TouchableRipple>
       )}

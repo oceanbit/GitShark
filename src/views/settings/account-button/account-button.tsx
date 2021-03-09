@@ -26,13 +26,13 @@ export const AccountButton = () => {
     ? gitHubUser!.name
     : !!manualUser
     ? manualUser.name
-    : t('addAccountDefaults');
+    : null;
 
   const personEmail = isGitHub
     ? gitHubUser!.email
     : !!manualUser
     ? manualUser.email
-    : t('nameEmailGH');
+    : null;
 
   return (
     <TouchableRipple
@@ -43,16 +43,43 @@ export const AccountButton = () => {
           style={styles.userPic}
           source={authorImage as any}
           showGHLogo={isGitHub}
+          hidden={true}
         />
         <View style={styles.accountText}>
-          <Text style={styles.accountCallout}>{personName}</Text>
-          <Text style={styles.accountBody}>{personEmail}</Text>
+          {!!personName && (
+            <Text
+              {
+                ...{} /* TODO: Transate this */
+              }
+              accessibilityLabel={`Name: "${personName}"`}
+              style={styles.accountCallout}>
+              {personName}
+            </Text>
+          )}
+          {!!personEmail && (
+            <Text
+              {
+                ...{} /* TODO: Transate this */
+              }
+              accessibilityLabel={`Email: "${personEmail}"`}
+              style={styles.accountBody}>
+              {personEmail}
+            </Text>
+          )}
+          {!personName && (
+            <Text style={styles.accountCallout}>{t('addAccountDefaults')}</Text>
+          )}
+          {!personEmail && (
+            <Text style={styles.accountBody}>{t('nameEmailGH')}</Text>
+          )}
         </View>
         <Icon
           style={styles.arrowIcon}
           name="arrow_right"
           size={24}
           color={accent}
+          importantForAccessibility={'no'}
+          accessibilityElementsHidden={true}
         />
       </>
     </TouchableRipple>

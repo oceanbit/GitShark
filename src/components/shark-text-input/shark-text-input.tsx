@@ -85,6 +85,8 @@ export const SharkTextInput = ({
             name={prefixIcon}
             color={surfaceSecondary}
             style={[styles.icon, disableStyle]}
+            accessibilityElementsHidden={true}
+            importantForAccessibility={'no'}
           />
         )}
         <TextInput
@@ -106,6 +108,8 @@ export const SharkTextInput = ({
             name={postfixIcon}
             color={accent}
             style={[styles.icon, disableStyle]}
+            accessibilityElementsHidden={true}
+            importantForAccessibility={'no'}
           />
         )}
       </View>

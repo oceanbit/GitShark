@@ -9,10 +9,10 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {AccountButton} from './account-button/account-button';
 import {useTranslation} from 'react-i18next';
-import {SharkButton} from '@components/shark-button';
 import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
 import {SharkDivider} from '@components/shark-divider';
+import {SrOnly} from '@components/sr-only';
 
 export const Settings = () => {
   const {t} = useTranslation();
@@ -71,6 +71,10 @@ export const Settings = () => {
       <TopSpacerView isFloating={true} />
       <AppBar
         leftIcon="back"
+        {
+          ...{} /* TODO: Translate this*/
+        }
+        leftIconLabel="Go back"
         onLeftSelect={() => history.goBack()}
         headline={t('settingsHeadline')}
       />
@@ -85,6 +89,11 @@ export const Settings = () => {
       />
       <Text style={styles.themeText}>{t('themeExplain')}</Text>
       <SharkDivider />
+      <SrOnly>
+        <Text style={styles.stagingCallout} accessibilityRole={'header'}>
+          {t('stagingLayoutHeadline')}
+        </Text>
+      </SrOnly>
       <TouchableRipple onPress={() => history.navigate('StagingLayout')}>
         <View style={styles.stagingBtnContainer}>
           <Icon
@@ -93,14 +102,25 @@ export const Settings = () => {
             }
             size={24}
             color={high_emphasis}
+            importantForAccessibility={'no'}
+            accessibilityElementsHidden={true}
           />
           <View style={styles.stagingBtnTextContainer}>
-            <Text style={styles.stagingCallout}>
+            <Text
+              style={styles.stagingCallout}
+              importantForAccessibility={'no'}
+              accessibilityElementsHidden={true}>
               {t('stagingLayoutHeadline')}
             </Text>
             <Text style={styles.stagingBody}>{stagingDisplayText}</Text>
           </View>
-          <Icon name={'arrow_right'} size={24} color={accent} />
+          <Icon
+            name={'arrow_right'}
+            size={24}
+            color={accent}
+            importantForAccessibility={'no'}
+            accessibilityElementsHidden={true}
+          />
         </View>
       </TouchableRipple>
       <SharkDivider />

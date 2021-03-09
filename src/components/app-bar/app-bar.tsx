@@ -5,35 +5,55 @@ import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkDivider} from '../shark-divider';
 
+interface LeftIcon {
+  leftIcon: string;
+  leftIconLabel: string;
+}
+
+type LeftIconMaybe =
+  | LeftIcon
+  | {
+      leftIcon: undefined;
+      leftIconLabel: undefined;
+    };
+
 interface AppBarProps {
   headline?: string;
   caption?: string;
   rightChild?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
-  leftIcon?: string;
   onLeftSelect?: () => void;
   hasBottomBorder?: boolean;
 }
 
 export const AppBar = ({
   leftIcon,
+  leftIconLabel,
   onLeftSelect = () => {},
   headline,
   caption,
   rightChild = null,
   style = {},
   hasBottomBorder = true,
-}: AppBarProps) => {
+}: AppBarProps & LeftIconMaybe) => {
   const styles = useDynamicValue(dynamicStyles);
 
   return (
     <>
       <View style={[styles.container, style]}>
         {!!leftIcon && (
-          <SharkIconButton iconName={leftIcon} onPress={onLeftSelect} />
+          <SharkIconButton
+            iconName={leftIcon}
+            label={leftIconLabel || ''}
+            onPress={onLeftSelect}
+          />
         )}
         <View style={styles.textContainer}>
-          {!!headline && <Text style={styles.headline}>{headline}</Text>}
+          {!!headline && (
+            <Text accessibilityRole={'header'} style={styles.headline}>
+              {headline}
+            </Text>
+          )}
           {!!caption && <Text style={styles.caption}>{caption}</Text>}
         </View>
         {rightChild}

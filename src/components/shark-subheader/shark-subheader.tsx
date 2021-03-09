@@ -28,7 +28,9 @@ export const SharkSubheader = ({
   return (
     <View style={[styles.subheaderContainer, style]}>
       {leftChild}
-      <Text style={styles.subheaderText}>{calloutText}</Text>
+      <Text style={styles.subheaderText} accessibilityRole={'header'}>
+        {calloutText}
+      </Text>
       {!!buttonText && (
         <SharkButton
           onPress={onButtonClick}

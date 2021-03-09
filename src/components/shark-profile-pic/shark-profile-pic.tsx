@@ -12,6 +12,7 @@ interface SharkProfilePicProps {
   size?: number;
   style?: StyleProp<ImageStyle>;
   showGHLogo?: boolean;
+  hidden?: boolean;
 }
 
 export const SharkProfilePic = ({
@@ -19,6 +20,7 @@ export const SharkProfilePic = ({
   size = 40,
   style = {},
   showGHLogo,
+  hidden,
 }: SharkProfilePicProps) => {
   const styles = useDynamicValue(dynamicStyles);
   const label_high_emphasis = useDynamicValue(theme.colors.label_high_emphasis);
@@ -28,7 +30,10 @@ export const SharkProfilePic = ({
     width: size,
   };
   return (
-    <View style={[styles.container, style]}>
+    <View
+      style={[styles.container, style]}
+      importantForAccessibility={hidden ? 'no' : 'yes'}
+      accessibilityElementsHidden={!!hidden}>
       <Image
         source={source || defaultProfPic}
         defaultSource={defaultProfPic}

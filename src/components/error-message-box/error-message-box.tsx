@@ -18,8 +18,16 @@ export const ErrorMessageBox = ({
 
   return (
     <View style={[styles.errorBoxContainer, style]}>
-      <Icon name="error" size={18} color={error} />
-      <Text style={styles.errorText}>{message}</Text>
+      <Icon
+        name="error"
+        size={18}
+        color={error}
+        accessibilityElementsHidden={true}
+        importantForAccessibility={'no'}
+      />
+      <Text accessibilityLiveRegion={'assertive'} style={styles.errorText}>
+        {message}
+      </Text>
     </View>
   );
 };

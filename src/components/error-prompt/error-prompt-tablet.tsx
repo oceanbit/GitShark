@@ -10,7 +10,7 @@ import {
   GitHubButton,
   RedContainer,
   TryAgainButton,
-} from '@components/error-prompt/error-prompt-common';
+} from './error-prompt-common';
 import {FullError} from '@types';
 
 export const ErrorPromptTablet = (props: FullError) => {

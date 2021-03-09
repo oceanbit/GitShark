@@ -1,1 +1,1 @@
-export {ScrollView} from 'react-native';
+export {ScrollView} from 'react-native-web';
