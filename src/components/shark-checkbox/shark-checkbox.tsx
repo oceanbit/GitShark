@@ -10,6 +10,7 @@ interface SharkCheckboxProps {
   indeterminate?: boolean;
   onValueChange?: (val: boolean) => void;
   disabled?: boolean;
+  label?: string;
 }
 
 export const SharkCheckbox: React.FC<SharkCheckboxProps> = ({
@@ -18,6 +19,7 @@ export const SharkCheckbox: React.FC<SharkCheckboxProps> = ({
   onValueChange,
   disabled,
   children,
+  label,
 }) => {
   const styles = useDynamicValue(dynamicStyles);
 
@@ -80,7 +82,8 @@ export const SharkCheckbox: React.FC<SharkCheckboxProps> = ({
       accessibilityState={{
         disabled,
         checked: checkedState,
-      }}>
+      }}
+      {...(label ? {accessibilityLabel: label} : {})}>
       <View style={styles.checkboxFlex}>
         {checkboxBase}
         {children}

@@ -13,7 +13,7 @@ interface SharkIconButtonProps {
   disabled?: boolean;
   color?: string;
   label: string;
-  buttonProps: Partial<
+  buttonProps?: Partial<
     Omit<
       React.ComponentProps<typeof TouchableRipple>,
       'style' | 'onPress' | 'disabled'

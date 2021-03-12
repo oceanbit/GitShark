@@ -13,6 +13,8 @@ import {Remotes, RemoteBranch} from '@types';
 import {RepoHeaderContext, RepoHeaderDialogType} from '@constants';
 import {PushPull} from '@entities';
 import {useTranslation} from 'react-i18next';
+import {View} from 'react-native';
+import {SharkButton} from '@components/shark-button';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -95,7 +97,13 @@ export const RepositoryUI = ({
           options={{
             tabBarLabel: t('changesTab'),
             tabBarIcon: ({color}) => (
-              <Icon name="changes" color={color} size={24} />
+              <Icon
+                name="changes"
+                color={color}
+                size={24}
+                accessibilityElementsHidden={true}
+                importantForAccessibility={'no'}
+              />
             ),
           }}
         />
@@ -105,7 +113,13 @@ export const RepositoryUI = ({
           options={{
             tabBarLabel: t('historyTab'),
             tabBarIcon: ({color}) => (
-              <Icon name="history" color={color} size={24} />
+              <Icon
+                name="history"
+                color={color}
+                size={24}
+                accessibilityElementsHidden={true}
+                importantForAccessibility={'no'}
+              />
             ),
           }}
         />

@@ -6,19 +6,31 @@ import {Icon} from '@components/shark-icon';
 import {ChangesArrayItem} from '@services';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
+interface OnPress {
+  onPress: () => void;
+  label: string;
+}
+
+type OnPressProps =
+  | OnPress
+  | {
+      onPress?: never;
+      label?: never;
+    };
+
 interface FileChangeListItemProps {
   fileName: string;
-  onPress?: () => void;
   fileStatus: ChangesArrayItem['fileStatus'];
   style?: StyleProp<ViewStyle>;
 }
 
 export const FileChangeListItem = ({
   fileName,
-  onPress = () => {},
+  onPress,
   fileStatus,
   style = {},
-}: FileChangeListItemProps) => {
+  label,
+}: FileChangeListItemProps & OnPressProps) => {
   const styles = useDynamicValue(dynamicStyles);
   const change_addition = useDynamicValue(theme.colors.change_addition);
   const change_removal = useDynamicValue(theme.colors.change_removal);
@@ -34,6 +46,8 @@ export const FileChangeListItem = ({
             size={24}
             color={change_addition}
             style={styles.changeIcon}
+            accessibilityElementsHidden={true}
+            importantForAccessibility={'no'}
           />
         );
       case 'deleted':
@@ -43,6 +57,8 @@ export const FileChangeListItem = ({
             size={24}
             color={change_removal}
             style={styles.changeIcon}
+            accessibilityElementsHidden={true}
+            importantForAccessibility={'no'}
           />
         );
       case 'modified':
@@ -53,6 +69,8 @@ export const FileChangeListItem = ({
             size={24}
             color={change_mixed}
             style={styles.changeIcon}
+            accessibilityElementsHidden={true}
+            importantForAccessibility={'no'}
           />
         );
     }
@@ -63,17 +81,38 @@ export const FileChangeListItem = ({
     change_mixed,
     styles.changeIcon,
   ]);
+
+  const listItemBase = (
+    <View style={styles.listItemView}>
+      {statusIcon}
+      <Text style={styles.fileName}>{fileName}</Text>
+      {onPress && (
+        <View style={styles.arrowIcon}>
+          <Icon
+            name="arrow_right"
+            size={24}
+            color={accent}
+            accessibilityElementsHidden={true}
+            importantForAccessibility={'no'}
+          />
+        </View>
+      )}
+    </View>
+  );
+
+  if (!onPress) {
+    return (
+      <View style={[styles.listItemContainer, style]}>{listItemBase}</View>
+    );
+  }
+
   return (
     <TouchableRipple
+      onPress={onPress}
+      accessibilityLabel={label}
       style={[styles.listItemContainer, style]}
-      onPress={onPress}>
-      <View style={styles.listItemView}>
-        {statusIcon}
-        <Text style={styles.fileName}>{fileName}</Text>
-        <View style={styles.arrowIcon}>
-          <Icon name="arrow_right" size={24} color={accent} />
-        </View>
-      </View>
+      accessibilityRole={'button'}>
+      {listItemBase}
     </TouchableRipple>
   );
 };

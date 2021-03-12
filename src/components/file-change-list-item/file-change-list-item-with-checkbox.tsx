@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import * as React from 'react';
 import {ChangesArrayItem} from '@services';
 import {FileChangeListItem} from './file-change-list-item';
@@ -23,14 +23,26 @@ export const FileChangeListItemWithCheckbox = ({
 }: FileChangeListItemProps) => {
   const styles = useDynamicValue(dynamicStyles);
 
+  const checkboxLabel = isChecked
+    ? `Unselect "${fileName}"`
+    : `Select "${fileName}"`;
+
   return (
     <View style={styles.listItemContainer}>
       <View style={styles.checkbox}>
-        <SharkCheckbox checked={isChecked} onValueChange={onToggle} />
+        <SharkCheckbox
+          checked={isChecked}
+          onValueChange={onToggle}
+          label={checkboxLabel}
+        />
       </View>
       <FileChangeListItem
         fileName={fileName}
         onPress={onPress}
+        {
+          ...{} /*TODO: Translate this*/
+        }
+        label={`Open "${fileName}"`}
         fileStatus={fileStatus}
         style={styles.listItem}
       />

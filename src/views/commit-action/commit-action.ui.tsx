@@ -12,6 +12,7 @@ import {BottomSpacerView} from '@components/shark-safe-top';
 import {useTranslation} from 'react-i18next';
 import {StoreError} from '@types';
 import {ErrorPrompt} from '@components/error-prompt';
+import {SrOnly} from '@components/sr-only';
 
 interface CommitActionUIProps {
   onSubmit: (props: {commitTitle: string; commitBody: string}) => Promise<void>;
@@ -39,8 +40,15 @@ export const CommitActionUI = ({
       behavior="padding"
       enabled>
       <View style={[styles.commitHeaderContainer]}>
-        <SharkIconButton onPress={onClose} iconName="close" />
-        <Text style={styles.commitHeader}>{t('commitChangesHeader')}</Text>
+        {null /*TODO: Translate this*/}
+        <SharkIconButton
+          onPress={onClose}
+          iconName="close"
+          label={'Close page'}
+        />
+        <Text style={styles.commitHeader} accessibilityRole={'header'}>
+          {t('commitChangesHeader')}
+        </Text>
       </View>
       <SharkDivider />
       {!!error && (
@@ -60,6 +68,10 @@ export const CommitActionUI = ({
             ))}
           </ScrollView>
           <SharkDivider />
+          <SrOnly>
+            {null /*TODO: Translate this*/}
+            <Text accessibilityRole={'header'}>Commit form</Text>
+          </SrOnly>
           <View style={styles.commitData}>
             <SharkTextInput
               placeholder={t('commitTitleInput')}
