@@ -1,7 +1,7 @@
-import {Icon} from '@components/shark-icon';
+import * as React from 'react';
+import {Icon, SharkIcon} from '@components/shark-icon';
 import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
-import * as React from 'react';
 import {Animated, StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import {useDynamicValue} from 'react-native-dynamic';
 
@@ -13,6 +13,12 @@ interface SharkIconButtonProps {
   disabled?: boolean;
   color?: string;
   label: string;
+  buttonProps: Partial<
+    Omit<
+      React.ComponentProps<typeof TouchableRipple>,
+      'style' | 'onPress' | 'disabled'
+    >
+  >;
 }
 
 export const SharkIconButton = ({
@@ -24,20 +30,18 @@ export const SharkIconButton = ({
   color,
   label,
 }: SharkIconButtonProps) => {
-  const accentColor = useDynamicValue(theme.colors.primary);
-
-  const iconColor = !color ? accentColor : color;
-
   return (
     <TouchableRipple
       accessibilityRole={'button'}
       accessibilityLabel={label}
-      style={[styles.iconPadding, style]}
       onPress={onPress}
-      disabled={disabled}>
-      <Animated.View style={iconStyle}>
-        <Icon name={iconName} size={24} color={iconColor} />
-      </Animated.View>
+      disabled={disabled}
+      style={[styles.iconPadding, style]}>
+      <SharkIcon
+        iconName={iconName}
+        color={color}
+        style={[styles.noPadIcon, iconStyle]}
+      />
     </TouchableRipple>
   );
 };
@@ -45,5 +49,8 @@ export const SharkIconButton = ({
 const styles = StyleSheet.create({
   iconPadding: {
     padding: theme.spacing.xs,
+  },
+  noPadIcon: {
+    padding: 0,
   },
 });

@@ -3,6 +3,8 @@ import {Animated, StyleProp, View, ViewStyle} from 'react-native';
 import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {SharkIconButton} from '@components/shark-icon-button';
+import {SharkIcon} from '@components/shark-icon';
+import {TouchableRipple} from 'react-native-paper';
 
 interface FileActionsBarToggleButtonProps {
   style?: StyleProp<ViewStyle>;
@@ -58,27 +60,37 @@ export const FileActionsBarToggleButton = ({
   });
 
   return (
-    <View style={[styles.iconContainer, style]}>
-      <SharkIconButton
-        iconName="menu"
-        style={styles.iconButton}
-        onPress={() => setShowMore(v => !v)}
-        iconStyle={{
-          transform: [{rotate: rotation}],
-        }}
-      />
-      <Animated.View
-        style={[styles.closeIconContainer, {opacity: closeOpacity}]}>
-        <SharkIconButton
-          iconName="close"
-          style={styles.iconButton}
-          onPress={() => setShowMore(v => !v)}
-          iconStyle={{
+    <TouchableRipple
+      style={[styles.iconContainer, style]}
+      accessible={true}
+      accessibilityRole={'button'}
+      accessibilityLabel={'File actions'}
+      accessibilityState={{
+        expanded: showMore,
+      }}
+      onPress={() => setShowMore(v => !v)}>
+      <View style={styles.iconButton}>
+        <SharkIcon
+          iconName="menu"
+          style={{
             transform: [{rotate: rotation}],
           }}
         />
-      </Animated.View>
-    </View>
+        <Animated.View
+          style={[
+            styles.closeIconContainer,
+            styles.iconButton,
+            {opacity: closeOpacity},
+          ]}>
+          <SharkIcon
+            iconName="close"
+            style={{
+              transform: [{rotate: rotation}],
+            }}
+          />
+        </Animated.View>
+      </View>
+    </TouchableRipple>
   );
 };
 
