@@ -4,6 +4,7 @@ import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item'
 import {ChangesArrayItem} from '@services';
 import {SharkDivider} from '@components/shark-divider';
 import {FileActionsBar} from '../../file-actions-bar';
+import {SrOnly} from '@components/sr-only';
 
 interface UnstagedChangesProps {
   addToStaged: (changes: ChangesArrayItem[]) => Promise<void>;

@@ -15,6 +15,12 @@ export interface SharkButtonProps {
   // When primary, what's the background color
   backgroundColor?: string;
   textProps?: TextProps;
+  buttonProps?: Partial<
+    Omit<
+      React.ComponentProps<typeof TouchableRipple>,
+      'disabled' | 'onPress' | 'style'
+    >
+  >;
 }
 
 export const SharkButton = ({
@@ -26,6 +32,7 @@ export const SharkButton = ({
   disabled = false,
   backgroundColor,
   textProps = {},
+  buttonProps = {},
 }: SharkButtonProps) => {
   const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);
@@ -52,7 +59,12 @@ export const SharkButton = ({
         buttonTypeStyle,
         stateStyle,
         style,
-      ]}>
+      ]}
+      accessibilityRole={'button'}
+      accessibilityState={{
+        disabled,
+      }}
+      {...buttonProps}>
       <>
         {!!icon && (
           <View style={styles.iconView}>

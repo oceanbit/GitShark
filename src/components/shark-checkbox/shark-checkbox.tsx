@@ -34,6 +34,8 @@ export const SharkCheckbox: React.FC<SharkCheckboxProps> = ({
     ? 'indeterminate'
     : 'unchecked';
 
+  const checkedState = checked ? true : indeterminate ? 'mixed' : false;
+
   const onValueChangeLocal = (val: boolean) => {
     if (disabled) return;
     if (onValueChange) onValueChange(val);
@@ -71,7 +73,14 @@ export const SharkCheckbox: React.FC<SharkCheckboxProps> = ({
   }
 
   return (
-    <TouchableWithoutFeedback onPress={_onPress} disabled={disabled}>
+    <TouchableWithoutFeedback
+      onPress={_onPress}
+      disabled={disabled}
+      accessibilityRole={'checkbox'}
+      accessibilityState={{
+        disabled,
+        checked: checkedState,
+      }}>
       <View style={styles.checkboxFlex}>
         {checkboxBase}
         {children}

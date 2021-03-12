@@ -103,6 +103,12 @@ export const StageButtonToggle = ({
             textProps={{numberOfLines: 1}}
             style={buttonStyle}
             disabled={disabled}
+            buttonProps={{
+              importantForAccessibility: isStage
+                ? 'no-hide-descendants'
+                : 'yes',
+              accessibilityElementsHidden: isStage,
+            }}
           />
         </Animated.View>
 
@@ -120,6 +126,12 @@ export const StageButtonToggle = ({
             text={t('stageAction')}
             textProps={{numberOfLines: 1}}
             style={buttonStyle}
+            buttonProps={{
+              importantForAccessibility: !isStage
+                ? 'no-hide-descendants'
+                : 'yes',
+              accessibilityElementsHidden: !isStage,
+            }}
           />
         </View>
       </Animated.View>

@@ -8,6 +8,7 @@ import {AppBar} from '../app-bar';
 import {SharkMenu} from '../shark-menu';
 import {ReduxRepo} from '@entities';
 import {useTranslation} from 'react-i18next';
+import {Text} from 'react-native';
 
 interface RepositoryHeaderProps {
   repo: ReduxRepo | null;
@@ -21,6 +22,13 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
 
   const {t} = useTranslation();
 
+  const toPush = pushPull?.toPush?.length || 0;
+  const toPull = pushPull?.toPull?.length || 0;
+
+  // TODO: Translate (handle plurals)
+  const toPushLabel = toPush > 0 ? `Push ${toPush} commits` : 'Push';
+  const toPullLabel = toPull > 0 ? `Pull ${toPush} commits` : 'Pull';
+
   if (!repo) return null;
 
   return (
@@ -33,12 +41,14 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
         <>
           <HeaderActionNumber
             iconName="push"
-            val={pushPull?.toPush?.length || 0}
+            label={toPushLabel}
+            val={toPush}
             onPress={() => setActiveDialog('push')}
           />
           <HeaderActionNumber
             iconName="pull"
-            val={pushPull?.toPull?.length || 0}
+            label={toPullLabel}
+            val={toPull}
             onPress={() => setActiveDialog('pull')}
           />
           <SharkMenu
@@ -46,6 +56,10 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
             onDismiss={() => setIsMenuOpen(false)}
             anchor={
               <SharkIconButton
+                {
+                  ...{} /*TODO: Translate this*/
+                }
+                label={'Repository actions'}
                 iconName="menu"
                 onPress={() => setIsMenuOpen(true)}
               />

@@ -5,15 +5,19 @@ import {Icon} from '@components/shark-icon';
 import {theme} from '@constants';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 
+interface HeaderActionNumberProps {
+  iconName: string;
+  val?: number;
+  onPress?: () => void;
+  label: string;
+}
+
 export const HeaderActionNumber = ({
   iconName,
   val,
   onPress,
-}: {
-  iconName: string;
-  val?: number;
-  onPress?: () => void;
-}) => {
+  label,
+}: HeaderActionNumberProps) => {
   const styles = useDynamicValue(dynamicStyles);
 
   const accent = useDynamicValue(theme.colors.primary);
@@ -21,7 +25,9 @@ export const HeaderActionNumber = ({
   return (
     <TouchableRipple
       onPress={onPress || (() => {})}
-      style={!!val ? styles.outlineContainer : styles.container}>
+      style={!!val ? styles.outlineContainer : styles.container}
+      accessible={true}
+      accessibilityLabel={label}>
       <View style={styles.repoHeader}>
         <Icon name={iconName} size={24} color={accent} />
         {!!val && <Text style={styles.valText}>{val}</Text>}

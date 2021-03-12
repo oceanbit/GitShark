@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Animated, StyleProp, View, ViewStyle} from 'react-native';
+import {Animated, StyleProp, View, ViewStyle, Text} from 'react-native';
 import {theme} from '@constants';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
@@ -9,6 +9,7 @@ import {StageButtonToggle} from './stage-button-toggle';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {ChangesArrayItem} from '@services';
 import {useTranslation} from 'react-i18next';
+import {SrOnly} from '@components/sr-only';
 
 const animTiming = 150;
 
@@ -67,59 +68,71 @@ export const FileActionsBar = ({
 
   const disabledStyles = disabled ? styles.disabledStyling : {};
 
+  const areAllItemsSelected =
+    unstagedChanges.length === selectedUnstagedChanges.length &&
+    !!unstagedChanges.length;
+
   return (
-    <View style={[styles.subheaderContainer, style]}>
-      <Animated.View style={[styles.subheaderTextContainer, {left: textLeft}]}>
-        <SharkCheckbox
-          checked={
-            unstagedChanges.length === selectedUnstagedChanges.length &&
-            !!unstagedChanges.length
-          }
-          indeterminate={!!selectedUnstagedChanges.length}
-          onValueChange={selectAll => {
-            setSelectedUnstagedChanges(selectAll ? unstagedChanges : []);
-          }}
-          disabled={disabled}
-        />
-        <Animated.Text style={[styles.subheaderText, disabledStyles]}>
-          {t('unstagedHeading')}
-        </Animated.Text>
-      </Animated.View>
-      <View />
-      <View style={styles.showMoreView}>
-        <StageButtonToggle
-          buttonStyle={styles.calloutButton}
-          isStage={isItemSelected}
-          onStage={onStage}
-          onStageAll={onStageAll}
-          disabled={disabled}
-        />
-        <GrowWidthContent expanded={showMore}>
-          <View style={styles.moreViewButtons}>
-            <SharkButton
-              onPress={onDiscard}
-              text={t('discardAction')}
-              style={[styles.calloutButton, styles.dividerLeft]}
-              // This prevents text breaking from animating incorrectly
-              textProps={{numberOfLines: 1}}
-            />
-            <SharkButton
-              onPress={onIgnore}
-              text={t('ignoreAction')}
-              style={[styles.calloutButton, styles.dividerLeft]}
-              textProps={{numberOfLines: 1}}
-            />
-          </View>
-        </GrowWidthContent>
-        <GrowWidthContent expanded={isItemSelected}>
-          <FileActionsBarToggleButton
-            showMore={showMore}
-            setShowMore={setShowMore}
-            style={styles.dividerLeft}
+    <>
+      <SrOnly>
+        <Text accessibilityRole={'header'}>{t('unstagedHeading')}</Text>
+      </SrOnly>
+      <View style={[styles.subheaderContainer, style]}>
+        <Animated.View
+          style={[styles.subheaderTextContainer, {left: textLeft}]}>
+          <SharkCheckbox
+            checked={areAllItemsSelected}
+            indeterminate={!!selectedUnstagedChanges.length}
+            onValueChange={selectAll => {
+              setSelectedUnstagedChanges(selectAll ? unstagedChanges : []);
+            }}
+            disabled={disabled}>
+            <Animated.Text
+              style={[styles.subheaderText, disabledStyles]}
+              accessible={true}
+              accessibilityLabel={
+                'All unstaged items selected' // TODO: Translate this
+              }>
+              {t('unstagedHeading')}
+            </Animated.Text>
+          </SharkCheckbox>
+        </Animated.View>
+        <View />
+        <View style={styles.showMoreView}>
+          <StageButtonToggle
+            buttonStyle={styles.calloutButton}
+            isStage={isItemSelected}
+            onStage={onStage}
+            onStageAll={onStageAll}
+            disabled={disabled}
           />
-        </GrowWidthContent>
+          <GrowWidthContent expanded={showMore}>
+            <View style={styles.moreViewButtons}>
+              <SharkButton
+                onPress={onDiscard}
+                text={t('discardAction')}
+                style={[styles.calloutButton, styles.dividerLeft]}
+                // This prevents text breaking from animating incorrectly
+                textProps={{numberOfLines: 1}}
+              />
+              <SharkButton
+                onPress={onIgnore}
+                text={t('ignoreAction')}
+                style={[styles.calloutButton, styles.dividerLeft]}
+                textProps={{numberOfLines: 1}}
+              />
+            </View>
+          </GrowWidthContent>
+          <GrowWidthContent expanded={isItemSelected}>
+            <FileActionsBarToggleButton
+              showMore={showMore}
+              setShowMore={setShowMore}
+              style={styles.dividerLeft}
+            />
+          </GrowWidthContent>
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 

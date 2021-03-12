@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {Animated, ScrollView, Text, View} from 'react-native';
 import {ScrollView as GestureScrollView} from 'react-native-gesture-handler';
 import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
 import {ChangesArrayItem} from '@services';
@@ -9,6 +9,7 @@ import {SharkDivider} from '@components/shark-divider';
 import {SharkCheckbox} from '@components/shark-checkbox';
 import {SharkButton} from '@components/shark-button';
 import {useTranslation} from 'react-i18next';
+import {SrOnly} from '@components/sr-only';
 
 interface StagedChangesProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
@@ -60,21 +61,31 @@ export const StagedChangesHeader = ({
 
   return (
     <>
+      <SrOnly>
+        <Text accessibilityRole={'header'}>{t('stagedHeading')}</Text>
+      </SrOnly>
       <View style={[styles.subheaderContainer, floatingStyle]}>
-        <SharkCheckbox
-          checked={
-            stagedChanges.length === selectedStagedChanges.length &&
-            !!stagedChanges.length
-          }
-          indeterminate={!!selectedStagedChanges.length}
-          onValueChange={selectAll => {
-            setSelectedStagedChanges(selectAll ? stagedChanges : []);
-          }}
-          disabled={disabled}
-        />
-        <Text style={[styles.subheaderText, disabledStyles]}>
-          {t('stagedHeading')}
-        </Text>
+        <View style={styles.checkboxContainer}>
+          <SharkCheckbox
+            checked={
+              stagedChanges.length === selectedStagedChanges.length &&
+              !!stagedChanges.length
+            }
+            indeterminate={!!selectedStagedChanges.length}
+            onValueChange={selectAll => {
+              setSelectedStagedChanges(selectAll ? stagedChanges : []);
+            }}
+            disabled={disabled}>
+            <Text
+              style={[styles.subheaderText, disabledStyles]}
+              accessible={true}
+              accessibilityLabel={
+                'All staged items selected' // TODO: Translate this
+              }>
+              {t('stagedHeading')}
+            </Text>
+          </SharkCheckbox>
+        </View>
         <SharkButton
           onPress={stagedBtnAction}
           text={stagedBtnText}
@@ -154,8 +165,10 @@ const dynamicStyles = new DynamicStyleSheet({
   subheaderText: {
     marginLeft: theme.spacing.xs,
     ...theme.textStyles.callout_01,
-    flexGrow: 1,
     color: theme.colors.label_high_emphasis,
+  },
+  checkboxContainer: {
+    flexGrow: 1,
   },
   calloutButton: {
     marginLeft: theme.spacing.m,
