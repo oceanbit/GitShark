@@ -28,7 +28,5 @@
               <data android:scheme="gitshark" android:host="ghcallback" />
           </intent-filter>
       </activity>
-      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
-
 </manifest>
