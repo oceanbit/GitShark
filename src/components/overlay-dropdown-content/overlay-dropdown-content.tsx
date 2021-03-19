@@ -79,6 +79,8 @@ export const OverlayDropdownContent = ({
         }}
         style={styles.contentContainer}>
         <Animated.View
+          importantForAccessibility={!expanded ? 'no-hide-descendants' : 'yes'}
+          accessibilityElementsHidden={!expanded}
           style={[styles.topLayerContainer, {height: animatedHeight}]}>
           <View style={{height}}>{topLayer}</View>
         </Animated.View>
@@ -88,7 +90,11 @@ export const OverlayDropdownContent = ({
             {opacity: scrimOpacity, zIndex: showScrim ? 1 : -1},
           ]}
         />
-        {bottomLayer}
+        <View
+          importantForAccessibility={expanded ? 'no-hide-descendants' : 'yes'}
+          accessibilityElementsHidden={expanded}>
+          {bottomLayer}
+        </View>
       </View>
     </View>
   );

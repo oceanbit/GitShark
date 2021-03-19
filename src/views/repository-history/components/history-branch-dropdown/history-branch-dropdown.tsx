@@ -1,11 +1,13 @@
-import {Animated, View} from 'react-native';
 import * as React from 'react';
+import {Animated, View, Text} from 'react-native';
 import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 import {SharkDivider} from '@components/shark-divider';
 import {useTranslation} from 'react-i18next';
+import {SrOnly} from '@components/sr-only';
+import {SharkIconButton} from '@components/shark-icon-button';
 
 interface HistoryBranchDropdownProps {
   branchName: string;
@@ -75,10 +77,21 @@ export const HistoryBranchDropdown = ({
 
   return (
     <>
+      <SrOnly>
+        {null /*TODO: Translate this*/}
+        <Text accessibilityRole={'header'}>Current branch: {branchName}</Text>
+      </SrOnly>
       <TouchableRipple
         style={styles.dropdownContainer}
         onPress={() => setExpanded(!expanded)}
-        rippleColor={rippleColor}>
+        rippleColor={rippleColor}
+        accessible={true}
+        accessibilityRole={'button'}
+        accessibilityState={{expanded: expanded}}
+        {
+          ...{} /*TODO: Translate this*/
+        }
+        accessibilityLabel={`Branches and remotes`}>
         <Animated.View style={[styles.dropdownView, {marginLeft}]}>
           {/*<SharkIconButton*/}
           {/*  onPress={onFavorite}*/}
