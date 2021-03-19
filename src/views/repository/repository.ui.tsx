@@ -13,8 +13,6 @@ import {Remotes, RemoteBranch} from '@types';
 import {RepoHeaderContext, RepoHeaderDialogType} from '@constants';
 import {PushPull} from '@entities';
 import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
-import {SharkButton} from '@components/shark-button';
 
 const Tab = createMaterialBottomTabNavigator();
 

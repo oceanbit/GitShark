@@ -102,12 +102,7 @@ export const BranchesUI = ({
                 )
               }>
               <>
-                <AnimatedDropdownArrow
-                  setExpanded={val =>
-                    setRemoteExpanded(val ? remote.remote : '')
-                  }
-                  expanded={expanded}
-                />
+                <AnimatedDropdownArrow expanded={expanded} />
                 {/* This is a mock, we'll need to replace it with the list of real remotes soon */}
                 <Text style={styles.remoteHeader}>{remote.remote}</Text>
                 {/*<SharkIconButton iconName="menu" onPress={() => {}} />*/}

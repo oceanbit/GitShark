@@ -94,10 +94,7 @@ export const CommitMessageDropdown = ({
             <View style={styles.fakeIcon} />
             <Animated.View
               style={[styles.dropdownArrow, {bottom: animatedBottom}]}>
-              <AnimatedDropdownArrow
-                expanded={expanded}
-                setExpanded={setExpanded as any}
-              />
+              <AnimatedDropdownArrow expanded={expanded} />
             </Animated.View>
           </Animated.View>
         </TouchableRipple>

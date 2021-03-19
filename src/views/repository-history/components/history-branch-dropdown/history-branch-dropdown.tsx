@@ -95,10 +95,7 @@ export const HistoryBranchDropdown = ({
               {branchName}
             </Animated.Text>
           </View>
-          <AnimatedDropdownArrow
-            setExpanded={setExpanded}
-            expanded={expanded}
-          />
+          <AnimatedDropdownArrow expanded={expanded} />
         </Animated.View>
       </TouchableRipple>
       <SharkDivider />

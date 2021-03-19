@@ -1,9 +1,9 @@
 import {Animated, StyleProp, ViewStyle} from 'react-native';
 import * as React from 'react';
 import {SharkIconButton} from '../shark-icon-button';
+import {SharkIcon} from '@components/shark-icon';
 
 interface AnimatedDropdownArrowProps {
-  setExpanded: (val: boolean) => void;
   expanded: boolean;
   animDuration?: number;
   style?: StyleProp<ViewStyle>;
@@ -11,7 +11,6 @@ interface AnimatedDropdownArrowProps {
 
 export const AnimatedDropdownArrow = ({
   expanded,
-  setExpanded,
   animDuration = 150,
   style,
 }: AnimatedDropdownArrowProps) => {
@@ -38,11 +37,9 @@ export const AnimatedDropdownArrow = ({
   });
 
   return (
-    <SharkIconButton
+    <SharkIcon
       iconName={'arrow_down'}
-      style={style}
-      onPress={() => setExpanded(!expanded)}
-      iconStyle={{transform: [{rotate: rotation}]}}
+      style={[style, {transform: [{rotate: rotation}]}]}
     />
   );
 };

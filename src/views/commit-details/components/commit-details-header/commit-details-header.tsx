@@ -113,10 +113,7 @@ export const CommitDetailsHeader = ({
         style={styles.dropdownContainer}
         onPress={() => setExpanded(v => !v)}>
         <>
-          <AnimatedDropdownArrow
-            expanded={expanded}
-            setExpanded={setExpanded}
-          />
+          <AnimatedDropdownArrow expanded={expanded} />
           <View style={styles.dropdropTextContainer}>
             <Animated.Text
               style={[styles.dropdownText, {opacity: showMoreInfoOpacity}]}>
