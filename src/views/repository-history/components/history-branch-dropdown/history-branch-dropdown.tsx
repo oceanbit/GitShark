@@ -78,8 +78,9 @@ export const HistoryBranchDropdown = ({
   return (
     <>
       <SrOnly>
-        {null /*TODO: Translate this*/}
-        <Text accessibilityRole={'header'}>Current branch: {branchName}</Text>
+        <Text accessibilityRole={'header'}>
+          {t('currentBranch', {branchName})}
+        </Text>
       </SrOnly>
       <TouchableRipple
         style={styles.dropdownContainer}
@@ -88,10 +89,7 @@ export const HistoryBranchDropdown = ({
         accessible={true}
         accessibilityRole={'button'}
         accessibilityState={{expanded: expanded}}
-        {
-          ...{} /*TODO: Translate this*/
-        }
-        accessibilityLabel={`Branches and remotes`}>
+        accessibilityLabel={t('branchesRemotesDropdown')}>
         <Animated.View style={[styles.dropdownView, {marginLeft}]}>
           {/*<SharkIconButton*/}
           {/*  onPress={onFavorite}*/}

@@ -48,20 +48,18 @@ export const AccountButton = () => {
         <View style={styles.accountText}>
           {!!personName && (
             <Text
-              {
-                ...{} /* TODO: Transate this */
-              }
-              accessibilityLabel={`Name: "${personName}"`}
+              accessibilityLabel={t('accountName', {
+                personName,
+              })}
               style={styles.accountCallout}>
               {personName}
             </Text>
           )}
           {!!personEmail && (
             <Text
-              {
-                ...{} /* TODO: Transate this */
-              }
-              accessibilityLabel={`Email: "${personEmail}"`}
+              accessibilityLabel={t('accountEmail', {
+                personEmail,
+              })}
               style={styles.accountBody}>
               {personEmail}
             </Text>

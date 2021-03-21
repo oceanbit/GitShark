@@ -25,9 +25,10 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
   const toPush = pushPull?.toPush?.length || 0;
   const toPull = pushPull?.toPull?.length || 0;
 
-  // TODO: Translate (handle plurals)
-  const toPushLabel = toPush > 0 ? `Push ${toPush} commits` : 'Push';
-  const toPullLabel = toPull > 0 ? `Pull ${toPush} commits` : 'Pull';
+  const toPushLabel =
+    toPush > 0 ? t('pushCommits', {count: toPush}) : t('pushAction');
+  const toPullLabel =
+    toPull > 0 ? t('pullCommits', {count: toPull}) : t('pullAction');
 
   if (!repo) return null;
 
@@ -56,10 +57,7 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
             onDismiss={() => setIsMenuOpen(false)}
             anchor={
               <SharkIconButton
-                {
-                  ...{} /*TODO: Translate this*/
-                }
-                label={'Repository actions'}
+                label={t('repoActions')}
                 iconName="menu"
                 onPress={() => setIsMenuOpen(true)}
               />

@@ -71,10 +71,7 @@ export const Settings = () => {
       <TopSpacerView isFloating={true} />
       <AppBar
         leftIcon="back"
-        {
-          ...{} /* TODO: Translate this*/
-        }
-        leftIconLabel="Go back"
+        leftIconLabel={t('backAction')}
         onLeftSelect={() => history.goBack()}
         headline={t('settingsHeadline')}
       />

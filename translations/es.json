@@ -140,5 +140,22 @@
   "tryAgain": "Intentar de nuevo",
   "viewLog": "Ver registro completo",
   "unknownError": "An unknown error occurred",
-  "weSavedImgAndroid": "GitShark saved an image of the error screen to your device's Downloads folder and copied the error to your clipboard"
+  "weSavedImgAndroid": "GitShark saved an image of the error screen to your device's Downloads folder and copied the error to your clipboard",
+  "pullAction": "Pull",
+  "selectedFolderPath": "Selected folder path is \"{{path}}\"",
+  "pushCommits": "Push {{count}} commit",
+  "pushCommits_plural": "Push {{count}} commits",
+  "pullCommits": "Pull {{count}} commit",
+  "pullCommits_plural": "Pull {{count}} commits",
+  "repoActions": "Repository actions",
+  "backAction": "Go back",
+  "noCommitDataSet": "No commit author data currently set.",
+  "notSet": "not set",
+  "commitDataPulledGH": "Commit author data being pulled from GitHub: Name - {{personNameLabel}}, email - {{personEmailLabel}}",
+  "commitDataManual": "Commit author data currently set: Name - {{personNameLabel}}, email - {{personEmailLabel}}",
+  "gitHubUserInfo": "GitHub user info. Name: {{name}}, email: {{email}}",
+  "currentBranch": "Current branch: {{branchName}}",
+  "branchesRemotesDropdown": "Branches and remotes",
+  "accountName": "Name: \"{{personName}}\"",
+  "accountEmail": "Email: \"{{personEmail}}\""
 }

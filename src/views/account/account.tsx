@@ -92,16 +92,21 @@ export const Account = () => {
   };
 
   let authorPreviewLabel = '';
-  /* TODO: Translate this*/
   if (!personName && !personEmail) {
-    authorPreviewLabel = 'No commit author data currently set.';
+    authorPreviewLabel = t('noCommitDataSet');
   } else {
-    const personNameLabel = personName || 'not set';
-    const personEmailLabel = personEmail || 'not set';
+    const personNameLabel = personName || t('notSet');
+    const personEmailLabel = personEmail || t('notSet');
     if (useGitHub) {
-      authorPreviewLabel = `Commit author data being pulled from GitHub: Name - ${personNameLabel}, email - ${personEmailLabel}`;
+      authorPreviewLabel = t('commitDataPulledGH', {
+        personNameLabel,
+        personEmailLabel,
+      });
     } else {
-      authorPreviewLabel = `Commit author data currently set: Name - ${personNameLabel}, email - ${personEmailLabel}`;
+      authorPreviewLabel = t('commitDataManual', {
+        personNameLabel,
+        personEmailLabel,
+      });
     }
   }
 
@@ -115,10 +120,7 @@ export const Account = () => {
           <TopSpacerView isFloating={true} />
           <AppBar
             leftIcon="back"
-            {
-              ...{} /* TODO: Translate this*/
-            }
-            leftIconLabel={'Go back'}
+            leftIconLabel={t('backAction')}
             onLeftSelect={() => history.goBack()}
             headline={t('accountsHeadline')}
           />
