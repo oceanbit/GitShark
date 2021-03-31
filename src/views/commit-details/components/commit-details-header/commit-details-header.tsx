@@ -138,7 +138,8 @@ const dynamicStyles = new DynamicStyleSheet({
   commitStyle: {
     ...theme.textStyles.callout_01,
     marginHorizontal: theme.spacing.m,
-    marginBottom: theme.spacing.xs,
+    marginVertical: theme.spacing.xs,
+    color: theme.colors.label_high_emphasis,
   },
   authorBlock: {
     marginTop: theme.spacing.xs,

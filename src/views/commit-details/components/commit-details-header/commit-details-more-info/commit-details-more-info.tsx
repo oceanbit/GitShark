@@ -120,6 +120,7 @@ const dynamicStyles = new DynamicStyleSheet({
   sectionTitleText: {
     ...theme.textStyles.caption_01,
     textAlign: 'center',
+    color: theme.colors.label_high_emphasis,
   },
   sectionBody: {
     flexGrow: 1,
