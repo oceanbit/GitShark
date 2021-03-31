@@ -4,6 +4,7 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {AnimatedDropdownArrow} from '@components/animated-dropdown-arrow';
 import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
+import {SrOnly} from '@components/sr-only';
 
 const animTiming = 150;
 
@@ -83,21 +84,26 @@ export const CommitMessageDropdown = ({
   return (
     <>
       {isLongText && (
-        <TouchableRipple
-          style={[styles.container, styles.marginContainer]}
-          onPress={() => setExpanded(v => !v)}>
-          <Animated.View
-            style={[styles.innerContainer, {height: animatedHeight}]}>
-            <View style={styles.textContainer}>
-              {!expanded ? <>{smallText}</> : <>{bigText}</>}
-            </View>
-            <View style={styles.fakeIcon} />
+        <>
+          <TouchableRipple
+            importantForAccessibility={'no-hide-descendants'}
+            accessibilityElementsHidden={true}
+            style={[styles.container, styles.marginContainer]}
+            onPress={() => setExpanded(v => !v)}>
             <Animated.View
-              style={[styles.dropdownArrow, {bottom: animatedBottom}]}>
-              <AnimatedDropdownArrow expanded={expanded} />
+              style={[styles.innerContainer, {height: animatedHeight}]}>
+              <View style={styles.textContainer}>
+                {!expanded ? <>{smallText}</> : <>{bigText}</>}
+              </View>
+              <View style={styles.fakeIcon} />
+              <Animated.View
+                style={[styles.dropdownArrow, {bottom: animatedBottom}]}>
+                <AnimatedDropdownArrow expanded={expanded} />
+              </Animated.View>
             </Animated.View>
-          </Animated.View>
-        </TouchableRipple>
+          </TouchableRipple>
+          <SrOnly>{bigText}</SrOnly>
+        </>
       )}
       {!isLongText && (
         <View style={[styles.container, styles.marginContainer]}>

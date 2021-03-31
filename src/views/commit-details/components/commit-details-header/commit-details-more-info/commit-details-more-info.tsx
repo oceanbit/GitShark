@@ -5,6 +5,7 @@ import {theme} from '@constants';
 import {TouchableRipple} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import Clipboard from '@react-native-community/clipboard';
+import {SrOnly} from '@components/sr-only';
 
 interface CommitDetailsMoreInfoProps {
   sha: string;
@@ -58,9 +59,18 @@ export const CommitDetailsMoreInfo = ({
       {/*  </ScrollView>*/}
       {/*</View>*/}
 
+      <SrOnly>
+        <Text accessibilityRole={'header'}>SHA Hash</Text>
+      </SrOnly>
+      <SrOnly>
+        <Text>{sha}</Text>
+      </SrOnly>
+
       <TouchableRipple
         style={[styles.sectionContainer, styles.shaSectionContainer]}
-        onPress={copyText}>
+        onPress={copyText}
+        accessible={true}
+        accessibilityLabel={'Copy SHA Hash'}>
         <>
           <View style={styles.sectionTitle}>
             <Text style={styles.sectionTitleText}>{t('shaAbreviation')}</Text>
@@ -77,7 +87,14 @@ export const CommitDetailsMoreInfo = ({
       </TouchableRipple>
 
       <View style={styles.sectionContainer}>
-        <View style={styles.sectionTitle}>
+        <SrOnly>
+          <Text accessibilityRole={'header'}>Parents</Text>
+        </SrOnly>
+
+        <View
+          style={styles.sectionTitle}
+          importantForAccessibility={'no-hide-descendants'}
+          accessibilityElementsHidden={true}>
           <Text style={styles.sectionTitleText}>{t('parentAbreviation')}</Text>
         </View>
         <ScrollView horizontal={true} style={styles.sectionBody}>

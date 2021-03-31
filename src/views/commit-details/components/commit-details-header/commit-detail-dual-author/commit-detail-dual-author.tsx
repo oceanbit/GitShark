@@ -7,6 +7,7 @@ import {SharkProfilePic} from '@components/shark-profile-pic';
 import {GitLogCommit} from '@services';
 import dayjs from 'dayjs';
 import {useTranslation} from 'react-i18next';
+import {SrOnly} from '@components/sr-only';
 
 const authorImageSize = 40;
 
@@ -165,6 +166,10 @@ export const CommitDetailsDualAuthor = ({
             // initial render, we can ignore susequent updates that `onLayout` runs
             if (!nameHeight) setNameHeight(eventHeight);
           }}>
+          <SrOnly>
+            {null /*TODO: Translate this*/}
+            <Text accessibilityRole={'header'}>Author information</Text>
+          </SrOnly>
           <Text style={styles.personName}>{author?.name}</Text>
           <DropdownContent expanded={expanded} ref={emailRef}>
             <Text style={styles.personEmail}>{author?.email}</Text>
@@ -181,6 +186,10 @@ export const CommitDetailsDualAuthor = ({
           <View style={styles.peopleMargin} />
         </DropdownContent>
         <View style={styles.personContainer}>
+          <SrOnly>
+            {null /*TODO: Translate this*/}
+            <Text accessibilityRole={'header'}>Committer information</Text>
+          </SrOnly>
           <Text style={styles.personName}>{committer?.name}</Text>
           <DropdownContent expanded={expanded}>
             <Text style={styles.personEmail}>{committer?.email}</Text>

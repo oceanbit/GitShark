@@ -79,7 +79,9 @@ export const CommitDetailsHeader = ({
 
   return (
     <View>
-      <Text style={styles.commitStyle}>{title}</Text>
+      <Text style={styles.commitStyle} accessibilityRole={'header'}>
+        {title}
+      </Text>
       {!!message && (
         <CommitMessageDropdown
           message={message}
@@ -111,7 +113,11 @@ export const CommitDetailsHeader = ({
       </DropdownContent>
       <TouchableRipple
         style={styles.dropdownContainer}
-        onPress={() => setExpanded(v => !v)}>
+        onPress={() => setExpanded(v => !v)}
+        accessibilityRole={'button'}
+        accessibilityState={{expanded}}
+        accessible={true}
+        accessibilityLabel={t('moreInfo')}>
         <>
           <AnimatedDropdownArrow expanded={expanded} />
           <View style={styles.dropdropTextContainer}>

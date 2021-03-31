@@ -6,6 +6,7 @@ import {SharkProfilePic} from '@components/shark-profile-pic';
 import {GitLogCommit} from '@services';
 import dayjs from 'dayjs';
 import {useTranslation} from 'react-i18next';
+import {SrOnly} from '@components/sr-only';
 
 const authorImageSize = 40;
 
@@ -43,6 +44,10 @@ export const CommitDetailsSingleAuthor = ({
         <SharkProfilePic size={authorImageSize} />
       </View>
       <View style={styles.personContainer}>
+        <SrOnly>
+          {null /*TODO: Translate this*/}
+          <Text accessibilityRole={'header'}>Author information</Text>
+        </SrOnly>
         <Text style={styles.personName}>{author?.name}</Text>
         <Text style={styles.personEmail}>{author?.email}</Text>
         {showAuthoredTimestamp && (

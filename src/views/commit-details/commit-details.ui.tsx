@@ -58,6 +58,7 @@ export const CommitDetailsUI = ({
     <>
       <AppBar
         leftIcon="back"
+        leftIconLabel={t('backAction')}
         onLeftSelect={onBack}
         hasBottomBorder={false}
         rightChild={
@@ -67,6 +68,10 @@ export const CommitDetailsUI = ({
             anchor={
               <SharkIconButton
                 iconName="menu"
+                {
+                  ...{} // TODO: Translate this
+                }
+                label={'Commit actions'}
                 onPress={() => setIsMenuOpen(true)}
               />
             }>
