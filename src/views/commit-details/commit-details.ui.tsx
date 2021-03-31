@@ -97,10 +97,18 @@ export const CommitDetailsUI = ({
         />
         <SharkDivider />
         <View style={styles.changesHeader}>
-          <Text style={styles.changesHeaderText}>{t('changesHeader')}</Text>
+          <Text style={styles.changesHeaderText} accessibilityRole={'header'}>
+            {t('changesHeader')}
+          </Text>
           <View style={styles.growContainer} />
           {!!added && (
-            <View style={styles.infoBlock}>
+            <View
+              style={styles.infoBlock}
+              accessible={true}
+              {
+                ...{} // TODO: Translate this
+              }
+              accessibilityLabel={`Added ${added} files`}>
               <Icon name="change_addition" size={16} color={change_addition} />
               <Text style={[styles.iconText, styles.additionText]}>
                 {added}
@@ -109,7 +117,13 @@ export const CommitDetailsUI = ({
           )}
 
           {!!removed && (
-            <View style={[styles.infoBlock]}>
+            <View
+              style={[styles.infoBlock]}
+              accessible={true}
+              {
+                ...{} // TODO: Translate this
+              }
+              accessibilityLabel={`Removed ${removed} files`}>
               <Icon name="change_removal" size={16} color={change_removal} />
               <Text style={[styles.iconText, styles.removalText]}>
                 {removed}
@@ -118,7 +132,13 @@ export const CommitDetailsUI = ({
           )}
 
           {!!modified && (
-            <View style={[styles.infoBlock]}>
+            <View
+              style={[styles.infoBlock]}
+              accessible={true}
+              {
+                ...{} // TODO: Translate this
+              }
+              accessibilityLabel={`Changed ${modified} files`}>
               <Icon name="change_mixed" size={16} color={change_mixed} />
               <Text style={[styles.iconText, styles.modifiedText]}>
                 {modified}
