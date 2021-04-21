@@ -90,9 +90,7 @@ export const FileActionsBar = ({
             <Animated.Text
               style={[styles.subheaderText, disabledStyles]}
               accessible={true}
-              accessibilityLabel={
-                'All unstaged items selected' // TODO: Translate this
-              }>
+              accessibilityLabel={t('allUnstagedItemsSelected')}>
               {t('unstagedHeading')}
             </Animated.Text>
           </SharkCheckbox>

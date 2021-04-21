@@ -68,10 +68,7 @@ export const CommitDetailsUI = ({
             anchor={
               <SharkIconButton
                 iconName="menu"
-                {
-                  ...{} // TODO: Translate this
-                }
-                label={'Commit actions'}
+                label={t('commitActions')}
                 onPress={() => setIsMenuOpen(true)}
               />
             }>
@@ -105,10 +102,7 @@ export const CommitDetailsUI = ({
             <View
               style={styles.infoBlock}
               accessible={true}
-              {
-                ...{} // TODO: Translate this
-              }
-              accessibilityLabel={`Added ${added} files`}>
+              accessibilityLabel={t('addedFiles', {count: added})}>
               <Icon name="change_addition" size={16} color={change_addition} />
               <Text style={[styles.iconText, styles.additionText]}>
                 {added}
@@ -120,10 +114,7 @@ export const CommitDetailsUI = ({
             <View
               style={[styles.infoBlock]}
               accessible={true}
-              {
-                ...{} // TODO: Translate this
-              }
-              accessibilityLabel={`Removed ${removed} files`}>
+              accessibilityLabel={t('removedFiles', {count: removed})}>
               <Icon name="change_removal" size={16} color={change_removal} />
               <Text style={[styles.iconText, styles.removalText]}>
                 {removed}
@@ -135,10 +126,7 @@ export const CommitDetailsUI = ({
             <View
               style={[styles.infoBlock]}
               accessible={true}
-              {
-                ...{} // TODO: Translate this
-              }
-              accessibilityLabel={`Changed ${modified} files`}>
+              accessibilityLabel={t('changedFiles', {count: modified})}>
               <Icon name="change_mixed" size={16} color={change_mixed} />
               <Text style={[styles.iconText, styles.modifiedText]}>
                 {modified}

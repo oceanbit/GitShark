@@ -5,6 +5,7 @@ import {FileChangeListItem} from './file-change-list-item';
 import {SharkCheckbox} from '../shark-checkbox';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
+import {useTranslation} from 'react-i18next';
 
 interface FileChangeListItemProps {
   fileName: string;
@@ -21,6 +22,8 @@ export const FileChangeListItemWithCheckbox = ({
   onToggle = () => {},
   isChecked,
 }: FileChangeListItemProps) => {
+  const {t} = useTranslation();
+
   const styles = useDynamicValue(dynamicStyles);
 
   const checkboxLabel = isChecked
@@ -39,10 +42,7 @@ export const FileChangeListItemWithCheckbox = ({
       <FileChangeListItem
         fileName={fileName}
         onPress={onPress}
-        {
-          ...{} /*TODO: Translate this*/
-        }
-        label={`Open "${fileName}"`}
+        label={t('openFile', {fileName})}
         fileStatus={fileStatus}
         style={styles.listItem}
       />

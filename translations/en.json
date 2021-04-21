@@ -157,5 +157,19 @@
   "currentBranch": "Current branch: {{branchName}}",
   "branchesRemotesDropdown": "Branches and remotes",
   "accountName": "Name: \"{{personName}}\"",
-  "accountEmail": "Email: \"{{personEmail}}\""
+  "accountEmail": "Email: \"{{personEmail}}\"",
+  "openFile": "Open \"{{fileName}}\"",
+  "closePage": "Close page",
+  "commitForm": "Commit form",
+  "commitActions": "Commit actions",
+  "addedFiles": "Added {{count}} file",
+  "addedFiles_plural": "Added {{count}} files",
+  "removedFiles": "Removed {{count}} file",
+  "removedFiles_plural": "Removed {{count}} files",
+  "changedFiles": "Changed {{count}} file",
+  "changedFiles_plural": "Changed {{count}} files",
+  "authorInfo": "Author information",
+  "committerInfo": "Committer information",
+  "allUnstagedItemsSelected": "All unstaged items selected",
+  "allStagedItemsSelected": "All staged items selected"
 }

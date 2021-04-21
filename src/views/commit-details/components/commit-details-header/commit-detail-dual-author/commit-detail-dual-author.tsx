@@ -167,8 +167,7 @@ export const CommitDetailsDualAuthor = ({
             if (!nameHeight) setNameHeight(eventHeight);
           }}>
           <SrOnly>
-            {null /*TODO: Translate this*/}
-            <Text accessibilityRole={'header'}>Author information</Text>
+            <Text accessibilityRole={'header'}>{t('authorInfo')}</Text>
           </SrOnly>
           <Text style={styles.personName}>{author?.name}</Text>
           <DropdownContent expanded={expanded} ref={emailRef}>
@@ -187,8 +186,7 @@ export const CommitDetailsDualAuthor = ({
         </DropdownContent>
         <View style={styles.personContainer}>
           <SrOnly>
-            {null /*TODO: Translate this*/}
-            <Text accessibilityRole={'header'}>Committer information</Text>
+            <Text accessibilityRole={'header'}>{t('committerInfo')}</Text>
           </SrOnly>
           <Text style={styles.personName}>{committer?.name}</Text>
           <DropdownContent expanded={expanded}>

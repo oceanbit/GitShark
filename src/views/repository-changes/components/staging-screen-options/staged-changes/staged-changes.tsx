@@ -79,9 +79,7 @@ export const StagedChangesHeader = ({
             <Text
               style={[styles.subheaderText, disabledStyles]}
               accessible={true}
-              accessibilityLabel={
-                'All staged items selected' // TODO: Translate this
-              }>
+              accessibilityLabel={t('allStagedItemsSelected')}>
               {t('stagedHeading')}
             </Text>
           </SharkCheckbox>

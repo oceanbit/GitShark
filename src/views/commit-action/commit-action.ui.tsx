@@ -40,11 +40,10 @@ export const CommitActionUI = ({
       behavior="padding"
       enabled>
       <View style={[styles.commitHeaderContainer]}>
-        {null /*TODO: Translate this*/}
         <SharkIconButton
           onPress={onClose}
           iconName="close"
-          label={'Close page'}
+          label={t('closePage')}
         />
         <Text style={styles.commitHeader} accessibilityRole={'header'}>
           {t('commitChangesHeader')}
@@ -69,8 +68,7 @@ export const CommitActionUI = ({
           </ScrollView>
           <SharkDivider />
           <SrOnly>
-            {null /*TODO: Translate this*/}
-            <Text accessibilityRole={'header'}>Commit form</Text>
+            <Text accessibilityRole={'header'}>{t('commitForm')}</Text>
           </SrOnly>
           <View style={styles.commitData}>
             <SharkTextInput

@@ -45,8 +45,7 @@ export const CommitDetailsSingleAuthor = ({
       </View>
       <View style={styles.personContainer}>
         <SrOnly>
-          {null /*TODO: Translate this*/}
-          <Text accessibilityRole={'header'}>Author information</Text>
+          <Text accessibilityRole={'header'}>{t('authorInfo')}</Text>
         </SrOnly>
         <Text style={styles.personName}>{author?.name}</Text>
         <Text style={styles.personEmail}>{author?.email}</Text>
