@@ -157,5 +157,7 @@
   "currentBranch": "Rama actual: {{branchName}}",
   "branchesRemotesDropdown": "Ramas locales y remotas",
   "accountName": "Nombre: \"{{personName}}\"",
-  "accountEmail": "Correo electrónico: \"{{personEmail}}\""
+  "accountEmail": "Correo electrónico: \"{{personEmail}}\"",
+  "checkoutNamedBranch": "Checkout {{branchName}}",
+  "mergeNamedBranch": "merge {{branchName}}"
 }

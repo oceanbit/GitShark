@@ -9,6 +9,7 @@ import {SharkMenu} from '@components/shark-menu';
 import {DeleteBranchDialog} from '../delete-branch-dialog';
 import {RenameBranchDialog} from '../rename-branch-dialog';
 import {BranchMergeCheckDialog} from '../merge-branch-check-dialog';
+import {useTranslation} from 'react-i18next';
 
 interface BranchMock {
   name: string;
@@ -43,6 +44,8 @@ export const BranchListItem = ({
   onCheckoutBranch,
   onBranchRename,
 }: BranchListItemProps) => {
+  const {t} = useTranslation();
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState<BranchListItemDialogTypes>(
     '',
@@ -100,19 +103,13 @@ export const BranchListItem = ({
               onPress={() => {
                 onCheckoutBranch(branch.name);
               }}
-              {
-                ...{} // TODO: Translate this
-              }
-              title={`Checkout ${branch.name}`}
+              title={t('checkoutNamedBranch', {branchName: branch.name})}
             />
             <Menu.Item
               onPress={() => {
                 onBranchMerge(branch.name);
               }}
-              {
-                ...{} // TODO: Translate this
-              }
-              title={`Merge ${branch.name}`}
+              title={t('mergeNamedBranch', {branchName: branch.name})}
             />
             <Divider />
             <Menu.Item
@@ -120,20 +117,14 @@ export const BranchListItem = ({
                 setDialogOpen('rename');
                 setIsMenuOpen(false);
               }}
-              {
-                ...{} // TODO: Translate this
-              }
-              title="Rename"
+              title={t('renameAction')}
             />
             <Menu.Item
               onPress={() => {
                 setDialogOpen('delete');
                 setIsMenuOpen(false);
               }}
-              {
-                ...{} // TODO: Translate this
-              }
-              title="Delete"
+              title={t('deleteAction')}
               disabled={selected}
             />
           </SharkMenu>

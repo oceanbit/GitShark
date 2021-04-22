@@ -171,5 +171,7 @@
   "authorInfo": "Informação do autor",
   "committerInfo": "Informação do committer",
   "allUnstagedItemsSelected": "Todos os itens em Unstaged selecionados",
-  "allStagedItemsSelected": "Todos os itens em Staged selecionados"
+  "allStagedItemsSelected": "Todos os itens em Staged selecionados",
+  "checkoutNamedBranch": "Checkout {{branchName}}",
+  "mergeNamedBranch": "merge {{branchName}}"
 }

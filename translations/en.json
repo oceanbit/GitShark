@@ -171,5 +171,7 @@
   "authorInfo": "Author information",
   "committerInfo": "Committer information",
   "allUnstagedItemsSelected": "All unstaged items selected",
-  "allStagedItemsSelected": "All staged items selected"
+  "allStagedItemsSelected": "All staged items selected",
+  "checkoutNamedBranch": "Checkout {{branchName}}",
+  "mergeNamedBranch": "merge {{branchName}}"
 }
