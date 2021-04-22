@@ -4,10 +4,12 @@ import {useTranslation} from 'react-i18next';
 
 interface OnCommitActionsDialogProps {
   visible: boolean;
+  commitErr?: string;
 }
 
 export const OnCommitActionsDialog = ({
   visible,
+  commitErr,
 }: OnCommitActionsDialogProps) => {
   const {t} = useTranslation();
 
@@ -21,7 +23,7 @@ export const OnCommitActionsDialog = ({
       progress={0}
       indeterminate={true}
       bodyText={''}
-      errorStr={''}
+      errorStr={commitErr || ''}
     />
   );
 };

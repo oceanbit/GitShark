@@ -29,6 +29,8 @@ export const CommitAction = () => {
 
   const [showCommit, setShowCommit] = React.useState(false);
 
+  const [commitErr, setCommitErr] = React.useState('');
+
   const onSubmit = async ({
     commitBody,
     commitTitle,
@@ -36,22 +38,26 @@ export const CommitAction = () => {
     commitTitle: string;
     commitBody: string;
   }) => {
-    if (!email || !name) {
-      setNoUser(true);
-      return;
+    try {
+      if (!email || !name) {
+        setNoUser(true);
+        return;
+      }
+      setShowCommit(true);
+      Keyboard.dismiss();
+      await commit({
+        repo: repo!,
+        description: commitBody,
+        title: commitTitle,
+        email,
+        name,
+        dispatch,
+      });
+      setShowCommit(false);
+      history.navigate('Repository');
+    } catch (e) {
+      setCommitErr((e as Error).message || e);
     }
-    setShowCommit(true);
-    Keyboard.dismiss();
-    await commit({
-      repo: repo!,
-      description: commitBody,
-      title: commitTitle,
-      email,
-      name,
-      dispatch,
-    });
-    setShowCommit(false);
-    history.navigate('Repository');
   };
 
   return (
@@ -73,7 +79,7 @@ export const CommitAction = () => {
         }}
         message={t('noAuthorDataSet')}
       />
-      <OnCommitActionsDialog visible={showCommit} />
+      <OnCommitActionsDialog visible={showCommit} commitErr={commitErr} />
     </>
   );
 };
