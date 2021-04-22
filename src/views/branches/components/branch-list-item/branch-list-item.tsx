@@ -8,6 +8,7 @@ import {Divider, Menu, TouchableRipple} from 'react-native-paper';
 import {SharkMenu} from '@components/shark-menu';
 import {DeleteBranchDialog} from '../delete-branch-dialog';
 import {RenameBranchDialog} from '../rename-branch-dialog';
+import {BranchMergeCheckDialog} from '../merge-branch-check-dialog';
 
 interface BranchMock {
   name: string;
@@ -22,6 +23,7 @@ interface BranchListItemProps {
   isFavorite: boolean;
   onDeleteLocalBranch: (branchName: string) => Promise<void>;
   onCheckoutBranch: (branchName: string) => Promise<void>;
+  onBranchMerge: (branchName: string) => void;
   onBranchRename: (props: {
     branchName: string;
     selected: boolean;
@@ -36,6 +38,7 @@ export const BranchListItem = ({
   localBranches,
   selected,
   isFavorite,
+  onBranchMerge,
   onDeleteLocalBranch,
   onCheckoutBranch,
   onBranchRename,
@@ -97,7 +100,19 @@ export const BranchListItem = ({
               onPress={() => {
                 onCheckoutBranch(branch.name);
               }}
+              {
+                ...{} // TODO: Translate this
+              }
               title={`Checkout ${branch.name}`}
+            />
+            <Menu.Item
+              onPress={() => {
+                onBranchMerge(branch.name);
+              }}
+              {
+                ...{} // TODO: Translate this
+              }
+              title={`Merge ${branch.name}`}
             />
             <Divider />
             <Menu.Item
@@ -105,6 +120,9 @@ export const BranchListItem = ({
                 setDialogOpen('rename');
                 setIsMenuOpen(false);
               }}
+              {
+                ...{} // TODO: Translate this
+              }
               title="Rename"
             />
             <Menu.Item
@@ -112,6 +130,9 @@ export const BranchListItem = ({
                 setDialogOpen('delete');
                 setIsMenuOpen(false);
               }}
+              {
+                ...{} // TODO: Translate this
+              }
               title="Delete"
               disabled={selected}
             />
