@@ -1,6 +1,6 @@
 {
   "repoListTitle": "Repositorios",
-  "repoListA11Y": "Lista de Repositorios",
+  "repoListA11Y": "Lista de repositorios",
   "settingsButtonLabel": "Ajustes",
   "repoCardLabel": "{{repoName}}. {{updated}}. En la rama {{branchName}}.",
   "needsToPull": "Necesita hacer pull de {{num}} commits.",
