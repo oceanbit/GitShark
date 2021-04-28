@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.10...v0.1.0) (2021-04-28)
+
+
+### Bug Fixes
+
+* a11y improved for file actions menu button ([daab6dc](https://github.com/crutchcorn/GitShark/commit/daab6dc04938b27807a39985f81e66292c5f13ac))
+* a11y improvements on Repo List ([caa4073](https://github.com/crutchcorn/GitShark/commit/caa40733f8bbd7d8aa73d84ddc31086cd3b07c98))
+* a11y improvements on the commit action screen ([9723da7](https://github.com/crutchcorn/GitShark/commit/9723da77e01ced531f05f7ba9fed59c58b95ccc9))
+* account page a11y issues ([82cd7e1](https://github.com/crutchcorn/GitShark/commit/82cd7e1d92f008710b14f73201a431853f345392))
+* commit details text fixed on dark mode ([4163863](https://github.com/crutchcorn/GitShark/commit/416386312950432958fcee8819625119214257fc))
+* dropdown arrows no longer provide accidental duplicate button ([51790b3](https://github.com/crutchcorn/GitShark/commit/51790b3fdfe27066be9257a205232de265710172))
+* errors during commit action now display properly ([cf25e89](https://github.com/crutchcorn/GitShark/commit/cf25e8905c2956aa1f4c702aa2d81bbb5f602efa))
+* fetch dialog dropdown arrow now properly colored for dark mode ([e06a451](https://github.com/crutchcorn/GitShark/commit/e06a4510fbeaff505199c345cfe801ffcc11156d))
+* improve a11y for commit details body ([0b15886](https://github.com/crutchcorn/GitShark/commit/0b15886acf2df86ddcb604c9c9483ffdbd8a665d))
+* improve A11Y for history dropdown ([60a1761](https://github.com/crutchcorn/GitShark/commit/60a17614c9790ee1914cc614637756486561ef31))
+* improved a11y for commit detail header ([d259559](https://github.com/crutchcorn/GitShark/commit/d259559c909a2ad259b6f8e6dab93151ccc49c7f))
+* improved A11Y for repo changes screen ([aa3d12a](https://github.com/crutchcorn/GitShark/commit/aa3d12a1a8c38a25d82f07ad2aff2723239b5679))
+* new repository button now works after dialog is closed ([368324b](https://github.com/crutchcorn/GitShark/commit/368324b1bd69cde908b11ab2d5870cd437c639e4))
+* screen-readers no longer read content under repo list dialogs ([0e668b4](https://github.com/crutchcorn/GitShark/commit/0e668b4955020a593b137e62b3977d393c13934a))
+* staging layout now looks better on tablet mode ([055706a](https://github.com/crutchcorn/GitShark/commit/055706ac377312b2711bcc91164178bceab93558))
+* tappable areas for checkboxes improved ([0781a31](https://github.com/crutchcorn/GitShark/commit/0781a317b5e314c59369cc396b534b5f39868c1c))
+* various A11Y issues in settings screen ([bdcb5e3](https://github.com/crutchcorn/GitShark/commit/bdcb5e30cda68a0c06fd6e8ccdfac1362677f452))
+
 ### [0.0.1-alpha.10](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.9...v0.0.1-alpha.10) (2021-02-05)
 
 
