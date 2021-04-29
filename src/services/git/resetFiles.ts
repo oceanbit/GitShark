@@ -1,11 +1,8 @@
 import {Platform} from 'react-native';
-import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '@constants';
 import {ThunkDispatchType} from '@hooks';
 import {getGitStatus} from '@store';
-import {logService} from '../debug';
+import {logService, NotImplemented} from '../debug';
 import {resetFilesAndroid} from './resetFiles-android';
-import {getRepoPath} from '@utils';
 
 export interface ResetFilesProps {
   path: string;
@@ -20,14 +17,7 @@ export const resetFiles = async ({path, files, dispatch}: ResetFilesProps) => {
   if (Platform.OS === 'android') {
     await resetFilesAndroid({path, files, dispatch});
   } else {
-    const repoPath = getRepoPath(path);
-
-    await git.checkout({
-      fs,
-      dir: repoPath,
-      filepaths: files,
-      force: true,
-    });
+    throw new NotImplemented('resetFiles');
   }
 
   dispatch(getGitStatus());

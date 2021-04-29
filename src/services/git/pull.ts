@@ -1,13 +1,11 @@
-import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
-import {fs, GITHUB_TOKEN_STORAGE_KEY} from '@constants';
-import http from 'isomorphic-git/http/web/index.js';
+import {GITHUB_TOKEN_STORAGE_KEY} from '@constants';
 import {getCommitRev, getGitLog} from '@store';
 import RNSecureKeyStore from 'react-native-secure-key-store';
 
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
-import {RemoteBranch} from '@types';
-import {logService} from '../debug';
+import {ProgressCallback, RemoteBranch} from '@types';
+import {logService, NotImplemented} from '../debug';
 import {getRepoPath} from '@utils';
 import {pullAndroid} from './pull-android';
 import {Platform} from 'react-native';
@@ -50,26 +48,7 @@ export const pull = async ({
       onProgress,
     });
   } else {
-    await git.pull({
-      fs,
-      dir: repoPath,
-      ref: branch,
-      http,
-      remote: destination.remote,
-      remoteRef: destination.name,
-      onProgress,
-      onAuth: () =>
-        GH_TOKEN
-          ? {
-              username: GH_TOKEN,
-              password: 'x-oauth-basic',
-            }
-          : {},
-      author: {
-        email,
-        name,
-      },
-    });
+    throw new NotImplemented('pull');
   }
 
   dispatch(getCommitRev({path: repoPath, repoId: repo.id}));

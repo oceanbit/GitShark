@@ -1,13 +1,10 @@
-import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
-import {fs} from '@constants';
-import http from 'isomorphic-git/http/web/index.js';
 import {getCommitRev, getRemotesAndBranches} from '@store';
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
-import {logService} from '../debug';
-import {getRepoPath} from '@utils';
+import {logService, NotImplemented} from '../debug';
 import {Platform} from 'react-native';
 import {fetchAndroid} from '@services/git/fetch-android';
+import {ProgressCallback} from '@types';
 
 export interface FetchProps {
   dir: string;
@@ -33,18 +30,5 @@ export const fetch = async (props: FetchProps) => {
     return;
   }
 
-  const repoPath = getRepoPath(repo.path);
-
-  await git.fetch({
-    fs,
-    http,
-    dir: getRepoPath(dir),
-    remote,
-    singleBranch: !fetchAll,
-    prune,
-    onProgress,
-  });
-
-  dispatch(getCommitRev({path: repoPath, repoId: repo.id}));
-  dispatch(getRemotesAndBranches(repoPath));
+  throw new NotImplemented('fetch');
 };

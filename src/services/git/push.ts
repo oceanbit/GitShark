@@ -1,14 +1,11 @@
-import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
-import {fs, GITHUB_TOKEN_STORAGE_KEY} from '@constants';
-import http from 'isomorphic-git/http/web/index.js';
+import {GITHUB_TOKEN_STORAGE_KEY} from '@constants';
 import {getCommitRev} from '@store';
 import RNSecureKeyStore from 'react-native-secure-key-store';
 
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
-import {RemoteBranch} from '@types';
-import {logService} from '../debug';
-import {getRepoPath} from '@utils';
+import {ProgressCallback, RemoteBranch} from '@types';
+import {logService, NotImplemented} from '../debug';
 import {Platform} from 'react-native';
 import {pushAndroid} from './push-android';
 
@@ -52,24 +49,5 @@ export const push = async ({
     return;
   }
 
-  // if (!GH_TOKEN) throw new Error('You are not logged in');
-
-  const repoPath = getRepoPath(repo.path);
-
-  await git.push({
-    force: forcePush,
-    fs,
-    dir: repoPath,
-    ref: branch,
-    http,
-    remote: destination.remote,
-    remoteRef: destination.name,
-    onProgress,
-    onAuth: () => ({
-      username: GH_TOKEN,
-      password: 'x-oauth-basic',
-    }),
-  });
-
-  dispatch(getCommitRev({path: repoPath, repoId: repo.id}));
+  throw new NotImplemented('push');
 };

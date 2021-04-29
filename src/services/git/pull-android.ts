@@ -1,5 +1,5 @@
 import {NativeEventEmitter, NativeModules} from 'react-native';
-import {ProgressCallback} from 'isomorphic-git/index.umd.min';
+import {ProgressCallback} from '@types';
 
 interface PullAndroidProps {
   remote: string;

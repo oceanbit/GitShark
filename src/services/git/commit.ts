@@ -1,9 +1,7 @@
-import git from 'isomorphic-git/index.umd.min.js';
 import {ReduxRepo} from '@entities';
-import {fs} from '@constants';
 import {getCommitRev, getGitStatus} from '@store';
 import {ThunkDispatchType} from '@hooks';
-import {logService} from '../debug';
+import {logService, NotImplemented} from '../debug';
 import {getRepoPath} from '@utils';
 import {commitAndroid} from '@services/git/commit-android';
 import {Platform} from 'react-native';
@@ -34,15 +32,7 @@ export const commit = async ({
   if (Platform.OS === 'android') {
     await commitAndroid({message, email, name, repo});
   } else {
-    await git.commit({
-      fs,
-      dir: repoPath,
-      author: {
-        name,
-        email,
-      },
-      message,
-    });
+    throw new NotImplemented('commit');
   }
 
   /**

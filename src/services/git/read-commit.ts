@@ -1,6 +1,4 @@
-import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '@constants';
-import {logService} from '../debug';
+import {logService, NotImplemented} from '../debug';
 import {Platform} from 'react-native';
 import {readCommitAndroid} from './readCommit.android';
 
@@ -16,10 +14,5 @@ export const readCommit = async ({path, oid}: ReadCommitProps) => {
     return readCommitAndroid({path, oid});
   }
 
-  const commit = await git.readCommit({dir: path, fs: fs, oid});
-
-  return {
-    ...commit.commit,
-    oid: commit.oid,
-  };
+  throw new NotImplemented('readCommit');
 };

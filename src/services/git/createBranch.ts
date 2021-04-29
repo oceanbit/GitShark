@@ -28,6 +28,6 @@ export const createBranch = async ({
   });
 
   if (checkAfterCreate) {
-    checkoutBranch({branchName, repo, dispatch, remote: false});
+    await checkoutBranch({branchName, repo, dispatch, remote: false});
   }
 };

@@ -1,12 +1,9 @@
-import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
-import {fs} from '@constants';
-import http from 'isomorphic-git/http/web/index.js';
-import {createNewRepo} from './createRepo';
 import {getRepoNameFromUri} from '@utils';
 import {Platform} from 'react-native';
 import {cloneRepoAndroid} from '@services/git/cloneRepo-android';
 import {cloneRepoIOS} from '@services/git/cloneRepo-ios';
-import {logService} from '../debug';
+import {logService, NotImplemented} from '../debug';
+import {ProgressCallback} from '@types';
 
 export interface CloneRepoProps {
   path: string;
@@ -29,33 +26,5 @@ export const cloneRepo = ({path, name, uri, onProgress}: CloneRepoProps) => {
     return cloneRepoIOS({path, name, uri, onProgress});
   }
 
-  /**
-   * Please be aware that this code will likely cause `OutOfMemory` errors on mobile platforms
-   * As such, this code should be replaced with native `git` wrapper code. This is only here as a temporary safegaurd
-   */
-  return git
-    .clone({
-      fs,
-      dir: repoDir,
-      url: uri,
-      http,
-      singleBranch: true,
-      onProgress,
-    })
-    .then(() =>
-      /**
-       * Isomorphic git doesn't fetch as we might expect it to after a clone
-       * @see https://github.com/oceanbit/GitShark/issues/33
-       */
-      git.fetch({
-        fs,
-        http,
-        dir: repoDir,
-        url: uri,
-        singleBranch: false,
-        prune: false,
-        onProgress,
-      }),
-    )
-    .then(() => createNewRepo(repoDir, repoName));
+  throw new NotImplemented('cloneRepo');
 };
