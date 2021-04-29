@@ -15,6 +15,7 @@ import dev.oceanbit.gitshark.Git.GitAddToStaged;
 import dev.oceanbit.gitshark.Git.GitCheckout;
 import dev.oceanbit.gitshark.Git.GitClone;
 import dev.oceanbit.gitshark.Git.GitCommit;
+import dev.oceanbit.gitshark.Git.GitCurrentBranch;
 import dev.oceanbit.gitshark.Git.GitFetch;
 import dev.oceanbit.gitshark.Git.GitGetFileStateChanges;
 import dev.oceanbit.gitshark.Git.GitGetTrackedBranch;
@@ -147,6 +148,12 @@ public class GitModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void status(String path, Promise promise) {
         GitStatus.status(path, promise);
+    }
+
+
+    @ReactMethod
+    public void currentBranch(String path, Promise promise) {
+        GitCurrentBranch.currentBranch(path, promise);
     }
 
     @ReactMethod

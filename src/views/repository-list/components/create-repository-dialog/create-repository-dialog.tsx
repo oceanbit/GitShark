@@ -2,7 +2,6 @@ import * as React from 'react';
 import {Alert} from 'react-native';
 import {fs, theme} from '@constants';
 import {AppDialog} from '@components/dialog';
-import git from 'isomorphic-git/index.umd.min.js';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {FolderSelectButton} from '@components/folder-select-button';
 import {createNewRepo} from '@services';
@@ -12,6 +11,7 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {Platform} from 'react-native';
 import {DocumentDirectoryPath} from 'react-native-fs';
 import {useTranslation} from 'react-i18next';
+import {currentBranch} from '@services/git/current-branch';
 
 const iOS = Platform.OS === 'ios';
 const iOSPath = DocumentDirectoryPath;
@@ -53,9 +53,8 @@ export const CreateRepositoryDialog = ({
 
   const getGitBranchName = async () => {
     try {
-      const branchName = await git.currentBranch({
-        fs,
-        dir: path,
+      const branchName = await currentBranch({
+        path,
       });
       console.log('Folder is a git directory, adding');
       return branchName;

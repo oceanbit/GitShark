@@ -5,6 +5,7 @@ export * from './commit';
 export * from './createBranch';
 export * from './createRemote';
 export * from './createRepo';
+export * from './current-branch';
 export * from './deleteLocalBranch';
 export * from './deleteRepo';
 export * from './fetch';

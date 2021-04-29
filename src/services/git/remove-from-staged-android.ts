@@ -6,6 +6,5 @@ export const removeFromStageAndroid = async ({
   repo,
 }: RemoveFromStagedProps) => {
   const fileNames = changes.map(c => c.fileName);
-  console.log('remove from stage, ', fileNames);
   await NativeModules.GitModule.removeFromStage(repo.path, fileNames);
 };

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {fs, theme} from '@constants';
 import {AppDialog} from '@components/dialog';
-import git from 'isomorphic-git/index.umd.min.js';
 import {SharkTextInput} from '@components/shark-text-input';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {FolderSelectButton} from '@components/folder-select-button';
@@ -11,6 +10,7 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {Platform} from 'react-native';
 import {DocumentDirectoryPath} from 'react-native-fs';
 import {useTranslation} from 'react-i18next';
+import {currentBranch} from '@services/git/current-branch';
 
 const iOS = Platform.OS === 'ios';
 const iOSPath = DocumentDirectoryPath;
@@ -50,9 +50,8 @@ export const CloneRepositoryDialog = ({
     try {
       // TODO: Don't check the parent path, check the child path
       // EG: Check `path/name`, not just `path`
-      const branchName = await git.currentBranch({
-        fs,
-        dir: path,
+      const branchName = await currentBranch({
+        path,
       });
       console.log('Folder is a git directory');
       return branchName;
