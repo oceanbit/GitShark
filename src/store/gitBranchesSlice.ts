@@ -9,6 +9,7 @@ import {
   StoreError,
 } from '@types';
 import {logStore} from './debug';
+import {listLocalBranches, listRemoteBranches} from '@services';
 
 const getRemotesAndBranchesFn = async (path: string) => {
   logStore && console.log('store - getRemotesAndBranchesFn');
@@ -19,12 +20,10 @@ const getRemotesAndBranchesFn = async (path: string) => {
 
   const remoteBranchesArr = await Promise.all(
     remotes.map(async remote => {
-      const branches = await git.listBranches({
-        fs,
-        dir: path,
+      const remoteBranchesNames = await listRemoteBranches({
+        path,
         remote: remote.remote,
       });
-      const remoteBranchesNames = branches.filter(branch => branch !== 'HEAD');
 
       return remoteBranchesNames.map(name => ({
         name: name,
@@ -47,7 +46,7 @@ export const getLocalBranches = createAsyncThunk(
   'commits/getLocalBranches',
   async (path: string) => {
     logStore && console.log('store - listBranches');
-    return git.listBranches({fs, dir: path});
+    return await listLocalBranches({path});
   },
 );
 
@@ -75,7 +74,7 @@ const initialState = {
 };
 
 const branchesSlice = createSlice({
-  name: 'commits',
+  name: 'branches',
   initialState,
   reducers: {
     clearBranches() {

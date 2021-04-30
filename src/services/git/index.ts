@@ -15,6 +15,8 @@ export * from './get-file-state-changes';
 export * from './getPushPull';
 export * from './gitCommitToDBMapper';
 export * from './gitLog';
+export * from './list-local-branches';
+export * from './list-remote-branches';
 export * from './pull';
 export * from './push';
 export * from './read-commit';

@@ -24,7 +24,7 @@ export const deleteLocalBranch = async ({
       dispatch,
     });
   } else {
-    throw new NotImplemented('createBranch');
+    throw new NotImplemented('deleteLocalBranch');
   }
 
   dispatch(getLocalBranches(repo.path));

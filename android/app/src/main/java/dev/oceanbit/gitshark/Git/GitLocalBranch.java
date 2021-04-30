@@ -2,10 +2,14 @@ package dev.oceanbit.gitshark.Git;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.WritableArray;
+import com.facebook.react.bridge.WritableNativeArray;
 
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.lib.Ref;
 
 import java.io.File;
+import java.util.List;
 
 public class GitLocalBranch {
     private static ReactApplicationContext reactContext;
@@ -57,5 +61,24 @@ public class GitLocalBranch {
         }
     }
 
+    public static void listLocalBranches(
+            String path, Promise promise
+    ) {
+        Git git;
+        try {
+            WritableArray branchNames = new WritableNativeArray();
+
+
+            git = Git.open(new File(path));
+            List<Ref> branches = git.branchList().call();
+            for (Ref branch: branches) {
+                branchNames.pushString(branch.getName().replaceFirst("^refs/heads/", ""));
+            }
+            promise.resolve(branchNames);
+        } catch (Throwable e) {
+            promise.reject(e);
+            return;
+        }
+    }
 
 }

@@ -25,6 +25,7 @@ import dev.oceanbit.gitshark.Git.GitPull;
 import dev.oceanbit.gitshark.Git.GitPush;
 import dev.oceanbit.gitshark.Git.GitReadCommit;
 import dev.oceanbit.gitshark.Git.GitRemote;
+import dev.oceanbit.gitshark.Git.GitRemoteBranch;
 import dev.oceanbit.gitshark.Git.GitRemoveFromStaged;
 import dev.oceanbit.gitshark.Git.GitResetPaths;
 import dev.oceanbit.gitshark.Git.GitRevList;
@@ -203,6 +204,23 @@ public class GitModule extends ReactContextBaseJavaModule {
             Promise promise
     ) {
         GitRemote.addRemote(path, remoteName, remoteURL, promise);
+    }
+
+    @ReactMethod
+    public void listLocalBranches(
+            String path,
+            Promise promise
+    ) {
+        GitLocalBranch.listLocalBranches(path, promise);
+    }
+
+    @ReactMethod
+    public void listRemoteBranches(
+            String path,
+            String remoteName,
+            Promise promise
+    ) {
+        GitRemoteBranch.listRemoteBranches(path, remoteName, promise);
     }
 
     @NonNull

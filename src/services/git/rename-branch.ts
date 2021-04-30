@@ -33,7 +33,7 @@ export const renameBranch = async ({
       dispatch,
     });
   } else {
-    throw new NotImplemented('createBranch');
+    throw new NotImplemented('renameBranch');
   }
 
   dispatch(getLocalBranches(repoPath));
