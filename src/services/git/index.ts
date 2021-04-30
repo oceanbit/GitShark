@@ -9,7 +9,7 @@ export * from './current-branch';
 export * from './deleteLocalBranch';
 export * from './deleteRepo';
 export * from './fetch';
-export * from './find-tracked-remote-branch';
+export * from './get-tracked-branch';
 export * from './getCommitHeaderBody';
 export * from './get-file-state-changes';
 export * from './getPushPull';

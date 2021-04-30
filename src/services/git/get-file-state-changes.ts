@@ -1,7 +1,7 @@
 import {ChangesArrayItem} from '@services/git/status';
 import {logService, NotImplemented} from '../debug';
 import {Platform} from 'react-native';
-import {getFileStateChangesAndroid} from './getFileStateChanges.android';
+import {getFileStateChangesAndroid} from './get-file-state-changes-android';
 
 export const getFileStateChanges = async (
   commitHash1: string,

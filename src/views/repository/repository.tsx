@@ -8,7 +8,7 @@ import {RepositoryChanges} from '../repository-changes/repository-changes';
 import {RepositoryHistory} from '../repository-history/repository-history';
 import {CommitAction} from '../commit-action/commit-action';
 import {CommitDetails} from '../commit-details/commit-details';
-import {renameRepo, findTrackedRemoteBranch} from '@services';
+import {renameRepo, getTrackedBranch} from '@services';
 import {Remotes} from '@types';
 import {OnFetchActionsDialog} from './components/on-fetch-action-dialog';
 import {OnPushActionsDialog} from './components/on-push-action-dialog';
@@ -57,11 +57,19 @@ export const Repository = () => {
 
   React.useEffect(() => {
     if (!repo) return;
-    findTrackedRemoteBranch({
+    getTrackedBranch({
       branchName: repo!.currentBranchName,
       path: repo!.path,
-      remoteBranches,
-    }).then(v => setTrackedBranch(v));
+    }).then(trackingBranchName => {
+      const trackedBranchLocal = remoteBranches.find(rBranch => {
+        return (
+          `refs/remotes/${rBranch.remote}/${rBranch.name}` ===
+          trackingBranchName
+        );
+      });
+
+      setTrackedBranch(trackedBranchLocal!);
+    });
   }, [remoteBranches, repo]);
 
   const [dialogType, setDialogType] = React.useState<DialogType>();
