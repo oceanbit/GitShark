@@ -13,6 +13,7 @@ export * from './get-tracked-branch';
 export * from './getCommitHeaderBody';
 export * from './get-file-state-changes';
 export * from './getPushPull';
+export * from './git-init';
 export * from './gitCommitToDBMapper';
 export * from './gitLog';
 export * from './list-local-branches';

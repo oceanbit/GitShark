@@ -19,6 +19,7 @@ import dev.oceanbit.gitshark.Git.GitCurrentBranch;
 import dev.oceanbit.gitshark.Git.GitFetch;
 import dev.oceanbit.gitshark.Git.GitGetFileStateChanges;
 import dev.oceanbit.gitshark.Git.GitGetTrackedBranch;
+import dev.oceanbit.gitshark.Git.GitInit;
 import dev.oceanbit.gitshark.Git.GitLocalBranch;
 import dev.oceanbit.gitshark.Git.GitLog;
 import dev.oceanbit.gitshark.Git.GitPull;
@@ -229,6 +230,14 @@ public class GitModule extends ReactContextBaseJavaModule {
             Promise promise
     ) {
         GitRemote.listRemotes(path, promise);
+    }
+
+    @ReactMethod
+    public void gitInit(
+            String path,
+            Promise promise
+    ) {
+        GitInit.gitInit(path, promise);
     }
 
     @NonNull

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {fs, theme} from '@constants';
+import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {SharkTextInput} from '@components/shark-text-input';
 import {ErrorMessageBox} from '@components/error-message-box';

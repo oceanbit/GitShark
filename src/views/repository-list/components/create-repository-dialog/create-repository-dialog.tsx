@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Alert} from 'react-native';
-import {fs, theme} from '@constants';
+import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {FolderSelectButton} from '@components/folder-select-button';
-import {createNewRepo} from '@services';
+import {createNewRepo, gitInit} from '@services';
 import {SharkButton} from '@components/shark-button';
 import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
@@ -71,9 +71,8 @@ export const CreateRepositoryDialog = ({
       return;
     }
     try {
-      await git.init({
-        fs,
-        dir: path,
+      await gitInit({
+        path,
       });
       await createNewRepoLocal();
       parentOnDismiss(true);

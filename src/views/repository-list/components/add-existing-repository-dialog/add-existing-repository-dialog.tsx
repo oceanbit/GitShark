@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Alert} from 'react-native';
-import {fs, theme} from '@constants';
+import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
 import {FolderSelectButton} from '@components/folder-select-button';
