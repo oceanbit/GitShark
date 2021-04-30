@@ -20,6 +20,7 @@ import {CreateRemoteDialog} from './components/create-remote-dialog';
 import {OnCreateRemoteActionDialog} from './components/on-create-remote-action-dialog';
 import {View, Text} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import {ErrorPrompt} from '@components/error-prompt';
 
 interface InitBranchCheckoutType {
   branchName: string;
@@ -153,13 +154,11 @@ export const Branches = () => {
 
   if (!repo) return null;
 
-  if (branchError)
+  if (branchError) {
     return (
-      <View>
-        <Text>{t('branchesErrStr')}</Text>
-        <Text>{branchError}</Text>
-      </View>
+      <ErrorPrompt explainMessage={t('branchesErrStr')} {...branchError} />
     );
+  }
 
   return (
     <>
