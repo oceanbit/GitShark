@@ -1,5 +1,5 @@
 import {changeBranch} from '@store';
-import type {CheckoutBranchProps} from './checkoutBranch';
+import type {CheckoutBranchProps} from './checkout-branch';
 import {NativeModules} from 'react-native';
 
 export const checkoutBranchAndroid = async ({

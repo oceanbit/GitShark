@@ -1,6 +1,6 @@
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
-import {checkoutBranch} from './checkoutBranch';
+import {checkoutBranch} from './checkout-branch';
 import {logService, NotImplemented} from '../debug';
 import {Platform} from 'react-native';
 import {createBranchAndroid} from '@services/git/create-branch-android';

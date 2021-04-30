@@ -1,6 +1,6 @@
 import {logService, NotImplemented} from '../debug';
 import {Platform} from 'react-native';
-import {readCommitAndroid} from './readCommit.android';
+import {readCommitAndroid} from './read-commit-android';
 
 export interface ReadCommitProps {
   oid: string;

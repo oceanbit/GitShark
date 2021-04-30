@@ -2,7 +2,7 @@ import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
 import {logService, NotImplemented} from '../debug';
 import {Platform} from 'react-native';
-import {checkoutBranchAndroid} from '@services/git/checkoutBranch-android';
+import {checkoutBranchAndroid} from '@services/git/checkout-branch-android';
 import {ProgressCallback} from '@types';
 
 export interface CheckoutBranchProps {

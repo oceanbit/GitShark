@@ -7,7 +7,7 @@
  *
  */
 import {Platform} from 'react-native';
-import {revListAndroid} from './revList-android';
+import {revListAndroid} from './rev-list-android';
 import {logService, NotImplemented} from '../debug';
 
 export interface RevListProps {

@@ -1,7 +1,7 @@
 import {getRepoNameFromUri} from '@utils';
 import {Platform} from 'react-native';
-import {cloneRepoAndroid} from '@services/git/cloneRepo-android';
-import {cloneRepoIOS} from '@services/git/cloneRepo-ios';
+import {cloneRepoAndroid} from '@services/git/clone-repo-android';
+import {cloneRepoIOS} from '@services/git/clone-repo-ios';
 import {logService, NotImplemented} from '../debug';
 import {ProgressCallback} from '@types';
 

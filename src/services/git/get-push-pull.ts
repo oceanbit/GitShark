@@ -1,4 +1,4 @@
-import {revList} from './revList';
+import {revList} from './rev-list';
 import {logService} from '../debug';
 import {getRepoPath} from '@utils';
 import {currentBranch} from './current-branch';

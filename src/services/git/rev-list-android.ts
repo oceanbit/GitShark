@@ -1,5 +1,5 @@
 import {NativeModules} from 'react-native';
-import type {RevListProps} from './revList';
+import type {RevListProps} from './rev-list';
 import {jgitToIsoCommit} from '@utils';
 
 export const revListAndroid = async ({

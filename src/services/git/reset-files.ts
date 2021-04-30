@@ -2,7 +2,7 @@ import {Platform} from 'react-native';
 import {ThunkDispatchType} from '@hooks';
 import {getGitStatus} from '@store';
 import {logService, NotImplemented} from '../debug';
-import {resetFilesAndroid} from './resetFiles-android';
+import {resetFilesAndroid} from './reset-files-android';
 
 export interface ResetFilesProps {
   path: string;

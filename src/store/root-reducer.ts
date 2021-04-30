@@ -1,10 +1,10 @@
-import {repositoryReducer} from './repoSlice';
+import {repositoryReducer} from './repo-slice';
 import {combineReducers} from '@reduxjs/toolkit';
-import {databaseReducer} from './databaseSlice';
-import {changesReducer} from './gitChangesSlice';
-import {commitsReducer} from './gitLogSlice';
-import {branchesReducer} from './gitBranchesSlice';
-import {repoListReducer} from './repoListSlice';
+import {databaseReducer} from './database-slice';
+import {changesReducer} from './git-changes-slice';
+import {commitsReducer} from './git-log-slice';
+import {branchesReducer} from './git-branches-slice';
+import {repoListReducer} from './repo-list-slice';
 
 export const rootReducer = combineReducers({
   changes: changesReducer,

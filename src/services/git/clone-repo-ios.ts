@@ -1,14 +1,9 @@
-import {createNewRepo} from './createRepo';
+import {createNewRepo} from './create-repo';
 import {getRepoNameFromUri} from '@utils';
 import {NativeEventEmitter, NativeModules} from 'react-native';
-import type {CloneRepoProps} from './cloneRepo';
+import type {CloneRepoProps} from './clone-repo';
 
-export const cloneRepoAndroid = ({
-  path,
-  name,
-  uri,
-  onProgress,
-}: CloneRepoProps) => {
+export const cloneRepoIOS = ({path, name, uri, onProgress}: CloneRepoProps) => {
   const newFolderName = getRepoNameFromUri(uri);
   const repoName = name || newFolderName;
   const repoDir = `${path}/${repoName}`;

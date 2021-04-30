@@ -1,6 +1,6 @@
 import {ReduxRepo} from '@entities';
 import {Platform} from 'react-native';
-import {gitLogAndroid} from './gitLog-android';
+import {gitLogAndroid} from './git-log-android';
 import {logService, NotImplemented} from '../debug';
 import {CommitObject} from '@types';
 

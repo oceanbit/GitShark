@@ -1,4 +1,4 @@
-import {GitLogCommit} from './gitLog';
+import {GitLogCommit} from './git-log';
 import {logService} from '../debug';
 
 /**

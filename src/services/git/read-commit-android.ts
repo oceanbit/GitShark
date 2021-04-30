@@ -1,7 +1,7 @@
 import type {ReadCommitProps} from './read-commit';
 import {NativeModules} from 'react-native';
 import {jgitToIsoCommit} from '@utils';
-import type {GitLogCommit} from './gitLog';
+import type {GitLogCommit} from './git-log';
 
 export const readCommitAndroid = async ({path, oid}: ReadCommitProps) => {
   const res = (await NativeModules.GitModule.readCommit(

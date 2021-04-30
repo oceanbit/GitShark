@@ -1,5 +1,5 @@
 import {getGitStatus} from '@store';
-import type {ResetFilesProps} from './resetFiles';
+import type {ResetFilesProps} from './reset-files';
 import {NativeModules} from 'react-native';
 
 export const resetFilesAndroid = async ({

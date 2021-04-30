@@ -1,14 +1,14 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {Repo, getReduxRepo, ReduxRepo, PushPull} from '@entities';
 import {getRepository, getConnection} from 'typeorm';
-import {clearChanges} from './gitChangesSlice';
-import {clearLog, getGitLog} from './gitLogSlice';
+import {clearChanges} from './git-changes-slice';
+import {clearLog, getGitLog} from './git-log-slice';
 import {
   clearBranches,
   getLocalBranches,
   getRemotesAndBranches,
-} from './gitBranchesSlice';
-import {findRepoList} from '@store/repoListSlice';
+} from './git-branches-slice';
+import {findRepoList} from '@store/repo-list-slice';
 import {getPushPull} from '@services';
 import {logStore} from './debug';
 import {PayloadSerializedError} from '@types';
