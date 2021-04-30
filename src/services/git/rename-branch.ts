@@ -1,12 +1,12 @@
-import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '@constants';
 import {ThunkDispatchType} from '@hooks';
 import {changeBranch, getLocalBranches} from '@store';
 import {ReduxRepo} from '@entities';
-import {logService} from '../debug';
+import {logService, NotImplemented} from '../debug';
 import {getRepoPath} from '@utils';
+import {Platform} from 'react-native';
+import {renameBranchAndroid} from '@services/git/rename-branch-android';
 
-interface RenameBranchProps {
+export interface RenameBranchProps {
   branchName: string;
   oldBranchName: string;
   checkout: boolean;
@@ -24,13 +24,17 @@ export const renameBranch = async ({
 
   const repoPath = getRepoPath(repo.path);
 
-  await git.renameBranch({
-    fs,
-    checkout,
-    dir: repoPath,
-    ref: branchName,
-    oldref: oldBranchName,
-  });
+  if (Platform.OS === 'android') {
+    await renameBranchAndroid({
+      branchName,
+      oldBranchName,
+      checkout,
+      repo,
+      dispatch,
+    });
+  } else {
+    throw new NotImplemented('createBranch');
+  }
 
   dispatch(getLocalBranches(repoPath));
 

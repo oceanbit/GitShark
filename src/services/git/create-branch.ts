@@ -1,12 +1,11 @@
 import {ReduxRepo} from '@entities';
-import {fs} from '@constants';
-import git from 'isomorphic-git/index.umd.min.js';
 import {ThunkDispatchType} from '@hooks';
 import {checkoutBranch} from './checkoutBranch';
-import {logService} from '../debug';
-import {getRepoPath} from '@utils';
+import {logService, NotImplemented} from '../debug';
+import {Platform} from 'react-native';
+import {createBranchAndroid} from '@services/git/create-branch-android';
 
-interface CreateBranchProps {
+export interface CreateBranchProps {
   repo: ReduxRepo;
   branchName: string;
   checkAfterCreate: boolean;
@@ -20,12 +19,11 @@ export const createBranch = async ({
 }: CreateBranchProps) => {
   logService && console.log('service - createBranch');
 
-  await git.branch({
-    fs,
-    dir: getRepoPath(repo.path),
-    ref: branchName,
-    checkout: checkAfterCreate,
-  });
+  if (Platform.OS === 'android') {
+    await createBranchAndroid({repo, branchName, dispatch, checkAfterCreate});
+  } else {
+    throw new NotImplemented('createBranch');
+  }
 
   if (checkAfterCreate) {
     await checkoutBranch({branchName, repo, dispatch, remote: false});

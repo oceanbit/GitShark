@@ -19,6 +19,7 @@ import dev.oceanbit.gitshark.Git.GitCurrentBranch;
 import dev.oceanbit.gitshark.Git.GitFetch;
 import dev.oceanbit.gitshark.Git.GitGetFileStateChanges;
 import dev.oceanbit.gitshark.Git.GitGetTrackedBranch;
+import dev.oceanbit.gitshark.Git.GitLocalBranch;
 import dev.oceanbit.gitshark.Git.GitLog;
 import dev.oceanbit.gitshark.Git.GitPull;
 import dev.oceanbit.gitshark.Git.GitPush;
@@ -163,6 +164,34 @@ public class GitModule extends ReactContextBaseJavaModule {
             Promise promise
     ) {
         GitGetTrackedBranch.getTrackedBranch(path, branchName, promise);
+    }
+
+    @ReactMethod
+    public void createBranch(
+            String path,
+            String branchName,
+            Promise promise
+    ) {
+        GitLocalBranch.createBranch(path, branchName, promise);
+    }
+
+    @ReactMethod
+    public void deleteLocalBranch(
+            String path,
+            String branchName,
+            Promise promise
+    ) {
+        GitLocalBranch.deleteBranch(path, branchName, promise);
+    }
+
+    @ReactMethod
+    public void renameBranch(
+            String path,
+            String branchName,
+            String newBranchName,
+            Promise promise
+    ) {
+        GitLocalBranch.renameBranch(path, branchName, newBranchName, promise);
     }
 
     @NonNull
