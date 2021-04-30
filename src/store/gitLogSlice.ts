@@ -1,32 +1,11 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {gitLog, GitLogCommit, gitCommitToDBMapper} from '@services';
-import {Repo} from '@entities';
+import {gitLog, GitLogCommit} from '@services';
 import {logStore, throwError} from './debug';
 import {
   getSerializedErrorStr,
   PayloadSerializedError,
   StoreError,
 } from '@types';
-
-interface StoreGitLogPayload {
-  repo: Repo;
-  commits: GitLogCommit[];
-}
-export const storeGitLog = createAsyncThunk(
-  'commits/storeGitLog',
-  async ({repo, commits}: StoreGitLogPayload) => {
-    logStore && console.log('store - storeGitLog');
-
-    repo.commits = commits
-      .slice(0, 5)
-      .map(commit =>
-        gitCommitToDBMapper({commit, oid: commit.oid, payload: ''}),
-      );
-
-    repo.lastUpdated = new Date(Date.now());
-    await repo.save();
-  },
-);
 
 export const getGitLog = createAsyncThunk(
   'commits/getGitLog',
@@ -38,7 +17,6 @@ export const getGitLog = createAsyncThunk(
     const repo = repository.repo;
     if (!repo) return;
     const commits = await gitLog({repo});
-    dispatch(storeGitLog({repo, commits}));
     return commits;
   },
 );

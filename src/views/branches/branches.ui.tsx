@@ -74,9 +74,10 @@ export const BranchesUI = ({
               selected={isSelected}
               branch={{
                 name: branch,
-                up: 0, // TODO: Hook this up when our branch diff logic is faster
+                up: 0, // TODO: Hook this up
                 down: 0,
               }}
+              onBranchMerge={() => {}}
               onDeleteLocalBranch={onDeleteLocalBranch}
               onCheckoutBranch={onCheckoutBranch}
               onBranchRename={onBranchRename}

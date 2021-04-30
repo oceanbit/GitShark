@@ -1,6 +1,5 @@
 import {Repo} from '@entities';
 import {getRepoNameFromPath} from '@utils';
-import {fs} from '@constants';
 import {logService} from '../debug';
 import {Platform} from 'react-native';
 import {currentBranch} from './current-branch';
