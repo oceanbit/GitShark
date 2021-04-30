@@ -4076,10 +4076,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-native@^0.63.46":
-  version "0.63.46"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.63.46.tgz#942df5af29046c6f22227495e00d5297cc1cea73"
-  integrity sha512-SnBnWRErpISIaWk4K8kAfIKqSPdZ8fdH6HIw7kVdz6jMl/5FAf6iXeIwRfVZg1bCMh+ymNPCpSENNNEVprxj/w==
+"@types/react-native@^0.64.4":
+  version "0.64.4"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.64.4.tgz#9f11bef7dd5520801884829c73b19d75aa42e73c"
+  integrity sha512-VqnlmadGkD5usREvnuyVpWDS1W8f6cCz6MP5fZdgONsaZ9/Ijfb9Iq9MZ5O3bnW1OyJixDX9HtSp3COsFSLD8Q==
   dependencies:
     "@types/react" "*"
 
@@ -12269,10 +12269,10 @@ react-native-paper@^3.8.0:
     color "^3.1.2"
     react-native-safe-area-view "^0.14.9"
 
-react-native-paper@^4.7.1:
-  version "4.7.1"
-  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-4.7.1.tgz#9f22116d39e4a129be9fd4c8d7342d0f6a20245c"
-  integrity sha512-37xJgCcTAELFBvE7+l9xcMW3wh2/dvrOs7TeRLIpnHsjfa+m4h+vvzb8q0YIUJOKtHcJ4cY77NHUr6JMGzNHFw==
+react-native-paper@^4.8.1:
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-4.8.1.tgz#ade4e552e2aaecfc3096c8aebda37bd99facf63f"
+  integrity sha512-WgmqrDdcrr0ZbuiLCwMpmOMhl1n8uIvNulxsl2oCGtD8oeMkPJKHf4G/ONR+iNrSXcFbJek+uDRSmcGA5kDfUA==
   dependencies:
     "@callstack/react-theme-provider" "^3.0.5"
     color "^3.1.2"

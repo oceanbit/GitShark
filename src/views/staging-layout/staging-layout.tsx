@@ -20,7 +20,6 @@ import {
 import {SharkRadio} from '@components/shark-radio';
 import {BottomSpacerView, TopSpacerView} from '../../components/shark-safe-top';
 import {useTranslation} from 'react-i18next';
-import {Icon} from '@components/shark-icon';
 
 export const StagingLayout = () => {
   const {t} = useTranslation();
@@ -71,6 +70,7 @@ export const StagingLayout = () => {
       }}>
       <TopSpacerView isFloating={true} />
       <AppBar
+        leftIconLabel={t('backAction')}
         leftIcon="back"
         onLeftSelect={() => history.goBack()}
         headline={t('stagingLayoutHeadline')}

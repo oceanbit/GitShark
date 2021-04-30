@@ -247,6 +247,7 @@ export const SeaTextInput = ({
               onPress={() => {}}
               iconName={endIcon}
               color={disabled ? label_low_emphasis : undefined}
+              label={''}
             />
           )}
           {/* TODO: ICON HERE */}

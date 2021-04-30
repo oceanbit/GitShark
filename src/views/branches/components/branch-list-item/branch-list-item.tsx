@@ -8,7 +8,6 @@ import {Divider, Menu, TouchableRipple} from 'react-native-paper';
 import {SharkMenu} from '@components/shark-menu';
 import {DeleteBranchDialog} from '../delete-branch-dialog';
 import {RenameBranchDialog} from '../rename-branch-dialog';
-import {BranchMergeCheckDialog} from '../merge-branch-check-dialog';
 import {useTranslation} from 'react-i18next';
 
 interface BranchMock {
@@ -94,6 +93,7 @@ export const BranchListItem = ({
             onDismiss={() => setIsMenuOpen(false)}
             anchor={
               <SharkIconButton
+                label={t('repoMenuLabel', {repoName: branch.name})}
                 iconName="menu"
                 color={selected ? undefined : onSurfaceColor}
                 onPress={() => setIsMenuOpen(true)}

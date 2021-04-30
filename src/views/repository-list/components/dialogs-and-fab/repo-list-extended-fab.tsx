@@ -9,7 +9,6 @@ import {ExtendedActionFab} from '@components/extended-action-fab';
 import {
   DynamicStyleSheet,
   useDynamicValue,
-  ColorSchemeContext,
   useDarkMode,
 } from 'react-native-dynamic';
 
@@ -32,7 +31,6 @@ export const RepoListExtendedFab = ({
   const {t} = useTranslation();
 
   const insets = useSafeAreaInsets();
-  const isDark = useDarkMode();
 
   const styles = useDynamicValue(dynamicStyles);
   const fabBottom = React.useRef(new Animated.Value(16));
@@ -40,8 +38,8 @@ export const RepoListExtendedFab = ({
   const windowHeight = Dimensions.get('window').height;
 
   const newRepoFabCB = React.useCallback(
-    (toggleAnimation: ExtendedFabBase['toggleAnimation'], props: ViewProps) => (
-      <NewRepoFab toggleAnimation={toggleAnimation} props={props} />
+    (toggleAnimation: ExtendedFabBase['toggleAnimation']) => (
+      <NewRepoFab toggleAnimation={toggleAnimation} />
     ),
     [],
   );

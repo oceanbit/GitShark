@@ -15,7 +15,6 @@ type StringRec = {
 };
 
 const translations: Record<string, () => StringRec> = {
-  de: () => require('../../translations/de.json'),
   en: () => require('../../translations/en.json'),
   es: () => require('../../translations/es.json'),
   de: () => require('../../translations/de.json'),

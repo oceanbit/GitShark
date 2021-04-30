@@ -13,8 +13,8 @@ interface SharkBottomSheetProps {
   minSheetHeight: number | string;
   renderContent: (fall: Animated.Value<number>) => React.ReactNode;
   renderHeader?: (fall: Animated.Value<number>) => React.ReactNode;
-  startExpanded: boolean;
-  sheetRef: any;
+  startExpanded?: boolean;
+  sheetRef?: any;
 }
 
 export interface SharkSheetRef {
