@@ -7,7 +7,6 @@ import {
   PayloadSerializedError,
   StoreError,
 } from '@types';
-import {getGitStatus} from '@store/gitChangesSlice';
 
 export const findRepoList = createAsyncThunk(
   'repository/findRepoList',

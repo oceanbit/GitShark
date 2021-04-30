@@ -1,2 +1,2 @@
-import './patch-FileReader';
-import './patch-URL';
+// Used to enable 'uuid'
+import 'react-native-get-random-values';
