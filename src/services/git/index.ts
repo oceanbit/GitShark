@@ -3,7 +3,7 @@ export * from './checkoutBranch';
 export * from './cloneRepo';
 export * from './commit';
 export * from './create-branch';
-export * from './createRemote';
+export * from './create-remote';
 export * from './createRepo';
 export * from './current-branch';
 export * from './delete-local-branch';

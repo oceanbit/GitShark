@@ -1,12 +1,13 @@
 import {ReduxRepo} from '@entities';
-import {fs} from '@constants';
-import git, {ProgressCallback} from 'isomorphic-git/index.umd.min.js';
 import {ThunkDispatchType} from '@hooks';
 import {fetch} from './fetch';
-import {logService} from '../debug';
+import {logService, NotImplemented} from '../debug';
 import {getRepoPath} from '@utils';
+import {Platform} from 'react-native';
+import {createRemoteAndroid} from '@services/git/create-remote-android';
+import {ProgressCallback} from '@types';
 
-interface CreateRemoteProps {
+export interface CreateRemoteProps {
   repo: ReduxRepo;
   remoteName: string;
   remoteURL: string;
@@ -24,12 +25,17 @@ export const createRemote = async ({
   logService && console.log('service - createRemote');
   const repoPath = getRepoPath(repo.path);
 
-  await git.addRemote({
-    fs,
-    dir: repoPath,
-    remote: remoteName,
-    url: remoteURL,
-  });
+  if (Platform.OS === 'android') {
+    await createRemoteAndroid({
+      repo,
+      remoteName,
+      remoteURL,
+      onProgress,
+      dispatch,
+    });
+  } else {
+    throw new NotImplemented('createRemote');
+  }
 
   await fetch({
     dir: repoPath,
