@@ -15,7 +15,6 @@ import Animated from 'react-native-reanimated';
 import {FullError} from '@types';
 import {useTranslation} from 'react-i18next';
 import {Scrim} from '@components/scrim';
-import ViewShot from 'react-native-view-shot';
 import {BottomSpacerView} from '@components/shark-safe-top';
 
 export const ErrorPromptMobile = (props: FullError) => {

@@ -43,7 +43,6 @@ const loggedOutReport = async (
 
   let image = '';
   try {
-    // image = ref.current.capture();
     image = await captureRef(ref, {
       format: 'png',
       result: 'base64',

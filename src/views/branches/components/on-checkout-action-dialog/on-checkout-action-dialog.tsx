@@ -3,7 +3,6 @@ import {checkoutBranch} from '@services';
 import {ProgressErrorDialog} from '@components/progress-error-dialog';
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
-import {phases} from '@constants/hacks';
 import {useTranslation} from 'react-i18next';
 
 const pauseToRender = () => new Promise(resolve => setTimeout(resolve, 0));
@@ -48,12 +47,10 @@ export const OnCheckoutActionsDialog = ({
         loaded: progressLoaded,
         total: progressTotal,
       }) {
-        if (phases[progressPhase]) {
-          setPhase(progressPhase);
-          setLoaded(progressLoaded);
-          setTotal(progressTotal || 0);
-          await pauseToRender();
-        }
+        setPhase(progressPhase);
+        setLoaded(progressLoaded);
+        setTotal(progressTotal || 0);
+        await pauseToRender();
       },
     })
       .then(() => {

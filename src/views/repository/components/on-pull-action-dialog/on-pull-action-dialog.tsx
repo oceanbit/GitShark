@@ -4,10 +4,7 @@ import {ProgressErrorDialog} from '@components/progress-error-dialog';
 import {ReduxRepo} from '@entities';
 import {RemoteBranch} from '@types';
 import {ThunkDispatchType, useUserData} from '@hooks';
-import {phases} from '@constants/hacks';
 import {useTranslation} from 'react-i18next';
-
-const pauseToRender = () => new Promise(resolve => setTimeout(resolve, 0));
 
 interface OnPullActionsDialogProps {
   onDismiss: (didUpdate: boolean) => void;

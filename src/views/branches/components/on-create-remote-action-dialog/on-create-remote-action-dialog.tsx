@@ -2,7 +2,6 @@ import * as React from 'react';
 import {ProgressErrorDialog} from '@components/progress-error-dialog';
 import {ReduxRepo} from '@entities';
 import {ThunkDispatchType} from '@hooks';
-import {phases} from '@constants/hacks';
 import {createRemote} from '@services';
 import {useTranslation} from 'react-i18next';
 
@@ -52,12 +51,10 @@ export const OnCreateRemoteActionDialog = ({
         loaded: progressLoaded,
         total: progressTotal,
       }) {
-        if (phases[progressPhase]) {
-          setPhase(progressPhase);
-          setLoaded(progressLoaded);
-          setTotal(progressTotal || 0);
-          await pauseToRender();
-        }
+        setPhase(progressPhase);
+        setLoaded(progressLoaded);
+        setTotal(progressTotal || 0);
+        await pauseToRender();
       },
     })
       .then(() => {

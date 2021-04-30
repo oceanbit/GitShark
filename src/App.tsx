@@ -1,4 +1,5 @@
 import * as React from 'react';
+// For typeorm
 import 'reflect-metadata';
 import {Portal, Provider as PaperProvider} from 'react-native-paper';
 
@@ -35,17 +36,13 @@ import {Provider} from 'react-redux';
 import {setupDatabase, store} from '@store';
 import ErrorBoundary from 'react-native-error-boundary';
 
+// TODO: Document what this is for - I don't remember anymore
 import 'react-native-get-random-values';
 
 import './services/translations';
 import {getSerializedErrorStr} from '@types';
 import {ErrorPrompt} from '@components/error-prompt';
 import {useTranslation} from 'react-i18next';
-
-// TODO: Remove once https://github.com/isomorphic-git/isomorphic-git/pull/1156
-// @ts-ignore
-// eslint-disable-next-line no-undef
-CompressionStream = null;
 
 LogBox.ignoreLogs([
   /**
@@ -54,7 +51,7 @@ LogBox.ignoreLogs([
    */
   'Calling `getNode()` on the ref of an Animated component is no longer necessary. You can now directly use the ref instead.',
   /**
-   * I solumnly swear to handle all instances where serializable values are found in the navigation state and to use safegaurds
+   * I solemnly swear to handle all instances where serializable values are found in the navigation state and to use safegaurds
    * to move users back to places they're familiar with. Right now, this is only used for the commit screen and we move
    * the user back to the history screen if they're deep linked to that location somehow
    * https://reactnavigation.org/docs/troubleshooting/#i-get-the-warning-non-serializable-values-were-found-in-the-navigation-state
