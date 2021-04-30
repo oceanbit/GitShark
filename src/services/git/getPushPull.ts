@@ -22,6 +22,12 @@ export const getPushPull = async ({path}: GetPushPullProps) => {
     branchName: currBranch,
   });
 
+  if (!trackedBranch)
+    return {
+      toPush: [],
+      toPull: [],
+    };
+
   const {branch1Diff: toPull, branch2Diff: toPush} = await revList({
     dir: repoPath,
     branchName1: currBranch,
