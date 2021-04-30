@@ -173,5 +173,6 @@
   "allUnstagedItemsSelected": "All unstaged items selected",
   "allStagedItemsSelected": "All staged items selected",
   "checkoutNamedBranch": "Checkout {{branchName}}",
-  "mergeNamedBranch": "merge {{branchName}}"
+  "mergeNamedBranch": "merge {{branchName}}",
+  "repoListErrStr": "There was an error that occurred while loading repos:"
 }

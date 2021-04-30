@@ -2,7 +2,12 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {Repo, getReduxRepo, ReduxRepo} from '@entities';
 import {getRepository} from 'typeorm';
 import {logStore} from './debug';
-import {PayloadSerializedError} from '@types';
+import {
+  getSerializedErrorStr,
+  PayloadSerializedError,
+  StoreError,
+} from '@types';
+import {getGitStatus} from '@store/gitChangesSlice';
 
 export const findRepoList = createAsyncThunk(
   'repository/findRepoList',
@@ -20,6 +25,7 @@ export const findRepoList = createAsyncThunk(
 
 const initialState = {
   repoList: null as ReduxRepo[] | null,
+  error: null as null | StoreError,
 };
 const repoListSlice = createSlice({
   name: 'repository',
@@ -33,7 +39,7 @@ const repoListSlice = createSlice({
       state,
       action: PayloadSerializedError,
     ) => {
-      throw action.error;
+      state.error = getSerializedErrorStr(action.error);
     },
   },
 });

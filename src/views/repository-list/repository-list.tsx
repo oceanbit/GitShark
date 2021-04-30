@@ -6,15 +6,21 @@ import {useSelector} from 'react-redux';
 import {findRepoList, RootState} from '@store';
 import {RepositoryListUI} from './repository-list.ui';
 import {renameRepo, deleteRepo} from '@services';
+import {ErrorPrompt} from '@components/error-prompt';
+import {useTranslation} from 'react-i18next';
 
 export const RepositoryList = () => {
+  const {t} = useTranslation();
+
   const {isLoaded: isDBLoaded} = useSelector(
     (state: RootState) => state.database,
   );
 
   const dispatch = useThunkDispatch();
 
-  const {repoList} = useSelector((state: RootState) => state.repoList);
+  const {repoList, error: listError} = useSelector(
+    (state: RootState) => state.repoList,
+  );
 
   const history = useNavigation();
 
@@ -39,6 +45,10 @@ export const RepositoryList = () => {
   const navigateToSettings = () => {
     history.navigate('Settings');
   };
+
+  if (listError) {
+    return <ErrorPrompt explainMessage={t('repoListErrStr')} {...listError} />;
+  }
 
   return (
     <RepositoryListUI

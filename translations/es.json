@@ -159,5 +159,6 @@
   "accountName": "Nombre: \"{{personName}}\"",
   "accountEmail": "Correo electrónico: \"{{personEmail}}\"",
   "checkoutNamedBranch": "Checkout {{branchName}}",
-  "mergeNamedBranch": "merge {{branchName}}"
+  "mergeNamedBranch": "merge {{branchName}}",
+  "repoListErrStr": "There was an error that occurred while loading repos:"
 }
