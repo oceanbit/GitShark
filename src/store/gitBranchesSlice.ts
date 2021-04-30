@@ -1,6 +1,4 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import git from 'isomorphic-git/index.umd.min.js';
-import {fs} from '../constants';
 import {
   RemoteBranch,
   Remotes,
@@ -9,12 +7,12 @@ import {
   StoreError,
 } from '@types';
 import {logStore} from './debug';
-import {listLocalBranches, listRemoteBranches} from '@services';
+import {listLocalBranches, listRemoteBranches, listRemotes} from '@services';
 
 const getRemotesAndBranchesFn = async (path: string) => {
   logStore && console.log('store - getRemotesAndBranchesFn');
 
-  const remotes = await git.listRemotes({fs, dir: path});
+  const remotes = await listRemotes({path});
 
   if (!remotes) return;
 

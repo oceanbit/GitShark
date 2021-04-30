@@ -223,6 +223,14 @@ public class GitModule extends ReactContextBaseJavaModule {
         GitRemoteBranch.listRemoteBranches(path, remoteName, promise);
     }
 
+    @ReactMethod
+    public void listRemotes(
+            String path,
+            Promise promise
+    ) {
+        GitRemote.listRemotes(path, promise);
+    }
+
     @NonNull
     public String getName() {
         return "GitModule";
