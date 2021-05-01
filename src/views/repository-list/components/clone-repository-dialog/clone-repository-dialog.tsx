@@ -7,13 +7,9 @@ import {FolderSelectButton} from '@components/folder-select-button';
 import {CloneRepositoryProgressDialog} from '../clone-repository-progress-dialog';
 import {SharkButton} from '@components/shark-button';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
-import {Platform} from 'react-native';
-import {DocumentDirectoryPath} from 'react-native-fs';
 import {useTranslation} from 'react-i18next';
 import {currentBranch} from '@services/git/current-branch';
-
-const iOS = Platform.OS === 'ios';
-const iOSPath = DocumentDirectoryPath;
+import {iOS, iOSPath} from '@utils';
 
 interface CloneRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;

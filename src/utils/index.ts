@@ -40,8 +40,8 @@ export const jgitToIsoCommit = (commitId: string) => {
   return oid;
 };
 
-const iOS = Platform.OS === 'ios';
-const iOSPath = DocumentDirectoryPath;
+export const iOS = Platform.OS === 'ios';
+export const iOSPath = DocumentDirectoryPath;
 
 export const getRepoPath = (path: string) => {
   if (!iOS) return path;
