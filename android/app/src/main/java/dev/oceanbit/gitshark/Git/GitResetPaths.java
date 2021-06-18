@@ -1,26 +1,17 @@
 package dev.oceanbit.gitshark.Git;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReadableArray;
 
 import org.eclipse.jgit.api.CheckoutCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.Status;
-import org.eclipse.jgit.lib.Repository;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Set;
 
 public class GitResetPaths {
-    @RequiresApi(api = Build.VERSION_CODES.O)
     static public void restPaths(
             String path, ReadableArray files, Promise promise
     ) {
@@ -46,8 +37,8 @@ public class GitResetPaths {
                 String filePath = files.getString(i);
 
                 if (untracked.contains(filePath)) {
-                    Path realFilePath = Paths.get(path, filePath);
-                    Files.delete(realFilePath);
+                    File untrackFile = new File(path, filePath);
+                    untrackFile.delete();
                 } else {
                     gitPaths.add(filePath);
                     checkoutFiles++;

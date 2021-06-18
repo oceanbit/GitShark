@@ -1,25 +1,15 @@
 package dev.oceanbit.gitshark.Git;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReadableArray;
 
 import org.eclipse.jgit.api.AddCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.RmCommand;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.util.FileUtils;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class GitAddToStaged {
-    @RequiresApi(api = Build.VERSION_CODES.O)
     static public void add(
             String path, ReadableArray changes, Promise promise
     ) {
@@ -39,8 +29,8 @@ public class GitAddToStaged {
 
             for (int i = 0; i < changes.size(); i++) {
                 String relPath = changes.getString(i);
-                Path filePath = Paths.get(path, relPath);
-                Boolean toAdd = Files.exists(filePath);
+                File file = new File(path, relPath);
+                Boolean toAdd = file.exists();
 
                 if (toAdd) {
                     addItems++;

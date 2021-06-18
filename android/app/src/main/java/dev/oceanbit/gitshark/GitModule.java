@@ -85,8 +85,6 @@ public class GitModule extends ReactContextBaseJavaModule {
         GitResetPaths.restPaths(path, files, promise);
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @ReactMethod
     public void addToStage(String path, ReadableArray changes, Promise promise) {
         GitAddToStaged.add(path, changes, promise);
