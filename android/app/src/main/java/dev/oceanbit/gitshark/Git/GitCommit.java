@@ -38,16 +38,6 @@ public class GitCommit {
                     .setCommitter(authorName, authorEmail)
                     .setMessage(message);
 
-            String ghToken = GhTokenUtils.getGitHubToken(reactContext);
-
-            if (!ghToken.isEmpty()) {
-                // @see https://www.codeaffine.com/2014/12/09/jgit-authentication/
-                commitCmd.setCredentialsProvider(
-                        new UsernamePasswordCredentialsProvider("token", ghToken)
-                );
-            }
-
-
             commitCmd.call();
             promise.resolve(true);
         } catch (Throwable e) {

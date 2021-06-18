@@ -7,11 +7,10 @@ import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.transport.RemoteConfig;
-import org.eclipse.jgit.transport.URIish;
+import org.eclipse.jgit.lib.StoredConfig;
 
 import java.io.File;
-import java.util.List;
+import java.util.Set;
 
 public class GitRemote {
     private static ReactApplicationContext reactContext;
@@ -27,7 +26,13 @@ public class GitRemote {
         try {
             git = Git.open(new File(path));
 
-            git.remoteAdd().setName(remoteName).setUri(new URIish(remoteURL)).call();
+            StoredConfig config = git.getRepository().getConfig();
+            Set<String> remoteNames = config.getSubsections("remote");
+            config.setString("remote", remoteName, "url", remoteURL);
+            String fetch = String.format("+refs/heads/*:refs/remotes/%s/*",
+                    remoteName);
+            config.setString("remote", remoteName, "fetch", fetch);
+            config.save();
 
             promise.resolve(null);
         } catch (Throwable e) {
@@ -43,14 +48,16 @@ public class GitRemote {
         try {
             git = Git.open(new File(path));
 
-            List<RemoteConfig> remotes = git.remoteList().call();
+            StoredConfig config = git.getRepository().getConfig();
+            Set<String> remotes = config.getSubsections("remote");
 
             WritableArray remoteNames = Arguments.createArray();
 
-            for (RemoteConfig remote: remotes) {
+            for (String remote: remotes) {
                 WritableMap result = Arguments.createMap();
-                result.putString("remote", remote.getName());
-                result.putString("url", remote.getURIs().get(0).toString());
+                String url = config.getString("remote", remote, "url");
+                result.putString("remote", remote);
+                result.putString("url", url);
                 remoteNames.pushMap(result);
             }
 

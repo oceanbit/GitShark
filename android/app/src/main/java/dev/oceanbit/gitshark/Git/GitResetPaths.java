@@ -55,7 +55,11 @@ public class GitResetPaths {
             }
 
             if (checkoutFiles > 0) {
-                CheckoutCommand gitCheckout = git.checkout().setStartPoint("HEAD").addPaths(gitPaths);
+                CheckoutCommand gitCheckout = git.checkout().setStartPoint("HEAD");
+
+                for (String gitPath: gitPaths) {
+                    gitCheckout.addPath(gitPath);
+                }
 
                 gitCheckout.call();
             }
