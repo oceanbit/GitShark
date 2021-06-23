@@ -50,11 +50,18 @@ export const AppBar = ({
         )}
         <View style={styles.textContainer}>
           {!!headline && (
-            <Text accessibilityRole={'header'} style={styles.headline}>
+            <Text
+              accessibilityRole={'header'}
+              style={styles.headline}
+              numberOfLines={1}>
               {headline}
             </Text>
           )}
-          {!!caption && <Text style={styles.caption}>{caption}</Text>}
+          {!!caption && (
+            <Text style={styles.caption} numberOfLines={1}>
+              {caption}
+            </Text>
+          )}
         </View>
         {rightChild}
       </View>

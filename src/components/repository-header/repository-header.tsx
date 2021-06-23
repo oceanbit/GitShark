@@ -37,7 +37,7 @@ export const RepositoryHeader = ({repo}: RepositoryHeaderProps) => {
       leftIcon="back"
       leftIconLabel={t('backAction')}
       onLeftSelect={() => history.goBack()}
-      headline="Repository"
+      headline={repo.name}
       caption="Last fetched: 5min ago"
       rightChild={
         <>
