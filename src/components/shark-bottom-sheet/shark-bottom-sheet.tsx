@@ -104,10 +104,10 @@ export const SharkBottomSheet = ({
     );
   };
 
-  const renderContentCB = React.useCallback(() => renderContent(fall), [
-    renderContent,
-    fall,
-  ]);
+  const renderContentCB = React.useCallback(
+    () => <View style={styles.contentContainer}>{renderContent(fall)}</View>,
+    [styles.contentContainer, renderContent, fall],
+  );
 
   return (
     <BottomSheet
@@ -132,6 +132,10 @@ const dynamicStyles = new DynamicStyleSheet({
     backgroundColor: theme.colors.floating_surface,
     borderTopColor: theme.colors.tint_on_surface_01,
     borderTopWidth: theme.borders.thick,
+  },
+  contentContainer: {
+    backgroundColor: theme.colors.floating_surface,
+    height: '100%',
   },
   handlerBar: {
     position: 'absolute',

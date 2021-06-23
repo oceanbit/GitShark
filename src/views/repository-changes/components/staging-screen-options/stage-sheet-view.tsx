@@ -66,11 +66,7 @@ export const StageSheetView = ({
           return <StagedChangesHeader {...stagedProps} />;
         }}
         renderContent={() => {
-          return (
-            <View style={styles.contentContainer}>
-              <StagedChanges {...stagedProps} />
-            </View>
-          );
+          return <StagedChanges {...stagedProps} />;
         }}
       />
       <View style={{maxHeight: maxUnstagedHeight}}>
@@ -92,8 +88,5 @@ const dynamicStyles = new DynamicStyleSheet({
     height: '100%',
     position: 'relative',
     overflow: 'hidden',
-  },
-  contentContainer: {
-    backgroundColor: theme.colors.floating_surface,
   },
 });
