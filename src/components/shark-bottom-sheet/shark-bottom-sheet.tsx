@@ -93,7 +93,7 @@ export const SharkBottomSheet = ({
 
   const renderHeaderCB = () => {
     return (
-      <View>
+      <View style={styles.headerContainer}>
         <TouchableWithoutFeedback
           key={'header-container'}
           onPress={onHeaderPress}>
@@ -128,14 +128,21 @@ const dynamicStyles = new DynamicStyleSheet({
     height: 24,
     width: 30,
   },
+  headerContainer: {
+    // https://github.com/osdnk/react-native-reanimated-bottom-sheet/issues/267#issuecomment-674039256
+    top: 1,
+  },
   trueHeader: {
     backgroundColor: theme.colors.floating_surface,
     borderTopColor: theme.colors.tint_on_surface_01,
     borderTopWidth: theme.borders.thick,
+    // https://github.com/osdnk/react-native-reanimated-bottom-sheet/issues/267#issuecomment-674039256
+    top: 1,
   },
   contentContainer: {
     backgroundColor: theme.colors.floating_surface,
     height: '100%',
+    bottom: 1,
   },
   handlerBar: {
     position: 'absolute',
