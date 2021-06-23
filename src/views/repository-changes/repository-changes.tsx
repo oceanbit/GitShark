@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleOfStagingContext} from '@constants';
 import {ChangesArrayItem, resetFiles} from '@services';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {
   StageSheetView,
   StageSplitView,
@@ -14,6 +14,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Snackbar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {ErrorPrompt} from '@components/error-prompt';
+import {useForegroundEffect} from '@hooks/use-foreground-effect';
 
 export const RepositoryChanges = () => {
   const {t} = useTranslation();
@@ -32,7 +33,18 @@ export const RepositoryChanges = () => {
 
   const getUpdate = React.useCallback(() => {
     dispatch(getGitStatus());
+    console.log('I AM GETTING STATAUS');
   }, [dispatch]);
+
+  /**
+   * Very common for the user to focus away from app, make changes to the filesystem
+   * then focus back. This triggers new status request
+   */
+  useFocusEffect(getUpdate);
+  /**
+   * Likewise, on mobile, the user will multitask out of the app, make changes, then multitask back
+   */
+  useForegroundEffect(getUpdate);
 
   React.useEffect(() => {
     getUpdate();
