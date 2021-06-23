@@ -69,7 +69,7 @@ export const StageSheetView = ({
           return <StagedChanges {...stagedProps} />;
         }}
       />
-      <View style={{maxHeight: maxUnstagedHeight}}>
+      <View style={{maxHeight: parentHeight ? maxUnstagedHeight : '100%'}}>
         <UnstagedChanges
           addToStaged={addToStaged}
           unstagedChanges={unstagedChanges}
