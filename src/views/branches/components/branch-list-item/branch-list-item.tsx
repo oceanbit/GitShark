@@ -105,12 +105,12 @@ export const BranchListItem = ({
               }}
               title={t('checkoutNamedBranch', {branchName: branch.name})}
             />
-            <Menu.Item
-              onPress={() => {
-                onBranchMerge(branch.name);
-              }}
-              title={t('mergeNamedBranch', {branchName: branch.name})}
-            />
+            {/*<Menu.Item*/}
+            {/*  onPress={() => {*/}
+            {/*    onBranchMerge(branch.name);*/}
+            {/*  }}*/}
+            {/*  title={t('mergeNamedBranch', {branchName: branch.name})}*/}
+            {/*/>*/}
             <Divider />
             <Menu.Item
               onPress={() => {
