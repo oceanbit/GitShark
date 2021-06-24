@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/crutchcorn/GitShark/compare/v0.1.0...v0.1.1) (2021-06-24)
+
+
+### Features
+
+* refresh file list when navigating away then back to app ([e9b86a8](https://github.com/crutchcorn/GitShark/commit/e9b86a86ab894526e22625103fca96f4232e5989))
+
+
+### Bug Fixes
+
+* add error handling to repo loading ([e280a2b](https://github.com/crutchcorn/GitShark/commit/e280a2bb971af60612565a1bd8b602d9c9b5cde5))
+* bottom sheet background is fixed ([f1749e1](https://github.com/crutchcorn/GitShark/commit/f1749e1cc0ecd5d9a82912620df408354438a6c4))
+* bottom sheet no longer has blank spaces in header ([e2c9a99](https://github.com/crutchcorn/GitShark/commit/e2c9a9978e26bcc154f1dd276fc4e908b4c43d83))
+* branches error screen no longer crashes the app ([27f6f56](https://github.com/crutchcorn/GitShark/commit/27f6f56d8c528a0f9a778220b3b9071a144c87a5))
+* commit and reset work on Android 8 ([7eea90a](https://github.com/crutchcorn/GitShark/commit/7eea90a973ef5212b46c2450e8415d0806747480))
+* crashing issues on Android 8 devices ([c8fb93a](https://github.com/crutchcorn/GitShark/commit/c8fb93af86393c82a021a6e7e766dcec89362360))
+* minor improvements to bottom sheet pop in effect ([f676512](https://github.com/crutchcorn/GitShark/commit/f6765127fed016a5ae3e46c2a82eb035046b956f))
+* remove broken merge button ([9aa1412](https://github.com/crutchcorn/GitShark/commit/9aa1412fedc4fac28f2fbadfbc8a900ff9963366))
+* show project name instead of "repository" ([60c0753](https://github.com/crutchcorn/GitShark/commit/60c07539cd47d5c566247ece15cae277658cb8a8))
+* when no tracked branch, push/pull indicators should show nothing now ([5cb6908](https://github.com/crutchcorn/GitShark/commit/5cb6908217015e20e2e088c2d17309559b0978f1))
+
 ## [0.1.0](https://github.com/crutchcorn/GitShark/compare/v0.0.1-alpha.10...v0.1.0) (2021-04-28)
 
 
