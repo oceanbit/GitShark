@@ -10,6 +10,7 @@ import {SharkSnackbar} from '@components/shack-snackbar';
 import {OnCommitActionsDialog} from './on-commit-action-dialog';
 import {Keyboard} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import {NavProps} from '@types';
 
 export const CommitAction = () => {
   const {t} = useTranslation();
@@ -23,7 +24,7 @@ export const CommitAction = () => {
 
   const dispatch = useThunkDispatch();
 
-  const history = useNavigation();
+  const history = useNavigation<NavProps>();
 
   const [noUserWarn, setNoUser] = React.useState(false);
 

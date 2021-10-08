@@ -6,6 +6,7 @@ import {GitLogCommit} from '@services';
 import {useNavigation} from '@react-navigation/native';
 import {RepositoryHistoryUI} from './repository-history.ui';
 import {Branches} from '../branches';
+import {NavProps} from "@types";
 
 export const RepositoryHistory = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
@@ -20,7 +21,7 @@ export const RepositoryHistory = () => {
     });
   }, [dispatch]);
 
-  const history = useNavigation();
+  const history = useNavigation<NavProps>();
 
   const onCommitNavigate = (commit: GitLogCommit) => {
     history.navigate('CommitDetails', {

@@ -13,6 +13,7 @@ import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
 import {SharkDivider} from '@components/shark-divider';
 import {SrOnly} from '@components/sr-only';
+import {NavProps} from "@types";
 
 export const Settings = () => {
   const {t} = useTranslation();
@@ -22,7 +23,7 @@ export const Settings = () => {
 
   const styles = useDynamicValue(dynamicStyles);
 
-  const history = useNavigation();
+  const history = useNavigation<NavProps>();
 
   const {setDarkMode, localDarkMode} = React.useContext(SetDarkModeContext);
 

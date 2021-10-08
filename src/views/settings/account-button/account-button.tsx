@@ -8,12 +8,13 @@ import {SharkProfilePic} from '@components/shark-profile-pic';
 
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {useTranslation} from 'react-i18next';
+import {NavProps} from "@types";
 
 export const AccountButton = () => {
   const {t} = useTranslation();
 
   const {useGitHub, gitHubUser, manualUser} = React.useContext(UserContext);
-  const history = useNavigation();
+  const history = useNavigation<NavProps>();
 
   const styles = useDynamicValue(dynamicStyles);
   const accent = useDynamicValue(theme.colors.primary);

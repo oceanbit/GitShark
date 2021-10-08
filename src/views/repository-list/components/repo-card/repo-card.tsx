@@ -13,6 +13,7 @@ import {dynamicStyles} from './repo-card.styles';
 import {useDynamicValue} from 'react-native-dynamic';
 import {SharkMenu} from '@components/shark-menu';
 import {useTranslation} from 'react-i18next';
+import {NavProps} from "@types";
 
 type DialogActionsType = '' | 'rename' | 'delete';
 
@@ -29,7 +30,7 @@ export const RepoCard = ({repo, onDelete, onRename}: RepoCardProps) => {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState<DialogActionsType>('');
-  const history = useNavigation();
+  const history = useNavigation<NavProps>();
 
   const updatedFromNow = dayjs(repo.lastUpdated).fromNow(true);
 

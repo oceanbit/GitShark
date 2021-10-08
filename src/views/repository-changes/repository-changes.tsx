@@ -15,6 +15,7 @@ import {Snackbar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {ErrorPrompt} from '@components/error-prompt';
 import {useForegroundEffect} from '@hooks/use-foreground-effect';
+import {NavProps} from "@types";
 
 export const RepositoryChanges = () => {
   const {t} = useTranslation();
@@ -27,7 +28,7 @@ export const RepositoryChanges = () => {
   } = useSelector((state: RootState) => state.changes);
   const dispatch = useThunkDispatch();
 
-  const history = useNavigation();
+  const history = useNavigation<NavProps>();
 
   const {styleOfStaging} = React.useContext(StyleOfStagingContext);
 

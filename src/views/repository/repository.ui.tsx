@@ -90,7 +90,7 @@ export const RepositoryUI = ({
         inactiveColor={label_medium_emphasis}
         activeColor={accent}>
         <Tab.Screen
-          name={t('changesTab')}
+          name={"ChangesTab"}
           component={repoChanges}
           options={{
             tabBarLabel: t('changesTab'),
@@ -106,7 +106,7 @@ export const RepositoryUI = ({
           }}
         />
         <Tab.Screen
-          name={t('historyTab')}
+          name={'HistoryTab'}
           component={repoHistory}
           options={{
             tabBarLabel: t('historyTab'),
