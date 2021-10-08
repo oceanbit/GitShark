@@ -28,7 +28,7 @@ export const pushAndroid = ({
     },
   );
 
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     NativeModules.GitModule.push(path, remote, remoteRef, authToken, forcePush)
       .then(() => {
         eventListener.remove();

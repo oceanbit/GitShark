@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {RepoListCardLoading} from './repo-list-card';
 import {View} from 'react-native';
-import MaskedView from '@react-native-community/masked-view';
+import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
 
 export const RepoListLoading = () => {

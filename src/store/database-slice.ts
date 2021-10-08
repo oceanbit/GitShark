@@ -16,12 +16,12 @@ export const setupDatabase = createAsyncThunk(
         synchronize: true,
         entities: [Commit, Repo],
       });
-    } catch (err) {
-      if (err.name === 'AlreadyHasActiveConnectionError') {
+    } catch (err: unknown) {
+      if ((err as any).name === 'AlreadyHasActiveConnectionError') {
         getConnectionManager().get('default');
         return;
       }
-      rejectWithValue(err.message || err);
+      rejectWithValue((err as any).message || err);
     }
   },
 );

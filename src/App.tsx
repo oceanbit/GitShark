@@ -124,7 +124,7 @@ const AppBase = () => {
               logoutGitHub,
             }}>
             <Portal.Host>
-              <Stack.Navigator headerMode={'none'}>
+              <Stack.Navigator screenOptions={{headerShown: false}}>
                 <Stack.Screen name="RepoList" component={RepositoryList} />
                 <Stack.Screen name="Settings" component={Settings} />
                 <Stack.Screen name="Account" component={Account} />

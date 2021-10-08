@@ -56,7 +56,7 @@ export const CommitAction = () => {
       setShowCommit(false);
       history.navigate('Repository');
     } catch (e) {
-      setCommitErr((e as Error).message || e);
+      setCommitErr((e as any).message || e);
     }
   };
 

@@ -21,6 +21,7 @@
     "release": "standard-version",
     "postinstall": "husky install"
   },
+  "--@react-native-community/masked-view": "npm:@react-native-masked-view/masked-view",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
@@ -28,11 +29,11 @@
     "@oceanbit/styles": "^0.1.3",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/hooks": "^2.6.0",
-    "@react-native-community/masked-view": "npm:@react-native-masked-view/masked-view",
+    "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-native-picker/picker": "^1.9.11",
-    "@react-navigation/material-bottom-tabs": "^5.3.13",
-    "@react-navigation/native": "^5.9.2",
-    "@react-navigation/stack": "^5.14.2",
+    "@react-navigation/material-bottom-tabs": "^6.0.7",
+    "@react-navigation/native": "^6.0.4",
+    "@react-navigation/stack": "^6.0.9",
     "@reduxjs/toolkit": "^1.4.0",
     "@types/react-redux": "^7.1.8",
     "babel-preset-react-app": "^9.1.2",
@@ -62,7 +63,7 @@
     "react-native-responsive-ui": "^2.1.5",
     "react-native-restart": "^0.0.22",
     "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^2.17.1",
+    "react-native-screens": "^3.8.0",
     "react-native-secure-key-store": "^2.0.9",
     "react-native-sqlite-storage": "^5.0.0",
     "react-native-svg": "^12.1.1",
@@ -114,10 +115,10 @@
     "prettier": "^2.2.1",
     "react-native-clean-project": "^3.6.7",
     "standard-version": "^8.0.2",
-    "typescript": "^3.9.7"
+    "typescript": "^4.4.3"
   },
   "resolutions": {
-    "@react-native-masked-view/masked-view": "0.1.11"
+    "@react-native-masked-view/masked-view": "0.2.6"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [

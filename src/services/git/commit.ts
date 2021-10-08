@@ -38,13 +38,13 @@ export const commit = async ({
   /**
    * While these may have `.then`, they're not promises in themselves. As such, we cannot use `await`. This should fix that
    */
-  const gitStatusProm = new Promise(resolve => {
+  const gitStatusProm = new Promise<void>(resolve => {
     dispatch(getGitStatus()).then(() => {
       resolve();
     });
   });
 
-  const gitRevProm = new Promise(resolve => {
+  const gitRevProm = new Promise<void>(resolve => {
     dispatch(getCommitRev({path: repoPath, repoId: repo.id})).then(() => {
       resolve();
     });

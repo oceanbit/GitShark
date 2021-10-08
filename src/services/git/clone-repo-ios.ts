@@ -18,7 +18,7 @@ export const cloneRepoIOS = ({path, name, uri, onProgress}: CloneRepoProps) => {
     },
   );
 
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     NativeModules.GitModule.clone(uri, repoDir)
       .then(() => {
         eventListener.remove();

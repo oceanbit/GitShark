@@ -16,7 +16,7 @@ export const StorybookProvider: React.FC = ({children}) => {
       <SafeAreaProvider>
         <NavigationContainer theme={lightNavTheme}>
           <PaperProvider theme={lightPaperTheme}>
-            <Stack.Navigator headerMode={'none'}>
+            <Stack.Navigator screenOptions={{headerShown: false}}>
               <Stack.Screen name="Test" component={Comp} />
             </Stack.Navigator>
           </PaperProvider>

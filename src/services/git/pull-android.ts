@@ -26,7 +26,7 @@ export const pullAndroid = ({
     },
   );
 
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     NativeModules.GitModule.pull(path, remote, remoteRef, authToken)
       .then(() => {
         eventListener.remove();

@@ -143,7 +143,7 @@ export const RepositoryUI = ({
         pushPull,
       }}>
       <SharkSafeTop isFloating={true}>
-        <Stack.Navigator initialRouteName="Repository" headerMode={'none'}>
+        <Stack.Navigator initialRouteName="Repository" screenOptions={{headerShown: false}}>
           <Stack.Screen name="Repository" component={Tabs} />
           <Stack.Screen name="CommitAction" component={commitActions} />
           <Stack.Screen name="CommitDetails" component={commitDetails} />
