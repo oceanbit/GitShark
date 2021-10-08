@@ -20,9 +20,11 @@ export const RepositoryChanges = () => {
   const {t} = useTranslation();
 
   const {repo} = useSelector((state: RootState) => state.repository);
-  const {staged, unstaged, error: changesError} = useSelector(
-    (state: RootState) => state.changes,
-  );
+  const {
+    staged,
+    unstaged,
+    error: changesError,
+  } = useSelector((state: RootState) => state.changes);
   const dispatch = useThunkDispatch();
 
   const history = useNavigation();
@@ -33,7 +35,6 @@ export const RepositoryChanges = () => {
 
   const getUpdate = React.useCallback(() => {
     dispatch(getGitStatus());
-    console.log('I AM GETTING STATAUS');
   }, [dispatch]);
 
   /**

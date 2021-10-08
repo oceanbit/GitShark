@@ -26,7 +26,10 @@ export const Settings = () => {
 
   const {setDarkMode, localDarkMode} = React.useContext(SetDarkModeContext);
 
-  const themeValues = [t('autoDarkTheme'), t('lightTheme'), t('darkTheme')];
+  const themeValues = React.useMemo(
+    () => [t('autoDarkTheme'), t('lightTheme'), t('darkTheme')],
+    [t],
+  );
 
   const matchingLocalMode = React.useMemo(() => {
     switch (localDarkMode) {

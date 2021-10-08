@@ -8,8 +8,8 @@ export const useForegroundEffect = (fn: () => void) => {
         fn();
       }
     };
-    AppState.addEventListener('change', listener);
+    const changeListener = AppState.addEventListener('change', listener);
 
-    return () => AppState.removeEventListener('change', listener);
+    return () => changeListener.remove();
   }, [fn]);
 };
