@@ -15,10 +15,18 @@ type StringRec = {
 };
 
 const translations: Record<string, () => StringRec> = {
-  en: () => require('../../translations/en.json'),
-  es: () => require('../../translations/es.json'),
-  de: () => require('../../translations/de.json'),
-  pt: () => require('../../translations/pt.json'),
+  en: () => {
+    return require('../../translations/en.json');
+  },
+  es: () => {
+    return require('../../translations/es.json');
+  },
+  de: () => {
+    return require('../../translations/de.json');
+  },
+  pt: () => {
+    return require('../../translations/pt.json');
+  },
 };
 
 /**
@@ -35,6 +43,9 @@ dayjs.locale(languageTag);
 i18n
   .use(initReactI18next)
   .init({
+    // Remove and replace with Hermes usage:
+    // https://reactnative.dev/blog/2021/08/17/version-065
+    compatibilityJSON: 'v3',
     resources: {
       [languageTag]: {
         translation: translations[languageTag](),
