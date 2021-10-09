@@ -13,9 +13,8 @@ export const useLocalDarkMode = () => {
   const systemColorTheme = useColorScheme();
   const isSystemDarkMode = systemColorTheme === 'dark';
 
-  const [localDarkMode, setLocalDarkMode] = React.useState<DarkModeOptionTypes>(
-    'auto',
-  );
+  const [localDarkMode, setLocalDarkMode] =
+    React.useState<DarkModeOptionTypes>('auto');
 
   const isDarkMode =
     localDarkMode === 'auto' ? isSystemDarkMode : localDarkMode === 'dark';

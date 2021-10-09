@@ -46,9 +46,8 @@ export const BranchListItem = ({
   const {t} = useTranslation();
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [dialogOpen, setDialogOpen] = React.useState<BranchListItemDialogTypes>(
-    '',
-  );
+  const [dialogOpen, setDialogOpen] =
+    React.useState<BranchListItemDialogTypes>('');
 
   const styles = useDynamicValue(dynamicStyles);
 

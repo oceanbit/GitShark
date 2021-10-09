@@ -70,12 +70,8 @@ const AppBase = () => {
   /**
    * Get user deep linking
    */
-  const {
-    gitHubUser,
-    setUseGithub,
-    useGitHub,
-    logoutGitHub,
-  } = useGitHubUserData();
+  const {gitHubUser, setUseGithub, useGitHub, logoutGitHub} =
+    useGitHubUserData();
 
   const {manualUser, setManualUser} = useManualUserData();
 
@@ -87,9 +83,8 @@ const AppBase = () => {
   /**
    * User settings
    */
-  const [styleOfStaging, setStyleOfStaging] = React.useState<StagingTypes>(
-    'split',
-  );
+  const [styleOfStaging, setStyleOfStaging] =
+    React.useState<StagingTypes>('split');
 
   React.useEffect(() => {
     DefaultPreference.get(STAGING_STYLE_STORAGE_KEY).then(val => {
@@ -154,12 +149,8 @@ const CustomFallback = ({error}: {error: Error}) => {
 };
 
 const App = () => {
-  const {
-    isDarkMode,
-    paperTheme,
-    updateLocalDarkMode,
-    localDarkMode,
-  } = useLocalDarkMode();
+  const {isDarkMode, paperTheme, updateLocalDarkMode, localDarkMode} =
+    useLocalDarkMode();
 
   return (
     <NavigationContainer theme={isDarkMode ? darkNavTheme : lightNavTheme}>

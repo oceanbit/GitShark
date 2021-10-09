@@ -13,7 +13,7 @@ import {TouchableRipple} from 'react-native-paper';
 import {Icon} from '@components/shark-icon';
 import {SharkDivider} from '@components/shark-divider';
 import {SrOnly} from '@components/sr-only';
-import {NavProps} from "@types";
+import {NavProps} from '@types';
 
 export const Settings = () => {
   const {t} = useTranslation();

@@ -15,7 +15,7 @@ export const CommitDetails = () => {
   const {repo} = useSelector((state: RootState) => state.repository);
   const {
     params: {commitId},
-  } = (useRoute() as any) as {params: {commitId: string}};
+  } = useRoute() as any as {params: {commitId: string}};
   const [commit, setCommit] = React.useState<GitLogCommit | null>(null);
 
   const [files, setFiles] = React.useState<any[]>([]);

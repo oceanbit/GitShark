@@ -1,4 +1,4 @@
-import {StackNavigationProp} from "@react-navigation/stack";
+import {StackNavigationProp} from '@react-navigation/stack';
 
 type ScreenNames =
   | 'RepoList'

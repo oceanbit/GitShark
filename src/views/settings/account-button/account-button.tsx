@@ -8,7 +8,7 @@ import {SharkProfilePic} from '@components/shark-profile-pic';
 
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {useTranslation} from 'react-i18next';
-import {NavProps} from "@types";
+import {NavProps} from '@types';
 
 export const AccountButton = () => {
   const {t} = useTranslation();

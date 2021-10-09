@@ -48,9 +48,8 @@ export const CommitDetailsUI = ({
   const modified = files.filter(file => file.fileStatus === 'modified').length;
 
   const [headerExpanded, setHeaderExpanded] = React.useState(false);
-  const [headerMessageExpanded, setHeaderMessageExpanded] = React.useState(
-    false,
-  );
+  const [headerMessageExpanded, setHeaderMessageExpanded] =
+    React.useState(false);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

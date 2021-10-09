@@ -61,9 +61,8 @@ export const RepositoryUI = ({
 }: RepositoryUIProps) => {
   const {t} = useTranslation();
 
-  const [activeDialog, setActiveDialog] = React.useState<RepoHeaderDialogType>(
-    '',
-  );
+  const [activeDialog, setActiveDialog] =
+    React.useState<RepoHeaderDialogType>('');
 
   React.useEffect(() => {
     // This is a shortcut to have the `onPull` action togged without having to trigger it with another UI-only dialog
@@ -90,7 +89,7 @@ export const RepositoryUI = ({
         inactiveColor={label_medium_emphasis}
         activeColor={accent}>
         <Tab.Screen
-          name={"ChangesTab"}
+          name={'ChangesTab'}
           component={repoChanges}
           options={{
             tabBarLabel: t('changesTab'),
@@ -143,7 +142,9 @@ export const RepositoryUI = ({
         pushPull,
       }}>
       <SharkSafeTop isFloating={true}>
-        <Stack.Navigator initialRouteName="Repository" screenOptions={{headerShown: false}}>
+        <Stack.Navigator
+          initialRouteName="Repository"
+          screenOptions={{headerShown: false}}>
           <Stack.Screen name="Repository" component={Tabs} />
           <Stack.Screen name="CommitAction" component={commitActions} />
           <Stack.Screen name="CommitDetails" component={commitDetails} />

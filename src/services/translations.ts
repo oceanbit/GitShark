@@ -40,6 +40,7 @@ const {languageTag, isRTL} =
 
 dayjs.locale(languageTag);
 
+// TODO: When device language changes during app run, update this
 i18n
   .use(initReactI18next)
   .init({

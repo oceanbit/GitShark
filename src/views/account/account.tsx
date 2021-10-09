@@ -27,13 +27,8 @@ import {useTranslation} from 'react-i18next';
 export const Account = () => {
   const {t} = useTranslation();
 
-  const {
-    useGitHub,
-    setUseGithub,
-    gitHubUser,
-    manualUser,
-    setManualUser,
-  } = React.useContext(UserContext);
+  const {useGitHub, setUseGithub, gitHubUser, manualUser, setManualUser} =
+    React.useContext(UserContext);
 
   const [manualName, setManualName] = React.useState(manualUser?.name || '');
   const [manualEmail, setManualEmail] = React.useState(manualUser?.email || '');

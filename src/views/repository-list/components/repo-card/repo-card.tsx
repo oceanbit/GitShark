@@ -13,7 +13,7 @@ import {dynamicStyles} from './repo-card.styles';
 import {useDynamicValue} from 'react-native-dynamic';
 import {SharkMenu} from '@components/shark-menu';
 import {useTranslation} from 'react-i18next';
-import {NavProps} from "@types";
+import {NavProps} from '@types';
 
 type DialogActionsType = '' | 'rename' | 'delete';
 

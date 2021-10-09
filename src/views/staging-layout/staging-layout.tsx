@@ -85,10 +85,8 @@ export const StagingLayout = () => {
           padding: theme.spacing.xl,
         }}
         onLayout={event => {
-          const {
-            height: eventHeight,
-            width: eventWidth,
-          } = event.nativeEvent.layout;
+          const {height: eventHeight, width: eventWidth} =
+            event.nativeEvent.layout;
           setImageContainerSize({height: eventHeight, width: eventWidth});
         }}
         accessible

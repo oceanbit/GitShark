@@ -8,7 +8,7 @@ import {RepositoryListUI} from './repository-list.ui';
 import {renameRepo, deleteRepo} from '@services';
 import {ErrorPrompt} from '@components/error-prompt';
 import {useTranslation} from 'react-i18next';
-import {NavProps} from "@types";
+import {NavProps} from '@types';
 
 export const RepositoryList = () => {
   const {t} = useTranslation();

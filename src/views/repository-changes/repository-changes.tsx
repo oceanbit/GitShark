@@ -15,7 +15,7 @@ import {Snackbar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {ErrorPrompt} from '@components/error-prompt';
 import {useForegroundEffect} from '@hooks/use-foreground-effect';
-import {NavProps} from "@types";
+import {NavProps} from '@types';
 
 export const RepositoryChanges = () => {
   const {t} = useTranslation();
