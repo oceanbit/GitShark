@@ -9,6 +9,7 @@ import BottomSheet, {
   BottomSheetFooterProps,
 } from '@gorhom/bottom-sheet';
 import Animated, {interpolate, useAnimatedStyle} from 'react-native-reanimated';
+import {Ref} from 'react';
 
 interface SharkBottomSheetProps {
   maxSheetHeight: number | string;
@@ -17,7 +18,7 @@ interface SharkBottomSheetProps {
   header?: React.ReactNode;
   footer?: React.FC<BottomSheetFooterProps>;
   startExpanded?: boolean;
-  sheetRef?: any;
+  sheetRef?: Ref<any>;
   parentHeight?: number;
 }
 

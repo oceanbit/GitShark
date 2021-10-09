@@ -3,14 +3,13 @@ import {View, Text} from 'react-native';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
 import {Portal, TouchableRipple} from 'react-native-paper';
-import {SharkBottomSheet, SharkSheetRef} from '@components/shark-bottom-sheet';
+import {SharkBottomSheet} from '@components/shark-bottom-sheet';
 import {
   GitHubButton,
   RedContainer,
   TryAgainButton,
 } from './error-prompt-common';
 import {SharkDivider} from '@components/shark-divider';
-import {ScrollView} from 'react-native-gesture-handler';
 import Animated, {useAnimatedStyle, interpolate} from 'react-native-reanimated';
 import {FullError} from '@types';
 import {useTranslation} from 'react-i18next';
@@ -21,14 +20,21 @@ import {
   BottomSheetScrollView,
   useBottomSheet,
 } from '@gorhom/bottom-sheet';
-import {ComponentProps} from 'react';
+import {ComponentProps, Ref} from 'react';
+
+interface ErrorSheetContentsProps {
+  expandBtnHeight: number;
+  callstackRef: Ref<any>;
+  callStack: string;
+  buttonHeight: number;
+}
 
 const ErrorSheetContents = ({
   expandBtnHeight,
   callstackRef,
   callStack,
   buttonHeight,
-}: any) => {
+}: ErrorSheetContentsProps) => {
   const {t} = useTranslation();
 
   const styles = useDynamicValue(dynamicStyles);
@@ -188,13 +194,10 @@ export const ErrorPromptMobile = (props: FullError) => {
               }
               contents={
                 <ErrorSheetContents
-                  setExpandBtnHeight={setExpandBtnHeight}
                   buttonHeight={buttonHeight}
                   expandBtnHeight={expandBtnHeight}
                   callstackRef={callstackRef}
                   callStack={callStack}
-                  gitHubButton={gitHubButton}
-                  tryAgainButton={tryAgainButton}
                 />
               }
               footer={footer}
