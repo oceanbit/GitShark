@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {Animated, ScrollView, Text, View} from 'react-native';
-import {ScrollView as GestureScrollView} from 'react-native-gesture-handler';
+import {ScrollView, Text, View} from 'react-native';
 import {FileChangeListItemWithCheckbox} from '@components/file-change-list-item';
 import {ChangesArrayItem} from '@services';
 import {theme} from '@constants';
@@ -10,6 +9,7 @@ import {SharkCheckbox} from '@components/shark-checkbox';
 import {SharkButton} from '@components/shark-button';
 import {useTranslation} from 'react-i18next';
 import {SrOnly} from '@components/sr-only';
+import {BottomSheetScrollView} from '@gorhom/bottom-sheet';
 
 interface StagedChangesProps {
   removeFromStaged: (changes: ChangesArrayItem[]) => Promise<void>;
@@ -140,7 +140,7 @@ export const StagedChanges = (props: StagedChangesProps) => {
     <>
       {!hideHeader && <StagedChangesHeader {...props} />}
       {!inSheet && <ScrollView>{itemList}</ScrollView>}
-      {!!inSheet && <GestureScrollView>{itemList}</GestureScrollView>}
+      {!!inSheet && <BottomSheetScrollView>{itemList}</BottomSheetScrollView>}
     </>
   );
 };

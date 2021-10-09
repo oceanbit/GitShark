@@ -11,19 +11,84 @@ import {
 } from './error-prompt-common';
 import {SharkDivider} from '@components/shark-divider';
 import {ScrollView} from 'react-native-gesture-handler';
-import Animated from 'react-native-reanimated';
+import Animated, {useAnimatedStyle, interpolate} from 'react-native-reanimated';
 import {FullError} from '@types';
 import {useTranslation} from 'react-i18next';
 import {Scrim} from '@components/scrim';
 import {BottomSpacerView} from '@components/shark-safe-top';
+import {
+  BottomSheetFooter,
+  BottomSheetScrollView,
+  useBottomSheet,
+} from '@gorhom/bottom-sheet';
+import {ComponentProps} from 'react';
+
+const ErrorSheetContents = ({
+  expandBtnHeight,
+  callstackRef,
+  callStack,
+  buttonHeight,
+}: any) => {
+  const {t} = useTranslation();
+
+  const styles = useDynamicValue(dynamicStyles);
+
+  const {animatedIndex, snapToIndex} = useBottomSheet();
+
+  const buttonStyle = useAnimatedStyle(() => {
+    const buttonOpacity = interpolate(
+      animatedIndex.value,
+      [0, 1],
+      [1, 0],
+      Animated.Extrapolate.CLAMP,
+    );
+
+    return {
+      opacity: buttonOpacity,
+      zIndex: 1,
+    };
+  });
+
+  const codeStyle = useAnimatedStyle(() => {
+    const codeOpacity = interpolate(
+      animatedIndex.value,
+      [0, 1],
+      [0, 1],
+      Animated.Extrapolate.CLAMP,
+    );
+
+    return {
+      opacity: codeOpacity,
+      zIndex: -1,
+      height: '100%',
+      marginTop: -expandBtnHeight,
+    };
+  });
+
+  return (
+    <View style={styles.sheetContainer}>
+      <Animated.View style={buttonStyle}>
+        <TouchableRipple
+          onPress={() => snapToIndex(1)}
+          style={styles.fullLogContainer}>
+          <Text style={styles.fullLogText}>{t('viewLog')}</Text>
+        </TouchableRipple>
+      </Animated.View>
+      <Animated.View style={codeStyle}>
+        <BottomSheetScrollView style={styles.stackContainer}>
+          <Text style={styles.callstack} ref={callstackRef as any}>
+            {callStack}
+          </Text>
+        </BottomSheetScrollView>
+        <View style={{height: buttonHeight}} />
+      </Animated.View>
+    </View>
+  );
+};
 
 export const ErrorPromptMobile = (props: FullError) => {
   const {callStack} = props;
   const styles = useDynamicValue(dynamicStyles);
-
-  const {t} = useTranslation();
-
-  const sheetRef = React.useRef<SharkSheetRef>();
 
   const callstackRef = React.useRef();
 
@@ -50,101 +115,90 @@ export const ErrorPromptMobile = (props: FullError) => {
     theme.spacing.m +
     theme.spacing.xs;
 
+  console.log({
+    minSheetHeight,
+    buttonHeight,
+    headerHeight,
+    expandBtnHeight,
+  });
+
+  const {t} = useTranslation();
+
+  const footer: ComponentProps<typeof SharkBottomSheet>['footer'] = ({
+    animatedFooterPosition,
+  }) => (
+    <BottomSheetFooter animatedFooterPosition={animatedFooterPosition}>
+      <View
+        onLayout={event => {
+          const {height: eventHeight} = event.nativeEvent.layout;
+          !buttonHeight && setButtonHeight(eventHeight);
+        }}>
+        <SharkDivider />
+        <View style={styles.buttonContainer}>
+          {gitHubButton}
+          {tryAgainButton}
+        </View>
+        <BottomSpacerView />
+      </View>
+    </BottomSheetFooter>
+  );
+
+  const allSpacingSet = buttonHeight && headerHeight && expandBtnHeight;
+
   // Mobile view
   return (
     <Portal>
       <Scrim visible={true} dismissable={false}>
         {() => (
           <>
-            {
-              null /* Key is required in order to get re-render once min-sheet is properly defined  */
-            }
+            {/*
+            This is dumb and bad, but for some reason, "BottomSheetContents" set text value to 0 initially.
+            As a result, only the padding height is assigned with 0 height, this messes up a bunch of calcs we're doing
+            */}
+            {!expandBtnHeight && (
+              <TouchableRipple
+                onLayout={event => {
+                  const {height: eventHeight} = event.nativeEvent.layout;
+                  !expandBtnHeight && setExpandBtnHeight(eventHeight);
+                }}
+                style={[
+                  styles.fullLogContainer,
+                  {position: 'absolute', right: '5000%'},
+                ]}>
+                <Text style={styles.fullLogText}>{t('viewLog')}</Text>
+              </TouchableRipple>
+            )}
             <SharkBottomSheet
-              key={minSheetHeight}
+              key={allSpacingSet}
               maxSheetHeight={'100%'}
               minSheetHeight={minSheetHeight}
               startExpanded={false}
-              sheetRef={sheetRef}
-              renderHeader={() => (
+              header={
                 <View
                   style={styles.headerContainer}
                   onLayout={event => {
                     const {height: eventHeight} = event.nativeEvent.layout;
-                    setHeaderHeight(eventHeight);
+                    if (!headerHeight) setHeaderHeight(eventHeight);
                   }}>
                   <View style={styles.redContainer}>
                     <RedContainer {...props} />
                   </View>
                   <SharkDivider />
                 </View>
-              )}
-              renderContent={fall => {
-                const buttonOpacity = Animated.interpolate(fall, {
-                  inputRange: [0, 1],
-                  outputRange: [0, 1],
-                  extrapolate: Animated.Extrapolate.CLAMP,
-                });
-
-                const codeOpacity = Animated.interpolate(fall, {
-                  inputRange: [0, 1],
-                  outputRange: [1, 0],
-                  extrapolate: Animated.Extrapolate.CLAMP,
-                });
-
-                return (
-                  <View>
-                    <Animated.View
-                      style={{
-                        opacity: buttonOpacity,
-                        zIndex: 1,
-                      }}
-                      onLayout={event => {
-                        const {height: eventHeight} = event.nativeEvent.layout;
-                        setExpandBtnHeight(eventHeight);
-                      }}>
-                      <TouchableRipple
-                        onPress={() => sheetRef.current?.snapTo(0)}
-                        style={styles.fullLogContainer}>
-                        <Text style={styles.fullLogText}>{t('viewLog')}</Text>
-                      </TouchableRipple>
-                    </Animated.View>
-                    <ScrollView
-                      style={[
-                        styles.sheetContainer,
-                        {marginTop: -expandBtnHeight},
-                      ]}>
-                      <Animated.View
-                        style={[styles.stackContainer, {opacity: codeOpacity}]}>
-                        <Text
-                          style={styles.callstack}
-                          ref={callstackRef as any}>
-                          {callStack}
-                        </Text>
-                      </Animated.View>
-                      <SharkDivider />
-                      <View style={styles.buttonContainer}>
-                        {gitHubButton}
-                        {tryAgainButton}
-                      </View>
-                      <BottomSpacerView />
-                    </ScrollView>
-                  </View>
-                );
-              }}
+              }
+              contents={
+                <ErrorSheetContents
+                  setExpandBtnHeight={setExpandBtnHeight}
+                  buttonHeight={buttonHeight}
+                  expandBtnHeight={expandBtnHeight}
+                  callstackRef={callstackRef}
+                  callStack={callStack}
+                  gitHubButton={gitHubButton}
+                  tryAgainButton={tryAgainButton}
+                />
+              }
+              footer={footer}
             />
-            <View
-              style={styles.buttonOverlay}
-              onLayout={event => {
-                const {height: eventHeight} = event.nativeEvent.layout;
-                setButtonHeight(eventHeight);
-              }}>
-              <SharkDivider />
-              <View style={styles.buttonContainer}>
-                {gitHubButton}
-                {tryAgainButton}
-              </View>
-              <BottomSpacerView />
-            </View>
           </>
         )}
       </Scrim>
@@ -157,7 +211,6 @@ const dynamicStyles = new DynamicStyleSheet({
     backgroundColor: theme.colors.surface,
   },
   sheetContainer: {
-    height: '100%',
     backgroundColor: theme.colors.surface,
     position: 'relative',
   },
@@ -168,6 +221,7 @@ const dynamicStyles = new DynamicStyleSheet({
   },
   stackContainer: {
     padding: theme.spacing.m,
+    height: '100%',
   },
   callstack: {
     ...theme.textStyles.code,

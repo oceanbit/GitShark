@@ -59,16 +59,6 @@ export const StageSheetView = ({
         const {height} = event.nativeEvent.layout;
         setParentHeight(height);
       }}>
-      <SharkBottomSheet
-        minSheetHeight={minSheetHeight}
-        maxSheetHeight={maxSheetHeight}
-        renderHeader={() => {
-          return <StagedChangesHeader {...stagedProps} />;
-        }}
-        renderContent={() => {
-          return <StagedChanges {...stagedProps} />;
-        }}
-      />
       <View style={{maxHeight: parentHeight ? maxUnstagedHeight : '100%'}}>
         <UnstagedChanges
           addToStaged={addToStaged}
@@ -77,6 +67,13 @@ export const StageSheetView = ({
           onIgnore={onIgnore}
         />
       </View>
+      <SharkBottomSheet
+        minSheetHeight={minSheetHeight}
+        maxSheetHeight={maxSheetHeight}
+        parentHeight={parentHeight}
+        header={<StagedChangesHeader {...stagedProps} />}
+        contents={<StagedChanges {...stagedProps} />}
+      />
     </View>
   );
 };
