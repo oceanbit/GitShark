@@ -1,0 +1,23 @@
+diff --git a/node_modules/react-native-fs/android/src/main/java/com/rnfs/RNFSManager.java b/node_modules/react-native-fs/android/src/main/java/com/rnfs/RNFSManager.java
+index 7aab307..8e23ca9 100644
+--- a/node_modules/react-native-fs/android/src/main/java/com/rnfs/RNFSManager.java
++++ b/node_modules/react-native-fs/android/src/main/java/com/rnfs/RNFSManager.java
+@@ -949,6 +949,18 @@ public class RNFSManager extends ReactContextBaseJavaModule {
+     );
+   }
+ 
++  // Required for rn built in EventEmitter Calls.
++  // @see https://github.com/itinance/react-native-fs/pull/1036
++  @ReactMethod
++  public void addListener(String eventName) {
++
++  }
++
++  @ReactMethod
++  public void removeListeners(Integer count) {
++
++  }
++
+   private void reject(Promise promise, String filepath, Exception ex) {
+     if (ex instanceof FileNotFoundException) {
+       rejectFileNotFound(promise, filepath);

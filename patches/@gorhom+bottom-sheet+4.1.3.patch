@@ -1,5 +1,5 @@
 diff --git a/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheet/BottomSheet.js b/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheet/BottomSheet.js
-index 1d95649..99fa660 100644
+index 1d95649..1906c5d 100644
 --- a/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheet/BottomSheet.js
 +++ b/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheet/BottomSheet.js
 @@ -110,6 +110,7 @@ const BottomSheetComponent = /*#__PURE__*/(0, _react.forwardRef)(function Bottom
@@ -19,7 +19,7 @@ index 1d95649..99fa660 100644
      style: containerStyle
    }, /*#__PURE__*/_react.default.createElement(_bottomSheetBackgroundContainer.default, {
 diff --git a/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheetContainer/BottomSheetContainer.js b/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheetContainer/BottomSheetContainer.js
-index 1e5389e..7c6466a 100644
+index 1e5389e..f5484c7 100644
 --- a/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheetContainer/BottomSheetContainer.js
 +++ b/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheetContainer/BottomSheetContainer.js
 @@ -26,7 +26,8 @@ function BottomSheetContainerComponent({
@@ -42,7 +42,7 @@ index 1e5389e..7c6466a 100644
  
    const handleContainerLayout = (0, _react.useCallback)(function handleContainerLayout({
 diff --git a/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheet/BottomSheet.js b/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheet/BottomSheet.js
-index 5bdbec6..6ccb3f3 100644
+index 5bdbec6..6e3d89d 100644
 --- a/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheet/BottomSheet.js
 +++ b/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheet/BottomSheet.js
 @@ -78,6 +78,7 @@ const BottomSheetComponent = /*#__PURE__*/forwardRef(function BottomSheet(props,
@@ -62,7 +62,7 @@ index 5bdbec6..6ccb3f3 100644
      style: containerStyle
    }, /*#__PURE__*/React.createElement(BottomSheetBackgroundContainer, {
 diff --git a/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheetContainer/BottomSheetContainer.js b/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheetContainer/BottomSheetContainer.js
-index 17b13e0..30458ee 100644
+index 17b13e0..190d07d 100644
 --- a/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheetContainer/BottomSheetContainer.js
 +++ b/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheetContainer/BottomSheetContainer.js
 @@ -11,7 +11,8 @@ function BottomSheetContainerComponent({
@@ -99,18 +99,19 @@ index 2fe2f4b..38c682b 100644
     * View style to be applied to the background component.
     *
 diff --git a/node_modules/@gorhom/bottom-sheet/src/components/bottomSheet/BottomSheet.tsx b/node_modules/@gorhom/bottom-sheet/src/components/bottomSheet/BottomSheet.tsx
-index 3606001..a640788 100644
+index 3606001..90607a3 100644
 --- a/node_modules/@gorhom/bottom-sheet/src/components/bottomSheet/BottomSheet.tsx
 +++ b/node_modules/@gorhom/bottom-sheet/src/components/bottomSheet/BottomSheet.tsx
-@@ -152,6 +152,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
+@@ -152,6 +152,8 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
        backgroundComponent,
        footerComponent,
        children,
-+        wrapperContainerStyle
++      // @see https://github.com/gorhom/react-native-bottom-sheet/pull/743
++      wrapperContainerStyle
      } = props;
      //#endregion
  
-@@ -1566,6 +1567,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
+@@ -1566,6 +1568,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
                topInset={topInset}
                bottomInset={bottomInset}
                detached={detached}
