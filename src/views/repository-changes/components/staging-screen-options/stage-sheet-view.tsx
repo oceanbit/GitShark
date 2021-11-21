@@ -52,6 +52,12 @@ export const StageSheetView = ({
     hideHeader: true,
   };
 
+  console.log('IN SHEET', {
+    parentHeight,
+    maxUnstagedHeight,
+    minSheetHeight,
+  });
+
   return (
     <View
       style={styles.container}
@@ -59,6 +65,15 @@ export const StageSheetView = ({
         const {height} = event.nativeEvent.layout;
         setParentHeight(height);
       }}>
+      <SharkBottomSheet
+        key={parentHeight}
+        minSheetHeight={minSheetHeight}
+        maxSheetHeight={maxSheetHeight}
+        parentHeight={parentHeight}
+        header={<StagedChangesHeader {...stagedProps} />}
+        contents={<StagedChanges {...stagedProps} />}
+        containerStyle={styles.sheetContainer}
+      />
       <View style={{maxHeight: parentHeight ? maxUnstagedHeight : '100%'}}>
         <UnstagedChanges
           addToStaged={addToStaged}
@@ -67,13 +82,6 @@ export const StageSheetView = ({
           onIgnore={onIgnore}
         />
       </View>
-      <SharkBottomSheet
-        minSheetHeight={minSheetHeight}
-        maxSheetHeight={maxSheetHeight}
-        parentHeight={parentHeight}
-        header={<StagedChangesHeader {...stagedProps} />}
-        contents={<StagedChanges {...stagedProps} />}
-      />
     </View>
   );
 };
@@ -85,5 +93,8 @@ const dynamicStyles = new DynamicStyleSheet({
     height: '100%',
     position: 'relative',
     overflow: 'hidden',
+  },
+  sheetContainer: {
+    zIndex: 999,
   },
 });

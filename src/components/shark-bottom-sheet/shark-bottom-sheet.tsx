@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View} from 'react-native';
+import {StyleProp, View, ViewStyle} from 'react-native';
 // import Animated from 'react-native-reanimated';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {theme} from '@constants';
@@ -20,6 +20,7 @@ interface SharkBottomSheetProps {
   startExpanded?: boolean;
   sheetRef?: Ref<any>;
   parentHeight?: number;
+  containerStyle?: StyleProp<ViewStyle>;
 }
 
 export interface SharkSheetRef {
@@ -82,6 +83,7 @@ export const SharkBottomSheet = ({
   startExpanded = true,
   sheetRef,
   parentHeight,
+  containerStyle,
 }: SharkBottomSheetProps) => {
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   const styles = useDynamicValue(dynamicStyles);
@@ -101,7 +103,8 @@ export const SharkBottomSheet = ({
       footerComponent={footer}
       handleComponent={SharkBottomSheetHandle}
       containerHeight={parentHeight}
-      style={styles.bottomSheet}>
+      style={styles.bottomSheet}
+      wrapperContainerStyle={containerStyle}>
       <BottomSheetView>{header}</BottomSheetView>
       <View style={styles.contentContainer}>{contents}</View>
       {footer}
@@ -116,6 +119,7 @@ const dynamicStyles = new DynamicStyleSheet({
     backgroundColor: theme.colors.floating_surface,
     display: 'flex',
     flexDirection: 'column',
+    zIndex: 9999,
   },
   handlerContainer: {
     alignSelf: 'center',
