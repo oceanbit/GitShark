@@ -85,7 +85,7 @@ export const RepositoryUI = ({
       <Tab.Navigator
         labeled={true}
         shifting={false}
-        barStyle={[styles.bottomNav, {paddingBottom: insets.bottom}]}
+        barStyle={[styles.bottomNav]}
         inactiveColor={label_medium_emphasis}
         activeColor={accent}>
         <Tab.Screen
@@ -124,7 +124,6 @@ export const RepositoryUI = ({
     );
   }, [
     styles.bottomNav,
-    insets.bottom,
     label_medium_emphasis,
     accent,
     t,

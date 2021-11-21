@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {Alert} from 'react-native';
 import {theme} from '@constants';
 import {AppDialog} from '@components/dialog';
 import {ErrorMessageBox} from '@components/error-message-box';
@@ -10,15 +9,18 @@ import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {useTranslation} from 'react-i18next';
 import {currentBranch} from '@services/git/current-branch';
+import {FullError, getSerializedErrorStr} from '@types';
 
 interface CreateRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
+  setComponentError: (error: FullError) => void;
 }
 
 export const AddExistingRepositoryDialog = ({
   onDismiss,
   visible,
+  setComponentError,
 }: CreateRepositoryDialogProps) => {
   const {t} = useTranslation();
 
@@ -38,8 +40,13 @@ export const AddExistingRepositoryDialog = ({
   const createNewRepoLocal = async () => {
     try {
       await createNewRepo(path, repoName);
+      return true;
     } catch (e) {
-      Alert.alert(t('errorCreateRepoCache'));
+      setComponentError({
+        ...getSerializedErrorStr(e as string),
+        explainMessage: t('errorCreateRepoCache'),
+      });
+      return false;
     }
   };
 
@@ -59,7 +66,8 @@ export const AddExistingRepositoryDialog = ({
   const checkAndCreateGitDirectory = async () => {
     const gitBranchName = await getGitBranchName();
     if (gitBranchName) {
-      await createNewRepoLocal();
+      const created = await createNewRepoLocal();
+      if (!created) return;
       parentOnDismiss(true);
       return;
     }

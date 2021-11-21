@@ -8,15 +8,21 @@ import {
   RepoListExtendedFabProps,
 } from './repo-list-extended-fab';
 import {View, Platform} from 'react-native';
+import {FullError} from '@types';
 
 const iOS = Platform.OS === 'ios';
 
 interface DialogsProps
   extends Omit<RepoListExtendedFabProps, 'setSelectedAction'> {
   findRepos: () => Promise<void>;
+  setComponentError: (error: FullError) => void;
 }
 
-export const DialogsAndFab = ({findRepos, ...props}: DialogsProps) => {
+export const DialogsAndFab = ({
+  findRepos,
+  setComponentError,
+  ...props
+}: DialogsProps) => {
   const [selectedAction, setSelectedAction] = React.useState<
     DialogSelection | ''
   >('');
@@ -36,10 +42,12 @@ export const DialogsAndFab = ({findRepos, ...props}: DialogsProps) => {
       <CreateRepositoryDialog
         visible={selectedAction === 'create'}
         onDismiss={onDismiss}
+        setComponentError={setComponentError}
       />
       <AddExistingRepositoryDialog
         visible={selectedAction === 'existing'}
         onDismiss={onDismiss}
+        setComponentError={setComponentError}
       />
       <CloneRepositoryDialog
         visible={selectedAction === 'clone'}

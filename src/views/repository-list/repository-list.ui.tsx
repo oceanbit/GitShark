@@ -10,6 +10,7 @@ import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
 import {BottomSpacerView, SharkSafeTop} from '../../components/shark-safe-top';
 import {useTranslation} from 'react-i18next';
 import {mediaQuery, useDimensions} from 'react-native-responsive-ui';
+import {FullError} from '@types';
 
 interface RepositoryListUIProps {
   isLoading: boolean;
@@ -19,6 +20,7 @@ interface RepositoryListUIProps {
   findRepos: () => Promise<void>;
   renameRepo: (repo: ReduxRepo, newName: string) => void;
   deleteRepo: (repo: ReduxRepo) => void;
+  setComponentError: (error: FullError) => void;
 }
 
 export const RepositoryListUI = ({
@@ -29,6 +31,7 @@ export const RepositoryListUI = ({
   findRepos,
   renameRepo,
   deleteRepo,
+  setComponentError,
 }: RepositoryListUIProps) => {
   const styles = useDynamicValue(dynamicStyles);
   const {t} = useTranslation();
@@ -117,6 +120,7 @@ export const RepositoryListUI = ({
         isLoading={isLoading}
         repos={repos}
         findRepos={findRepos}
+        setComponentError={setComponentError}
       />
     </SharkSafeTop>
   );

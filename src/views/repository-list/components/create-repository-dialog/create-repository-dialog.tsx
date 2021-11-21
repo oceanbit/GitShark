@@ -8,19 +8,21 @@ import {createNewRepo, gitInit} from '@services';
 import {SharkButton} from '@components/shark-button';
 import {SharkTextInput} from '@components/shark-text-input';
 import {DynamicStyleSheet, useDynamicValue} from 'react-native-dynamic';
-import {Platform} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {currentBranch} from '@services/git/current-branch';
 import {iOS, iOSPath} from '@utils';
+import {FullError, getSerializedErrorStr} from '@types';
 
 interface CreateRepositoryDialogProps {
   onDismiss: (didUpdate: boolean) => void;
   visible: boolean;
+  setComponentError: (error: FullError) => void;
 }
 
 export const CreateRepositoryDialog = ({
   onDismiss,
   visible,
+  setComponentError,
 }: CreateRepositoryDialogProps) => {
   const {t} = useTranslation();
 
@@ -43,8 +45,28 @@ export const CreateRepositoryDialog = ({
   const createNewRepoLocal = async () => {
     try {
       await createNewRepo(path, repoName);
+      return true;
     } catch (e) {
-      Alert.alert(t('errorCreateRepoCache'));
+      setComponentError({
+        ...getSerializedErrorStr(e as string),
+        explainMessage: t('errorCreateRepoCache'),
+      });
+      return false;
+    }
+  };
+
+  const gitInitLocal = async () => {
+    try {
+      await gitInit({
+        path,
+      });
+      return true;
+    } catch (e) {
+      setComponentError({
+        ...getSerializedErrorStr(e as string),
+        explainMessage: t('errorInitGit'),
+      });
+      return false;
     }
   };
 
@@ -68,13 +90,13 @@ export const CreateRepositoryDialog = ({
       return;
     }
     try {
-      await gitInit({
-        path,
-      });
-      await createNewRepoLocal();
+      let returnBool: boolean;
+      returnBool = await gitInitLocal();
+      if (!returnBool) return;
+      returnBool = await createNewRepoLocal();
+      if (!returnBool) return;
       parentOnDismiss(true);
     } catch (e) {
-      Alert.alert(t('errorInitGit'));
       parentOnDismiss(false);
     }
   };

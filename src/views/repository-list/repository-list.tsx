@@ -8,7 +8,7 @@ import {RepositoryListUI} from './repository-list.ui';
 import {renameRepo, deleteRepo} from '@services';
 import {ErrorPrompt} from '@components/error-prompt';
 import {useTranslation} from 'react-i18next';
-import {NavProps} from '@types';
+import {FullError, getSerializedErrorStr, NavProps} from '@types';
 
 export const RepositoryList = () => {
   const {t} = useTranslation();
@@ -27,14 +27,21 @@ export const RepositoryList = () => {
 
   const isLoading = !isDBLoaded || !repoList;
 
+  const [componentError, setComponentError] = React.useState<FullError | null>(
+    null,
+  );
+
   const findRepos = React.useCallback(async () => {
     try {
       dispatch(findRepoList());
     } catch (e) {
-      console.error(e);
-      Alert.alert('There was an error finding the repos!');
+      setComponentError({
+        ...getSerializedErrorStr(e as string),
+        // TODO: Translate this
+        explainMessage: t('repoListErrStr'),
+      });
     }
-  }, [dispatch]);
+  }, [dispatch, t]);
 
   React.useEffect(() => {
     if (!isDBLoaded) {
@@ -47,8 +54,14 @@ export const RepositoryList = () => {
     history.navigate('Settings');
   };
 
-  if (listError) {
-    return <ErrorPrompt explainMessage={t('repoListErrStr')} {...listError} />;
+  const fullListError = listError
+    ? {...listError, explainMessage: t('repoListErrStr')}
+    : null;
+
+  const errToShow: FullError | null = fullListError || componentError || null;
+
+  if (errToShow) {
+    return <ErrorPrompt {...errToShow} />;
   }
 
   return (
@@ -62,6 +75,7 @@ export const RepositoryList = () => {
         renameRepo({repoId: repo.id, name: newName, dispatch});
       }}
       deleteRepo={repo => deleteRepo(repo).then(() => findRepos())}
+      setComponentError={setComponentError}
     />
   );
 };
