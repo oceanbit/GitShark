@@ -93,9 +93,9 @@ export const useGitHubUserData = () => {
     });
     // This is seemingly un-needed when device has low RAM requirements, but if app persists without closing,
     // this is needed on Android
-    Linking.addEventListener('url', handleOpenURL);
+    const listener = Linking.addEventListener('url', handleOpenURL);
     return () => {
-      Linking.removeEventListener('url', handleOpenURL);
+      listener.remove();
     };
   }, []);
 
