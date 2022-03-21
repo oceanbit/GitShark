@@ -1,5 +1,5 @@
 diff --git a/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheet/BottomSheet.js b/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheet/BottomSheet.js
-index 1d95649..1906c5d 100644
+index 8b10eb1..9c3ab2c 100644
 --- a/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheet/BottomSheet.js
 +++ b/node_modules/@gorhom/bottom-sheet/lib/commonjs/components/bottomSheet/BottomSheet.js
 @@ -110,6 +110,7 @@ const BottomSheetComponent = /*#__PURE__*/(0, _react.forwardRef)(function Bottom
@@ -42,7 +42,7 @@ index 1e5389e..f5484c7 100644
  
    const handleContainerLayout = (0, _react.useCallback)(function handleContainerLayout({
 diff --git a/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheet/BottomSheet.js b/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheet/BottomSheet.js
-index 5bdbec6..6e3d89d 100644
+index 62c348b..aab1cca 100644
 --- a/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheet/BottomSheet.js
 +++ b/node_modules/@gorhom/bottom-sheet/lib/module/components/bottomSheet/BottomSheet.js
 @@ -78,6 +78,7 @@ const BottomSheetComponent = /*#__PURE__*/forwardRef(function BottomSheet(props,
@@ -99,7 +99,7 @@ index 2fe2f4b..38c682b 100644
     * View style to be applied to the background component.
     *
 diff --git a/node_modules/@gorhom/bottom-sheet/src/components/bottomSheet/BottomSheet.tsx b/node_modules/@gorhom/bottom-sheet/src/components/bottomSheet/BottomSheet.tsx
-index 3606001..90607a3 100644
+index 0f5ac23..0461239 100644
 --- a/node_modules/@gorhom/bottom-sheet/src/components/bottomSheet/BottomSheet.tsx
 +++ b/node_modules/@gorhom/bottom-sheet/src/components/bottomSheet/BottomSheet.tsx
 @@ -152,6 +152,8 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
@@ -111,7 +111,7 @@ index 3606001..90607a3 100644
      } = props;
      //#endregion
  
-@@ -1566,6 +1568,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
+@@ -1567,6 +1569,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
                topInset={topInset}
                bottomInset={bottomInset}
                detached={detached}
