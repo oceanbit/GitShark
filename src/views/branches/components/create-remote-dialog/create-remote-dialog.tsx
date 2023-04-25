@@ -67,7 +67,7 @@ export const CreateRemoteDialog = ({
             value={remoteName}
             onChangeText={val => setRemoteName(val)}
             style={styles.secondInput}
-            errorStr={isNameTaken ? t('remoteNameTaken') : ''}
+            errorStr={isNameTaken ? t('remoteNameTaken')! : ''}
           />
           {!!errorStr && (
             <ErrorMessageBox style={styles.errorBox} message={errorStr} />

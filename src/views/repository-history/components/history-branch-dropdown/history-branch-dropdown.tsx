@@ -89,7 +89,7 @@ export const HistoryBranchDropdown = ({
         accessible={true}
         accessibilityRole={'button'}
         accessibilityState={{expanded: expanded}}
-        accessibilityLabel={t('branchesRemotesDropdown')}>
+        accessibilityLabel={t('branchesRemotesDropdown')!}>
         <Animated.View style={[styles.dropdownView, {marginLeft}]}>
           {/*<SharkIconButton*/}
           {/*  onPress={onFavorite}*/}

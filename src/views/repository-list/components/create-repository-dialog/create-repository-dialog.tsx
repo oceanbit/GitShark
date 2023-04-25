@@ -86,7 +86,7 @@ export const CreateRepositoryDialog = ({
   const checkAndCreateGitDirectory = async () => {
     const isGitRepo = await getGitBranchName();
     if (isGitRepo) {
-      setErrorStr(t('alreadyGitRepo'));
+      setErrorStr(t('alreadyGitRepo')!);
       return;
     }
     try {

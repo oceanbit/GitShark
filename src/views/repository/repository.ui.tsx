@@ -92,7 +92,7 @@ export const RepositoryUI = ({
           name={'ChangesTab'}
           component={repoChanges}
           options={{
-            tabBarLabel: t('changesTab'),
+            tabBarLabel: t('changesTab')!,
             tabBarIcon: ({color}) => (
               <Icon
                 name="changes"
@@ -108,7 +108,7 @@ export const RepositoryUI = ({
           name={'HistoryTab'}
           component={repoHistory}
           options={{
-            tabBarLabel: t('historyTab'),
+            tabBarLabel: t('historyTab')!,
             tabBarIcon: ({color}) => (
               <Icon
                 name="history"

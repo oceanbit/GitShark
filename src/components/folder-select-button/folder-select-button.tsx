@@ -72,7 +72,7 @@ export const FolderSelectButton = ({
             <Text
               ellipsizeMode="head"
               numberOfLines={1}
-              accessibilityLabel={t('selectedFolderPath', {path})}
+              accessibilityLabel={t('selectedFolderPath', {path})!}
               style={[styles.selectFolderText, styles.selectFolderBtnWithPath]}>
               {path}
             </Text>

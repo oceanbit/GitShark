@@ -25,7 +25,7 @@ export const RenameRepositoryDialog = ({
 
   const renameRepoLocal = async () => {
     if (!repoName) {
-      setErrorStr(t('noRepoNameErr'));
+      setErrorStr(t('noRepoNameErr')!);
     }
     onDismiss(repoName);
     setRepoName('');

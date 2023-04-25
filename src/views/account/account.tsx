@@ -71,7 +71,7 @@ export const Account = () => {
     } else {
       const isValid = validateEmail(manualEmail);
       if (!isValid) {
-        setManualEmailError(t('inputValidEmail'));
+        setManualEmailError(t('inputValidEmail')!);
         hasError = true;
       }
     }
@@ -117,7 +117,7 @@ export const Account = () => {
             leftIcon="back"
             leftIconLabel={t('backAction')}
             onLeftSelect={() => history.goBack()}
-            headline={t('accountsHeadline')}
+            headline={t('accountsHeadline')!}
           />
           <SharkSubheader calloutText={t('ghIntegrationHeadline')} />
           {!!gitHubUser ? (

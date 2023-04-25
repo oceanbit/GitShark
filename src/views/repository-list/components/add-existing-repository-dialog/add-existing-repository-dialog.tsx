@@ -71,7 +71,7 @@ export const AddExistingRepositoryDialog = ({
       parentOnDismiss(true);
       return;
     }
-    setErrorStr(t('folderNotGit'));
+    setErrorStr(t('folderNotGit')!);
   };
 
   return (

@@ -61,6 +61,7 @@ const RepositoryListDemo = ({showRepos}: DefaultArgs) => {
         findRepos={() => Promise.resolve()}
         renameRepo={() => {}}
         deleteRepo={() => {}}
+        setComponentError={() => {}}
       />
     </StorybookProvider>
   );

@@ -59,12 +59,12 @@ export const CloneRepositoryDialog = ({
 
   const checkAndClone = async () => {
     if (!repoUrl) {
-      setErrorStr(t('noURIClone'));
+      setErrorStr(t('noURIClone')!);
       return;
     }
     const gitBranchName = await getGitBranchName();
     if (gitBranchName) {
-      setErrorStr(t('alreadyGitRepo'));
+      setErrorStr(t('alreadyGitRepo')!);
       return;
     }
     setIsCloning(true);

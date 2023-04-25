@@ -63,7 +63,7 @@ export const CreateBranchDialog = ({
             value={branchName}
             onChangeText={val => setBranchName(val)}
             prefixIcon={'branch'}
-            errorStr={isNameTaken ? t('branchNameTaken') : ''}
+            errorStr={isNameTaken ? t('branchNameTaken')! : ''}
           />
           {!!errorStr && (
             <ErrorMessageBox style={styles.errorBox} message={errorStr} />

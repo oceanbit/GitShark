@@ -117,7 +117,7 @@ export const CommitDetailsHeader = ({
         accessibilityRole={'button'}
         accessibilityState={{expanded}}
         accessible={true}
-        accessibilityLabel={t('moreInfo')}>
+        accessibilityLabel={t('moreInfo')!}>
         <>
           <AnimatedDropdownArrow expanded={expanded} />
           <View style={styles.dropdropTextContainer}>

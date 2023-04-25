@@ -66,7 +66,7 @@ export const useGitHubUserData = () => {
           })
           .then(() => DefaultPreference.get(MANUAL_USER_STORAGE_KEY))
           .then(manualUserJSON => {
-            const manualUser = JSON.parse(manualUserJSON);
+            const manualUser = JSON.parse(manualUserJSON!);
             /**
              * If the user hasn't added any user info manually, then we just assume
              * that they want to use GH credentials OOTB

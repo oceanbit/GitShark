@@ -77,7 +77,7 @@ export const Settings = () => {
         leftIcon="back"
         leftIconLabel={t('backAction')}
         onLeftSelect={() => history.goBack()}
-        headline={t('settingsHeadline')}
+        headline={t('settingsHeadline')!}
       />
       <SharkSubheader calloutText={t('accountHeadline')} />
       <AccountButton />

@@ -78,7 +78,9 @@ export const RepoCard = ({repo, onDelete, onRename}: RepoCardProps) => {
               onDismiss={() => setIsMenuOpen(false)}
               anchor={
                 <TouchableRipple
-                  accessibilityLabel={t('repoMenuLabel', {repoName: repo.name})}
+                  accessibilityLabel={
+                    t('repoMenuLabel', {repoName: repo.name})!
+                  }
                   style={styles.moreButtonContainer}
                   onPress={() => setIsMenuOpen(true)}>
                   <Icon name="menu" size={24} color={accent} />

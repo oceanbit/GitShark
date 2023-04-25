@@ -86,7 +86,7 @@ export const RepositoryListUI = ({
         <View style={styles.headingContainer}>
           <Text
             style={styles.headingText}
-            accessibilityLabel={t('repoListA11Y')}
+            accessibilityLabel={t('repoListA11Y')!}
             accessibilityRole={'header'}>
             {t('repoListTitle')}
           </Text>

@@ -73,7 +73,7 @@ export const StagingLayout = () => {
         leftIconLabel={t('backAction')}
         leftIcon="back"
         onLeftSelect={() => history.goBack()}
-        headline={t('stagingLayoutHeadline')}
+        headline={t('stagingLayoutHeadline')!}
       />
       <View
         style={{

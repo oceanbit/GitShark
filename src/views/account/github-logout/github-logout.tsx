@@ -17,10 +17,12 @@ export const GitHubLogout = () => {
       <View
         style={styles.ghUserContainer}
         accessible={true}
-        accessibilityLabel={t('gitHubUserInfo', {
-          name: gitHubUser?.name,
-          email: gitHubUser?.email,
-        })}>
+        accessibilityLabel={
+          t('gitHubUserInfo', {
+            name: gitHubUser?.name,
+            email: gitHubUser?.email,
+          })!
+        }>
         <Text style={styles.callout}>{gitHubUser?.name}</Text>
         <Text style={styles.body2}>{gitHubUser?.email}</Text>
       </View>

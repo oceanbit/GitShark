@@ -61,7 +61,7 @@ export const BranchesUI = ({
     <ScrollView>
       <SharkSubheader
         calloutText={t('localBranchesLabel')}
-        buttonText={t('addNewAction')}
+        buttonText={t('addNewAction')!}
         onButtonClick={onCreateBranch}
       />
       {!!localBranches &&
@@ -88,7 +88,7 @@ export const BranchesUI = ({
       <SharkDivider style={styles.remoteDivider} />
       <SharkSubheader
         calloutText={t('remoteBranchesLabel')}
-        buttonText={t('addNewAction')}
+        buttonText={t('addNewAction')!}
         onButtonClick={onCreateRemote}
       />
       {remotes.map(remote => {
